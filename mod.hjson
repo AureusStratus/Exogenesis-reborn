@@ -1,8 +1,7 @@
-
 displayName: "Exogenesis"
 name: "Exogenesis"
 author: "AureusStratus"
-main: "Exogenesis"
+main: "Exogenesis.Exogenesis"
 description: "A big mod will with alot of stuff."
 version: 3.0
 minGameVersion: 145.1
