@@ -69,9 +69,7 @@ public class ExoUnitTypes {
                 shootY = 3;
                 recoil = 0;
                 shake = 1f;
-
-                parts.addAll(
-                        new RegionPart("-blade") {{
+                        parts.add(new RegionPart("-blade"){{
                             mirror = true;
                             heatColor = Color.valueOf("66B1FF");
                             progress = PartProgress.warmup;
