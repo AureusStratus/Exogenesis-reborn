@@ -1,6 +1,6 @@
 package Exogenesis.content;
 
-import Exogenesis.graphics.ExogenesisPal;
+import Exogenesis.graphics.ExoPal;
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -10,7 +10,6 @@ import arc.struct.*;
 import arc.util.*;
 import mindustry.ai.*;
 import mindustry.ai.types.*;
-import mindustry.annotations.Annotations.*;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
@@ -31,7 +30,7 @@ public class ExoUnitTypes {
     public static UnitType orion;
     public static void load() {
         orion = new UnitType("orion") {{
-            constructor = LegUnit::create;
+
             outlineColor = Color.valueOf("36363c");
             speed = 0.7f;
             hitSize = 10f;
@@ -57,7 +56,7 @@ public class ExoUnitTypes {
             rippleScale = 0.2f;
             legBaseOffset = 5;
             legLength = 9;
-
+            constructor = LegUnit::create;
             weapons.add(new Weapon("orion") {{
                 reload = 100f;
                 mirror = false;
@@ -93,7 +92,6 @@ public class ExoUnitTypes {
                         }},
                         new HaloPart() {{
                             y = 3f;
-                            progress = haloProgress;
                             radius = 2f;
                             tri = true;
                             color = Color.valueOf("66B1FF");
@@ -108,10 +106,9 @@ public class ExoUnitTypes {
                         }},
                         new HaloPart() {{
                             y = 3f;
-                            progress = haloProgress;
                             radius = 2f;
                             tri = true;
-                            color = ExogenesisPal.genesisDark;
+                            color = ExoPal.genesisDark;
                             haloRotateSpeed = 1f;
                             haloRadius = 3f;
                             haloRadiusTo = 3f;
@@ -122,12 +119,12 @@ public class ExoUnitTypes {
                             triLength = 0f;
                         }}
                         );
-                shootType = new EmpBulletType(8f, 70f) {{
+                bullet = new EmpBulletType(8f, 70) {{
                     width = 8f;
                     height = 11f;
-                    sprite = circle-bullet;
+                    sprite = "circle-bullet";
                     frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExogenesisPal.genesisDark;
+                    backColor = hitColor = trailColor = ExoPal.genesisDark;
                     lifetime = 60f;
                     speed = 6f;
                     damage = 25f;
@@ -145,7 +142,7 @@ public class ExoUnitTypes {
                     shootEffect = Fx.lightningShoot;
                     homingPower = 0.0678f;
                     homingRange = 40;
-                    trailLength = 10f;
+                    trailLength = 10;
                     trailWidth = 2f;
                     trailChance = 0.3f;
                     trailEffect = new ParticleEffect() {{
