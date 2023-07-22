@@ -30,7 +30,7 @@ public class ExoUnitTypes {
     public static UnitType orion;
     public static void load() {
         orion = new UnitType("orion") {{
-
+            constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
             speed = 0.7f;
             hitSize = 10f;
@@ -56,7 +56,7 @@ public class ExoUnitTypes {
             rippleScale = 0.2f;
             legBaseOffset = 5;
             legLength = 9;
-            constructor = LegUnit::create;
+
             weapons.add(new Weapon("orion") {{
                 reload = 100f;
                 mirror = false;
@@ -119,7 +119,7 @@ public class ExoUnitTypes {
                             triLength = 0f;
                         }}
                         );
-                bullet = new EmpBulletType(8f, 70) {{
+                bullet = new EmpBulletType() {{
                     width = 8f;
                     height = 11f;
                     sprite = "circle-bullet";
