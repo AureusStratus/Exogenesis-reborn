@@ -10,7 +10,7 @@ import mindustry.mod.Mod;
 public class Exogenesis extends Mod {
     @Override
     public void loadContent() {
-        ExoBlocks.load();
         ExoUnitTypes.load();
+        ExoBlocks.load();
     }
 }
