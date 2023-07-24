@@ -27,8 +27,93 @@ import mindustry.content.*;
 import mindustry.entities.units.*;
 
 public class ExoUnitTypes {
-    public static UnitType orion;
+    public static UnitType orion, lux;
     public static void load() {
+        lux = new UnitType("lux") {{
+            constructor = UnitEntity::create;
+            outlineColor = ExoPal.empyreanOutline;
+            speed = 2.8f;
+            hitSize = 10f;
+            health = 460f;
+            drawCell = false;
+            faceTarget = true;
+            circleTarget = true;
+            armor = 2;
+            trailLength = 8;
+            trailColor = ExoPal.empyrean;
+            rotateSpeed = 0.7f;
+            engineSize = 3;
+            weapons.add(new Weapon("lux") {{
+                reload = 40f;
+                mirror = false;
+                x = 0;
+                shoot = new ShootMulti(new ShootHelix(){{
+                    mag = 2.4f;
+                    scl = 5f;
+                }}, new ShootHelix(){{
+                    scl = 1f;
+                    mag = 5f;
+                }});
+                shootSound = Sounds.bolt;
+                showStatSprite = false;
+                recoil = 0;
+                shake = 1f;
+                parts.add(new ShapePart() {{
+                        mirror = false;
+                        progress = PartProgress.warmup;
+                        circle = true;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = 1f;
+                        strokeTo = 1f;
+                        radiusTo = 3f;
+                        radius = 3f;
+                        }},
+                        new HaloPart() {{
+                            y = 0f;
+                            radius = 1.2f;
+                            tri = true;
+                            color = ExoPal.empyrean;
+                            haloRotateSpeed = -1f;
+                            haloRadius = 3f;
+                            haloRadiusTo = 3f;
+                            stroke = 0f;
+                            strokeTo = 2f;
+                            shapes = 2;
+                            triLengthTo = 3f;
+                            triLength = 0f;
+                        }},
+                        new HaloPart() {{
+                            y = 0f;
+                            radius = 1.2f;
+                            tri = true;
+                            color = ExoPal.empyrean;
+                            haloRotateSpeed = 1f;
+                            haloRadius = 3f;
+                            haloRadiusTo = 3f;
+                            stroke = 0f;
+                            strokeTo = 2f;
+                            shapes = 2;
+                            triLengthTo = 3f;
+                            triLength = 0f;
+                        }}
+                );
+                bullet = new BasicBulletType() {{
+                    width = 4f;
+                    height = 10f;
+                    sprite = "missile";
+                    frontColor = Color.white;
+                    backColor = hitColor = trailColor = ExoPal.empyrean;
+                    lifetime = 60f;
+                    speed = 8f;
+                    damage = 25f;
+                    shrinkY = shrinkX = 0;
+                    shootEffect = Fx.lightningShoot;
+                    trailLength = 10;
+                    trailWidth = 2f;
+                }};
+            }});
+        }};
         orion = new UnitType("orion") {{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
