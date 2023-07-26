@@ -47,17 +47,15 @@ public class ExoUnitTypes {
             trailColor = ExoPal.empyrean;
             rotateSpeed = 2.7f;
             engineSize = 3;
+            engineOffset = 0;
             weapons.add(new Weapon("lux") {{
                 reload = 40f;
                 mirror = false;
                 x = 0;
-                shoot = new ShootMulti(new ShootHelix(){{
+                shoot = new  ShootHelix(){{
                     mag = 2.4f;
                     scl = 3f;
-                }}, new ShootHelix(){{
-                    scl = 1f;
-                    mag = 3f;
-                }});
+                }};
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
                 recoil = 0;
@@ -81,14 +79,14 @@ public class ExoUnitTypes {
                             tri = true;
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
-                            haloRotateSpeed = -1f;
+                            haloRotateSpeed = -2.5f;
                             haloRadius = 3f;
                             haloRadiusTo = 3f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
-                            triLengthTo = 3f;
-                            triLength = 0f;
+                            triLengthTo = 5f;
+                            triLength = 5f;
                         }},
                         new HaloPart() {{
                             y = 0f;
@@ -96,14 +94,14 @@ public class ExoUnitTypes {
                             tri = true;
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
-                            haloRotateSpeed = 1f;
+                            haloRotateSpeed = 2.5f;
                             haloRadius = 3f;
                             haloRadiusTo = 3f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
-                            triLengthTo = 3f;
-                            triLength = 0f;
+                            triLengthTo = 5f;
+                            triLength = 5f;
                         }}
                 );
                 bullet = new BasicBulletType() {{
@@ -134,7 +132,7 @@ public class ExoUnitTypes {
             targetAir = false;
             allowLegStep = true;
             hovering = true;
-            rotateSpeed = 1f;
+            rotateSpeed = 2f;
             legMoveSpace = 1.5f;
             legMaxLength = 1.1f;
             legMinLength = 0.2f;
@@ -221,7 +219,7 @@ public class ExoUnitTypes {
                     sprite = "circle-bullet";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.genesisDark;
-                    lifetime = 60f;
+                    lifetime = 40f;
                     speed = 6f;
                     damage = 25f;
                     recoil = 0.6f;
