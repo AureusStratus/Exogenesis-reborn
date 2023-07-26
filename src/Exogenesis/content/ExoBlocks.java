@@ -29,14 +29,21 @@ import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
 public class ExoBlocks{
  public static Block
-         genesisFactory;
+         genesisFactory, empyreanFactory;
 public static void load(){
 
  genesisFactory = new UnitFactory("genesis-factory"){{
   requirements(Category.units, with(Items.copper, 50, Items.lead, 120, Items.silicon, 80));
   plans = Seq.with(
-          new UnitPlan(ExoUnitTypes.lux, 60f * 15, with(Items.silicon, 10, Items.lead, 10)),
           new UnitPlan(ExoUnitTypes.orion, 60f * 15, with(Items.silicon, 10, Items.lead, 10))
+  );
+  size = 3;
+  consumePower(1.2f);
+ }};
+ empyreanFactory = new UnitFactory("empyrean-factory"){{
+  requirements(Category.units, with(Items.copper, 50, Items.lead, 120, Items.silicon, 80));
+  plans = Seq.with(
+          new UnitPlan(ExoUnitTypes.lux, 60f * 15, with(Items.silicon, 10, Items.lead, 10))
   );
   size = 3;
   consumePower(1.2f);
