@@ -45,7 +45,7 @@ public class ExoUnitTypes {
             armor = 2;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            rotateSpeed = 0.7f;
+            rotateSpeed = 2.7f;
             engineSize = 3;
             weapons.add(new Weapon("lux") {{
                 reload = 40f;
@@ -62,7 +62,8 @@ public class ExoUnitTypes {
                 showStatSprite = false;
                 recoil = 0;
                 shake = 1f;
-                parts.add(new ShapePart() {{
+                parts.add(
+                        new ShapePart() {{
                         mirror = false;
                         progress = PartProgress.warmup;
                         circle = true;
@@ -111,7 +112,7 @@ public class ExoUnitTypes {
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
-                    lifetime = 60f;
+                    lifetime = 35f;
                     speed = 8f;
                     damage = 25f;
                     shrinkY = shrinkX = 0;
@@ -133,8 +134,8 @@ public class ExoUnitTypes {
             targetAir = false;
             allowLegStep = true;
             hovering = true;
-            rotateSpeed = 0.3f;
-            legMoveSpace = 1;
+            rotateSpeed = 1f;
+            legMoveSpace = 1.5f;
             legMaxLength = 1.1f;
             legMinLength = 0.2f;
             legLengthScl = 0.96f;
