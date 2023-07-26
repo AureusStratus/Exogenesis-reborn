@@ -53,8 +53,8 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 0;
                 shoot = new  ShootHelix(){{
-                    mag = 2.4f;
-                    scl = 3f;
+                    mag = 1.4f;
+                    scl = 2f;
                 }};
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
@@ -75,7 +75,7 @@ public class ExoUnitTypes {
                         }},
                         new HaloPart() {{
                             y = 0f;
-                            radius = 1.2f;
+                            radius = 1.3f;
                             tri = true;
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
@@ -85,12 +85,12 @@ public class ExoUnitTypes {
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
-                            triLengthTo = 5f;
-                            triLength = 5f;
+                            triLengthTo = 4f;
+                            triLength = 4f;
                         }},
                         new HaloPart() {{
                             y = 0f;
-                            radius = 1.2f;
+                            radius = 1.3f;
                             tri = true;
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
@@ -100,8 +100,8 @@ public class ExoUnitTypes {
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
-                            triLengthTo = 5f;
-                            triLength = 5f;
+                            triLengthTo = 4f;
+                            triLength = 4f;
                         }}
                 );
                 bullet = new BasicBulletType() {{
@@ -124,7 +124,7 @@ public class ExoUnitTypes {
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
             speed = 0.7f;
-            hitSize = 10f;
+            hitSize = 13f;
             health = 360f;
             faceTarget = true;
             armor = 2;
@@ -132,7 +132,7 @@ public class ExoUnitTypes {
             targetAir = false;
             allowLegStep = true;
             hovering = true;
-            rotateSpeed = 2f;
+            rotateSpeed = 1.6f;
             legMoveSpace = 1.5f;
             legMaxLength = 1.1f;
             legMinLength = 0.2f;
