@@ -43,6 +43,7 @@ public class ExoUnitTypes {
             circleTarget = true;
             lowAltitude = true;
             armor = 2;
+            engineLayer = Layer.effect;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
             rotateSpeed = 2.7f;
@@ -53,7 +54,7 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 0;
                 shoot = new  ShootHelix(){{
-                    mag = 1.4f;
+                    mag = 4.4f;
                     scl = 2f;
                 }};
                 shootSound = Sounds.bolt;
