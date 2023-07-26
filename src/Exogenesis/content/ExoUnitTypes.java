@@ -35,9 +35,13 @@ public class ExoUnitTypes {
             speed = 2.8f;
             hitSize = 10f;
             health = 460f;
+            flying = true;
+            drag = 0.08f;
+            accel = 0.09f;
             drawCell = false;
             faceTarget = true;
             circleTarget = true;
+            lowAltitude = true;
             armor = 2;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
@@ -49,10 +53,10 @@ public class ExoUnitTypes {
                 x = 0;
                 shoot = new ShootMulti(new ShootHelix(){{
                     mag = 2.4f;
-                    scl = 5f;
+                    scl = 3f;
                 }}, new ShootHelix(){{
                     scl = 1f;
-                    mag = 5f;
+                    mag = 3f;
                 }});
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
@@ -62,6 +66,7 @@ public class ExoUnitTypes {
                         mirror = false;
                         progress = PartProgress.warmup;
                         circle = true;
+                        layer = Layer.effect;
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = 1f;
@@ -74,6 +79,7 @@ public class ExoUnitTypes {
                             radius = 1.2f;
                             tri = true;
                             color = ExoPal.empyrean;
+                            layer = Layer.effect;
                             haloRotateSpeed = -1f;
                             haloRadius = 3f;
                             haloRadiusTo = 3f;
@@ -88,6 +94,7 @@ public class ExoUnitTypes {
                             radius = 1.2f;
                             tri = true;
                             color = ExoPal.empyrean;
+                            layer = Layer.effect;
                             haloRotateSpeed = 1f;
                             haloRadius = 3f;
                             haloRadiusTo = 3f;
@@ -99,8 +106,8 @@ public class ExoUnitTypes {
                         }}
                 );
                 bullet = new BasicBulletType() {{
-                    width = 4f;
-                    height = 10f;
+                    width = 7f;
+                    height = 13f;
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
@@ -141,7 +148,15 @@ public class ExoUnitTypes {
             rippleScale = 0.2f;
             legBaseOffset = 5;
             legLength = 9;
-
+            parts.add(
+            new RegionPart("-blade"){{
+                mirror = true;
+                heatColor = Color.valueOf("66B1FF");
+                progress = PartProgress.warmup;
+                heatProgress = PartProgress.warmup;
+                moveRot = -22f;
+            }}
+            );
             weapons.add(new Weapon("orion") {{
                 reload = 100f;
                 mirror = false;
@@ -154,18 +169,13 @@ public class ExoUnitTypes {
                 shootY = 3;
                 recoil = 0;
                 shake = 1f;
-                        parts.add(new RegionPart("-blade"){{
-                            mirror = true;
-                            heatColor = Color.valueOf("66B1FF");
-                            progress = PartProgress.warmup;
-                            heatProgress = PartProgress.warmup;
-                            moveRot = -22f;
-                        }},
-                        new ShapePart() {{
+                        parts.add(
+                            new ShapePart() {{
                             mirror = true;
                             progress = PartProgress.warmup;
                             hollow = true;
                             circle = true;
+                            layer = Layer.effect;
                             y = 3f;
                             color = Color.valueOf("66B1FF");
                             stroke = 0f;
@@ -178,6 +188,7 @@ public class ExoUnitTypes {
                             radius = 2f;
                             tri = true;
                             color = Color.valueOf("66B1FF");
+                            layer = Layer.effect;
                             haloRotateSpeed = -1f;
                             haloRadius = 3f;
                             haloRadiusTo = 3f;
@@ -192,6 +203,7 @@ public class ExoUnitTypes {
                             radius = 2f;
                             tri = true;
                             color = ExoPal.genesisDark;
+                            layer = Layer.effect;
                             haloRotateSpeed = 1f;
                             haloRadius = 3f;
                             haloRadiusTo = 3f;
