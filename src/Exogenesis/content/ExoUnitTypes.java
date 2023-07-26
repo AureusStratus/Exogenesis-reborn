@@ -32,14 +32,14 @@ public class ExoUnitTypes {
         lux = new UnitType("lux") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
-            speed = 2.8f;
+            speed = 4.8f;
             hitSize = 10f;
             health = 460f;
             flying = true;
             drag = 0.08f;
             accel = 0.09f;
             drawCell = false;
-            faceTarget = true;
+            faceTarget = false;
             circleTarget = true;
             lowAltitude = true;
             armor = 2;
@@ -51,6 +51,8 @@ public class ExoUnitTypes {
             engineOffset = 0;
             weapons.add(new Weapon("lux") {{
                 reload = 40f;
+                rotate = true;
+                rotateSpeed = 5;
                 mirror = false;
                 x = 0;
                 shoot = new  ShootHelix(){{
