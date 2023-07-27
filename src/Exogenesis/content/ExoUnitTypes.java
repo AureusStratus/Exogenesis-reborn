@@ -50,15 +50,15 @@ public class ExoUnitTypes {
             trailLength = 8;
             trailColor = ExoPal.empyrean;
             rotateSpeed = 2.7f;
-            engineSize = 3;
+            engineSize = 2.7f;
             engineOffset = 0;
             weapons.add(new Weapon("lux") {{
                 reload = 40f;
                 mirror = false;
                 x = 0;
                 shoot = new  ShootHelix(){{
-                    mag = 5.4f;
-                    scl = 7f;
+                    mag = 3.5f;
+                    scl = 5f;
                 }};
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
@@ -80,7 +80,7 @@ public class ExoUnitTypes {
                             progress = PartProgress.warmup;
                             circle = true;
                             layer = Layer.effect;
-                            y = -4f;
+                            y = 0f;
                             color = Color.white;
                             radiusTo = radius = 1.5f;
                         }},
@@ -195,8 +195,8 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("glimmer") {{
                 reload = 5f;
                 mirror = true;
-                x = 5;
-                y = 5;
+                x = 4;
+                y = 3;
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
                 recoil = 0;
@@ -283,9 +283,9 @@ public class ExoUnitTypes {
                             progress = PartProgress.warmup;
                             circle = true;
                             layer = Layer.effect;
-                            y = -4f;
+                            y = 0f;
                             color = Color.white;
-                            radiusTo = radius = 2.25f;
+                            radiusTo = radius = 3f;
                         }},
                         new HaloPart() {{
                             y = 0f;
