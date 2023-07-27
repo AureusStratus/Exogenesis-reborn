@@ -11,7 +11,6 @@ import mindustry.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
-import Exogenesis.entities.bullet.*;
 import Exogenesis.graphics.ExoPal;
 import mindustry.entities.part.*;
 import mindustry.gen.*;
