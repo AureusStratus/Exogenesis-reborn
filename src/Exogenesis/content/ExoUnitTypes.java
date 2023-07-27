@@ -57,8 +57,8 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 0;
                 shoot = new  ShootHelix(){{
-                    mag = 2.4f;
-                    scl = 8f;
+                    mag = 5.4f;
+                    scl = 7f;
                 }};
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
@@ -66,23 +66,23 @@ public class ExoUnitTypes {
                 shake = 1f;
                 parts.add(
                         new ShapePart() {{
-                        mirror = false;
-                        progress = PartProgress.warmup;
-                        circle = true;
-                        layer = Layer.effect;
-                        y = -4f;
-                        color = Color.white;
-                        radiusTo = radius = 1.5f;
+                            mirror = false;
+                            progress = PartProgress.warmup;
+                            circle = true;
+                            layer = Layer.effect;
+                            y = 0f;
+                            color = ExoPal.empyrean;
+                            stroke = strokeTo = 1f;
+                            radiusTo = radius = 3f;
                         }},
                         new ShapePart() {{
-                        mirror = false;
-                        progress = PartProgress.warmup;
-                        circle = true;
-                        layer = Layer.effect;
-                        y = 0f;
-                        color = ExoPal.empyrean;
-                        stroke = strokeTo = 1f;
-                        radiusTo = radius = 3f;
+                            mirror = false;
+                            progress = PartProgress.warmup;
+                            circle = true;
+                            layer = Layer.effect;
+                            y = -4f;
+                            color = Color.white;
+                            radiusTo = radius = 1.5f;
                         }},
                         new HaloPart() {{
                             y = 0f;
@@ -153,8 +153,8 @@ public class ExoUnitTypes {
                         circle = true;
                         layer = Layer.effect;
                         y = -4f;
-                        color = Color.white;
-                        radiusTo = radius = 1.5f;
+                        color = ExoPal.empyrean;
+                        radiusTo = radius = 3f;
                     }},
                     new ShapePart() {{
                         mirror = false;
@@ -162,8 +162,8 @@ public class ExoUnitTypes {
                         circle = true;
                         layer = Layer.effect;
                         y = -4f;
-                        color = ExoPal.empyrean;
-                        radiusTo = radius = 3f;
+                        color = Color.white;
+                        radiusTo = radius = 1.5f;
                     }},
                     new HaloPart() {{
                         y = -4f;
@@ -274,18 +274,18 @@ public class ExoUnitTypes {
                             progress = PartProgress.warmup;
                             circle = true;
                             layer = Layer.effect;
-                            y = -4f;
-                            color = Color.white;
-                            radiusTo = radius = 2.25f;
+                            y = 0f;
+                            color = ExoPal.empyrean;
+                            radiusTo = radius = 4.5f;
                         }},
                         new ShapePart() {{
                             mirror = false;
                             progress = PartProgress.warmup;
                             circle = true;
                             layer = Layer.effect;
-                            y = 0f;
-                            color = ExoPal.empyrean;
-                            radiusTo = radius = 4.5f;
+                            y = -4f;
+                            color = Color.white;
+                            radiusTo = radius = 2.25f;
                         }},
                         new HaloPart() {{
                             y = 0f;
