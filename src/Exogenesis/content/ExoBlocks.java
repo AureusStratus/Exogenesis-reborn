@@ -11,6 +11,9 @@ import mindustry.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
+import Exogenesis.entities.bullet.*;
+import Exogenesis.graphics.ExoPal;
+import mindustry.entities.part.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
@@ -29,9 +32,51 @@ import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
 public class ExoBlocks{
  public static Block
+         excalibur,
          genesisFactory, empyreanFactory;
 public static void load(){
+ excalibur = new PowerTurret("excalibur"){{
+  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  range = 270f;
+  recoil = 2f;
+  reload = 80f;
+  shake = 2f;
+  shootEffect = Fx.colorSparkBig;
+  smokeEffect = Fx.none;
+  heatColor = Color.red;
+  size = 4;
+  scaledHealth = 280;
+  targetAir = false;
+  shootSound = Sounds.laser;
+  coolant = consumeCoolant(0.2f);
 
+  consumePower(6f);
+  drawer = new DrawTurret("elecian-"){{
+   parts.addAll(
+   new RegionPart("-body"){{
+   progress = PartProgress.recoil;
+   moveY = -5;
+   mirror = false;
+   }},
+   new RegionPart("-plate"){{
+   progress = PartProgress.recoil;
+   moveRot = -8;
+   mirror = true;
+   }}
+   );
+  }};
+   shootType = new AcceleratingLaserBulletType(140){{
+   colors = new Color[]{ExoPal.empyrean.cpy().a(0.4f), ExoPal.empyrean, Color.white};
+   buildingDamageMultiplier = 0.25f;
+   hitEffect = Fx.colorSparkBig;
+   hitColor = ExoPal.empyrean;
+   hitSize = 4;
+   lifetime = 126f;
+   collidesAir = false;
+   maxLength = 270f;
+   pierceAmount = 4;
+  }};
+ }};
  genesisFactory = new UnitFactory("genesis-factory"){{
   requirements(Category.units, with(Items.copper, 50, Items.lead, 120, Items.silicon, 80));
   plans = Seq.with(
