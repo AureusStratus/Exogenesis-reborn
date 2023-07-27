@@ -57,8 +57,8 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 0;
                 shoot = new  ShootHelix(){{
-                    mag = 7.4f;
-                    scl = 2f;
+                    mag = 2.4f;
+                    scl = 8f;
                 }};
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
@@ -70,12 +70,19 @@ public class ExoUnitTypes {
                         progress = PartProgress.warmup;
                         circle = true;
                         layer = Layer.effect;
+                        y = -4f;
+                        color = Color.white;
+                        radiusTo = radius = 1.5f;
+                        }},
+                        new ShapePart() {{
+                        mirror = false;
+                        progress = PartProgress.warmup;
+                        circle = true;
+                        layer = Layer.effect;
                         y = 0f;
                         color = ExoPal.empyrean;
-                        stroke = 1f;
-                        strokeTo = 1f;
-                        radiusTo = 3f;
-                        radius = 3f;
+                        stroke = strokeTo = 1f;
+                        radiusTo = radius = 3f;
                         }},
                         new HaloPart() {{
                             y = 0f;
@@ -84,13 +91,11 @@ public class ExoUnitTypes {
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
                             haloRotateSpeed = -2.5f;
-                            haloRadius = 3f;
-                            haloRadiusTo = 3f;
+                            haloRadius = haloRadiusTo = 3f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
-                            triLengthTo = 4f;
-                            triLength = 4f;
+                            triLengthTo = triLength = 4f;
                         }},
                         new HaloPart() {{
                             y = 0f;
@@ -99,13 +104,11 @@ public class ExoUnitTypes {
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
                             haloRotateSpeed = 2.5f;
-                            haloRadius = 3f;
-                            haloRadiusTo = 3f;
+                            haloRadius = haloRadiusTo = 3f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
-                            triLengthTo = 4f;
-                            triLength = 4f;
+                            triLengthTo = triLength = 4f;
                         }}
                 );
                 bullet = new BasicBulletType(8f, 25){{
@@ -114,7 +117,7 @@ public class ExoUnitTypes {
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
-                    lifetime = 22f;
+                    lifetime = 16f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
                     shootEffect = Fx.lightningShoot;
@@ -142,49 +145,51 @@ public class ExoUnitTypes {
             trailColor = ExoPal.empyrean;
             rotateSpeed = 2.4f;
             engineSize = 3;
-            engineOffset = 5;
+            engineOffset = 4;
             parts.add(
                     new ShapePart() {{
                         mirror = false;
                         progress = PartProgress.warmup;
                         circle = true;
                         layer = Layer.effect;
-                        y = -5f;
+                        y = -4f;
+                        color = Color.white;
+                        radiusTo = radius = 1.5f;
+                    }},
+                    new ShapePart() {{
+                        mirror = false;
+                        progress = PartProgress.warmup;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = -4f;
                         color = ExoPal.empyrean;
-                        stroke = 1f;
-                        strokeTo = 1f;
-                        radiusTo = 3f;
-                        radius = 3f;
+                        radiusTo = radius = 3f;
                     }},
                     new HaloPart() {{
-                        y = -5f;
-                        radius = 1.5f;
+                        y = -4f;
+                        radius = 1.8f;
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = 3f;
-                        haloRadiusTo = 3f;
+                        haloRadius = haloRadiusTo = 3f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
-                        triLengthTo = 4f;
-                        triLength = 4f;
+                        triLengthTo = triLength = 4f;
                     }},
                     new HaloPart() {{
-                        y = -5f;
-                        radius = 1.5f;
+                        y = -4f;
+                        radius = 1.8f;
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = 2.5f;
-                        haloRadius = 3f;
-                        haloRadiusTo = 3f;
+                        haloRadius = haloRadiusTo = 3f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
-                        triLengthTo = 4f;
-                        triLength = 4f;
+                        triLengthTo = triLength = 4f;
                     }}
             );
             weapons.add(new Weapon("glimmer") {{
@@ -249,7 +254,7 @@ public class ExoUnitTypes {
             engineSize = 0;
             engineOffset = 0;
             setEnginesMirror(
-            new UnitEngine(3, -6, 2f, 315f)
+            new UnitEngine(4.5f, -9, 2f, 315f)
             );
             weapons.add(new Weapon("shine") {{
                 reload = 60f;
@@ -259,7 +264,7 @@ public class ExoUnitTypes {
                     shotDelay = 2f;
                     shots = 3;
                 }};
-                shootSound = Sounds.laser;
+                shootSound = Sounds.malignShoot;
                 showStatSprite = false;
                 recoil = 0;
                 shake = 1f;
@@ -269,12 +274,18 @@ public class ExoUnitTypes {
                             progress = PartProgress.warmup;
                             circle = true;
                             layer = Layer.effect;
+                            y = -4f;
+                            color = Color.white;
+                            radiusTo = radius = 2.25f;
+                        }},
+                        new ShapePart() {{
+                            mirror = false;
+                            progress = PartProgress.warmup;
+                            circle = true;
+                            layer = Layer.effect;
                             y = 0f;
                             color = ExoPal.empyrean;
-                            stroke = 1f;
-                            strokeTo = 1f;
-                            radiusTo = 4.5f;
-                            radius = 4.5f;
+                            radiusTo = radius = 4.5f;
                         }},
                         new HaloPart() {{
                             y = 0f;
@@ -287,8 +298,7 @@ public class ExoUnitTypes {
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
-                            triLengthTo = 4f;
-                            triLength = 4f;
+                            triLengthTo = triLength = 4f;
                         }},
                         new HaloPart() {{
                             y = 0f;
@@ -301,8 +311,7 @@ public class ExoUnitTypes {
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 3;
-                            triLengthTo = 5.5f;
-                            triLength = 5.5f;
+                            triLengthTo = triLength = 5.5f;
                         }}
                 );
                 bullet = new BasicBulletType(8f, 25){{
@@ -317,7 +326,7 @@ public class ExoUnitTypes {
                     trailEffect = new Effect(13f, e -> {
                         color(ExoPal.empyrean);
                         for(int s : Mathf.signs){
-                            Drawf.tri(e.x, e.y, 4f, 20f * e.fslope(), e.rotation + 90f*s);
+                            Drawf.tri(e.x, e.y, 2.5f, 14f * e.fslope(), e.rotation + 90f*s);
                         }
                     });
                     trailRotation = true;
@@ -328,7 +337,7 @@ public class ExoUnitTypes {
                     lightningDamage = 11;
                     shootEffect = Fx.lightningShoot;
                     trailLength = 10;
-                    trailWidth = 2f;
+                    trailWidth = 3f;
                 }};
             }});
         }};
@@ -391,8 +400,7 @@ public class ExoUnitTypes {
                             color = Color.valueOf("66B1FF");
                             stroke = 0f;
                             strokeTo = 1f;
-                            radiusTo = 3f;
-                            radius = 3f;
+                            radiusTo = radius = 3f;
                         }},
                         new HaloPart() {{
                             y = 3f;
@@ -401,8 +409,7 @@ public class ExoUnitTypes {
                             color = Color.valueOf("66B1FF");
                             layer = Layer.effect;
                             haloRotateSpeed = -1f;
-                            haloRadius = 3f;
-                            haloRadiusTo = 3f;
+                            haloRadius = haloRadiusTo = 3f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
@@ -416,8 +423,7 @@ public class ExoUnitTypes {
                             color = ExoPal.genesisDark;
                             layer = Layer.effect;
                             haloRotateSpeed = 1f;
-                            haloRadius = 3f;
-                            haloRadiusTo = 3f;
+                            haloRadius = haloRadiusTo = 3f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 2;
@@ -453,8 +459,7 @@ public class ExoUnitTypes {
                     trailChance = 0.3f;
                     trailEffect = new ParticleEffect() {{
                     particles = 13;
-                    length = 2.5f;
-                    baseLength = 2.5f;
+                    length = baseLength = 2.5f;
                     lifetime = 20f;
                     colorFrom = colorTo = trailColor;
                     sizeFrom = 5f;
