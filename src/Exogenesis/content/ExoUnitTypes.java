@@ -25,7 +25,10 @@ import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 import mindustry.content.*;
 import mindustry.entities.units.*;
-
+import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.*;
+import static arc.math.Angles.*;
+import static mindustry.Vars.*;
 public class ExoUnitTypes {
     public static UnitType orion, lux, glimmer, shine;
     public static void load() {
@@ -111,7 +114,7 @@ public class ExoUnitTypes {
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
-                    lifetime = 35f;
+                    lifetime = 22f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
                     shootEffect = Fx.lightningShoot;
@@ -185,8 +188,8 @@ public class ExoUnitTypes {
                     }}
             );
             weapons.add(new Weapon("glimmer") {{
-                reload = 40f;
-                mirror = false;
+                reload = 5f;
+                mirror = true;
                 x = 5;
                 y = 5;
                 shootSound = Sounds.bolt;
@@ -199,7 +202,7 @@ public class ExoUnitTypes {
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
-                    lifetime = 20f;
+                    lifetime = 10f;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
                     shrinkY = shrinkX = 0;
                     shootEffect = Fx.shootSmallColor;
@@ -215,7 +218,7 @@ public class ExoUnitTypes {
                         sprite = "missile";
                         width = 7f;
                         height = 13f;
-                        lifetime = 15f;
+                        lifetime = 7f;
                         hitSize = 4f;
                         backColor = hitColor = trailColor = ExoPal.empyrean;
                         frontColor = Color.white;
@@ -309,9 +312,10 @@ public class ExoUnitTypes {
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 35f;
                     weaveMag = 3;
-                    weaveScale = 6;
+                    weaveScale = 2;
                     shrinkY = shrinkX = 0;
                     trailEffect = new Effect(13f, e -> {
+                        color(ExoPal.empyrean);
                         for(int s : Mathf.signs){
                             Drawf.tri(e.x, e.y, 4f, 20f * e.fslope(), e.rotation + 90f*s);
                         }
