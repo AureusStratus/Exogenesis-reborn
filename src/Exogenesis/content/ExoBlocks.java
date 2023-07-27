@@ -44,6 +44,7 @@ public static void load(){
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
   heatColor = Color.red;
+  outlineColor = ExoPal.empyreanOutline
   size = 4;
   scaledHealth = 280;
   targetAir = false;
@@ -65,7 +66,7 @@ public static void load(){
    }}
    );
   }};
-   shootType = new AcceleratingLaserBulletType(140){{
+   shootType = new LaserBulletType(140){{
    colors = new Color[]{ExoPal.empyrean.cpy().a(0.4f), ExoPal.empyrean, Color.white};
    buildingDamageMultiplier = 0.25f;
    hitEffect = Fx.colorSparkBig;
@@ -73,8 +74,7 @@ public static void load(){
    hitSize = 4;
    lifetime = 126f;
    collidesAir = false;
-   maxLength = 270f;
-   pierceAmount = 4;
+   length = 270f;
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
