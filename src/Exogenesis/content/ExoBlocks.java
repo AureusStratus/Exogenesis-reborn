@@ -44,7 +44,7 @@ public static void load(){
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
   heatColor = Color.red;
-  outlineColor = ExoPal.empyreanOutline
+  outlineColor = ExoPal.empyreanOutline;
   size = 4;
   scaledHealth = 280;
   targetAir = false;
