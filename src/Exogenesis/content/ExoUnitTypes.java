@@ -363,8 +363,8 @@ public class ExoUnitTypes {
             setEnginesMirror(
                     new UnitEngine(8.5f, -15, 3f, 315f)
             );
-            weapons.add(new Weapon("shine") {{
-                reload = 60f;
+            weapons.add(new Weapon("auric") {{
+                reload = 80f;
                 mirror = false;
                 x = 0;
                 shootSound = Sounds.malignShoot;
