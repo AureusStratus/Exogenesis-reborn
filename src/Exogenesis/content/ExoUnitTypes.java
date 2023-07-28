@@ -317,6 +317,7 @@ public class ExoUnitTypes {
                     sprite = "circle-bullet";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
+                    hitEffect = despawnEffect = ExoFx.colorBombSmall;
                     lifetime = 35f;
                     weaveMag = 3;
                     weaveScale = 2;
@@ -376,7 +377,7 @@ public class ExoUnitTypes {
                             layer = Layer.effect;
                             y = 0f;
                             color = ExoPal.empyrean;
-                            radiusTo = radius = 9f;
+                            radiusTo = radius = 11f;
                         }},
                         new ShapePart() {{
                             mirror = false;
@@ -389,12 +390,12 @@ public class ExoUnitTypes {
                         }},
                         new HaloPart() {{
                             y = 0f;
-                            radius = 2.5f;
+                            radius = 3.5f;
                             tri = true;
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
                             haloRotateSpeed = -3f;
-                            haloRadius = haloRadiusTo = 9f;
+                            haloRadius = haloRadiusTo = 11f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 3;
@@ -402,12 +403,12 @@ public class ExoUnitTypes {
                         }},
                         new HaloPart() {{
                             y = 0f;
-                            radius = 3f;
+                            radius = 4f;
                             tri = true;
                             color = ExoPal.empyrean;
                             layer = Layer.effect;
                             haloRotateSpeed = 3f;
-                            haloRadius = haloRadiusTo = 9f;
+                            haloRadius = haloRadiusTo = 11f;
                             stroke = 0f;
                             strokeTo = 2f;
                             shapes = 3;
@@ -415,13 +416,13 @@ public class ExoUnitTypes {
                         }}
                 );
                 bullet = new BasicBulletType(6f, 25){{
-                    width = height = 25f;
+                    width = height = 45f;
                     sprite = "exogenesis-plasma";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 65f;
                     shrinkY = shrinkX = 0;
-                    hitEffect = despawnEffect = ExoFx.lightEnrCircleSplash;
+                    hitEffect = despawnEffect = ExoFx.colorBomb;
                     intervalBullet = new BasicBulletType(4f, 25){{
                         width = height = 10f;
                         sprite = "circle-bullet";
