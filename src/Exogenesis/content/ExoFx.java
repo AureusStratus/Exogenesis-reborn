@@ -29,9 +29,17 @@ public class ExoFx{
         empyreanExplosion = new Effect(30f, 160f, e -> {
         color(e.color);
         stroke(e.fout() * 5f);
-        float circleRad = 6f + e.finpow() * 60f;
+        float circleRad = 8f + e.finpow() * 80f;
         Lines.circle(e.x, e.y, circleRad);
+        color(e.color);
 
+        for(int i = 0; i < 4; i++){
+            Drawf.tri(e.x, e.y, 6f, 70f * e.fout(), i*90);
+        }
+        color();
+        for(int i = 0; i < 4; i++){
+            Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
+        }
         rand.setSeed(e.id);
         for(int i = 0; i < 16; i++){
             float angle = rand.random(360f);

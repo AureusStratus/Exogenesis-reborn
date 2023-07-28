@@ -416,13 +416,13 @@ public class ExoUnitTypes {
                         }}
                 );
                 bullet = new BasicBulletType(6f, 25){{
-                    width = height = 45f;
+                    width = height = 30f;
                     sprite = "exogenesis-plasma";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 65f;
                     shrinkY = shrinkX = 0;
-                    hitEffect = despawnEffect = ExoFx.colorBomb;
+                    hitEffect = despawnEffect = ExoFx.empyreanExplosion;
                     intervalBullet = new BasicBulletType(4f, 25){{
                         width = height = 10f;
                         sprite = "circle-bullet";
@@ -458,7 +458,7 @@ public class ExoUnitTypes {
                     trailSinMag = 0.8f;
                     trailParam = 5;
                     trailLength = 6;
-                    trailWidth = 3f;
+                    trailWidth = 4f;
                 }};
             }});
         }};
