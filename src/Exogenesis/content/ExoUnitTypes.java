@@ -135,7 +135,6 @@ public class ExoUnitTypes {
             flying = true;
             drag = 0.08f;
             accel = 0.09f;
-            drawCell = false;
             faceTarget = true;
             circleTarget = true;
             lowAltitude = true;
@@ -243,7 +242,6 @@ public class ExoUnitTypes {
             flying = true;
             drag = 0.08f;
             accel = 0.09f;
-            drawCell = false;
             faceTarget = true;
             circleTarget = true;
             lowAltitude = true;
@@ -350,7 +348,6 @@ public class ExoUnitTypes {
             flying = true;
             drag = 0.08f;
             accel = 0.09f;
-            drawCell = false;
             faceTarget = true;
             circleTarget = true;
             lowAltitude = true;
