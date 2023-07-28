@@ -77,6 +77,13 @@ public class ExoFx{
 
                 Drawf.light(e.x, e.y, e.fout(Interp.pow2Out) * 100f, ExoPal.empyrean, 0.7f);
             }),
+            lightEnrCircleSplash = new Effect(26f, e -> {
+                color(e.color);
+                randLenVectors(e.id, 4, 3 + 23 * e.fin(), (x, y) -> {
+                    Fill.circle(e.x + x, e.y + y, e.fout() * 4.5f);
+                    Drawf.light(e.x + x, e.y + y, e.fout() * 5f, e.color, 0.7f);
+                });
+            }),
     colorBombSmall = new Effect(40f, 100f, e -> {
         color(e.color);
         stroke(e.fout() * 2f);
