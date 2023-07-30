@@ -72,17 +72,17 @@ public class ExoFx{
     }),
             Empyreancharge = new Effect(100f, 100f, e -> {
                 color(ExoPal.empyrean);
-                stroke(e.fin() * 5f);
+                stroke(e.fout() * 5f);
                 float circleRad = 6f + e.finpow() * 65f;
                 Lines.circle(e.x, e.y, circleRad);
 
                 color(ExoPal.empyrean);
                 for(int i = 0; i < 4; i++){
-                    Drawf.tri(e.x, e.y, 5f, 70f * e.fin(), i*90 * e.fin());
+                    Drawf.tri(e.x, e.y, 5f, 70f * e.fin(), i*90);
                 }
                 color();
                 for(int i = 0; i < 4; i++){
-                    Drawf.tri(e.x, e.y, 3f, 35f * e.fin(), i*90 * e.fin());
+                    Drawf.tri(e.x, e.y, 3f, 35f * e.fin(), i*90);
                 }
                 Drawf.light(e.x, e.y, circleRad * 1.6f, ExoPal.empyrean, e.fin());
             }),
@@ -111,7 +111,7 @@ public class ExoFx{
             }),
     colorBombSmall = new Effect(40f, 100f, e -> {
         color(e.color);
-        stroke(e.fout() * 2f);
+        stroke(e.fout() * 1f);
         float circleRad = 4f + e.finpow() * 30f;
         Lines.circle(e.x, e.y, circleRad);
 
