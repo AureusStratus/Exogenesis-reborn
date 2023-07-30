@@ -70,6 +70,22 @@ public class ExoFx{
 
         Drawf.light(e.x, e.y, circleRad * 1.6f, e.color, e.fout());
     }),
+            Empyreancharge = new Effect(90f, 100f, e -> {
+                color(ExoPal.empyrean);
+                stroke(e.fin() * 5f);
+                float circleRad = 6f + e.finpow() * 65f;
+                Lines.circle(e.x, e.y, circleRad);
+
+                color(ExoPal.empyrean);
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 5f, 70f * e.fin(), i*90 * e.fin());
+                }
+                color();
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 3f, 35f * e.fin(), i*90 * e.fin());
+                }
+                Drawf.light(e.x, e.y, circleRad * 1.6f, ExoPal.empyrean, e.fin());
+            }),
             lightErnExplosion = new Effect(40, e -> {
                 color(ExoPal.empyrean);
                 e.scaled(20, i -> {
