@@ -359,7 +359,7 @@ public class ExoUnitTypes {
             engineSize = 0;
             engineOffset = 0;
             setEnginesMirror(
-                    new UnitEngine(14.5f, -21, 3f, 315f),
+                    new UnitEngine(18.5f, -19, 5f, 315f),
                     new UnitEngine(9.5f, -25, 3f, 315f)
             );
             weapons.add(new Weapon("auric") {{
