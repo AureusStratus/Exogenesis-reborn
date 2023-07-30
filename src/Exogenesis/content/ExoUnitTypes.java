@@ -49,7 +49,7 @@ public class ExoUnitTypes {
             engineLayer = Layer.effect;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            rotateSpeed = 2.7f;
+            rotateSpeed = 4.7f;
             engineSize = 2.7f;
             engineOffset = 0;
             weapons.add(new Weapon("lux") {{
@@ -142,7 +142,7 @@ public class ExoUnitTypes {
             engineLayer = Layer.effect;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            rotateSpeed = 2.4f;
+            rotateSpeed = 4.4f;
             engineSize = 3;
             engineOffset = 4;
             parts.add(
@@ -248,7 +248,7 @@ public class ExoUnitTypes {
             armor = 2;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            rotateSpeed = 2.7f;
+            rotateSpeed = 4.7f;
             engineSize = 0;
             engineOffset = 0;
             setEnginesMirror(
@@ -355,11 +355,11 @@ public class ExoUnitTypes {
             armor = 2;
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyrean;
-            rotateSpeed = 2.7f;
+            rotateSpeed = 3.7f;
             engineSize = 0;
             engineOffset = 0;
             setEnginesMirror(
-                    new UnitEngine(18.5f, -19, 5f, 315f),
+                    new UnitEngine(19.5f, -18, 5f, 315f),
                     new UnitEngine(9.5f, -25, 3f, 315f)
             );
             weapons.add(new Weapon("auric") {{
@@ -416,8 +416,8 @@ public class ExoUnitTypes {
                             triLengthTo = triLength = 8.5f;
                         }}
                 );
-                bullet = new BasicBulletType(6f, 25){{
-                    width = height = 30f;
+                bullet = new BasicBulletType(5f, 25){{
+                    width = height = 32f;
                     sprite = "exogenesis-plasma";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
@@ -429,7 +429,7 @@ public class ExoUnitTypes {
                         sprite = "circle-bullet";
                         frontColor = Color.white;
                         backColor = hitColor = trailColor = ExoPal.empyrean;
-                        lifetime = 23f;
+                        lifetime = 18f;
                         weaveMag = 3;
                         weaveScale = 2;
                         shrinkY = shrinkX = 0;

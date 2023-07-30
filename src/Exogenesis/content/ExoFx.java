@@ -32,7 +32,7 @@ public class ExoFx{
         float circleRad = 6f + e.finpow() * 60f;
         Lines.circle(e.x, e.y, circleRad);
         stroke(e.fout());
-        randLenVectors(e.id + 1, 8, 5f + 60f * e.finpow(), (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 1f + e.fout() * 3f));
+        randLenVectors(e.id + 1, 8, 5f + 60f * e.finpow(), (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f + e.fout() * 3f));
         rand.setSeed(e.id);
         for(int i = 0; i < 16; i++){
             float angle = rand.random(360f);
