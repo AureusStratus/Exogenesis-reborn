@@ -354,12 +354,13 @@ public class ExoUnitTypes {
             lowAltitude = true;
             armor = 2;
             trailLength = 8;
-            trailColor = ExoPal.empyrean;
+            trailColor = engineColor = ExoPal.empyrean;
             rotateSpeed = 2.7f;
             engineSize = 0;
             engineOffset = 0;
             setEnginesMirror(
-                    new UnitEngine(8.5f, -23, 3f, 315f)
+                    new UnitEngine(14.5f, -21, 3f, 315f),
+                    new UnitEngine(9.5f, -25, 3f, 315f)
             );
             weapons.add(new Weapon("auric") {{
                 reload = 80f;
@@ -424,7 +425,7 @@ public class ExoUnitTypes {
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = ExoFx.empyreanExplosion;
                     intervalBullet = new BasicBulletType(4f, 25){{
-                        width = height = 10f;
+                        width = height = 7f;
                         sprite = "circle-bullet";
                         frontColor = Color.white;
                         backColor = hitColor = trailColor = ExoPal.empyrean;
@@ -435,7 +436,7 @@ public class ExoUnitTypes {
                         trailEffect = new Effect(13f, e -> {
                             color(ExoPal.empyrean);
                             for(int s : Mathf.signs){
-                                Drawf.tri(e.x, e.y, 2.5f, 14f * e.fslope(), e.rotation + 90f*s);
+                                Drawf.tri(e.x, e.y, 1.8f, 14f * e.fslope(), e.rotation + 90f*s);
                             }
                         });
                         trailRotation = true;
@@ -446,7 +447,7 @@ public class ExoUnitTypes {
                         lightningDamage = 11;
                         shootEffect = Fx.lightningShoot;
                         trailLength = 10;
-                        trailWidth = 3f;
+                        trailWidth = 2f;
                     }};
                     bulletInterval = 3f;
                     lightning = 7;

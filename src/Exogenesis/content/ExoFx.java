@@ -29,17 +29,8 @@ public class ExoFx{
         empyreanExplosion = new Effect(30f, 160f, e -> {
         color(e.color);
         stroke(e.fout() * 5f);
-        float circleRad = 8f + e.finpow() * 80f;
+        float circleRad = 6f + e.finpow() * 60f;
         Lines.circle(e.x, e.y, circleRad);
-        color(e.color);
-
-        for(int i = 0; i < 4; i++){
-            Drawf.tri(e.x, e.y, 6f, 70f * e.fout(), i*90);
-        }
-        color();
-        for(int i = 0; i < 4; i++){
-            Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
-        }
         rand.setSeed(e.id);
         for(int i = 0; i < 16; i++){
             float angle = rand.random(360f);
@@ -47,8 +38,16 @@ public class ExoFx{
             Tmp.v1.trns(angle, circleRad);
 
             for(int s : Mathf.signs){
-                Drawf.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, e.foutpow() * 40f, e.fout() * 30f * lenRand + 6f, angle + 90f + s * 90f);
+                Drawf.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, e.foutpow() * 30f, e.fout() * 20f * lenRand + 6f, angle + 90f + s * 90f);
             }
+        }
+        color(e.color);
+        for(int i = 0; i < 7; i++){
+            Drawf.tri(e.x, e.y, 6f, 70f * e.fout(), i*90);
+        }
+        color();
+        for(int i = 0; i < 7; i++){
+            Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
     colorBomb = new Effect(40f, 100f, e -> {
