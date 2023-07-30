@@ -70,7 +70,7 @@ public class ExoFx{
 
         Drawf.light(e.x, e.y, circleRad * 1.6f, e.color, e.fout());
     }),
-            Empyreancharge = new Effect(90f, 100f, e -> {
+            Empyreancharge = new Effect(100f, 100f, e -> {
                 color(ExoPal.empyrean);
                 stroke(e.fin() * 5f);
                 float circleRad = 6f + e.finpow() * 65f;

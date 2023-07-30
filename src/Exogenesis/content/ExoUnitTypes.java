@@ -490,7 +490,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = -8f;
                         color = ExoPal.empyrean;
-                        radiusTo = radius = 13f;
+                        radiusTo = radius = 11f;
                     }},
                     new ShapePart() {{
                         mirror = false;
@@ -499,7 +499,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = -8f;
                         color = Color.white;
-                        radiusTo = radius = 9f;
+                        radiusTo = radius = 7f;
                     }},
                     new HaloPart() {{
                         y = -8f;
@@ -541,15 +541,17 @@ public class ExoUnitTypes {
                 triLengthTo = triLength = 10.5f;
             }});
             setEnginesMirror(
-                    new UnitEngine(19.5f, -39, 5f, 315f),
-                    new UnitEngine(9.5f, -34, 4f, 315f)
+                    new UnitEngine(19.5f, -30, 5f, 0f),
+                    new UnitEngine(9.5f, -27, 4f, 0f)
             );
             weapons.add(new Weapon("radiance-laser") {{
                 reload = 280f;
                 mirror = false;
                 y = 8;
+                x = 0;
                 chargeSound = Sounds.lasercharge2;
                 shootSound = Sounds.beam;
+                shoot.firstShotDelay = ExoFx.Empyreancharge.lifetime - 1f;
                 continuous = true;
                 parentizeEffects = true;
                 recoil = 0;
@@ -560,7 +562,7 @@ public class ExoUnitTypes {
                     length = 180f;
                     hitEffect = Fx.hitMeltHeal;
                     drawSize = 420f;
-                    lifetime = 160f;
+                    lifetime = 260f;
                     shake = 1f;
                     colors = new Color[]{ExoPal.empyrean.cpy().a(.2f), ExoPal.empyrean.cpy().a(.5f), ExoPal.empyrean.cpy().mul(1.2f), Color.white};
                     despawnEffect = Fx.smokeCloud;
@@ -572,10 +574,11 @@ public class ExoUnitTypes {
                         lightningLength = 8;
                         lightningLengthRand = 14;
                     }};
-                    bulletInterval = 2f;
+                    intervalRandomSpread = 40;
+                    bulletInterval = 1f;
                     smokeEffect = Fx.none;
                     chargeEffect = ExoFx.Empyreancharge;
-                    shootEffect = Fx.lightningShoot;
+                    shootEffect = ExoFx.colorBomb;
                 }};
             }});
             weapons.add(new Weapon("surge-laser"){{
