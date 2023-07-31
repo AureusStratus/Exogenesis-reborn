@@ -120,7 +120,7 @@ public class ExoUnitTypes {
                     lifetime = 16f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
-                    shootEffect = Fx.lightningShoot;
+                    shootEffect = ExoFx.colorSparkShoot;
                     trailLength = 10;
                     trailWidth = 2f;
                 }};
@@ -332,7 +332,7 @@ public class ExoUnitTypes {
                     lightningLength = 6;
                     lightningColor = ExoPal.empyrean;
                     lightningDamage = 11;
-                    shootEffect = Fx.lightningShoot;
+                    shootEffect = ExoFx.colorSparkShoot;
                     trailLength = 10;
                     trailWidth = 3f;
                 }};
@@ -429,6 +429,7 @@ public class ExoUnitTypes {
                         frontColor = Color.white;
                         backColor = hitColor = trailColor = ExoPal.empyrean;
                         lifetime = 18f;
+                        drag = 0.02f;
                         hitEffect = despawnEffect = ExoFx.colorBombSmall;
                         weaveMag = 3;
                         weaveScale = 2;
@@ -588,6 +589,7 @@ public class ExoUnitTypes {
                 recoil = 4f;
                 shootSound = Sounds.laser;
                 shadow = 15f;
+                mirror = true;
                 rotate = true;
                 rotateSpeed = 3f;
                 bullet = new LaserBulletType(){{
@@ -597,6 +599,7 @@ public class ExoUnitTypes {
                     sideLength = 80f;
                     width = 25f;
                     length = 160f;
+                    hitColor = ExoPal.empyrean;
                     shootEffect = ExoFx.colorBombSmall;
                     colors = new Color[]{Color.valueOf("fee761aa"), Color.valueOf("fcff98"), Color.white};
                 }};

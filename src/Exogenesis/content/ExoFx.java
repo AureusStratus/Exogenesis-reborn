@@ -73,7 +73,7 @@ public class ExoFx{
             empyreancharge = new Effect(100f, 100f, e -> {
                 color(ExoPal.empyrean);
                 stroke(e.fin() * 5f);
-                float circleRad = -6f + e.finpow() * -65f;
+                float circleRad = 6f + e.finpow() * -65f;
                 Lines.circle(e.x, e.y, circleRad);
 
                 color(ExoPal.empyrean);
@@ -107,6 +107,14 @@ public class ExoFx{
                 randLenVectors(e.id, 4, 3 + 23 * e.fin(), (x, y) -> {
                     Fill.circle(e.x + x, e.y + y, e.fout() * 4.5f);
                     Drawf.light(e.x + x, e.y + y, e.fout() * 5f, e.color, 0.7f);
+                });
+            }),
+            colorSparkShoot = new Effect(12f, e -> {
+                color(Color.white, e.color, e.fin());
+                stroke(e.fout() * 1.2f + 0.5f);
+
+                randLenVectors(e.id, 7, 25f * e.finpow(), e.rotation, 50f, (x, y) -> {
+                    lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),
     colorBombSmall = new Effect(40f, 100f, e -> {
