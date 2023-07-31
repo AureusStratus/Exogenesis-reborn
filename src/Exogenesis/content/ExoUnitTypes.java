@@ -551,7 +551,7 @@ public class ExoUnitTypes {
                 x = 0;
                 chargeSound = Sounds.lasercharge2;
                 shootSound = Sounds.beam;
-                shoot.firstShotDelay = ExoFx.Empyreancharge.lifetime - 1f;
+                shoot.firstShotDelay = ExoFx.empyreancharge.lifetime - 1f;
                 continuous = true;
                 parentizeEffects = true;
                 recoil = 0;
@@ -577,7 +577,7 @@ public class ExoUnitTypes {
                     intervalRandomSpread = 40;
                     bulletInterval = 1f;
                     smokeEffect = Fx.none;
-                    chargeEffect = ExoFx.Empyreancharge;
+                    chargeEffect = ExoFx.empyreancharge;
                     shootEffect = ExoFx.colorBomb;
                 }};
             }});
