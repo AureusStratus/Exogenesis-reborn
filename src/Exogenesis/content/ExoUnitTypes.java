@@ -586,11 +586,12 @@ public class ExoUnitTypes {
                     shootEffect = ExoFx.colorBomb;
                 }};
             }});
-            weapons.add(new Weapon("surge-laser"){{
+            weapons.add(new Weapon("radiance-mount"){{
                 x = 21;
                 shootY = 6f;
                 reload = 55f;
                 recoil = 4f;
+                showStatSprite = true;
                 shootSound = Sounds.laser;
                 shadow = 15f;
                 mirror = true;

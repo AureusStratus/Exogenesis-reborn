@@ -91,7 +91,6 @@ public class ExoItems{
         }};
         hadroxanDiamond = new Item("hadroxan-diamond", Color.valueOf("ff6363")){{
             cost = 1.4f;
-            charge = 0.25f;
         }};
         terminusEnergyCell = new Item("terminus-energy-cell", Color.valueOf("ff4747")){{
             cost = 1.6f;
@@ -134,6 +133,7 @@ public class ExoItems{
         }};
         axionEnergyCell = new Item("axion-energy-cell", Color.valueOf("85d5ff")){{
             cost = 1.5f;
+            charge = 15;
         }};
     }
 }
