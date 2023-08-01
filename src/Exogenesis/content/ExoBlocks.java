@@ -77,17 +77,17 @@ public static void load(){
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
-  requirements(Category.units, with(Items.copper, 50, Items.lead, 120, Items.silicon, 80));
+  requirements(Category.units, with(ExoItems.astrolite, 50, Items.silicon, 100, ExoItems.curtuses, 50));
   plans = Seq.with(
-          new UnitPlan(ExoUnitTypes.orion, 60f * 15, with(Items.silicon, 10, Items.lead, 10))
+          new UnitPlan(ExoUnitTypes.orion, 60f * 15, with(Items.silicon, 15, ExoItems.curtuses, 50))
   );
   size = 3;
   consumePower(1.2f);
  }};
  empyreanFactory = new UnitFactory("empyrean-factory"){{
-  requirements(Category.units, with(Items.copper, 50, Items.lead, 120, Items.silicon, 80));
+  requirements(Category.units, with(Items.copper, 60, Items.beryllium, 70, Items.silicon, 70));
   plans = Seq.with(
-          new UnitPlan(ExoUnitTypes.lux, 60f * 15, with(Items.silicon, 10, Items.lead, 10))
+          new UnitPlan(ExoUnitTypes.lux, 60f * 15, with(Items.silicon, 30, Items.beryllium, 50))
   );
   size = 3;
   consumePower(1.2f);

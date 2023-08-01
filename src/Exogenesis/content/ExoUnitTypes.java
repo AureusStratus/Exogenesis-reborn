@@ -35,6 +35,7 @@ public class ExoUnitTypes {
         lux = new UnitType("lux") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
+            shadowElevation = 3;
             speed = 4.8f;
             hitSize = 10f;
             health = 460f;
@@ -129,6 +130,7 @@ public class ExoUnitTypes {
         glimmer = new UnitType("glimmer") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
+            shadowElevation = 3;
             speed = 3.4f;
             hitSize = 16f;
             health = 860f;
@@ -235,6 +237,7 @@ public class ExoUnitTypes {
         shine = new UnitType("shine") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
+            shadowElevation = 3;
             speed = 4f;
             hitSize = 15f;
             health = 1160f;
@@ -341,6 +344,7 @@ public class ExoUnitTypes {
         auric = new UnitType("auric") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
+            shadowElevation = 3;
             speed = 2.4f;
             hitSize = 40f;
             health = 5650f;
@@ -352,7 +356,7 @@ public class ExoUnitTypes {
             armor = 8;
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyrean;
-            rotateSpeed = 3.7f;
+            rotateSpeed = 2.6f;
             engineSize = 0;
             engineOffset = 0;
             setEnginesMirror(
@@ -469,6 +473,7 @@ public class ExoUnitTypes {
         radiance = new UnitType("radiance") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
+            shadowElevation = 3;
             speed = 1.97f;
             hitSize = 40f;
             health = 25600f;
@@ -480,7 +485,7 @@ public class ExoUnitTypes {
             armor = 8;
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyrean;
-            rotateSpeed = 3.7f;
+            rotateSpeed = 2.4f;
             engineSize = 0;
             engineOffset = 0;
             parts.add(
@@ -542,8 +547,8 @@ public class ExoUnitTypes {
                 triLengthTo = triLength = 10.5f;
             }});
             setEnginesMirror(
-                    new UnitEngine(19.5f, -30, 5f, 0f),
-                    new UnitEngine(9.5f, -27, 4f, 0f)
+                    new UnitEngine(19.5f, -30, 5f, 45f),
+                    new UnitEngine(9.5f, -27, 4f, 45f)
             );
             weapons.add(new Weapon("radiance-laser") {{
                 reload = 280f;
@@ -552,7 +557,6 @@ public class ExoUnitTypes {
                 x = 0;
                 chargeSound = Sounds.lasercharge2;
                 shootSound = Sounds.beam;
-                shoot.firstShotDelay = ExoFx.empyreancharge.lifetime - 1f;
                 continuous = true;
                 parentizeEffects = true;
                 recoil = 0;
@@ -572,13 +576,13 @@ public class ExoUnitTypes {
                         collidesAir = false;
                         ammoMultiplier = 1f;
                         lightningColor = ExoPal.empyrean;
-                        lightningLength = 8;
-                        lightningLengthRand = 14;
+                        lightningLength = 10;
+                        lightningLengthRand = 18;
                     }};
                     intervalRandomSpread = 40;
+                    intervalBullets = 2;
                     bulletInterval = 1f;
                     smokeEffect = Fx.none;
-                    chargeEffect = ExoFx.empyreancharge;
                     shootEffect = ExoFx.colorBomb;
                 }};
             }});
@@ -596,7 +600,7 @@ public class ExoUnitTypes {
                     damage = 115f;
                     sideAngle = 20f;
                     sideWidth = 1.5f;
-                    sideLength = 80f;
+                    sideLength = 50f;
                     width = 25f;
                     length = 160f;
                     hitColor = ExoPal.empyrean;
