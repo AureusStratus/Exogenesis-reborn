@@ -547,8 +547,8 @@ public class ExoUnitTypes {
                 triLengthTo = triLength = 10.5f;
             }});
             setEnginesMirror(
-                    new UnitEngine(19.5f, -30, 5f, 45f),
-                    new UnitEngine(9.5f, -27, 4f, 45f)
+                    new UnitEngine(19.5f, -30, 5f, -45f),
+                    new UnitEngine(9.5f, -27, 4f, -45f)
             );
             weapons.add(new Weapon("radiance-laser") {{
                 reload = 280f;
@@ -586,7 +586,7 @@ public class ExoUnitTypes {
                     shootEffect = ExoFx.colorBomb;
                 }};
             }});
-            weapons.add(new Weapon("radiance-mount"){{
+            weapons.add(new Weapon("exogenesis-radiance-mount"){{
                 x = 21;
                 shootY = 6f;
                 reload = 55f;
