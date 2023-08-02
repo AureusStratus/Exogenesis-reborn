@@ -22,7 +22,8 @@ Exogenesis contains five different Factions each with there own lore, weapons, d
 ![The-Resiliency](https://github.com/AureusStratus/ExoGenesis/assets/68311340/457e16b1-123b-43e8-a24e-295f64c1a5f6)
 
 `The Empyrean`: .
-![team-elecian](https://github.com/AureusStratus/ExoGenesis/assets/68311340/798166dd-d0c7-4e75-9558-ae2a71804c62)
+![The empyrean](https://github.com/AureusStratus/Exogenesis-reborn/assets/68311340/be642388-f542-445a-9cbc-e877f2adf9da)
+
 
 `Gaia protocol`: .
 ![Gaia-protocol](https://github.com/AureusStratus/ExoGenesis/assets/68311340/4e2d8c45-0048-45e3-a156-f0554ba80248)
