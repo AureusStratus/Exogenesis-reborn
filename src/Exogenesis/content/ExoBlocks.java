@@ -22,6 +22,7 @@ import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.units.UnitFactory;
+import Exogenesis.entities.bullet.AcceleratingLaserBulletType;
 import Exogenesis.entities.bullet.PosLightningType;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
@@ -92,15 +93,22 @@ public static void load(){
    }}
    );
   }};
-   shootType = new LaserBulletType(140){{
-   colors = new Color[]{ExoPal.empyrean.cpy().a(0.4f), ExoPal.empyrean, Color.white};
-   buildingDamageMultiplier = 0.25f;
-   hitEffect = Fx.colorSparkBig;
-   hitColor = ExoPal.empyrean;
-   hitSize = 4;
-   lifetime = 126f;
-   collidesAir = false;
-   length = 270f;
+  shootType = new AcceleratingLaserBulletType(320f){{
+   lifetime = 4f * 60f;
+   maxLength = 430f;
+   maxRange = 400f;
+   oscOffset = 0.2f;
+   incendChance = 0.3f;
+   incendAmount = 2;
+   width = 37f;
+   collisionWidth = 16f;
+   accel = 60f;
+   laserSpeed = 20f;
+   splashDamage = 40f;
+   splashDamageRadius = 50f;
+   pierceCap = 5;
+   hitEffect = ExoFx.coloredHitLarge;
+   hitColor = Pal.meltdownHit;
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
