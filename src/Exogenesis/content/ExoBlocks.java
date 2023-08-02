@@ -22,6 +22,7 @@ import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.units.UnitFactory;
+import Exogenesis.entities.bullet.PosLightningType;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
@@ -31,9 +32,35 @@ import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
 public class ExoBlocks{
  public static Block
-         excalibur,
+         excalibur, tanons,
          genesisFactory, empyreanFactory;
 public static void load(){
+ tanons = new PowerTurret("tanons"){{
+  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  range = 250f;
+  recoil = 2f;
+  reload = 6f;
+  shake = 2f;
+  shootEffect = Fx.colorSparkBig;
+  smokeEffect = Fx.none;
+  heatColor = Color.red;
+  outlineColor = ExoPal.empyreanOutline;
+  size = 3;
+  scaledHealth = 280;
+  targetAir = false;
+  shootSound = Sounds.spark;
+  coolant = consumeCoolant(0.2f);
+
+  consumePower(6f);
+  drawer = new DrawTurret("elecian-"){{
+  }};
+  shootType = new PosLightningType(50f){{
+   lightningColor = hitColor = ExoPal.empyrean;
+   maxRange = rangeOverride = 250f;
+   hitEffect = ExoFx.colorBombSmall;
+   smokeEffect = Fx.shootBigSmoke2;
+  }};
+ }};
  excalibur = new PowerTurret("excalibur"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 270f;

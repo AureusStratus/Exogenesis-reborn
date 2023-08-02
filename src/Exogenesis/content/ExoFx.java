@@ -102,6 +102,24 @@ public class ExoFx{
 
                 Drawf.light(e.x, e.y, e.fout(Interp.pow2Out) * 100f, ExoPal.empyrean, 0.7f);
             }),
+            colorBombSmaller = new Effect(30f, 100f, e -> {
+                color(e.color);
+                stroke(e.fout() * 1f);
+                float circleRad = 3f + e.finpow() * 18f;
+                Lines.circle(e.x, e.y, circleRad);
+
+                color(e.color);
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 2f, 20f * e.fout(), i*90);
+                }
+
+                color();
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 0.9f, 6f * e.fout(), i*90);
+                }
+
+                Drawf.light(e.x, e.y, circleRad * 1.6f, e.color, e.fout());
+            }),
             lightEnrCircleSplash = new Effect(26f, e -> {
                 color(e.color);
                 randLenVectors(e.id, 4, 3 + 23 * e.fin(), (x, y) -> {
@@ -117,6 +135,7 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),
+
     colorBombSmall = new Effect(40f, 100f, e -> {
         color(e.color);
         stroke(e.fout() * 1f);
