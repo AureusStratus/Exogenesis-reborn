@@ -622,7 +622,6 @@ public class ExoUnitTypes {
             accel = 0.09f;
             drawCell = false;
             faceTarget = true;
-            circleTarget = true;
             lowAltitude = true;
             armor = 1;
             trailLength = 8;
@@ -635,6 +634,7 @@ public class ExoUnitTypes {
                         mirror = true;
                         progress = PartProgress.warmup;
                         circle = true;
+                        hollow = true;
                         layer = Layer.effect;
                         y = 0f;
                         color = ExoPal.empyrean;
@@ -671,13 +671,13 @@ public class ExoUnitTypes {
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2.1f;
-            speed = 3.4f;
+            speed = 4.4f;
             hitSize = 16f;
             health = 860f;
             flying = true;
             drag = 0.08f;
             accel = 0.09f;
-            faceTarget = true;
+            faceTarget = false;
             circleTarget = true;
             lowAltitude = false;
             armor = 2;
@@ -685,8 +685,8 @@ public class ExoUnitTypes {
             trailLength = 8;
             trailColor = ExoPal.empyrean;
             rotateSpeed = 4.4f;
-            engineSize = 2;
-            engineOffset = 6;
+            engineSize = 2.5f;
+            engineOffset = 8;
             weapons.add(new Weapon("apprise") {{
                 minShootVelocity = 0.75f;
                 reload = 5f;
@@ -700,13 +700,13 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 recoil = 0;
                 bullet = new BombBulletType(37f, 35f){{
-                    width = 7f;
-                    height = 7f;
+                    width = 12f;
+                    height = 12f;
                     sprite = "circle-bullet";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 26f;
-                    hitEffect = despawnEffect = Fx.hitBulletColor;
+                    hitEffect = despawnEffect = ExoFx.colorBombSmaller;
                     shootEffect = Fx.none;
                     smokeEffect = Fx.none;
                 }};
