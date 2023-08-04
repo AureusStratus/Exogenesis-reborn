@@ -730,36 +730,10 @@ public class ExoUnitTypes {
             engineOffset = 12;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            parts.add(
-                    new ShapePart() {{
-                        mirror = true;
-                        progress = PartProgress.warmup;
-                        circle = true;
-                        hollow = true;
-                        layer = Layer.effect;
-                        y = 0f;
-                        color = ExoPal.empyrean;
-                        stroke = strokeTo = 1f;
-                        radiusTo = radius = 7f;
-                    }},
-                    new HaloPart() {{
-                        y = 0f;
-                        radius = 1.5f;
-                        tri = true;
-                        color = ExoPal.empyrean;
-                        layer = Layer.effect;
-                        haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 3f;
-                        stroke = 0f;
-                        strokeTo = 2f;
-                        shapes = 2;
-                        triLengthTo = triLength = 7f;
-                    }}
-            );
             weapons.add(new Weapon("revelation-pew") {{
                 reload = 50f;
                 mirror = false;
-                y = 8;
+                y = 18;
                 x = 0;
                 shootSound = Sounds.laser;
                 recoil = 0;
@@ -775,7 +749,7 @@ public class ExoUnitTypes {
                 radius = 8.5f;
                 }}
                 );
-                bullet = new BasicBulletType(8f, 45){{
+                bullet = new BasicBulletType(8f, 105){{
                     width = height = 0f;
                     parts.add(
                     new FlarePart () {{
@@ -783,9 +757,9 @@ public class ExoUnitTypes {
                      progress = PartProgress.reload;
                      layer = Layer.effect;
                      y = 0f;
-                     stroke = 3;
+                     stroke = 5;
                      color1 = ExoPal.empyrean;
-                     radius = 8.5f;
+                     radius = 13.5f;
                      }}
                     );
                     hitColor = trailColor = ExoPal.empyrean;
@@ -796,18 +770,18 @@ public class ExoUnitTypes {
                     lightning = 4;
                     lightningLength = 6;
                     lightningColor = ExoPal.empyrean;
-                    lightningDamage = 11;
+                    lightningDamage = 16;
                     shootEffect = ExoFx.colorSparkShoot;
                     trailLength = 10;
                     trailWidth = 3f;
                 }};
             }});
             weapons.add(new Weapon("zappy"){{
-                x = 20;
-                reload = 10f;
-                recoil = 2f;
+                x = 12;
+                reload = 20f;
                 shootSound = Sounds.spark;
                 mirror = true;
+                alternate = true;
                 rotate = true;
                 rotateSpeed = 5.5f;
                 parts.add(
@@ -856,41 +830,14 @@ public class ExoUnitTypes {
                 recoil = 0;
                 shake = 1f;
                 bullet = new BasicBulletType(7f, 65){{
-                    width = height = 22f;
+                    width =  9;
+                    height = 14f;
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 65f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = ExoFx.empyreanExplosion;
-                    intervalBullet = new BasicBulletType(4f, 25){{
-                        width = height = 7f;
-                        sprite = "circle-bullet";
-                        frontColor = Color.white;
-                        backColor = hitColor = trailColor = ExoPal.empyrean;
-                        lifetime = 18f;
-                        hitEffect = despawnEffect = ExoFx.colorBombSmall;
-                        weaveMag = 3;
-                        weaveScale = 2;
-                        shrinkY = shrinkX = 0;
-                        trailEffect = new Effect(13f, e -> {
-                            color(ExoPal.empyrean);
-                            for(int s : Mathf.signs){
-                                Drawf.tri(e.x, e.y, 1.8f, 14f * e.fslope(), e.rotation + 90f*s);
-                            }
-                        });
-                        homingRange = 60;
-                        homingPower = 0.01f;
-                        trailRotation = true;
-                        trailInterval = 3f;
-                        lightning = 4;
-                        lightningLength = 6;
-                        lightningColor = ExoPal.empyrean;
-                        lightningDamage = 11;
-                        shootEffect = Fx.lightningShoot;
-                        trailLength = 10;
-                        trailWidth = 2f;
-                    }};
                     bulletInterval = 3f;
                     lightning = 7;
                     lightningLength = 9;
@@ -901,7 +848,7 @@ public class ExoUnitTypes {
                     trailSinMag = 0.8f;
                     trailParam = 5;
                     trailLength = 6;
-                    trailWidth = 4f;
+                    trailWidth = 3f;
                 }};
             }});
         }};
