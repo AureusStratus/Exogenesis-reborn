@@ -639,16 +639,16 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1f;
-                        radiusTo = radius = 7f;
+                        radiusTo = radius = 8f;
                     }},
                     new HaloPart() {{
                         y = 0f;
-                        radius = 1.5f;
+                        radius = 3.5f;
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 3f;
+                        haloRadius = haloRadiusTo = 8f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -700,9 +700,16 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 recoil = 0;
                 bullet = new BombBulletType(37f, 35f){{
-                    width = 12f;
-                    height = 12f;
-                    sprite = "circle-bullet";
+                    width = height = 0f;
+                    new FlarePart () {{
+                        mirror = false;
+                        progress = PartProgress.life;
+                        layer = Layer.effect;
+                        y = 0f;
+                        stroke = 4;
+                        color1 = ExoPal.empyrean;
+                        radius = 13.5f;
+                    }};
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 26f;
