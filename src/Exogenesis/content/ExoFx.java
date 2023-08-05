@@ -52,6 +52,15 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
+            hitMeltColor = new Effect(12, e -> {
+                color(e.color);
+                stroke(e.fout() * 2f);
+
+                randLenVectors(e.id, 6, e.finpow() * 18f, (x, y) -> {
+                    float ang = Mathf.angle(x, y);
+                    lineAngle(e.x + x, e.y + y, ang, e.fout() * 4 + 1f);
+                });
+            }),
     colorBomb = new Effect(40f, 100f, e -> {
         color(e.color);
         stroke(e.fout() * 2f);

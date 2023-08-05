@@ -638,12 +638,12 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 0f;
                         color = ExoPal.empyrean;
-                        stroke = strokeTo = 1f;
+                        stroke = strokeTo = 1.4f;
                         radiusTo = radius = 8f;
                     }},
                     new HaloPart() {{
                         y = 0f;
-                        radius = 3.5f;
+                        radius = 2.5f;
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
@@ -652,7 +652,7 @@ public class ExoUnitTypes {
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
-                        triLengthTo = triLength = 7f;
+                        triLengthTo = triLength = 4f;
                     }}
             );
             weapons.add(new RepairBeamWeapon("prayer") {{
@@ -663,7 +663,7 @@ public class ExoUnitTypes {
                 beamWidth = 0.8f;
                 repairSpeed = 1.7f;
                 bullet = new BulletType(){{
-                maxRange = 120f;
+                    maxRange = 120f;
                 }};
             }});
         }};
@@ -703,7 +703,7 @@ public class ExoUnitTypes {
                     width = height = 0f;
                     new FlarePart () {{
                         mirror = false;
-                        progress = PartProgress.life;
+                        progress = PartProgress.constant(lifetime);
                         layer = Layer.effect;
                         y = 0f;
                         stroke = 4;
@@ -784,11 +784,37 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("zappy"){{
+                x = -12;
+                reload = 20f;
+                shootSound = Sounds.spark;
+                recoil = 0;
+                mirror = false;
+                rotate = true;
+                rotateSpeed = 5.5f;
+                parts.add(
+                        new FlarePart () {{
+                            mirror = false;
+                            progress = PartProgress.reload;
+                            layer = Layer.effect;
+                            y = 0f;
+                            stroke = 3;
+                            color1 = ExoPal.empyrean;
+                            radius = 7f;
+                        }}
+                );
+                bullet = new PosLightningType(32f){{
+                    lightningColor = hitColor = ExoPal.empyrean;
+                    maxRange = rangeOverride = 250f;
+                    hitEffect = ExoFx.colorSparkShoot;
+                    smokeEffect = Fx.shootBigSmoke2;
+                }};
+            }});
+            weapons.add(new Weapon("zappy"){{
                 x = 12;
                 reload = 20f;
                 shootSound = Sounds.spark;
-                mirror = true;
-                alternate = true;
+                recoil = 0;
+                mirror = false;
                 rotate = true;
                 rotateSpeed = 5.5f;
                 parts.add(
@@ -836,21 +862,26 @@ public class ExoUnitTypes {
                 shootSound = Sounds.missileLarge;
                 recoil = 0;
                 shake = 1f;
-                bullet = new BasicBulletType(7f, 65){{
+                shoot = new ShootAlternate(){{
+                    spread = 6.3f;
+                    barrels = 3;
+                }};
+                bullet = new BasicBulletType(9f, 65){{
                     width =  9;
                     height = 14f;
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
-                    lifetime = 65f;
+                    lifetime = 45f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = ExoFx.empyreanExplosion;
-                    bulletInterval = 3f;
                     lightning = 7;
                     lightningLength = 9;
                     lightningColor = ExoPal.empyrean;
                     lightningDamage = 11;
                     shootEffect = Fx.lightningShoot;
+                    weaveMag = 7;
+                    weaveScale = 2;
                     trailSinScl = 2;
                     trailSinMag = 0.8f;
                     trailParam = 5;
@@ -862,7 +893,7 @@ public class ExoUnitTypes {
         excelsus = new UnitType("excelsus") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
-            shadowElevation = 3;
+            shadowElevation = 2;
             speed = 1.97f;
             hitSize = 40f;
             health = 25600f;
@@ -875,126 +906,64 @@ public class ExoUnitTypes {
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyrean;
             rotateSpeed = 2.4f;
-            engineSize = 0;
-            engineOffset = 0;
-            parts.add(
-                    new ShapePart() {{
-                        mirror = false;
-                        progress = PartProgress.warmup;
-                        circle = true;
-                        layer = Layer.effect;
-                        y = -8f;
-                        color = ExoPal.empyrean;
-                        radiusTo = radius = 11f;
-                    }},
-                    new ShapePart() {{
-                        mirror = false;
-                        progress = PartProgress.warmup;
-                        circle = true;
-                        layer = Layer.effect;
-                        y = -8f;
-                        color = Color.white;
-                        radiusTo = radius = 7f;
-                    }},
-                    new HaloPart() {{
-                        y = -8f;
-                        radius = 3.5f;
-                        tri = true;
-                        color = ExoPal.empyrean;
-                        layer = Layer.effect;
-                        haloRotateSpeed = -3f;
-                        haloRadius = haloRadiusTo = 11f;
-                        stroke = 0f;
-                        strokeTo = 2f;
-                        shapes = 6;
-                        triLengthTo = triLength = 6f;
-                    }},
-                    new HaloPart() {{
-                        y = -8f;
-                        radius = 4f;
-                        tri = true;
-                        color = ExoPal.empyrean;
-                        layer = Layer.effect;
-                        haloRotateSpeed = 4f;
-                        haloRadius = haloRadiusTo = 11f;
-                        stroke = 0f;
-                        strokeTo = 2f;
-                        shapes = 2;
-                        triLengthTo = triLength = 13.5f;
-                    }});
-            parts.add(new HaloPart(){{
-                y = -8f;
-                radius = 3f;
-                tri = true;
+            engineSize = 4;
+            engineOffset = 18;
+            abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
+                status = StatusEffects.none;
                 color = ExoPal.empyrean;
-                layer = Layer.effect;
-                haloRotateSpeed = -4f;
-                haloRadius = haloRadiusTo = 11f;
-                stroke = 0f;
-                strokeTo = 2f;
-                shapes = 2;
-                triLengthTo = triLength = 10.5f;
+                effectRadius = 5;
+                maxTargets = 0;
             }});
-            setEnginesMirror(
-                    new UnitEngine(19.5f, -30, 5f, -60f),
-                    new UnitEngine(9.5f, -27, 4f, -60f)
-            );
-            weapons.add(new Weapon("radiance-laser") {{
-                reload = 280f;
-                mirror = false;
-                y = 8;
-                x = 0;
-                chargeSound = Sounds.lasercharge2;
-                shootSound = Sounds.beam;
-                continuous = true;
-                parentizeEffects = true;
-                recoil = 0;
-                shake = 3f;
+            abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
+                status = StatusEffects.none;
+                color = ExoPal.empyrean;
+                effectRadius = 3;
+                x = 12;
+                y = -9;
+                maxTargets = 0;
+            }});
+            abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
+                status = StatusEffects.none;
+                color = ExoPal.empyrean;
+                effectRadius = 3;
+                x = -12;
+                y = -9;
+                maxTargets = 0;
+            }});
+            weapons.add(new Weapon("exogenesis-excelsus-mount"){{
+                x = 25;
+                shootY = 11f;
+                recoil = 2f;
+                shootSound = Sounds.torch;
+                shadow = 15f;
+                alternate = false;
+                rotationLimit = 45;
+                rotate = continuous = alwaysContinuous = mirror = true;
+                rotateSpeed = 1.5f;
+
                 bullet = new ContinuousLaserBulletType(){{
                     hitColor = ExoPal.empyrean;
                     damage = 35f;
                     length = 180f;
-                    hitEffect = Fx.hitMeltHeal;
+                    hitEffect = ExoFx.hitMeltColor;
                     drawSize = 420f;
-                    lifetime = 260f;
                     shake = 1f;
-                    colors = new Color[]{ExoPal.empyrean.cpy().a(.2f), ExoPal.empyrean.cpy().a(.5f), ExoPal.empyrean.cpy().mul(1.2f), Color.white};
+                    largeHit = false;
+                    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
                     despawnEffect = Fx.smokeCloud;
                     intervalBullet = new LightningBulletType(){{
-                        damage = 30;
+                        damage = 10;
                         collidesAir = false;
                         ammoMultiplier = 1f;
                         lightningColor = ExoPal.empyrean;
                         lightningLength = 10;
                         lightningLengthRand = 18;
                     }};
-                    intervalRandomSpread = 40;
+                    intervalRandomSpread = 20;
                     intervalBullets = 2;
                     bulletInterval = 1f;
                     smokeEffect = Fx.none;
-                    shootEffect = ExoFx.colorBomb;
-                }};
-            }});
-            weapons.add(new Weapon("exogenesis-radiance-mount"){{
-                x = 25;
-                shootY = 11f;
-                reload = 55f;
-                recoil = 2f;
-                shootSound = Sounds.laser;
-                shadow = 15f;
-                mirror = true;
-                rotate = true;
-                rotateSpeed = 1.5f;
-                bullet = new LaserBulletType(){{
-                    damage = 115f;
-                    sideAngle = 20f;
-                    sideWidth = 1.5f;
-                    sideLength = 50f;
-                    width = 25f;
-                    length = 160f;
-                    hitColor = ExoPal.empyrean;
-                    shootEffect = ExoFx.colorBombSmall;
-                    colors = new Color[]{Color.valueOf("fee761aa"), Color.valueOf("fcff98"), Color.white};
+                    shootEffect = Fx.none;
                 }};
             }});
         }};
