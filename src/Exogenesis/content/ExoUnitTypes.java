@@ -656,10 +656,11 @@ public class ExoUnitTypes {
                     }}
             );
             weapons.add(new RepairBeamWeapon("prayer") {{
-                mirror = false;
-                shootY = 7;
+                mirror = rotate = false;
+                shootY = 8;
                 x = 0;
                 laserColor = healColor = ExoPal.empyrean;
+                targetBuildings = true;
                 beamWidth = 0.8f;
                 repairSpeed = 1.7f;
                 bullet = new BulletType(){{
@@ -700,19 +701,10 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 recoil = 0;
                 bullet = new BombBulletType(37f, 35f){{
-                    width = height = 0f;
-                    new FlarePart () {{
-                        mirror = false;
-                        progress = PartProgress.constant(lifetime);
-                        layer = Layer.effect;
-                        y = 0f;
-                        stroke = 4;
-                        color1 = ExoPal.empyrean;
-                        radius = 13.5f;
-                    }};
+                    width = height = 9f;
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
-                    lifetime = 26f;
+                    lifetime = 16;
                     hitEffect = despawnEffect = ExoFx.colorBombSmaller;
                     shootEffect = Fx.none;
                     smokeEffect = Fx.none;
@@ -854,8 +846,8 @@ public class ExoUnitTypes {
             rotateSpeed = 1.97f;
             engineSize = 4;
             engineOffset = 15;
-            weapons.add(new Weapon("Exogenesis-alpha-rocket"){{
-                reload = 80f;
+            weapons.add(new Weapon("exogenesis-alpha-rocket"){{
+                reload = 10f;
                 mirror = false;
                 x = 0;
                 y = -11;
@@ -911,27 +903,28 @@ public class ExoUnitTypes {
             abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
                 status = StatusEffects.none;
                 color = ExoPal.empyrean;
+                rotateSpeed = 3;
                 effectRadius = 5;
                 maxTargets = 0;
             }});
             abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
                 status = StatusEffects.none;
                 color = ExoPal.empyrean;
-                effectRadius = 3;
-                x = 12;
-                y = -9;
+                effectRadius = rotateSpeed = 3;
+                x = 15;
+                y = -11;
                 maxTargets = 0;
             }});
             abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
                 status = StatusEffects.none;
                 color = ExoPal.empyrean;
-                effectRadius = 3;
-                x = -12;
-                y = -9;
+                effectRadius = rotateSpeed = 3;
+                x = -15;
+                y = -11;
                 maxTargets = 0;
             }});
             weapons.add(new Weapon("exogenesis-excelsus-mount"){{
-                x = 25;
+                x = 26;
                 shootY = 11f;
                 recoil = 2f;
                 shootSound = Sounds.torch;
@@ -947,9 +940,10 @@ public class ExoUnitTypes {
                     length = 180f;
                     hitEffect = ExoFx.hitMeltColor;
                     drawSize = 420f;
+                    width = 6;
                     shake = 1f;
                     largeHit = false;
-                    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
+                    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyreanDark, Color.white};
                     despawnEffect = Fx.smokeCloud;
                     intervalBullet = new LightningBulletType(){{
                         damage = 10;
@@ -961,7 +955,7 @@ public class ExoUnitTypes {
                     }};
                     intervalRandomSpread = 20;
                     intervalBullets = 2;
-                    bulletInterval = 1f;
+                    bulletInterval = 3f;
                     smokeEffect = Fx.none;
                     shootEffect = Fx.none;
                 }};
