@@ -639,7 +639,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1.4f;
-                        radiusTo = radius = 9f;
+                        radiusTo = radius = 11f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -648,7 +648,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 9f;
+                        haloRadius = haloRadiusTo = 11f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -688,6 +688,34 @@ public class ExoUnitTypes {
             rotateSpeed = 3.4f;
             engineSize = 2.5f;
             engineOffset = 10;
+            parts.add(
+                    new HaloPart() {{
+                        y = 0f;
+                        radius = 2.5f;
+                        tri = true;
+                        color = ExoPal.empyrean;
+                        layer = Layer.effect;
+                        haloRadius = haloRadiusTo = 11f;
+                        haloRotation = -180;
+                        shapeRotation = 60;
+                        stroke = 2f;
+                        strokeTo = 2f;
+                        shapes = 2;
+                        triLengthTo = triLength = 4f;
+                    }},
+                    new HaloPart() {{
+                        y = 0f;
+                        radius = 2.5f;
+                        tri = true;
+                        color = ExoPal.empyrean;
+                        layer = Layer.effect;
+                        haloRadius = haloRadiusTo = 11f;
+                        stroke = 2f;
+                        strokeTo = 2f;
+                        shapes = 2;
+                        triLengthTo = triLength = 8f;
+                    }}
+            );
             weapons.add(new Weapon("apprise") {{
                 minShootVelocity = 0.75f;
                 reload = 5f;
@@ -722,7 +750,7 @@ public class ExoUnitTypes {
             flying = true;
             drag = 0.06f;
             accel = 0.09f;
-            faceTarget = true;
+            faceTarget = false;
             lowAltitude = true;
             armor = 5;
             rotateSpeed = 4.7f;
@@ -730,12 +758,12 @@ public class ExoUnitTypes {
             engineOffset = 12;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            weapons.add(new Weapon("revelation-pew") {{
+            weapons.add(new Weapon("revelation-zap") {{
                 reload = 50f;
                 mirror = false;
                 y = 18;
                 x = 0;
-                shootSound = Sounds.laser;
+                shootSound = Sounds.spark;
                 recoil = 0;
                 shake = 1f;
                 parts.add(
@@ -749,31 +777,11 @@ public class ExoUnitTypes {
                 radius = 8.5f;
                 }}
                 );
-                bullet = new BasicBulletType(8f, 105){{
-                    width = height = 0f;
-                    parts.add(
-                    new FlarePart () {{
-                     mirror = false;
-                     progress = PartProgress.reload;
-                     layer = Layer.effect;
-                     y = 0f;
-                     stroke = 5;
-                     color1 = ExoPal.empyrean;
-                     radius = 13.5f;
-                     }}
-                    );
-                    hitColor = trailColor = ExoPal.empyrean;
-                    hitEffect = despawnEffect = ExoFx.colorBombSmall;
-                    lifetime = 35f;
-                    weaveMag = 7;
-                    weaveScale = 2;
-                    lightning = 4;
-                    lightningLength = 6;
-                    lightningColor = ExoPal.empyrean;
-                    lightningDamage = 16;
-                    shootEffect = ExoFx.colorSparkShoot;
-                    trailLength = 10;
-                    trailWidth = 3f;
+                bullet = new PosLightningType(32f){{
+                    lightningColor = hitColor = ExoPal.empyrean;
+                    maxRange = rangeOverride = 250f;
+                    hitEffect = Fx.circleColorSpark;
+                    smokeEffect = Fx.none;
                 }};
             }});
             weapons.add(new Weapon("zappy"){{
@@ -798,8 +806,8 @@ public class ExoUnitTypes {
                 bullet = new PosLightningType(32f){{
                     lightningColor = hitColor = ExoPal.empyrean;
                     maxRange = rangeOverride = 250f;
-                    hitEffect = ExoFx.colorSparkShoot;
-                    smokeEffect = Fx.shootBigSmoke2;
+                    hitEffect = Fx.circleColorSpark;
+                    smokeEffect = Fx.none;
                 }};
             }});
             weapons.add(new Weapon("zappy"){{
@@ -824,8 +832,8 @@ public class ExoUnitTypes {
                 bullet = new PosLightningType(32f){{
                     lightningColor = hitColor = ExoPal.empyrean;
                     maxRange = rangeOverride = 250f;
-                    hitEffect = ExoFx.colorSparkShoot;
-                    smokeEffect = Fx.shootBigSmoke2;
+                    hitEffect = Fx.circleColorSpark;
+                    smokeEffect = Fx.none;
                 }};
             }});
         }};
@@ -945,10 +953,10 @@ public class ExoUnitTypes {
                     length = 150f;
                     hitEffect = ExoFx.hitMeltColor;
                     drawSize = 420f;
-                    width = 6.6f;
+                    width = 7.6f;
                     shake = 1f;
                     largeHit = false;
-                    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyreanDark, Color.white};
+                    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
                     despawnEffect = Fx.smokeCloud;
                     intervalBullet = new LightningBulletType(){{
                         damage = 10;
