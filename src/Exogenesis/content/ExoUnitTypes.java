@@ -548,8 +548,8 @@ public class ExoUnitTypes {
                 triLengthTo = triLength = 10.5f;
             }});
             setEnginesMirror(
-                    new UnitEngine(19.5f, -30, 5f, -60f),
-                    new UnitEngine(9.5f, -27, 4f, -60f)
+                    new UnitEngine(19.5f, -27, 5f, 60f),
+                    new UnitEngine(9.5f, -27, 4f, 60f)
             );
             weapons.add(new Weapon("radiance-laser") {{
                 reload = 280f;
@@ -639,7 +639,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1.4f;
-                        radiusTo = radius = 8f;
+                        radiusTo = radius = 9f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -648,7 +648,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 8f;
+                        haloRadius = haloRadiusTo = 9f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -687,7 +687,7 @@ public class ExoUnitTypes {
             trailColor = ExoPal.empyrean;
             rotateSpeed = 3.4f;
             engineSize = 2.5f;
-            engineOffset = 8;
+            engineOffset = 10;
             weapons.add(new Weapon("apprise") {{
                 minShootVelocity = 0.75f;
                 reload = 5f;
@@ -702,6 +702,7 @@ public class ExoUnitTypes {
                 recoil = 0;
                 bullet = new BombBulletType(37f, 35f){{
                     width = height = 9f;
+                    speed = -0.00001f;
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 16;
@@ -802,7 +803,7 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("zappy"){{
-                x = 12;
+                x = 12.1f;
                 reload = 20f;
                 shootSound = Sounds.spark;
                 recoil = 0;
@@ -847,11 +848,12 @@ public class ExoUnitTypes {
             engineSize = 4;
             engineOffset = 15;
             weapons.add(new Weapon("exogenesis-alpha-rocket"){{
-                reload = 10f;
+                reload = 13f;
                 mirror = false;
                 x = 0;
                 y = -11;
                 shootSound = Sounds.missileLarge;
+                inaccuracy = 5;
                 recoil = 0;
                 shake = 1f;
                 shoot = new ShootAlternate(){{
@@ -866,7 +868,7 @@ public class ExoUnitTypes {
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 45f;
                     shrinkY = shrinkX = 0;
-                    hitEffect = despawnEffect = ExoFx.empyreanExplosion;
+                    hitEffect = despawnEffect = Fx.flakExplosionBig;
                     lightning = 7;
                     lightningLength = 9;
                     lightningColor = ExoPal.empyrean;
@@ -899,7 +901,7 @@ public class ExoUnitTypes {
             trailColor = engineColor = ExoPal.empyrean;
             rotateSpeed = 2.4f;
             engineSize = 4;
-            engineOffset = 18;
+            engineOffset = 22;
             abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
                 status = StatusEffects.none;
                 color = ExoPal.empyrean;
@@ -923,6 +925,9 @@ public class ExoUnitTypes {
                 y = -11;
                 maxTargets = 0;
             }});
+            setEnginesMirror(
+                    new UnitEngine(0, -27, 5f, 0f)
+            );
             weapons.add(new Weapon("exogenesis-excelsus-mount"){{
                 x = 26;
                 shootY = 11f;
@@ -937,10 +942,10 @@ public class ExoUnitTypes {
                 bullet = new ContinuousLaserBulletType(){{
                     hitColor = ExoPal.empyrean;
                     damage = 35f;
-                    length = 180f;
+                    length = 150f;
                     hitEffect = ExoFx.hitMeltColor;
                     drawSize = 420f;
-                    width = 6;
+                    width = 6.6f;
                     shake = 1f;
                     largeHit = false;
                     colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyreanDark, Color.white};
