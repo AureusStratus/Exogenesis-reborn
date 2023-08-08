@@ -69,7 +69,7 @@ public static void load(){
   drawer = new DrawTurret("elecian-"){{
   }};
   shootType = new PointLaserBulletType(){{
-   hitColor = color = ExoPal.empyrean;
+   hitColor = color = ExoPal.empyreanLight;
    beamEffect = ExoFx.hitMeltColor;
    damage = 10;
    hitEffect = ExoFx.hitMeltColor;
@@ -80,7 +80,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60));
   range = 130f;
   recoil = 2f;
-  reload = 30;
+  reload = 50;
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
   outlineColor = ExoPal.empyreanOutline;
@@ -105,7 +105,8 @@ public static void load(){
    frontColor = Color.white;
    trailWidth = 2f;
    trailLength = 6;
-   width = height = 7;
+   width = height = 22;
+   lifetime = 40;
    spin = 4;
    splashDamageRadius = 15;
    splashDamage = 6;
@@ -125,7 +126,7 @@ public static void load(){
     homingPower = 0.075f;
     homingDelay = 2;
     height = 13f;
-    lifetime = 36f;
+    lifetime = 16f;
     backColor = hitColor = trailColor = ExoPal.empyrean;
     frontColor = Color.white;
     trailWidth = 1.3f;
@@ -158,8 +159,8 @@ public static void load(){
   scaledHealth = 280;
   targetAir = false;
   shootSound = Sounds.bolt;
-  speedupPerShoot = 0.025f;
-  shootWarmupSpeed = 0.08f;
+  speedupPerShoot = 0.085f;
+  overheatTime = 560f;
   shootCone = 30f;
   shoot = new ShootAlternate(){{
    barrels = 2;
@@ -204,7 +205,7 @@ public static void load(){
    });
   }};
  }};
- bliss = new SpeedupTurret("bliss"){{
+ bliss = new PowerTurret("bliss"){{
   requirements(Category.turret, with(Items.copper, 60));
   range = 200f;
   recoil = 2f;
@@ -215,7 +216,6 @@ public static void load(){
   scaledHealth = 280;
   targetAir = false;
   shootSound = Sounds.laser;
-  speedupPerShoot = 0.025f;
   shootCone = 30f;
   shoot = new ShootSpread(){{
    shots = 6;
@@ -229,6 +229,7 @@ public static void load(){
    new FlarePart(){{
     progress = PartProgress.reload;
     color1 = ExoPal.empyrean;
+    y = 6;
     radius = 12;
     stroke = 3;
    }}
@@ -263,13 +264,11 @@ public static void load(){
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
   }};
-  shootType = new ChainBulletType(50f){{
+  shootType = new PosLightningType(50f){{
    lightningColor = hitColor = ExoPal.empyrean;
-   maxHit = 12;
-   chainRange = 80f;
-   length = 220f;
-   hitEffect = Fx.none;
-   smokeEffect = Fx.colorSparkBig;
+   maxRange = rangeOverride = 250f;
+   hitEffect = Fx.circleColorSpark;
+   smokeEffect = Fx.shootBigSmoke2;
   }};
  }};
 
