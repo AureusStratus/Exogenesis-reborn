@@ -153,8 +153,109 @@ public class ExoFx{
                 randLenVectors(e.id, 7, 25f * e.finpow(), e.rotation, 50f, (x, y) -> {
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
-            }),
+            });
+    public static final float lightningAlign = 0.5f;
 
+    public static Effect
+            trailFadeFast =  new Effect(600f, e -> {
+        if(!(e.data instanceof Trail)) return;
+        Trail trail = e.data();
+        //lifetime is how many frames it takes to fade out the trail
+        e.lifetime = trail.length * 1.4f;
+
+        if(!state.isPaused()){
+            trail.shorten();
+            trail.shorten();
+        }
+        trail.drawCap(e.color, e.rotation * e.foutpow());
+        trail.draw(e.color, e.rotation * e.foutpow());
+    }),
+
+    /**{@link Effect.EffectContainer#data}<{@link Position}> as Target */
+    chainLightningFade = new Effect(45f, 500f, e -> {
+        if(!(e.data instanceof Position)) return;
+        Position p = e.data();
+        float tx = p.getX(), ty = p.getY(), dst = Mathf.dst(e.x, e.y, tx, ty);
+        Tmp.v1.set(p).sub(e.x, e.y).nor();
+
+        float normx = Tmp.v1.x, normy = Tmp.v1.y;
+        float range = e.rotation;
+        int links = Mathf.ceil(dst / range);
+        float spacing = dst / links;
+
+        Lines.stroke(2.5f * Mathf.curve(e.fout(), 0, 0.7f));
+        Draw.color(Color.white, e.color, e.fin());
+
+        Lines.beginLine();
+
+        Fill.circle(e.x, e.y, Lines.getStroke() / 2);
+        Lines.linePoint(e.x, e.y);
+
+        rand.setSeed(e.id);
+
+        float fin = Mathf.curve(e.fin(), 0, lightningAlign);
+        float i;
+        for(i = 0; i < links * fin; i++){
+            float nx, ny;
+            if(i == links - 1){
+                nx = tx;
+                ny = ty;
+            }else{
+                float len = (i + 1) * spacing;
+                Tmp.v1.setToRandomDirection(rand).scl(range/2f);
+                nx = e.x + normx * len + Tmp.v1.x;
+                ny = e.y + normy * len + Tmp.v1.y;
+            }
+
+            Lines.linePoint(nx, ny);
+        }
+        Lines.endLine();
+    }).followParent(false),
+
+    /**{@link Effect.EffectContainer} as Target */
+    chainLightningFadeReversed = new Effect(45f, 500f, e -> {
+        if(!(e.data instanceof Position))return;
+        Position p = e.data();
+        float tx = e.x, ty = e.y, dst = Mathf.dst(p.getX(), p.getY(), tx, ty);
+        Tmp.v1.set(e.x, e.y).sub(p).nor();
+
+        float normx = Tmp.v1.x, normy = Tmp.v1.y;
+        float range = e.rotation;
+        int links = Mathf.ceil(dst / range);
+        float spacing = dst / links;
+
+        Lines.stroke(2.5f * Mathf.curve(e.fout(), 0, 0.7f));
+        Draw.color(Color.white, e.color, e.fin());
+
+        Lines.beginLine();
+
+        Fill.circle(p.getX(), p.getY(), Lines.getStroke() / 2);
+        Lines.linePoint(p);
+
+        rand.setSeed(e.id);
+
+        float fin = Mathf.curve(e.fin(), 0, lightningAlign);
+        float i;
+        for(i = 0; i < links *fin; i++){
+            float nx, ny;
+            if(i == links - 1){
+                nx = tx;
+                ny = ty;
+            }else{
+                float len = (i + 1) * spacing;
+                Tmp.v1.setToRandomDirection(rand).scl(range / 2f);
+                nx = p.getX() + normx * len + Tmp.v1.x;
+                ny = p.getY() + normy * len + Tmp.v1.y;
+            }
+
+            Lines.linePoint(nx, ny);
+        }
+        Lines.endLine();
+    }).followParent(false),
+            spawnWave = new Effect(60f, e -> {
+                stroke(3 * e.fout(), e.color);
+                circle(e.x, e.y, e.rotation * e.finpow());
+            }),
     colorBombSmall = new Effect(40f, 100f, e -> {
         color(e.color);
         stroke(e.fout() * 1f);

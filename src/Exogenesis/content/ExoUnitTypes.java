@@ -695,13 +695,13 @@ public class ExoUnitTypes {
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
-                        haloRadius = haloRadiusTo = 11f;
-                        haloRotation = -180;
-                        shapeRotation = 60;
+                        haloRadius = haloRadiusTo = 13f;
+                        haloRotation = 60;
+                        shapeRotation = -180;
                         stroke = 2f;
                         strokeTo = 2f;
                         shapes = 2;
-                        triLengthTo = triLength = 4f;
+                        triLengthTo = triLength = 2f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -709,7 +709,7 @@ public class ExoUnitTypes {
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
-                        haloRadius = haloRadiusTo = 11f;
+                        haloRadius = haloRadiusTo = 13f;
                         stroke = 2f;
                         strokeTo = 2f;
                         shapes = 2;
