@@ -67,6 +67,13 @@ public static void load(){
 
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
+   parts.addAll(
+   new RegionPart("-front"){{
+    progress = PartProgress.recoil;
+    moveRot = -12;
+    mirror = true;
+   }}
+   );
   }};
   shootType = new PointLaserBulletType(){{
    hitColor = color = ExoPal.empyreanLight;
@@ -105,8 +112,10 @@ public static void load(){
    frontColor = Color.white;
    trailWidth = 2f;
    trailLength = 6;
-   width = height = 22;
+   width = height = 28;
+   shrinkX = shootY = 0;
    lifetime = 40;
+   speed = 6;
    spin = 4;
    splashDamageRadius = 15;
    splashDamage = 6;
@@ -126,7 +135,7 @@ public static void load(){
     homingPower = 0.075f;
     homingDelay = 2;
     height = 13f;
-    lifetime = 16f;
+    lifetime = 10f;
     backColor = hitColor = trailColor = ExoPal.empyrean;
     frontColor = Color.white;
     trailWidth = 1.3f;
@@ -159,7 +168,7 @@ public static void load(){
   scaledHealth = 280;
   targetAir = false;
   shootSound = Sounds.bolt;
-  speedupPerShoot = 0.085f;
+  speedupPerShoot = 0.15f;
   overheatTime = 560f;
   shootCone = 30f;
   shoot = new ShootAlternate(){{
@@ -230,7 +239,7 @@ public static void load(){
     progress = PartProgress.reload;
     color1 = ExoPal.empyrean;
     y = 6;
-    radius = 12;
+    radius = 10;
     stroke = 3;
    }}
    );
