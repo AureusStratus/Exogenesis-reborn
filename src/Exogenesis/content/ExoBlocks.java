@@ -51,6 +51,7 @@ public static void load(){
   smokeEffect = Fx.none;
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
+  shootY = 0;
   size = 2;
   scaledHealth = 280;
   targetAir = false;
@@ -76,7 +77,8 @@ public static void load(){
    );
   }};
   shootType = new PointLaserBulletType(){{
-   hitColor = color = ExoPal.empyreanLight;
+   hitColor = ExoPal.empyreanLight;
+   color = Color.white;
    beamEffect = ExoFx.hitMeltColor;
    damage = 10;
    hitEffect = ExoFx.hitMeltColor;
@@ -168,8 +170,10 @@ public static void load(){
   scaledHealth = 280;
   targetAir = false;
   shootSound = Sounds.bolt;
-  speedupPerShoot = 0.15f;
-  overheatTime = 560f;
+  warmupMaintainTime = 120f;
+  maxSpeedupScl = 6f;
+  speedupPerShoot = 0.095f;
+  overheatTime = 400f;
   shootCone = 30f;
   shoot = new ShootAlternate(){{
    barrels = 2;
@@ -239,7 +243,8 @@ public static void load(){
     progress = PartProgress.reload;
     color1 = ExoPal.empyrean;
     y = 6;
-    radius = 10;
+    radius = 0;
+    radiusTo = 8;
     stroke = 3;
    }}
    );
@@ -312,11 +317,16 @@ public static void load(){
    }}
    );
   }};
-  shootType = new PosLightningType(50f){{
-   lightningColor = hitColor = ExoPal.empyrean;
-   maxRange = rangeOverride = 250f;
-   hitEffect = ExoFx.colorBombSmall;
-   smokeEffect = Fx.shootBigSmoke2;
+  shootType = new LaserBulletType(){{
+   damage = 175f;
+   sideAngle = 20f;
+   sideWidth = 1.5f;
+   sideLength = 50f;
+   width = 45f;
+   length = 270f;
+   hitColor = ExoPal.empyrean;
+   shootEffect = ExoFx.colorBombSmall;
+   colors = new Color[]{Color.valueOf("fee761aa"), Color.valueOf("fcff98"), Color.white};
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
