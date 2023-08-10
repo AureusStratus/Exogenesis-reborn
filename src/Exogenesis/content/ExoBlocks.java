@@ -79,6 +79,7 @@ public static void load(){
   shootType = new PointLaserBulletType(){{
    hitColor = ExoPal.empyreanLight;
    color = Color.white;
+   sprite = "exogenesis-focal-point-laser";
    beamEffect = ExoFx.hitMeltColor;
    damage = 10;
    hitEffect = ExoFx.hitMeltColor;
@@ -257,13 +258,15 @@ public static void load(){
    new FlarePart(){{
     progress = PartProgress.life;
     color1 = ExoPal.empyrean;
-    radius = 13;
-    radiusTo = 13;
+    radius = 16;
+    radiusTo = 16;
     stroke = 2.5f;
    }}
    );
    lifetime = 35;
-   hitColor = ExoPal.empyrean;
+   hitColor = trailColor = ExoPal.empyrean;
+   trailWidth = 2f;
+   trailLength = 6;
    hitEffect = Fx.hitBulletColor;
    smokeEffect = Fx.colorSpark;
   }};
@@ -272,7 +275,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 250f;
   recoil = 2f;
-  reload = 6f;
+  reload = 8f;
   shake = 2f;
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
@@ -327,7 +330,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60));
   range = 210f;
   recoil = 2f;
-  reload = 50;
+  reload = 40;
   smokeEffect = Fx.none;
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
@@ -335,14 +338,14 @@ public static void load(){
   shootSound = Sounds.shootBig;
   inaccuracy = 1;
   warmupMaintainTime = 120f;
-  maxSpeedupScl = 10f;
-  inaccuracyUp = 2;
-  speedupPerShoot = 0.075f;
+  maxSpeedupScl = 13f;
+  inaccuracyUp = 1;
+  speedupPerShoot = 0.095f;
   overheatTime = 400f;
   shootCone = 30f;
-  shoot = new ShootAlternate(){{
-   barrels = 2;
-   spread = 6;
+  shoot = new ShootPattern(){{
+   shotDelay = 0;
+   shots = 2;
   }};
   rotateSpeed = 2.5f;
   coolant = consumeCoolant(0.2f);
@@ -350,7 +353,7 @@ public static void load(){
   drawer = new DrawTurret("elecian-"){{
   }};
   shootType = new BasicBulletType(8f, 17){{
-   lifetime = 40f;
+   lifetime = 30f;
    width = 7;
    height = 15;
    sprite = "missile-large";
@@ -384,18 +387,18 @@ public static void load(){
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
-   for(int i = 2; i > 0; i--){
+   for(int i = 0; i < 2; i ++){
     int f = i;
-    parts.add(new RegionPart("-barrel-" + i){{
+    parts.add(new RegionPart("-barrel-" + (i == 0 ? "l" : "r")){{
      progress = PartProgress.recoil;
-     recoilIndex = f - 1;
+     recoilIndex = f;
      under = true;
-     moveY = -2f;
+     moveY = -2.5f;
     }});
    }
   }};
   shootType = new BasicBulletType(6f, 77){{
-   lifetime = 50f;
+   lifetime = 40f;
    width = 9;
    height = 17;
    shootEffect = Fx.shootBigColor;
