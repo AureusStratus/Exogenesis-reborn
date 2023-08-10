@@ -51,7 +51,7 @@ public static void load(){
   smokeEffect = Fx.none;
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
-  shootY = 0;
+  shootY = 4;
   size = 2;
   scaledHealth = 280;
   targetAir = false;
@@ -72,6 +72,7 @@ public static void load(){
    new RegionPart("-front"){{
     progress = PartProgress.warmup;
     moveRot = -12;
+    moveX = 5;
     mirror = true;
    }}
    );
@@ -232,8 +233,8 @@ public static void load(){
   shootSound = Sounds.laser;
   shootCone = 30f;
   shoot = new ShootSpread(){{
-   shots = 6;
-   spread = 9;
+   shots = 5;
+   spread = 10;
   }};
   rotateSpeed = 2.5f;
   coolant = consumeCoolant(0.2f);
@@ -328,7 +329,7 @@ public static void load(){
  }};
  essence = new SpeedupTurret("essence"){{
   requirements(Category.turret, with(Items.copper, 60));
-  range = 210f;
+  range = 250f;
   recoil = 2f;
   reload = 40;
   smokeEffect = Fx.none;
@@ -336,13 +337,15 @@ public static void load(){
   size = 3;
   scaledHealth = 280;
   shootSound = Sounds.shootBig;
-  inaccuracy = 1;
+  inaccuracy = 3;
   warmupMaintainTime = 120f;
   maxSpeedupScl = 13f;
   inaccuracyUp = 1;
   speedupPerShoot = 0.095f;
   overheatTime = 400f;
   shootCone = 30f;
+  xRand = 5;
+  velocityRnd = 0.1f;
   shoot = new ShootPattern(){{
    shotDelay = 0;
    shots = 2;
@@ -375,6 +378,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
   scaledHealth = 280;
+  recoils = 2;
   shootSound = Sounds.shootBig;
   inaccuracy = 1;
   shootCone = 30f;
