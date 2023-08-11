@@ -78,10 +78,11 @@ public static void load(){
    );
   }};
   shootType = new PointLaserBulletType(){{
-   hitColor = ExoPal.empyreanLight;
+   hitColor = trailColor = ExoPal.empyreanLight;
    color = Color.white;
    sprite = "exogenesis-focal-point-laser";
-   beamEffect = ExoFx.hitMeltColor;
+   beamEffect = Fx.none;
+   trailLength = 8;
    damage = 10;
    hitEffect = ExoFx.hitMeltColor;
    smokeEffect = Fx.colorSparkBig;
@@ -275,7 +276,7 @@ public static void load(){
  tanons = new PowerTurret("tanons"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 250f;
-  recoil = 2f;
+  recoil = 0;
   reload = 8f;
   shake = 2f;
   shootEffect = Fx.colorSparkBig;
@@ -336,9 +337,9 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
   scaledHealth = 280;
-  shootSound = Sounds.shootBig;
+  shootSound = Sounds.bolt;
   inaccuracy = 3;
-  shootY = 7;
+  shootY = 9;
   warmupMaintainTime = 120f;
   maxSpeedupScl = 13f;
   inaccuracyUp = 1;
@@ -380,13 +381,13 @@ public static void load(){
   size = 3;
   scaledHealth = 280;
   recoils = 2;
-  shootSound = Sounds.shootBig;
+  shootSound = Sounds.shotgun;
   inaccuracy = 1;
   shootCone = 30f;
-  shootY = 8;
+  shootY = 10;
   shoot = new ShootAlternate(){{
    barrels = 2;
-   spread = 8;
+   spread = 9;
   }};
   rotateSpeed = 2f;
   coolant = consumeCoolant(0.2f);
@@ -398,7 +399,7 @@ public static void load(){
      progress = PartProgress.recoil;
      recoilIndex = f;
      under = true;
-     moveY = -2.5f;
+     moveY = -3.5f;
     }});
    }
   }};
