@@ -72,7 +72,7 @@ public static void load(){
    new RegionPart("-front"){{
     progress = PartProgress.warmup;
     moveRot = -12;
-    moveX = 5;
+    moveX = 4;
     mirror = true;
    }}
    );
@@ -268,7 +268,7 @@ public static void load(){
    hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
    trailLength = 6;
-   hitEffect = ExoFx.colorBombSmall;
+   hitEffect = despawnEffect = ExoFx.colorBombSmall;
    smokeEffect = Fx.colorSpark;
   }};
  }};
@@ -367,7 +367,7 @@ public static void load(){
    frontColor = Color.white;
    trailWidth = 2f;
    trailLength = 6;
-   hitEffect = Fx.hitBulletColor;
+   hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
  }};
  purger = new PowerTurret("purger"){{
@@ -383,7 +383,7 @@ public static void load(){
   shootSound = Sounds.shootBig;
   inaccuracy = 1;
   shootCone = 30f;
-  shootY = 6;
+  shootY = 8;
   shoot = new ShootAlternate(){{
    barrels = 2;
    spread = 8;
@@ -407,10 +407,10 @@ public static void load(){
    sideAngle = 40f;
    sideWidth = 1.5f;
    sideLength = 50f;
-   width = 35f;
+   width = 25f;
    length = 210f;
    hitColor = ExoPal.empyrean;
-   shootEffect = ExoFx.colorBombSmall;
+   shootEffect = ExoFx.colorBombSmaller;
    colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
   }};
  }};
