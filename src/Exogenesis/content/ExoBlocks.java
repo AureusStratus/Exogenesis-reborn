@@ -267,6 +267,8 @@ public static void load(){
    hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
    trailLength = 6;
+   weaveScale = 6;
+   weaveMag = 2;
    hitEffect = despawnEffect = ExoFx.colorBombSmall;
    smokeEffect = Fx.colorSpark;
   }};
@@ -382,7 +384,7 @@ public static void load(){
   shootSound = Sounds.laser;
   inaccuracy = 1;
   shootCone = 30f;
-  shootY = 12;
+  shootY = 11;
   shoot = new ShootAlternate(){{
    barrels = 2;
    spread = 11;
@@ -395,6 +397,7 @@ public static void load(){
     int f = i;
     parts.add(new RegionPart("-barrel-" + (i == 0 ? "l" : "r")){{
      progress = PartProgress.recoil;
+     layerOffset = -0.001f;
      recoilIndex = f;
      under = true;
      moveY = -3.5f;
@@ -472,15 +475,15 @@ public static void load(){
   targetAir = false;
   shootSound = Sounds.laser;
   coolant = consumeCoolant(0.2f);
-  shoot = new ShootMulti(new ShootPattern(){{
-   shotDelay = 1f;
+  shoot = new ShootMulti(new ShootAlternate(){{
+   spread = 3f;
    shots = 2;
   }}, new ShootHelix(){{
-   scl = 4f;
+   scl = 5f;
    mag = 1.5f;
   }},
    new ShootHelix(){{
-    scl = 2f;
+    scl = 3f;
     mag = 1f;
   }});
   consumePower(6f);
@@ -496,13 +499,13 @@ public static void load(){
            }},
            new RegionPart("-front"){{
             progress = PartProgress.warmup;
-            moveX = 3;
+            moveX = 4;
             moveRot = 12;
             mirror = true;
            }},
            new RegionPart("-back"){{
             progress = PartProgress.warmup;
-            moveX = 3;
+            moveX = 4;
             moveRot = 12;
             moves.add(new PartMove(PartProgress.recoil, 0f, -4f, 0f));
             mirror = true;
