@@ -96,10 +96,10 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 2;
   scaledHealth = 280;
-  targetAir = false;
+  targetAir = true;
+  targetGround = false;
   shootSound = Sounds.bolt;
   inaccuracy = 6;
-  shootWarmupSpeed = 0.08f;
   shootCone = 30f;
   shoot = new ShootPattern(){{
    shotDelay = 4.7f;
@@ -120,6 +120,8 @@ public static void load(){
    lifetime = 40;
    speed = 6;
    spin = 4;
+   explodeDelay = 1;
+   explodeRange = 40;
    splashDamageRadius = 15;
    splashDamage = 6;
    sprite = "large-bomb";
@@ -149,7 +151,7 @@ public static void load(){
  }};
  light = new SpeedupTurret("light"){{
   requirements(Category.turret, with(Items.copper, 60));
-  range = 130f;
+  range = 160f;
   recoil = 2f;
   reload = 20;
   shootEffect = new Effect(10, e -> {
@@ -186,7 +188,7 @@ public static void load(){
   drawer = new DrawTurret("elecian-"){{
   }};
   shootType = new RailBulletType(){{
-   length = 130f;
+   length = 160f;
    damage = 8f;
    hitColor = ExoPal.empyrean;
    hitEffect = endEffect = Fx.hitBulletColor;
@@ -232,8 +234,8 @@ public static void load(){
   shootSound = Sounds.laser;
   shootCone = 30f;
   shoot = new ShootSpread(){{
-   shots = 5;
-   spread = 10;
+   shots = 4;
+   spread = 9;
   }};
   rotateSpeed = 2.5f;
   coolant = consumeCoolant(0.2f);
@@ -269,7 +271,7 @@ public static void load(){
    trailLength = 6;
    weaveScale = 6;
    weaveMag = 2;
-   hitEffect = despawnEffect = ExoFx.colorBombSmall;
+   hitEffect = despawnEffect = ExoFx.colorBombSmaller;
    smokeEffect = Fx.colorSpark;
   }};
  }};
@@ -294,6 +296,7 @@ public static void load(){
   }};
   shootType = new PosLightningType(50f){{
    lightningColor = hitColor = ExoPal.empyrean;
+   lightningDamage = 8;
    maxRange = rangeOverride = 250f;
    hitEffect = Fx.circleColorSpark;
    smokeEffect = Fx.shootBigSmoke2;
