@@ -268,7 +268,7 @@ public static void load(){
    hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
    trailLength = 6;
-   hitEffect = Fx.hitBulletColor;
+   hitEffect = ExoFx.colorBombSmall;
    smokeEffect = Fx.colorSpark;
   }};
  }};
@@ -302,7 +302,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 450f;
   recoil = 2f;
-  reload = 6f;
+  reload = 100f;
   shake = 2f;
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
@@ -329,7 +329,7 @@ public static void load(){
  }};
  essence = new SpeedupTurret("essence"){{
   requirements(Category.turret, with(Items.copper, 60));
-  range = 250f;
+  range = 230f;
   recoil = 2f;
   reload = 40;
   smokeEffect = Fx.none;
@@ -338,14 +338,15 @@ public static void load(){
   scaledHealth = 280;
   shootSound = Sounds.shootBig;
   inaccuracy = 3;
+  shootY = 7;
   warmupMaintainTime = 120f;
   maxSpeedupScl = 13f;
   inaccuracyUp = 1;
   speedupPerShoot = 0.095f;
   overheatTime = 400f;
   shootCone = 30f;
-  xRand = 5;
-  velocityRnd = 0.1f;
+  xRand = 2;
+  velocityRnd = 0.15f;
   shoot = new ShootPattern(){{
    shotDelay = 0;
    shots = 2;
@@ -373,7 +374,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60));
   range = 210f;
   recoil = 1f;
-  reload = 35;
+  reload = 25;
   smokeEffect = Fx.none;
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
@@ -401,16 +402,16 @@ public static void load(){
     }});
    }
   }};
-  shootType = new BasicBulletType(6f, 77){{
-   lifetime = 40f;
-   width = 9;
-   height = 17;
-   shootEffect = Fx.shootBigColor;
-   backColor = hitColor = trailColor = ExoPal.empyrean;
-   frontColor = Color.white;
-   trailWidth = 3f;
-   trailLength = 6;
-   hitEffect = Fx.massiveExplosion;
+  shootType = new LaserBulletType(){{
+   damage = 75f;
+   sideAngle = 40f;
+   sideWidth = 1.5f;
+   sideLength = 50f;
+   width = 35f;
+   length = 210f;
+   hitColor = ExoPal.empyrean;
+   shootEffect = ExoFx.colorBombSmall;
+   colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
   }};
  }};
  excalibur = new PowerTurret("excalibur"){{
@@ -453,7 +454,7 @@ public static void load(){
    length = 270f;
    hitColor = ExoPal.empyrean;
    shootEffect = ExoFx.colorBombSmall;
-   colors = new Color[]{Color.valueOf("fee761aa"), Color.valueOf("fcff98"), Color.white};
+   colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
