@@ -14,9 +14,7 @@ import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import Exogenesis.graphics.ExoPal;
 import mindustry.entities.part.*;
-import mindustry.entities.pattern.ShootAlternate;
-import mindustry.entities.pattern.ShootPattern;
-import mindustry.entities.pattern.ShootSpread;
+import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
@@ -40,7 +38,7 @@ public class ExoBlocks{
  public static Block
          //Empyrean
          focalPoint, gale, light, bliss, tanons, glory, essence, purger,
-         excalibur, emanator, godsent, eminence, grandeur, eather, aeon, arbiter, phoss,
+         excalibur, aspect, godsent, eminence, grandeur, eather, agios, arbiter, phoss,
          genesisFactory, empyreanFactory;
 public static void load(){
  focalPoint = new ContinuousTurret ("focal-point"){{
@@ -374,20 +372,20 @@ public static void load(){
  purger = new PowerTurret("purger"){{
   requirements(Category.turret, with(Items.copper, 60));
   range = 210f;
-  recoil = 1f;
+  recoil = 0;
   reload = 25;
   smokeEffect = Fx.none;
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
   scaledHealth = 280;
   recoils = 2;
-  shootSound = Sounds.shotgun;
+  shootSound = Sounds.laser;
   inaccuracy = 1;
   shootCone = 30f;
-  shootY = 10;
+  shootY = 12;
   shoot = new ShootAlternate(){{
    barrels = 2;
-   spread = 9;
+   spread = 11;
   }};
   rotateSpeed = 2f;
   coolant = consumeCoolant(0.2f);
@@ -407,7 +405,7 @@ public static void load(){
    damage = 75f;
    sideAngle = 40f;
    sideWidth = 1.5f;
-   sideLength = 50f;
+   sideLength = 30f;
    width = 25f;
    length = 210f;
    hitColor = ExoPal.empyrean;
@@ -456,6 +454,73 @@ public static void load(){
    hitColor = ExoPal.empyrean;
    shootEffect = ExoFx.colorBombSmall;
    colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
+  }};
+ }};
+ eminence = new PowerTurret("eminence"){{
+  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  range = 270f;
+  recoil = 2f;
+  reload = 80f;
+  shake = 2f;
+  shootEffect = Fx.colorSparkBig;
+  smokeEffect = Fx.none;
+  heatColor = Color.red;
+  outlineColor = ExoPal.empyreanOutline;
+  size = 4;
+  minWarmup = 0.99f;
+  scaledHealth = 280;
+  targetAir = false;
+  shootSound = Sounds.laser;
+  coolant = consumeCoolant(0.2f);
+  shoot = new ShootMulti(new ShootPattern(){{
+   shotDelay = 1f;
+   shots = 2;
+  }}, new ShootHelix(){{
+   scl = 4f;
+   mag = 1.5f;
+  }},
+   new ShootHelix(){{
+    scl = 2f;
+    mag = 1f;
+  }});
+  consumePower(6f);
+  drawer = new DrawTurret("elecian-"){{
+   parts.addAll(
+           new FlarePart(){{
+            progress = PartProgress.warmup;
+            color1 = ExoPal.empyrean;
+            y = 10;
+            radius = 12;
+            radiusTo = 0;
+            stroke = 2.5f;
+           }},
+           new RegionPart("-front"){{
+            progress = PartProgress.warmup;
+            moveX = 3;
+            moveRot = 12;
+            mirror = true;
+           }},
+           new RegionPart("-back"){{
+            progress = PartProgress.warmup;
+            moveX = 3;
+            moveRot = 12;
+            moves.add(new PartMove(PartProgress.recoil, 0f, -4f, 0f));
+            mirror = true;
+           }}
+       );
+  }};
+  shootType = new BasicBulletType(8f, 47){{
+   lifetime = 30f;
+   width = 7;
+   height = 15;
+   sprite = "missile-large";
+   pierceArmor = true;
+   shootEffect = Fx.shootBigColor;
+   backColor = hitColor = trailColor = ExoPal.empyrean;
+   frontColor = Color.white;
+   trailWidth = 2f;
+   trailLength = 6;
+   hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
