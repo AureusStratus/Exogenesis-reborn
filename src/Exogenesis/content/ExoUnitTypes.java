@@ -427,7 +427,7 @@ public class ExoUnitTypes {
                     splashDamage = 50;
                     splashDamageRadius = 60;
                     shrinkY = shrinkX = 0;
-                    hitEffect = despawnEffect = ExoFx.empyreanExplosion;
+                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion, ExoFx.blastcolor;
                     intervalBullet = new BasicBulletType(4f, 25){{
                         width = height = 7f;
                         sprite = "circle-bullet";

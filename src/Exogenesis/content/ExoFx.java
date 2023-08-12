@@ -20,6 +20,10 @@ import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
 import static mindustry.Vars.*;
+import java.util.Arrays;
+import static arc.math.Angles.randLenVectors;
+import static mindustry.Vars.state;
+
 
 public class ExoFx{
     public static final Rand rand = new Rand();
@@ -255,6 +259,14 @@ public class ExoFx{
             spawnWave = new Effect(60f, e -> {
                 stroke(3 * e.fout(), e.color);
                 circle(e.x, e.y, e.rotation * e.finpow());
+            }),
+            blastcolor = new Effect(40f, 600,e -> {
+                color(e.color);
+                stroke(e.fout() * 3.7f);
+                circle(e.x, e.y, e.fin(Interp.pow3Out) * 240 + 15);
+                rand.setSeed(e.id);
+                randLenVectors(e.id, 12, 8 + 60 * e.fin(Interp.pow5Out), (x, y) -> Fill.circle(e.x + x, e.y + y, e.fout(Interp.circleIn) * (6f + rand.random(6f))));
+                Drawf.light(e.x, e.y, e.fout() * 320f, e.color, 0.7f);
             }),
     colorBombSmall = new Effect(40f, 100f, e -> {
         color(e.color);

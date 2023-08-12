@@ -52,7 +52,6 @@ public static void load(){
   shootY = 4;
   size = 2;
   scaledHealth = 280;
-  targetAir = false;
   shootSound = Sounds.none;
   loopSoundVolume = 1f;
   loopSound = Sounds.laserbeam;
@@ -131,16 +130,16 @@ public static void load(){
    fragBullets = 5;
    fragVelocityMin = 1f;
 
-   fragBullet = new BasicBulletType(8f, 9){{
+   fragBullet = new BasicBulletType(8f, 13){{
     sprite = "missile";
     width = 4f;
     pierce = true;
     pierceCap = 1;
     homingRange = 30;
-    homingPower = 0.075f;
+    homingPower = 0.1f;
     homingDelay = 2;
     height = 13f;
-    lifetime = 8f;
+    lifetime = 13f;
     backColor = hitColor = trailColor = ExoPal.empyrean;
     frontColor = Color.white;
     trailWidth = 1.3f;
@@ -171,7 +170,6 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 2;
   scaledHealth = 280;
-  targetAir = false;
   shootSound = Sounds.bolt;
   warmupMaintainTime = 120f;
   maxSpeedupScl = 6f;
@@ -230,7 +228,6 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 2;
   scaledHealth = 280;
-  targetAir = false;
   shootSound = Sounds.laser;
   shootCone = 30f;
   shoot = new ShootSpread(){{
@@ -287,7 +284,6 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
   scaledHealth = 280;
-  targetAir = false;
   shootSound = Sounds.spark;
   coolant = consumeCoolant(0.2f);
 
@@ -462,7 +458,7 @@ public static void load(){
    colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
   }};
  }};
- eminence = new PowerTurret("eminence"){{
+ aspect = new PowerTurret("aspect"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 270f;
   recoil = 2f;
@@ -475,19 +471,15 @@ public static void load(){
   size = 4;
   minWarmup = 0.99f;
   scaledHealth = 280;
-  targetAir = false;
   shootSound = Sounds.laser;
   coolant = consumeCoolant(0.2f);
-  shoot = new ShootMulti(new ShootAlternate(){{
-   spread = 3f;
-   shots = 2;
-  }}, new ShootHelix(){{
-   scl = 5f;
-   mag = 1.5f;
-  }},
-   new ShootHelix(){{
-    scl = 3f;
-    mag = 1f;
+  shoot = new ShootMulti(new ShootPattern(){{
+   shots = 3;
+   shotDelay = 2;
+  }}, new ShootAlternate(){{
+   barrels = 3;
+   shots = 3;
+   spread = 4;
   }});
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
@@ -510,17 +502,76 @@ public static void load(){
             progress = PartProgress.warmup;
             moveX = 4;
             moveRot = 12;
-            moves.add(new PartMove(PartProgress.recoil, 0f, -4f, 0f));
+            mirror = true;
+           }}
+   );
+  }};
+  shootType = new BasicBulletType(8f, 47){{
+   lifetime = 30f;
+   width = 6;
+   height = 15;
+   sprite = "missile-large";
+   shootEffect = Fx.shootBigColor;
+   backColor = hitColor = trailColor = ExoPal.empyrean;
+   frontColor = Color.white;
+   trailWidth = 2f;
+   trailLength = 6;
+   hitEffect = despawnEffect = Fx.hitBulletColor;
+  }};
+ }};
+ eminence = new PowerTurret("eminence"){{
+  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  range = 270f;
+  recoil = 2f;
+  reload = 80f;
+  shake = 2f;
+  shootEffect = Fx.colorSparkBig;
+  smokeEffect = Fx.none;
+  heatColor = Color.red;
+  outlineColor = ExoPal.empyreanOutline;
+  size = 4;
+  minWarmup = 0.99f;
+  scaledHealth = 280;
+  shootSound = Sounds.laser;
+  coolant = consumeCoolant(0.2f);
+  shoot = new ShootMulti(new ShootPattern(){{
+    shots = 3;
+    shotDelay = 2;
+  }}, new ShootAlternate(){{
+   barrels = 3;
+   shots = 3;
+   spread = 4;
+   }});
+  consumePower(6f);
+  drawer = new DrawTurret("elecian-"){{
+   parts.addAll(
+           new FlarePart(){{
+            progress = PartProgress.warmup;
+            color1 = ExoPal.empyrean;
+            y = 10;
+            radius = 12;
+            radiusTo = 0;
+            stroke = 2.5f;
+           }},
+           new RegionPart("-front"){{
+            progress = PartProgress.warmup;
+            moveX = 4;
+            moveRot = 12;
+            mirror = true;
+           }},
+           new RegionPart("-back"){{
+            progress = PartProgress.warmup;
+            moveX = 4;
+            moveRot = 12;
             mirror = true;
            }}
        );
   }};
   shootType = new BasicBulletType(8f, 47){{
    lifetime = 30f;
-   width = 7;
+   width = 6;
    height = 15;
    sprite = "missile-large";
-   pierceArmor = true;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    frontColor = Color.white;
