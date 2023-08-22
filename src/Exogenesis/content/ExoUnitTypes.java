@@ -31,8 +31,85 @@ import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 public class ExoUnitTypes {
-    public static UnitType lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
+    public static UnitType ursa, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
     public static void load() {
+        ursa = new UnitType("ursa") {{
+            constructor = LegsUnit::create;
+            speed = 0.27f;
+            hitSize = 37f;
+            health = 37000f;
+            faceTarget = true;
+            armor = 10;
+            shadowElevation = 0.23f;
+            targetAir = false;
+            allowLegStep = true;
+            hovering = true;
+
+            legMaxLength = 1.1f;
+            legMinLength = 0.2f;
+            legLengthScl = 0.96f;
+            legForwardScl = 1.1f;
+            legPhysicsLayer = false;
+            legGroupSize = 4;
+            legCount = 6;
+            legExtension = -2;
+            legContinuousMove = true;
+            lockLegBase = true;
+            rippleScale = 0.2f;
+            stepShake = 1.5f;
+            rotateSpeed = 1.3f;
+            legLength = 29f;
+            legBaseOffset = 8f;
+            legMoveSpace = 0.7f;
+
+            groundLayer = Layer.legUnit;
+            weapons.add(new Weapon("ursa-weapon"){{
+                shootSound = Sounds.laserblast;
+                chargeSound = Sounds.lasercharge;
+                soundPitchMin = 1f;
+                top = false;
+                mirror = false;
+                shake = 14f;
+                shootY = 5f;
+                x = y = 0;
+                reload = 350f;
+                recoil = 0f;
+
+                cooldownTime = 350f;
+
+                shootStatusDuration = 60f * 2f;
+                shootStatus = StatusEffects.unmoving;
+                shoot.firstShotDelay = Fx.greenLaserCharge.lifetime;
+                parentizeEffects = true;
+
+                bullet = new LaserBulletType(){{
+                    length = 460f;
+                    damage = 560f;
+                    width = 75f;
+
+                    lifetime = 65f;
+
+                    lightningSpacing = 35f;
+                    lightningLength = 5;
+                    lightningDelay = 1.1f;
+                    lightningLengthRand = 15;
+                    lightningDamage = 50;
+                    lightningAngleRand = 40f;
+                    largeHit = true;
+                    lightColor = lightningColor = Pal.heal;
+
+                    chargeEffect = Fx.greenLaserCharge;
+
+                    healPercent = 25f;
+                    collidesTeam = true;
+
+                    sideAngle = 15f;
+                    sideWidth = 0f;
+                    sideLength = 0f;
+                    colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
+                }};
+            }});
+        }};
         lux = new UnitType("lux") {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -688,34 +765,6 @@ public class ExoUnitTypes {
             rotateSpeed = 3.4f;
             engineSize = 2.5f;
             engineOffset = 10;
-            parts.add(
-                    new HaloPart() {{
-                        y = 0f;
-                        radius = 2.5f;
-                        tri = true;
-                        color = ExoPal.empyrean;
-                        layer = Layer.effect;
-                        haloRadius = haloRadiusTo = 13f;
-                        haloRotation = 60;
-                        shapeRotation = -180;
-                        stroke = 2f;
-                        strokeTo = 2f;
-                        shapes = 2;
-                        triLengthTo = triLength = 2f;
-                    }},
-                    new HaloPart() {{
-                        y = 0f;
-                        radius = 2.5f;
-                        tri = true;
-                        color = ExoPal.empyrean;
-                        layer = Layer.effect;
-                        haloRadius = haloRadiusTo = 13f;
-                        stroke = 2f;
-                        strokeTo = 2f;
-                        shapes = 2;
-                        triLengthTo = triLength = 8f;
-                    }}
-            );
             weapons.add(new Weapon("apprise") {{
                 minShootVelocity = 0.75f;
                 reload = 5f;
