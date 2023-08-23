@@ -105,7 +105,8 @@ public class ExoUnitTypes {
             }});
         }};
         avicularia = new UnitType("avicularia"){{
-            groundLayer = Layer.legUnit + 0.01f;
+            groundLayer = Layer.legUnit;
+            constructor = LegsUnit::create;
             drag = 0.1f;
             speed = 0.42f;
             hitSize = 35.5f;
@@ -218,13 +219,13 @@ public class ExoUnitTypes {
             accel = 0.04f;
             drag = 0.04f;
             flying = true;
-            targetFlags = new BlockFlag[]{BlockFlag.reactor, null};
             hitSize = 80f;
             engineOffset = 42.75f;
             engineSize = 5.75f;
             faceTarget = true;
             lowAltitude = true;
-            weapons.add(new Weapon("exogenesis-twilight-mount") {{
+            weapons.add(
+                new Weapon("exogenesis-twilight-mount"){{
                 reload = 40f;
                 mirror = true;
                 alternate = false;
