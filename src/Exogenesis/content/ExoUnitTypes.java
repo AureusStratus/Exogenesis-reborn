@@ -31,7 +31,7 @@ import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 public class ExoUnitTypes {
-    public static UnitType ursa, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
+    public static UnitType ursa, avicularia, twilight,  lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
     public static void load() {
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
@@ -45,17 +45,11 @@ public class ExoUnitTypes {
             allowLegStep = true;
             hovering = true;
 
-            legMaxLength = 1.1f;
-            legMinLength = 0.2f;
-            legLengthScl = 0.96f;
-            legForwardScl = 1.1f;
             legPhysicsLayer = false;
-            legGroupSize = 4;
+            legGroupSize = 3;
             legCount = 6;
-            legExtension = -2;
             legContinuousMove = true;
-            lockLegBase = true;
-            rippleScale = 0.2f;
+            rippleScale = 1.2f;
             stepShake = 1.5f;
             rotateSpeed = 1.3f;
             legLength = 29f;
@@ -107,6 +101,194 @@ public class ExoUnitTypes {
                     sideWidth = 0f;
                     sideLength = 0f;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
+                }};
+            }});
+        }};
+        avicularia = new UnitType("avicularia"){{
+            groundLayer = Layer.legUnit + 0.01f;
+            drag = 0.1f;
+            speed = 0.42f;
+            hitSize = 35.5f;
+            health = 52000;
+            rotateSpeed = 1.3f;
+            legContinuousMove = true;
+            legCount = 8;
+            legMoveSpace = 0.76f;
+            legPairOffset = 0.7f;
+            legGroupSize = 2;
+            legLength = 112f;
+            legExtension = -8.25f;
+            legBaseOffset = 8f;
+            stepShake = 2.4f;
+            legLengthScl = 1f;
+            rippleScale = 2f;
+            legSpeed = 0.2f;
+
+            legSplashDamage = 80f;
+            legSplashRange = 40f;
+            hovering = true;
+            armor = 13f;
+            allowLegStep = true;
+            shadowElevation = 0.95f;
+            weapons.add(new Weapon("exogenesis-sap-energy-gun") {{
+                    reload = 22f;
+                    mirror = true;
+                    x = 8;
+                    y = 3;
+                    shoot = new ShootSpread() {{
+                        spread = 6f;
+                        shots = 3;
+                    }};
+                    shootSound = Sounds.laser;
+                    recoil = 2;
+                    shake = 1f;
+                    bullet = new LaserBulletType() {{
+                        damage = 115f;
+                        sideWidth = 0f;
+                        sideLength = 0f;
+                        lightningSpacing = 17f;
+                        lightningDelay = 0.12f;
+                        lightningDamage = 10f;
+                        lightningLength = 4;
+                        lightningLengthRand = 2;
+                        lightningAngleRand = 15f;
+                        width = 25f;
+                        length = 140f;
+                        hitColor = Pal.sapBullet;
+                        shootEffect = ExoFx.colorBombSmall;
+                        colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
+                    }};
+            }});
+            weapons.add(new Weapon("exogenesis-avicularia-cannon") {{
+                reload = 100f;
+                mirror = false;
+                x = 0;
+                y = -10;
+                shootSound = Sounds.artillery;
+                showStatSprite = false;
+                smoothReloadSpeed = 0.15f;
+                shootWarmupSpeed = 0.05f;
+                minWarmup = 0.9f;
+                shootY = 3;
+                recoil = 0;
+                shake = 1f;
+                bullet = new EmpBulletType() {{
+                    width = 8f;
+                    height = 11f;
+                    sprite = "circle-bullet";
+                    frontColor = Color.white;
+                    backColor = hitColor = trailColor = Pal.heal;
+                    lifetime = 40f;
+                    speed = 6f;
+                    damage = 25f;
+                    recoil = 0.6f;
+                    splashDamage = 15;
+                    splashDamageRadius = 40;
+                    shrinkY = shrinkX = 0;
+                    radius = 40f;
+                    timeIncrease = 0.5f;
+                    powerDamageScl = 0.3f;
+                    powerSclDecrease = 0.1f;
+                    unitDamageScl = 0.3f;
+                    status = StatusEffects.freezing;
+                    statusDuration = 100;
+                    shootEffect = Fx.lightningShoot;
+                    homingPower = 0.0678f;
+                    homingRange = 40;
+                    trailLength = 10;
+                    trailWidth = 2f;
+                    trailChance = 0.3f;
+                    trailEffect = new ParticleEffect() {{
+                        particles = 13;
+                        length = baseLength = 2.5f;
+                        lifetime = 20f;
+                        colorFrom = colorTo = trailColor;
+                        sizeFrom = 5f;
+                        sizeTo = 0f;
+                    }};
+                }};
+            }});
+    }};
+        twilight = new UnitType("twilight") {{
+            constructor = UnitEntity::create;
+            shadowElevation = 1.3f;
+            health = 54000f;
+            armor = 17f;
+            speed = 0.45f;
+            accel = 0.04f;
+            drag = 0.04f;
+            flying = true;
+            targetFlags = new BlockFlag[]{BlockFlag.reactor, null};
+            hitSize = 80f;
+            engineOffset = 42.75f;
+            engineSize = 5.75f;
+            faceTarget = true;
+            lowAltitude = true;
+            weapons.add(new Weapon("exogenesis-twilight-mount") {{
+                reload = 40f;
+                mirror = true;
+                alternate = false;
+                x = 27;
+                y = - 7;
+                inaccuracy = 2;
+                shoot = new ShootMulti(new ShootAlternate(){{
+                spread = 2f;
+                }}, new ShootPattern(){{
+                    shots = 2;
+                    shotDelay = 2f;
+                }});
+                shootSound = Sounds.bigshot;
+                recoil = 4;
+                shake = 1f;
+                bullet = new BasicBulletType(9f, 90){{
+                width = 11f;
+                height = 20f;
+                lifetime = 22f;
+                shootEffect = Fx.shootBig;
+                trailLength = 6;
+                trailWidth = 2f;
+                lightning = 2;
+                lightningLength = 6;
+                lightningColor = Pal.surge;
+                lightningDamage = 20;
+                }};
+            }},
+            new Weapon("exogenesis-heavy-gunner"){{
+                x = 14f;
+                y = 27f;
+                rotateSpeed = 2f;
+                reload = 9f;
+                shootSound = Sounds.shoot;
+                shadow = 7f;
+                rotate = true;
+                recoil = 0.5f;
+                shootY = 7.25f;
+                bullet = new BasicBulletType(7f, 70){{
+                    width = 11f;
+                    height = 20f;
+                    lifetime = 25f;
+                    shootEffect = Fx.shootBig;
+                    trailLength = 6;
+                    trailWidth = 2f;
+                }};
+            }},
+            new Weapon("exogenesis-heavy-gunner"){{
+                x = 14f;
+                y = 27f;
+                rotateSpeed = 2f;
+                reload = 9f;
+                shootSound = Sounds.shoot;
+                shadow = 7f;
+                rotate = true;
+                recoil = 0.5f;
+                shootY = 7.25f;
+                bullet = new BasicBulletType(7f, 70){{
+                    width = 11f;
+                    height = 20f;
+                    lifetime = 25f;
+                    shootEffect = Fx.shootBig;
+                    trailLength = 6;
+                    trailWidth = 2f;
                 }};
             }});
         }};
