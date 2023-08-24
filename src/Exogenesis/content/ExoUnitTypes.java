@@ -227,8 +227,11 @@ public class ExoUnitTypes {
                 reload = 10f;
                 mirror = true;
                 alternate = false;
+                rotate = true;
+                rotationLimit = 90;
+                rotateSpeed = 2.5f;
                 x = 27;
-                y = - 7;
+                y = -14;
                 shootY = 13;
                 inaccuracy = 2;
                 shoot = new ShootMulti(new ShootAlternate(){{
@@ -254,9 +257,9 @@ public class ExoUnitTypes {
                 }};
             }},
             new Weapon("exogenesis-heavy-gunner"){{
-                x = 14f;
-                y = 27f;
-                rotateSpeed = 2f;
+                x = 18f;
+                y = -27f;
+                rotateSpeed = 3f;
                 reload = 9f;
                 shootSound = Sounds.shoot;
                 shadow = 7f;
@@ -271,10 +274,10 @@ public class ExoUnitTypes {
                     trailLength = 6;
                     trailWidth = 2f;
                 }};
-            }}); weapons.add(new Weapon("exogenesis-heavy-gunner"){{
+            }}, new Weapon("exogenesis-heavy-gunner"){{
                 x = 14f;
                 y = 27f;
-                rotateSpeed = 2f;
+                rotateSpeed = 3f;
                 reload = 9f;
                 shootSound = Sounds.shoot;
                 shadow = 7f;
@@ -293,7 +296,6 @@ public class ExoUnitTypes {
         }};
         notodoris = new UnitType("notodoris") {{
             constructor = UnitWaterMove::create;
-            shadowElevation = 1.3f;
             trailLength = 70;
             waveTrailX = 23f;
             waveTrailY = -32f;
@@ -306,7 +308,7 @@ public class ExoUnitTypes {
             hitSize = 80f;
             faceTarget = false;
             weapons.add(new Weapon("exogenesis-notodoris-mount"){{
-                reload = 40f;
+                reload = 10f;
                 mirror = true;
                 alternate = false;
                 rotate = true;
@@ -327,23 +329,21 @@ public class ExoUnitTypes {
                 new RegionPart("-barrel-1"){{
                     mirror = false;
                     layerOffset = -0.001f;
-                    outlineLayerOffset = 0.002f;
-                    recoils = 0;
+                    recoilIndex = 1;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }},
                 new RegionPart("-barrel-2"){{
                     mirror = false;
                     layerOffset = -0.001f;
-                    outlineLayerOffset = 0.002f;
-                    recoils = 1;
+                    recoilIndex = 0;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }}
                 );
                 bullet = new EmpBulletType(){{
-                    width = 11f;
-                    height = 20f;
+                    width = 15f;
+                    height = 26f;
                     speed = 9;
                     damage = 170;
                     lifetime = 22f;
@@ -358,7 +358,7 @@ public class ExoUnitTypes {
                     trailRotation = true;
                     trailInterval = 5f;
                     trailLength = 6;
-                    trailWidth = 2f;
+                    trailWidth = 2.6f;
                     lightning = 2;
                     lightningLength = 6;
                     lightningColor = backColor = trailColor = hitColor = Pal.heal;
@@ -371,7 +371,8 @@ public class ExoUnitTypes {
                 alternate = false;
                 x = 20;
                 y = -12;
-                baseRotation = 90;
+                baseRotation = -90;
+                shootCone = 180;
                 shoot = new ShootAlternate(){{
                     barrels = 7;
                     spread = 3;
@@ -379,7 +380,7 @@ public class ExoUnitTypes {
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
                 shake = 1f;
-                bullet = new BasicBulletType(8f, 75){{
+                bullet = new BasicBulletType(3f, 75){{
                     width = 9f;
                     height = 16f;
                     sprite = "missile";
@@ -398,7 +399,7 @@ public class ExoUnitTypes {
                     collidesAir = false;
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = Pal.heal;
-                    lifetime = 36f;
+                    lifetime = 76f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = new MultiEffect(Fx.blastExplosion, Fx.greenCloud);
                     shootEffect = ExoFx.colorSparkShoot;
