@@ -160,52 +160,41 @@ public class ExoUnitTypes {
                         colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
                     }};
             }});
-            weapons.add(new Weapon("exogenesis-avicularia-cannon") {{
+            weapons.add(new Weapon("exogenesis-avicularia-weapon") {{
                 reload = 100f;
                 mirror = false;
                 x = 0;
                 y = -17;
                 shootSound = Sounds.artillery;
-                showStatSprite = false;
-                smoothReloadSpeed = 0.15f;
-                shootWarmupSpeed = 0.05f;
-                minWarmup = 0.9f;
-                shootY = 3;
-                recoil = 0;
+                shootY = 13;
+                recoil = 2;
+                rotateSpeed = 2;
+                rotate = continuous = alwaysContinuous = true;
                 shake = 1f;
-                bullet = new EmpBulletType() {{
-                    width = 8f;
-                    height = 11f;
-                    sprite = "circle-bullet";
-                    frontColor = Color.white;
-                    backColor = hitColor = trailColor = Pal.heal;
-                    lifetime = 40f;
-                    speed = 6f;
-                    damage = 25f;
-                    splashDamage = 15;
-                    splashDamageRadius = 40;
-                    shrinkY = shrinkX = 0;
-                    radius = 40f;
-                    timeIncrease = 0.5f;
-                    powerDamageScl = 0.3f;
-                    powerSclDecrease = 0.1f;
-                    unitDamageScl = 0.3f;
-                    status = StatusEffects.freezing;
-                    statusDuration = 100;
-                    shootEffect = Fx.lightningShoot;
-                    homingPower = 0.0678f;
-                    homingRange = 40;
-                    trailLength = 10;
-                    trailWidth = 2f;
-                    trailChance = 0.3f;
-                    trailEffect = new ParticleEffect() {{
-                        particles = 13;
-                        length = baseLength = 2.5f;
-                        lifetime = 20f;
-                        colorFrom = colorTo = trailColor;
-                        sizeFrom = 5f;
-                        sizeTo = 0f;
+                bullet = new ContinuousLaserBulletType(){{
+                    hitColor = Pal.sapBullet;
+                    damage = 35f;
+                    length = 290f;
+                    hitEffect = ExoFx.hitMeltColor;
+                    drawSize = 420f;
+                    width = 8.2f;
+                    shake = 1f;
+                    largeHit = true;
+                    colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
+                    despawnEffect = Fx.smokeCloud;
+                    intervalBullet = new LightningBulletType(){{
+                        damage = 30;
+                        collidesAir = false;
+                        ammoMultiplier = 1f;
+                        lightningColor = Pal.sapBullet;
+                        lightningLength = 20;
+                        lightningLengthRand = 28;
                     }};
+                    intervalRandomSpread = 20;
+                    intervalBullets = 2;
+                    bulletInterval = 4f;
+                    smokeEffect = Fx.none;
+                    shootEffect = Fx.none;
                 }};
             }});
     }};
@@ -332,14 +321,14 @@ public class ExoUnitTypes {
                 new RegionPart("-barrel-1"){{
                     mirror = false;
                     under = true;
-                    recoilIndex = 0;
+                    recoilIndex = 1;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }},
                 new RegionPart("-barrel-2"){{
                     mirror = false;
                     under = true;
-                    recoilIndex = 1;
+                    recoilIndex = 0;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }}
@@ -378,6 +367,7 @@ public class ExoUnitTypes {
                 shootCone = 180;
                 shoot = new ShootAlternate(){{
                     barrels = 7;
+                    shots = 3;
                     spread = 2;
                 }};
                 shootSound = Sounds.bolt;
@@ -402,7 +392,7 @@ public class ExoUnitTypes {
                     collidesAir = false;
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = Pal.heal;
-                    lifetime = 66f;
+                    lifetime = 86f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = new MultiEffect(Fx.blastExplosion, Fx.greenCloud);
                     shootEffect = ExoFx.colorSparkShoot;
