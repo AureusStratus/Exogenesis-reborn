@@ -31,7 +31,7 @@ import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 public class ExoUnitTypes {
-    public static UnitType ursa, avicularia, twilight,  lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
+    public static UnitType ursa, avicularia, twilight, notodoris,  lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
     public static void load() {
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
@@ -53,7 +53,7 @@ public class ExoUnitTypes {
             stepShake = 1.5f;
             rotateSpeed = 1.3f;
             legLength = 29f;
-            legBaseOffset = 8f;
+            legBaseOffset = 12f;
             legMoveSpace = 0.7f;
 
             groundLayer = Layer.legUnit;
@@ -134,7 +134,7 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-sap-energy-gun") {{
                     reload = 22f;
                     mirror = true;
-                    x = 8;
+                    x = 12;
                     y = 3;
                     shoot = new ShootSpread() {{
                         spread = 6f;
@@ -220,12 +220,11 @@ public class ExoUnitTypes {
             drag = 0.04f;
             flying = true;
             hitSize = 80f;
-            engineOffset = 42.75f;
+            engineOffset = 46.75f;
             engineSize = 5.75f;
             faceTarget = true;
             lowAltitude = true;
-            weapons.add(
-                new Weapon("exogenesis-twilight-mount"){{
+            weapons.add(new Weapon("exogenesis-twilight-mount"){{
                 reload = 40f;
                 mirror = true;
                 alternate = false;
@@ -289,6 +288,114 @@ public class ExoUnitTypes {
                     lifetime = 25f;
                     shootEffect = Fx.shootBig;
                     trailLength = 6;
+                    trailWidth = 2f;
+                }};
+            }});
+        }};
+        notodoris = new UnitType("notodoris") {{
+            constructor = UnitWaterMove::create;
+            shadowElevation = 1.3f;
+            trailLength = 70;
+            waveTrailX = 23f;
+            waveTrailY = -32f;
+            trailScl = 3.5f;
+            health = 54000f;
+            armor = 17f;
+            speed = 0.56f;
+            accel = 0.02f;
+            drag = 0.04f;
+            flying = true;
+            hitSize = 80f;
+            faceTarget = false;
+            weapons.add(new Weapon("exogenesis-notodoris-mount"){{
+                reload = 40f;
+                mirror = true;
+                alternate = false;
+                x = 27;
+                y = -7;
+                layerOffset = 1;
+                inaccuracy = 1;
+                recoils = 2;
+                shoot = new ShootAlternate(){{
+                spread = 6f;
+                }};
+                shootSound = Sounds.bolt;
+                recoil = 1;
+                shake = 1f;
+                parts.add(
+                new RegionPart("-barrel-1"){{
+                    mirror = false;
+                    layerOffset = -0.001f;
+                    progress = PartProgress.recoil;
+                    moveY = -4f;
+                }},
+                new RegionPart("-barrel-1"){{
+                    mirror = false;
+                    layerOffset = -0.001f;
+                    progress = PartProgress.recoil;
+                    moveY = -4f;
+                }}
+                );
+                bullet = new EmpBulletType(){{
+                    width = 11f;
+                    height = 20f;
+                    speed = 9;
+                    damage = 170;
+                    lifetime = 22f;
+                    shootEffect = Fx.shootBig;
+                    shrinkY = shrinkX = 0;
+                    trailEffect = new Effect(13f, e -> {
+                        color(Pal.heal);
+                        for(int s : Mathf.signs){
+                            Drawf.tri(e.x, e.y, 2.5f, 14f * e.fslope(), e.rotation + 90f*s);
+                        }
+                    });
+                    trailRotation = true;
+                    trailInterval = 5f;
+                    trailLength = 6;
+                    trailWidth = 2f;
+                    lightning = 2;
+                    lightningLength = 6;
+                    lightningColor = backColor = trailColor = hitColor = Pal.heal;
+                    lightningDamage = 20;
+            }};
+            }});
+            weapons.add(new Weapon("torpedo") {{
+                reload = 20f;
+                mirror = true;
+                x = 20;
+                y = -12;
+                shoot = new ShootAlternate(){{
+                    barrels = 7;
+                    spread = 3;
+                }};
+                shootSound = Sounds.bolt;
+                showStatSprite = false;
+                shake = 1f;
+                bullet = new BasicBulletType(8f, 75){{
+                    width = 9f;
+                    height = 16f;
+                    sprite = "missile";
+                    maxRange = 50f;
+                    ignoreRotation = true;
+                    hitSound = Sounds.plasmaboom;
+
+                    inaccuracy = 2f;
+                    weaveMag = 5f;
+                    weaveScale = 4f;
+                    drag = -0.017f;
+                    homingPower = 0.05f;
+                    collideFloor = true;
+                    ejectEffect = Fx.none;
+                    hitSize = 22f;
+                    collidesAir = false;
+                    frontColor = Color.white;
+                    backColor = hitColor = trailColor = Pal.heal;
+                    lifetime = 36f;
+                    shrinkY = shrinkX = 0;
+                    hitEffect = despawnEffect = new MultiEffect(Fx.blastExplosion, Fx.greenCloud);
+                    shootEffect = ExoFx.colorSparkShoot;
+                    trailLength = 10;
                     trailWidth = 2f;
                 }};
             }});
