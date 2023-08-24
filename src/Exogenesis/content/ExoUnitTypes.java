@@ -134,7 +134,7 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-sap-energy-gun") {{
                     reload = 22f;
                     mirror = true;
-                    x = 12;
+                    x = 19;
                     y = 3;
                     shoot = new ShootSpread() {{
                         spread = 6f;
@@ -155,7 +155,7 @@ public class ExoUnitTypes {
                         lightningAngleRand = 15f;
                         width = 25f;
                         length = 140f;
-                        hitColor = Pal.sapBullet;
+                        hitColor = lightningColor = Pal.sapBullet;
                         shootEffect = ExoFx.colorBombSmall;
                         colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
                     }};
@@ -164,7 +164,7 @@ public class ExoUnitTypes {
                 reload = 100f;
                 mirror = false;
                 x = 0;
-                y = -10;
+                y = -17;
                 shootSound = Sounds.artillery;
                 showStatSprite = false;
                 smoothReloadSpeed = 0.15f;
@@ -182,7 +182,6 @@ public class ExoUnitTypes {
                     lifetime = 40f;
                     speed = 6f;
                     damage = 25f;
-                    recoil = 0.6f;
                     splashDamage = 15;
                     splashDamageRadius = 40;
                     shrinkY = shrinkX = 0;
@@ -225,25 +224,26 @@ public class ExoUnitTypes {
             faceTarget = true;
             lowAltitude = true;
             weapons.add(new Weapon("exogenesis-twilight-mount"){{
-                reload = 40f;
+                reload = 10f;
                 mirror = true;
                 alternate = false;
                 x = 27;
                 y = - 7;
+                shootY = 13;
                 inaccuracy = 2;
                 shoot = new ShootMulti(new ShootAlternate(){{
-                spread = 2f;
+                spread = 4f;
                 }}, new ShootPattern(){{
                     shots = 2;
                     shotDelay = 2f;
                 }});
-                shootSound = Sounds.bigshot;
+                shootSound = Sounds.shootBig;
                 recoil = 4;
                 shake = 1f;
                 bullet = new BasicBulletType(9f, 90){{
                 width = 11f;
                 height = 20f;
-                lifetime = 22f;
+                lifetime = 42f;
                 shootEffect = Fx.shootBig;
                 trailLength = 6;
                 trailWidth = 2f;
@@ -266,13 +266,12 @@ public class ExoUnitTypes {
                 bullet = new BasicBulletType(7f, 70){{
                     width = 11f;
                     height = 20f;
-                    lifetime = 25f;
+                    lifetime = 45f;
                     shootEffect = Fx.shootBig;
                     trailLength = 6;
                     trailWidth = 2f;
                 }};
-            }},
-            new Weapon("exogenesis-heavy-gunner"){{
+            }}); weapons.add(new Weapon("exogenesis-heavy-gunner"){{
                 x = 14f;
                 y = 27f;
                 rotateSpeed = 2f;
@@ -285,7 +284,7 @@ public class ExoUnitTypes {
                 bullet = new BasicBulletType(7f, 70){{
                     width = 11f;
                     height = 20f;
-                    lifetime = 25f;
+                    lifetime = 45f;
                     shootEffect = Fx.shootBig;
                     trailLength = 6;
                     trailWidth = 2f;
@@ -304,13 +303,15 @@ public class ExoUnitTypes {
             speed = 0.56f;
             accel = 0.02f;
             drag = 0.04f;
-            flying = true;
             hitSize = 80f;
             faceTarget = false;
             weapons.add(new Weapon("exogenesis-notodoris-mount"){{
                 reload = 40f;
                 mirror = true;
                 alternate = false;
+                rotate = true;
+                rotationLimit = 90;
+                rotateSpeed = 2.5f;
                 x = 27;
                 y = -7;
                 layerOffset = 1;
@@ -326,12 +327,16 @@ public class ExoUnitTypes {
                 new RegionPart("-barrel-1"){{
                     mirror = false;
                     layerOffset = -0.001f;
+                    outlineLayerOffset = 0.002f;
+                    recoils = 0;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }},
-                new RegionPart("-barrel-1"){{
+                new RegionPart("-barrel-2"){{
                     mirror = false;
                     layerOffset = -0.001f;
+                    outlineLayerOffset = 0.002f;
+                    recoils = 1;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }}
@@ -347,7 +352,7 @@ public class ExoUnitTypes {
                     trailEffect = new Effect(13f, e -> {
                         color(Pal.heal);
                         for(int s : Mathf.signs){
-                            Drawf.tri(e.x, e.y, 2.5f, 14f * e.fslope(), e.rotation + 90f*s);
+                        Drawf.tri(e.x, e.y, 2.5f, 14f * e.fslope(), e.rotation + 90f*s);
                         }
                     });
                     trailRotation = true;
@@ -363,8 +368,10 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("torpedo") {{
                 reload = 20f;
                 mirror = true;
+                alternate = false;
                 x = 20;
                 y = -12;
+                baseRotation = 90;
                 shoot = new ShootAlternate(){{
                     barrels = 7;
                     spread = 3;
