@@ -134,6 +134,8 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-sap-energy-gun") {{
                     reload = 22f;
                     mirror = true;
+                    rotate = true;
+                    rotateSpeed = 2;
                     x = 19;
                     y = 3;
                     shoot = new ShootSpread() {{
@@ -166,7 +168,7 @@ public class ExoUnitTypes {
                 x = 0;
                 y = -17;
                 shootSound = Sounds.artillery;
-                shootY = 13;
+                shootY = 17;
                 recoil = 2;
                 rotateSpeed = 2;
                 rotate = continuous = alwaysContinuous = true;
@@ -174,10 +176,10 @@ public class ExoUnitTypes {
                 bullet = new ContinuousLaserBulletType(){{
                     hitColor = Pal.sapBullet;
                     damage = 35f;
-                    length = 290f;
+                    length = 220f;
                     hitEffect = ExoFx.hitMeltColor;
                     drawSize = 420f;
-                    width = 8.2f;
+                    width = 8.6f;
                     shake = 1f;
                     largeHit = true;
                     colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
@@ -291,26 +293,26 @@ public class ExoUnitTypes {
             waveTrailY = -39f;
             trailScl = 3.5f;
             health = 54000f;
+            omniMovement = true;
             armor = 17f;
             speed = 0.56f;
-            accel = 0.02f;
-            drag = 0.04f;
+            accel = 0.2f;
+            drag = 0.4f;
             hitSize = 80f;
-            rotateSpeed = 1.5f;
+            rotateSpeed = 1f;
             faceTarget = false;
             weapons.add(new Weapon("exogenesis-notodoris-mount"){{
                 reload = 6f;
                 mirror = true;
                 alternate = false;
                 rotate = true;
-                rotationLimit = 90;
                 rotateSpeed = 2.5f;
                 x = 27;
                 y = -7;
                 layerOffset = 1;
                 inaccuracy = 1;
                 recoils = 2;
-                shootY = 13;
+                shootY = 16;
                 shoot = new ShootAlternate(){{
                 spread = 8f;
                 }};
@@ -347,8 +349,9 @@ public class ExoUnitTypes {
                         Drawf.tri(e.x, e.y, 2.5f, 14f * e.fslope(), e.rotation + 90f*s);
                         }
                     });
+                    healAmount = 100;
                     trailRotation = true;
-                    trailInterval = 5f;
+                    trailInterval = 2f;
                     trailLength = 6;
                     trailWidth = 2.6f;
                     lightning = 2;
@@ -361,7 +364,7 @@ public class ExoUnitTypes {
                 reload = 10f;
                 mirror = true;
                 alternate = false;
-                x = 20;
+                x = 30;
                 y = -12;
                 baseRotation = -90;
                 shootCone = 180;
@@ -370,7 +373,7 @@ public class ExoUnitTypes {
                     shots = 3;
                     spread = 2;
                 }};
-                shootSound = Sounds.bolt;
+                shootSound = Sounds.laser;
                 showStatSprite = false;
                 shake = 1f;
                 bullet = new BasicBulletType(2f, 75){{
@@ -382,7 +385,7 @@ public class ExoUnitTypes {
                     hitSound = Sounds.plasmaboom;
                     layer = Layer.scorch;
                     inaccuracy = 2f;
-                    weaveMag = 5f;
+                    weaveMag = 2f;
                     weaveScale = 4f;
                     drag = -0.017f;
                     homingPower = 0.05f;
