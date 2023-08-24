@@ -260,6 +260,7 @@ public class ExoUnitTypes {
                 x = 18f;
                 y = -27f;
                 rotateSpeed = 3f;
+                layerOffset = 1;
                 reload = 9f;
                 shootSound = Sounds.shoot;
                 shadow = 7f;
@@ -298,7 +299,7 @@ public class ExoUnitTypes {
             constructor = UnitWaterMove::create;
             trailLength = 70;
             waveTrailX = 23f;
-            waveTrailY = -32f;
+            waveTrailY = -39f;
             trailScl = 3.5f;
             health = 54000f;
             armor = 17f;
@@ -306,9 +307,10 @@ public class ExoUnitTypes {
             accel = 0.02f;
             drag = 0.04f;
             hitSize = 80f;
+            rotateSpeed = 1.5f;
             faceTarget = false;
             weapons.add(new Weapon("exogenesis-notodoris-mount"){{
-                reload = 10f;
+                reload = 6f;
                 mirror = true;
                 alternate = false;
                 rotate = true;
@@ -319,8 +321,9 @@ public class ExoUnitTypes {
                 layerOffset = 1;
                 inaccuracy = 1;
                 recoils = 2;
+                shootY = 13;
                 shoot = new ShootAlternate(){{
-                spread = 6f;
+                spread = 8f;
                 }};
                 shootSound = Sounds.bolt;
                 recoil = 1;
@@ -328,25 +331,25 @@ public class ExoUnitTypes {
                 parts.add(
                 new RegionPart("-barrel-1"){{
                     mirror = false;
-                    layerOffset = -0.001f;
-                    recoilIndex = 1;
+                    under = true;
+                    recoilIndex = 0;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }},
                 new RegionPart("-barrel-2"){{
                     mirror = false;
-                    layerOffset = -0.001f;
-                    recoilIndex = 0;
+                    under = true;
+                    recoilIndex = 1;
                     progress = PartProgress.recoil;
                     moveY = -4f;
                 }}
                 );
                 bullet = new EmpBulletType(){{
-                    width = 15f;
-                    height = 26f;
+                    width = 17f;
+                    height = 28f;
                     speed = 9;
                     damage = 170;
-                    lifetime = 22f;
+                    lifetime = 32f;
                     shootEffect = Fx.shootBig;
                     shrinkY = shrinkX = 0;
                     trailEffect = new Effect(13f, e -> {
@@ -366,7 +369,7 @@ public class ExoUnitTypes {
             }};
             }});
             weapons.add(new Weapon("torpedo") {{
-                reload = 20f;
+                reload = 10f;
                 mirror = true;
                 alternate = false;
                 x = 20;
@@ -375,19 +378,19 @@ public class ExoUnitTypes {
                 shootCone = 180;
                 shoot = new ShootAlternate(){{
                     barrels = 7;
-                    spread = 3;
+                    spread = 2;
                 }};
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
                 shake = 1f;
-                bullet = new BasicBulletType(3f, 75){{
+                bullet = new BasicBulletType(2f, 75){{
                     width = 9f;
                     height = 16f;
                     sprite = "missile";
                     maxRange = 50f;
                     ignoreRotation = true;
                     hitSound = Sounds.plasmaboom;
-
+                    layer = Layer.scorch;
                     inaccuracy = 2f;
                     weaveMag = 5f;
                     weaveScale = 4f;
@@ -399,7 +402,7 @@ public class ExoUnitTypes {
                     collidesAir = false;
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = Pal.heal;
-                    lifetime = 76f;
+                    lifetime = 66f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = new MultiEffect(Fx.blastExplosion, Fx.greenCloud);
                     shootEffect = ExoFx.colorSparkShoot;
