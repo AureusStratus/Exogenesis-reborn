@@ -80,6 +80,7 @@ public class ExoUnitTypes {
                 bullet = new DelayedPointBulletType(){{
                     damage = 560f;
                     width = 75f;
+                    delayEffectLifeTime = 10f;
                     rangeOverride = 660;
                     trailEffect = Fx.none;
                     lightningLength = 5;
