@@ -78,9 +78,8 @@ public class ExoUnitTypes {
                 parentizeEffects = true;
 
                 bullet = new DelayedPointBulletType(){{
-                    speed = 400f;
                     damage = 560f;
-                    width = 45f;
+                    width = 75f;
                     lifetime = 65f;
                     lightningLength = 5;
                     lightningLengthRand = 15;
