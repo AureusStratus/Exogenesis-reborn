@@ -88,7 +88,7 @@ public class ExoUnitTypes {
                     lightningDamage = 50;
                     lightColor = hitColor = lightningColor = Pal.heal;
                     chargeEffect = Fx.greenLaserCharge;
-                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion,);
+                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion);
                     healPercent = 25f;
                     collidesTeam = true;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
