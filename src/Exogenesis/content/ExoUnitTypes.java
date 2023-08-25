@@ -78,17 +78,17 @@ public class ExoUnitTypes {
                 parentizeEffects = true;
 
                 bullet = new DelayedPointBulletType(){{
-                    damage = 560f;
+                    damage = 1060f;
                     width = 75f;
-                    delayEffectLifeTime = 10f;
+                    delayEffectLifeTime = lifetime = 20f;
                     rangeOverride = 660;
                     trailEffect = Fx.none;
-                    lightningLength = 5;
-                    lightningLengthRand = 15;
+                    lightningLength = 15;
+                    lightningLengthRand = 35;
                     lightningDamage = 50;
                     lightColor = hitColor = lightningColor = Pal.heal;
                     chargeEffect = Fx.greenLaserCharge;
-                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion, ExoFx.blastcolor);
+                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion,);
                     healPercent = 25f;
                     collidesTeam = true;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
@@ -211,6 +211,7 @@ public class ExoUnitTypes {
                 alternate = false;
                 rotate = true;
                 rotationLimit = 90;
+                layerOffset = 1;
                 rotateSpeed = 2.5f;
                 x = 27;
                 y = -14;
@@ -242,7 +243,6 @@ public class ExoUnitTypes {
                 x = 18f;
                 y = -27f;
                 rotateSpeed = 3f;
-                layerOffset = 1;
                 reload = 9f;
                 shootSound = Sounds.shoot;
                 shadow = 7f;
@@ -366,18 +366,18 @@ public class ExoUnitTypes {
                     shots = 3;
                     spread = 2;
                 }};
-                shootSound = Sounds.laser;
+                shootSound = Sounds.mineDeploy;
                 showStatSprite = false;
                 shake = 1f;
                 bullet = new BasicBulletType(2f, 75){{
-                    width = 9f;
-                    height = 16f;
-                    sprite = "missile";
+                    width = height = 16f;
+                    sprite = "mine-bulley";
                     maxRange = 50f;
                     ignoreRotation = true;
                     hitSound = Sounds.plasmaboom;
                     layer = Layer.scorch;
                     inaccuracy = 2f;
+                    spin = 2;
                     weaveMag = 2f;
                     weaveScale = 4f;
                     drag = -0.017f;
