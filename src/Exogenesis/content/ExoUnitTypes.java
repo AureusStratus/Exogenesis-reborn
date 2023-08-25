@@ -80,11 +80,12 @@ public class ExoUnitTypes {
                 bullet = new DelayedPointBulletType(){{
                     damage = 560f;
                     width = 75f;
+                    rangeOverride = 360;
                     lifetime = 65f;
                     lightningLength = 5;
                     lightningLengthRand = 15;
                     lightningDamage = 50;
-                    lightColor = lightningColor = Pal.heal;
+                    lightColor = hitColor = lightningColor = Pal.heal;
                     chargeEffect = Fx.greenLaserCharge;
                     hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion, ExoFx.blastcolor);
                     healPercent = 25f;
