@@ -1,5 +1,6 @@
 package Exogenesis.content;
 
+import Exogenesis.entities.bullet.DelayedPointBulletType;
 import Exogenesis.entities.bullet.PosLightningType;
 import Exogenesis.graphics.ExoPal;
 import arc.*;
@@ -76,30 +77,19 @@ public class ExoUnitTypes {
                 shoot.firstShotDelay = Fx.greenLaserCharge.lifetime;
                 parentizeEffects = true;
 
-                bullet = new LaserBulletType(){{
-                    length = 460f;
+                bullet = new DelayedPointBulletType(){{
+                    speed = 400f;
                     damage = 560f;
-                    width = 75f;
-
+                    width = 45f;
                     lifetime = 65f;
-
-                    lightningSpacing = 35f;
                     lightningLength = 5;
-                    lightningDelay = 1.1f;
                     lightningLengthRand = 15;
                     lightningDamage = 50;
-                    lightningAngleRand = 40f;
-                    largeHit = true;
                     lightColor = lightningColor = Pal.heal;
-
                     chargeEffect = Fx.greenLaserCharge;
-
+                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion, ExoFx.blastcolor);
                     healPercent = 25f;
                     collidesTeam = true;
-
-                    sideAngle = 15f;
-                    sideWidth = 0f;
-                    sideLength = 0f;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
                 }};
             }});
@@ -167,8 +157,8 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 0;
                 y = -17;
-                shootSound = Sounds.artillery;
-                shootY = 17;
+                shootSound = Sounds.torch;
+                shootY = 21;
                 recoil = 2;
                 rotateSpeed = 2;
                 rotate = continuous = alwaysContinuous = true;
@@ -350,6 +340,8 @@ public class ExoUnitTypes {
                         }
                     });
                     healAmount = 100;
+                    radius = 30;
+                    unitDamageScl = 0.3f;
                     trailRotation = true;
                     trailInterval = 2f;
                     trailLength = 6;
