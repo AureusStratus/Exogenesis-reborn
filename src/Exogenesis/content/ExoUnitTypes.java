@@ -80,9 +80,10 @@ public class ExoUnitTypes {
                 bullet = new DelayedPointBulletType(){{
                     damage = 1060f;
                     width = 75f;
-                    delayEffectLifeTime = lifetime = 20f;
+                    delayEffectLifeTime = lifetime = 0f;
                     rangeOverride = 660;
                     trailEffect = Fx.none;
+                    lightning = 7;
                     lightningLength = 15;
                     lightningLengthRand = 35;
                     lightningDamage = 50;
@@ -259,7 +260,7 @@ public class ExoUnitTypes {
                 }};
             }}, new Weapon("exogenesis-heavy-gunner"){{
                 x = 14f;
-                y = 27f;
+                y = 20f;
                 rotateSpeed = 3f;
                 reload = 9f;
                 shootSound = Sounds.shoot;
@@ -371,7 +372,7 @@ public class ExoUnitTypes {
                 shake = 1f;
                 bullet = new BasicBulletType(2f, 75){{
                     width = height = 16f;
-                    sprite = "mine-bulley";
+                    sprite = "mine-bullet";
                     maxRange = 50f;
                     ignoreRotation = true;
                     hitSound = Sounds.plasmaboom;
