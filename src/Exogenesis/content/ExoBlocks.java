@@ -463,7 +463,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 270f;
   recoil = 0f;
-  reload = 40f;
+  reload = 20f;
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
   outlineColor = ExoPal.empyreanOutline;
@@ -569,8 +569,7 @@ public static void load(){
    parts.addAll(
            new RegionPart("-side"){{
             progress = PartProgress.recoil;
-            moveX = 1;
-            moveY = -4;
+            moveX = 3;
             mirror = true;
        }}
      );
@@ -581,16 +580,16 @@ public static void load(){
            new FlarePart(){{
             progress = PartProgress.life;
             color1 = ExoPal.empyrean;
-            radius = 20;
-            radiusTo = 20;
-            stroke = 2.5f;
+            radius = 23;
+            radiusTo = 23;
+            stroke = 3.5f;
        }}
    );
    collidesGround = collidesTiles = false;
    width = height = 1;
    drag = -0.010f;
-   weaveMag = 10f;
-   weaveScale = 0.5f;
+   weaveMag = 7f;
+   weaveScale = 1f;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
@@ -684,25 +683,15 @@ public static void load(){
              under = true;
             }},
             new FlarePart(){{
-             progress = PartProgress.reload.curve(Interp.pow2In);
+             progress = PartProgress.warmup.curve(Interp.pow2In);
              color1 = ExoPal.empyrean;
-             radius = 25;
+             radius = 18;
              radiusTo = 0;
              y = -13;
              sides = 2;
              followRotation = true;
              rotation = 90;
              stroke = 4.8f;
-            }},
-            new FlarePart(){{
-             progress = PartProgress.reload.curve(Interp.pow2In);
-             color1 = ExoPal.empyrean;
-             radius = 36;
-             radiusTo = 0;
-             y = -10;
-             sides = 2;
-             followRotation = true;
-             stroke = 5.5f;
             }}
     );
    }};
@@ -718,7 +707,7 @@ public static void load(){
             sides = 2;
             followRotation = true;
             rotation = 90;
-            stroke = 4.8f;
+            stroke = 5.8f;
            }},
            new FlarePart(){{
             progress = PartProgress.reload.curve(Interp.pow2In);
@@ -728,7 +717,7 @@ public static void load(){
             y = 3;
             sides = 2;
             followRotation = true;
-            stroke = 5.5f;
+            stroke = 6.5f;
            }}
    );
    shootEffect = Fx.shootBigColor;
