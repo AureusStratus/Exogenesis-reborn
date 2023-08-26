@@ -385,10 +385,10 @@ public static void load(){
   shootSound = Sounds.laser;
   inaccuracy = 1;
   shootCone = 30f;
-  shootY = 11;
+  shootY = 12;
   shoot = new ShootAlternate(){{
    barrels = 2;
-   spread = 11;
+   spread = 12;
   }};
   rotateSpeed = 2f;
   coolant = consumeCoolant(0.2f);
@@ -483,8 +483,8 @@ public static void load(){
             color = ExoPal.empyrean;
             layer = Layer.effect;
             haloRotateSpeed = -2.5f;
-            haloRadius = 8;
-            haloRadiusTo = 0;
+            haloRadius = 0;
+            haloRadiusTo = 8;
             stroke = 0f;
             strokeTo = 2f;
             shapes = 4;
@@ -498,8 +498,8 @@ public static void load(){
             color = ExoPal.empyrean;
             layer = Layer.effect;
             haloRotateSpeed = -1f;
-            haloRadius = 8;
-            haloRadiusTo = 0;
+            haloRadius = 0;
+            haloRadiusTo = 8;
             stroke = 0f;
             strokeTo = 2f;
             shapes = 2;
@@ -554,7 +554,7 @@ public static void load(){
   size = 4;
   minWarmup = 0.99f;
   scaledHealth = 280;
-  shootSound = Sounds.laser;
+  shootSound = Sounds.malignShoot;
   coolant = consumeCoolant(0.2f);
   shoot = new ShootMulti(new ShootPattern(){{
    shots = 2;
@@ -590,7 +590,7 @@ public static void load(){
    width = height = 1;
    drag = -0.010f;
    weaveMag = 10f;
-   weaveScale = 4.5f;
+   weaveScale = 0.5f;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
@@ -679,23 +679,16 @@ public static void load(){
     parts.add(
             new RegionPart("-side"){{
              progress = PartProgress.warmup;
-             moveY = 6;
-             mirror = true;
-             under = true;
-            }},
-            new RegionPart("-side"){{
-             progress = PartProgress.warmup;
              moveX = 4.2f;
              mirror = true;
              under = true;
             }},
-
             new FlarePart(){{
              progress = PartProgress.reload.curve(Interp.pow2In);
              color1 = ExoPal.empyrean;
-             radius = 20;
+             radius = 25;
              radiusTo = 0;
-             y = -10;
+             y = -13;
              sides = 2;
              followRotation = true;
              rotation = 90;
@@ -706,7 +699,7 @@ public static void load(){
              color1 = ExoPal.empyrean;
              radius = 36;
              radiusTo = 0;
-             y = -7;
+             y = -10;
              sides = 2;
              followRotation = true;
              stroke = 5.5f;
@@ -720,8 +713,8 @@ public static void load(){
            new FlarePart(){{
             progress = PartProgress.reload.curve(Interp.pow2In);
             color1 = ExoPal.empyrean;
-            radius = 20;
-            radiusTo = 20;
+            radius = 25;
+            radiusTo = 25;
             sides = 2;
             followRotation = true;
             rotation = 90;
