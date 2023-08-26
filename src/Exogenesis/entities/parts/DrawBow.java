@@ -1,5 +1,5 @@
 package Exogenesis.entities.parts;
-import Exogenesis.world.drawer.ExoGet;
+import Exogenesis.entities.parts.ExoGet;
 import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
