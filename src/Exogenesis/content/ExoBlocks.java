@@ -483,41 +483,45 @@ public static void load(){
             color = ExoPal.empyrean;
             layer = Layer.effect;
             haloRotateSpeed = -2.5f;
-            haloRadius = haloRadiusTo = 8f;
+            haloRadius = 8;
+            haloRadiusTo = 0;
             stroke = 0f;
             strokeTo = 2f;
             shapes = 4;
-            triLengthTo = triLength = 9f;
+            triLengthTo = 9;
+            triLength = 0f;
            }},
            new HaloPart() {{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            radius = 1.5f;
+            radius = 2.5f;
             tri = true;
             color = ExoPal.empyrean;
             layer = Layer.effect;
             haloRotateSpeed = -1f;
-            haloRadius = haloRadiusTo = 8f;
+            haloRadius = 8;
+            haloRadiusTo = 0;
             stroke = 0f;
             strokeTo = 2f;
             shapes = 2;
-            triLengthTo = triLength = 13f;
-           }},
-           new ShapePart(){{
-            progress = PartProgress.warmup.curve(Interp.pow2In);
-            color = Color.white;
-            circle = true;
-            radius = 0;
-            radiusTo = 6;
-            stroke = 2.5f;
+            triLengthTo = 13;
+            triLength = 0f;
            }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             color = ExoPal.empyrean;
+            layer = Layer.effect;
             circle = true;
             radius = 0;
-            radiusTo = 10;
-            stroke = 2.5f;
-   }}
+            radiusTo = 8;
+           }},
+            new ShapePart(){{
+             progress = PartProgress.warmup.curve(Interp.pow2In);
+             color = Color.white;
+             layer = Layer.effect;
+             circle = true;
+             radius = 0;
+             radiusTo = 4;
+            }}
    );
   }};
   shootType = new PosLightningType(14f){{
@@ -565,30 +569,28 @@ public static void load(){
    parts.addAll(
            new RegionPart("-side"){{
             progress = PartProgress.recoil;
-            moveX = 4;
+            moveX = 1;
             moveY = -4;
             mirror = true;
        }}
      );
   }};
   shootType = new BasicBulletType(10f, 157){{
-   lifetime = 30f;
+   lifetime = 50f;
    parts.addAll(
            new FlarePart(){{
             progress = PartProgress.life;
             color1 = ExoPal.empyrean;
-            radius = 16;
-            radiusTo = 16;
+            radius = 20;
+            radiusTo = 20;
             stroke = 2.5f;
        }}
    );
    collidesGround = collidesTiles = false;
-   width = 5;
-   height = 10;
+   width = height = 1;
    drag = -0.010f;
    weaveMag = 10f;
-   weaveScale = 1.5f;
-   sprite = "circle-bullet";
+   weaveScale = 4.5f;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
@@ -677,16 +679,17 @@ public static void load(){
     parts.add(
             new RegionPart("-side"){{
              progress = PartProgress.warmup;
-             moveX = 4.2f;
+             moveY = 6;
              mirror = true;
              under = true;
             }},
             new RegionPart("-side"){{
              progress = PartProgress.warmup;
-             moveY = 6;
+             moveX = 4.2f;
              mirror = true;
              under = true;
             }},
+
             new FlarePart(){{
              progress = PartProgress.reload.curve(Interp.pow2In);
              color1 = ExoPal.empyrean;
@@ -696,21 +699,21 @@ public static void load(){
              sides = 2;
              followRotation = true;
              rotation = 90;
-             stroke = 3.8f;
+             stroke = 4.8f;
             }},
             new FlarePart(){{
              progress = PartProgress.reload.curve(Interp.pow2In);
              color1 = ExoPal.empyrean;
              radius = 36;
              radiusTo = 0;
-             y = 7;
+             y = -7;
              sides = 2;
              followRotation = true;
              stroke = 5.5f;
             }}
     );
    }};
-  shootType = new BasicBulletType(8f, 47){{
+  shootType = new BasicBulletType(14f, 47){{
    lifetime = 50f;
    width = height = 1;
    parts.addAll(
@@ -722,7 +725,7 @@ public static void load(){
             sides = 2;
             followRotation = true;
             rotation = 90;
-            stroke = 3.8f;
+            stroke = 4.8f;
            }},
            new FlarePart(){{
             progress = PartProgress.reload.curve(Interp.pow2In);
@@ -739,7 +742,7 @@ public static void load(){
    backColor = hitColor = trailColor = ExoPal.empyrean;
    frontColor = Color.white;
    trailWidth = 3f;
-   trailLength = 6;
+   trailLength = 12;
    hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
  }};
