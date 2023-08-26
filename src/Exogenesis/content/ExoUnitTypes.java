@@ -378,6 +378,7 @@ public class ExoUnitTypes {
                     hitSound = Sounds.plasmaboom;
                     layer = Layer.scorch;
                     inaccuracy = 2f;
+                    splashDamageRadius = splashDamage = 25;
                     spin = 2;
                     weaveMag = 2f;
                     weaveScale = 4f;
