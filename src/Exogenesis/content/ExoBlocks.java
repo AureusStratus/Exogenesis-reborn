@@ -1,6 +1,7 @@
 package Exogenesis.content;
 
 import Exogenesis.content.ExoUnitTypes;
+import Exogenesis.entities.parts.ExoGet;
 import Exogenesis.entities.parts.DrawBow;
 import Exogenesis.world.turrets.SpeedupTurret;
 import arc.graphics.*;
@@ -477,7 +478,7 @@ public static void load(){
   drawer = new DrawTurret("elecian-"){{
    parts.addAll(
            new HaloPart() {{
-            y = 0f;
+            progress = PartProgress.reload.curve(Interp.pow2In);
             radius = 1.5f;
             tri = true;
             color = ExoPal.empyrean;
@@ -486,11 +487,11 @@ public static void load(){
             haloRadius = haloRadiusTo = 8f;
             stroke = 0f;
             strokeTo = 2f;
-            shapes = 2;
+            shapes = 4;
             triLengthTo = triLength = 9f;
            }},
            new HaloPart() {{
-            y = 0f;
+            progress = PartProgress.reload.curve(Interp.pow2In);
             radius = 1.5f;
             tri = true;
             color = ExoPal.empyrean;
@@ -503,11 +504,10 @@ public static void load(){
             triLengthTo = triLength = 13f;
            }},
            new ShapePart(){{
-            progress = PartProgress.warmup;
+            progress = PartProgress.reload.curve(Interp.pow2In);
             color = ExoPal.empyrean;
-            y = 0;
             radius = 0;
-            radiusTo = 8;
+            radiusTo = 10;
             stroke = 2.5f;
    }}
    );
@@ -535,7 +535,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 450f;
   recoil = 2f;
-  reload = 1080f;
+  reload = 80f;
   shake = 2f;
   shootEffect = Fx.colorSparkBig;
   outlineColor = ExoPal.empyreanOutline;
@@ -575,10 +575,10 @@ public static void load(){
        }}
    );
    collidesGround = collidesTiles = false;
-   width = 6;
-   height = 15;
-   weaveMag = 2f;
-   weaveScale = 7f;
+   width = 5;
+   height = 10;
+   weaveMag = 7f;
+   weaveScale = 2f;
    sprite = "circle-bullet";
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
@@ -666,7 +666,11 @@ public static void load(){
   consumePower(6f);
   drawer = new DrawMulti(
    new DrawTurret("elecian-"){{
-   new DrawBow(){{}};
+   new DrawBow(){{
+    bowWidth = 66;
+    bowHeight = 30;
+    bowTk = 16;
+   }};
     parts.add(
             new RegionPart("-side"){{
              progress = PartProgress.warmup;
@@ -676,26 +680,30 @@ public static void load(){
             }},
             new RegionPart("-front"){{
              progress = PartProgress.warmup;
-             moveY = 7f;
+             moveY = 10f;
+             moveX = 5f;
+             under = true;
              mirror = false;
             }},
             new FlarePart(){{
              progress = PartProgress.reload.curve(Interp.pow2In);
              color1 = ExoPal.empyrean;
-             radius = 10;
-             radiusTo = 10;
+             radius = 0;
+             radiusTo = 20;
              sides = 2;
+             followRotation = true;
              rotation = 90;
-             stroke = 1.8f;
+             stroke = 2.8f;
             }},
             new FlarePart(){{
              progress = PartProgress.reload.curve(Interp.pow2In);
              color1 = ExoPal.empyrean;
              radius = 0;
-             radiusTo = 16;
+             radiusTo = 36;
              y = 8;
              sides = 2;
-             stroke = 3.5f;
+             followRotation = true;
+             stroke = 5.5f;
             }}
     );
    }});
@@ -704,25 +712,26 @@ public static void load(){
    width = height = 1;
    parts.addAll(
            new FlarePart(){{
-            progress = PartProgress.life;
+            progress = PartProgress.reload.curve(Interp.pow2In);
             color1 = ExoPal.empyrean;
-            radius = 10;
-            radiusTo = 10;
+            radius = 20;
+            radiusTo = 20;
             sides = 2;
+            followRotation = true;
             rotation = 90;
-            stroke = 1.8f;
+            stroke = 2.8f;
            }},
            new FlarePart(){{
-            progress = PartProgress.life;
+            progress = PartProgress.reload.curve(Interp.pow2In);
             color1 = ExoPal.empyrean;
-            radius = 16;
-            radiusTo = 16;
+            radius = 36;
+            radiusTo = 36;
             y = 8;
             sides = 2;
-            stroke = 3.5f;
-       }}
+            followRotation = true;
+            stroke = 5.5f;
+           }}
    );
-   sprite = "missile-large";
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    frontColor = Color.white;
