@@ -1,8 +1,6 @@
 package Exogenesis.content;
 
 import Exogenesis.content.ExoUnitTypes;
-import Exogenesis.entities.parts.ExoGet;
-import Exogenesis.entities.parts.DrawBow;
 import Exogenesis.world.turrets.SpeedupTurret;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
