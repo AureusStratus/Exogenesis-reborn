@@ -175,7 +175,6 @@ public class ExoFx{
         trail.draw(e.color, e.rotation * e.foutpow());
     }),
 
-    /**{@link Effect.EffectContainer#data}<{@link Position}> as Target */
     chainLightningFade = new Effect(45f, 500f, e -> {
         if(!(e.data instanceof Position)) return;
         Position p = e.data();
@@ -216,7 +215,6 @@ public class ExoFx{
         Lines.endLine();
     }).followParent(false),
 
-    /**{@link Effect.EffectContainer} as Target */
     chainLightningFadeReversed = new Effect(45f, 500f, e -> {
         if(!(e.data instanceof Position))return;
         Position p = e.data();
@@ -267,9 +265,8 @@ public class ExoFx{
             }),
             square45_6_45 = new Effect(45f, e-> {
                 Draw.color(e.color, Color.white, e.fout() * 0.6f);
-                randLenVectors(e.id, 6, 27f * e.finpow(), (x, y) -> {
-                    Fill.square(e.x + x, e.y + y, 5f * e.fout(), 45);
-                    Drawf.light(e.x + x, e.y + y, e.fout() * 9F, e.color, 0.7f);
+                randLenVectors(e.id, 7, 25f * e.finpow(), e.rotation, 50f, (x, y) -> {
+                    lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),
             blastcolor = new Effect(40f, 600,e -> {

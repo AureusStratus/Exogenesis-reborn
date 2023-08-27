@@ -97,6 +97,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 2;
   scaledHealth = 280;
+  shootY = 6;
   targetAir = true;
   targetGround = false;
   shootSound = Sounds.bolt;
@@ -781,7 +782,7 @@ public static void load(){
    }};
    bulletInterval = 3f;
    smokeEffect = ExoFx.hugeSmokeGray;
-   hitEffect = ExoFx.hitMeltColor;
+   hitEffect = ExoFx.square45_6_45;
    despawnEffect = new Effect(35f, 70f, e -> {
     Draw.color(e.color, Color.white, e.fout() * 0.7f);
     for(int i : Mathf.signs){
