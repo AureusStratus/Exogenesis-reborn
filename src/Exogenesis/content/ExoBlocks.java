@@ -719,42 +719,39 @@ public static void load(){
   size = 5;
   minWarmup = 0.99f;
   scaledHealth = 280;
-  shootSound = Sounds.largeCannon;
+  shootSound = Sounds.shockBlast;
   cooldownTime = 400;
   shootCone = 35f;
   shoot = new ShootSpread(){{
-   spread = 8f;
+   spread = 7f;
    shots = 15;
   }};
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
    parts.add(
-           new RegionPart("-plat"){{
-            progress = PartProgress.warmup;
-            moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 3f, 0f, 0f));
-            moveX = 2f;
+           new RegionPart("-plate"){{
+            progress = PartProgress.recoil.curve(Interp.pow2In);
+            moveX = 6f;
             mirror = true;
            }},
            new RegionPart("-plate2"){{
-            progress = PartProgress.warmup;
-            moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 3f, -3f, 0f));
-            moveX = 2f;
+            progress = PartProgress.recoil.curve(Interp.pow2In);
+            moveX = 4.5f;
             mirror = true;
            }},
            new RegionPart("-front"){{
             progress = PartProgress.warmup;
-            moveY = 3f;
             under = true;
            }},
            new RegionPart("-back"){{
-            progress = PartProgress.warmup;
+            progress = PartProgress.recoil.curve(Interp.pow2In);
             moveY = -2f;
             under = true;
            }}
    );
   }};
-  shootType = new BasicBulletType(4f, 287){{
+  shootType = new BasicBulletType(6f, 287){{
    lifetime = 92f;
    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
    impact = true;
@@ -772,6 +769,14 @@ public static void load(){
    shrinkInterp = Interp.reverse;
    pierce = true;
    pierceCap = 7;
+   intervalBullet = new LightningBulletType(){{
+    damage = 26;
+    lightningColor = ExoPal.empyrean;
+    lightningLength = 6;
+    lightningLengthRand = 12;
+    buildingDamageMultiplier = 0.25f;
+   }};
+   bulletInterval = 3f;
    smokeEffect = ExoFx.hugeSmokeGray;
    hitEffect = ExoFx.square45_6_45;
    despawnEffect = new Effect(35f, 70f, e -> {
