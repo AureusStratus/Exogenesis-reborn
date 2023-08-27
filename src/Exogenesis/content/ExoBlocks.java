@@ -522,23 +522,12 @@ public static void load(){
             }}
    );
   }};
-  shootType = new PosLightningType(14f){{
-   lightningColor = hitColor = ExoPal.empyrean;
-   lightningDamage = 14;
-   maxRange = rangeOverride = 270f;
-   hitEffect = Fx.circleColorSpark;
-   smokeEffect = Fx.shootBigSmoke2;
-   fragRandomSpread = 360f;
-   fragBullets = 1;
-   fragVelocityMin = 1f;
-
-   fragBullet = new ChainBulletType(8f){{
-    maxHit = 10;
-    chainRange = 20f;
-    length = 10f;
-    hitColor = ExoPal.empyrean;
-    hitEffect = despawnEffect = Fx.hitBulletColor;
-   }};
+  shootType = new ChainBulletType(80f){{
+   maxHit = 10;
+   chainRange = 20f;
+   length = 270f;
+   hitColor = ExoPal.empyrean;
+   hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
  }};
  godsent = new PowerTurret("godsent"){{
@@ -576,14 +565,14 @@ public static void load(){
   shootType = new ArrowBulletType(10f, 157){{
    lifetime = 50f;
    collidesGround = collidesTiles = false;
-   width = 8;
+   width = 6;
    height = 16;
    drag = -0.010f;
    weaveMag = 1f;
    weaveScale = 3f;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
-   trailWidth = 2f;
+   trailWidth = 3f;
    trailLength = 6;
    hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
@@ -703,12 +692,12 @@ public static void load(){
    }};
   shootType = new ArrowBulletType(14f, 987){{
    lifetime = 50f;
-   width = 10;
-   height = 25;
+   width = 13;
+   height = 35;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    frontColor = Color.white;
-   trailWidth = 3f;
+   trailWidth = 4f;
    trailLength = 12;
    hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
