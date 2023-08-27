@@ -720,7 +720,7 @@ public static void load(){
   minWarmup = 0.99f;
   shootY = 14;
   scaledHealth = 280;
-  shootSound = Sounds.shockBlast;
+  shootSound = Sounds.shockblast;
   shootCone = 35f;
   shoot = new ShootSpread(){{
    spread = 7f;
