@@ -537,7 +537,7 @@ public static void load(){
    fragBullet = new ChainBulletType(8f){{
     maxHit = 10;
     chainRange = 20f;
-    length = 1f;
+    length = 10f;
     hitColor = ExoPal.empyrean;
     hitEffect = despawnEffect = Fx.hitBulletColor;
    }};
@@ -562,7 +562,7 @@ public static void load(){
   }}, new ShootAlternate(){{
    barrels = 3;
    shots = 3;
-   spread = 4;
+   spread = 6;
   }});
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
@@ -588,8 +588,8 @@ public static void load(){
    collidesGround = collidesTiles = false;
    width = height = 1;
    drag = -0.010f;
-   weaveMag = 7f;
-   weaveScale = 1f;
+   weaveMag = 2f;
+   weaveScale = 7f;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
@@ -682,12 +682,19 @@ public static void load(){
              mirror = true;
              under = true;
             }},
+            new RegionPart("-side1"){{
+             progress = PartProgress.warmup;
+             moveX = 4.2f;
+             moveY = 10.2f;
+             mirror = true;
+             under = true;
+            }},
             new FlarePart(){{
              progress = PartProgress.warmup.curve(Interp.pow2In);
              color1 = ExoPal.empyrean;
-             radius = 18;
-             radiusTo = 0;
-             y = -13;
+             radius = 0;
+             radiusTo = 18;
+             y = -17;
              sides = 2;
              followRotation = true;
              rotation = 90;
