@@ -719,7 +719,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 5;
   minWarmup = 0.99f;
-  shootY = 14;
+  shootY = 12;
   scaledHealth = 280;
   cooldownTime = 320;
   shootSound = ExoSounds.shockblast;
@@ -755,8 +755,8 @@ public static void load(){
            }}
    );
   }};
-  shootType = new BasicBulletType(8f, 287){{
-   lifetime = 42f;
+  shootType = new BasicBulletType(8f, 207){{
+   lifetime = 35f;
    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
    impact = true;
    knockback = 3f;
@@ -772,7 +772,6 @@ public static void load(){
    shrinkY = -2.48f;
    shrinkInterp = Interp.reverse;
    pierce = true;
-   pierceCap = 7;
    intervalBullet = new LightningBulletType(){{
     damage = 26;
     lightningColor = ExoPal.empyrean;
@@ -782,7 +781,7 @@ public static void load(){
    }};
    bulletInterval = 3f;
    smokeEffect = ExoFx.hugeSmokeGray;
-   hitEffect = ExoFx.square45_6_45;
+   hitEffect = ExoFx.hitMeltColor;
    despawnEffect = new Effect(35f, 70f, e -> {
     Draw.color(e.color, Color.white, e.fout() * 0.7f);
     for(int i : Mathf.signs){
