@@ -552,6 +552,7 @@ public static void load(){
   shootEffect = Fx.colorSparkBig;
   outlineColor = ExoPal.empyreanOutline;
   size = 4;
+  targetGround = false;
   minWarmup = 0.99f;
   scaledHealth = 280;
   shootSound = Sounds.malignShoot;
@@ -574,22 +575,14 @@ public static void load(){
        }}
      );
   }};
-  shootType = new BasicBulletType(10f, 157){{
+  shootType = new ArrowBulletType(10f, 157){{
    lifetime = 50f;
-   parts.addAll(
-           new FlarePart(){{
-            progress = PartProgress.life;
-            color1 = ExoPal.empyrean;
-            radius = 23;
-            radiusTo = 23;
-            stroke = 3.5f;
-       }}
-   );
    collidesGround = collidesTiles = false;
-   width = height = 1;
+   width = 8;
+   height = 16;
    drag = -0.010f;
-   weaveMag = 2f;
-   weaveScale = 7f;
+   weaveMag = 1f;
+   weaveScale = 3f;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    trailWidth = 2f;
@@ -676,16 +669,24 @@ public static void load(){
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
     parts.add(
-            new RegionPart("-side"){{
+            new RegionPart("-side1"){{
              progress = PartProgress.warmup;
              moveX = 4.2f;
+             moveY = 10.2f;
              mirror = true;
              under = true;
             }},
             new RegionPart("-side1"){{
              progress = PartProgress.warmup;
+             moveX = 5.2f;
+             moveY = 14.2f;
+             moveRot = -25;
+             mirror = true;
+             under = true;
+            }},
+            new RegionPart("-side"){{
+             progress = PartProgress.warmup;
              moveX = 4.2f;
-             moveY = 10.2f;
              mirror = true;
              under = true;
             }},
@@ -702,31 +703,10 @@ public static void load(){
             }}
     );
    }};
-  shootType = new BasicBulletType(14f, 47){{
+  shootType = new ArrowBulletType(14f, 987){{
    lifetime = 50f;
-   width = height = 1;
-   parts.addAll(
-           new FlarePart(){{
-            progress = PartProgress.reload.curve(Interp.pow2In);
-            color1 = ExoPal.empyrean;
-            radius = 25;
-            radiusTo = 25;
-            sides = 2;
-            followRotation = true;
-            rotation = 90;
-            stroke = 5.8f;
-           }},
-           new FlarePart(){{
-            progress = PartProgress.reload.curve(Interp.pow2In);
-            color1 = ExoPal.empyrean;
-            radius = 36;
-            radiusTo = 36;
-            y = 3;
-            sides = 2;
-            followRotation = true;
-            stroke = 6.5f;
-           }}
-   );
+   width = 10;
+   height = 25;
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    frontColor = Color.white;
