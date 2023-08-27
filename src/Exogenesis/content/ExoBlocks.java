@@ -389,10 +389,10 @@ public static void load(){
   shootSound = Sounds.laser;
   inaccuracy = 1;
   shootCone = 30f;
-  shootY = 14;
+  shootY = 12;
   shoot = new ShootAlternate(){{
    barrels = 2;
-   spread = 12;
+   spread = 13;
   }};
   rotateSpeed = 2f;
   coolant = consumeCoolant(0.2f);
@@ -416,7 +416,7 @@ public static void load(){
    width = 25f;
    length = 210f;
    hitColor = ExoPal.empyrean;
-   shootEffect = ExoFx.colorBombSmaller;
+   shootEffect = ExoFx.square45_6_45;
    colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
   }};
  }};
@@ -548,6 +548,7 @@ public static void load(){
   targetGround = false;
   minWarmup = 0.99f;
   scaledHealth = 280;
+  shootY = 12;
   velocityRnd = 0.1f;
   shootSound = Sounds.malignShoot;
   coolant = consumeCoolant(0.2f);
@@ -781,7 +782,7 @@ public static void load(){
     buildingDamageMultiplier = 0.25f;
    }};
    bulletInterval = 3f;
-   smokeEffect = ExoFx.hugeSmokeGray;
+   smokeEffect = ExoFx.square45_6_45;
    hitEffect = ExoFx.square45_6_45;
    despawnEffect = new Effect(35f, 70f, e -> {
     Draw.color(e.color, Color.white, e.fout() * 0.7f);
