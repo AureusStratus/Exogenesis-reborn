@@ -39,7 +39,7 @@ public class ExoBlocks{
  public static Block
          //Empyrean
          focalPoint, gale, light, bliss, tanons, glory, essence, purger,
-         excalibur, aspect, godsent, eminence, grandeur, eather, agios, arbiter, phoss,
+         excalibur, aspect, godsent, eminence, grandeur, aether, agios, arbiter, phoss,
          genesisFactory, empyreanFactory;
 public static void load(){
  focalPoint = new ContinuousTurret ("focal-point"){{
@@ -315,8 +315,8 @@ public static void load(){
   drawer = new DrawTurret("elecian-"){{
   }};
   shootType = new DelayedPointBulletType(){{
-   damage = 1060f;
-   width = 25f;
+   damage = 160f;
+   width = 21f;
    delayEffectLifeTime = lifetime = 0f;
    rangeOverride = 450;
    trailEffect = Fx.none;
@@ -325,11 +325,10 @@ public static void load(){
    lightningLengthRand = 35;
    lightningDamage = 50;
    lightColor = hitColor = lightningColor = ExoPal.empyrean;
-   chargeEffect = Fx.greenLaserCharge;
-   hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion);
+   hitEffect = despawnEffect = ExoFx.colorBomb;
    healPercent = 25f;
    collidesTeam = true;
-   colors = new Color[]{ExoPal.empyrean.cpy().a(0.4f), ExoPal.empyrean, Color.white};
+   colors = new Color[]{ExoPal.empyreanAlpha.cpy().a(0.4f), ExoPal.empyrean, Color.white};
   }};
  }};
  essence = new SpeedupTurret("essence"){{
@@ -547,6 +546,7 @@ public static void load(){
   targetGround = false;
   minWarmup = 0.99f;
   scaledHealth = 280;
+  velocityRnd = 0.8f;
   shootSound = Sounds.malignShoot;
   coolant = consumeCoolant(0.2f);
   shoot = new ShootMulti(new ShootPattern(){{
@@ -705,6 +705,83 @@ public static void load(){
    trailWidth = 4f;
    trailLength = 12;
    hitEffect = despawnEffect = Fx.hitBulletColor;
+  }};
+ }};
+ aether = new PowerTurret("aether"){{
+  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  range = 200f;
+  recoil = 3f;
+  reload = 300f;
+  shake = 4f;
+  shootEffect = Fx.shootSmokeSmite;
+  heatColor = Color.red;
+  outlineColor = ExoPal.empyreanOutline;
+  size = 5;
+  minWarmup = 0.99f;
+  scaledHealth = 280;
+  shootSound = Sounds.largeCannon;
+  cooldownTime = 400;
+  shootCone = 35f;
+  shoot = new ShootSpread(){{
+   spread = 8f;
+   shots = 15;
+  }};
+  coolant = consumeCoolant(0.2f);
+  consumePower(6f);
+  drawer = new DrawTurret("elecian-"){{
+   parts.add(
+           new RegionPart("-plat"){{
+            progress = PartProgress.warmup;
+            moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 3f, 0f, 0f));
+            moveX = 2f;
+            mirror = true;
+           }},
+           new RegionPart("-plate2"){{
+            progress = PartProgress.warmup;
+            moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 3f, -3f, 0f));
+            moveX = 2f;
+            mirror = true;
+           }},
+           new RegionPart("-front"){{
+            progress = PartProgress.warmup;
+            moveY = 3f;
+            under = true;
+           }},
+           new RegionPart("-back"){{
+            progress = PartProgress.warmup;
+            moveY = -2f;
+            under = true;
+           }}
+   );
+  }};
+  shootType = new BasicBulletType(4f, 287){{
+   lifetime = 92f;
+   backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
+   impact = true;
+   knockback = 3f;
+   sprite = "circle-bullet";
+   hitSize = 12f;
+   lightning = 2;
+   lightningLengthRand = 5;
+   lightningLength = 3;
+   lightningDamage = damage / 10f;
+   width = 155f;
+   height = 7;
+   shrinkX = 0.45f;
+   shrinkY = -2.48f;
+   shrinkInterp = Interp.reverse;
+   pierce = true;
+   pierceCap = 7;
+   smokeEffect = ExoFx.hugeSmokeGray;
+   hitEffect = ExoFx.square45_6_45;
+   despawnEffect = new Effect(35f, 70f, e -> {
+    Draw.color(e.color, Color.white, e.fout() * 0.7f);
+    for(int i : Mathf.signs){
+
+     Drawf.tri(e.x, e.y, height * 1.5f * e.fout(), width * 0.885f * e.fout(), e.rotation + i * 90);
+     Drawf.tri(e.x, e.y, height * 0.8f * e.fout(), width * 0.252f * e.fout(), e.rotation + 90 + i * 90);
+    }
+   });
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{

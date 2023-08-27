@@ -260,6 +260,18 @@ public class ExoFx{
                 stroke(3 * e.fout(), e.color);
                 circle(e.x, e.y, e.rotation * e.finpow());
             }),
+            hugeSmokeGray = new Effect(40f, e -> {
+                Draw.color(Color.gray, Color.darkGray, e.fin());
+                Angles.randLenVectors(e.id, 6, 2.0F + 19.0F * e.finpow(), (x, y) -> Fill.circle(e.x + x / 2.0F, e.y + y / 2.0F, e.fout() * 2f));
+                e.scaled(25f, i -> Angles.randLenVectors(e.id, 6, 2.0F + 19.0F * i.finpow(), (x, y) -> Fill.circle(e.x + x, e.y + y, i.fout() * 4.0F)));
+            }),
+            square45_6_45 = new Effect(45f, e-> {
+                Draw.color(e.color, Color.white, e.fout() * 0.6f);
+                randLenVectors(e.id, 6, 27f * e.finpow(), (x, y) -> {
+                    Fill.square(e.x + x, e.y + y, 5f * e.fout(), 45);
+                    Drawf.light(e.x + x, e.y + y, e.fout() * 9F, e.color, 0.7f);
+                });
+            }),
             blastcolor = new Effect(40f, 600,e -> {
                 color(e.color);
                 stroke(e.fout() * 3.7f);
