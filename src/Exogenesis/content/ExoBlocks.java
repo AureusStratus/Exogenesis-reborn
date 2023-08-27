@@ -721,6 +721,7 @@ public static void load(){
   minWarmup = 0.99f;
   shootY = 14;
   scaledHealth = 280;
+  cooldownTime = 320;
   shootSound = ExoSounds.shockblast;
   shootCone = 35f;
   shoot = new ShootSpread(){{
@@ -734,11 +735,13 @@ public static void load(){
            new RegionPart("-plate2"){{
             progress = PartProgress.recoil.curve(Interp.pow2In);
             moveX = 4.5f;
+            recoilTime = 350;
             mirror = true;
            }},
            new RegionPart("-plate"){{
             progress = PartProgress.recoil.curve(Interp.pow2In);
-            moveX = 6f;
+            moveX = 9f;
+            recoilTime = 350;
             mirror = true;
            }},
            new RegionPart("-front"){{
