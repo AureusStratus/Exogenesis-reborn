@@ -546,7 +546,7 @@ public static void load(){
   targetGround = false;
   minWarmup = 0.99f;
   scaledHealth = 280;
-  velocityRnd = 0.8f;
+  velocityRnd = 0.2f;
   shootSound = Sounds.malignShoot;
   coolant = consumeCoolant(0.2f);
   shoot = new ShootMulti(new ShootPattern(){{
@@ -709,7 +709,7 @@ public static void load(){
  }};
  aether = new PowerTurret("aether"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
-  range = 200f;
+  range = 250f;
   recoil = 3f;
   reload = 300f;
   shake = 4f;
@@ -718,6 +718,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 5;
   minWarmup = 0.99f;
+  shootY = 17;
   scaledHealth = 280;
   shootSound = Sounds.shockBlast;
   cooldownTime = 400;
@@ -730,14 +731,14 @@ public static void load(){
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
    parts.add(
-           new RegionPart("-plate"){{
-            progress = PartProgress.recoil.curve(Interp.pow2In);
-            moveX = 6f;
-            mirror = true;
-           }},
            new RegionPart("-plate2"){{
             progress = PartProgress.recoil.curve(Interp.pow2In);
             moveX = 4.5f;
+            mirror = true;
+           }},
+           new RegionPart("-plate"){{
+            progress = PartProgress.recoil.curve(Interp.pow2In);
+            moveX = 6f;
             mirror = true;
            }},
            new RegionPart("-front"){{
@@ -751,8 +752,8 @@ public static void load(){
            }}
    );
   }};
-  shootType = new BasicBulletType(6f, 287){{
-   lifetime = 92f;
+  shootType = new BasicBulletType(8f, 287){{
+   lifetime = 42f;
    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
    impact = true;
    knockback = 3f;
