@@ -1,6 +1,7 @@
 package Exogenesis.content;
 
 import Exogenesis.content.ExoUnitTypes;
+import Exogenesis.Exogenesis;
 import Exogenesis.world.turrets.SpeedupTurret;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -720,7 +721,7 @@ public static void load(){
   minWarmup = 0.99f;
   shootY = 14;
   scaledHealth = 280;
-  shootSound = Sounds.shockblast;
+  shootSound = ExoSounds.shockblast;
   shootCone = 35f;
   shoot = new ShootSpread(){{
    spread = 7f;
