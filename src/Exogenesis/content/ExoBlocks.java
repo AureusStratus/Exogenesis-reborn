@@ -13,6 +13,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import Exogenesis.graphics.ExoPal;
+import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
@@ -313,18 +314,22 @@ public static void load(){
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
   }};
-  shootType = new PointBulletType(){{
-   shootEffect = ExoFx.lightEnrCircleSplash;
-   hitEffect = ExoFx.colorBomb;
-   smokeEffect = Fx.smokeCloud;
-   trailEffect = Fx.instTrail;
-   despawnEffect = ExoFx.colorBombSmall;
-   hitColor = ExoPal.empyrean;
-   trailSpacing = 20f;
-   damage = 150;
-   buildingDamageMultiplier = 0.2f;
-   speed = range;
-   hitShake = 4f;
+  shootType = new DelayedPointBulletType(){{
+   damage = 1060f;
+   width = 25f;
+   delayEffectLifeTime = lifetime = 0f;
+   rangeOverride = 450;
+   trailEffect = Fx.none;
+   lightning = 7;
+   lightningLength = 15;
+   lightningLengthRand = 35;
+   lightningDamage = 50;
+   lightColor = hitColor = lightningColor = ExoPal.empyrean;
+   chargeEffect = Fx.greenLaserCharge;
+   hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion);
+   healPercent = 25f;
+   collidesTeam = true;
+   colors = new Color[]{ExoPal.empyrean.cpy().a(0.4f), ExoPal.empyrean, Color.white};
   }};
  }};
  essence = new SpeedupTurret("essence"){{
@@ -461,7 +466,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 270f;
   recoil = 0f;
-  reload = 20f;
+  reload = 10f;
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
   outlineColor = ExoPal.empyreanOutline;
@@ -524,7 +529,7 @@ public static void load(){
   }};
   shootType = new ChainBulletType(80f){{
    maxHit = 10;
-   chainRange = 20f;
+   chainRange = 270f;
    length = 270f;
    hitColor = ExoPal.empyrean;
    hitEffect = despawnEffect = Fx.hitBulletColor;
