@@ -387,7 +387,7 @@ public static void load(){
   shootSound = Sounds.laser;
   inaccuracy = 1;
   shootCone = 30f;
-  shootY = 12;
+  shootY = 14;
   shoot = new ShootAlternate(){{
    barrels = 2;
    spread = 12;
@@ -546,7 +546,7 @@ public static void load(){
   targetGround = false;
   minWarmup = 0.99f;
   scaledHealth = 280;
-  velocityRnd = 0.2f;
+  velocityRnd = 0.1f;
   shootSound = Sounds.malignShoot;
   coolant = consumeCoolant(0.2f);
   shoot = new ShootMulti(new ShootPattern(){{
@@ -568,7 +568,7 @@ public static void load(){
      );
   }};
   shootType = new ArrowBulletType(10f, 157){{
-   lifetime = 50f;
+   lifetime = 47f;
    collidesGround = collidesTiles = false;
    width = 6;
    height = 16;
@@ -710,7 +710,7 @@ public static void load(){
  aether = new PowerTurret("aether"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 250f;
-  recoil = 3f;
+  recoil = 5f;
   reload = 300f;
   shake = 4f;
   shootEffect = Fx.shootSmokeSmite;
@@ -718,10 +718,9 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 5;
   minWarmup = 0.99f;
-  shootY = 17;
+  shootY = 14;
   scaledHealth = 280;
   shootSound = Sounds.shockBlast;
-  cooldownTime = 400;
   shootCone = 35f;
   shoot = new ShootSpread(){{
    spread = 7f;
