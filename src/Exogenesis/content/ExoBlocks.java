@@ -97,7 +97,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 2;
   scaledHealth = 280;
-  shootY = 6;
+  shootY = 8;
   targetAir = true;
   targetGround = false;
   shootSound = Sounds.bolt;
@@ -646,11 +646,10 @@ public static void load(){
    hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
  }};
- grandeur = new PowerTurret("grandeur"){{
+ grandeur = new ContinuousTurret("grandeur"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 270f;
   recoil = 2f;
-  reload = 280f;
   shake = 2f;
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
@@ -659,55 +658,76 @@ public static void load(){
   size = 5;
   minWarmup = 0.99f;
   scaledHealth = 280;
-  shootSound = Sounds.laser;
+  loopSound = ExoSounds.funnylaserloop;
+  shootSound = Sounds.none;
+  loopSoundVolume = 1f;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
-    parts.add(
-            new RegionPart("-side1"){{
+    parts.addAll(
+            new RegionPart("-back"){{
              progress = PartProgress.warmup;
-             moveX = 4.2f;
-             moveY = 10.2f;
+             moveY = -3f;
+             moveX = 3;
              mirror = true;
              under = true;
             }},
-            new RegionPart("-side1"){{
+            new RegionPart("-front2"){{
              progress = PartProgress.warmup;
-             moveX = 5.2f;
-             moveY = 14.2f;
-             moveRot = -25;
+             moveX = 4f;
+             moveY = 15f;
              mirror = true;
-             under = true;
             }},
-            new RegionPart("-side"){{
+            new RegionPart("-front"){{
              progress = PartProgress.warmup;
-             moveX = 4.2f;
+             moveX = 3f;
+             moveY = 4f;
+             moveRot = -28;
              mirror = true;
-             under = true;
             }},
-            new FlarePart(){{
-             progress = PartProgress.warmup.curve(Interp.pow2In);
-             color1 = ExoPal.empyrean;
-             radius = 0;
-             radiusTo = 18;
-             y = -17;
-             sides = 2;
-             followRotation = true;
-             rotation = 90;
-             stroke = 4.8f;
+            new RegionPart("-body"){{
+             progress = PartProgress.warmup;
+             moveY = -3f;
+             mirror = true;
+            }},
+            new RegionPart("-platefront"){{
+             progress = PartProgress.warmup;
+             moveX = 6f;
+             moveY = 4f;
+             moveRot = -28;
+             mirror = true;
+            }},
+            new RegionPart("-plate"){{
+             progress = PartProgress.warmup;
+             moveX = 4f;
+             mirror = true;
             }}
     );
    }};
-  shootType = new ArrowBulletType(14f, 987){{
-   lifetime = 50f;
-   width = 13;
-   height = 35;
-   shootEffect = Fx.shootBigColor;
-   backColor = hitColor = trailColor = ExoPal.empyrean;
-   frontColor = Color.white;
-   trailWidth = 4f;
-   trailLength = 12;
-   hitEffect = despawnEffect = Fx.hitBulletColor;
+  shootType = new ContinuousLaserBulletType(){{
+   hitColor = ExoPal.empyrean;
+   damage = 35f;
+   length = 370f;
+   hitEffect = ExoFx.hitMeltColor;
+   drawSize = 420f;
+   width = 13f;
+   shake = 2f;
+   largeHit = true;
+   colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
+   despawnEffect = Fx.smokeCloud;
+   intervalBullet = new LightningBulletType(){{
+    damage = 10;
+    collidesAir = false;
+    ammoMultiplier = 1f;
+    lightningColor = ExoPal.empyrean;
+    lightningLength = 15;
+    lightningLengthRand = 22;
+   }};
+   intervalRandomSpread = 20;
+   intervalBullets = 2;
+   bulletInterval = 3f;
+   smokeEffect = Fx.none;
+   shootEffect = Fx.none;
   }};
  }};
  aether = new PowerTurret("aether"){{

@@ -12,6 +12,7 @@ import java.lang.reflect.Field;
 public class ExoSounds{
     public static Sound
             cannon, laser2, laser3, laser4, laser5, thermo,
+            funnylaserloop = new Sound(),
             shockblast = new Sound();
 
     public static void load(){
