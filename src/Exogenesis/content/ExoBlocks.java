@@ -658,7 +658,7 @@ public static void load(){
   size = 5;
   minWarmup = 0.04f;
   scaledHealth = 280;
-  shootY = 13;
+  shootY = 18;
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = Sounds.none;
@@ -669,8 +669,8 @@ public static void load(){
     parts.addAll(
             new RegionPart("-back"){{
              progress = PartProgress.warmup;
-             moveY = -2f;
-             moveX = 2;
+             moveY = -6.5f;
+             moveX = 3;
              mirror = true;
              under = true;
             }},
