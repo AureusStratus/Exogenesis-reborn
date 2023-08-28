@@ -658,6 +658,7 @@ public static void load(){
   size = 5;
   minWarmup = 0.04f;
   scaledHealth = 280;
+  shootY = 9;
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = Sounds.none;
@@ -675,7 +676,7 @@ public static void load(){
             }},
             new RegionPart("-front2"){{
              progress = PartProgress.warmup;
-             moveX = 3f;
+             moveX = 4.5f;
              moveY = 11f;
              mirror = true;
             }},
@@ -688,19 +689,18 @@ public static void load(){
             }},
             new RegionPart("-body"){{
              progress = PartProgress.warmup;
-             moveY = -2f;
+             moveY = -3.5f;
              mirror = false;
             }},
             new RegionPart("-platefront"){{
              progress = PartProgress.warmup;
-             moveX = 2f;
-             moveY = 1f;
-             moveRot = -10;
+             moveX = 3f;
+             moveY = 3f;
              mirror = true;
             }},
             new RegionPart("-plate"){{
              progress = PartProgress.warmup;
-             moveX = 4f;
+             moveX = 5f;
              mirror = true;
             }}
     );
@@ -708,10 +708,11 @@ public static void load(){
   shootType = new ContinuousLaserBulletType(){{
    hitColor = ExoPal.empyrean;
    damage = 35f;
-   length = 370f;
+   length = 670f;
    hitEffect = ExoFx.hitMeltColor;
    drawSize = 420f;
-   width = 13f;
+   backLength = 1.2f;
+   width = 19f;
    shake = 2f;
    largeHit = true;
    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
