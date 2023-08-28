@@ -658,7 +658,7 @@ public static void load(){
   size = 5;
   minWarmup = 0.04f;
   scaledHealth = 280;
-  shootY = 18;
+  shootY = 21;
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = Sounds.none;
@@ -669,8 +669,8 @@ public static void load(){
     parts.addAll(
             new RegionPart("-back"){{
              progress = PartProgress.warmup;
-             moveY = -6.5f;
-             moveX = 3;
+             moveY = -4.5f;
+             moveX = 1;
              mirror = true;
              under = true;
             }},
@@ -711,7 +711,7 @@ public static void load(){
    length = 670f;
    hitEffect = ExoFx.hitMeltColor;
    drawSize = 420f;
-   backLength = 19f;
+   backLength = 29f;
    pointyScaling = 0.5f;
    width = 19f;
    shake = 2f;
