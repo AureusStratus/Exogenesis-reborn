@@ -700,7 +700,7 @@ public static void load(){
             }},
             new RegionPart("-plate"){{
              progress = PartProgress.warmup;
-             moveX = 4f;
+             moveX = 3.5f;
              mirror = true;
             }}
     );
@@ -711,7 +711,7 @@ public static void load(){
    length = 670f;
    hitEffect = ExoFx.hitMeltColor;
    drawSize = 420f;
-   backLength = 0.2f;
+   backLength = 11f;
    pointyScaling = 0.5f;
    width = 19f;
    shake = 2f;
