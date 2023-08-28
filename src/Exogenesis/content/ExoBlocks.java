@@ -657,8 +657,9 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 5;
   minWarmup = 0.04f;
+  warmupMaintainTime = 30f;
   scaledHealth = 280;
-  shootY = 21;
+  shootY = 28;
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = Sounds.none;
