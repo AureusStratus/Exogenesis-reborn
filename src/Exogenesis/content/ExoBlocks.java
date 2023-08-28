@@ -711,7 +711,7 @@ public static void load(){
    length = 670f;
    hitEffect = ExoFx.hitMeltColor;
    drawSize = 420f;
-   backLength = 11f;
+   backLength = 19f;
    pointyScaling = 0.5f;
    width = 19f;
    shake = 2f;
