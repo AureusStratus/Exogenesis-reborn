@@ -656,8 +656,9 @@ public static void load(){
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
   size = 5;
-  minWarmup = 0.99f;
+  minWarmup = 0.04f;
   scaledHealth = 280;
+  rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = Sounds.none;
   loopSoundVolume = 1f;
@@ -667,34 +668,34 @@ public static void load(){
     parts.addAll(
             new RegionPart("-back"){{
              progress = PartProgress.warmup;
-             moveY = -3f;
-             moveX = 3;
+             moveY = -2f;
+             moveX = 2;
              mirror = true;
              under = true;
             }},
             new RegionPart("-front2"){{
              progress = PartProgress.warmup;
-             moveX = 4f;
-             moveY = 15f;
+             moveX = 3f;
+             moveY = 11f;
              mirror = true;
             }},
             new RegionPart("-front"){{
              progress = PartProgress.warmup;
-             moveX = 3f;
-             moveY = 4f;
+             moveX = 3.5f;
+             moveY = 3f;
              moveRot = -28;
              mirror = true;
             }},
             new RegionPart("-body"){{
              progress = PartProgress.warmup;
-             moveY = -3f;
-             mirror = true;
+             moveY = -2f;
+             mirror = false;
             }},
             new RegionPart("-platefront"){{
              progress = PartProgress.warmup;
-             moveX = 6f;
-             moveY = 4f;
-             moveRot = -28;
+             moveX = 2f;
+             moveY = 1f;
+             moveRot = -10;
              mirror = true;
             }},
             new RegionPart("-plate"){{
