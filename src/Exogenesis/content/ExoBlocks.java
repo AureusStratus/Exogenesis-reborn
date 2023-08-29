@@ -686,9 +686,47 @@ public static void load(){
    }};
   shootType = new ContinuousLaserBulletType(){{
    hitColor = ExoPal.empyrean;
-   damage = 95f;
+   damage = 175f;
    length = 670f;
-   hitEffect = ExoFx.hitMeltColor;
+   hitEffect = new MultiEffect(
+           new ParticleEffect(){{
+            line = true;
+            rotWithParent = true;
+            colorFrom = ExoPal.empyreanLight;
+            colorTo = ExoPal.empyrean;
+            cone = 35;
+            particles = 3;
+            length = 100;
+            lifetime = 21f;
+            lenFrom = 10;
+            lenTo = 7;
+            strokeFrom = 2f;
+            strokeTo = 0.8f;
+           }},
+           new ParticleEffect(){{
+            line = true;
+            rotWithParent = true;
+            colorFrom = ExoPal.empyreanLight;
+            colorTo = ExoPal.empyrean;
+            cone = 45;
+            particles = 2;
+            length = 85;
+            lifetime = 21f;
+            lenFrom = 10;
+            lenTo = 10;
+            strokeFrom = 2f;
+            strokeTo = 0.8f;
+           }},
+           new ParticleEffect(){{
+            rotWithParent = true;
+            colorFrom = ExoPal.empyreanLight;
+            colorTo = ExoPal.empyrean;
+            cone = 40;
+            particles = 3;
+            length = 85;
+            lifetime = 22f;
+            sizeFrom = 4.3f;
+           }});
    drawSize = 420f;
    backLength = 29f;
    pointyScaling = 0.5f;
@@ -697,59 +735,17 @@ public static void load(){
    largeHit = true;
    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
    despawnEffect = Fx.none;
-   intervalBullet = new BasicBulletType(-10f, 0){{
-    despawnHit = true;
-    lifetime = 3;
-    hitEffect = new MultiEffect(
-     new ParticleEffect(){{
-     line = true;
-     rotWithParent = true;
-     colorFrom = ExoPal.empyreanLight;
-     colorTo = ExoPal.empyrean;
-     cone = 35;
-     particles = 3;
-     length = 100;
-     lifetime = 21f;
-     lenFrom = 10;
-     lenTo = 7;
-     strokeFrom = 2f;
-     strokeTo = 0.8f;
-    }},
-    new ParticleEffect(){{
-     line = true;
-     rotWithParent = true;
-     colorFrom = ExoPal.empyreanLight;
-     colorTo = ExoPal.empyrean;
-     cone = 45;
-     particles = 2;
-     length = 85;
-     lifetime = 21f;
-     lenFrom = 10;
-     lenTo = 10;
-     strokeFrom = 2f;
-     strokeTo = 0.8f;
-    }},
-     new ParticleEffect(){{
-     rotWithParent = true;
-     colorFrom = ExoPal.empyreanLight;
-     colorTo = ExoPal.empyrean;
-     cone = 40;
-     particles = 3;
-     length = 85;
-     lifetime = 22f;
-     sizeFrom = 4.3f;
-    }});
+   intervalBullet = new LightningBulletType(){{
+    damage = 35;
+    lightningColor = ExoPal.empyrean;
+    lightningLength = 20;
+    lightningLengthRand = 38;
    }};
-   intervalRandomSpread = 30;
-   intervalBullets = 1;
-   bulletInterval = 2f;
-   smokeEffect = Fx.none;
-   shootEffect = Fx.none;
-  }};
+   intervalBullets = 3;
  }};
  aether = new PowerTurret("aether"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
-  range = 250f;
+  range = 270f;
   recoil = 5f;
   reload = 300f;
   shake = 4f;
