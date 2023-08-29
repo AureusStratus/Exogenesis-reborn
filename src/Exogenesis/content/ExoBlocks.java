@@ -743,6 +743,7 @@ public static void load(){
    }};
    intervalBullets = 3;
  }};
+ }};
  aether = new PowerTurret("aether"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 270f;
