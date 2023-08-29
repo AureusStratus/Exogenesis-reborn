@@ -10,6 +10,7 @@ import arc.math.geom.*;
 import arc.struct.Seq;
 import arc.util.*;
 import mindustry.*;
+import mindustry.entities.effect.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
@@ -685,7 +686,7 @@ public static void load(){
    }};
   shootType = new ContinuousLaserBulletType(){{
    hitColor = ExoPal.empyrean;
-   damage = 35f;
+   damage = 95f;
    length = 670f;
    hitEffect = ExoFx.hitMeltColor;
    drawSize = 420f;
@@ -695,18 +696,53 @@ public static void load(){
    shake = 2f;
    largeHit = true;
    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
-   despawnEffect = Fx.smokeCloud;
-   intervalBullet = new LightningBulletType(){{
-    damage = 10;
-    collidesAir = false;
-    ammoMultiplier = 1f;
-    lightningColor = ExoPal.empyrean;
-    lightningLength = 15;
-    lightningLengthRand = 22;
+   despawnEffect = Fx.none;
+   intervalBullet = new BasicBulletType(){{
+    despawnHit = true;
+    instantDisappear = true;
+    hitEffect = new MultiEffect(
+     new ParticleEffect(){{
+     line = true;
+     rotWithParent = true;
+     colorFrom = ExoPal.empyreanLight;
+     colorTo = ExoPal.empyrean;
+     cone = 35;
+     particles = 3;
+     length = 100;
+     lifetime = 21f;
+     lenFrom = 10;
+     lenTo = 7;
+     strokeFrom = 2f;
+     strokeTo = 0.8f;
+    }},
+    new ParticleEffect(){{
+     line = true;
+     rotWithParent = true;
+     colorFrom = ExoPal.empyreanLight;
+     colorTo = ExoPal.empyrean;
+     cone = 45;
+     particles = 2;
+     length = 85;
+     lifetime = 27f;
+     lenFrom = 10;
+     lenTo = 10;
+     strokeFrom = 2f;
+     strokeTo = 0.8f;
+    }},
+     new ParticleEffect(){{
+      rotWithParent = true;
+     colorFrom = ExoPal.empyreanLight;
+     colorTo = ExoPal.empyrean;
+     cone = 40;
+     particles = 1;
+     length = 85;
+     lifetime = 37f;
+     sizeFrom = 4.3f;
+    }});
    }};
-   intervalRandomSpread = 20;
-   intervalBullets = 2;
-   bulletInterval = 3f;
+   intervalRandomSpread = 30;
+   intervalBullets = 1;
+   bulletInterval = 2f;
    smokeEffect = Fx.none;
    shootEffect = Fx.none;
   }};
