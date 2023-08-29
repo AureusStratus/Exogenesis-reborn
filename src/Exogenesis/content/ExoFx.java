@@ -264,10 +264,10 @@ public class ExoFx{
                 e.scaled(25f, i -> Angles.randLenVectors(e.id, 6, 2.0F + 19.0F * i.finpow(), (x, y) -> Fill.circle(e.x + x, e.y + y, i.fout() * 4.0F)));
             }),
             square45_6_45 = new Effect(25f, e-> {
-                color(Color.white, Pal.lancerLaser, e.fin());
+                color(Color.white, e.color, e.fin());
                 stroke(e.fout() * 1.2f + 0.5f);
 
-                randLenVectors(e.id, 27, 45f * e.finpow(), e.rotation, 50f, (x, y) -> {
+                randLenVectors(e.id, 8, 45f * e.finpow(), e.rotation, 50f, (x, y) -> {
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),

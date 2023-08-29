@@ -659,7 +659,7 @@ public static void load(){
   minWarmup = 0.04f;
   warmupMaintainTime = 30f;
   scaledHealth = 280;
-  shootY = 28;
+  shootY = 38;
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = Sounds.none;
