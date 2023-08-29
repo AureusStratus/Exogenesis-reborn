@@ -715,16 +715,6 @@ public static void load(){
             lenTo = 10;
             strokeFrom = 2f;
             strokeTo = 0.8f;
-           }},
-           new ParticleEffect(){{
-            rotWithParent = true;
-            colorFrom = ExoPal.empyreanLight;
-            colorTo = ExoPal.empyrean;
-            cone = 40;
-            particles = 3;
-            length = 85;
-            lifetime = 22f;
-            sizeFrom = 4.3f;
            }});
    drawSize = 420f;
    backLength = 29f;
@@ -734,15 +724,6 @@ public static void load(){
    largeHit = true;
    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
    despawnEffect = Fx.none;
-   intervalBullet = new LightningBulletType(){{
-    damage = 35;
-    lightningColor = ExoPal.empyrean;
-    lightningLength = 20;
-    lightningLengthRand = 38;
-   }};
-   intervalBullets = 3;
-   bulletInterval = 1;
-   intervalRandomSpread = 35;
  }};
  }};
  aether = new PowerTurret("aether"){{
