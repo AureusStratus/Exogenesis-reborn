@@ -339,6 +339,7 @@ public static void load(){
   recoil = 2f;
   reload = 40;
   smokeEffect = Fx.none;
+  heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
   scaledHealth = 280;
@@ -385,6 +386,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
   scaledHealth = 280;
+  heatColor = Color.red;
   recoils = 2;
   shootSound = Sounds.laser;
   inaccuracy = 1;
@@ -543,6 +545,7 @@ public static void load(){
   reload = 80f;
   shake = 2f;
   shootEffect = Fx.colorSparkBig;
+  heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
   size = 4;
   targetGround = false;
@@ -598,41 +601,15 @@ public static void load(){
   size = 4;
   minWarmup = 0.99f;
   scaledHealth = 280;
-  shootSound = Sounds.laser;
+  shootSound = Sounds.bolt;
   coolant = consumeCoolant(0.2f);
-  shoot = new ShootMulti(new ShootPattern(){{
-    shots = 3;
-    shotDelay = 2;
-  }}, new ShootAlternate(){{
-   barrels = 3;
+  shoot =  new ShootAlternate(){{
+   barrels = 2;
    shots = 3;
    spread = 4;
-   }});
+   }};
   consumePower(6f);
-  drawer = new DrawTurret("elecian-"){{
-   parts.addAll(
-           new FlarePart(){{
-            progress = PartProgress.warmup;
-            color1 = ExoPal.empyrean;
-            y = 10;
-            radius = 12;
-            radiusTo = 0;
-            stroke = 2.5f;
-           }},
-           new RegionPart("-front"){{
-            progress = PartProgress.warmup;
-            moveX = 4;
-            moveRot = 12;
-            mirror = true;
-           }},
-           new RegionPart("-back"){{
-            progress = PartProgress.warmup;
-            moveX = 4;
-            moveRot = 12;
-            mirror = true;
-           }}
-       );
-  }};
+  drawer = new DrawTurret("elecian-"){{}};
   shootType = new BasicBulletType(8f, 47){{
    lifetime = 30f;
    width = 6;
