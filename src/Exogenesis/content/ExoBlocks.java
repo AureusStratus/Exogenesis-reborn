@@ -823,14 +823,14 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 290f;
   recoil = 5f;
-  reload = 10f;
+  reload = 4f;
   shake = 4f;
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
   size = 5;
   scaledHealth = 280;
   cooldownTime = 320;
-  shootSound = Sounds.malignShoot;
+  shootSound = Sounds.bolt;
   var haloProgress = PartProgress.warmup;
   Color haloColor = Color.valueOf("fee761"), heatCol = Color.red;
   float haloY = -15f, haloRotSpeed = 1.5f;
@@ -937,55 +937,12 @@ public static void load(){
            }}
    );
   }};
-  shootType = new FlakBulletType(7f, 70f){{
-   sprite = "exogenesis-energy-swirl";
-
-   lifetime = 45f;
-   width = height = 18f;
-
-   hitSize = 7f;
-   shootEffect = Fx.shootSmokeSquareBig;
-   smokeEffect = Fx.shootSmokeDisperse;
-   ammoMultiplier = 1;
-   hitColor = backColor = trailColor = lightningColor = circleColor;
-   frontColor = Color.white;
-   trailWidth = 3f;
-   trailLength = 12;
-   hitEffect = despawnEffect = Fx.hitBulletColor;
-   buildingDamageMultiplier = 0.3f;
-
-   homingPower = 0.18f;
-   homingDelay = 19f;
-   homingRange = 160f;
-
-   explodeRange = 160f;
-   explodeDelay = 0f;
-
-   flakInterval = 20f;
-
-   fragBullet = new BasicBulletType(14f, 97){{
-    lifetime = 30f;
-    width = height = 10;
-    sprite = "exogenesis-energy-swirl";
-    pierce = true;
-    pierceCap = 8;
-    pierceArmor = true;
-    shootEffect = Fx.shootBigColor;
-    backColor = hitColor = trailColor = ExoPal.empyrean;
-    frontColor = Color.white;
-    trailWidth = 2f;
-    trailLength = 6;
-    hitEffect = despawnEffect = Fx.hitBulletColor;
-   }};
-
-   fragSpread = 14;
-   fragBullets = 3;
-   fragVelocityMin = 1;
-   fragRandomSpread = 0f;
-
-   splashDamage = 0f;
-   hitEffect = Fx.hitSquaresColor;
-   collidesGround = true;
+  shootType = new PosLightningType(70f){{
+   lightningColor = hitColor = ExoPal.empyrean;
+   lightningDamage = 8;
+   maxRange = rangeOverride = 290f;
+   hitEffect = Fx.circleColorSpark;
+   smokeEffect = Fx.shootBigSmoke2;
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
