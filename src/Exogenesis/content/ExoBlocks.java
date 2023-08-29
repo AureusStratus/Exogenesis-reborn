@@ -697,9 +697,9 @@ public static void load(){
    largeHit = true;
    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
    despawnEffect = Fx.none;
-   intervalBullet = new BasicBulletType(){{
+   intervalBullet = new BasicBulletType(-10f, 0){{
     despawnHit = true;
-    instantDisappear = true;
+    lifetime = 3;
     hitEffect = new MultiEffect(
      new ParticleEffect(){{
      line = true;
@@ -707,7 +707,6 @@ public static void load(){
      colorFrom = ExoPal.empyreanLight;
      colorTo = ExoPal.empyrean;
      cone = 35;
-     offsetX = -18;
      particles = 3;
      length = 100;
      lifetime = 21f;
@@ -722,7 +721,6 @@ public static void load(){
      colorFrom = ExoPal.empyreanLight;
      colorTo = ExoPal.empyrean;
      cone = 45;
-     offsetX = -18;
      particles = 2;
      length = 85;
      lifetime = 21f;
@@ -732,11 +730,10 @@ public static void load(){
      strokeTo = 0.8f;
     }},
      new ParticleEffect(){{
-      rotWithParent = true;
+     rotWithParent = true;
      colorFrom = ExoPal.empyreanLight;
      colorTo = ExoPal.empyrean;
      cone = 40;
-     offsetX = -18;
      particles = 3;
      length = 85;
      lifetime = 22f;
