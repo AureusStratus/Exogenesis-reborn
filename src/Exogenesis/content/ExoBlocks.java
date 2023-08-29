@@ -574,7 +574,7 @@ public static void load(){
        }}
      );
   }};
-  shootType = new ArrowBulletType(10f, 157){{
+  shootType = new ArrowBulletType(11f, 157){{
    lifetime = 47f;
    collidesGround = collidesTiles = false;
    width = 6;
@@ -606,15 +606,14 @@ public static void load(){
   coolant = consumeCoolant(0.2f);
   shoot =  new ShootAlternate(){{
    barrels = 2;
-   shots = 3;
-   spread = 4;
+   spread = 7;
    }};
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{}};
-  shootType = new BasicBulletType(8f, 47){{
+  shootType = new BasicBulletType(8f, 97){{
    lifetime = 30f;
-   width = 6;
-   height = 15;
+   width = 10;
+   height = 17;
    sprite = "missile-large";
    shootEffect = Fx.shootBigColor;
    backColor = hitColor = trailColor = ExoPal.empyrean;
@@ -742,11 +741,13 @@ public static void load(){
     lightningLengthRand = 38;
    }};
    intervalBullets = 3;
+   bulletInterval = 1;
+   intervalRandomSpread = 35;
  }};
  }};
  aether = new PowerTurret("aether"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
-  range = 270f;
+  range = 290f;
   recoil = 5f;
   reload = 300f;
   shake = 4f;
