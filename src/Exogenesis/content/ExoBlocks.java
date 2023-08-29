@@ -707,7 +707,7 @@ public static void load(){
      colorFrom = ExoPal.empyreanLight;
      colorTo = ExoPal.empyrean;
      cone = 35;
-     offsetY = -18;
+     offsetX = -18;
      particles = 3;
      length = 100;
      lifetime = 21f;
@@ -722,7 +722,7 @@ public static void load(){
      colorFrom = ExoPal.empyreanLight;
      colorTo = ExoPal.empyrean;
      cone = 45;
-     offsetY = -18;
+     offsetX = -18;
      particles = 2;
      length = 85;
      lifetime = 21f;
@@ -736,7 +736,7 @@ public static void load(){
      colorFrom = ExoPal.empyreanLight;
      colorTo = ExoPal.empyrean;
      cone = 40;
-     offsetY = -18;
+     offsetX = -18;
      particles = 3;
      length = 85;
      lifetime = 22f;
