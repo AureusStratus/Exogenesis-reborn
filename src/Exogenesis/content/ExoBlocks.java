@@ -837,7 +837,7 @@ public static void load(){
 
   var circleProgress = PartProgress.warmup.delay(0.9f);
   var circleColor = haloColor;
-  float circleY = 25f, circleRad = 11f, circleRotSpeed = 3.5f, circleStroke = 1.6f;
+  float circleY = 25f, circleRad = 14f, circleRotSpeed = 3.5f, circleStroke = 1.6f;
 
   shoot = new ShootSummon(0f, 0f, circleRad, 48f);
   warmupMaintainTime = 30f;
@@ -933,11 +933,12 @@ public static void load(){
             progress = PartProgress.warmup.curve(Interp.pow2In);
             moveX = 4f;
             under = true;
+            mirror = true;
            }}
    );
   }};
   shootType = new FlakBulletType(7f, 70f){{
-   sprite = "circle-bullet";
+   sprite = "exogenesis-energy-swirl";
 
    lifetime = 45f;
    width = height = 18f;
@@ -965,7 +966,7 @@ public static void load(){
    fragBullet = new BasicBulletType(14f, 97){{
     lifetime = 30f;
     width = height = 10;
-    sprite = "circle-bullet";
+    sprite = "exogenesis-energy-swirl";
     pierce = true;
     pierceCap = 8;
     pierceArmor = true;
@@ -977,8 +978,9 @@ public static void load(){
     hitEffect = despawnEffect = Fx.hitBulletColor;
    }};
 
-   fragSpread = 8;
+   fragSpread = 14;
    fragBullets = 3;
+   fragVelocityMin = 1;
    fragRandomSpread = 0f;
 
    splashDamage = 0f;
