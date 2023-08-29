@@ -538,7 +538,7 @@ public static void load(){
  }};
  godsent = new PowerTurret("godsent"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
-  range = 650f;
+  range = 950f;
   recoil = 2f;
   reload = 80f;
   shake = 2f;
@@ -550,7 +550,7 @@ public static void load(){
   scaledHealth = 280;
   shootY = 12;
   velocityRnd = 0.1f;
-  shootSound = Sounds.malignShoot;
+  shootSound = Sounds.shootSmite;
   coolant = consumeCoolant(0.2f);
   shoot = new ShootMulti(new ShootPattern(){{
    shots = 2;
@@ -575,7 +575,7 @@ public static void load(){
    collidesGround = collidesTiles = false;
    width = 6;
    height = 16;
-   drag = -0.010f;
+   drag = -0.02f;
    weaveMag = 1f;
    weaveScale = 3f;
    shootEffect = Fx.shootBigColor;
@@ -659,7 +659,7 @@ public static void load(){
   minWarmup = 0.04f;
   warmupMaintainTime = 30f;
   scaledHealth = 280;
-  shootY = 38;
+  shootY = 34;
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = Sounds.none;
