@@ -20,7 +20,10 @@ import mindustry.entities.effect.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
-
+import mindustry.entities.*;
+import mindustry.entities.abilities.*;
+import mindustry.type.*;
+import mindustry.type.unit.*;
 import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
@@ -463,16 +466,36 @@ public static void load(){
    }}
    );
   }};
-  shootType = new LaserBulletType(){{
-   damage = 175f;
-   sideAngle = 20f;
-   sideWidth = 1.5f;
-   sideLength = 50f;
-   width = 45f;
-   length = 270f;
-   hitColor = ExoPal.empyrean;
-   shootEffect = ExoFx.colorBombSmall;
-   colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
+  shootType = new ArtilleryBulletType(4.5f, 350, "shell"){{
+   hitEffect = new MultiEffect(Fx.titanExplosion, Fx.titanSmoke);
+   despawnEffect = Fx.none;
+   knockback = 2f;
+   lifetime = 140f;
+   height = 19f;
+   width = 17f;
+   splashDamageRadius = 65f;
+   splashDamage = 350f;
+   scaledSplashDamage = true;
+   backColor = hitColor = trailColor = ExoPal.empyrean;
+   frontColor = Color.white;
+   ammoMultiplier = 1f;
+   hitSound = Sounds.titanExplosion;
+
+   status = StatusEffects.blasted;
+
+   trailLength = 32;
+   trailWidth = 3.35f;
+   trailSinScl = 2.5f;
+   trailSinMag = 0.5f;
+   despawnShake = 7f;
+
+   shootEffect = Fx.shootTitan;
+   smokeEffect = Fx.shootSmokeTitan;
+
+   trailInterp = v -> Math.max(Mathf.slope(v), 0.8f);
+   shrinkX = 0.2f;
+   shrinkY = 0.1f;
+   buildingDamageMultiplier = 0.3f;
   }};
  }};
  aspect = new PowerTurret("aspect"){{
@@ -609,27 +632,52 @@ public static void load(){
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
   size = 4;
-  minWarmup = 0.99f;
   scaledHealth = 280;
+  xRand = 10;
   shootSound = Sounds.bolt;
   coolant = consumeCoolant(0.2f);
-  shoot =  new ShootAlternate(){{
-   barrels = 2;
-   spread = 7;
-   }};
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{}};
-  shootType = new BasicBulletType(8f, 97){{
-   lifetime = 30f;
-   width = 10;
-   height = 17;
-   sprite = "missile-large";
-   shootEffect = Fx.shootBigColor;
-   backColor = hitColor = trailColor = ExoPal.empyrean;
-   frontColor = Color.white;
-   trailWidth = 2f;
-   trailLength = 6;
-   hitEffect = despawnEffect = Fx.hitBulletColor;
+  shootType = new BasicBulletType(0f, 1){{
+   shootEffect = Fx.shootBig;
+   smokeEffect = Fx.shootSmokeMissile;
+   spawnUnit = new MissileUnitType("eminence-missile"){{
+    speed = 9.6f;
+    maxRange = 6f;
+    lifetime = 60f;
+    outlineColor = ExoPal.empyreanOutline;
+    engineColor = trailColor = ExoPal.empyrean;
+    engineLayer = Layer.effect;
+    engineSize = 1.7f;
+    engineOffset = 6f;
+    rotateSpeed = 0.9f;
+    trailLength = 6;
+    missileAccelTime = 20f;
+    lowAltitude = true;
+    loopSound = Sounds.missileTrail;
+    loopSoundVolume = 0.6f;
+    deathSound = Sounds.explosion;
+    targetGround = false;
+    fogRadius = 0f;
+    health = 210;
+
+    weapons.add(new Weapon(){{
+     shootCone = 360f;
+     mirror = false;
+     reload = 1f;
+     deathExplosionEffect = shootEffect;
+     shootOnDeath = true;
+     shake = 2f;
+     bullet = new ExplosionBulletType(640f, 65f){{
+      hitColor = ExoPal.empyrean;
+      shootEffect = new MultiEffect(ExoFx.blastcolor, ExoFx.colorBombSmall);
+      collidesGround = false;
+      collidesTiles = false;
+      buildingDamageMultiplier = 0.3f;
+     }};
+    }});
+
+   }};
   }};
  }};
  grandeur = new ContinuousTurret("grandeur"){{
@@ -642,8 +690,9 @@ public static void load(){
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
   size = 5;
-  minWarmup = 0.04f;
   warmupMaintainTime = 30f;
+  minWarmup = 0.96f;
+  shootWarmupSpeed = 0.03f;
   scaledHealth = 280;
   shootY = 34;
   rotateSpeed = 1;
@@ -849,77 +898,6 @@ public static void load(){
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
    parts.addAll(
-           //summoning circle
-           new ShapePart(){{
-            progress = circleProgress;
-            color = circleColor;
-            circle = true;
-            hollow = true;
-            stroke = 0f;
-            strokeTo = circleStroke;
-            radius = circleRad;
-            layer = Layer.effect;
-            y = circleY;
-           }},
-
-           new ShapePart(){{
-            progress = circleProgress;
-            rotateSpeed = -circleRotSpeed;
-            color = circleColor;
-            sides = 4;
-            hollow = true;
-            stroke = 0f;
-            strokeTo = circleStroke;
-            radius = circleRad - 1f;
-            layer = Layer.effect;
-            y = circleY;
-           }},
-
-           //outer squares
-
-           new ShapePart(){{
-            progress = circleProgress;
-            rotateSpeed = -circleRotSpeed;
-            color = circleColor;
-            sides = 3;
-            hollow = true;
-            stroke = 0f;
-            strokeTo = circleStroke;
-            radius = circleRad - 1f;
-            layer = Layer.effect;
-            y = circleY;
-           }},
-
-           //inner square
-           new ShapePart(){{
-            progress = circleProgress;
-            rotateSpeed = -circleRotSpeed/2f;
-            color = circleColor;
-            sides = 3;
-            hollow = true;
-            stroke = 0f;
-            strokeTo = 2f;
-            radius = 3f;
-            layer = Layer.effect;
-            y = circleY;
-           }},
-
-           //spikes on circle
-           new HaloPart(){{
-            progress = circleProgress;
-            color = circleColor;
-            tri = true;
-            shapes = 4;
-            triLength = 0f;
-            triLengthTo = 10f;
-            radius = 3f;
-            haloRadius = circleRad;
-            haloRotateSpeed = haloRotSpeed / 2f;
-            shapeRotation = 180f;
-            haloRotation = 180f;
-            layer = Layer.effect;
-            y = circleY;
-           }},
            new RegionPart("-plate"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             heatColor = heatCol;
