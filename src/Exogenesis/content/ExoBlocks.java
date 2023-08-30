@@ -625,7 +625,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 270f;
   recoil = 2f;
-  reload = 10f;
+  reload = 120f;
   shake = 2f;
   shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
@@ -634,6 +634,10 @@ public static void load(){
   size = 4;
   scaledHealth = 280;
   xRand = 10;
+  shoot = new ShootPattern(){{
+   shotDelay = 3f;
+   shots = 15;
+  }};
   shootSound = Sounds.bolt;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
@@ -668,9 +672,9 @@ public static void load(){
      deathExplosionEffect = shootEffect;
      shootOnDeath = true;
      shake = 2f;
-     bullet = new ExplosionBulletType(640f, 65f){{
+     bullet = new ExplosionBulletType(40f, 65f){{
       hitColor = ExoPal.empyrean;
-      shootEffect = new MultiEffect(ExoFx.blastcolor, ExoFx.colorBombSmall);
+      shootEffect = new MultiEffect(ExoFx.coloredHitLarge, ExoFx.colorBombSmall);
       collidesGround = false;
       collidesTiles = false;
       buildingDamageMultiplier = 0.3f;
@@ -692,7 +696,7 @@ public static void load(){
   size = 5;
   warmupMaintainTime = 30f;
   minWarmup = 0.96f;
-  shootWarmupSpeed = 0.03f;
+  shootWarmupSpeed = 0.04f;
   scaledHealth = 280;
   shootY = 34;
   rotateSpeed = 1;
@@ -871,7 +875,7 @@ public static void load(){
  agios = new PowerTurret("agios"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 290f;
-  recoil = 5f;
+  recoil = 0f;
   reload = 4f;
   shake = 4f;
   heatColor = Color.red;
