@@ -35,7 +35,7 @@ public class SpeedupTurret extends PowerTurret{
 	@Override
 	public void setBars(){
 		super.setBars();
-		addBar("liquid",
+		addBar("speedup",
 			(SpeedupTurretBuild entity) -> new Bar(
 				() -> "Speed Up:",
 				() -> ExoPal.lightSkyBack,
