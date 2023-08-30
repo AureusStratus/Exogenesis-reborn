@@ -623,7 +623,7 @@ public static void load(){
  }};
  eminence = new PowerTurret("eminence"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
-  range = 270f;
+  range = 300f;
   recoil = 2f;
   reload = 120f;
   shake = 2f;
@@ -644,6 +644,7 @@ public static void load(){
   drawer = new DrawTurret("elecian-"){{}};
   shootType = new BasicBulletType(0f, 1){{
    shootEffect = Fx.shootBig;
+   hitColor = ExoPal.empyrean;
    smokeEffect = Fx.shootSmokeMissile;
    spawnUnit = new MissileUnitType("eminence-missile"){{
     speed = 9.6f;
@@ -672,7 +673,7 @@ public static void load(){
      deathExplosionEffect = shootEffect;
      shootOnDeath = true;
      shake = 2f;
-     bullet = new ExplosionBulletType(40f, 65f){{
+     bullet = new ExplosionBulletType(35f, 45f){{
       hitColor = ExoPal.empyrean;
       shootEffect = new MultiEffect(ExoFx.coloredHitLarge, ExoFx.colorBombSmall);
       collidesGround = false;
@@ -686,7 +687,7 @@ public static void load(){
  }};
  grandeur = new ContinuousTurret("grandeur"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
-  range = 270f;
+  range = 660f;
   recoil = 2f;
   shake = 2f;
   shootEffect = Fx.colorSparkBig;
@@ -701,8 +702,8 @@ public static void load(){
   shootY = 34;
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
-  shootSound = Sounds.none;
-  loopSoundVolume = 1f;
+  shootSound = ExoSounds.bigLaserShoot;
+  loopSoundVolume = 2f;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
