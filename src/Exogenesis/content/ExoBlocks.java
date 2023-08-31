@@ -1008,6 +1008,15 @@ public static void load(){
    shrinkY = shrinkX = 0.005f;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
    frontColor = Color.white;
+   parts.addAll(
+           new HoverPart(){{
+            color = ExoPal.empyrean;
+            phase = 100f;
+            radius = 36;
+            circles = 4;
+            stroke = 4.5f;
+           }}
+   );
    randomLightningChance = 1f;
    randomGenerateRange = 340f;
    randomLightningNum = 7;
@@ -1018,7 +1027,7 @@ public static void load(){
    hitSound = Sounds.explosionbig;
    splashDamageRadius = 100f;
    splashDamage = 700;
-   lightningDamage = damage * 0.75f;
+   lightningDamage = 6f;
    intervalBullets = 1;
    bulletInterval = 3;
    intervalBullet =  new FlakBulletType(3.75f, 80){{
@@ -1030,8 +1039,17 @@ public static void load(){
      trailWidth = 2.7f;
      despawnEffect = hitEffect = ExoFx.colorBombSmall;
      lifetime = 40f;
-     width = 9f;
-     height = 14f;
+     parts.addAll(
+            new FlarePart(){{
+             progress = PartProgress.reload;
+             color1 = ExoPal.empyrean;
+             y = 6;
+             radius = 10;
+             radiusTo = 0;
+             stroke = 2.5f;
+            }}
+     );
+     width = height = 1f;
      collidesTiles = false;
      splashDamageRadius = 60f;
      splashDamage = damage * 0.6f;
@@ -1048,9 +1066,18 @@ public static void load(){
    shootEffect = ExoFx.square45_6_45;
    hitSpacing = 3;
    fragBullets = 30;
-   fragBullet = new BasicBulletType(4f, 100, "shell"){{
-    width = 13;
-    height = 21f;
+   fragBullet = new BasicBulletType(4f, 100){{
+    width = height = 1f;
+    parts.addAll(
+            new FlarePart(){{
+             progress = PartProgress.reload;
+             color1 = ExoPal.empyrean;
+             y = 6;
+             radius = 10;
+             radiusTo = 0;
+             stroke = 2.5f;
+            }}
+    );
     backColor = trailColor = lightColor = lightningColor = hitColor = ExoPal.empyrean;
     frontColor = Color.white;
     trailEffect = Fx.missileTrail;
