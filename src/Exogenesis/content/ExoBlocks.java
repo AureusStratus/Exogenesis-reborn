@@ -985,7 +985,7 @@ public static void load(){
            }},
            new RegionPart("-plate"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            heatColor = color.red;
+            heatColor = Color.red;
             heatProgress = PartProgress.warmup;
             moveX = 2f;
             moveY = 3;
@@ -1001,16 +1001,14 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   width = height = 37f;
-   sprite = "Exogenesis-plasma-bullet";
-   drawCircle = false;
+   size = 27f;
    trailWidth = 4.5f;
    trailLength = 8;
    spreadEffect = slopeEffect = Fx.none;
    shrinkY = shrinkX = 0.005f;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
    frontColor = Color.white;
-   randomLightningChance = 0.7f;
+   randomLightningChance = 1f;
    randomGenerateRange = 340f;
    randomLightningNum = 7;
    linkRange = 280f;
@@ -1022,7 +1020,7 @@ public static void load(){
    splashDamage = 700;
    lightningDamage = damage * 0.75f;
    intervalBullets = 2;
-   bulletInterval = 1;
+   bulletInterval = 3;
    intervalBullet =  new FlakBulletType(3.75f, 80){{
      trailColor = lightColor = hitColor = lightningColor = backColor = ExoPal.empyrean;
      frontColor = Color.white;
