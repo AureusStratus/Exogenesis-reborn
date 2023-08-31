@@ -36,7 +36,7 @@ public class DestructionBulletType extends BasicBulletType{
     public float randomGenerateChance = 0.03f;
     public float randomLightningChance = 0.1f;
     public int randomLightningNum = 4;
-    public Sound randomGenerateSound = Sounds.plasmaboom;
+    public Sound randomGenerateSound = Sounds.blaster;
 
     public Cons<Position> hitModifier = p -> {};
 
@@ -45,7 +45,7 @@ public class DestructionBulletType extends BasicBulletType{
     public int maxHit = 20;
     public int boltNum = 1;
 
-    public int   effectLingtning = 2;
+    public int  effectLingtning = 2;
     public float effectLightningChance = 0.35f;
     public float effectLightningLength = -1;
     public float effectLightningLengthRand = -1;
