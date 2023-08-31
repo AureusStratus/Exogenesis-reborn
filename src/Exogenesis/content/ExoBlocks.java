@@ -52,7 +52,7 @@ import static arc.graphics.g2d.Lines.*;
 public class ExoBlocks{
  public static Block
          //Empyrean
-         focalPoint, gale, light, bliss, tanons, glory, essence, purger,
+         focalPoint, gale, light, bliss, prism, tanons, glory, essence, purger,
          excalibur, aspect, godsent, eminence, grandeur, aether, agios, arbiter, phoss,
          genesisFactory, empyreanFactory;
 public static void load(){
@@ -74,7 +74,6 @@ public static void load(){
   shootWarmupSpeed = 0.08f;
   shootCone = 360f;
 
-  aimChangeSpeed = 2.5f;
   rotateSpeed = 2.5f;
   coolant = consumeCoolant(0.2f);
 
@@ -288,6 +287,78 @@ public static void load(){
    smokeEffect = Fx.colorSpark;
   }};
  }};
+ prism = new ContinuousTurret("prism"){{
+  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  range = 270f;
+  recoil = 0f;
+  reload = 10f;
+  shootEffect = Fx.colorSparkBig;
+  smokeEffect = Fx.none;
+  outlineColor = ExoPal.empyreanOutline;
+  size = 3;
+  shootY = 0;
+  warmupMaintainTime = 25f;
+  minWarmup = 0.96f;
+  shootWarmupSpeed = 0.04f;
+  scaledHealth = 280;
+  shootSound = Sounds.none;
+  loopSoundVolume = 1f;
+  loopSound = Sounds.laserbeam;
+  coolant = consumeCoolant(0.2f);
+  consumePower(6f);
+  drawer = new DrawTurret("elecian-"){{
+   parts.addAll(
+           new ShapePart(){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            hollow = true;
+            color = ExoPal.empyrean;
+            layer = Layer.effect;
+            circle = true;
+            stroke = 2;
+            radius = 0;
+            radiusTo = 5;
+           }},
+           new ShapePart(){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            hollow = true;
+            color = ExoPal.empyrean;
+            layer = Layer.effect;
+            circle = true;
+            stroke = 1;
+            radius = 0;
+            radiusTo = 6.5f;
+           }},
+           new ShapePart(){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            color = ExoPal.empyrean;
+            layer = Layer.effect;
+            circle = true;
+            radius = 0;
+            radiusTo = 5;
+           }},
+           new ShapePart(){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            color = Color.white;
+            layer = Layer.effect;
+            circle = true;
+            radius = 0;
+            radiusTo = 2.5f;
+           }}
+   );
+  }};
+  shootType = new PointLaserBulletType(){{
+   hitColor = trailColor = ExoPal.empyreanLight;
+   color = Color.white;
+   sprite = "exogenesis-prism-laser";
+   beamEffect = Fx.none;
+   oscMag = 0.5f;
+   trailWidth = 3;
+   trailLength = 8;
+   damage = 10;
+   hitEffect = ExoFx.hitMeltColor;
+   smokeEffect = Fx.colorSparkBig;
+  }};
+ }};
  tanons = new PowerTurret("tanons"){{
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 250f;
@@ -471,8 +542,8 @@ public static void load(){
    despawnEffect = Fx.none;
    knockback = 2f;
    lifetime = 140f;
-   height = 19f;
-   width = 17f;
+   height = 27f;
+   width = 21f;
    splashDamageRadius = 65f;
    splashDamage = 350f;
    scaledSplashDamage = true;
@@ -484,7 +555,7 @@ public static void load(){
    status = StatusEffects.blasted;
 
    trailLength = 32;
-   trailWidth = 3.35f;
+   trailWidth = 3.75f;
    trailSinScl = 2.5f;
    trailSinMag = 0.5f;
    despawnShake = 7f;
@@ -606,7 +677,7 @@ public static void load(){
        }}
      );
   }};
-  shootType = new ArrowBulletType(11f, 185){{
+  shootType = new ArrowBulletType(12f, 185){{
    lifetime = 49f;
    collidesGround = collidesTiles = false;
    width = 6;
@@ -633,7 +704,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 4;
   scaledHealth = 280;
-  xRand = 10;
+  xRand = 8;
   shoot = new ShootPattern(){{
    shotDelay = 3f;
    shots = 15;
@@ -649,7 +720,7 @@ public static void load(){
    spawnUnit = new MissileUnitType("eminence-missile"){{
     speed = 9.6f;
     maxRange = 6f;
-    lifetime = 60f;
+    lifetime = 40f;
     outlineColor = ExoPal.empyreanOutline;
     engineColor = trailColor = ExoPal.empyrean;
     engineLayer = Layer.effect;
