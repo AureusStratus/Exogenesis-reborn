@@ -1001,7 +1001,7 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   size = 27f;
+   size /= 1.5f;
    trailWidth = 4.5f;
    trailLength = 8;
    spreadEffect = slopeEffect = Fx.none;
@@ -1013,7 +1013,7 @@ public static void load(){
    randomLightningNum = 7;
    linkRange = 280f;
    range = 300f;
-   drawSize = 500f;
+   drawSize = 50f;
    drag = 0.0005f;
    hitSound = Sounds.explosionbig;
    splashDamageRadius = 100f;
@@ -1043,7 +1043,7 @@ public static void load(){
    pierce = false;
    collides = false;
    ammoMultiplier = 1f;
-   lifetime = 300;
+   lifetime = 500;
    despawnEffect = hitEffect = ExoFx.empyreanExplosion;
    shootEffect = ExoFx.square45_6_45;
    hitSpacing = 3;
