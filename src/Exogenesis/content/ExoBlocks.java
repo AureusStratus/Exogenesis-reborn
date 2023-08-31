@@ -1002,8 +1002,8 @@ public static void load(){
   }};
   shootType = new DestructionBulletType(1f, 460){{
    size /= 1.5f;
-   trailWidth = 4.5f;
-   trailLength = 8;
+   trailWidth = 7.5f;
+   trailLength = 17;
    spreadEffect = slopeEffect = Fx.none;
    shrinkY = shrinkX = 0.005f;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
@@ -1019,7 +1019,7 @@ public static void load(){
    splashDamageRadius = 100f;
    splashDamage = 700;
    lightningDamage = damage * 0.75f;
-   intervalBullets = 2;
+   intervalBullets = 1;
    bulletInterval = 3;
    intervalBullet =  new FlakBulletType(3.75f, 80){{
      trailColor = lightColor = hitColor = lightningColor = backColor = ExoPal.empyrean;
