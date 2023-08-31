@@ -297,6 +297,7 @@ public static void load(){
   outlineColor = ExoPal.empyreanOutline;
   size = 3;
   shootY = 0;
+  rotateSpeed = 3.5f;
   warmupMaintainTime = 25f;
   minWarmup = 0.96f;
   shootWarmupSpeed = 0.04f;
@@ -314,9 +315,10 @@ public static void load(){
             color = ExoPal.empyrean;
             layer = Layer.effect;
             circle = true;
-            stroke = 2;
+            stroke = 0;
+            strokeTo = 1;
             radius = 0;
-            radiusTo = 5;
+            radiusTo = 6;
            }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
@@ -324,9 +326,10 @@ public static void load(){
             color = ExoPal.empyrean;
             layer = Layer.effect;
             circle = true;
-            stroke = 1;
+            stroke = 0;
+            strokeTo = 0.9f;
             radius = 0;
-            radiusTo = 6.5f;
+            radiusTo = 7.5f;
            }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
@@ -334,7 +337,7 @@ public static void load(){
             layer = Layer.effect;
             circle = true;
             radius = 0;
-            radiusTo = 5;
+            radiusTo = 4;
            }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
@@ -342,7 +345,7 @@ public static void load(){
             layer = Layer.effect;
             circle = true;
             radius = 0;
-            radiusTo = 2.5f;
+            radiusTo = 2f;
            }}
    );
   }};
@@ -351,10 +354,10 @@ public static void load(){
    color = Color.white;
    sprite = "exogenesis-prism-laser";
    beamEffect = Fx.none;
-   oscMag = 0.5f;
+   oscMag = 0.1f;
    trailWidth = 3;
    trailLength = 8;
-   damage = 10;
+   damage = 25;
    hitEffect = ExoFx.hitMeltColor;
    smokeEffect = Fx.colorSparkBig;
   }};
