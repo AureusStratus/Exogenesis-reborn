@@ -506,7 +506,7 @@ public static void load(){
    length = 210f;
    hitColor = ExoPal.empyrean;
    shootEffect = ExoFx.square45_6_45;
-   colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
+   colors = new Color[]{Color.valueOf("f5c04590"), Color.valueOf("fee761"), Color.white};
   }};
  }};
  excalibur = new PowerTurret("excalibur"){{
@@ -1002,8 +1002,8 @@ public static void load(){
   }};
   shootType = new DestructionBulletType(1f, 460){{
    size /= 1.1f;
-   trailWidth = 7.5f;
-   trailLength = 37;
+   trailWidth = 9.5f;
+   trailLength = 57;
 
    spreadEffect = slopeEffect = Fx.none;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
@@ -1019,12 +1019,11 @@ public static void load(){
            }}
    );
    randomLightningChance = 1f;
-   randomGenerateRange = 340f;
-   randomLightningNum = 7;
+   randomGenerateRange = 260f;
+   randomLightningNum = 5;
    linkRange = 280f;
    range = 300f;
-   drawSize = 50f;
-   drag = 0.0005f;
+   drawSize = 40f;
    hitSound = Sounds.explosionbig;
    splashDamageRadius = 100f;
    splashDamage = 700;
@@ -1037,10 +1036,10 @@ public static void load(){
     sideWidth = 1.5f;
     sideLength = 30f;
     width = 25f;
-    length = 210f;
+    length = 150f;
     hitColor = ExoPal.empyrean;
     shootEffect = ExoFx.square45_6_45;
-    colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
+    colors = new Color[]{Color.valueOf("f5c04550"), Color.valueOf("fee761"), Color.white};
    }};
    pierce = false;
    collides = false;
@@ -1080,9 +1079,7 @@ public static void load(){
     despawnEffect = ExoFx.colorBombSmall;
     hitEffect = ExoFx.hitSparkHuge;
    }};
-   fragLifeMax = 5f;
-   fragLifeMin = 1.5f;
-   fragVelocityMax = 1.3f;
+   fragVelocityMax = 1f;
    fragVelocityMin = 0.35f;
   }};
  }};
