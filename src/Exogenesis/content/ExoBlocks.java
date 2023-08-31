@@ -951,7 +951,7 @@ public static void load(){
   requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
   range = 290f;
   recoil = 0f;
-  reload = 4f;
+  reload = 230f;
   shake = 4f;
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
@@ -963,28 +963,24 @@ public static void load(){
   warmupMaintainTime = 30f;
   minWarmup = 0.96f;
   shootWarmupSpeed = 0.03f;
-  shootY = 5f;
-  shootCone = 100f;
+  shootY = 8f;
+  shootCone = 50f;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
    parts.addAll(
            new RegionPart("-blade"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            heatColor = color.red;
-            heatProgress = PartProgress.warmup;
             moveX = 2f;
             moveY = -2;
-            moveRot = 17;
+            moveRot = 35;
             mirror = true;
            }},
            new RegionPart("-blade"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            heatColor = color.red;
-            heatProgress = PartProgress.warmup;
             moveX = 2f;
             moveY = -2;
-            moveRot = 14;
+            moveRot = 24;
             mirror = true;
            }},
            new RegionPart("-plate"){{
@@ -1004,12 +1000,82 @@ public static void load(){
            }}
    );
   }};
-  shootType = new PosLightningType(70f){{
-   lightningColor = hitColor = ExoPal.empyrean;
-   lightningDamage = 8;
-   maxRange = rangeOverride = 290f;
-   hitEffect = Fx.circleColorSpark;
-   smokeEffect = Fx.shootBigSmoke2;
+  shootType = new DestructionBulletType(2.75f, 460){{
+   trailWidth = 4.5f;
+   trailLength = 66;
+   spreadEffect = slopeEffect = Fx.none;
+   trailEffect = ExoFx.hitSparkHuge;
+   trailInterval = 5;
+   shrinkY = shrinkX = 0f;
+   backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
+   frontColor = Color.white;
+   randomGenerateRange = 340f;
+   randomLightningNum = 3;
+   linkRange = 280f;
+   range = 800f;
+   drawSize = 500f;
+   drag = 0.0005f;
+   hitSound = Sounds.explosionbig;
+   splashDamageRadius = 120f;
+   splashDamage = 700;
+   lightningDamage = damage * 0.75f;
+   intervalBullets = 2;
+   intervalBullet =  new FlakBulletType(3.75f, 80){{
+     trailColor = lightColor = lightningColor = backColor = ExoPal.empyrean;
+     frontColor = Color.white;
+     homingRange = 60;
+     homingPower = 0.1f;
+     trailLength = 14;
+     trailWidth = 2.7f;
+     despawnEffect = hitEffect = ExoFx.colorBombSmall;
+     lifetime = 90f;
+     width = 9f;
+     height = 14f;
+     collidesTiles = false;
+     splashDamageRadius = 60f;
+     splashDamage = damage * 0.6f;
+     lightning = 3;
+     lightningLength = 8;
+     smokeEffect = Fx.shootBigSmoke2;
+     hitShake = 8f;
+     hitSound = Sounds.plasmaboom;
+   }};
+   collidesTiles = true;
+   pierce = false;
+   collides = false;
+   ammoMultiplier = 1f;
+   lifetime = 300;
+   despawnEffect = hitEffect = ExoFx.empyreanExplosion;
+   shootEffect = ExoFx.square45_6_45;
+   hitSpacing = 3;
+   fragBullets = 10;
+   fragBullet = new BasicBulletType(2f, 100, "shell"){{
+    width = 10;
+    height = 17f;
+    shrinkY = shrinkX = 0.7f;
+    backColor = trailColor = lightColor = lightningColor = hitColor = ExoPal.empyrean;
+    frontColor = Color.white;
+    trailEffect = Fx.missileTrail;
+    trailParam = 3.5f;
+    splashDamage = 80;
+    splashDamageRadius = 40;
+    lifetime = 18f;
+    lightning = 2;
+    lightningLength = lightningLengthRand = 4;
+    lightningDamage = 30;
+    hitSoundVolume /= 2.2f;
+    despawnShake = hitShake = 4f;
+    despawnSound = hitSound = Sounds.dullExplosion;
+    trailWidth = 3f;
+    trailLength = 7;
+    trailInterp = Interp.slope;
+    despawnEffect = ExoFx.colorBombSmall;
+    hitEffect = ExoFx.hitSparkHuge;
+   }};
+   fragLifeMax = 5f;
+   fragLifeMin = 1.5f;
+   fragVelocityMax = 1.3f;
+   fragVelocityMin = 0.35f;
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{

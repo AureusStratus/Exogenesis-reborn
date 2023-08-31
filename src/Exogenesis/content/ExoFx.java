@@ -214,7 +214,20 @@ public class ExoFx{
         }
         Lines.endLine();
     }).followParent(false),
+            circleOut  = new Effect(60f, 500f, e -> {
+                Lines.stroke(2.5f * e.fout(), e.color);
+                Lines.circle(e.x, e.y, e.rotation * e.fin(Interp.pow3Out));
+            }),
+            hitSparkHuge = new Effect(70, e -> {
+                color(e.color, Color.white, e.fout() * 0.3f);
+                stroke(e.fout() * 1.6f);
 
+                rand.setSeed(e.id);
+                randLenVectors(e.id, 26, e.finpow() * 65f, (x, y) -> {
+                    float ang = Mathf.angle(x, y);
+                    lineAngle(e.x + x, e.y + y, ang, e.fout() * rand.random(6, 9) + 3f);
+                });
+            }),
     chainLightningFadeReversed = new Effect(45f, 500f, e -> {
         if(!(e.data instanceof Position))return;
         Position p = e.data();
