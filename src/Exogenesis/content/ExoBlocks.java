@@ -1001,18 +1001,19 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   size /= 1.5f;
+   size /= 1.1f;
    trailWidth = 7.5f;
-   trailLength = 17;
+   trailLength = 37;
+
    spreadEffect = slopeEffect = Fx.none;
-   shrinkY = shrinkX = 0.005f;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
    frontColor = Color.white;
+   scaleLife = false;
    parts.addAll(
            new HoverPart(){{
             color = ExoPal.empyrean;
             phase = 100f;
-            radius = 36;
+            radius = 56;
             circles = 4;
             stroke = 4.5f;
            }}
@@ -1030,38 +1031,20 @@ public static void load(){
    lightningDamage = 6f;
    intervalBullets = 1;
    bulletInterval = 3;
-   intervalBullet =  new FlakBulletType(3.75f, 80){{
-     trailColor = lightColor = hitColor = lightningColor = backColor = ExoPal.empyrean;
-     frontColor = Color.white;
-     homingRange = 60;
-     homingPower = 0.1f;
-     trailLength = 14;
-     trailWidth = 2.7f;
-     despawnEffect = hitEffect = ExoFx.colorBombSmall;
-     lifetime = 40f;
-     parts.addAll(
-            new FlarePart(){{
-             progress = PartProgress.reload;
-             color1 = ExoPal.empyrean;
-             y = 6;
-             radius = 10;
-             radiusTo = 0;
-             stroke = 2.5f;
-            }}
-     );
-     width = height = 1f;
-     collidesTiles = false;
-     splashDamageRadius = 60f;
-     splashDamage = damage * 0.6f;
-     lightning = 3;
-     lightningLength = 8;
-     hitSound = Sounds.bolt;
+   intervalBullet =  new LaserBulletType(){{
+    damage = 75f;
+    sideAngle = 40f;
+    sideWidth = 1.5f;
+    sideLength = 30f;
+    width = 25f;
+    length = 210f;
+    hitColor = ExoPal.empyrean;
+    shootEffect = ExoFx.square45_6_45;
+    colors = new Color[]{Color.valueOf("fee76190"), Color.valueOf("fee761"), Color.white};
    }};
-   collidesTiles = true;
    pierce = false;
    collides = false;
-   ammoMultiplier = 1f;
-   lifetime = 500;
+   lifetime = 650;
    despawnEffect = hitEffect = ExoFx.empyreanExplosion;
    shootEffect = ExoFx.square45_6_45;
    hitSpacing = 3;
@@ -1073,9 +1056,9 @@ public static void load(){
              progress = PartProgress.reload;
              color1 = ExoPal.empyrean;
              y = 6;
-             radius = 10;
+             radius = 22;
              radiusTo = 0;
-             stroke = 2.5f;
+             stroke = 3.5f;
             }}
     );
     backColor = trailColor = lightColor = lightningColor = hitColor = ExoPal.empyrean;
