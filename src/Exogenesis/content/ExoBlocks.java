@@ -971,14 +971,14 @@ public static void load(){
    parts.addAll(
            new RegionPart("-blade"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            moveX = 2f;
+            moveX = 8f;
             moveY = -2;
             moveRot = 35;
             mirror = true;
            }},
            new RegionPart("-blade"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            moveX = 2f;
+            moveX = 8f;
             moveY = -2;
             moveRot = 24;
             mirror = true;
@@ -1002,24 +1002,27 @@ public static void load(){
   }};
   shootType = new DestructionBulletType(1f, 460){{
    width = height = 37f;
+   sprite = "Exogenesis-plasma-bullet";
+   drawCircle = false;
    trailWidth = 4.5f;
    trailLength = 8;
    spreadEffect = slopeEffect = Fx.none;
-   shrinkY = shrinkX = 0f;
+   shrinkY = shrinkX = 0.005f;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
    frontColor = Color.white;
    randomLightningChance = 0.7f;
    randomGenerateRange = 340f;
    randomLightningNum = 7;
    linkRange = 280f;
-   range = 800f;
+   range = 300f;
    drawSize = 500f;
    drag = 0.0005f;
    hitSound = Sounds.explosionbig;
-   splashDamageRadius = 120f;
+   splashDamageRadius = 100f;
    splashDamage = 700;
    lightningDamage = damage * 0.75f;
    intervalBullets = 2;
+   bulletInterval = 1;
    intervalBullet =  new FlakBulletType(3.75f, 80){{
      trailColor = lightColor = hitColor = lightningColor = backColor = ExoPal.empyrean;
      frontColor = Color.white;
@@ -1028,7 +1031,7 @@ public static void load(){
      trailLength = 14;
      trailWidth = 2.7f;
      despawnEffect = hitEffect = ExoFx.colorBombSmall;
-     lifetime = 90f;
+     lifetime = 40f;
      width = 9f;
      height = 14f;
      collidesTiles = false;
@@ -1036,9 +1039,7 @@ public static void load(){
      splashDamage = damage * 0.6f;
      lightning = 3;
      lightningLength = 8;
-     smokeEffect = Fx.shootBigSmoke2;
-     hitShake = 8f;
-     hitSound = Sounds.plasmaboom;
+     hitSound = Sounds.bolt;
    }};
    collidesTiles = true;
    pierce = false;
@@ -1048,11 +1049,10 @@ public static void load(){
    despawnEffect = hitEffect = ExoFx.empyreanExplosion;
    shootEffect = ExoFx.square45_6_45;
    hitSpacing = 3;
-   fragBullets = 10;
-   fragBullet = new BasicBulletType(2f, 100, "shell"){{
-    width = 10;
-    height = 17f;
-    shrinkY = shrinkX = 0.7f;
+   fragBullets = 30;
+   fragBullet = new BasicBulletType(4f, 100, "shell"){{
+    width = 13;
+    height = 21f;
     backColor = trailColor = lightColor = lightningColor = hitColor = ExoPal.empyrean;
     frontColor = Color.white;
     trailEffect = Fx.missileTrail;
