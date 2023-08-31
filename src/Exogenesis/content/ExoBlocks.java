@@ -317,7 +317,7 @@ public static void load(){
             circle = true;
             stroke = 0;
             strokeTo = 1;
-            radius = 0;
+            radius = 6;
             radiusTo = 6;
            }},
            new ShapePart(){{
@@ -328,7 +328,7 @@ public static void load(){
             circle = true;
             stroke = 0;
             strokeTo = 0.9f;
-            radius = 0;
+            radius = 7.5f;
             radiusTo = 7.5f;
            }},
            new ShapePart(){{
@@ -353,7 +353,7 @@ public static void load(){
    hitColor = trailColor = ExoPal.empyreanLight;
    color = Color.white;
    sprite = "exogenesis-prism-laser";
-   beamEffect = Fx.none;
+   beamEffect = ExoFx.hitMeltColor;
    oscMag = 0.1f;
    trailWidth = 3;
    trailLength = 8;
@@ -481,7 +481,7 @@ public static void load(){
   shootY = 12;
   shoot = new ShootAlternate(){{
    barrels = 2;
-   spread = 13;
+   spread = 12;
   }};
   rotateSpeed = 2f;
   coolant = consumeCoolant(0.2f);
@@ -723,7 +723,7 @@ public static void load(){
    spawnUnit = new MissileUnitType("eminence-missile"){{
     speed = 9.6f;
     maxRange = 6f;
-    lifetime = 40f;
+    lifetime = 45f;
     outlineColor = ExoPal.empyreanOutline;
     engineColor = trailColor = ExoPal.empyrean;
     engineLayer = Layer.effect;
@@ -777,7 +777,7 @@ public static void load(){
   rotateSpeed = 1;
   loopSound = ExoSounds.funnylaserloop;
   shootSound = ExoSounds.bigLaserShoot;
-  loopSoundVolume = 2f;
+  loopSoundVolume = 1.5f;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
@@ -959,27 +959,37 @@ public static void load(){
   scaledHealth = 280;
   cooldownTime = 320;
   shootSound = Sounds.bolt;
-  var haloProgress = PartProgress.warmup;
-  Color haloColor = Color.valueOf("fee761"), heatCol = Color.red;
-  float haloY = -15f, haloRotSpeed = 1.5f;
 
-  var circleProgress = PartProgress.warmup.delay(0.9f);
-  var circleColor = haloColor;
-  float circleY = 25f, circleRad = 14f, circleRotSpeed = 3.5f, circleStroke = 1.6f;
-
-  shoot = new ShootSummon(0f, 0f, circleRad, 48f);
   warmupMaintainTime = 30f;
   minWarmup = 0.96f;
   shootWarmupSpeed = 0.03f;
-  shootY = circleY - 5f;
+  shootY = 5f;
   shootCone = 100f;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
    parts.addAll(
+           new RegionPart("-blade"){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            heatColor = color.red;
+            heatProgress = PartProgress.warmup;
+            moveX = 2f;
+            moveY = -2;
+            moveRot = 17;
+            mirror = true;
+           }},
+           new RegionPart("-blade"){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            heatColor = color.red;
+            heatProgress = PartProgress.warmup;
+            moveX = 2f;
+            moveY = -2;
+            moveRot = 14;
+            mirror = true;
+           }},
            new RegionPart("-plate"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            heatColor = heatCol;
+            heatColor = color.red;
             heatProgress = PartProgress.warmup;
             moveX = 2f;
             moveY = 3;
