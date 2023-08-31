@@ -1000,17 +1000,17 @@ public static void load(){
            }}
    );
   }};
-  shootType = new DestructionBulletType(2.75f, 460){{
+  shootType = new DestructionBulletType(1f, 460){{
+   width = height = 37f;
    trailWidth = 4.5f;
-   trailLength = 66;
+   trailLength = 8;
    spreadEffect = slopeEffect = Fx.none;
-   trailEffect = ExoFx.hitSparkHuge;
-   trailInterval = 5;
    shrinkY = shrinkX = 0f;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
    frontColor = Color.white;
+   randomLightningChance = 0.7f;
    randomGenerateRange = 340f;
-   randomLightningNum = 3;
+   randomLightningNum = 7;
    linkRange = 280f;
    range = 800f;
    drawSize = 500f;
@@ -1021,7 +1021,7 @@ public static void load(){
    lightningDamage = damage * 0.75f;
    intervalBullets = 2;
    intervalBullet =  new FlakBulletType(3.75f, 80){{
-     trailColor = lightColor = lightningColor = backColor = ExoPal.empyrean;
+     trailColor = lightColor = hitColor = lightningColor = backColor = ExoPal.empyrean;
      frontColor = Color.white;
      homingRange = 60;
      homingPower = 0.1f;
