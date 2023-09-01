@@ -969,6 +969,42 @@ public static void load(){
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
    parts.addAll(
+           new HoverPart(){{
+            color = ExoPal.empyrean;
+            y = shootY;
+            layer = Layer.effect;
+            phase = 60;
+            circles = 1;
+            radius = 16;
+           }},
+           new ShapePart(){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            color = ExoPal.empyrean;
+            y = shootY;
+            layer = Layer.effect;
+            circle = true;
+            radius = 3;
+            radiusTo = 6;
+           }},
+           new ShapePart(){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            color = Color.white;
+            y = shootY;
+            layer = Layer.effect;
+            circle = true;
+            radius = 1;
+            radiusTo = 4f;
+           }},
+           new FlarePart(){{
+            progress = PartProgress.reload;
+            color1 = ExoPal.empyrean;
+            y = shootY;
+            followRotation = true;
+            sides = 2;
+            radius = 0;
+            radiusTo = 30;
+            stroke = 2.5f;
+           }},
            new RegionPart("-blade"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             moveX = 8f;
@@ -978,9 +1014,16 @@ public static void load(){
            }},
            new RegionPart("-blade"){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            moveX = 8f;
+            moveX = 11f;
             moveY = -2;
-            moveRot = 24;
+            moveRot = 45;
+            mirror = true;
+           }},
+           new RegionPart("-blade"){{
+            progress = PartProgress.warmup.curve(Interp.pow2In);
+            moveX = 11f;
+            moveY = -2;
+            moveRot = 34;
             mirror = true;
            }},
            new RegionPart("-plate"){{
@@ -1001,7 +1044,7 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   size /= 2.5f;
+   size /= 2.3f;
    trailWidth = 9.5f;
    trailLength = 57;
 
@@ -1009,19 +1052,11 @@ public static void load(){
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
    frontColor = Color.white;
    scaleLife = false;
-   parts.addAll(
-           new HoverPart(){{
-            color = ExoPal.empyrean;
-            phase = 100f;
-            radius = 86;
-            circles = 4;
-            stroke = 4.5f;
-           }}
-   );
    randomLightningChance = 1f;
    randomGenerateRange = 260f;
    randomLightningNum = 5;
    linkRange = 280f;
+   drag = 0.005f;
    range = 300f;
    drawSize = 20f;
    hitSound = Sounds.explosionbig;
