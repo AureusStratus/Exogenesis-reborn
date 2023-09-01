@@ -1001,7 +1001,7 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   size /= 0.5f;
+   size /= 2.5f;
    trailWidth = 9.5f;
    trailLength = 57;
 
