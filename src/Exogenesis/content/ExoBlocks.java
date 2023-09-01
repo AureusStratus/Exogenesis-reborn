@@ -963,7 +963,7 @@ public static void load(){
   warmupMaintainTime = 30f;
   minWarmup = 0.96f;
   shootWarmupSpeed = 0.03f;
-  shootY = 13f;
+  shootY = 16f;
   rotateSpeed = 2;
   shootCone = 50f;
   coolant = consumeCoolant(0.2f);
@@ -976,8 +976,8 @@ public static void load(){
             y = shootY;
             layer = Layer.effect;
             circle = true;
-            radius = 3;
-            radiusTo = 6;
+            radius = 2;
+            radiusTo = 7;
            }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
@@ -985,17 +985,16 @@ public static void load(){
             y = shootY;
             layer = Layer.effect;
             circle = true;
-            radius = 1;
-            radiusTo = 4f;
+            radius = 0.5f;
+            radiusTo = 5f;
            }},
            new FlarePart(){{
-            progress = PartProgress.reload;
+            progress = PartProgress.warmup.curve(Interp.pow2In);
             color1 = ExoPal.empyrean;
             y = shootY;
-            followRotation = true;
             sides = 2;
             radius = 0;
-            radiusTo = 30;
+            radiusTo = 70;
             stroke = 2.5f;
            }},
            new RegionPart("-blade"){{
@@ -1037,7 +1036,7 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   size /= 2f;
+   size /= 2.2f;
    trailWidth = 9.5f;
    trailLength = 57;
 
@@ -1046,25 +1045,23 @@ public static void load(){
    frontColor = Color.white;
    scaleLife = false;
    randomLightningChance = 1f;
-   randomGenerateRange = 260f;
+   randomGenerateRange = linkRange = 200f;
    randomLightningNum = 5;
-   linkRange = 280f;
-   drag = 0.002f;
-   range = 300f;
+   range = 200f;
    drawSize = 20f;
    hitSound = Sounds.explosionbig;
    splashDamageRadius = 100f;
    splashDamage = 700;
    lightningDamage = 6f;
    intervalBullets = 1;
-   bulletInterval = 3;
+   bulletInterval = 4;
    intervalBullet =  new LaserBulletType(){{
     damage = 75f;
     sideAngle = 40f;
-    sideWidth = 1.5f;
+    sideWidth = 0f;
     sideLength = 30f;
     width = 25f;
-    length = 150f;
+    length = 100f;
     hitColor = ExoPal.empyrean;
     shootEffect = ExoFx.square45_6_45;
     colors = new Color[]{Color.valueOf("f5c04590"), Color.valueOf("fee761"), Color.white};
