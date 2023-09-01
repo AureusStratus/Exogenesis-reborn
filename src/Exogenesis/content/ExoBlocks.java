@@ -1001,7 +1001,7 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   size /= 1.1f;
+   size /= 0.5f;
    trailWidth = 9.5f;
    trailLength = 57;
 
@@ -1013,7 +1013,7 @@ public static void load(){
            new HoverPart(){{
             color = ExoPal.empyrean;
             phase = 100f;
-            radius = 56;
+            radius = 86;
             circles = 4;
             stroke = 4.5f;
            }}
@@ -1023,7 +1023,7 @@ public static void load(){
    randomLightningNum = 5;
    linkRange = 280f;
    range = 300f;
-   drawSize = 40f;
+   drawSize = 20f;
    hitSound = Sounds.explosionbig;
    splashDamageRadius = 100f;
    splashDamage = 700;
@@ -1039,7 +1039,7 @@ public static void load(){
     length = 150f;
     hitColor = ExoPal.empyrean;
     shootEffect = ExoFx.square45_6_45;
-    colors = new Color[]{Color.valueOf("f5c04550"), Color.valueOf("fee761"), Color.white};
+    colors = new Color[]{Color.valueOf("f5c04590"), Color.valueOf("fee761"), Color.white};
    }};
    pierce = false;
    collides = false;
@@ -1066,7 +1066,7 @@ public static void load(){
     trailParam = 3.5f;
     splashDamage = 80;
     splashDamageRadius = 40;
-    lifetime = 18f;
+    lifetime = 58f;
     lightning = 2;
     lightningLength = lightningLengthRand = 4;
     lightningDamage = 30;
