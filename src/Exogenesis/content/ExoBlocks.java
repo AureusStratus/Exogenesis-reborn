@@ -963,20 +963,13 @@ public static void load(){
   warmupMaintainTime = 30f;
   minWarmup = 0.96f;
   shootWarmupSpeed = 0.03f;
-  shootY = 8f;
+  shootY = 13f;
+  rotateSpeed = 2;
   shootCone = 50f;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
    parts.addAll(
-           new HoverPart(){{
-            color = ExoPal.empyrean;
-            y = shootY;
-            layer = Layer.effect;
-            phase = 60;
-            circles = 1;
-            radius = 16;
-           }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             color = ExoPal.empyrean;
@@ -1044,7 +1037,7 @@ public static void load(){
    );
   }};
   shootType = new DestructionBulletType(1f, 460){{
-   size /= 2.3f;
+   size /= 2f;
    trailWidth = 9.5f;
    trailLength = 57;
 
@@ -1056,7 +1049,7 @@ public static void load(){
    randomGenerateRange = 260f;
    randomLightningNum = 5;
    linkRange = 280f;
-   drag = 0.005f;
+   drag = 0.002f;
    range = 300f;
    drawSize = 20f;
    hitSound = Sounds.explosionbig;
