@@ -515,17 +515,19 @@ public static void load(){
   recoil = 2f;
   reload = 80f;
   shake = 2f;
-  shootEffect = Fx.colorSparkBig;
   smokeEffect = Fx.none;
   heatColor = Color.red;
   outlineColor = ExoPal.empyreanOutline;
   size = 4;
   scaledHealth = 280;
   targetAir = false;
-  shootSound = Sounds.laser;
-  shoot.shots = 8;
-  velocityRnd = 0.2f;
-  inaccuracy = 12f;
+  shootSound = Sounds.largeCannon;
+  shoot = new ShootPattern() {{
+   shots = 7;
+   shotDelay = 5;
+  }};
+  velocityRnd = 0.3f;
+  inaccuracy = 17f;
   coolant = consumeCoolant(0.2f);
 
   consumePower(6f);
@@ -533,7 +535,7 @@ public static void load(){
    parts.addAll(
    new RegionPart("-body"){{
    progress = PartProgress.recoil;
-   moveY = -5;
+   moveY = -8;
    mirror = false;
    }},
    new RegionPart("-plate"){{
@@ -544,7 +546,7 @@ public static void load(){
    );
   }};
   shootType = new ArtilleryBulletType(4.5f, 350, "shell"){{
-   hitEffect = new MultiEffect(Fx.titanExplosion, Fx.titanSmoke);
+   hitEffect = new MultiEffect(Fx.titanExplosion, Fx.flakExplosionBig);
    despawnEffect = Fx.none;
    knockback = 2f;
    lifetime = 140f;
@@ -561,7 +563,7 @@ public static void load(){
    status = StatusEffects.blasted;
 
    trailLength = 32;
-   trailWidth = 3.75f;
+   trailWidth = 3f;
    trailSinScl = 2.5f;
    trailSinMag = 0.5f;
    despawnShake = 7f;
@@ -739,7 +741,6 @@ public static void load(){
     loopSound = Sounds.missileTrail;
     loopSoundVolume = 0.6f;
     deathSound = Sounds.explosion;
-    targetGround = false;
     fogRadius = 0f;
     health = 210;
 
@@ -918,6 +919,14 @@ public static void load(){
    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
    impact = true;
    knockback = 3f;
+   trailRotation = true;
+   trailInterval = 7f;
+   trailEffect = new Effect(30f, e -> {
+    color(ExoPal.empyrean);
+    for(int s : Mathf.signs){
+     Drawf.tri(e.x, e.y, 5.5f, 44f * e.fslope(), e.rotation + 90f*s);
+    }
+   });
    sprite = "circle-bullet";
    hitSize = 12f;
    lightning = 2;
@@ -1059,10 +1068,10 @@ public static void load(){
    lightningDamage = 6f;
    intervalBullets = 1;
    bulletInterval = 2;
-   trailEffect = new Effect(40f, e -> {
+   trailEffect = new Effect(30f, e -> {
     color(ExoPal.empyrean);
     for(int s : Mathf.signs){
-     Drawf.tri(e.x, e.y, 2.5f, 54f * e.fslope(), e.rotation + 90f*s);
+     Drawf.tri(e.x, e.y, 5.5f, 44f * e.fslope(), e.rotation + 90f*s);
     }
    });
    homingRange = 80;
