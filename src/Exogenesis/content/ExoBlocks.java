@@ -1056,7 +1056,7 @@ public static void load(){
    lightningDamage = 6f;
    intervalBullets = 1;
    bulletInterval = 2;
-   trailEffect = new Effect(13f, e -> {
+   trailEffect = new Effect(20f, e -> {
     color(ExoPal.empyrean);
     for(int s : Mathf.signs){
      Drawf.tri(e.x, e.y, 2.5f, 54f * e.fslope(), e.rotation + 90f*s);
@@ -1070,8 +1070,8 @@ public static void load(){
      damage = 25;
      ammoMultiplier = 1f;
      lightningColor = ExoPal.empyrean;
-     lightningLength = 10;
-     lightningLengthRand = 18;
+     lightningLength = 5;
+     lightningLengthRand = 10;
    }};
    pierce = false;
    collides = false;
@@ -1079,6 +1079,8 @@ public static void load(){
    despawnEffect = hitEffect = ExoFx.empyreanExplosion;
    shootEffect = ExoFx.square45_6_45;
    hitSpacing = 3;
+   fragVelocityMin = 0.4f;
+   fragLifeMin = 0f;
    fragBullets = 15;
    fragBullet = new BasicBulletType(4f, 100){{
     width = height = 1f;
