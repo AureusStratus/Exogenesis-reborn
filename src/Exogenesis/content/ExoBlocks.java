@@ -2,6 +2,7 @@ package Exogenesis.content;
 
 import Exogenesis.content.ExoUnitTypes;
 import Exogenesis.Exogenesis;
+import Exogenesis.content.ExoItems;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 import Exogenesis.entities.bullet.*;
@@ -57,7 +58,7 @@ public class ExoBlocks{
          genesisFactory, empyreanFactory;
 public static void load(){
  focalPoint = new ContinuousTurret ("focal-point"){{
-  requirements(Category.turret, with(Items.copper, 60));
+  requirements(Category.turret, with(Items.silicon, 30, Items.beryllium, 20));
   range = 100f;
   recoil = 0f;
   shootEffect = ExoFx.colorBombSmaller;
@@ -100,7 +101,7 @@ public static void load(){
   }};
  }};
  gale = new PowerTurret ("gale"){{
-  requirements(Category.turret, with(Items.copper, 60));
+  requirements(Category.turret, with(Items.beryllium, 20, ExoItems.oltuxium, 20));
   range = 130f;
   recoil = 2f;
   reload = 50;
@@ -164,7 +165,7 @@ public static void load(){
   }};
  }};
  light = new SpeedupTurret("light"){{
-  requirements(Category.turret, with(Items.copper, 60));
+  requirements(Category.turret, with(ExoItems.oltuxium, 25, Items.copper, 25, Items.silicon, 20));
   range = 160f;
   recoil = 2f;
   reload = 20;
@@ -235,7 +236,7 @@ public static void load(){
   }};
  }};
  bliss = new PowerTurret("bliss"){{
-  requirements(Category.turret, with(Items.copper, 60));
+  requirements(Category.turret, with(ExoItems.oltuxium, 40, Items.silicon, 30));
   range = 200f;
   recoil = 2f;
   reload = 40;
@@ -288,7 +289,7 @@ public static void load(){
   }};
  }};
  prism = new ContinuousTurret("prism"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.copper, 30, Items.silicon, 50, ExoItems.oltuxium, 30, ExoItems.iron, 40));
   range = 270f;
   recoil = 0f;
   reload = 10f;
@@ -357,13 +358,13 @@ public static void load(){
    oscMag = 0.1f;
    trailWidth = 3;
    trailLength = 8;
-   damage = 25;
+   damage = 35;
    hitEffect = ExoFx.hitMeltColor;
    smokeEffect = Fx.colorSparkBig;
   }};
  }};
  tanons = new PowerTurret("tanons"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.silicon, 100, ExoItems.magnetite, 40, Items.copper, 40));
   range = 250f;
   recoil = 0;
   reload = 8f;
@@ -389,7 +390,7 @@ public static void load(){
   }};
  }};
  glory = new PowerTurret("glory"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.beryllium, 80, ExoItems.iron, 55, ExoItems.magnetite, 55));
   range = 450f;
   recoil = 2f;
   reload = 100f;
@@ -421,7 +422,7 @@ public static void load(){
   }};
  }};
  essence = new SpeedupTurret("essence"){{
-  requirements(Category.turret, with(Items.copper, 60));
+  requirements(Category.turret, with(Items.beryllium, 1000, ExoItems.iron, 85, ExoItems.oltuxium, 30));
   range = 230f;
   recoil = 2f;
   reload = 40;
@@ -465,7 +466,7 @@ public static void load(){
   }};
  }};
  purger = new PowerTurret("purger"){{
-  requirements(Category.turret, with(Items.copper, 60));
+  requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
   range = 210f;
   recoil = 0;
   reload = 25;
@@ -510,7 +511,7 @@ public static void load(){
   }};
  }};
  excalibur = new PowerTurret("excalibur"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.beryllium, 100, ExoItems.oltuxium, 50, Items.copper, 50, ExoItems.vanstariumAlloy, 170, ExoItems.litusiumAlloy, 70));
   range = 270f;
   recoil = 2f;
   reload = 80f;
@@ -535,7 +536,7 @@ public static void load(){
    parts.addAll(
    new RegionPart("-body"){{
    progress = PartProgress.recoil;
-   moveY = -8;
+   moveY = -6;
    mirror = false;
    }},
    new RegionPart("-plate"){{
@@ -577,7 +578,7 @@ public static void load(){
   }};
  }};
  aspect = new PowerTurret("aspect"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.copper, 120, ExoItems.oltuxium, 80, ExoItems.magnetite, 120, ExoItems.iron, 70, ExoItems.vanstariumAlloy, 120, ExoItems.litusiumAlloy, 80));
   range = 270f;
   recoil = 0f;
   reload = 10f;
@@ -650,7 +651,7 @@ public static void load(){
   }};
  }};
  godsent = new PowerTurret("godsent"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.copper, 120, ExoItems.osmium, 40, ExoItems.oltuxium, 120, ExoItems.magnetite, 60, ExoItems.vanstariumAlloy, 150, ExoItems.iron, 100, ExoItems.litusiumAlloy, 90));
   range = 950f;
   recoil = 2f;
   reload = 80f;
@@ -700,7 +701,7 @@ public static void load(){
   }};
  }};
  eminence = new PowerTurret("eminence"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.beryllium, 40, ExoItems.oltuxium, 80, ExoItems.gold, 50, ExoItems.magnetite, 40, ExoItems.iron, 140, ExoItems.vanstariumAlloy, 120, ExoItems.litusiumAlloy, 100));
   range = 300f;
   recoil = 2f;
   reload = 120f;
@@ -763,7 +764,7 @@ public static void load(){
   }};
  }};
  grandeur = new ContinuousTurret("grandeur"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.beryllium, 420, Items.silicon, 280, ExoItems.osmium, 100, ExoItems.magnetite, 320, ExoItems.lightningStone, 250, ExoItems.iron, 170, ExoItems.vanstariumAlloy, 180));
   range = 660f;
   recoil = 2f;
   shake = 2f;
@@ -867,7 +868,7 @@ public static void load(){
  }};
  }};
  aether = new PowerTurret("aether"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.copper, 420, Items.silicon, 480, ExoItems.gold, 170, ExoItems.magnetite, 320, ExoItems.chronophite, 350, ExoItems.vanstariumAlloy, 200, ExoItems.litusiumAlloy, 200));
   range = 290f;
   recoil = 5f;
   reload = 300f;
@@ -951,7 +952,7 @@ public static void load(){
   }};
  }};
  agios = new PowerTurret("agios"){{
-  requirements(Category.turret, with(Items.copper, 60, Items.lead, 70, Items.silicon, 60, Items.titanium, 30));
+  requirements(Category.turret, with(Items.copper, 220, Items.silicon, 500, ExoItems.oltuxium, 100, ExoItems.chronophite, 300, ExoItems.lightningStone, 300, ExoItems.iron, 450, ExoItems.vanstariumAlloy, 180, ExoItems.litusiumAlloy, 300));
   range = 290f;
   recoil = 0f;
   reload = 230f;
