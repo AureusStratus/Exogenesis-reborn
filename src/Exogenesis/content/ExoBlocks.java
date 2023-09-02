@@ -523,6 +523,9 @@ public static void load(){
   scaledHealth = 280;
   targetAir = false;
   shootSound = Sounds.laser;
+  shoot.shots = 8;
+  velocityRnd = 0.2f;
+  inaccuracy = 12f;
   coolant = consumeCoolant(0.2f);
 
   consumePower(6f);
@@ -1056,16 +1059,16 @@ public static void load(){
    lightningDamage = 6f;
    intervalBullets = 1;
    bulletInterval = 2;
-   trailEffect = new Effect(20f, e -> {
+   trailEffect = new Effect(40f, e -> {
     color(ExoPal.empyrean);
     for(int s : Mathf.signs){
      Drawf.tri(e.x, e.y, 2.5f, 54f * e.fslope(), e.rotation + 90f*s);
     }
    });
-   homingRange = 60;
+   homingRange = 80;
    homingPower = 0.01f;
    trailRotation = true;
-   trailInterval = 3f;
+   trailInterval = 7f;
    intervalBullet = new LightningBulletType(){{
      damage = 25;
      ammoMultiplier = 1f;
