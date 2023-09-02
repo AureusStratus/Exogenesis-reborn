@@ -546,7 +546,7 @@ public static void load(){
    );
   }};
   shootType = new ArtilleryBulletType(4.5f, 350, "shell"){{
-   hitEffect = new MultiEffect(Fx.titanExplosion, Fx.flakExplosionBig);
+   hitEffect = new MultiEffect(Fx.titanExplosion, ExoFx.empyreanExplosion, Fx.flakExplosionBig);
    despawnEffect = Fx.none;
    knockback = 2f;
    lifetime = 140f;
@@ -557,7 +557,6 @@ public static void load(){
    scaledSplashDamage = true;
    backColor = hitColor = trailColor = ExoPal.empyrean;
    frontColor = Color.white;
-   ammoMultiplier = 1f;
    hitSound = Sounds.titanExplosion;
 
    status = StatusEffects.blasted;
@@ -919,14 +918,6 @@ public static void load(){
    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
    impact = true;
    knockback = 3f;
-   trailRotation = true;
-   trailInterval = 7f;
-   trailEffect = new Effect(30f, e -> {
-    color(ExoPal.empyrean);
-    for(int s : Mathf.signs){
-     Drawf.tri(e.x, e.y, 5.5f, 44f * e.fslope(), e.rotation + 90f*s);
-    }
-   });
    sprite = "circle-bullet";
    hitSize = 12f;
    lightning = 2;
