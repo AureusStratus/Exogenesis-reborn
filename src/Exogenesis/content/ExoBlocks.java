@@ -1047,6 +1047,7 @@ public static void load(){
    randomLightningChance = 1f;
    randomGenerateRange = linkRange = 200f;
    randomLightningNum = 5;
+   maxHit = 10;
    range = 200f;
    drawSize = 20f;
    hitSound = Sounds.explosionbig;
@@ -1054,17 +1055,23 @@ public static void load(){
    splashDamage = 700;
    lightningDamage = 6f;
    intervalBullets = 1;
-   bulletInterval = 4;
-   intervalBullet =  new LaserBulletType(){{
-    damage = 75f;
-    sideAngle = 40f;
-    sideWidth = 0f;
-    sideLength = 30f;
-    width = 25f;
-    length = 100f;
-    hitColor = ExoPal.empyrean;
-    shootEffect = ExoFx.square45_6_45;
-    colors = new Color[]{Color.valueOf("f5c04590"), Color.valueOf("fee761"), Color.white};
+   bulletInterval = 2;
+   trailEffect = new Effect(13f, e -> {
+    color(ExoPal.empyrean);
+    for(int s : Mathf.signs){
+     Drawf.tri(e.x, e.y, 2.5f, 54f * e.fslope(), e.rotation + 90f*s);
+    }
+   });
+   homingRange = 60;
+   homingPower = 0.01f;
+   trailRotation = true;
+   trailInterval = 3f;
+   intervalBullet = new LightningBulletType(){{
+     damage = 25;
+     ammoMultiplier = 1f;
+     lightningColor = ExoPal.empyrean;
+     lightningLength = 10;
+     lightningLengthRand = 18;
    }};
    pierce = false;
    collides = false;
@@ -1072,7 +1079,7 @@ public static void load(){
    despawnEffect = hitEffect = ExoFx.empyreanExplosion;
    shootEffect = ExoFx.square45_6_45;
    hitSpacing = 3;
-   fragBullets = 30;
+   fragBullets = 15;
    fragBullet = new BasicBulletType(4f, 100){{
     width = height = 1f;
     parts.addAll(
@@ -1094,7 +1101,7 @@ public static void load(){
     lifetime = 58f;
     lightning = 2;
     lightningLength = lightningLengthRand = 4;
-    lightningDamage = 30;
+    lightningDamage = 20;
     hitSoundVolume /= 2.2f;
     despawnShake = hitShake = 4f;
     despawnSound = hitSound = Sounds.dullExplosion;
