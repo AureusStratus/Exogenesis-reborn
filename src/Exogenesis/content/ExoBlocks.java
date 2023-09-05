@@ -54,16 +54,16 @@ public class ExoBlocks{
  public static Block
          //Empyrean
          //env
-         deepVanWater, vanWater, vanShallowWater, vanSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim,  redLightningStone, blackSand,
+         deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim,  redLightningStone, blackSand,
          lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
          //ore
-         oltuxiumOre, goldOre, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
+         oreOltuxium, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
          //turrets
          focalPoint, gale, light, bliss, prism, tanons, glory, essence, purger,
          excalibur, aspect, godsent, eminence, grandeur, aether, agios, arbiter, phoss,
          genesisFactory, empyreanFactory;
 public static void load(){
- deepVanWater = new Floor("deep-vanster-water"){{
+ deepVansterWater = new Floor("deep-vanster-water"){{
   speedMultiplier = 0.2f;
   variants = 0;
   liquidDrop = Liquids.water;
@@ -76,7 +76,7 @@ public static void load(){
   albedo = 0.9f;
   supportsOverlay = true;
  }};
- vanWater = new Floor("vanster-water"){{
+ vansterWater = new Floor("vanster-water"){{
   speedMultiplier = 0.5f;
   variants = 0;
   status = StatusEffects.wet;
@@ -87,7 +87,7 @@ public static void load(){
   albedo = 0.9f;
   supportsOverlay = true;
  }};
- vanShallowWater = new ShallowLiquid("shallow-vanster-water"){{
+ shallowVansterWater = new ShallowLiquid("shallow-vanster-water"){{
   speedMultiplier = 0.65f;
   status = StatusEffects.wet;
   statusDuration = 50f;
@@ -95,7 +95,7 @@ public static void load(){
   albedo = 0.9f;
   supportsOverlay = true;
  }};
- vanSandyWater = new ShallowLiquid("vanster-sandy-water"){{
+ vansterSandyWater = new ShallowLiquid("vanster-sandy-water"){{
   speedMultiplier = 0.8f;
   statusDuration = 50f;
   albedo = 0.9f;
@@ -103,6 +103,7 @@ public static void load(){
  }};
  yellowIce = new Floor("yellow-ice"){{
   dragMultiplier = 0.35f;
+  variants = 2;
   speedMultiplier = 0.9f;
   attributes.set(Attribute.water, 0.4f);
   albedo = 0.65f;
@@ -119,7 +120,7 @@ public static void load(){
  lightningStoneDim = new Floor("lightning-stone-dim"){{
   variants = 4;
  }};
- blackSand = new Floor("black-sand"){{
+ blackSand = new Floor("blacksand"){{
   itemDrop = Items.sand;
   playerUnmineable = true;
  }};
@@ -133,8 +134,8 @@ public static void load(){
   redLightningStone.asFloor().wall = this;
  }};
  // Empyrean ores
- oltuxiumOre = new OreBlock(ExoItems.oltuxium);
- goldOre = new OreBlock(ExoItems.gold);
+ oreOltuxium = new OreBlock(ExoItems.oltuxium);
+ oreGold = new OreBlock(ExoItems.gold);
  ferricIronWall = new StaticWall("ferric-iron-wall"){{
   itemDrop = ExoItems.iron;
   variants = 3;
