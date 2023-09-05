@@ -53,10 +53,107 @@ import static arc.graphics.g2d.Lines.*;
 public class ExoBlocks{
  public static Block
          //Empyrean
+         //env
+         deepVanWater, vanWater, vanShallowWater, vanSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim,  redLightningStone, blackSand,
+         lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
+         //ore
+         oltuxiumOre, goldOre, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
+         //turrets
          focalPoint, gale, light, bliss, prism, tanons, glory, essence, purger,
          excalibur, aspect, godsent, eminence, grandeur, aether, agios, arbiter, phoss,
          genesisFactory, empyreanFactory;
 public static void load(){
+ deepVanWater = new Floor("deep-vanster-water"){{
+  speedMultiplier = 0.2f;
+  variants = 0;
+  liquidDrop = Liquids.water;
+  liquidMultiplier = 1.5f;
+  isLiquid = true;
+  status = StatusEffects.wet;
+  statusDuration = 120f;
+  drownTime = 200f;
+  cacheLayer = CacheLayer.water;
+  albedo = 0.9f;
+  supportsOverlay = true;
+ }};
+ vanWater = new Floor("vanster-water"){{
+  speedMultiplier = 0.5f;
+  variants = 0;
+  status = StatusEffects.wet;
+  statusDuration = 90f;
+  liquidDrop = Liquids.water;
+  isLiquid = true;
+  cacheLayer = CacheLayer.water;
+  albedo = 0.9f;
+  supportsOverlay = true;
+ }};
+ vanShallowWater = new ShallowLiquid("shallow-vanster-water"){{
+  speedMultiplier = 0.65f;
+  status = StatusEffects.wet;
+  statusDuration = 50f;
+  cacheLayer = CacheLayer.water;
+  albedo = 0.9f;
+  supportsOverlay = true;
+ }};
+ vanSandyWater = new ShallowLiquid("vanster-sandy-water"){{
+  speedMultiplier = 0.8f;
+  statusDuration = 50f;
+  albedo = 0.9f;
+  supportsOverlay = true;
+ }};
+ yellowIce = new Floor("yellow-ice"){{
+  dragMultiplier = 0.35f;
+  speedMultiplier = 0.9f;
+  attributes.set(Attribute.water, 0.4f);
+  albedo = 0.65f;
+ }};
+ yellowGrass = new Floor("yellow-grass"){{
+  variants = 4;
+ }};
+ redLightningStone = new Floor("red-lightning-stone"){{
+  variants = 4;
+ }};
+ lightningStoneCharged = new Floor("lightning-stone-charged"){{
+  variants = 4;
+ }};
+ lightningStoneDim = new Floor("lightning-stone-dim"){{
+  variants = 4;
+ }};
+ blackSand = new Floor("black-sand"){{
+  itemDrop = Items.sand;
+  playerUnmineable = true;
+ }};
+ lightningStoneChargedWall = new StaticWall("lightning-stone-wall-charged"){{
+  lightningStoneCharged.asFloor().wall = this;
+ }};
+ lightningStoneDimWall = new StaticWall("lightning-stone-wall-dim"){{
+  lightningStoneDim.asFloor().wall = this;
+ }};
+ redLightningStoneWall = new StaticWall("red-lightning-stone-wall"){{
+  redLightningStone.asFloor().wall = this;
+ }};
+ // Empyrean ores
+ oltuxiumOre = new OreBlock(ExoItems.oltuxium);
+ goldOre = new OreBlock(ExoItems.gold);
+ ferricIronWall = new StaticWall("ferric-iron-wall"){{
+  itemDrop = ExoItems.iron;
+  variants = 3;
+ }};
+ magnetiteOreWall = new StaticWall("magnetite-ore-wall"){{
+  itemDrop = ExoItems.magnetite;
+  variants = 3;
+ }};
+ magnetiteCrystal = new TallBlock("magnetite-crystal-blocks"){{
+  variants = 3;
+  itemDrop = ExoItems.magnetite;
+  clipSize = 128f;
+ }};
+ lightningCrystal = new TallBlock("lightning-crystal"){{
+  variants = 3;
+  itemDrop = ExoItems.lightningStone;
+  clipSize = 128f;
+ }};
+ //turrets Empyrean
  focalPoint = new ContinuousTurret ("focal-point"){{
   requirements(Category.turret, with(Items.silicon, 30, Items.beryllium, 20));
   range = 100f;
@@ -1057,7 +1154,7 @@ public static void load(){
    hitSound = Sounds.explosionbig;
    splashDamageRadius = 100f;
    splashDamage = 700;
-   lightningDamage = 6f;
+   lightningDamage = 11f;
    intervalBullets = 1;
    bulletInterval = 2;
    trailEffect = new Effect(30f, e -> {
@@ -1119,6 +1216,60 @@ public static void load(){
    }};
    fragVelocityMax = 1f;
    fragVelocityMin = 0.35f;
+  }};
+ }};
+ arbiter = new PowerTurret("arbiter"){{
+  requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
+  range = 210f;
+  recoil = 0;
+  reload = 25;
+  outlineColor = ExoPal.empyreanOutline;
+  size = 8;
+  scaledHealth = 280;
+  heatColor = Color.red;
+  recoils = 2;
+  shootSound = Sounds.laser;
+  inaccuracy = 1;
+  shootCone = 30f;
+  shootY = 32;
+  shoot = new ShootAlternate(){{
+   barrels = 2;
+   spread = 12;
+  }};
+  rotateSpeed = 1f;
+  coolant = consumeCoolant(0.2f);
+  consumePower(6f);
+  drawer = new DrawTurret("elecian-"){{
+   for(int i = 0; i < 2; i ++){
+    int f = i;
+    parts.addAll(
+     new RegionPart("-barrel-" + (i == 0 ? "l" : "r")){{
+     progress = PartProgress.recoil;
+     recoilIndex = f;
+     moveY = -6.5f;
+    }},
+    new RegionPart("-barrel-body"){{
+     progress = PartProgress.recoil;
+     mirror = true;
+     }},
+    new RegionPart("-barrel-plate-" + (i == 0 ? "l" : "r")){{
+     progress = PartProgress.recoil;
+     recoilIndex = f;
+     moveY = -3.5f;
+    }}
+    );
+   }
+  }};
+  shootType = new LaserBulletType(){{
+   damage = 75f;
+   sideAngle = 40f;
+   sideWidth = 1.5f;
+   sideLength = 30f;
+   width = 25f;
+   length = 210f;
+   hitColor = ExoPal.empyrean;
+   shootEffect = ExoFx.square45_6_45;
+   colors = new Color[]{Color.valueOf("f5c04590"), Color.valueOf("fee761"), Color.white};
   }};
  }};
  genesisFactory = new UnitFactory("genesis-factory"){{
