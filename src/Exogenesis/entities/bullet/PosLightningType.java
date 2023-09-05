@@ -21,9 +21,7 @@ public class PosLightningType extends BulletType{
 		instantDisappear = true;
 		collides = false;
 		collidesAir = collidesGround = true;
-		lightning = 3;
 		lightningDamage = damage;
-		lightningLength = lightningLengthRand = 6;
 		hitEffect = shootEffect = smokeEffect = Fx.none;
 		despawnEffect = Fx.none;
 	}
