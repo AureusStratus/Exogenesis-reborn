@@ -56,7 +56,7 @@ public class ExoBlocks{
          oreOsmium,
          //Empyrean
          //env
-         deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim,  redLightningStone, blackSand,
+         deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystone,  redLightningStone, blackSand,
          lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
          //ore
          oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
@@ -126,6 +126,9 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   variants = 4;
  }};
  lightningStoneDim = new Floor("lightning-stone-dim"){{
+  variants = 4;
+ }};
+ skystone = new Floor("skystone"){{
   variants = 4;
  }};
  blackSand = new Floor("blacksand"){{
