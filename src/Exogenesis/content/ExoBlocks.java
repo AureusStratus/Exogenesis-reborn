@@ -52,17 +52,23 @@ import static arc.graphics.g2d.Lines.*;
 
 public class ExoBlocks{
  public static Block
+         //mic
+         oreOsmium,
          //Empyrean
          //env
          deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim,  redLightningStone, blackSand,
          lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
          //ore
-         oreOltuxium, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
+         oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
          //turrets
          focalPoint, gale, light, bliss, prism, tanons, glory, essence, purger,
          excalibur, aspect, godsent, eminence, grandeur, aether, agios, arbiter, phoss,
          genesisFactory, empyreanFactory;
 public static void load(){
+oreOsmium = new OreBlock(ExoItems.osmium){{
+ wallOre = true;
+}};
+//empyrean
  deepVansterWater = new Floor("deep-vanster-water"){{
   speedMultiplier = 0.2f;
   variants = 0;
@@ -87,7 +93,7 @@ public static void load(){
   albedo = 0.9f;
   supportsOverlay = true;
  }};
- shallowVansterWater = new ShallowLiquid("shallow-vanster-water"){{
+ shallowVansterWater = new Floor("shallow-vanster-water"){{
   speedMultiplier = 0.65f;
   status = StatusEffects.wet;
   statusDuration = 50f;
@@ -95,7 +101,7 @@ public static void load(){
   albedo = 0.9f;
   supportsOverlay = true;
  }};
- vansterSandyWater = new ShallowLiquid("vanster-sandy-water"){{
+ vansterSandyWater = new Floor("vanster-sandy-water"){{
   speedMultiplier = 0.8f;
   statusDuration = 50f;
   albedo = 0.9f;
@@ -135,7 +141,9 @@ public static void load(){
  }};
  // Empyrean ores
  oreOltuxium = new OreBlock(ExoItems.oltuxium);
+ oreChronophite = new OreBlock(ExoItems.chronophite);
  oreGold = new OreBlock(ExoItems.gold);
+
  ferricIronWall = new StaticWall("ferric-iron-wall"){{
   itemDrop = ExoItems.iron;
   variants = 3;
@@ -852,7 +860,7 @@ public static void load(){
      bullet = new ExplosionBulletType(35f, 45f){{
       hitColor = ExoPal.empyrean;
       shootEffect = new MultiEffect(ExoFx.coloredHitLarge, ExoFx.colorBombSmall);
-      collidesGround = false;
+      collidesGround = true;
       collidesTiles = false;
       buildingDamageMultiplier = 0.3f;
      }};
