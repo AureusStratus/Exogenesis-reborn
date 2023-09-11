@@ -96,6 +96,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
  shallowVansterWater = new Floor("shallow-vanster-water"){{
   speedMultiplier = 0.65f;
   status = StatusEffects.wet;
+  liquidDrop = Liquids.water;
   statusDuration = 50f;
   cacheLayer = CacheLayer.water;
   albedo = 0.9f;
@@ -104,6 +105,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
  vansterSandyWater = new Floor("vanster-sandy-water"){{
   speedMultiplier = 0.8f;
   statusDuration = 50f;
+  liquidDrop = Liquids.water;
   albedo = 0.9f;
   supportsOverlay = true;
  }};
@@ -1255,6 +1257,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
      new RegionPart("-barrel-" + (i == 0 ? "l" : "r")){{
      progress = PartProgress.recoil;
      recoilIndex = f;
+     mirror = true;
      moveY = -6.5f;
     }},
     new RegionPart("-barrel-body"){{
