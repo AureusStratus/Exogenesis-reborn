@@ -44,7 +44,7 @@ public class ExoItems{
         }};
         iron = new Item("iron", Color.valueOf("9295a3")){{
             cost = 0.8f;
-            hardness = 2;
+            hardness = 3;
         }};
         magnetite = new Item("magnetite", Color.valueOf("3e404c")){{
             cost = 0.85f;
@@ -57,7 +57,7 @@ public class ExoItems{
         }};
         lightningStone = new Item("lightning-stone", Color.valueOf("fee761")){{
             cost = 1.3f;
-            hardness = 6;
+            hardness = 5;
             charge = 1.25f;
         }};
         chronophite = new Item("chronophite", Color.valueOf("efefef")){{

@@ -99,6 +99,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   liquidDrop = Liquids.water;
   statusDuration = 50f;
   cacheLayer = CacheLayer.water;
+  isLiquid = true;
   albedo = 0.9f;
   supportsOverlay = true;
  }};
@@ -106,6 +107,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   speedMultiplier = 0.8f;
   statusDuration = 50f;
   liquidDrop = Liquids.water;
+  isLiquid = true;
   albedo = 0.9f;
   supportsOverlay = true;
  }};
