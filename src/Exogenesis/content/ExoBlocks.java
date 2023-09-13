@@ -56,7 +56,7 @@ public class ExoBlocks{
          oreOsmium,
          //Empyrean
          //env
-         deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystone,  redLightningStone, blackSand,
+         deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, skystonebright,  redLightningStone, blackSand,
          lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
          //ore
          oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
@@ -66,6 +66,7 @@ public class ExoBlocks{
          genesisFactory, empyreanFactory;
 public static void load(){
 oreOsmium = new OreBlock(ExoItems.osmium){{
+ variants = 5;
  wallOre = true;
 }};
 //empyrean
@@ -130,8 +131,14 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
  lightningStoneDim = new Floor("lightning-stone-dim"){{
   variants = 4;
  }};
+ skystonegrey = new Floor("skystonegrey"){{
+  variants = 5;
+ }};
  skystone = new Floor("skystone"){{
   variants = 4;
+ }};
+ skystonebright = new Floor("skystonebright"){{
+  variants = 5;
  }};
  blackSand = new Floor("blacksand"){{
   itemDrop = Items.sand;
