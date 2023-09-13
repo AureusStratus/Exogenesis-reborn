@@ -138,7 +138,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   variants = 4;
  }};
  skystonebright = new Floor("skystonebright"){{
-  variants = 5;
+  variants = 4;
  }};
  blackSand = new Floor("blacksand"){{
   itemDrop = Items.sand;
