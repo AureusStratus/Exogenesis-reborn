@@ -102,7 +102,6 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   cacheLayer = CacheLayer.water;
   isLiquid = true;
   albedo = 0.9f;
-  supportsOverlay = true;
  }};
  vansterSandyWater = new Floor("vanster-sandy-water"){{
   speedMultiplier = 0.8f;
@@ -110,7 +109,6 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   liquidDrop = Liquids.water;
   isLiquid = true;
   albedo = 0.9f;
-  supportsOverlay = true;
  }};
  yellowIce = new Floor("yellow-ice"){{
   dragMultiplier = 0.35f;
@@ -138,7 +136,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   variants = 4;
  }};
  skystonebright = new Floor("skystonebright"){{
-  variants = 4;
+  variants = 5;
  }};
  blackSand = new Floor("blacksand"){{
   itemDrop = Items.sand;
@@ -504,6 +502,9 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   shootType = new PosLightningType(50f){{
    lightningColor = hitColor = ExoPal.empyrean;
    lightningDamage = 8;
+   lightning = 7;
+   lightningLength = 15;
+   lightningLengthRand = 35;
    maxRange = rangeOverride = 250f;
    hitEffect = Fx.circleColorSpark;
    smokeEffect = Fx.shootBigSmoke2;
@@ -1257,7 +1258,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   shootY = 32;
   shoot = new ShootAlternate(){{
    barrels = 2;
-   spread = 12;
+   spread = 16;
   }};
   rotateSpeed = 1f;
   coolant = consumeCoolant(0.2f);
@@ -1269,7 +1270,6 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
      new RegionPart("-barrel-" + (i == 0 ? "l" : "r")){{
      progress = PartProgress.recoil;
      recoilIndex = f;
-     mirror = true;
      moveY = -6.5f;
     }},
     new RegionPart("-barrel-body"){{
