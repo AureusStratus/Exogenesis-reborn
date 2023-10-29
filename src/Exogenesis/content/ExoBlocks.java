@@ -37,7 +37,7 @@ import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.units.UnitFactory;
-
+import mindustry.world.blocks.distribution.*;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
@@ -47,19 +47,18 @@ import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
-
-
-
 public class ExoBlocks{
  public static Block
          //mic
          oreOsmium,
          //Empyrean
          //env
-         deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, skystonebright,  redLightningStone, blackSand,
+         deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright,  redLightningStone, blackSand,
          lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
          //ore
          oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
+         //blocks
+         ductEmpyrean,
          //turrets
          focalPoint, gale, light, bliss, prism, tanons, glory, essence, purger,
          excalibur, aspect, godsent, eminence, grandeur, aether, agios, arbiter, phoss,
@@ -129,6 +128,12 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
  lightningStoneDim = new Floor("lightning-stone-dim"){{
   variants = 4;
  }};
+ vanstarock = new Floor("vanstarock"){{
+  variants = 7;
+ }};
+ vanstarockRound = new Floor("vanstarockRound"){{
+  variants = 4;
+ }};
  skystonegrey = new Floor("skystonegrey"){{
   variants = 5;
  }};
@@ -136,7 +141,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   variants = 4;
  }};
  skystonebright = new Floor("skystonebright"){{
-  variants = 5;
+  variants = 4;
  }};
  blackSand = new Floor("blacksand"){{
   itemDrop = Items.sand;
@@ -155,7 +160,6 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
  oreOltuxium = new OreBlock(ExoItems.oltuxium);
  oreChronophite = new OreBlock(ExoItems.chronophite);
  oreGold = new OreBlock(ExoItems.gold);
-
  ferricIronWall = new StaticWall("ferric-iron-wall"){{
   itemDrop = ExoItems.iron;
   variants = 3;
@@ -173,6 +177,13 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   variants = 3;
   itemDrop = ExoItems.lightningStone;
   clipSize = 128f;
+ }};
+ //Empyrean blocks
+ ductEmpyrean = new Duct("duct-empyrean"){{
+  requirements(Category.distribution, with(Items.beryllium, 1));
+  health = 90;
+  speed = 4f;
+  researchCost = with(Items.beryllium, 5);
  }};
  //turrets Empyrean
  focalPoint = new ContinuousTurret ("focal-point"){{

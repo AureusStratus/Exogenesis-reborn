@@ -158,6 +158,7 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             });
+
     public static final float lightningAlign = 0.5f;
 
     public static Effect
@@ -174,6 +175,65 @@ public class ExoFx{
         trail.drawCap(e.color, e.rotation * e.foutpow());
         trail.draw(e.color, e.rotation * e.foutpow());
     }),
+            explodeyscathe = new Effect(35f, 160f, e -> {
+                color(e.color);
+                stroke(e.fout() * 5f);
+                float circleRad = 12f + e.finpow() * 60f;
+                Lines.circle(e.x, e.y, circleRad);
+
+                rand.setSeed(e.id);
+                for(int i = 0; i < 16; i++){
+                    float angle = rand.random(360f);
+                    float lenRand = rand.random(0.5f, 1f);
+                    Tmp.v1.trns(angle, circleRad);
+
+                    for(int s : Mathf.signs){
+                        Drawf.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, e.foutpow() * 25f, e.fout() * 30f * lenRand + 6f, angle + 90f + s * 90f);
+                    }
+                }
+                color(e.color);
+                stroke(e.fout() * 7f);
+                circleRad = 9f + e.finpow() * 60f;
+                Lines.circle(e.x, e.y, circleRad);
+
+                rand.setSeed(e.id);
+                for(int i = 0; i < 16; i++){
+                    float angle = rand.random(360f);
+                    float lenRand = rand.random(0.5f, 1f);
+                    Tmp.v1.trns(angle, circleRad);
+
+                    for(int s : Mathf.signs){
+                        Drawf.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, e.foutpow() * 15f, e.fout() * 40f * lenRand + 6f, angle + 90f + s * 90f);
+                    }
+                }
+            }),
+            ColorRailTrail = new Effect(16f, e -> {
+                color(e.color);
+                for(int i : Mathf.signs){
+                    Drawf.tri(e.x, e.y, 16f * e.fout(), 21f, e.rotation + 90 + 90f * i);
+                }
+                Drawf.light(e.x, e.y, 60f * e.fout(), e.color, 0.5f);
+            }),
+            ColorRailHit = new Effect(18f, 200f, e -> {
+                color(e.color);
+                for(int i : Mathf.signs){
+                    Drawf.tri(e.x, e.y, 10f * e.fout(), 50f, e.rotation + 140f * i);
+                    Drawf.tri(e.x, e.y, 5f * e.fout(), 70f, e.rotation + 170f * i);
+                }
+            }),
+            ColorRailShoot = new Effect(24f, e -> {
+                e.scaled(10f, b -> {
+                    color(e.color, e.color, b.fin());
+                    stroke(b.fout() * 3f + 0.2f);
+                    Lines.circle(b.x, b.y, b.fin() * 50f);
+                });
+                color(e.color);
+                for(int i : Mathf.signs){
+                    Drawf.tri(e.x, e.y, 20f * e.fout(), 145f, e.rotation + 90f * i);
+                    Drawf.tri(e.x, e.y, 10f * e.fout(), 80f, e.rotation + 110f * i);
+                    Drawf.tri(e.x, e.y, 5f * e.fout(), 60f, e.rotation + 160f * i);
+                }
+            }),
 
     chainLightningFade = new Effect(45f, 500f, e -> {
         if(!(e.data instanceof Position)) return;
@@ -218,6 +278,7 @@ public class ExoFx{
                 Lines.stroke(2.5f * e.fout(), e.color);
                 Lines.circle(e.x, e.y, e.rotation * e.fin(Interp.pow3Out));
             }),
+
             hitSparkHuge = new Effect(70, e -> {
                 color(e.color, Color.white, e.fout() * 0.3f);
                 stroke(e.fout() * 1.6f);
@@ -292,6 +353,7 @@ public class ExoFx{
                 randLenVectors(e.id, 12, 8 + 60 * e.fin(Interp.pow5Out), (x, y) -> Fill.circle(e.x + x, e.y + y, e.fout(Interp.circleIn) * (6f + rand.random(6f))));
                 Drawf.light(e.x, e.y, e.fout() * 320f, e.color, 0.7f);
             }),
+
     colorBombSmall = new Effect(40f, 100f, e -> {
         color(e.color);
         stroke(e.fout() * 1f);
