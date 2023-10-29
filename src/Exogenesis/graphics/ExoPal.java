@@ -6,6 +6,7 @@ public class ExoPal {
 public static Color
 ally = new Color(0, 0, 1, 0.15f), hostile = new Color(1, 0, 0, 0.15f),
 lightSky = Color.valueOf("#8DB0FF"),
+erekirPink = Color.valueOf("#d370d3"),
 lightSkyBack = lightSky.cpy().lerp(Color.white, 0.2f),
 genesisLight = Color.valueOf("e1f2ff"),
 genesis = Color.valueOf("a9d8ff"),
