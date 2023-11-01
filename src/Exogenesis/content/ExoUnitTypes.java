@@ -1659,7 +1659,6 @@ public class ExoUnitTypes {
                         color = ExoPal.erekirPink;
                         circles = 3;
                         phase = 100;
-                        sides = 100;
                         radius = 48f;
                         mirror = false;
                         layer = Layer.effect;
@@ -1898,7 +1897,6 @@ public class ExoUnitTypes {
                                 color = ExoPal.erekirPink;
                                 circles = 3;
                                 phase = 100;
-                                sides = 100;
                                 radius = 48f;
                                 mirror = false;
                                 layer = Layer.effect;
@@ -2007,7 +2005,6 @@ public class ExoUnitTypes {
                                     color = ExoPal.erekirPink;
                                     circles = 2;
                                     phase = 100;
-                                    sides = 100;
                                     radius = 68f;
                                     mirror = false;
                                     layer = Layer.effect;
@@ -2016,7 +2013,6 @@ public class ExoUnitTypes {
                                     color = ExoPal.erekirPink;
                                     circles = 2;
                                     phase = 100;
-                                    sides = 100;
                                     radius = 88f;
                                     mirror = false;
                                     layer = Layer.effect;
