@@ -1627,7 +1627,24 @@ public class ExoUnitTypes {
             faceTarget = true;
             singleTarget = true;
             lowAltitude = true;
-            immunities.add(StatusEffects.burning);
+            abilities.add(new RegenAbility(){{
+                //fully regen in 70 seconds
+                percentAmount = 1f / (70f * 60f) * 100f;
+            }});
+            abilities.add(new StatusFieldAbility(ExoStatusEffects.RheaBuff, 110f, 100f, 260f){{
+                activeEffect = new WaveEffect(){{
+                    colorFrom = Color.valueOf("ffcbdd");
+                    colorTo = ExoPal.erekirPink;
+                    interp = Interp.circle;
+                    sizeFrom = 0;
+                    sizeTo = 260f;
+                    lifetime = 95f;
+                    strokeTo = 8;
+                    strokeFrom = 0f;
+                }};
+                applyEffect = Fx.none;
+            }});
+            immunities.add(ExoStatusEffects.RheaBuff);
             parts.addAll(
                     new RegionPart("-glow"){{
                         mirror = false;
@@ -1959,6 +1976,301 @@ public class ExoUnitTypes {
                         despawnHit = true;
                         hitEffect = ExoFx.colorBombSmaller;
                     }};
+                    fragRandomSpread = 0f;
+                    fragBullets = 1;
+                    fragBullet = new BasicBulletType(0f, 9){{
+                        parts.addAll(
+                                new ShapePart() {{
+                                    circle = true;
+                                    layer = 114;
+                                    radiusTo = 0;
+                                    radius = 10;
+                                    color = Color.white;
+                                }},
+                                new ShapePart() {{
+                                    circle = true;
+                                    layer = Layer.effect;
+                                    radiusTo = 0;
+                                    radius = 17;
+                                    color = Color.valueOf("ffcbdd");
+                                }},
+                                new ShapePart() {{
+                                    circle = true;
+                                    layer = Layer.effect;
+                                    radiusTo = 0;
+                                    radius = 20;
+                                    color = ExoPal.erekirPink;
+                                }},
+                                new HoverPart(){{
+                                    color = ExoPal.erekirPink;
+                                    circles = 2;
+                                    phase = 100;
+                                    radius = 68f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                }},
+                                new HoverPart(){{
+                                    color = ExoPal.erekirPink;
+                                    circles = 2;
+                                    phase = 100;
+                                    radius = 88f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                }}
+                        );
+                        hitSound = Sounds.largeExplosion;
+                        width = height = 0f;
+                        lifetime = 240f;
+                        hitSize = 4f;
+                        splashDamage = 576;
+                        splashDamageRadius = 60;
+                        scaledSplashDamage = true;
+                        backColor = hitColor = trailColor = ExoPal.erekirPink;
+                        collidesGround = collidesTiles = collidesAir = false;
+                        trailWidth = 2f;
+                        trailLength = 6;
+                        hitEffect = despawnEffect = new MultiEffect(
+                        new ParticleEffect(){{
+                            lightOpacity = 0.5f;
+                            line = true;
+                            particles = 35;
+                            length = 275;
+                            offset = 40;
+                            strokeFrom = 5;
+                            strokeTo = 0;
+                            lifetime = 60;
+                            lenFrom = 20;
+                            lenTo = 10;
+                            lightColor = colorFrom = Color.valueOf("ffcbdd");
+                            colorTo = ExoPal.erekirPink;
+                        }},
+                        new WaveEffect(){{
+                            colorFrom = Color.valueOf("ffcbdd");
+                            colorTo = ExoPal.erekirPink;
+                            sizeFrom = 0;
+                            sizeTo = 70f;
+                            lifetime = 55f;
+                            strokeTo = 19;
+                            strokeFrom = 0f;
+                        }},
+                        new WaveEffect(){{
+                            colorFrom = Color.valueOf("ffcbdd");
+                            colorTo = ExoPal.erekirPink;
+                            sizeFrom = 0;
+                            sizeTo = 50f;
+                            lifetime = 55f;
+                            strokeTo = 7;
+                            strokeFrom = 0f;
+                        }}
+                        );
+                        bulletInterval = 1;
+                        intervalRandomSpread = 360;
+                        intervalBullet = new BasicBulletType(5, 35){{
+                            parts.addAll(
+                                    new ShapePart() {{
+                                        circle = true;
+                                        layer = 114;
+                                        radiusTo = radius = 2;
+                                        color = Color.white;
+                                    }},
+                                    new ShapePart() {{
+                                        circle = true;
+                                        layer = Layer.effect;
+                                        radiusTo = radius = 3;
+                                        color = Color.valueOf("ffcbdd");
+                                    }},
+                                    new ShapePart() {{
+                                        circle = true;
+                                        layer = Layer.effect;
+                                        radiusTo = radius = 4;
+                                        color = ExoPal.erekirPink;
+                                    }}
+                            );
+                            hitSound = Sounds.bolt;
+                            hitColor = trailColor = ExoPal.erekirPink;
+                            weaveMag = 30;
+                            weaveScale = 14;
+                            weaveRandom = false;
+                            pierceBuilding = pierce = true;
+                            hitEffect = new MultiEffect(
+                                    new ParticleEffect(){{
+                                        lightOpacity = 0.5f;
+                                        line = true;
+                                        particles = 10;
+                                        length = 45;
+                                        offset = 40;
+                                        strokeFrom = 2;
+                                        strokeTo = 0;
+                                        lifetime = 30;
+                                        lenFrom = 7;
+                                        lenTo = 3;
+                                        lightColor = colorFrom = Color.valueOf("ffcbdd");
+                                        colorTo = ExoPal.erekirPink;
+                                    }},
+                                    new WaveEffect(){{
+                                        colorFrom = Color.valueOf("ffcbdd");
+                                        colorTo = ExoPal.erekirPink;
+                                        interp = Interp.circleOut;
+                                        sizeFrom = 0;
+                                        sizeTo = 20f;
+                                        lifetime = 35f;
+                                        strokeTo = 2;
+                                        strokeFrom = 0f;
+                                    }}
+                            );
+                            pierceCap = 5;
+                            lifetime = 65;
+                            width = height = 1;
+                            drag = -0.017f;
+                            trailLength = 9;
+                            trailWidth = 2;
+                            despawnHit = true;
+                            spawnBullets.add(new BasicBulletType(7, 12){{
+                                parts.addAll(
+                                        new ShapePart() {{
+                                            circle = true;
+                                            layer = 114;
+                                            radiusTo = radius = 1;
+                                            color = Color.white;
+                                        }},
+                                        new ShapePart() {{
+                                            circle = true;
+                                            layer = Layer.effect;
+                                            radiusTo = radius = 2;
+                                            color = Color.valueOf("ffcbdd");
+                                        }},
+                                        new ShapePart() {{
+                                            circle = true;
+                                            layer = Layer.effect;
+                                            radiusTo = radius = 3;
+                                            color = ExoPal.erekirPink;
+                                        }}
+                                );
+                                fragRandomSpread = 0f;
+                                fragSpread = 160;
+                                fragBullets = 3;
+                                fragBullet = new ShrapnelBulletType(){{
+                                    damage = 35f;
+                                    width = 10f;
+                                    serrations = 0;
+                                    length = 5f;
+                                    lifetime = 25;
+                                    toColor = fromColor = ExoPal.erekirPink;
+                                }};
+                                hitSound = Sounds.bolt;
+                                drag = -0.0015f;
+                                width = height = 0f;
+                                lifetime = 5f;
+                                pierceCap = 42;
+                                pierce = true;
+                                pierceBuilding = true;
+                                hitColor = trailColor = ExoPal.erekirPink;
+                                trailWidth = 2f;
+                                trailLength = 9;
+                                weaveScale = 5;
+                                weaveMag = 30;
+                                despawnHit = true;
+                                hitEffect = ExoFx.colorBombSmaller;
+                            }});
+                            fragRandomSpread = 0f;
+                            fragBullets = 1;
+                            fragBullet = new LaserBulletType(){{
+                                damage = 35f;
+                                sideWidth = 0f;
+                                width = 25f;
+                                length = 80f;
+                                hitColor = ExoPal.erekirPink;
+                                colors = new Color[]{ExoPal.erekirPink.cpy().a(0.4f), ExoPal.erekirPink, Color.white};
+                            }};
+                        }};
+                    }};
+                }};
+            }});
+            weapons.add(new RepairBeamWeapon("exogenesis-rhea-mount") {{
+                mirror = rotate = true;
+                alternate = controllable = false;
+                rotateSpeed = 5;
+                y = 0;
+                x = 61.75f;
+                laserColor = healColor = ExoPal.erekirPink;
+                targetBuildings = true;
+                targetUnits = false;
+                beamWidth = 1f;
+                repairSpeed = 0.9f;
+                fractionRepairSpeed = 0.03f;
+                shootY = 10;
+                shootCone = 15;
+                pulseRadius = 10;
+                pulseStroke = 3;
+                bullet = new BulletType(){{
+                    shootEffect = new WaveEffect(){{
+                        colorFrom = Color.valueOf("ffcbdd");
+                        colorTo = ExoPal.erekirPink;
+                        sizeFrom = 0;
+                        sizeTo = 7f;
+                        lifetime = 25f;
+                        strokeTo = 4;
+                        strokeFrom = 0f;
+                    }};
+                    maxRange = 260f;
+                }};
+            }});
+            weapons.add(new RepairBeamWeapon("exogenesis-rhea-mount") {{
+                mirror = rotate = true;
+                alternate = controllable = false;
+                rotateSpeed = 5;
+                y = 14;
+                x = 41.75f;
+                laserColor = healColor = ExoPal.erekirPink;
+                targetBuildings = true;
+                targetUnits = false;
+                beamWidth = 1f;
+                repairSpeed = 0.9f;
+                fractionRepairSpeed = 0.03f;
+                shootY = 10;
+                shootCone = 15;
+                pulseRadius = 10;
+                pulseStroke = 3;
+                bullet = new BulletType(){{
+                    shootEffect = new WaveEffect(){{
+                        colorFrom = Color.valueOf("ffcbdd");
+                        colorTo = ExoPal.erekirPink;
+                        sizeFrom = 0;
+                        sizeTo = 7f;
+                        lifetime = 25f;
+                        strokeTo = 4;
+                        strokeFrom = 0f;
+                    }};
+                    maxRange = 260f;
+                }};
+            }});
+            weapons.add(new RepairBeamWeapon("exogenesis-rhea-mount") {{
+                mirror = rotate = true;
+                alternate = controllable = false;
+                rotateSpeed = 5;
+                y = 35;
+                x = 27f;
+                laserColor = healColor = ExoPal.erekirPink;
+                targetBuildings = true;
+                targetUnits = false;
+                beamWidth = 1f;
+                repairSpeed = 0.9f;
+                fractionRepairSpeed = 0.03f;
+                shootY = 10;
+                shootCone = 15;
+                pulseRadius = 10;
+                pulseStroke = 3;
+                bullet = new BulletType(){{
+                    shootEffect = new WaveEffect(){{
+                        colorFrom = Color.valueOf("ffcbdd");
+                        colorTo = ExoPal.erekirPink;
+                        sizeFrom = 0;
+                        sizeTo = 7f;
+                        lifetime = 25f;
+                        strokeTo = 4;
+                        strokeFrom = 0f;
+                    }};
+                    maxRange = 260f;
                 }};
             }});
         }};
