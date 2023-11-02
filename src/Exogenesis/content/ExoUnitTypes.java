@@ -56,7 +56,7 @@ public class ExoUnitTypes {
             rotateSpeed = 0.45f;
             treadRects = new Rect[]{new Rect(65, 70, 131, 180), new Rect(46, -248, 85, 63), new Rect(166, -183.5f, 32, 39)};
             weapons.add(new Weapon("exogenesis-prometheus-cannon"){{
-                shootSound = Sounds.laserblast;
+                shootSound = Sounds.railgun;
                 soundPitchMin = 1f;
                 minWarmup = 0.7f;
                 smoothReloadSpeed = 0.08f;
@@ -142,7 +142,7 @@ public class ExoUnitTypes {
                     mirror = under = true;
                     x = 9;
                     y = 54;
-                    progress = PartProgress.warmup.delay(0.1f).blend(PartProgress.reload, 1f);
+                    progress = PartProgress.warmup.delay((3) * 0.3f).blend(PartProgress.reload, 0.3f);
                     moves.add(new PartMove(PartProgress.recoil.shorten(1f), 0f, 0f, 13f));
                     moveRot = 50f;
                 }},
@@ -150,7 +150,7 @@ public class ExoUnitTypes {
                     mirror = under = true;
                     x = 9;
                     y = 62;
-                    progress = PartProgress.warmup.delay(0.2f).blend(PartProgress.reload, 1f);
+                    progress = PartProgress.warmup.delay((3) * 0.3f).blend(PartProgress.reload, 0.3f);
                     moves.add(new PartMove(PartProgress.recoil.shorten(1f), 0f, 0f, 16f));
                     moveRot = 68f;
                 }},
@@ -158,7 +158,7 @@ public class ExoUnitTypes {
                     mirror = under = true;
                     x = 9;
                     y = 68;
-                    progress = PartProgress.warmup.delay(0.3f).blend(PartProgress.reload, 1f);
+                    progress = PartProgress.warmup.delay((3) * 0.3f).blend(PartProgress.reload, 0.3f);
                     moves.add(new PartMove(PartProgress.recoil.shorten(1f), 0f, 0f, 18f));
                     moveRot = 83f;
                 }}
@@ -182,8 +182,8 @@ public class ExoUnitTypes {
                 mirror = rotate = true;
                 cooldownTime = 80;
                 rotateSpeed = 1.5f;
-                x = 24;
-                y = 30;
+                x = 30;
+                y = 24;
                 shoot = new ShootPattern() {{
                     shots = 4;
                 }};
@@ -223,8 +223,8 @@ public class ExoUnitTypes {
                 mirror = rotate = true;
                 cooldownTime = 80;
                 rotateSpeed = 1.5f;
-                x = -15;
-                y = 38;
+                x = 38;
+                y = -15;
                 shoot = new ShootPattern() {{
                     shots = 4;
                 }};
@@ -275,7 +275,6 @@ public class ExoUnitTypes {
             legMoveSpace = 0.7f;
             baseLegStraightness = 0.8f;
             legPhysicsLayer = false;
-            legGroupSize = 4;
             legLength = 50;
             legCount = 8;
             legExtension = -4;
@@ -391,8 +390,8 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             color = Color.white;
                             circle = true;
-                            radius = 1.5f;
-                            radiusTo = 10;
+                            radius = 10f;
+                            radiusTo = 1.5f;
                             layer = 114;
                             y = 6.5f;
                         }},
@@ -400,8 +399,8 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             color = Color.valueOf("aec6ff");
                             circle = true;
-                            radius = 3;
-                            radiusTo = 20;
+                            radius = 20;
+                            radiusTo = 3;
                             layer = Layer.effect;
                             y = 6.5f;
                         }},
@@ -409,8 +408,8 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             color = Color.valueOf("8ca9e855");
                             circle = true;
-                            radius = 4;
-                            radiusTo = 26;
+                            radius = 26;
+                            radiusTo = 4;
                             layer = Layer.effect;
                             y = 6.5f;
                         }},
@@ -418,8 +417,8 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             color = Color.valueOf("597cff45");
                             circle = true;
-                            radius = 4.2f;
-                            radiusTo = 29;
+                            radius = 29f;
+                            radiusTo = 4.2f;
                             layer = Layer.effect;
                             y = 6.5f;
                         }}
@@ -1089,12 +1088,6 @@ public class ExoUnitTypes {
                 layer = Layer.effect;
                 y = 25.5f;
             }},
-            new RegionPart(){{
-                color = Color.valueOf("9681fb");
-                colorTo = Color.valueOf("9681fb");
-                blending = Blending.additive;
-                outline = mirror = false;
-            }},
             new ShapePart(){{
                 progress = PartProgress.recoil;
                 color = Color.valueOf("a393fe");
@@ -1400,8 +1393,9 @@ public class ExoUnitTypes {
             faceTarget = true;
             fogRadius = 50;
             armor = 45;
-
+            lowAltitude = true;
             hovering = singleTarget = true;
+            useEngineElevation = false;
             flying = false;
             shadowElevation = 0.1f;
             rotateSpeed = 0.8f;
@@ -1598,13 +1592,38 @@ public class ExoUnitTypes {
                             -3.5f, 15f, 0f,
                     };
                 }};
-                bullet = new BasicBulletType(7f, 60){{
-                    width = 11f;
-                    height = 20f;
-                    lifetime = 45f;
-                    shootEffect = Fx.shootBig;
-                    trailLength = 6;
-                    trailWidth = 2f;
+                bullet = new BasicBulletType(6.5f, 60){{
+                    width = height = 13f;
+                    splashDamage = 57;
+                    splashDamageRadius = 40;
+                    lifetime = 35f;
+                    hitColor = trailColor = backColor = Pal.surge;
+                    status = StatusEffects.blasted;
+                    statusDuration = 100;
+                    smokeEffect = Fx.shootBigSmoke;
+                    shootEffect = Fx.shootBig2;
+                    hitEffect = Fx.flakExplosion;
+                    buildingDamageMultiplier = 0.5f;
+                    trailLength = 10;
+                    trailWidth = 2.5f;
+                    fragBullets = 6;
+                    fragLifeMin = 0.3f;
+                    fragBullet = new BasicBulletType(8.5f, 6){{
+                        width = 5;
+                        height = 9f;
+                        splashDamage = 30;
+                        splashDamageRadius = 25;
+                        lifetime = 5f;
+                        hitColor = trailColor = backColor = Pal.surge;
+                        status = StatusEffects.blasted;
+                        statusDuration = 100;
+                        smokeEffect = Fx.shootBigSmoke;
+                        shootEffect = Fx.shootBig2;
+                        hitEffect = Fx.flakExplosion;
+                        buildingDamageMultiplier = 0.5f;
+                        trailLength = 10;
+                        trailWidth = 2.5f;
+                    }};
                 }};
             }});
         }};
@@ -1612,6 +1631,7 @@ public class ExoUnitTypes {
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
             buildSpeed = 2.6f;
+            rotateSpeed = 0.9f;
             buildBeamOffset = 30;
             shadowElevation = 2f;
             health = 76500f;
@@ -1640,12 +1660,13 @@ public class ExoUnitTypes {
                     colorFrom = Color.valueOf("ffcbdd");
                     colorTo = ExoPal.erekirPink;
                     interp = Interp.circle;
-                    sizeFrom = 0;
-                    sizeTo = 260f;
+                    sizeFrom = 160;
+                    sizeTo = 0f;
                     lifetime = 95f;
                     strokeTo = 8;
                     strokeFrom = 0f;
                 }};
+
                 applyEffect = Fx.none;
             }});
             immunities.add(ExoStatusEffects.RheaBuff);
@@ -1676,7 +1697,7 @@ public class ExoUnitTypes {
             );
             weapons.add(new Weapon("Rhea-energy-ball"){{
                 x = 0f;
-                y = -14.25f;
+                y = 14.25f;
                 shootCone = 25;
                 mirror = false;
                 reload = 500;
@@ -2152,13 +2173,13 @@ public class ExoUnitTypes {
                                         }}
                                 );
                                 fragRandomSpread = 0f;
-                                fragSpread = 160;
+                                fragSpread = 120;
                                 fragBullets = 3;
                                 fragBullet = new ShrapnelBulletType(){{
                                     damage = 35f;
                                     width = 10f;
                                     serrations = 0;
-                                    length = 5f;
+                                    length = 3f;
                                     lifetime = 25;
                                     toColor = fromColor = ExoPal.erekirPink;
                                 }};
