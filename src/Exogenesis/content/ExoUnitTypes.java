@@ -1395,6 +1395,7 @@ public class ExoUnitTypes {
             }});
         }};
         hyperion = new ErekirUnitType("hyperion") {{
+            constructor = UnitEntity::create;
             speed = 0.78f;
             hitSize = 90f;
             health = 32000f;
