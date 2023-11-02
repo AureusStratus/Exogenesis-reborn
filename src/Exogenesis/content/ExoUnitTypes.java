@@ -142,24 +142,24 @@ public class ExoUnitTypes {
                     mirror = under = true;
                     x = 9;
                     y = 54;
-                    progress = PartProgress.warmup.delay((3) * 0.3f).blend(PartProgress.reload, 0.3f);
-                    moves.add(new PartMove(PartProgress.recoil.shorten(1f), 0f, 0f, 13f));
+                    progress = PartProgress.warmup;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, 0f, 13f));
                     moveRot = 50f;
                 }},
                 new RegionPart("-spine1"){{
                     mirror = under = true;
                     x = 9;
                     y = 62;
-                    progress = PartProgress.warmup.delay((3) * 0.3f).blend(PartProgress.reload, 0.3f);
-                    moves.add(new PartMove(PartProgress.recoil.shorten(1f), 0f, 0f, 16f));
+                    progress = PartProgress.warmup;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, 0f, 16f));
                     moveRot = 68f;
                 }},
                 new RegionPart("-spine2"){{
                     mirror = under = true;
                     x = 9;
                     y = 68;
-                    progress = PartProgress.warmup.delay((3) * 0.3f).blend(PartProgress.reload, 0.3f);
-                    moves.add(new PartMove(PartProgress.recoil.shorten(1f), 0f, 0f, 18f));
+                    progress = PartProgress.warmup;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, 0f, 18f));
                     moveRot = 83f;
                 }}
                 );
@@ -289,7 +289,7 @@ public class ExoUnitTypes {
                 reload = 800f;
                 mirror = false;
                 x = 0;
-                y = 0f;
+                y = 4.5f;
                 shootY = 0;
                 shootStatus = StatusEffects.unmoving;
                 shootStatusDuration = shoot.firstShotDelay;
@@ -305,11 +305,11 @@ public class ExoUnitTypes {
                         new HoverPart(){{
                             color = Pal.techBlue;
                             circles = 5;
-                            stroke = 4f;
+                            stroke = 3f;
                             phase = 170;
                             radius = 28;
                             layer = Layer.effect;
-                            y = 6.5f;
+                            y = 2.5f;
                         }},
                         new ShapePart(){{
                             progress = PartProgress.warmup.delay(0.2f);
@@ -387,40 +387,40 @@ public class ExoUnitTypes {
                         }},
                         // weapon parts
                         new ShapePart(){{
-                            progress = PartProgress.reload;
+                            progress = PartProgress.recoil;
                             color = Color.white;
                             circle = true;
                             radius = 10f;
                             radiusTo = 1.5f;
                             layer = 114;
-                            y = 6.5f;
+                            y = 2.5f;
                         }},
                         new ShapePart(){{
-                            progress = PartProgress.reload;
+                            progress = PartProgress.recoil;
                             color = Color.valueOf("aec6ff");
                             circle = true;
                             radius = 20;
                             radiusTo = 3;
                             layer = Layer.effect;
-                            y = 6.5f;
+                            y = 2.5f;
                         }},
                         new ShapePart(){{
-                            progress = PartProgress.reload;
+                            progress = PartProgress.recoil;
                             color = Color.valueOf("8ca9e855");
                             circle = true;
                             radius = 26;
                             radiusTo = 4;
                             layer = Layer.effect;
-                            y = 6.5f;
+                            y = 2.5f;
                         }},
                         new ShapePart() {{
-                            progress = PartProgress.reload;
+                            progress = PartProgress.recoil;
                             color = Color.valueOf("597cff45");
                             circle = true;
                             radius = 29f;
                             radiusTo = 4.2f;
                             layer = Layer.effect;
-                            y = 6.5f;
+                            y = 2.5f;
                         }}
                 );
                 bullet = new EmpBulletType() {{
@@ -1028,7 +1028,7 @@ public class ExoUnitTypes {
                         cone = 360;
                         colorFrom = Pal.techBlue;
                         colorTo = Pal.techBlue;
-                        sizeFrom = 10f;
+                        sizeFrom = 3f;
                         sizeTo = 0f;
                     }};
                 }};
@@ -1040,7 +1040,7 @@ public class ExoUnitTypes {
             fogRadius = 50;
             health = 46500;
             crashDamageMultiplier = 10;
-
+            rotateSpeed = 0.7f;
             armor = 20f;
             speed = 0.88f;
             accel = 0.04f;
@@ -1079,6 +1079,15 @@ public class ExoUnitTypes {
                 y = -16f;
             }});
             parts.addAll(
+            new RegionPart("-glow1"){{
+                mirror = false;
+                under = true;
+                layer = Layer.effect;
+                color = colorTo = Color.valueOf("9681fb");
+                blending = Blending.additive;
+                outline = false;
+                progress = PartProgress.warmup;
+            }},
             new HoverPart(){{
                 color = Color.valueOf("a393fe");
                 circles = 3;
@@ -1386,14 +1395,13 @@ public class ExoUnitTypes {
             }});
         }};
         hyperion = new ErekirUnitType("hyperion") {{
-            constructor = UnitEntity::create;
             speed = 0.78f;
             hitSize = 90f;
             health = 32000f;
             faceTarget = true;
             fogRadius = 50;
             armor = 45;
-            lowAltitude = true;
+            rotateMoveFirst = true;
             hovering = singleTarget = true;
             useEngineElevation = false;
             flying = false;
@@ -1630,6 +1638,7 @@ public class ExoUnitTypes {
         rhea = new ErekirUnitType("rhea") {{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
+            rotateMoveFirst = true;
             buildSpeed = 2.6f;
             rotateSpeed = 0.9f;
             buildBeamOffset = 30;
@@ -1656,15 +1665,16 @@ public class ExoUnitTypes {
                 percentAmount = 1f / (70f * 60f) * 100f;
             }});
             abilities.add(new StatusFieldAbility(ExoStatusEffects.RheaBuff, 110f, 100f, 260f){{
+                parentizeEffects = true;
                 activeEffect = new WaveEffect(){{
                     colorFrom = Color.valueOf("ffcbdd");
                     colorTo = ExoPal.erekirPink;
                     interp = Interp.circle;
-                    sizeFrom = 160;
-                    sizeTo = 0f;
+                    sizeFrom = 0;
+                    sizeTo = 160f;
                     lifetime = 95f;
-                    strokeTo = 8;
-                    strokeFrom = 0f;
+                    strokeTo = 0;
+                    strokeFrom = 8f;
                 }};
 
                 applyEffect = Fx.none;
@@ -1997,10 +2007,10 @@ public class ExoUnitTypes {
                         weaveScale = -5;
                         trailSinScl = 2;
                         trailSinMag = 0.8f;
-                        trailLength = 0;
+                        trailLength = 9;
                         trailWidth = 2;
                         despawnHit = true;
-                        hitEffect = ExoFx.colorBombSmaller;
+                        hitEffect = ExoFx.colorBombSmall;
                     }};
                     fragRandomSpread = 0f;
                     fragBullets = 1;
@@ -2073,8 +2083,8 @@ public class ExoUnitTypes {
                         new WaveEffect(){{
                             colorFrom = Color.valueOf("ffcbdd");
                             colorTo = ExoPal.erekirPink;
-                            sizeFrom = 0;
-                            sizeTo = 70f;
+                            sizeFrom = 70;
+                            sizeTo = 0f;
                             lifetime = 55f;
                             strokeTo = 19;
                             strokeFrom = 0f;
@@ -2082,8 +2092,8 @@ public class ExoUnitTypes {
                         new WaveEffect(){{
                             colorFrom = Color.valueOf("ffcbdd");
                             colorTo = ExoPal.erekirPink;
-                            sizeFrom = 0;
-                            sizeTo = 50f;
+                            sizeFrom = 50;
+                            sizeTo = 0f;
                             lifetime = 55f;
                             strokeTo = 7;
                             strokeFrom = 0f;
@@ -2140,8 +2150,8 @@ public class ExoUnitTypes {
                                         sizeFrom = 0;
                                         sizeTo = 20f;
                                         lifetime = 35f;
-                                        strokeTo = 2;
-                                        strokeFrom = 0f;
+                                        strokeTo = 0;
+                                        strokeFrom = 2f;
                                     }}
                             );
                             pierceCap = 5;
@@ -2196,7 +2206,7 @@ public class ExoUnitTypes {
                                 weaveScale = 5;
                                 weaveMag = 30;
                                 despawnHit = true;
-                                hitEffect = ExoFx.colorBombSmaller;
+                                hitEffect = ExoFx.colorBombSmall;
                             }});
                             fragRandomSpread = 0f;
                             fragBullets = 1;
