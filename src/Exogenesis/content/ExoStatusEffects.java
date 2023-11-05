@@ -13,9 +13,24 @@ import mindustry.entities.effect.*;
 import static mindustry.Vars.*;
 
 public class ExoStatusEffects{
-    public static StatusEffect RheaBuff;
+    public static StatusEffect RheaBuff, CronusBuff;
 
     public static void load(){
+        CronusBuff = new StatusEffect("rhea-buff"){{
+            color = ExoPal.erekirRed;
+            damageMultiplier = 1.25f;
+            effectChance = 0.07f;
+            effect = new WaveEffect(){{
+                colorFrom = ExoPal.erekirRedlight;
+                colorTo = ExoPal.erekirPink;
+                sides = 4;
+                sizeFrom = 0;
+                sizeTo = 2f;
+                lifetime = 9f;
+                strokeTo = 1;
+                strokeFrom = 0f;
+            }};
+        }};
         RheaBuff = new StatusEffect("rhea-buff"){{
             color = ExoPal.erekirPink;
             reloadMultiplier = 1.25f;

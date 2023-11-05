@@ -1399,14 +1399,16 @@ public class ExoUnitTypes {
             speed = 0.78f;
             hitSize = 90f;
             health = 32000f;
-            faceTarget = true;
+            faceTarget = false;
             fogRadius = 50;
             armor = 45;
             rotateMoveFirst = true;
-            hovering = singleTarget = true;
+            hovering = true;
+            singleTarget = true;
             useEngineElevation = false;
             flying = false;
             shadowElevation = 0.1f;
+            groundLayer = Layer.groundUnit;
             rotateSpeed = 0.8f;
                 //small
                 parts.add(new HoverPart(){{
@@ -1639,7 +1641,6 @@ public class ExoUnitTypes {
         rhea = new ErekirUnitType("rhea") {{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
-            rotateMoveFirst = true;
             buildSpeed = 2.6f;
             rotateSpeed = 0.9f;
             buildBeamOffset = 30;
@@ -1658,7 +1659,7 @@ public class ExoUnitTypes {
             engineColor = Color.valueOf("fc81de");
             engineOffset = 58;
             engineSize = 9.5f;
-            faceTarget = true;
+            faceTarget = false;
             singleTarget = true;
             lowAltitude = true;
             abilities.add(new RegenAbility(){{
@@ -1667,6 +1668,7 @@ public class ExoUnitTypes {
             }});
             abilities.add(new StatusFieldAbility(ExoStatusEffects.RheaBuff, 110f, 100f, 260f){{
                 parentizeEffects = true;
+                effectY = 14.25f;
                 activeEffect = new WaveEffect(){{
                     colorFrom = Color.valueOf("ffcbdd");
                     colorTo = ExoPal.erekirPink;
@@ -1839,8 +1841,8 @@ public class ExoUnitTypes {
                             haloRadius = haloRadiusTo = 12;
                             strokeTo = 2;
                             shapes = 1;
-                            triLength = 6;
-                            triLengthTo = 23;
+                            triLength = 4;
+                            triLengthTo = 4;
                             color = ExoPal.erekirPink;
                             progress = PartProgress.warmup;
                         }},
@@ -2308,6 +2310,376 @@ public class ExoUnitTypes {
                         strokeFrom = 0f;
                     }};
                     maxRange = 260f;
+                }};
+            }});
+        }};
+        cronus = new ErekirUnitType("cronus") {{
+            constructor = LegsUnit::create;
+            fogRadius = 50;
+            speed = 0.45f;
+            hitSize = 76f;
+            health = 78000f;
+            faceTarget = singleTarget = true;
+            armor = 38;
+            shadowElevation = 0.3f;
+            allowLegStep = hovering = true;
+            rotateSpeed = 1.6f;
+            legSpeed = 0.6f;
+            legMoveSpace = 0.7f;
+            baseLegStraightness = 0.8f;
+            legPhysicsLayer = false;
+            legLength = 120;
+            legCount = 8;
+            legExtension = -6;
+            legContinuousMove = lockLegBase = true;
+            legStraightness = 0.3f;
+            rippleScale = 2.8f;
+            legPairOffset = 2;
+            legBaseOffset = 36;
+            legSplashDamage = 156;
+            legSplashRange = 10;
+            groundLayer = 77;
+            range = 300;
+            abilities.add(new StatusFieldAbility(ExoStatusEffects.CronusBuff, 110f, 90f, 200f){{
+                parentizeEffects = true;
+                effectY = 14.25f;
+                activeEffect = new WaveEffect(){{
+                    colorFrom = ExoPal.erekirRedlight;
+                    colorTo = ExoPal.erekirRed;
+                    interp = Interp.circle;
+                    sizeFrom = 0;
+                    sizeTo = 160f;
+                    lifetime = 95f;
+                    strokeTo = 0;
+                    strokeFrom = 8f;
+                }};
+                applyEffect = Fx.none;
+            }});
+            immunities.add(ExoStatusEffects.CronusBuff);
+            parts.addAll(
+                    new ShapePart() {{
+                        circle = true;
+                        layer = 114;
+                        y = 22;
+                        radiusTo = radius = 8;
+                        color = Color.white;
+                    }},
+                    new ShapePart() {{
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 22;
+                        radiusTo = radius = 10;
+                        color = ExoPal.erekirRedlight;
+                    }},
+                    new ShapePart() {{
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 22;
+                        radiusTo = radius = 14;
+                        color = ExoPal.erekirRed;
+                    }},
+                    new HoverPart(){{
+                        color = ExoPal.erekirRed;
+                        circles = 4;
+                        stroke = 3;
+                        phase = 100;
+                        radius = 25f;
+                        mirror = false;
+                        layer = Layer.effect;
+                        y = 22f;
+                    }},
+                    //main
+                    new HaloPart() {{
+                        tri = true;
+                        y = 22;
+                        radius = 6f;
+                        layer = Layer.effect;
+                        haloRadius = haloRadiusTo = 12;
+                        haloRotateSpeed = -2.5f;
+                        shapeRotation = 38;
+                        strokeTo = 2;
+                        shapes = 4;
+                        triLength = triLengthTo = 17;
+                        color = ExoPal.erekirRed;
+                    }},
+                    new HaloPart() {{
+                        tri = true;
+                        y = 22;
+                        radius = 6f;
+                        layer = Layer.effect;
+                        haloRadius = haloRadiusTo = 12;
+                        haloRotateSpeed = -2.5f;
+                        shapeRotation = 218;
+                        strokeTo = 2;
+                        shapes = 4;
+                        triLength = triLengthTo = 4;
+                        color = ExoPal.erekirRed;
+                    }},
+                    new HaloPart() {{
+                        tri = true;
+                        y = 22;
+                        radius = 6f;
+                        layer = Layer.effect;
+                        haloRadius = haloRadiusTo = 12;
+                        haloRotateSpeed = -2.5f;
+                        haloRotation = 45;
+                        shapeRotation = 38;
+                        strokeTo = stroke = 2;
+                        shapes = 4;
+                        triLength = triLengthTo = 19;
+                        color = ExoPal.erekirRed;
+                    }},
+                    new HaloPart() {{
+                        tri = true;
+                        y = 22;
+                        radius = 6f;
+                        layer = Layer.effect;
+                        haloRadius = haloRadiusTo = 12;
+                        haloRotateSpeed = -2.5f;
+                        haloRotation = 45;
+                        shapeRotation = 218;
+                        strokeTo = stroke = 2;
+                        shapes = 4;
+                        triLength = triLengthTo = 6;
+                        color = ExoPal.erekirRed;
+                    }},
+                    new RegionPart("-wing-2"){{
+                        mirror = true;
+                        x = 46;
+                        y = 25;
+                        layerOffset = -0.002f;
+                        progress = PartProgress.warmup;
+                        moveRot = 30f;
+                    }},
+                    new RegionPart("-wing-2"){{
+                        mirror = true;
+                        x = 50;
+                        y = 0;
+                        layerOffset = -0.002f;
+                        rotation = -20;
+                        progress = PartProgress.warmup.delay(0.4f);
+                        moveRot = 30f;
+                    }},
+                    new RegionPart("-wing-1"){{
+                        mirror = true;
+                        x = 43;
+                        y = -30;
+                        layerOffset = -0.002f;
+                        rotation = -30;
+                        progress = PartProgress.warmup.delay(0.7f);
+                        moveRot = 50f;
+                    }}
+            );
+            weapons.add(new Weapon("disk") {{
+                reload = 80f;
+                mirror = rotate = true;
+                alternate = true;
+                shootCone = 45;
+                cooldownTime = 80;
+                layerOffset = 2;
+                rotateSpeed = 9;
+                x = 0;
+                y = 22f;
+                shoot = new ShootSpread() {{
+                    shots = 6;
+                    spread = 7;
+                }};
+                shootSound = Sounds.laser;
+                recoil = shake = shootY = 0f;
+                bullet = new BasicBulletType(9, 20){{
+                    parts.addAll(
+                            new ShapePart() {{
+                                circle = true;
+                                layer = 114;
+                                radiusTo = radius = 3.5f;
+                                color = Color.white;
+                            }},
+                            new ShapePart() {{
+                                circle = true;
+                                layer = Layer.effect;
+                                radiusTo = radius = 6;
+                                color = ExoPal.erekirRed;
+                            }},
+                            new HaloPart() {{
+                                tri = true;
+                                radius = 4f;
+                                layer = Layer.effect;
+                                haloRadius = haloRadiusTo = 5;
+                                haloRotateSpeed = -4.4f;
+                                shapeRotation = 38;
+                                strokeTo = stroke = 2;
+                                shapes = 8;
+                                triLength = triLengthTo = 4;
+                                color = ExoPal.erekirRed;
+                            }},
+                            new HaloPart() {{
+                                tri = true;
+                                radius = 4f;
+                                layer = Layer.effect;
+                                haloRadius = haloRadiusTo = 5;
+                                haloRotateSpeed = -4.4f;
+                                shapeRotation = 218;
+                                strokeTo = stroke = 2;
+                                shapes = 8;
+                                triLength = triLengthTo = 14;
+                                color = ExoPal.erekirRed;
+                            }}
+                    );
+                    trailColor = hitColor = lightningColor = ExoPal.erekirRed;
+                    pierce = pierceBuilding = true;
+                    pierceCap = 8;
+                    width = height = 0;
+                    lifetime = 90;
+                    homingRange = 40;
+                    homingDelay = 10;
+                    homingPower = 0.8f;
+                    despawnHit = true;
+                    trailWidth = 3;
+                    trailLength = 10;
+                    hitEffect = Fx.circleColorSpark;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-cronus-rocket-launcher") {{
+                reload = 50f;
+                mirror = true;
+                rotate = false;
+                rotateSpeed = 1.5f;
+                x = 40;
+                y = 31f;
+                shootSound = Sounds.missile;
+                baseRotation = -45;
+                shoot = new ShootMulti(new ShootAlternate(){{
+                    spread = 5;
+                    shots = 3;
+                    barrels = 3;
+                }}, new ShootPattern(){{
+                    shots = 5;
+                    shotDelay = 1.5f;
+                }});
+                velocityRnd = 0.2f;
+                shootCone = 165;
+                layerOffset = -0.001f;
+                recoil = 0;
+                shake = 0.5f;
+                bullet = new BasicBulletType(9f, 65){{
+                    width = 6f;
+                    height = 29f;
+                    sprite = "missile-large";
+                    frontColor = Color.white;
+                    backColor = hitColor = trailColor = ExoPal.erekirRed;
+                    lifetime = 40f;
+                    hitEffect = Fx.blastExplosion;
+                    shrinkY = shrinkX = 0;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
+                    buildingDamageMultiplier = 0.8f;
+                    despawnHit = true;
+                    weaveMag = weaveScale = 2;
+                    keepVelocity = false;
+                    homingRange = 100;
+                    homingDelay = 3;
+                    homingPower = 0.08f;
+                    trailLength = 10;
+                    trailWidth = 2f;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-cronus-repulser") {{
+                reload = 40f;
+                mirror = rotate = alternate = true;
+                rotateSpeed = 2f;
+                x = 36;
+                y = 13;
+                shootSound = Sounds.laser;
+                shootStatus = StatusEffects.slow;
+                shootStatusDuration = 40;
+                shoot = new ShootSpread(){{
+                    spread = 4;
+                    shots = 3;
+                }};
+                shootCone = 45;
+                recoil = 2;
+                shake = 1.5f;
+                bullet = new LaserBulletType(){{
+                    damage = 140f;
+                    sideWidth = 1f;
+                    sideAngle = 35;
+                    sideLength = 17;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
+                    width = 40f;
+                    length = 200f;
+                    hitColor = ExoPal.erekirRed;
+                    colors = new Color[]{ExoPal.erekirRed.cpy().a(0.4f), ExoPal.erekirRed, Color.white};
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-cronus-ion-blaster") {{
+                reload = 80f;
+                mirror = rotate = alternate = top = true;
+                rotateSpeed = 2.2f;
+                x = 50;
+                y = -15.5f;
+                shootSound = Sounds.shootSmite;
+                shootStatus = StatusEffects.slow;
+                shootStatusDuration = 40;
+                cooldownTime = 120;
+                heatColor = Color.red;
+                parts.addAll(
+                        new RegionPart("-blade"){{
+                            mirror = true;
+                            moveX = 3;
+                            heatColor = Color.red;
+                            moves.add(new PartMove(PartProgress.recoil, 4f, 0f, 0f));
+                            progress = PartProgress.warmup;
+                        }}
+                );
+                shoot = new ShootSpread(){{
+                    spread = 5;
+                    shots = 7;
+                }};
+                shootCone = 45;
+                layerOffset = 0.001f;
+                recoil = 3.5f;
+                shake = 0.5f;
+                bullet = new BasicBulletType(8.5f, 207){{
+                    lifetime = 60f;
+                    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
+                    impact = true;
+                    knockback = 3f;
+                    sprite = "circle-bullet";
+                    trailSinScl = 2;
+                    trailSinMag = 1.2f;
+                    trailWidth = 5.5f;
+                    trailLength = 10;
+                    hitSize = 12f;
+                    drag = 0.017f;
+                    width = 105f;
+                    height = 7;
+                    shrinkX = 0.45f;
+                    shrinkY = -2.48f;
+                    pierceDamageFactor = 0.3f;
+                    shrinkInterp = Interp.reverse;
+                    pierce = pierceBuilding = laserAbsorb = true;
+                    pierceCap = 6;
+                    splashDamage = 50;
+                    splashDamageRadius = 20;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.shootBigSmoke);
+                    intervalBullet = new LightningBulletType(){{
+                        damage = 3;
+                        lightningColor = ExoPal.empyrean;
+                        lightningLength = 4;
+                        lightningLengthRand = 6;
+                        buildingDamageMultiplier = 0.25f;
+                    }};
+                    bulletInterval = 1f;
+                    hitEffect = Fx.circleColorSpark;
+                    despawnEffect = new Effect(35f, 70f, e -> {
+                        Draw.color(e.color, Color.white, e.fout() * 0.7f);
+                        for(int i : Mathf.signs){
+
+                            Drawf.tri(e.x, e.y, height * 1.5f * e.fout(), width * 0.885f * e.fout(), e.rotation + i * 90);
+                            Drawf.tri(e.x, e.y, height * 0.8f * e.fout(), width * 0.252f * e.fout(), e.rotation + 90 + i * 90);
+                        }
+                    });
                 }};
             }});
         }};
