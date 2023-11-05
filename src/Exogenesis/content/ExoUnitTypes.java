@@ -2344,8 +2344,8 @@ public class ExoUnitTypes {
                 parentizeEffects = true;
                 effectY = 14.25f;
                 activeEffect = new WaveEffect(){{
-                    colorFrom = ExoPal.erekirRedlight;
-                    colorTo = ExoPal.erekirRed;
+                    colorFrom = ExoPal.cronusRedlight;
+                    colorTo = ExoPal.cronusRed;
                     interp = Interp.circle;
                     sizeFrom = 0;
                     sizeTo = 160f;
@@ -2369,17 +2369,17 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 22;
                         radiusTo = radius = 10;
-                        color = ExoPal.erekirRedlight;
+                        color = ExoPal.cronusRedlight;
                     }},
                     new ShapePart() {{
                         circle = true;
                         layer = Layer.effect;
                         y = 22;
                         radiusTo = radius = 14;
-                        color = ExoPal.erekirRed;
+                        color = ExoPal.cronusRed;
                     }},
                     new HoverPart(){{
-                        color = ExoPal.erekirRed;
+                        color = ExoPal.cronusRed;
                         circles = 4;
                         stroke = 3;
                         phase = 100;
@@ -2400,7 +2400,7 @@ public class ExoUnitTypes {
                         strokeTo = 2;
                         shapes = 4;
                         triLength = triLengthTo = 17;
-                        color = ExoPal.erekirRed;
+                        color = ExoPal.cronusRed;
                     }},
                     new HaloPart() {{
                         tri = true;
@@ -2413,7 +2413,7 @@ public class ExoUnitTypes {
                         strokeTo = 2;
                         shapes = 4;
                         triLength = triLengthTo = 4;
-                        color = ExoPal.erekirRed;
+                        color = ExoPal.cronusRed;
                     }},
                     new HaloPart() {{
                         tri = true;
@@ -2427,7 +2427,7 @@ public class ExoUnitTypes {
                         strokeTo = stroke = 2;
                         shapes = 4;
                         triLength = triLengthTo = 19;
-                        color = ExoPal.erekirRed;
+                        color = ExoPal.cronusRed;
                     }},
                     new HaloPart() {{
                         tri = true;
@@ -2441,7 +2441,7 @@ public class ExoUnitTypes {
                         strokeTo = stroke = 2;
                         shapes = 4;
                         triLength = triLengthTo = 6;
-                        color = ExoPal.erekirRed;
+                        color = ExoPal.cronusRed;
                     }},
                     new RegionPart("-wing-2"){{
                         mirror = true;
@@ -2498,7 +2498,7 @@ public class ExoUnitTypes {
                                 circle = true;
                                 layer = Layer.effect;
                                 radiusTo = radius = 6;
-                                color = ExoPal.erekirRed;
+                                color = ExoPal.cronusRed;
                             }},
                             new HaloPart() {{
                                 tri = true;
@@ -2510,7 +2510,7 @@ public class ExoUnitTypes {
                                 strokeTo = stroke = 2;
                                 shapes = 8;
                                 triLength = triLengthTo = 4;
-                                color = ExoPal.erekirRed;
+                                color = ExoPal.cronusRed;
                             }},
                             new HaloPart() {{
                                 tri = true;
@@ -2522,10 +2522,10 @@ public class ExoUnitTypes {
                                 strokeTo = stroke = 2;
                                 shapes = 8;
                                 triLength = triLengthTo = 14;
-                                color = ExoPal.erekirRed;
+                                color = ExoPal.cronusRed;
                             }}
                     );
-                    trailColor = hitColor = lightningColor = ExoPal.erekirRed;
+                    trailColor = hitColor = lightningColor = ExoPal.cronusRed;
                     pierce = pierceBuilding = true;
                     pierceCap = 8;
                     width = height = 0;
@@ -2568,7 +2568,7 @@ public class ExoUnitTypes {
                     height = 29f;
                     sprite = "missile-large";
                     frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.erekirRed;
+                    backColor = hitColor = trailColor = ExoPal.cronusRed;
                     lifetime = 40f;
                     hitEffect = Fx.blastExplosion;
                     shrinkY = shrinkX = 0;
@@ -2608,8 +2608,8 @@ public class ExoUnitTypes {
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                     width = 40f;
                     length = 200f;
-                    hitColor = ExoPal.erekirRed;
-                    colors = new Color[]{ExoPal.erekirRed.cpy().a(0.4f), ExoPal.erekirRed, Color.white};
+                    hitColor = ExoPal.cronusRed;
+                    colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
                 }};
             }});
             weapons.add(new Weapon("exogenesis-cronus-ion-blaster") {{
