@@ -16,7 +16,7 @@ public class ExoStatusEffects{
     public static StatusEffect RheaBuff, CronusBuff;
 
     public static void load(){
-        CronusBuff = new StatusEffect("rhea-buff"){{
+        CronusBuff = new StatusEffect("cronus-buff"){{
             color = ExoPal.cronusRed;
             damageMultiplier = 1.25f;
             effectChance = 0.07f;
