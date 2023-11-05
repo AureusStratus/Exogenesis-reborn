@@ -17,12 +17,12 @@ public class ExoStatusEffects{
 
     public static void load(){
         CronusBuff = new StatusEffect("rhea-buff"){{
-            color = ExoPal.erekirRed;
+            color = ExoPal.cronusRed;
             damageMultiplier = 1.25f;
             effectChance = 0.07f;
             effect = new WaveEffect(){{
-                colorFrom = ExoPal.erekirRedlight;
-                colorTo = ExoPal.erekirPink;
+                colorFrom = ExoPal.cronusRedlight;
+                colorTo = ExoPal.cronusRed;
                 sides = 4;
                 sizeFrom = 0;
                 sizeTo = 2f;
