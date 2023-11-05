@@ -292,9 +292,9 @@ public class ExoUnitTypes {
                 y = 4.5f;
                 shootY = 0;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = shoot.firstShotDelay;
+                shootStatusDuration = 150;
                 shoot.firstShotDelay = 150;
-                shootSound = Sounds.artillery;
+                shootSound = ExoSounds.bigLaserShoot;
                 smoothReloadSpeed = 0.15f;
                 shootWarmupSpeed = 0.05f;
                 minWarmup = 0.9f;
@@ -1120,6 +1120,7 @@ public class ExoUnitTypes {
             new HaloPart(){{
                 color = Color.valueOf("a393fe");
                 tri = true;
+                mirror = true;
                 haloRotateSpeed = 1.7f;
                 haloRadius = haloRadiusTo = 5f;
                 stroke = strokeTo = 2f;
@@ -1133,6 +1134,7 @@ public class ExoUnitTypes {
             new HaloPart(){{
                 color = Color.valueOf("a393fe");
                 tri = true;
+                mirror = true;
                 haloRotateSpeed = 0.7f;
                 haloRadius = haloRadiusTo = 5f;
                 stroke = strokeTo = 2f;
@@ -1146,6 +1148,7 @@ public class ExoUnitTypes {
             new HaloPart(){{
                 color = Color.valueOf("a393fe");
                 tri = true;
+                mirror = true;
                 haloRotateSpeed = 0.6f;
                 haloRadius = haloRadiusTo = 8f;
                 stroke = strokeTo = 2f;
@@ -1285,7 +1288,7 @@ public class ExoUnitTypes {
                         fogRadius = 0f;
                         health = 800;
                         abilities.add(new MoveEffectAbility(){{
-                            effect = Fx.missileTrailSmoke;
+                            effect = Fx.none;
                             rotation = 180f;
                             rotateEffect = true;
                             y = -17f;
@@ -1373,7 +1376,7 @@ public class ExoUnitTypes {
                     width = 15f;
                     height = 25f;
                     lifetime = 40f;
-                    shootEffect = new MultiEffect(Fx.explosion, Fx.circleColorSpark);
+                    shootEffect = new MultiEffect(Fx.explosion, Fx.colorSparkBig);
                     shrinkY = shrinkX = 0;
                     hitEffect = new MultiEffect(Fx.sapExplosion, Fx.circleColorSpark, ExoFx.colorBombSmall);
                     despawnHit = true;
@@ -2316,14 +2319,14 @@ public class ExoUnitTypes {
         cronus = new ErekirUnitType("cronus") {{
             constructor = LegsUnit::create;
             fogRadius = 50;
-            speed = 0.45f;
+            speed = 0.8f;
             hitSize = 76f;
             health = 78000f;
             faceTarget = singleTarget = true;
             armor = 38;
             shadowElevation = 0.3f;
             allowLegStep = hovering = true;
-            rotateSpeed = 1.6f;
+            rotateSpeed = 0.8f;
             legSpeed = 0.6f;
             legMoveSpace = 0.7f;
             baseLegStraightness = 0.8f;

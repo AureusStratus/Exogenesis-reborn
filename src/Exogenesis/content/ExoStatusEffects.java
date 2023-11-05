@@ -24,8 +24,8 @@ public class ExoStatusEffects{
                 colorFrom = ExoPal.cronusRedlight;
                 colorTo = ExoPal.cronusRed;
                 sides = 4;
-                sizeFrom = 0;
-                sizeTo = 2f;
+                sizeFrom = 2;
+                sizeTo = 0f;
                 lifetime = 9f;
                 strokeTo = 1;
                 strokeFrom = 0f;
@@ -39,8 +39,8 @@ public class ExoStatusEffects{
             effect = new WaveEffect(){{
                 colorFrom = Color.valueOf("ffcbdd");
                 colorTo = ExoPal.erekirPink;
-                sizeFrom = 0;
-                sizeTo = 3f;
+                sizeFrom = 3;
+                sizeTo = 0f;
                 lifetime = 15f;
                 strokeTo = 1;
                 strokeFrom = 0f;
