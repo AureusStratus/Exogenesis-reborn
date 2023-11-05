@@ -14,6 +14,7 @@ public class Exogenesis extends Mod {
 
     @Override
     public void loadContent() {
+        ExoStatusEffects.load();
         ExoSounds.load();
         ExoUnitTypes.load();
         ExoItems.load();
