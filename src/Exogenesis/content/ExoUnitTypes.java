@@ -2342,7 +2342,7 @@ public class ExoUnitTypes {
             range = 300;
             abilities.add(new StatusFieldAbility(ExoStatusEffects.CronusBuff, 110f, 90f, 200f){{
                 parentizeEffects = true;
-                effectY = 14.25f;
+                effectY = 20f;
                 activeEffect = new WaveEffect(){{
                     colorFrom = ExoPal.cronusRedlight;
                     colorTo = ExoPal.cronusRed;
@@ -2457,7 +2457,7 @@ public class ExoUnitTypes {
                         y = 0;
                         layerOffset = -0.002f;
                         rotation = -20;
-                        progress = PartProgress.warmup.delay(0.4f);
+                        progress = PartProgress.warmup.delay(0.1f);
                         moveRot = 30f;
                     }},
                     new RegionPart("-wing-1"){{
@@ -2466,7 +2466,7 @@ public class ExoUnitTypes {
                         y = -30;
                         layerOffset = -0.002f;
                         rotation = -30;
-                        progress = PartProgress.warmup.delay(0.7f);
+                        progress = PartProgress.warmup.delay(0.2f);
                         moveRot = 50f;
                     }}
             );
@@ -2642,7 +2642,7 @@ public class ExoUnitTypes {
                 shake = 0.5f;
                 bullet = new BasicBulletType(8.5f, 207){{
                     lifetime = 60f;
-                    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
+                    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.cronusRed;
                     impact = true;
                     knockback = 3f;
                     sprite = "circle-bullet";
@@ -2665,7 +2665,7 @@ public class ExoUnitTypes {
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.shootBigSmoke);
                     intervalBullet = new LightningBulletType(){{
                         damage = 3;
-                        lightningColor = ExoPal.empyrean;
+                        lightningColor = ExoPal.cronusRed;
                         lightningLength = 4;
                         lightningLengthRand = 6;
                         buildingDamageMultiplier = 0.25f;
