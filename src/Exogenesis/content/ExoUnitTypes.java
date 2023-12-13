@@ -2728,15 +2728,17 @@ public class ExoUnitTypes {
         }};
         stratiotis = new ErekirUnitType("stratiotis"){{
             constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
+            rotateSpeed = 1.2f;
             speed = 0.7f;
             health = 640;
             hitSize = 9.5f * 1.7f;
             range = 350f;
             allowLegStep = true;
             legCount = 6;
-            legPairOffset = 2;
+            legGroupSize = 2;
             legMoveSpace = 0.5f;
-            legLength = 32f;
+            legLength = 28f;
             legExtension = -4.3f;
 
             weapons.add( new Weapon("exogenesis-red-missile-launcher"){{
@@ -2762,6 +2764,8 @@ public class ExoUnitTypes {
         }};
         naitis = new ErekirUnitType("naitis"){{
             constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
+            rotateSpeed = 0.8f;
             speed = 0.7f;
             health = 1220;
             hitSize = 17.85f;
@@ -2769,9 +2773,9 @@ public class ExoUnitTypes {
             allowLegStep = true;
             legMoveSpace = 0.6f;
             legGroupSize = 3;
-            legPairOffset = 2;
+            legPairOffset = 1;
             legCount = 6;
-            legLength = 40f;
+            legLength = 36f;
             legExtension = -9.3f;
 
             weapons.add(new Weapon("exogenesis-red-missile-launcher"){{
@@ -2781,12 +2785,11 @@ public class ExoUnitTypes {
                         reload = 50;
                         inaccuracy = 1f;
                         bullet = new BasicBulletType(7f, 45f){{
-                            speed = 5f;
-                            width = 7f;
-                            height = 10f;
+                            width = 5f;
+                            height = 7f;
                             shrinkY = 0f;
                             shrinkX = 0f;
-                            trailWidth = 1.5f;
+                            trailWidth = 1f;
                             trailLength = 6;
                             backColor = trailColor = ExoPal.cronusRed;
                             frontColor = ExoPal.cronusRed;
@@ -2796,15 +2799,14 @@ public class ExoUnitTypes {
                 x = 10.25f;
                 y = 9.25f;
                 rotate = true;
-                reload = 50;
+                reload = 49;
                 inaccuracy = 1f;
                 bullet = new BasicBulletType(7f, 45f){{
-                    speed = 5f;
-                    width = 7f;
-                    height = 10f;
+                    width = 5f;
+                    height = 7f;
                     shrinkY = 0f;
                     shrinkX = 0f;
-                    trailWidth = 1.5f;
+                    trailWidth = 1f;
                     trailLength = 6;
                     backColor = trailColor = ExoPal.cronusRed;
                     frontColor = ExoPal.cronusRed;
@@ -2814,15 +2816,14 @@ public class ExoUnitTypes {
                 x = 12.25f;
                 y = -12.25f;
                 rotate = true;
-                reload = 50;
+                reload = 48;
                 inaccuracy = 1f;
                 bullet = new BasicBulletType(7f, 45f){{
-                    speed = 5f;
-                    width = 7f;
-                    height = 10f;
+                    width = 5f;
+                    height = 7f;
                     shrinkY = 0f;
                     shrinkX = 0f;
-                    trailWidth = 1.5f;
+                    trailWidth = 1f;
                     trailLength = 6;
                     backColor = trailColor = ExoPal.cronusRed;
                     frontColor = ExoPal.cronusRed;
@@ -2840,7 +2841,7 @@ public class ExoUnitTypes {
                 layerOffset = 1;
                 shadow = 7f;
                 rotate = true;
-                mirror = true;
+                mirror = false;
                 alternate = false;
                 recoils = 2;
                 recoil = 0f;
@@ -2881,6 +2882,8 @@ public class ExoUnitTypes {
         }};
         protathlitis = new ErekirUnitType("protathlitis"){{
             constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
+            rotateSpeed = 0.6f;
             speed = 0.6f;
             health = 9400;
             hitSize = 36f;
@@ -2889,8 +2892,9 @@ public class ExoUnitTypes {
             legMoveSpace = 0.53f;
             rotateSpeed = 2.5f;
             armor = 4f;
+            legBaseOffset = 6;
             legCount = 6;
-            legLength = 44f;
+            legLength = 41f;
             legExtension = -9.3f;
             legSplashDamage = 20f;
             legSplashRange = 30f;
@@ -2908,9 +2912,10 @@ public class ExoUnitTypes {
                 shake = 1f;
                 shoot = new ShootSpread() {{
                     shots = 12;
+                    spread = 3;
                     shotDelay = 1;
                 }};
-                inaccuracy = 19f;
+                inaccuracy = 5f;
                 velocityRnd = 0.2f;
                 xRand = 1.2f;
                 shootSound = Sounds.missile;
@@ -2933,7 +2938,7 @@ public class ExoUnitTypes {
                 rotateSpeed = 2f;
                 rotate = true;
                 shadow = 12f;
-                reload = 60f * 2.7f;
+                reload = 30;
                 shootSound = Sounds.laser;
 
                 bullet = new LaserBulletType(){{
@@ -2962,11 +2967,12 @@ public class ExoUnitTypes {
             hovering = true;
             groundLayer = Layer.legUnit + 0.01f;
 
-            legCount = 4;
-            legLength = 56f;
+            legCount = 6;
+            legLength = 50f;
             legExtension = -9.5f;
             legSplashDamage = 90f;
             legSplashRange = 65f;
+            legBaseOffset = 8;
             legSpeed = 0.08f;
             legMoveSpace = 0.57f;
             legPairOffset = 0.8f;
