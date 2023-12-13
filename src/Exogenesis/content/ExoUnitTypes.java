@@ -2699,9 +2699,8 @@ public class ExoUnitTypes {
             legCount = 8;
             legGroupSize = 2;
             legPairOffset = 2;
-            legStraightness = 0.6f;
-            baseLegStraightness = 0.5f;
-            legMoveSpace = 0.7f;
+            legBaseOffset = 7;
+            legMoveSpace = 0.5f;
             legLength = 30f;
             legExtension = -4.3f;
 
@@ -2721,6 +2720,7 @@ public class ExoUnitTypes {
                     //lifetime = 8f;
                     length = 59f * 6f;
                     shootEffect = Fx.colorSpark;
+                    toColor = ExoPal.cronusRed;
                     hitEffect = Fx.massiveExplosion;
                     pierceDamageFactor = 0.3f;
                 }};
@@ -2734,7 +2734,8 @@ public class ExoUnitTypes {
             range = 350f;
             allowLegStep = true;
             legCount = 6;
-            legMoveSpace = 0.73f;
+            legPairOffset = 2;
+            legMoveSpace = 0.5f;
             legLength = 32f;
             legExtension = -4.3f;
 
@@ -2766,79 +2767,117 @@ public class ExoUnitTypes {
             hitSize = 17.85f;
             range = 350f;
             allowLegStep = true;
-            legMoveSpace = 0.73f;
-            legGroupSize = 5;
-            legPairOffset = 3;
-            legCount = 10;
+            legMoveSpace = 0.6f;
+            legGroupSize = 3;
+            legPairOffset = 2;
+            legCount = 6;
             legLength = 40f;
             legExtension = -9.3f;
 
-            weapons.add(
-                    new Weapon(){{
-                        x = 0f;
-                        y = 12f;
-                        shootY = 0f;
-                        mirror = false;
-                        rotate = false;
-                        shake = 2.3f;
-                        reload = 2.75f * 60f;
-
-                        bullet = new DelayedPointBulletType(){{
-                            damage = 200f;
-                            width = 35f;
-                            delayEffectLifeTime = lifetime = 0f;
-                            rangeOverride = 460;
-                            trailEffect = Fx.none;
-                            lightning = 7;
-                            lightningLength = 15;
-                            lightningLengthRand = 35;
-                            lightningDamage = 50;
-                            lightColor = hitColor = lightningColor = ExoPal.cronusRed;
-                            hitEffect = despawnEffect = new MultiEffect(ExoFx.colorBombSmall);
-                            colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
-                        }};
-                    }}, new Weapon(){{
-                        x = 10.25f;
-                        y = 2f;
-                        rotate = false;
-                        shake = 1.1f;
-                        reload = 2.25f * 70f;
-
-                        bullet = new DelayedPointBulletType(){{
-                            damage = 200f;
-                            width = 35f;
-                            delayEffectLifeTime = lifetime = 0f;
-                            rangeOverride = 460;
-                            trailEffect = Fx.none;
-                            lightning = 7;
-                            lightningLength = 15;
-                            lightningLengthRand = 35;
-                            lightningDamage = 50;
-                            lightColor = hitColor = lightningColor = ExoPal.cronusRed;
-                            hitEffect = despawnEffect = new MultiEffect(ExoFx.colorBombSmall);
-                            colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
-                        }};
-                    }}, new Weapon("exogenesis-red-missile-launcher"){{
-                        x = 12.25f;
-                        y = -5f;
+            weapons.add(new Weapon("exogenesis-red-missile-launcher"){{
+                        x = 17.25f;
+                        y = 0f;
                         rotate = true;
-                        shoot = new ShootPattern() {{
-                            shots = 6;
-                            shotDelay = 3;
-                        }};
-                        inaccuracy = 4f;
-                        bullet = new MissileBulletType(5f, 95f){{
+                        reload = 50;
+                        inaccuracy = 1f;
+                        bullet = new BasicBulletType(7f, 45f){{
                             speed = 5f;
                             width = 7f;
-                            height = 12f;
+                            height = 10f;
                             shrinkY = 0f;
+                            shrinkX = 0f;
+                            trailWidth = 1.5f;
+                            trailLength = 6;
                             backColor = trailColor = ExoPal.cronusRed;
                             frontColor = ExoPal.cronusRed;
-                            weaveMag = 3f;
-                            weaveScale = 4f;
                         }};
-                    }}
-            );
+                    }});
+            weapons.add(new Weapon("exogenesis-red-missile-launcher"){{
+                x = 10.25f;
+                y = 9.25f;
+                rotate = true;
+                reload = 50;
+                inaccuracy = 1f;
+                bullet = new BasicBulletType(7f, 45f){{
+                    speed = 5f;
+                    width = 7f;
+                    height = 10f;
+                    shrinkY = 0f;
+                    shrinkX = 0f;
+                    trailWidth = 1.5f;
+                    trailLength = 6;
+                    backColor = trailColor = ExoPal.cronusRed;
+                    frontColor = ExoPal.cronusRed;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-red-missile-launcher"){{
+                x = 12.25f;
+                y = -12.25f;
+                rotate = true;
+                reload = 50;
+                inaccuracy = 1f;
+                bullet = new BasicBulletType(7f, 45f){{
+                    speed = 5f;
+                    width = 7f;
+                    height = 10f;
+                    shrinkY = 0f;
+                    shrinkX = 0f;
+                    trailWidth = 1.5f;
+                    trailLength = 6;
+                    backColor = trailColor = ExoPal.cronusRed;
+                    frontColor = ExoPal.cronusRed;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-red-flak-turret"){{
+                x = 0f;
+                y = -3f;
+                rotateSpeed = 2.5f;
+                reload = 6f;
+                shootSound = Sounds.shootBig;
+                ejectEffect = Fx.casing2;
+                rotationLimit = 80;
+                shootCone = 40;
+                layerOffset = 1;
+                shadow = 7f;
+                rotate = true;
+                mirror = true;
+                alternate = false;
+                recoils = 2;
+                recoil = 0f;
+                parts.add(
+                        new RegionPart("-barrel-l"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 1;
+                            progress = PartProgress.recoil;
+                            moveY = -5f;
+                        }},
+                        new RegionPart("-barrel-r"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 0;
+                            progress = PartProgress.recoil;
+                            moveY = -5f;
+                        }}
+                );
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                            3.5f, 15f, 0f,
+                            -3.5f, 15f, 0f,
+                    };
+                }};
+                bullet = new BasicBulletType(6.5f, 60){{
+                    width = height = 12f;
+                    lifetime = 35f;
+                    hitColor = trailColor = backColor = ExoPal.cronusRed;
+                    smokeEffect = Fx.shootBigSmoke;
+                    shootEffect = Fx.shootBig2;
+                    hitEffect = Fx.flakExplosion;
+                    buildingDamageMultiplier = 0.5f;
+                    trailLength = 10;
+                    trailWidth = 2.5f;
+                }};
+            }});
         }};
         protathlitis = new ErekirUnitType("protathlitis"){{
             constructor = LegsUnit::create;
@@ -2895,20 +2934,17 @@ public class ExoUnitTypes {
                 rotate = true;
                 shadow = 12f;
                 reload = 60f * 2.7f;
-                shootSound = Sounds.artillery;
+                shootSound = Sounds.laser;
 
-                bullet = new DelayedPointBulletType(){{
-                    damage = 200f;
-                    width = 55f;
-                    delayEffectLifeTime = lifetime = 0f;
-                    rangeOverride = 460;
-                    trailEffect = Fx.none;
-                    lightning = 7;
-                    lightningLength = 15;
-                    lightningLengthRand = 35;
-                    lightningDamage = 50;
-                    lightColor = hitColor = lightningColor = ExoPal.cronusRed;
-                    hitEffect = despawnEffect = new MultiEffect(ExoFx.colorBombSmall);
+                bullet = new LaserBulletType(){{
+                    damage = 140f;
+                    sideWidth = 1f;
+                    sideAngle = 35;
+                    sideLength = 17;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
+                    width = 30f;
+                    length = 200f;
+                    hitColor = ExoPal.cronusRed;
                     colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
                 }};
             }});
