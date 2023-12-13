@@ -2693,36 +2693,43 @@ public class ExoUnitTypes {
             speed = 0.8f;
             health = 340;
             hitSize = 7.75f * 1.7f;
-            range = 350f;
+            range = 250f;
             lockLegBase = true;
+            legContinuousMove = true;
             allowLegStep = true;
+            legStraightness = 0.6f;
+            baseLegStraightness = 0.8f;
+            legMoveSpace = 1.5f;
+            legMaxLength = 1.1f;
+            legMinLength = 0.2f;
+            legLengthScl = 0.96f;
+            legForwardScl = 1.1f;
+            legPhysicsLayer = false;
             legCount = 8;
             legGroupSize = 2;
-            legPairOffset = 2;
+            legPairOffset = 1;
             legBaseOffset = 7;
-            legMoveSpace = 0.5f;
-            legLength = 30f;
+            legLength = 10f;
             legExtension = -4.3f;
 
-            weapons.add(new Weapon("exogen"){{
+            weapons.add(new Weapon("zap"){{
                 reload = 60f * 2;
                 x = 0f;
-                y = -2f;
-                shootY = 9f;
+                y = -4f;
+                shootY = 0f;
                 mirror = false;
-                rotate = true;
-                shake = 2.3f;
-                rotateSpeed = 2f;
-
-                bullet = new ShrapnelBulletType(){{
-                    damage = 500f;
-                    //speed = 59f;
-                    //lifetime = 8f;
-                    length = 59f * 6f;
-                    shootEffect = Fx.colorSpark;
-                    toColor = ExoPal.cronusRed;
-                    hitEffect = Fx.massiveExplosion;
-                    pierceDamageFactor = 0.3f;
+                rotate = false;
+                shoot = new ShootPattern() {{
+                    shots = 6;
+                    shotDelay = 3;
+                }};
+                shootSound = Sounds.bolt;
+                bullet = new PosLightningType(32f){{
+                    lightningColor = hitColor = ExoPal.cronusRed;
+                    maxRange = rangeOverride = 250f;
+                    shootEffect = ExoFx.colorBombSmaller;
+                    hitEffect = Fx.circleColorSpark;
+                    smokeEffect = Fx.none;
                 }};
             }});
         }};
@@ -2883,14 +2890,13 @@ public class ExoUnitTypes {
         protathlitis = new ErekirUnitType("protathlitis"){{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
-            rotateSpeed = 0.6f;
+            rotateSpeed = 0.9f;
             speed = 0.6f;
             health = 9400;
             hitSize = 36f;
             range = 360f;
             allowLegStep = true;
             legMoveSpace = 0.53f;
-            rotateSpeed = 2.5f;
             armor = 4f;
             legBaseOffset = 6;
             legCount = 6;
@@ -2961,7 +2967,7 @@ public class ExoUnitTypes {
             hitSize = 47.5f;
             range = 390f;
             allowLegStep = true;
-            rotateSpeed = 2f;
+            rotateSpeed = 1f;
             armor = 12f;
 
             hovering = true;
@@ -3012,6 +3018,7 @@ public class ExoUnitTypes {
                     lifetime = 35f;
                     width = 7f;
                     height = 12f;
+                    backColor = hitColor = ExoPal.cronusRed;
                     pierce = true;
                     pierceBuilding = true;
                     pierceCap = 2;
@@ -3029,7 +3036,7 @@ public class ExoUnitTypes {
                     shots = 9;
                     shotDelay = 1;
                 }};
-                inaccuracy = 19f;
+                inaccuracy = 7f;
                 velocityRnd = 0.2f;
                 xRand = 1.2f;
                 shootSound = Sounds.missile;
@@ -3057,7 +3064,7 @@ public class ExoUnitTypes {
                     shots = 9;
                     shotDelay = 1;
                 }};
-                inaccuracy = 19f;
+                inaccuracy = 7f;
                 velocityRnd = 0.2f;
                 xRand = 1.2f;
                 shootSound = Sounds.missile;
