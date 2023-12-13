@@ -36,6 +36,8 @@ import static mindustry.Vars.*;
 public class ExoUnitTypes {
     public static UnitType ursa, avicularia, twilight, notodoris,
     //erekir
+    //red
+    nkarnt, stratiotis, naitis, protathlitis, vasilias,
     prometheus, atlas, nemesis, hyperion, rhea, cronus,
     //empyrean
     lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
@@ -2686,6 +2688,351 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+        nkarnt = new ErekirUnitType("nkarnt"){{
+            constructor = LegsUnit::create;
+            speed = 0.8f;
+            health = 340;
+            hitSize = 7.75f * 1.7f;
+            range = 350f;
+            lockLegBase = true;
+            allowLegStep = true;
+            legCount = 8;
+            legGroupSize = 2;
+            legPairOffset = 2;
+            legStraightness = 0.6f;
+            baseLegStraightness = 0.5f;
+            legMoveSpace = 0.7f;
+            legLength = 30f;
+            legExtension = -4.3f;
+
+            weapons.add(new Weapon("exogen"){{
+                reload = 60f * 2;
+                x = 0f;
+                y = -2f;
+                shootY = 9f;
+                mirror = false;
+                rotate = true;
+                shake = 2.3f;
+                rotateSpeed = 2f;
+
+                bullet = new ShrapnelBulletType(){{
+                    damage = 500f;
+                    //speed = 59f;
+                    //lifetime = 8f;
+                    length = 59f * 6f;
+                    shootEffect = Fx.colorSpark;
+                    hitEffect = Fx.massiveExplosion;
+                    pierceDamageFactor = 0.3f;
+                }};
+            }});
+        }};
+        stratiotis = new ErekirUnitType("stratiotis"){{
+            constructor = LegsUnit::create;
+            speed = 0.7f;
+            health = 640;
+            hitSize = 9.5f * 1.7f;
+            range = 350f;
+            allowLegStep = true;
+            legCount = 6;
+            legMoveSpace = 0.73f;
+            legLength = 32f;
+            legExtension = -4.3f;
+
+            weapons.add( new Weapon("exogenesis-red-missile-launcher"){{
+                reload = 50f;
+                x = 6.25f;
+                shoot = new ShootPattern() {{
+                    shots = 6;
+                    shotDelay = 3;
+                }};
+                inaccuracy = 4f;
+                rotate = true;
+                bullet = new MissileBulletType(5f, 25f){{
+                    speed = 5f;
+                    width = 7f;
+                    height = 12f;
+                    shrinkY = 0f;
+                    backColor = trailColor = ExoPal.cronusRed;
+                    frontColor = ExoPal.cronusRed;
+                    weaveMag = 3f;
+                    weaveScale = 4f;
+                }};
+            }});
+        }};
+        naitis = new ErekirUnitType("naitis"){{
+            constructor = LegsUnit::create;
+            speed = 0.7f;
+            health = 1220;
+            hitSize = 17.85f;
+            range = 350f;
+            allowLegStep = true;
+            legMoveSpace = 0.73f;
+            legGroupSize = 5;
+            legPairOffset = 3;
+            legCount = 10;
+            legLength = 40f;
+            legExtension = -9.3f;
+
+            weapons.add(
+                    new Weapon(){{
+                        x = 0f;
+                        y = 12f;
+                        shootY = 0f;
+                        mirror = false;
+                        rotate = false;
+                        shake = 2.3f;
+                        reload = 2.75f * 60f;
+
+                        bullet = new DelayedPointBulletType(){{
+                            damage = 200f;
+                            width = 35f;
+                            delayEffectLifeTime = lifetime = 0f;
+                            rangeOverride = 460;
+                            trailEffect = Fx.none;
+                            lightning = 7;
+                            lightningLength = 15;
+                            lightningLengthRand = 35;
+                            lightningDamage = 50;
+                            lightColor = hitColor = lightningColor = ExoPal.cronusRed;
+                            hitEffect = despawnEffect = new MultiEffect(ExoFx.colorBombSmall);
+                            colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
+                        }};
+                    }}, new Weapon(){{
+                        x = 10.25f;
+                        y = 2f;
+                        rotate = false;
+                        shake = 1.1f;
+                        reload = 2.25f * 70f;
+
+                        bullet = new DelayedPointBulletType(){{
+                            damage = 200f;
+                            width = 35f;
+                            delayEffectLifeTime = lifetime = 0f;
+                            rangeOverride = 460;
+                            trailEffect = Fx.none;
+                            lightning = 7;
+                            lightningLength = 15;
+                            lightningLengthRand = 35;
+                            lightningDamage = 50;
+                            lightColor = hitColor = lightningColor = ExoPal.cronusRed;
+                            hitEffect = despawnEffect = new MultiEffect(ExoFx.colorBombSmall);
+                            colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
+                        }};
+                    }}, new Weapon("exogenesis-red-missile-launcher"){{
+                        x = 12.25f;
+                        y = -5f;
+                        rotate = true;
+                        shoot = new ShootPattern() {{
+                            shots = 6;
+                            shotDelay = 3;
+                        }};
+                        inaccuracy = 4f;
+                        bullet = new MissileBulletType(5f, 95f){{
+                            speed = 5f;
+                            width = 7f;
+                            height = 12f;
+                            shrinkY = 0f;
+                            backColor = trailColor = ExoPal.cronusRed;
+                            frontColor = ExoPal.cronusRed;
+                            weaveMag = 3f;
+                            weaveScale = 4f;
+                        }};
+                    }}
+            );
+        }};
+        protathlitis = new ErekirUnitType("protathlitis"){{
+            constructor = LegsUnit::create;
+            speed = 0.6f;
+            health = 9400;
+            hitSize = 36f;
+            range = 360f;
+            allowLegStep = true;
+            legMoveSpace = 0.53f;
+            rotateSpeed = 2.5f;
+            armor = 4f;
+            legCount = 6;
+            legLength = 44f;
+            legExtension = -9.3f;
+            legSplashDamage = 20f;
+            legSplashRange = 30f;
+
+            groundLayer = Layer.legUnit;
+
+            weapons.add(new Weapon("exogenesis-red-large-launcher"){{
+                x = 13.5f;
+                y = -6.5f;
+                shootY = 5f;
+                shadow = 8f;
+                rotateSpeed = 5f;
+                rotate = true;
+                reload = 80f;
+                shake = 1f;
+                shoot = new ShootSpread() {{
+                    shots = 12;
+                    shotDelay = 1;
+                }};
+                inaccuracy = 19f;
+                velocityRnd = 0.2f;
+                xRand = 1.2f;
+                shootSound = Sounds.missile;
+
+                bullet = new MissileBulletType(5f, 95f){{
+                    width = 7f;
+                    height = 17f;
+                    shrinkY = 0;
+                    shrinkX = 0;
+                    backColor = trailColor = ExoPal.cronusRed;
+                    frontColor = ExoPal.cronusRed;
+                    weaveMag = 3f;
+                    weaveScale = 4f;
+                }};
+
+            }}, new Weapon("exogenesis-red-railgun"){{
+                x = 7f;
+                y = -9.25f;
+                shootY = 10.75f;
+                rotateSpeed = 2f;
+                rotate = true;
+                shadow = 12f;
+                reload = 60f * 2.7f;
+                shootSound = Sounds.artillery;
+
+                bullet = new DelayedPointBulletType(){{
+                    damage = 200f;
+                    width = 55f;
+                    delayEffectLifeTime = lifetime = 0f;
+                    rangeOverride = 460;
+                    trailEffect = Fx.none;
+                    lightning = 7;
+                    lightningLength = 15;
+                    lightningLengthRand = 35;
+                    lightningDamage = 50;
+                    lightColor = hitColor = lightningColor = ExoPal.cronusRed;
+                    hitEffect = despawnEffect = new MultiEffect(ExoFx.colorBombSmall);
+                    colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
+                }};
+            }});
+        }};
+        vasilias = new ErekirUnitType("vasilias"){{
+            constructor = LegsUnit::create;
+            speed = 0.55f;
+            health = 23000;
+            hitSize = 47.5f;
+            range = 390f;
+            allowLegStep = true;
+            rotateSpeed = 2f;
+            armor = 12f;
+
+            hovering = true;
+            groundLayer = Layer.legUnit + 0.01f;
+
+            legCount = 4;
+            legLength = 56f;
+            legExtension = -9.5f;
+            legSplashDamage = 90f;
+            legSplashRange = 65f;
+            legSpeed = 0.08f;
+            legMoveSpace = 0.57f;
+            legPairOffset = 0.8f;
+
+            weapons.add(new Weapon(name + "-railgun"){{
+                x = 31.25f;
+                y = -12.25f;
+                shootY = 23.25f;
+                rotate = false;
+                top = false;
+                reload = 60f * 4.5f;
+                recoil = 4f;
+                shootSound = Sounds.artillery;
+
+                bullet = new RailBulletType(){{
+                        damage = 1300f;
+                        buildingDamageMultiplier = 0.5f;
+                        shootEffect = ExoFx.ColorRailShoot;
+                        pierceEffect = ExoFx.ColorRailHit;
+                        pointEffect = ExoFx.ColorRailTrail;
+                        length = 61f * 8f;
+                        hitEffect = Fx.massiveExplosion;
+                        pierceDamageFactor = 0.35f;
+                }};
+            }}, new Weapon("exogenesis-red-large-launcher"){{
+                x = 12.25f;
+                y = 13f;
+                shootY = 5f;
+                xRand = 2.2f;
+                shadow = 8f;
+                rotateSpeed = 5f;
+                rotate = true;
+                reload = 4f;
+                inaccuracy = 5f;
+
+                bullet = new BasicBulletType(6f, 12f){{
+                    lifetime = 35f;
+                    width = 7f;
+                    height = 12f;
+                    pierce = true;
+                    pierceBuilding = true;
+                    pierceCap = 2;
+                }};
+            }}, new Weapon("exogenesis-red-large-launcher"){{
+                x = 15.75f;
+                y = -17.5f;
+                shootY = 5f;
+                shadow = 8f;
+                rotateSpeed = 5f;
+                rotate = true;
+                reload = 85f;
+                shake = 1f;
+                shoot = new ShootSpread() {{
+                    shots = 9;
+                    shotDelay = 1;
+                }};
+                inaccuracy = 19f;
+                velocityRnd = 0.2f;
+                xRand = 1.2f;
+                shootSound = Sounds.missile;
+
+                bullet = new MissileBulletType(5f, 95f){{
+                    width = 7f;
+                    height = 17f;
+                    shrinkY = 0;
+                    shrinkX = 0;
+                    backColor = trailColor = ExoPal.cronusRed;
+                    frontColor = ExoPal.cronusRed;
+                    weaveMag = 3f;
+                    weaveScale = 4f;
+                }};
+            }}, new Weapon("exogenesis-red-large-launcher"){{
+                x = 9.25f;
+                y = -13.75f;
+                shootY = 5f;
+                shadow = 8f;
+                rotateSpeed = 5f;
+                rotate = true;
+                reload = 90f;
+                shake = 1f;
+                shoot = new ShootSpread() {{
+                    shots = 9;
+                    shotDelay = 1;
+                }};
+                inaccuracy = 19f;
+                velocityRnd = 0.2f;
+                xRand = 1.2f;
+                shootSound = Sounds.missile;
+
+                bullet = new MissileBulletType(5f, 95f){{
+                    width = 7f;
+                    height = 17f;
+                    shrinkY = 0;
+                    shrinkX = 0;
+                    backColor = trailColor = ExoPal.cronusRed;
+                    frontColor = ExoPal.cronusRed;
+                    weaveMag = 3f;
+                    weaveScale = 4f;
+                }};
+            }});
+        }};
+
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
             speed = 0.27f;
