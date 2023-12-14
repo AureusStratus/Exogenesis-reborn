@@ -2697,30 +2697,29 @@ public class ExoUnitTypes {
             lockLegBase = true;
             legContinuousMove = true;
             allowLegStep = true;
-            legStraightness = 0.6f;
-            baseLegStraightness = 0.8f;
-            legMoveSpace = 1.5f;
+            legStraightness = 0.8f;
+            baseLegStraightness = 0.6f;
+            legMoveSpace = 0.5f;
             legMaxLength = 1.1f;
             legMinLength = 0.2f;
             legLengthScl = 0.96f;
             legForwardScl = 1.1f;
             legPhysicsLayer = false;
             legCount = 8;
-            legGroupSize = 2;
             legPairOffset = 1;
-            legBaseOffset = 7;
+            legBaseOffset = 9;
             legLength = 10f;
             legExtension = -4.3f;
 
             weapons.add(new Weapon("zap"){{
                 reload = 60f * 2;
                 x = 0f;
-                y = -4f;
+                y = -2f;
                 shootY = 0f;
                 mirror = false;
                 rotate = false;
                 shoot = new ShootPattern() {{
-                    shots = 6;
+                    shots = 3;
                     shotDelay = 3;
                 }};
                 shootSound = Sounds.bolt;
@@ -2983,25 +2982,34 @@ public class ExoUnitTypes {
             legMoveSpace = 0.57f;
             legPairOffset = 0.8f;
 
-            weapons.add(new Weapon(name + "-railgun"){{
-                x = 31.25f;
+            weapons.add(new Weapon(name + "-laser-weapon"){{
+                x = 28.25f;
                 y = -12.25f;
-                shootY = 23.25f;
-                rotate = false;
-                top = false;
-                reload = 60f * 4.5f;
+                shootY = 7f;
+                shadow = 19f;
+                rotate = true;
+                top = true;
+                reload = 170f;
                 recoil = 4f;
-                shootSound = Sounds.artillery;
+                shootSound = Sounds.torch;
 
-                bullet = new RailBulletType(){{
-                        damage = 1300f;
-                        buildingDamageMultiplier = 0.5f;
-                        shootEffect = ExoFx.ColorRailShoot;
-                        pierceEffect = ExoFx.ColorRailHit;
-                        pointEffect = ExoFx.ColorRailTrail;
-                        length = 61f * 8f;
-                        hitEffect = Fx.massiveExplosion;
-                        pierceDamageFactor = 0.35f;
+                rotate = continuous = alwaysContinuous = mirror = true;
+                rotateSpeed = 1.5f;
+
+                bullet = new ContinuousLaserBulletType(){{
+                    hitColor = ExoPal.cronusRed;
+                    damage = 65f;
+                    length = 360f;
+                    lifetime = 100;
+                    hitEffect = ExoFx.hitMeltColor;
+                    drawSize = 420f;
+                    width = 8f;
+                    shake = 1f;
+                    largeHit = false;
+                    colors = new Color[]{ExoPal.cronusRed.cpy().a(0.8f), ExoPal.cronusRed, Color.white};
+                    despawnEffect = Fx.smokeCloud;
+                    smokeEffect = Fx.none;
+                    shootEffect = Fx.none;
                 }};
             }}, new Weapon("exogenesis-red-large-launcher"){{
                 x = 12.25f;
