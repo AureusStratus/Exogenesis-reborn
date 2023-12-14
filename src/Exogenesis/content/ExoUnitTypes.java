@@ -2707,14 +2707,13 @@ public class ExoUnitTypes {
             legPhysicsLayer = false;
             legCount = 8;
             legPairOffset = 1;
-            legBaseOffset = 9;
+            legBaseOffset = 7;
             legLength = 10f;
-            legExtension = -4.3f;
 
             weapons.add(new Weapon("zap"){{
                 reload = 60f * 2;
                 x = 0f;
-                y = -2f;
+                y = -1f;
                 shootY = 0f;
                 mirror = false;
                 rotate = false;
@@ -2982,34 +2981,25 @@ public class ExoUnitTypes {
             legMoveSpace = 0.57f;
             legPairOffset = 0.8f;
 
-            weapons.add(new Weapon(name + "-laser-weapon"){{
-                x = 28.25f;
+            weapons.add(new Weapon(name + "-railgun"){{
+                x = 37.25f;
                 y = -12.25f;
                 shootY = 7f;
-                shadow = 19f;
-                rotate = true;
-                top = true;
+                top = false;
                 reload = 170f;
                 recoil = 4f;
-                shootSound = Sounds.torch;
-
-                rotate = continuous = alwaysContinuous = mirror = true;
-                rotateSpeed = 1.5f;
-
-                bullet = new ContinuousLaserBulletType(){{
-                    hitColor = ExoPal.cronusRed;
-                    damage = 65f;
-                    length = 360f;
-                    lifetime = 100;
-                    hitEffect = ExoFx.hitMeltColor;
-                    drawSize = 420f;
-                    width = 8f;
-                    shake = 1f;
-                    largeHit = false;
-                    colors = new Color[]{ExoPal.cronusRed.cpy().a(0.8f), ExoPal.cronusRed, Color.white};
-                    despawnEffect = Fx.smokeCloud;
+                rotate = false;
+                shoot = new ShootPattern() {{
+                    shots = 2;
+                    shotDelay = 4;
+                }};
+                shootSound = Sounds.railgun;
+                bullet = new PosLightningType(2000f){{
+                    lightningColor = hitColor = ExoPal.cronusRed;
+                    maxRange = rangeOverride = 390f;
+                    shootEffect = ExoFx.colorBomb;
+                    hitEffect = Fx.circleColorSpark;
                     smokeEffect = Fx.none;
-                    shootEffect = Fx.none;
                 }};
             }}, new Weapon("exogenesis-red-large-launcher"){{
                 x = 12.25f;
