@@ -2699,7 +2699,7 @@ public class ExoUnitTypes {
             allowLegStep = true;
             legStraightness = 0.8f;
             baseLegStraightness = 0.6f;
-            legMoveSpace = 0.5f;
+            legMoveSpace = 1.5f;
             legMaxLength = 1.1f;
             legMinLength = 0.2f;
             legLengthScl = 0.96f;
@@ -2708,25 +2708,22 @@ public class ExoUnitTypes {
             legCount = 8;
             legPairOffset = 1;
             legBaseOffset = 7;
-            legLength = 10f;
+            legExtension = -6;
+            legLength = 13f;
 
             weapons.add(new Weapon("zap"){{
-                reload = 60f * 2;
+                reload = 100;
                 x = 0f;
                 y = -1f;
                 shootY = 0f;
                 mirror = false;
                 rotate = false;
-                shoot = new ShootPattern() {{
-                    shots = 3;
-                    shotDelay = 3;
-                }};
                 shootSound = Sounds.bolt;
-                bullet = new PosLightningType(32f){{
+                bullet = new PosLightningType(100f){{
                     lightningColor = hitColor = ExoPal.cronusRed;
                     maxRange = rangeOverride = 250f;
-                    shootEffect = ExoFx.colorBombSmaller;
-                    hitEffect = Fx.circleColorSpark;
+                    shootEffect = Fx.colorSparkBig;
+                    hitEffect = ExoFx.colorBombSmaller;
                     smokeEffect = Fx.none;
                 }};
             }});
@@ -2873,7 +2870,8 @@ public class ExoUnitTypes {
                     };
                 }};
                 bullet = new BasicBulletType(6.5f, 60){{
-                    width = height = 12f;
+                    width = 7;
+                    height = 12f;
                     lifetime = 35f;
                     hitColor = trailColor = backColor = ExoPal.cronusRed;
                     smokeEffect = Fx.shootBigSmoke;
@@ -2971,17 +2969,17 @@ public class ExoUnitTypes {
             hovering = true;
             groundLayer = Layer.legUnit + 0.01f;
 
-            legCount = 6;
+            legCount = 10;
             legLength = 50f;
             legExtension = -9.5f;
             legSplashDamage = 90f;
             legSplashRange = 65f;
-            legBaseOffset = 8;
+            legBaseOffset = 12;
             legSpeed = 0.08f;
             legMoveSpace = 0.57f;
             legPairOffset = 0.8f;
 
-            weapons.add(new Weapon(name + "-railgun"){{
+            weapons.add(new Weapon(name + "-laser-weapon"){{
                 x = 37.25f;
                 y = -12.25f;
                 shootY = 7f;
@@ -2997,8 +2995,8 @@ public class ExoUnitTypes {
                 bullet = new PosLightningType(2000f){{
                     lightningColor = hitColor = ExoPal.cronusRed;
                     maxRange = rangeOverride = 390f;
-                    shootEffect = ExoFx.colorBomb;
-                    hitEffect = Fx.circleColorSpark;
+                    shootEffect = Fx.colorSparkBig;
+                    hitEffect = ExoFx.colorBomb;
                     smokeEffect = Fx.none;
                 }};
             }}, new Weapon("exogenesis-red-large-launcher"){{
