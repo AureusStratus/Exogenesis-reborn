@@ -2697,13 +2697,8 @@ public class ExoUnitTypes {
             lockLegBase = true;
             legContinuousMove = true;
             allowLegStep = true;
-            legStraightness = 0.8f;
             baseLegStraightness = 0.6f;
             legMoveSpace = 1.5f;
-            legMaxLength = 1.1f;
-            legMinLength = 0.2f;
-            legLengthScl = 0.96f;
-            legForwardScl = 1.1f;
             legPhysicsLayer = false;
             legCount = 8;
             legPairOffset = 1;
@@ -2718,10 +2713,11 @@ public class ExoUnitTypes {
                 shootY = 0f;
                 mirror = false;
                 rotate = false;
-                shootSound = Sounds.bolt;
+                shootSound = Sounds.spark;
                 bullet = new PosLightningType(100f){{
                     lightningColor = hitColor = ExoPal.cronusRed;
                     maxRange = rangeOverride = 250f;
+                    hitShake = 2.5f;
                     shootEffect = Fx.colorSparkBig;
                     hitEffect = ExoFx.colorBombSmaller;
                     smokeEffect = Fx.none;
@@ -2933,7 +2929,34 @@ public class ExoUnitTypes {
                     weaveScale = 4f;
                 }};
 
-            }}, new Weapon("exogenesis-red-railgun"){{
+            }},
+                new Weapon("exogenesis-red-artillery"){{
+                    x = 13.5f;
+                    y = -6.5f;
+                    shootY = 5f;
+                    shadow = 8f;
+                    rotateSpeed = 1f;
+                    rotationLimit = 60;
+                    rotate = true;
+                    reload = 80f;
+                    shake = 1f;
+                    shoot = new ShootSpread() {{
+                        shots = 3;
+                        spread = 3;
+                        shotDelay = 1;
+                    }};
+                    shootSound = Sounds.shotgun;
+
+                    bullet = new ShrapnelBulletType(){{
+                        damage = 15f;
+                        width = 10f;
+                        serrations = 6;
+                        length = 13f;
+                        lifetime = 25;
+                        fromColor = ExoPal.cronusRed;
+                    }};
+            }},
+                new Weapon("exogenesis-red-railgun"){{
                 x = 7f;
                 y = -9.25f;
                 shootY = 10.75f;
@@ -2968,33 +2991,34 @@ public class ExoUnitTypes {
 
             hovering = true;
             groundLayer = Layer.legUnit + 0.01f;
-
-            legCount = 10;
+            rippleScale = 1.2f;
+            legCount = 8;
             legLength = 50f;
             legExtension = -9.5f;
             legSplashDamage = 90f;
             legSplashRange = 65f;
-            legBaseOffset = 12;
-            legSpeed = 0.08f;
+            legBaseOffset = 18;
             legMoveSpace = 0.57f;
             legPairOffset = 0.8f;
 
             weapons.add(new Weapon(name + "-laser-weapon"){{
-                x = 37.25f;
+                x = 30.25f;
                 y = -12.25f;
                 shootY = 7f;
-                top = false;
-                reload = 170f;
-                recoil = 4f;
-                rotate = false;
+                top = true;
+                reload = 30f;
+                rotateSpeed = 2;
+                rotate = true;
                 shoot = new ShootPattern() {{
                     shots = 2;
                     shotDelay = 4;
                 }};
+                shake = 2;
                 shootSound = Sounds.railgun;
                 bullet = new PosLightningType(2000f){{
                     lightningColor = hitColor = ExoPal.cronusRed;
                     maxRange = rangeOverride = 390f;
+                    hitShake = 4;
                     shootEffect = Fx.colorSparkBig;
                     hitEffect = ExoFx.colorBomb;
                     smokeEffect = Fx.none;
