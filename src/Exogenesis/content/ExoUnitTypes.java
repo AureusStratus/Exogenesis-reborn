@@ -3214,6 +3214,7 @@ public class ExoUnitTypes {
                 }});
             }};
         heimdall = new UnitType("heimdall"){{
+            constructor = MechUnit::create;
             speed = 0.25f;
             hitSize = 49f;
             rotateSpeed = 1.25f;
