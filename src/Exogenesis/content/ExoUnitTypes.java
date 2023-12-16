@@ -34,7 +34,7 @@ import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 
 public class ExoUnitTypes {
-    public static UnitType ursa, avicularia, twilight, notodoris,
+    public static UnitType ursa, empire, heimdall, avicularia, twilight, notodoris,
     //erekir
     //red
     nkarnt, stratiotis, naitis, protathlitis, vasilias,
@@ -3102,6 +3102,7 @@ public class ExoUnitTypes {
             }});
         }};
 
+
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
             speed = 0.27f;
@@ -3164,6 +3165,279 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+        empire = new UnitType("empire"){{
+                constructor = MechUnit::create;
+                speed = 0.35f;
+                hitSize = 49f;
+                rotateSpeed = 1.5f;
+                health = 78000f;
+                armor = 35f;
+                mechStepParticles = singleTarget = true;
+                stepShake = 1f;
+                canDrown = false;
+                mechFrontSway = 2f;
+                mechSideSway = 0.7f;
+                mechStride = (4f + (hitSize - 8f) / 2.1f) / 1.25f;
+                immunities.add(StatusEffects.blasted);
+
+                weapons.add(new Weapon(name + "-weapon") {{
+                    top = false;
+                    layerOffset = -0.001f;
+                    x = 35.25f;
+                    y = 0f;
+                    shootY = 30.25f;
+                    reload = 3f;
+                    recoil = 1f;
+                    shake = 2f;
+                    shoot = new ShootMulti(new ShootAlternate() {{
+                        spread = 1f;
+                        barrels = 5;
+                    }}, new ShootPattern() {{
+                        shots = 2;
+                    }});
+                    inaccuracy = 9;
+                    ejectEffect = Fx.casing4;
+                    shootSound = Sounds.shootBig;
+
+                    bullet = new BasicBulletType(25f, 120f) {{
+                        lifetime = 17f;
+                        hitEffect = Fx.blastExplosion;
+                        shootEffect = Fx.shootBig;
+                        width = 7f;
+                        height = 13f;
+                        shrinkY = 0f;
+                        shrinkX = 0f;
+                        hitColor = Pal.meltdownHit;
+                        pierceArmor = true;
+                        pierceCap = 1;
+                    }};
+                }});
+            }};
+        heimdall = new UnitType("heimdall"){{
+            speed = 0.25f;
+            hitSize = 49f;
+            rotateSpeed = 1.25f;
+            health = 180000f;
+            armor = 80f;
+            mechStepParticles = true;
+            stepShake = 2f;
+            canDrown = targetAir = false;
+            mechFrontSway = 4f;
+            mechSideSway = 0.7f;
+            mechStride = (4f + (hitSize - 8f) / 2.1f) / 1.3f;
+            immunities.addAll(StatusEffects.blasted, StatusEffects.melting);
+            weapons.add(new Weapon(name + "-weapon"){{
+                x = 36.5f;
+                y = 2.75f;
+                shootY = 19.25f;
+                xRand = 4.5f;
+                alternate = true;
+                rotate = true;
+                rotationLimit = 60;
+                rotateSpeed = 1f;
+                reload = 30f;
+                shootCone = 50f;
+                shootSound = Sounds.none;
+                shoot = new ShootMulti(new ShootAlternate(){{
+                    spread = 1f;
+                    barrels = 7;
+                }});
+                bullet = new ShrapnelBulletType(){{
+                    length = 20;
+                    width = 0;
+                    hitSound = Sounds.shotgun;
+                    pierceBuilding = true;
+                    collidesAir = false;
+                    reflectable = false;
+                    knockback = -0.5f;
+                    hitSize = 9f;
+                    status = StatusEffects.blasted;
+                }};
+            }});
+            weapons.add(new Weapon("bash"){{
+                x = 0f;
+                y = 0f;
+                shootY = 0f;
+                alternate = false;
+                rotate = false;
+                reload = 300f;
+                parts.addAll(
+                        new RegionPart("-heat"){{
+                            mirror = false;
+                            under = true;
+                            layer = Layer.effect;
+                            color = Color.valueOf("000000");
+                            colorTo = Pal.turretHeat;
+                            blending = Blending.additive;
+                            outline = false;
+                            progress = PartProgress.reload;
+                        }}
+                );
+                shootSound = Sounds.none;
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                            4.25f, 27f, 0f,
+                            -4.25f, 27f, 0f,
+                            8.5f, 25.24f, 0f,
+                            -8.5f, 25.24f, 0f,
+                            11.25f, 24f, 0f,
+                            -11.25f, 25f, 0f,
+                            14.5f, 24f, 0f,
+                            -14.5f, 24f, 0f,
+                            17f, 22.75f, 0f,
+                            -17f, 22.75f, 0f,
+                            19.75f, 21f, 0f,
+                            -19.75f, 21f, 0f,
+                            22f, 19.25f, 0f,
+                            -22f, 19.25f, 0f,
+                            24f, 17.75f, 0f,
+                            -24f, 17.75f, 0f,
+                            26f, 16f, 0f,
+                            -26f, 16f, 0f,
+                    };
+                }};
+                bullet = new RailBulletType(){{
+                    damage = 100f;
+                    length = 50;
+                    lightColor = hitColor = lightningColor = Color.valueOf("feb380");
+                    shootEffect = ExoFx.ColorRailShoot;
+                    pierceEffect = ExoFx.ColorRailHit;
+                    pointEffect = ExoFx.ColorRailTrail;
+                    hitEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    pointEffectSpace = 2f;
+                    pierceDamageFactor = 0.3f;
+                    collidesTiles = true;
+                }};
+            }});
+            weapons.add(new Weapon("enginemain"){{
+                parentizeEffects = continuous = alwaysContinuous = alwaysShooting = true;
+                alternate = display = rotate = false;
+                minShootVelocity = 0.3f;
+                baseRotation = 180;
+                x = 0;
+                y = -10;
+                shootY = 0;
+                shootSound = Sounds.none;
+                bullet = new ContinuousFlameBulletType(){{
+                    damage = 4;
+                    width = 10.3f;
+                    layer = 111;
+                    drawFlare = collides = false;
+                    knockback = -1;
+                    length = 50;
+                    divisions = 20;
+                    intervalBullets = 2;
+                    intervalRandomSpread = 1;
+                    bulletInterval = 2.7f;
+                    intervalBullet = new BulletType(){{
+                        despawnHit = true;
+                        despawnEffect = Fx.none;
+                        instantDisappear = true;
+                        hitEffect = new ParticleEffect(){{
+                            particles = 1;
+                            line = true;
+                            layer = 108;
+                            length = 75f;
+                            lifetime = 25f;
+                            baseLength = 8;
+                            cone = 45;
+                            interp = Interp.circleOut;
+                            colorFrom = colorTo = Color.valueOf("ff9c5a");
+                            strokeFrom = 2;
+                            lenFrom = 6;
+                            lenTo = 0f;
+                        }};
+                    }};
+                    colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                }};
+            }});
+            weapons.add(new Weapon("engine-1"){{
+                parentizeEffects = continuous = alwaysContinuous = alwaysShooting = true;
+                alternate = display = rotate = false;
+                minShootVelocity = 0.3f;
+                mirror = true;
+                baseRotation = 147.7f;
+                x = 12.5f;
+                y = -8;
+                shootY = 0;
+                shootSound = Sounds.none;
+                bullet = new ContinuousFlameBulletType(){{
+                    damage = 4;
+                    width = 6.3f;
+                    layer = Layer.effect;
+                    drawFlare = collides = false;
+                    length = 25;
+                    divisions = 20;
+                    intervalBullets = 2;
+                    intervalRandomSpread = 1;
+                    bulletInterval = 2.7f;
+                    intervalBullet = new BulletType(){{
+                        despawnHit = true;
+                        despawnEffect = Fx.none;
+                        instantDisappear = true;
+                        hitEffect = new ParticleEffect(){{
+                            particles = 1;
+                            line = true;
+                            layer = 108;
+                            length = 45f;
+                            lifetime = 25f;
+                            baseLength = 8;
+                            cone = 25;
+                            interp = Interp.circleOut;
+                            colorFrom = colorTo = Color.valueOf("ff9c5a");
+                            strokeFrom = 2;
+                            lenFrom = 6;
+                            lenTo = 0f;
+                        }};
+                    }};
+                    colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                }};
+            }});
+            weapons.add(new Weapon("engine-2"){{
+                parentizeEffects = continuous = alwaysContinuous = alwaysShooting = true;
+                alternate = display = rotate = false;
+                minShootVelocity = 0.3f;
+                mirror = true;
+                baseRotation = 162.7f;
+                x = 19.5f;
+                y = -6.25f;
+                shootY = 0;
+                shootSound = Sounds.none;
+                bullet = new ContinuousFlameBulletType(){{
+                    damage = 4;
+                    width = 4.3f;
+                    layer = Layer.effect;
+                    drawFlare = collides = false;
+                    length = 20;
+                    divisions = 20;
+                    intervalBullets = 2;
+                    intervalRandomSpread = 1;
+                    bulletInterval = 2.7f;
+                    intervalBullet = new BulletType(){{
+                        despawnHit = true;
+                        despawnEffect = Fx.none;
+                        instantDisappear = true;
+                        hitEffect = new ParticleEffect(){{
+                            particles = 1;
+                            line = true;
+                            layer = 108;
+                            length = 45f;
+                            lifetime = 25f;
+                            baseLength = 8;
+                            cone = 25;
+                            interp = Interp.circleOut;
+                            colorFrom = colorTo = Color.valueOf("ff9c5a");
+                            strokeFrom = 2;
+                            lenFrom = 6;
+                            lenTo = 0f;
+                        }};
+                    }};
+                    colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                }};
+            }});
+        }};
+
         avicularia = new UnitType("avicularia"){{
             groundLayer = Layer.legUnit;
             constructor = LegsUnit::create;
