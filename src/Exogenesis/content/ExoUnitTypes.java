@@ -3185,6 +3185,9 @@ public class ExoUnitTypes {
                     layerOffset = -0.001f;
                     x = 35.25f;
                     y = 0f;
+                    rotate = true;
+                    rotationLimit = 50;
+                    rotateSpeed = 1.4f;
                     shootY = 30.25f;
                     reload = 3f;
                     recoil = 1f;
@@ -3196,6 +3199,7 @@ public class ExoUnitTypes {
                         shots = 2;
                     }});
                     inaccuracy = 9;
+                    velocityRnd = 0.2f;
                     ejectEffect = Fx.casing4;
                     shootSound = Sounds.shootBig;
 
@@ -3203,11 +3207,12 @@ public class ExoUnitTypes {
                         lifetime = 17f;
                         hitEffect = Fx.blastExplosion;
                         shootEffect = Fx.shootBig;
-                        width = 7f;
-                        height = 13f;
+                        trailWidth = 1.5f;
+                        trailLength = 8;
+                        width = 9f;
+                        height = 17f;
                         shrinkY = 0f;
                         shrinkX = 0f;
-                        hitColor = Pal.meltdownHit;
                         pierceArmor = true;
                         pierceCap = 1;
                     }};
@@ -3259,6 +3264,8 @@ public class ExoUnitTypes {
                 x = 0f;
                 y = 0f;
                 shootY = 0f;
+                top = false;
+                layerOffset = -0.001f;
                 alternate = false;
                 rotate = false;
                 reload = 300f;
@@ -3275,7 +3282,8 @@ public class ExoUnitTypes {
                         }}
                 );
                 shootSound = Sounds.none;
-                shoot = new ShootBarrel(){{
+                shoot = new ShootMulti( new ShootBarrel(){{
+                    shots = 18;
                     barrels = new float[]{
                             4.25f, 27f, 0f,
                             -4.25f, 27f, 0f,
@@ -3296,13 +3304,17 @@ public class ExoUnitTypes {
                             26f, 16f, 0f,
                             -26f, 16f, 0f,
                     };
-                }};
+                }}, new ShootPattern() {{
+                    shots = 33;
+                    shotDelay = 1;
+                }});
                 bullet = new RailBulletType(){{
                     damage = 100f;
                     length = 50;
+                    knockback = -0.4f;
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
-                    shootEffect = ExoFx.ColorRailShoot;
-                    pierceEffect = ExoFx.ColorRailHit;
+                    shootEffect = Fx.none;
+                    pierceEffect = Fx.none;
                     pointEffect = ExoFx.ColorRailTrail;
                     hitEffect = Fx.none;
                     smokeEffect = Fx.none;
