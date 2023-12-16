@@ -3196,7 +3196,8 @@ public class ExoUnitTypes {
                         spread = 1f;
                         barrels = 5;
                     }}, new ShootPattern() {{
-                        shots = 2;
+                        shots = 3;
+                        shotDelay = 1;
                     }});
                     inaccuracy = 9;
                     velocityRnd = 0.2f;
@@ -3207,9 +3208,9 @@ public class ExoUnitTypes {
                         lifetime = 17f;
                         hitEffect = Fx.blastExplosion;
                         shootEffect = Fx.shootBig;
-                        trailWidth = 1.5f;
+                        trailWidth = 3f;
                         trailLength = 8;
-                        width = 9f;
+                        width = 10f;
                         height = 17f;
                         shrinkY = 0f;
                         shrinkX = 0f;
@@ -3237,8 +3238,11 @@ public class ExoUnitTypes {
                 y = 2.75f;
                 shootY = 19.25f;
                 xRand = 4.5f;
+                top = false;
+                layerOffset = -0.001f;
                 alternate = true;
                 rotate = true;
+                recoil = -6;
                 rotationLimit = 60;
                 rotateSpeed = 1f;
                 reload = 30f;
@@ -3255,7 +3259,7 @@ public class ExoUnitTypes {
                     pierceBuilding = true;
                     collidesAir = false;
                     reflectable = false;
-                    knockback = -0.5f;
+                    recoil = -0.5f;
                     hitSize = 9f;
                     status = StatusEffects.blasted;
                 }};
@@ -3264,8 +3268,6 @@ public class ExoUnitTypes {
                 x = 0f;
                 y = 0f;
                 shootY = 0f;
-                top = false;
-                layerOffset = -0.001f;
                 alternate = false;
                 rotate = false;
                 reload = 300f;
@@ -3305,13 +3307,13 @@ public class ExoUnitTypes {
                             -26f, 16f, 0f,
                     };
                 }}, new ShootPattern() {{
-                    shots = 33;
+                    shots = 53;
                     shotDelay = 1;
                 }});
                 bullet = new RailBulletType(){{
                     damage = 100f;
                     length = 50;
-                    knockback = -0.4f;
+                    recoil = -0.4f;
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
                     shootEffect = Fx.none;
                     pierceEffect = Fx.none;
