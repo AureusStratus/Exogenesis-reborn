@@ -14,6 +14,7 @@ import arc.util.*;
 import mindustry.ai.*;
 import mindustry.ai.types.*;
 import mindustry.entities.*;
+import mindustry.entities.abilities.MoveLightningAbility;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
@@ -3204,7 +3205,7 @@ public class ExoUnitTypes {
                     ejectEffect = Fx.casing4;
                     shootSound = Sounds.shootBig;
 
-                    bullet = new BasicBulletType(25f, 120f) {{
+                    bullet = new BasicBulletType(25f, 80f) {{
                         lifetime = 17f;
                         hitEffect = Fx.blastExplosion;
                         shootEffect = Fx.shootBig;
@@ -3227,12 +3228,29 @@ public class ExoUnitTypes {
             health = 180000f;
             armor = 80f;
             mechStepParticles = true;
+            singleTarget = true;
             stepShake = 2f;
             canDrown = targetAir = false;
-            mechFrontSway = 4f;
-            mechSideSway = 0.7f;
             mechStride = (4f + (hitSize - 8f) / 2.1f) / 1.3f;
             immunities.addAll(StatusEffects.blasted, StatusEffects.melting);
+            abilities.add(new MoveEffectAbility(){{
+                effect = new ParticleEffect(){{
+                    lightOpacity = 0f;
+                    region = "exogenesis-bash-heat";
+                    particles = 1;
+                    offset = -90;
+                    layer = 99;
+                    length = 0;
+                    lifetime = 15;
+                    sizeFrom = 28;
+                    sizeTo = 25;
+                    lightColor = colorFrom = colorTo = Pal.turretHeat;
+                }};
+                interval = 1;
+                rotateEffect = true;
+                parentizeEffects = true;
+                minVelocity = 0.3f;
+            }});
             weapons.add(new Weapon(name + "-weapon"){{
                 x = 36.5f;
                 y = 2.75f;
@@ -3254,12 +3272,13 @@ public class ExoUnitTypes {
                 }});
                 bullet = new ShrapnelBulletType(){{
                     length = 20;
+                    damage = 500;
                     width = 0;
                     hitSound = Sounds.shotgun;
                     pierceBuilding = true;
                     collidesAir = false;
                     reflectable = false;
-                    recoil = -0.5f;
+                    recoil = -1f;
                     hitSize = 9f;
                     status = StatusEffects.blasted;
                 }};
@@ -3270,7 +3289,12 @@ public class ExoUnitTypes {
                 shootY = 0f;
                 alternate = false;
                 rotate = false;
-                reload = 300f;
+                alwaysShooting = true;
+                minShootVelocity = 0.33f;
+                shootStatus = StatusEffects.unmoving;
+                shootStatusDuration = 100;
+                shootCone = 360;
+                reload = 600f;
                 parts.addAll(
                         new RegionPart("-heat"){{
                             mirror = false;
@@ -3306,18 +3330,15 @@ public class ExoUnitTypes {
                             26f, 16f, 0f,
                             -26f, 16f, 0f,
                     };
-                }}, new ShootPattern() {{
-                    shots = 53;
-                    shotDelay = 1;
                 }});
                 bullet = new RailBulletType(){{
+                    maxRange = 150;
                     damage = 100f;
                     length = 50;
-                    recoil = -0.4f;
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
                     shootEffect = Fx.none;
                     pierceEffect = Fx.none;
-                    pointEffect = ExoFx.ColorRailTrail;
+                    pointEffect = Fx.none;
                     hitEffect = Fx.none;
                     smokeEffect = Fx.none;
                     pointEffectSpace = 2f;
@@ -3326,21 +3347,26 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("enginemain"){{
-                parentizeEffects = continuous = alwaysContinuous = alwaysShooting = true;
+                parentizeEffects = continuous = true;
                 alternate = display = rotate = false;
-                minShootVelocity = 0.3f;
                 baseRotation = 180;
+                shootStatus = StatusEffects.unmoving;
+                shootStatusDuration = 100;
+                shootCone = 360;
                 x = 0;
                 y = -10;
                 shootY = 0;
+                reload = 600;
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
+                    maxRange = 150;
+                    lifetime = 100;
                     damage = 4;
-                    width = 10.3f;
+                    width = 8.3f;
                     layer = 111;
                     drawFlare = collides = false;
-                    knockback = -1;
-                    length = 50;
+                    recoil = -0.4f;
+                    length = 40;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -3368,16 +3394,18 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("engine-1"){{
-                parentizeEffects = continuous = alwaysContinuous = alwaysShooting = true;
+                parentizeEffects = continuous = true;
                 alternate = display = rotate = false;
-                minShootVelocity = 0.3f;
                 mirror = true;
                 baseRotation = 147.7f;
-                x = 12.5f;
+                x = -12.5f;
                 y = -8;
+                reload = 600;
                 shootY = 0;
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
+                    maxRange = 150;
+                    lifetime = 100;
                     damage = 4;
                     width = 6.3f;
                     layer = Layer.effect;
@@ -3410,16 +3438,21 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("engine-2"){{
-                parentizeEffects = continuous = alwaysContinuous = alwaysShooting = true;
+                parentizeEffects = continuous = true;
                 alternate = display = rotate = false;
-                minShootVelocity = 0.3f;
+                reload = 600;
                 mirror = true;
                 baseRotation = 162.7f;
-                x = 19.5f;
+                shootStatus = StatusEffects.unmoving;
+                shootStatusDuration = 100;
+                shootCone = 360;
+                x = -19.5f;
                 y = -6.25f;
                 shootY = 0;
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
+                    maxRange = 150;
+                    lifetime = 100;
                     damage = 4;
                     width = 4.3f;
                     layer = Layer.effect;
