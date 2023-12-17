@@ -3239,11 +3239,11 @@ public class ExoUnitTypes {
                     region = "exogenesis-bash-heat";
                     particles = 1;
                     offset = -90;
-                    layer = 99;
+                    layer = Layer.effect;
                     length = 0;
                     lifetime = 15;
-                    sizeFrom = 28;
-                    sizeTo = 25;
+                    sizeFrom = 36;
+                    sizeTo = 31;
                     lightColor = colorFrom = colorTo = Pal.turretHeat;
                 }};
                 interval = 1;
@@ -3264,23 +3264,26 @@ public class ExoUnitTypes {
                 rotationLimit = 60;
                 rotateSpeed = 1f;
                 reload = 30f;
-                shootCone = 50f;
+                shootCone = 330f;
                 shootSound = Sounds.none;
                 shoot = new ShootMulti(new ShootAlternate(){{
                     spread = 1f;
+                    shots = 7;
                     barrels = 7;
                 }});
-                bullet = new ShrapnelBulletType(){{
-                    length = 20;
-                    damage = 500;
-                    width = 0;
-                    hitSound = Sounds.shotgun;
-                    pierceBuilding = true;
-                    collidesAir = false;
-                    reflectable = false;
-                    recoil = -1f;
-                    hitSize = 9f;
-                    status = StatusEffects.blasted;
+                bullet = new RailBulletType(){{
+                    maxRange = 150;
+                    damage = 100f;
+                    length = 30;
+                    lightColor = hitColor = lightningColor = Color.valueOf("feb380");
+                    shootEffect = Fx.none;
+                    pierceEffect = Fx.none;
+                    pointEffect = Fx.none;
+                    hitEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    pointEffectSpace = 2f;
+                    pierceDamageFactor = 0.3f;
+                    collidesTiles = true;
                 }};
             }});
             weapons.add(new Weapon("bash"){{
@@ -3341,6 +3344,8 @@ public class ExoUnitTypes {
                     pointEffect = Fx.none;
                     hitEffect = Fx.none;
                     smokeEffect = Fx.none;
+                    knockback = 10;
+                    impact = true;
                     pointEffectSpace = 2f;
                     pierceDamageFactor = 0.3f;
                     collidesTiles = true;
@@ -3351,19 +3356,31 @@ public class ExoUnitTypes {
                 alternate = display = rotate = false;
                 baseRotation = 180;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = 100;
+                shootStatusDuration = 150;
+                cooldownTime = 200;
                 shootCone = 360;
+                parts.addAll(
+                        new RegionPart("-engine"){{
+                            mirror = false;
+                            layer = 109;
+                            color = Pal.turretHeat;
+                            colorTo = Color.valueOf("000000");
+                            blending = Blending.additive;
+                            outline = false;
+                            progress = PartProgress.heat;
+                        }}
+                );
                 x = 0;
                 y = -10;
                 shootY = 0;
-                reload = 600;
+                reload = 400;
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
                     maxRange = 150;
-                    lifetime = 100;
+                    lifetime = 150;
                     damage = 4;
                     width = 8.3f;
-                    layer = 111;
+                    layer = 110;
                     drawFlare = collides = false;
                     recoil = -0.4f;
                     length = 40;
@@ -3400,12 +3417,13 @@ public class ExoUnitTypes {
                 baseRotation = 147.7f;
                 x = -12.5f;
                 y = -8;
-                reload = 600;
+                reload = 400;
                 shootY = 0;
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
+                    recoil = -0.1f;
                     maxRange = 150;
-                    lifetime = 100;
+                    lifetime = 150;
                     damage = 4;
                     width = 6.3f;
                     layer = Layer.effect;
@@ -3440,11 +3458,11 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("engine-2"){{
                 parentizeEffects = continuous = true;
                 alternate = display = rotate = false;
-                reload = 600;
+                reload = 400;
                 mirror = true;
                 baseRotation = 162.7f;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = 100;
+                shootStatusDuration = 150;
                 shootCone = 360;
                 x = -19.5f;
                 y = -6.25f;
@@ -3452,7 +3470,8 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
                     maxRange = 150;
-                    lifetime = 100;
+                    lifetime = 150;
+                    recoil = -0.1f;
                     damage = 4;
                     width = 4.3f;
                     layer = Layer.effect;
