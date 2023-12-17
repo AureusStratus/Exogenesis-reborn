@@ -3181,7 +3181,7 @@ public class ExoUnitTypes {
                     rotateSpeed = 1.4f;
                     shootY = 30.25f;
                     cooldownTime = 100;
-                    reload = 2.5f;
+                    reload = 3f;
                     recoil = 1f;
                     shake = 2f;
                     shoot = new ShootMulti(new ShootAlternate() {{
@@ -3225,25 +3225,6 @@ public class ExoUnitTypes {
             canDrown = targetAir = false;
             mechStride = (4f + (hitSize - 8f) / 2.1f) / 1.3f;
             immunities.addAll(StatusEffects.blasted, StatusEffects.melting);
-             abilities.add(new MoveEffectAbility(){{
-                effect = new ParticleEffect(){{
-                    lightOpacity = 0f;
-                    region = "exogenesis-heimdall-dash";
-                    particles = 1;
-                    offset = -90;
-                    layer = 90.1f;
-                    length = 0;
-                    lifetime = 15;
-                    sizeFrom = 36;
-                    sizeTo = 31;
-                    colorFrom = Color.valueOf("ffffff");
-                    colorTo = Color.valueOf("ffffff00");
-                }};
-                interval = 1;
-                rotateEffect = true;
-                parentizeEffects = true;
-                minVelocity = 0.3f;
-            }});
             abilities.add(new MoveLightningAbility(10, -1, 1f, 12, 0.33f, 4, Pal.meltdownHit, "exogenesis-bash-heat") {{
                 display = false;
                 bullet = new BasicBulletType(22, 0){{
@@ -3255,7 +3236,7 @@ public class ExoUnitTypes {
                     impact = true;
                     hitShake = 7;
                     scaledSplashDamage = true;
-                    splashDamage = 150;
+                    splashDamage = 250;
                     splashDamageRadius = 70;
                 }};
                 color = Pal.turretHeat;
@@ -3267,21 +3248,20 @@ public class ExoUnitTypes {
                 shootY = 0;
                 top = false;
                 layerOffset = -0.001f;
-                alternate = true;
+                alternate = false;
                 rotate = true;
                 recoil = -6;
-                rotationLimit = 60;
+                rotationLimit = 50;
                 rotateSpeed = 1f;
                 reload = 30f;
                 shootCone = 330f;
                 shootSound = Sounds.none;
-                shoot = new ShootMulti(new ShootAlternate(){{
+                shoot = new ShootAlternate(){{
                     spread = 1f;
                     shots = 7;
                     barrels = 7;
-                }});
+                }};
                 bullet = new RailBulletType(){{
-                    maxRange = 150;
                     damage = 100f;
                     length = 30;
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
@@ -3301,17 +3281,16 @@ public class ExoUnitTypes {
                 baseRotation = 180;
                 shootStatus = StatusEffects.unmoving;
                 shootStatusDuration = 200;
-                cooldownTime = 200;
                 shootCone = 360;
                 parts.addAll(
                         new RegionPart("-engine"){{
                             mirror = false;
                             layer = 109;
-                            color = Pal.turretHeat;
-                            colorTo = Color.valueOf("000000");
+                            color = Color.valueOf("000000");
+                            colorTo = Pal.meltdownHit;
                             blending = Blending.additive;
                             outline = false;
-                            progress = PartProgress.heat;
+                            progress = PartProgress.recoil;
                         }}
                 );
                 x = 0;
@@ -3362,6 +3341,7 @@ public class ExoUnitTypes {
                 x = -12.5f;
                 y = -8;
                 reload = 400;
+                shootCone  = 360;
                 shootY = 0;
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
