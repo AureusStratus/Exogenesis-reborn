@@ -3181,12 +3181,11 @@ public class ExoUnitTypes {
                     rotateSpeed = 1.4f;
                     shootY = 30.25f;
                     cooldownTime = 100;
-                    reload = 4f;
+                    reload = 2.5f;
                     recoil = 1f;
                     shake = 2f;
                     shoot = new ShootMulti(new ShootAlternate() {{
                         spread = 1f;
-                        shots = 5;
                         barrels = 5;
                     }}, new ShootPattern() {{
                         shots = 3;
@@ -3245,12 +3244,12 @@ public class ExoUnitTypes {
             weapons.add(new Weapon(name + "-weapon"){{
                 x = 36.5f;
                 y = 2.75f;
-                shootY = 0;
+                shootY = 10;
                 top = false;
                 layerOffset = -0.001f;
                 alternate = false;
                 rotate = true;
-                recoil = -16;
+                recoil = -26;
                 rotationLimit = 50;
                 rotateSpeed = 1f;
                 reload = 30f;
@@ -3258,8 +3257,8 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 shoot = new ShootAlternate(){{
                     spread = 1f;
-                    shots = 7;
-                    barrels = 7;
+                    shots = 9;
+                    barrels = 9;
                 }};
                 bullet = new RailBulletType(){{
                     damage = 100f;
