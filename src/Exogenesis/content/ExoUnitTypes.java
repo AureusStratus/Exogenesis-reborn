@@ -3,6 +3,7 @@ package Exogenesis.content;
 import Exogenesis.entities.abilities.TurretShield;
 import Exogenesis.entities.bullet.DelayedPointBulletType;
 import Exogenesis.entities.bullet.PosLightningType;
+import Exogenesis.entities.bullet.AcceleratingLaserBulletType;
 import Exogenesis.graphics.ExoPal;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -3244,7 +3245,7 @@ public class ExoUnitTypes {
             weapons.add(new Weapon(name + "-weapon"){{
                 x = 36.5f;
                 y = 2.75f;
-                shootY = 10;
+                shootY = 20;
                 top = false;
                 layerOffset = -0.001f;
                 alternate = false;
@@ -3261,7 +3262,7 @@ public class ExoUnitTypes {
                     barrels = 9;
                 }};
                 bullet = new RailBulletType(){{
-                    damage = 100f;
+                    damage = 500f;
                     length = 30;
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
                     shootEffect = Fx.none;
@@ -4680,6 +4681,32 @@ public class ExoUnitTypes {
                 moveRot = -22f;
             }}
             );
+            weapons.add(new Weapon(){{
+                    x = 0f;
+                    y = 0f;
+                    shootY = 4f;
+                    mirror = false;
+                    reload = 4f * 60f;
+                    continuous = true;
+                    recoil = 0f;
+                    shootStatus = StatusEffects.slow;
+                    shootStatusDuration = 180f;
+                    shootSound = Sounds.beam;
+
+                    bullet = new AcceleratingLaserBulletType(230f) {{
+                        lifetime = 180f;
+                        maxLength = 380f;
+                        maxRange = 330f;
+                        oscOffset = 0.1f;
+                        incendChance = 0.2f;
+                        incendAmount = 2;
+                        width = 27f;
+                        collisionWidth = 10f;
+                        pierceCap = 2;
+                        hitEffect = Fx.hitMeltdown;
+                        hitColor = Pal.meltdownHit;
+                    }};
+                }});
             weapons.add(new Weapon("orion") {{
                 reload = 100f;
                 mirror = false;
