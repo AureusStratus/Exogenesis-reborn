@@ -3181,7 +3181,7 @@ public class ExoUnitTypes {
                     rotateSpeed = 1.4f;
                     shootY = 30.25f;
                     cooldownTime = 100;
-                    reload = 3f;
+                    reload = 4f;
                     recoil = 1f;
                     shake = 2f;
                     shoot = new ShootMulti(new ShootAlternate() {{
@@ -3229,7 +3229,7 @@ public class ExoUnitTypes {
                 display = false;
                 bullet = new BasicBulletType(22, 0){{
                     lifetime = 2;
-                    hitEffect = shootEffect = smokeEffect = Fx.none;
+                    hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
                     width = height = 0f;
                     despawnShake = 4;
                     knockback = 10;
@@ -3250,7 +3250,7 @@ public class ExoUnitTypes {
                 layerOffset = -0.001f;
                 alternate = false;
                 rotate = true;
-                recoil = -6;
+                recoil = -16;
                 rotationLimit = 50;
                 rotateSpeed = 1f;
                 reload = 30f;
@@ -3267,7 +3267,7 @@ public class ExoUnitTypes {
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
                     shootEffect = Fx.none;
                     pierceEffect = Fx.none;
-                    pointEffect = Fx.none;
+                    pointEffect = ExoFx.ColorRailTrail;
                     hitEffect = Fx.none;
                     smokeEffect = Fx.none;
                     pointEffectSpace = 2f;
@@ -3304,7 +3304,7 @@ public class ExoUnitTypes {
                     damage = 4;
                     width = 8.3f;
                     layer = 110;
-                    drawFlare = collides = false;
+                    drawFlare = collides = collidesTiles = false;
                     recoil = -0.5f;
                     length = 40;
                     divisions = 20;
@@ -3351,7 +3351,7 @@ public class ExoUnitTypes {
                     damage = 4;
                     width = 6.3f;
                     layer = Layer.effect;
-                    drawFlare = collides = false;
+                    drawFlare = collides = collidesTiles = false;
                     length = 25;
                     divisions = 20;
                     intervalBullets = 2;
@@ -3397,10 +3397,10 @@ public class ExoUnitTypes {
                     lifetime = 200;
                     recoil = -0.1f;
                     damage = 4;
-                    width = 4.3f;
+                    width = 3.3f;
                     layer = Layer.effect;
-                    drawFlare = collides = false;
-                    length = 20;
+                    drawFlare = collides = collidesTiles = false;
+                    length = 13;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
