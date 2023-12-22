@@ -3172,7 +3172,7 @@ public class ExoUnitTypes {
             legLength = 50;
             legCount = 8;
             legExtension = -4;
-            legContinuousMove = true;
+            legContinuousMove = false;
             rippleScale = 6.8f;
             legPairOffset = 3;
             legBaseOffset = 36;
@@ -3208,28 +3208,10 @@ public class ExoUnitTypes {
                         }},
                         new ShapePart(){{
                             progress = PartProgress.recoil;
-                            color = Color.valueOf("aec6ff");
+                            color = Pal.heal;
                             circle = true;
                             radius = 20;
                             radiusTo = 3;
-                            layer = Layer.effect;
-                            y = 2.5f;
-                        }},
-                        new ShapePart(){{
-                            progress = PartProgress.recoil;
-                            color = Color.valueOf("8ca9e855");
-                            circle = true;
-                            radius = 26;
-                            radiusTo = 4;
-                            layer = Layer.effect;
-                            y = 2.5f;
-                        }},
-                        new ShapePart() {{
-                            progress = PartProgress.recoil;
-                            color = Color.valueOf("597cff45");
-                            circle = true;
-                            radius = 29f;
-                            radiusTo = 4.2f;
                             layer = Layer.effect;
                             y = 2.5f;
                         }}
@@ -3719,7 +3701,7 @@ public class ExoUnitTypes {
 
                     bullet = new BasicBulletType(25f, 80f) {{
                         lifetime = 17f;
-                        hitEffect = Fx.blastExplosion;
+                        hitEffect = despawnEffect = Fx.blastExplosion;
                         shootEffect = Fx.shootBig;
                         trailWidth = 3f;
                         trailLength = 8;
@@ -3766,32 +3748,32 @@ public class ExoUnitTypes {
                 x = 36.5f;
                 y = 2.75f;
                 shootY = 26;
-                top = false;
+                top = true;
                 layerOffset = -0.001f;
-                alternate = false;
+                alternate = true;
                 rotate = true;
                 recoil = 6;
                 rotationLimit = 50;
                 rotateSpeed = 1f;
                 reload = 30f;
                 shootCone = 60f;
-                velocityRnd = 0.25f;
+                velocityRnd = 0.35f;
+                inaccuracy = 23;
                 ejectEffect = ExoFx.casing5;
                 shootSound = Sounds.shotgun;
-                shoot = new ShootSpread(){{
-                    spread = 7f;
-                    shots = 18;
-                }};
+                shoot.shots = 18;
                 bullet = new BasicBulletType(10f, 250f) {{
                     lifetime = 15f;
                     hitEffect = despawnEffect = Fx.blastExplosion;
                     shootEffect = Fx.shootBig;
                     status = StatusEffects.blasted;
                     statusDuration = 130;
-                    trailWidth = 3f;
+                    trailWidth = 4f;
                     trailLength = 8;
-                    width = 27f;
-                    height = 12f;
+                    knockback = 6;
+                    impact = true;
+                    width = 16f;
+                    height = 26f;
                     shrinkY = 0f;
                     shrinkX = 0f;
                     pierceArmor = true;
