@@ -1,5 +1,6 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
+import Exogenesis.util.struct.*;
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -207,6 +208,21 @@ public class ExoFx{
                     }
                 }
             }),
+            casing5 = new Effect(45f, e -> {
+                color(Pal.lightOrange, Pal.lightishGray, Pal.lightishGray, e.fin());
+                alpha(e.fout(0.5f));
+                float rot = Math.abs(e.rotation) + 90f;
+                int i = -Mathf.sign(e.rotation);
+                float len = (4f + e.finpow() * 9f) * i;
+                float lr = rot + Mathf.randomSeedRange(e.id + i + 6, 20f * e.fin()) * i;
+
+                rect(Core.atlas.find("casing"),
+                        e.x + trnsx(lr, len) + Mathf.randomSeedRange(e.id + i + 7, 3f * e.fin()),
+                        e.y + trnsy(lr, len) + Mathf.randomSeedRange(e.id + i + 8, 3f * e.fin()),
+                        7f, 10f,
+                        rot + e.fin() * 50f * i
+                );
+            }).layer(Layer.bullet),
             ColorRailTrail = new Effect(16f, e -> {
                 color(e.color);
                 for(int i : Mathf.signs){
