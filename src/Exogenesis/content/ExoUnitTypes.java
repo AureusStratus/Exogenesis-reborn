@@ -3169,6 +3169,7 @@ public class ExoUnitTypes {
             legLength = 30;
             legCount = 4;
             legExtension = -4;
+            legMoveSpace = 1.5f;
             legContinuousMove = false;
             legMaxLength = 33;
             rippleScale = 6.8f;
@@ -3205,7 +3206,7 @@ public class ExoUnitTypes {
                             y = 0;
                         }},
                         new ShapePart(){{
-                            progress = PartProgress.recoil;
+                            progress = PartProgress.reload;
                             color = Color.white;
                             circle = true;
                             radius = 6f;
@@ -3214,7 +3215,7 @@ public class ExoUnitTypes {
                             y = 0f;
                         }},
                         new ShapePart(){{
-                            progress = PartProgress.recoil;
+                            progress = PartProgress.reload;
                             color = Pal.heal;
                             circle = true;
                             radius = 10;
@@ -3228,6 +3229,7 @@ public class ExoUnitTypes {
                     maxLength = 830f;
                     maxRange = 830f;
                     oscOffset = 0.3f;
+                    shootEffect = ExoFx.blastcolor;
                     chargeEffect = new MultiEffect(ExoFx.ullrChargeBegin, ExoFx.ullrChargeEffect);
                     width = 30f;
                     collisionWidth = 10f;
@@ -3254,7 +3256,7 @@ public class ExoUnitTypes {
                     lightningColor = hitColor = Pal.heal;
                     maxRange = rangeOverride = 250f;
                     shootEffect = Fx.circleColorSpark;
-                    hitEffect = ExoFx.blastcolor;
+                    hitEffect = ExoFx.hitMeltColor;
                     smokeEffect = Fx.none;
                 }};
             }});
