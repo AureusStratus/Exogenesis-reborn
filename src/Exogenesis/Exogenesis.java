@@ -1,19 +1,19 @@
 package Exogenesis;
 
+import Exogenesis.util.util.Utils;
 import arc.files.*;
 import arc.util.*;
 import mindustry.*;
 import Exogenesis.content.ExoBlocks;
 import Exogenesis.content.ExoUnitTypes;
 import Exogenesis.content.*;
+import Exogenesis.util.*;
 import mindustry.mod.Mod;
 
 public class Exogenesis extends Mod {
-    public static void print(Exception e) {
-    }
-
     @Override
     public void loadContent() {
+        Utils.init();
         ExoStatusEffects.load();
         ExoSounds.load();
         ExoUnitTypes.load();
