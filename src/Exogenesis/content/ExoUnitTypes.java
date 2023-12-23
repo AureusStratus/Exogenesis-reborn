@@ -3168,7 +3168,7 @@ public class ExoUnitTypes {
             legSpeed = 0.6f;
             legLength = 33;
             legCount = 4;
-            legMoveSpace = 1.2f;
+            legMoveSpace = 0.8f;
             lockLegBase = true;
             legContinuousMove = false;
             legMaxLength = 36;
@@ -3211,9 +3211,10 @@ public class ExoUnitTypes {
                             color1 = Pal.heal;
                             color2 = Color.white;
                             sides = 2;
+                            rotation = 90;
                             followRotation = true;
                             radius = 0f;
-                            stroke = 7;
+                            stroke = 12;
                             radiusTo = 480f;
                             layer = 109;
                             y = 0;
@@ -3268,7 +3269,7 @@ public class ExoUnitTypes {
                 bullet = new PosLightningType(32f){{
                     lightningColor = hitColor = Pal.heal;
                     maxRange = rangeOverride = 250f;
-                    shootEffect = Fx.circleColorSpark;
+                    shootEffect = Fx.colorSparkBig;
                     hitEffect = ExoFx.hitMeltColor;
                     smokeEffect = Fx.none;
                 }};
