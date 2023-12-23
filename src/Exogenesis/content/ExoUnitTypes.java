@@ -3166,7 +3166,7 @@ public class ExoUnitTypes {
             allowLegStep = hovering = true;
             rotateSpeed = 1.6f;
             legSpeed = 0.6f;
-            legMoveSpace = 0.7f;
+            legMoveSpace = 1.7f;
             baseLegStraightness = 0.8f;
             legPhysicsLayer = false;
             legLength = 37;
@@ -3179,11 +3179,11 @@ public class ExoUnitTypes {
             legSplashDamage = 156;
             legSplashRange = 60;
             groundLayer = 77;
-            weapons.add(new EnergyChargeWeapon("ullar-piercer") {{
+            weapons.add(new Weapon("ullar-piercer") {{
                 reload = 800f;
                 mirror = false;
                 x = 0;
-                y = -4.5f;
+                y = 0f;
                 shootY = 0;
                 shootStatus = StatusEffects.unmoving;
                 shootStatusDuration = 280;
@@ -3191,36 +3191,45 @@ public class ExoUnitTypes {
                 recoilTime = 285;
                 recoil = 0;
                 shake = 1f;
-                drawCharge = (unit, mount, charge) -> {
-                    float rotation = unit.rotation - 90f,
-                            wx = unit.x + Angles.trnsx(rotation, x, y),
-                            wy = unit.y + Angles.trnsy(rotation, x, y);
-
-                    Draw.color(Pal.heal);
-                    ExoDrawf.shiningCircle(unit.id, wx, wy, 13f * charge, 5, 70, 15f, 6f * charge, 360f);
-                    Draw.color(Color.white);
-                    ExoDrawf.shiningCircle(unit.id, wx, wy, 6.5f * charge, 5, 70, 15f, 4f * charge, 360f);
-                };
                 parts.addAll(
                         // weapon parts
                         new FlarePart(){{
                             progress = PartProgress.recoil;
-                            color1 = Color.white;
-                            color2 = Pal.heal;
+                            color1 = Pal.heal;
+                            color2 = Color.white;
                             spinSpeed = 1;
                             radius = 0f;
-                            radiusTo = 60f;
-                            layer = 114;
+                            radiusTo = 120f;
+                            layer = 109;
                             y = 0;
+                        }},
+                        new ShapePart(){{
+                            progress = PartProgress.recoil;
+                            color = Color.white;
+                            circle = true;
+                            radius = 3f;
+                            radiusTo = 6f;
+                            layer = 114;
+                            y = 0f;
+                        }},
+                        new ShapePart(){{
+                            progress = PartProgress.recoil;
+                            color = Pal.heal;
+                            circle = true;
+                            radius = 8;
+                            radiusTo = 14;
+                            layer = Layer.effect;
+                            y = 0f;
                         }}
                 );
                 bullet = new AcceleratingLaserBulletType(230f){{
                     lifetime = 280f;
-                    maxLength = 1030f;
-                    maxRange = 1030f;
-                    oscOffset = 0.1f;
-                    width = 32f;
-                    collisionWidth = 10f;
+                    maxLength = 630f;
+                    maxRange = 630f;
+                    oscOffset = 0.3f;
+                    width = 39f;
+                    collisionWidth = 12f;
+                    colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
                     pierceCap = 1;
                     hitEffect = ExoFx.coloredHitLarge;
                     hitColor = Pal.heal;
