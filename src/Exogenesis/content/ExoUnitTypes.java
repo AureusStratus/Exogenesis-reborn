@@ -3190,6 +3190,7 @@ public class ExoUnitTypes {
                 shoot.firstShotDelay = 280;
                 shootSound = ExoSounds.funnylaserloop;
                 recoilTime = 285;
+                cooldownTime = 255;
                 continuous = true;
                 recoil = 0;
                 shake = 1f;
@@ -3207,7 +3208,7 @@ public class ExoUnitTypes {
                             y = 0;
                         }},
                         new FlarePart(){{
-                            progress = PartProgress.recoil;
+                            progress = PartProgress.heat;
                             color1 = Pal.heal;
                             color2 = Color.white;
                             sides = 2;
@@ -3215,7 +3216,7 @@ public class ExoUnitTypes {
                             followRotation = true;
                             radius = 0f;
                             stroke = 12;
-                            radiusTo = 480f;
+                            radiusTo = 380f;
                             layer = 109;
                             y = 0;
                         }},
@@ -3260,6 +3261,7 @@ public class ExoUnitTypes {
                 rotateSpeed = 1.5f;
                 x = 27;
                 y = 0;
+                shootY = 9;
                 shoot = new ShootPattern() {{
                     shotDelay = 3f;
                     shots = 4;
