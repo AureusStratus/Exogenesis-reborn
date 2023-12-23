@@ -1,8 +1,8 @@
 package Exogenesis.content;
 
-import Exogenesis.entities.bullet.DelayedPointBulletType;
-import Exogenesis.entities.bullet.PosLightningType;
-import Exogenesis.graphics.ExoPal;
+import Exogenesis.type.weapons.EnergyChargeWeapon;
+import Exogenesis.entities.bullet.*;
+import Exogenesis.graphics.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -2324,6 +2324,7 @@ public class ExoUnitTypes {
             baseLegStraightness = 0.8f;
             legPhysicsLayer = false;
             legLength = 120;
+            
             legCount = 8;
             legExtension = -6;
             legContinuousMove = lockLegBase = true;
@@ -2981,7 +2982,6 @@ public class ExoUnitTypes {
 
             hovering = true;
             groundLayer = Layer.legUnit + 0.01f;
-            rippleScale = 1.2f;
             legCount = 8;
             legLength = 50f;
             legExtension = -9.5f;
@@ -3169,491 +3169,61 @@ public class ExoUnitTypes {
             legMoveSpace = 0.7f;
             baseLegStraightness = 0.8f;
             legPhysicsLayer = false;
-            legLength = 50;
-            legCount = 8;
+            legLength = 37;
+            legCount = 4;
             legExtension = -4;
             legContinuousMove = false;
             rippleScale = 6.8f;
-            legPairOffset = 3;
-            legBaseOffset = 36;
+            legPairOffset = 1;
+            legBaseOffset = 20;
             legSplashDamage = 156;
             legSplashRange = 60;
             groundLayer = 77;
-            weapons.add(new Weapon("ullar-piercer") {{
+            weapons.add(new EnergyChargeWeapon("ullar-piercer") {{
                 reload = 800f;
                 mirror = false;
                 x = 0;
-                y = 4.5f;
+                y = -4.5f;
                 shootY = 0;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = 150;
-                shoot.firstShotDelay = 150;
-                shootSound = ExoSounds.bigLaserShoot;
-                smoothReloadSpeed = 0.15f;
-                shootWarmupSpeed = 0.05f;
-                minWarmup = 0.9f;
-                recoilTime = 500;
+                shootStatusDuration = 280;
+                shoot.firstShotDelay = 280;
+                recoilTime = 285;
                 recoil = 0;
                 shake = 1f;
+                drawCharge = (unit, mount, charge) -> {
+                    float rotation = unit.rotation - 90f,
+                            wx = unit.x + Angles.trnsx(rotation, x, y),
+                            wy = unit.y + Angles.trnsy(rotation, x, y);
+
+                    Draw.color(Pal.heal);
+                    ExoDrawf.shiningCircle(unit.id, wx, wy, 13f * charge, 5, 70, 15f, 6f * charge, 360f);
+                    Draw.color(Color.white);
+                    ExoDrawf.shiningCircle(unit.id, wx, wy, 6.5f * charge, 5, 70, 15f, 4f * charge, 360f);
+                };
                 parts.addAll(
                         // weapon parts
-                        new ShapePart(){{
+                        new FlarePart(){{
                             progress = PartProgress.recoil;
-                            color = Color.white;
-                            circle = true;
-                            radius = 10f;
-                            radiusTo = 1.5f;
+                            color1 = Color.white;
+                            color2 = Pal.heal;
+                            spinSpeed = 1;
+                            radius = 0f;
+                            radiusTo = 60f;
                             layer = 114;
-                            y = 2.5f;
-                        }},
-                        new ShapePart(){{
-                            progress = PartProgress.recoil;
-                            color = Pal.heal;
-                            circle = true;
-                            radius = 20;
-                            radiusTo = 3;
-                            layer = Layer.effect;
-                            y = 2.5f;
+                            y = 0;
                         }}
                 );
-                bullet = new EmpBulletType() {{
-                    parts.addAll(
-                            new ShapePart(){{
-                                color = Color.white;
-                                circle = true;
-                                radius = radiusTo = 15;
-                                layer = 114;
-                            }},
-                            new ShapePart(){{
-                                color = Color.valueOf("aec6ff");
-                                circle = true;
-                                radius = radiusTo = 25;
-                                layer = Layer.effect;
-                            }},
-                            new ShapePart(){{
-                                color = Color.valueOf("8ca9e855");
-                                circle = true;
-                                radius = radiusTo = 31;
-                                layer = Layer.effect;
-                            }},
-                            new ShapePart(){{
-                                color = Color.valueOf("597cff45");
-                                circle = true;
-                                radius = radiusTo = 34;
-                                layer = Layer.effect;
-                            }},
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                haloRotateSpeed = -2.4f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 2;
-                                triLengthTo = triLength = 9;
-                                radius = 35f;
-                                layer = Layer.effect;
-                            }},
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                shapeRotation = 180;
-                                haloRotateSpeed = -2.4f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 2;
-                                triLengthTo = triLength = 6;
-                                radius = 12f;
-                                layer = Layer.effect;
-                            }},
-                            //1
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                haloRotateSpeed = -2.7f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 9;
-                                radius = 35f;
-                                layer = Layer.effect;
-                            }},
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                shapeRotation = 180;
-                                haloRotateSpeed = -2.7f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 6;
-                                radius = 12f;
-                                layer = Layer.effect;
-                            }},
-                            //2
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                haloRotateSpeed = -1.7f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 9;
-                                radius = 35f;
-                                layer = Layer.effect;
-                            }},
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                shapeRotation = 180;
-                                haloRotateSpeed = -1.7f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 6;
-                                radius = 12f;
-                                layer = Layer.effect;
-                            }},
-                            //3
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                haloRotateSpeed = 2f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 9;
-                                radius = 35f;
-                                layer = Layer.effect;
-                            }},
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                shapeRotation = 180;
-                                haloRotateSpeed = 2f;
-                                haloRadius = haloRadiusTo = 36f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 6;
-                                radius = 12f;
-                                layer = Layer.effect;
-                            }},
-                            //4
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                haloRotateSpeed = 1.2f;
-                                haloRadius = haloRadiusTo = 32f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 9;
-                                radius = 28f;
-                                layer = Layer.effect;
-                            }},
-                            new HaloPart() {{
-                                color = Pal.techBlue;
-                                tri = true;
-                                shapeRotation = 180;
-                                haloRotateSpeed = 1.2f;
-                                haloRadius = haloRadiusTo = 32f;
-                                stroke = strokeTo = 2f;
-                                shapes = 1;
-                                triLengthTo = triLength = 6;
-                                radius = 12f;
-                                layer = Layer.effect;
-                            }}
-                            //5
-                    );
-                    width = height = 0;
-                    backColor = hitColor = trailColor = Pal.techBlue;
-                    lifetime = 160f;
-                    scaleLife = scaledSplashDamage = true;
-                    hitSound = Sounds.largeExplosion;
-                    chargeEffect = new MultiEffect(
-                            new WaveEffect(){{
-                                colorFrom = Pal.techBlue;
-                                colorTo = Color.valueOf("aec6ff");
-                                sizeFrom = 180;
-                                sizeTo = 0f;
-                                lifetime = 150f;
-                                strokeTo = 7;
-                                strokeFrom = 0f;
-                            }},
-                            new WaveEffect(){{
-                                colorFrom = Pal.techBlue;
-                                colorTo = Color.valueOf("aec6ff");
-                                interp = Interp.pow5Out;
-                                sizeFrom = 180;
-                                sizeTo = 0f;
-                                lifetime = 150f;
-                                strokeTo = 7;
-                                strokeFrom = 0f;
-                            }},
-                            new WaveEffect(){{
-                                colorFrom = Pal.techBlue;
-                                colorTo = Color.valueOf("aec6ff");
-                                sizeFrom = 150;
-                                sizeTo = 0f;
-                                lifetime = 130f;
-                                strokeTo = 6;
-                                strokeFrom = 0f;
-                            }},
-                            new WaveEffect(){{
-                                colorFrom = Pal.techBlue;
-                                colorTo = Color.valueOf("aec6ff");
-                                sizeFrom = 120;
-                                sizeTo = 0f;
-                                lifetime = 120f;
-                                strokeTo = 4;
-                                strokeFrom = 0f;
-                            }});
-                    hitEffect = new MultiEffect(
-                            new ParticleEffect(){{
-                                lightOpacity = 0.5f;
-                                particles = 30;
-                                length = 150;
-                                baseLength = 30;
-                                lifetime = 240;
-                                interp = Interp.circleOut;
-                                sizeInterp = Interp.pow5In;
-                                sizeFrom = 27;
-                                sizeTo = 1;
-                                lightColor = colorFrom = colorTo = Pal.techBlue;
-                            }},
-                            new ParticleEffect(){{
-                                lightOpacity = 0.5f;
-                                particles = 30;
-                                length = 180;
-                                baseLength = 30;
-                                lifetime = 60;
-                                interp = Interp.circleOut;
-                                sizeInterp = Interp.pow5In;
-                                sizeFrom = 15;
-                                sizeTo = 1;
-                                lightColor = colorFrom = colorTo = Pal.techBlue;
-                            }},
-                            new ParticleEffect(){{
-                                lightOpacity = 0.5f;
-                                particles = 30;
-                                length = 120;
-                                baseLength = 30;
-                                lifetime = 180;
-                                interp = Interp.circleOut;
-                                sizeInterp = Interp.pow5In;
-                                sizeFrom = 20;
-                                sizeTo = 1;
-                                lightColor = colorFrom = colorTo = Pal.techBlue;
-                            }},
-                            new ParticleEffect(){{
-                                lightOpacity = 0.5f;
-                                particles = 20;
-                                length = 180;
-                                baseLength = 30;
-                                lifetime = 220;
-                                interp = Interp.circleOut;
-                                sizeInterp = Interp.pow5In;
-                                sizeFrom = 35;
-                                sizeTo = 1;
-                                lightColor = colorFrom = colorTo = Pal.techBlue;
-                            }},
-                            new ParticleEffect(){{
-                                lightOpacity = 0.5f;
-                                particles = 35;
-                                layer = 99;
-                                length = 160;
-                                baseLength = 30;
-                                lifetime = 160;
-                                interp = Interp.circleOut;
-                                sizeInterp = Interp.pow5In;
-                                sizeFrom = 21;
-                                sizeTo = 10;
-                                lightColor = colorFrom = colorTo = Color.valueOf("7d7d7d");
-                            }},
-                            new ParticleEffect(){{
-                                lightOpacity = 0.5f;
-                                particles = 35;
-                                layer = 99;
-                                length = 160;
-                                baseLength = 30;
-                                lifetime = 180;
-                                interp = Interp.circleOut;
-                                sizeInterp = Interp.pow5In;
-                                sizeFrom = 25;
-                                sizeTo = 18;
-                                lightColor = colorFrom = colorTo = Color.valueOf("7d7d7d");
-                            }},
-                            new ParticleEffect(){{
-                                lightOpacity = 0.5f;
-                                line = true;
-                                particles = 35;
-                                length = 275;
-                                offset = 40;
-                                strokeFrom = 5;
-                                strokeTo = 0;
-                                lifetime = 160;
-                                lenFrom = 20;
-                                lenTo = 10;
-                                lightColor = colorFrom = Pal.techBlue;
-                                colorTo = Color.valueOf("aec6ff");
-                            }},
-                            new WaveEffect(){{
-                                colorTo = Pal.techBlue;
-                                colorFrom = Color.valueOf("aec6ff");
-                                interp = Interp.circleOut;
-                                sizeFrom = 20;
-                                sizeTo = 150f;
-                                lifetime = 55;
-                                strokeTo = 0;
-                                strokeFrom = 10f;
-                            }},
-                            new WaveEffect(){{
-                                colorTo = Pal.techBlue;
-                                colorFrom = Color.valueOf("aec6ff");
-                                interp = Interp.circleOut;
-                                sizeFrom = 10;
-                                sizeTo = 100f;
-                                lifetime = 55;
-                                strokeTo = 0;
-                                strokeFrom = 7f;
-                            }});
-                    speed = 4f;
-                    damage = 260f;
-                    recoil = 0.6f;
-                    splashDamage = 1275;
-                    splashDamageRadius = 100;
-                    buildingDamageMultiplier = 1.45f;
-                    collidesTiles = true;
-                    collidesAir = collidesGround = false;
-                    radius = 150f;
-                    lightRadius = 60;
-                    timeIncrease = 0f;
-                    powerDamageScl = 1;
-                    powerSclDecrease = 0.3f;
-                    unitDamageScl = 0.2f;
-                    status = StatusEffects.freezing;
-                    statusDuration = 100;
-                    shootEffect = Fx.lightningShoot;
-                    homingPower = 0.0678f;
-                    homingRange = 40;
-                    trailSinScl = 2.4f;
-                    trailSinMag = 1.2f;
-                    trailLength = 26;
-                    trailWidth = 9f;
-                    trailChance = 0.3f;
-                    trailParam = 3.5f;
-                    trailEffect = new ParticleEffect() {{
-                        particles = 5;
-                        length = baseLength = 13.5f;
-                        lifetime = 30f;
-                        cone = 360;
-                        colorFrom = trailColor;
-                        colorTo = Color.valueOf("8ca9e8AA");
-                        sizeFrom = 10f;
-                        sizeTo = 0f;
-                    }};
-                    intervalBullets = 1;
-                    intervalRandomSpread = 60;
-                    bulletInterval = 2;
-                    intervalBullet = new EmpBulletType(){{
-                        width = height = 15f;
-                        hitPowerEffect = hitEffect = Fx.none;
-                        lifetime = 35f;
-                        radius = 140;
-                        hitColor = backColor = trailColor = Pal.techBlue;
-                        frontColor = Color.white;
-                        unitDamageScl = 0.1f;
-                        trailWidth = 2.1f;
-                        trailLength = 5;
-                        despawnHit = true;
-                        collides = false;
-                        instantDisappear = true;
-                        lightningColor = Pal.techBlue;
-                        lightning = 3;
-                        lightningDamage = 32;
-                        lightningLength = 4;
-                        lightningCone = 360;
-                        lightningLengthRand = 7;
-                        buildingDamageMultiplier = 0.3f;
-                        fragBullets = 1;
-                        fragLifeMin = 0.3f;
-                        fragBullet = new BasicBulletType(6f, 130){{
-                            parts.addAll(
-                                    new ShapePart(){{
-                                        color = Color.white;
-                                        circle = true;
-                                        radius = radiusTo = 1.5f;
-                                        layer = 114;
-                                    }},
-                                    new ShapePart(){{
-                                        color = Color.valueOf("aec6ff");
-                                        circle = true;
-                                        radius = radiusTo = 3.5f;
-                                        layer = Layer.effect;
-                                    }},
-                                    new ShapePart(){{
-                                        color = Color.valueOf("8ca9e855");
-                                        circle = true;
-                                        radius = radiusTo = 5.5f;
-                                        layer = Layer.effect;
-                                    }},
-                                    new ShapePart(){{
-                                        color = Color.valueOf("597cff45");
-                                        circle = true;
-                                        radius = radiusTo = 6;
-                                        layer = Layer.effect;
-                                    }}
-                            );
-                            width = height = 0f;
-                            lifetime = 60f;
-                            backColor = hitColor = trailColor = Pal.techBlue;
-                            frontColor = Color.white;
-                            hitSound = Sounds.explosion;
-                            drag = 0.019f;
-                            pierceBuilding = true;
-                            pierceCap = 2;
-                            pierce = despawnHit = true;
-                            weaveMag = 2;
-                            weaveScale = 8;
-                            homingPower = 0.0002f;
-                            homingRange = 100;
-                            trailSinScl = 2.4f;
-                            trailSinMag = 0.8f;
-                            trailParam = 1.5f;
-                            trailWidth = 2.5f;
-                            trailLength = 9;
-                            hitEffect = ExoFx.colorBombSmaller;
-                        }};
-                    }};
-                    fragLifeMin = 0.2f;
-                    fragBullets = 14;
-                    fragBullet = new ArtilleryBulletType(5.4f, 32){{
-                        buildingDamageMultiplier = 1.3f;
-                        parts.addAll(
-                                new FlarePart(){{
-                                    progress = PartProgress.life;
-                                    color1 = Pal.techBlue;
-                                    sides = 2;
-                                    stroke = 3.5f;
-                                    radius = radiusTo = 15;
-                                    layer = Layer.effect;
-                                }}
-                        );
-                        hitEffect = new MultiEffect(Fx.massiveExplosion, Fx.scatheSlash);
-                        despawnHit = true;
-                        knockback = 0.8f;
-                        lifetime = 30f;
-                        width = height = 18f;
-                        splashDamageRadius = 50f;
-                        splashDamage = 100f;
-                        backColor = trailColor = hitColor = Pal.techBlue;
-                        frontColor = Color.white;
-                        despawnShake = 7f;
-                        lightRadius = 30f;
-                        lightColor = Pal.techBlue;
-                        lightOpacity = 0.5f;
-                        trailLength = 20;
-                        trailWidth = 3.5f;
-                        trailEffect = Fx.none;
-                    }};
+                bullet = new AcceleratingLaserBulletType(230f){{
+                    lifetime = 280f;
+                    maxLength = 1030f;
+                    maxRange = 1030f;
+                    oscOffset = 0.1f;
+                    width = 32f;
+                    collisionWidth = 10f;
+                    pierceCap = 1;
+                    hitEffect = ExoFx.coloredHitLarge;
+                    hitColor = Pal.heal;
                 }};
             }});
 
