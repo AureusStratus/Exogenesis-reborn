@@ -3171,6 +3171,7 @@ public class ExoUnitTypes {
             legExtension = -4;
             legContinuousMove = false;
             rippleScale = 6.8f;
+            legGroupSize = 1;
             legPairOffset = 1;
             legBaseOffset = 20;
             legSplashDamage = 156;
@@ -3183,8 +3184,9 @@ public class ExoUnitTypes {
                 y = 2f;
                 shootY = 0;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = 280;
+                shootStatusDuration = 560;
                 shoot.firstShotDelay = 280;
+                loopSound = ExoSounds.funnylaserloop;
                 recoilTime = 285;
                 recoil = 0;
                 shake = 1f;
@@ -3196,7 +3198,8 @@ public class ExoUnitTypes {
                             color2 = Color.white;
                             spinSpeed = 0.6f;
                             radius = 0f;
-                            radiusTo = 180f;
+                            stroke = 5;
+                            radiusTo = 280f;
                             layer = 109;
                             y = 0;
                         }},
@@ -3213,8 +3216,8 @@ public class ExoUnitTypes {
                             progress = PartProgress.recoil;
                             color = Pal.heal;
                             circle = true;
-                            radius = 14;
-                            radiusTo = 14;
+                            radius = 10;
+                            radiusTo = 10;
                             layer = Layer.effect;
                             y = 0f;
                         }}
@@ -3225,10 +3228,10 @@ public class ExoUnitTypes {
                     maxRange = 830f;
                     oscOffset = 0.3f;
                     chargeEffect = new MultiEffect(ExoFx.ullrChargeBegin, ExoFx.ullrChargeEffect);
-                    width = 34f;
-                    collisionWidth = 12f;
+                    width = 30f;
+                    collisionWidth = 10f;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
-                    pierceCap = 1;
+                    pierceCap = 3;
                     hitEffect = ExoFx.coloredHitLarge;
                     hitColor = Pal.heal;
                 }};

@@ -70,8 +70,8 @@ public class ExoFx{
         Color[] colors = {Pal.heal, Pal.heal, Color.white};
         for(int ii = 0; ii < 3; ii++){
             float s = (3 - ii) / 3f;
-            float width = Mathf.clamp(e.time / 80f) * (20f + Mathf.absin(Time.time + (ii * 1.4f), 1.1f, 7f)) * s;
-            float length = e.fin() * (100f + Mathf.absin(Time.time + (ii * 1.4f), 1.1f, 11f)) * s;
+            float width = Mathf.clamp(e.time / 60f) * (20f + Mathf.absin(Time.time + (ii * 1.4f), 1.1f, 7f)) * s;
+            float length = e.fin() * (80f + Mathf.absin(Time.time + (ii * 1.4f), 1.1f, 11f)) * s;
             color(colors[ii]);
             for(int i : Mathf.signs){
                 float rotation = e.rotation + (i * 90f);
@@ -131,7 +131,7 @@ public class ExoFx{
                 });
 
                 stroke(0.5f + e.fout());
-                randLenVectors(e.id, 6, e.fin() * 35f, e.rotation + 180f, 45f, (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fout() * 7f + 1f));
+                randLenVectors(e.id, 6, e.fin() * 35f, e.rotation + 180f, 95f, (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fout() * 10f + 1f));
             }),
             lightErnExplosion = new Effect(40, e -> {
                 color(ExoPal.empyrean);
