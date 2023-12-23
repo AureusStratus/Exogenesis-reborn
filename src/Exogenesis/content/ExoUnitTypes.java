@@ -3166,12 +3166,12 @@ public class ExoUnitTypes {
             allowLegStep = hovering = true;
             rotateSpeed = 1.6f;
             legSpeed = 0.6f;
-            legLength = 30;
+            legLength = 33;
             legCount = 4;
-            legExtension = -4;
-            legMoveSpace = 1.5f;
+            legMoveSpace = 1.2f;
+            lockLegBase = true;
             legContinuousMove = false;
-            legMaxLength = 33;
+            legMaxLength = 36;
             rippleScale = 6.8f;
             legGroupSize = 1;
             legPairOffset = 1;
@@ -3180,7 +3180,7 @@ public class ExoUnitTypes {
             legSplashRange = 60;
             groundLayer = 77;
             weapons.add(new Weapon("ullr-piercer") {{
-                reload = 800f;
+                reload = 1000f;
                 mirror = false;
                 x = 0;
                 y = 2f;
@@ -3190,6 +3190,7 @@ public class ExoUnitTypes {
                 shoot.firstShotDelay = 280;
                 shootSound = ExoSounds.funnylaserloop;
                 recoilTime = 285;
+                continuous = true;
                 recoil = 0;
                 shake = 1f;
                 parts.addAll(
@@ -3205,8 +3206,20 @@ public class ExoUnitTypes {
                             layer = 109;
                             y = 0;
                         }},
+                        new FlarePart(){{
+                            progress = PartProgress.recoil;
+                            color1 = Pal.heal;
+                            color2 = Color.white;
+                            sides = 2;
+                            followRotation = true;
+                            radius = 0f;
+                            stroke = 7;
+                            radiusTo = 480f;
+                            layer = 109;
+                            y = 0;
+                        }},
                         new ShapePart(){{
-                            progress = PartProgress.reload;
+                            progress = PartProgress.recoil;
                             color = Color.white;
                             circle = true;
                             radius = 6f;
@@ -3215,7 +3228,7 @@ public class ExoUnitTypes {
                             y = 0f;
                         }},
                         new ShapePart(){{
-                            progress = PartProgress.reload;
+                            progress = PartProgress.recoil;
                             color = Pal.heal;
                             circle = true;
                             radius = 10;
@@ -3244,7 +3257,7 @@ public class ExoUnitTypes {
                 mirror = true;
                 rotate = true;
                 rotateSpeed = 1.5f;
-                x = 23;
+                x = 27;
                 y = 0;
                 shoot = new ShootPattern() {{
                     shotDelay = 3f;
