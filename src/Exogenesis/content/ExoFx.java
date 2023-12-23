@@ -57,6 +57,29 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
+            ullrChargeEffect = new Effect(40f, e -> {
+                Angles.randLenVectors(e.id, 2, 10f, 90f, (x, y) -> {
+                    float angle = Mathf.angle(x, y);
+                    color(Pal.heal, Pal.heal, e.fin());
+                    Lines.stroke(1.5f);
+                    Lines.lineAngleCenter(e.x + (x * e.fout()), e.y + (y * e.fout()), angle, e.fslope() * 13f);
+                });
+            }),
+
+    ullrChargeBegin = new Effect(288f, e -> {
+        Color[] colors = {Pal.heal, Pal.heal, Color.white};
+        for(int ii = 0; ii < 3; ii++){
+            float s = (3 - ii) / 3f;
+            float width = Mathf.clamp(e.time / 80f) * (20f + Mathf.absin(Time.time + (ii * 1.4f), 1.1f, 7f)) * s;
+            float length = e.fin() * (100f + Mathf.absin(Time.time + (ii * 1.4f), 1.1f, 11f)) * s;
+            color(colors[ii]);
+            for(int i : Mathf.signs){
+                float rotation = e.rotation + (i * 90f);
+                Drawf.tri(e.x, e.y, width, length * 0.5f, rotation);
+            }
+            Drawf.tri(e.x, e.y, width, length * 1.25f, e.rotation);
+        }
+    }),
             hitMeltColor = new Effect(12, e -> {
                 color(e.color);
                 stroke(e.fout() * 2f);
