@@ -80,6 +80,13 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, width, length * 1.25f, e.rotation);
         }
     }),
+            ullarTipHit = new Effect(27f, e ->
+                    Angles.randLenVectors(e.id, 8, 90f * e.fin(), e.rotation, 80f, (x, y) -> {
+                        float angle = Mathf.angle(x, y);
+                        color(Pal.heal, Pal.heal, e.fin());
+                        Lines.stroke(1.5f);
+                        Lines.lineAngleCenter(e.x + x, e.y + y, angle, e.fslope() * 13f);
+                    })),
             hitMeltColor = new Effect(12, e -> {
                 color(e.color);
                 stroke(e.fout() * 2f);

@@ -3159,17 +3159,18 @@ public class ExoUnitTypes {
             constructor = LegsUnit::create;
             speed = 0.20f;
             hitSize = 56f;
-            health = 79000f;
+            health = 65000f;
             faceTarget = singleTarget = true;
-            armor = 35;
+            armor = 15;
             shadowElevation = 0.3f;
             allowLegStep = hovering = true;
             rotateSpeed = 1.6f;
             legSpeed = 0.6f;
-            legLength = 37;
+            legLength = 30;
             legCount = 4;
             legExtension = -4;
             legContinuousMove = false;
+            legMaxLength = 33;
             rippleScale = 6.8f;
             legGroupSize = 1;
             legPairOffset = 1;
@@ -3186,7 +3187,7 @@ public class ExoUnitTypes {
                 shootStatus = StatusEffects.unmoving;
                 shootStatusDuration = 560;
                 shoot.firstShotDelay = 280;
-                loopSound = ExoSounds.funnylaserloop;
+                shootSound = ExoSounds.funnylaserloop;
                 recoilTime = 285;
                 recoil = 0;
                 shake = 1f;
@@ -3208,7 +3209,7 @@ public class ExoUnitTypes {
                             color = Color.white;
                             circle = true;
                             radius = 6f;
-                            radiusTo = 6f;
+                            radiusTo = 0f;
                             layer = 114;
                             y = 0f;
                         }},
@@ -3217,7 +3218,7 @@ public class ExoUnitTypes {
                             color = Pal.heal;
                             circle = true;
                             radius = 10;
-                            radiusTo = 10;
+                            radiusTo = 0;
                             layer = Layer.effect;
                             y = 0f;
                         }}
@@ -3232,8 +3233,29 @@ public class ExoUnitTypes {
                     collisionWidth = 10f;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
                     pierceCap = 3;
-                    hitEffect = ExoFx.coloredHitLarge;
+                    hitEffect = ExoFx.ullarTipHit;
                     hitColor = Pal.heal;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-energy-mount") {{
+                reload = 82f;
+                mirror = true;
+                rotate = true;
+                rotateSpeed = 1.5f;
+                x = 23;
+                y = 0;
+                shoot = new ShootPattern() {{
+                    shotDelay = 3f;
+                    shots = 4;
+                }};
+                shootSound = Sounds.bolt;
+                shake = 1f;
+                bullet = new PosLightningType(32f){{
+                    lightningColor = hitColor = Pal.heal;
+                    maxRange = rangeOverride = 250f;
+                    shootEffect = Fx.circleColorSpark;
+                    hitEffect = ExoFx.blastcolor;
+                    smokeEffect = Fx.none;
                 }};
             }});
 
