@@ -3681,12 +3681,12 @@ public class ExoUnitTypes {
                 x = 15f;
                 y = 8.75f;
                 shootY = 6.25f - 1f;
-                reload = 7f;
+                reload = 57f;
                 recoil = 4f;
                 rotate = true;
                 shootCone = 20f;
                 shootSound = Sounds.shootBig;
-                shoot = new ShootSpread(2, 17f);
+                shoot = new ShootSpread(4, 14f);
 
                 bullet = new ShrapnelBulletType(){{
                     length = 130f;
@@ -3702,7 +3702,7 @@ public class ExoUnitTypes {
                     shootEffect = smokeEffect = Fx.sparkShoot;
                 }};
             }},
-                    new Weapon(name + "-gunner"){{
+                    new Weapon(name + "-energy-gunner"){{
                         x = 36.25f;
                         y = 1.25f;
                         shootY = 6.25f - 1f;
@@ -3753,27 +3753,28 @@ public class ExoUnitTypes {
                 recoil = 8f;
 
                 bullet = new BombBulletType(150f, 30){{
-                    width = 8f;
-                    height = 17f;
+                    width = 18f;
+                    height = 27f;
                     sprite = "shell";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = Pal.sapBullet;
                     speed = 6;
+                    scaleLife = true;
                     lifetime = 120f;
-                    hitEffect = despawnEffect = Fx.hitBulletColor;
+                    hitEffect = despawnEffect = Fx.sapExplosion;
                     shrinkY = shrinkX = 0;
                     shootEffect = Fx.sapExplosion;
                     trailLength = 10;
                     trailWidth = 2f;
                     fragOnHit = false;
-                    fragBullets = 10;
+                    fragBullets = 13;
                     fragVelocityMin = 0.7f;
 
-                    fragBullet = new BasicBulletType(8f, 9){{
+                    fragBullet = new BasicBulletType(8f, 29){{
                         sprite = "missile";
                         width = 9f;
                         height = 13f;
-                        lifetime = 7f;
+                        lifetime = 17f;
                         hitSize = 4f;
                         backColor = hitColor = trailColor = Pal.sapBullet;
                         frontColor = Color.white;
