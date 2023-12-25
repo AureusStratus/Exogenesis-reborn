@@ -2678,7 +2678,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        
+
         nkarnt = new ErekirUnitType("nkarnt"){{
             constructor = LegsUnit::create;
             speed = 0.8f;
@@ -3654,6 +3654,7 @@ public class ExoUnitTypes {
             }});
     }};
         vidar = new UnitType("vidar"){{
+            constructor = LegsUnit::create;
             speed = 0.4f;
             drag = 0.12f;
             hitSize = 49f;
