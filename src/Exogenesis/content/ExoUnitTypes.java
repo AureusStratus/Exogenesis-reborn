@@ -1,6 +1,5 @@
 package Exogenesis.content;
 
-import Exogenesis.type.weapons.EnergyChargeWeapon;
 import Exogenesis.entities.bullet.*;
 import Exogenesis.graphics.*;
 import arc.graphics.*;
@@ -24,7 +23,7 @@ import mindustry.content.*;
 import static arc.graphics.g2d.Draw.*;
 
 public class ExoUnitTypes {
-    public static UnitType ursa, ullr, empire, heimdall, avicularia, twilight, notodoris,
+    public static UnitType ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris,
     //erekir
     //red
     nkarnt, stratiotis, naitis, protathlitis, vasilias,
@@ -2679,6 +2678,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+        
         nkarnt = new ErekirUnitType("nkarnt"){{
             constructor = LegsUnit::create;
             speed = 0.8f;
@@ -3092,7 +3092,6 @@ public class ExoUnitTypes {
             }});
         }};
 
-
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
             speed = 0.27f;
@@ -3190,7 +3189,7 @@ public class ExoUnitTypes {
                 shoot.firstShotDelay = 280;
                 shootSound = ExoSounds.funnylaserloop;
                 recoilTime = 285;
-                cooldownTime = 255;
+                cooldownTime = 205;
                 continuous = true;
                 recoil = 0;
                 shake = 1f;
@@ -3271,6 +3270,9 @@ public class ExoUnitTypes {
                 bullet = new PosLightningType(32f){{
                     lightningColor = hitColor = Pal.heal;
                     maxRange = rangeOverride = 250f;
+                    lightning = 4;
+                    lightningLength = 6;
+                    lightningDamage = 20;
                     shootEffect = Fx.colorSparkBig;
                     hitEffect = ExoFx.hitMeltColor;
                     smokeEffect = Fx.none;
@@ -3406,7 +3408,7 @@ public class ExoUnitTypes {
                 alternate = display = rotate = false;
                 baseRotation = 180;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = 200;
+                shootStatusDuration = 140;
                 shootCone = 360;
                 parts.addAll(
                         new RegionPart("-engine"){{
@@ -3426,7 +3428,7 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
                     maxRange = 150;
-                    lifetime = 200;
+                    lifetime = 140;
                     damage = 4;
                     width = 8.3f;
                     layer = 110;
@@ -3473,7 +3475,7 @@ public class ExoUnitTypes {
                 bullet = new ContinuousFlameBulletType(){{
                     recoil = -0.1f;
                     maxRange = 150;
-                    lifetime = 200;
+                    lifetime = 140;
                     damage = 4;
                     width = 6.3f;
                     layer = Layer.effect;
@@ -3520,7 +3522,7 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
                     maxRange = 150;
-                    lifetime = 200;
+                    lifetime = 140;
                     recoil = -0.1f;
                     damage = 4;
                     width = 3.3f;
@@ -3651,6 +3653,137 @@ public class ExoUnitTypes {
                 }};
             }});
     }};
+        vidar = new UnitType("vidar"){{
+            speed = 0.4f;
+            drag = 0.12f;
+            hitSize = 49f;
+            hovering = true;
+            allowLegStep = true;
+            health = 78750;
+            armor = 18f;
+            rotateSpeed = 1.3f;
+            legCount = 10;
+            legGroupSize = 2;
+            legMoveSpace = 0.7f;
+            legPairOffset = 0.2f;
+            legLength = 176f;
+            legExtension = -24f;
+            legBaseOffset = 9f;
+            shadowElevation = 1f;
+            groundLayer = Layer.legUnit + 0.02f;
+            rippleScale = 3.4f;
+            legSplashDamage = 130f;
+            legSplashRange = 60f;
+            targetAir = false;
+
+            weapons.add(new Weapon(name + "-purple-mount"){{
+                x = 15f;
+                y = 8.75f;
+                shootY = 6.25f - 1f;
+                reload = 7f;
+                recoil = 4f;
+                rotate = true;
+                shootCone = 20f;
+                shootSound = Sounds.shootBig;
+                shoot = new ShootSpread(2, 17f);
+
+                bullet = new ShrapnelBulletType(){{
+                    length = 130f;
+                    damage = 310f;
+                    width = 29f;
+                    serrationLenScl = 7f;
+                    serrationSpaceOffset = 60f;
+                    serrationFadeOffset = 0f;
+                    serrations = 10;
+                    serrationWidth = 6f;
+                    fromColor = Pal.sapBullet;
+                    toColor = Pal.sapBulletBack;
+                    shootEffect = smokeEffect = Fx.sparkShoot;
+                }};
+            }},
+                    new Weapon(name + "-gunner"){{
+                        x = 36.25f;
+                        y = 1.25f;
+                        shootY = 6.25f - 1f;
+                        reload = 7f;
+                        recoil = 1f;
+                        rotate = true;
+                        shootCone = 20f;
+                        inaccuracy = 25f;
+                        shoot.shots = 2;
+                        shootSound = Sounds.missile;
+
+                        bullet = new MissileBulletType(3.7f, 15f){{
+                            width = 10f;
+                            height = 12f;
+                            shrinkY = 0f;
+                            drag = -0.01f;
+                            splashDamageRadius = 30f;
+                            splashDamage = 55f;
+                            ammoMultiplier = 5f;
+                            hitEffect = Fx.blastExplosion;
+                            despawnEffect = Fx.blastExplosion;
+                            backColor = trailColor = Pal.sapBulletBack;
+                            frontColor = lightningColor = lightColor = Pal.sapBullet;
+                            trailLength = 13;
+                            homingRange = 80f;
+                            weaveScale = 8f;
+                            weaveMag = 2f;
+                            lightning = 2;
+                            lightningLength = 2;
+                            lightningLengthRand = 1;
+                            lightningCone = 15f;
+
+                            status = StatusEffects.blasted;
+                            statusDuration = 60f;
+                        }};
+                    }},
+                new Weapon(name + "-laser"){{
+                x = 26.25f;
+                y = -2.25f;
+                shootY = 20.5f - 4f;
+                shootSound = Sounds.cannon;
+                rotate = true;
+                alternate = true;
+                rotateSpeed = 0.9f;
+                cooldownTime = 90f;
+                reload = 90f;
+                shake = 6f;
+                recoil = 8f;
+
+                bullet = new BombBulletType(150f, 30){{
+                    width = 8f;
+                    height = 17f;
+                    sprite = "shell";
+                    frontColor = Color.white;
+                    backColor = hitColor = trailColor = Pal.sapBullet;
+                    speed = 6;
+                    lifetime = 120f;
+                    hitEffect = despawnEffect = Fx.hitBulletColor;
+                    shrinkY = shrinkX = 0;
+                    shootEffect = Fx.sapExplosion;
+                    trailLength = 10;
+                    trailWidth = 2f;
+                    fragOnHit = false;
+                    fragBullets = 10;
+                    fragVelocityMin = 0.7f;
+
+                    fragBullet = new BasicBulletType(8f, 9){{
+                        sprite = "missile";
+                        width = 9f;
+                        height = 13f;
+                        lifetime = 7f;
+                        hitSize = 4f;
+                        backColor = hitColor = trailColor = Pal.sapBullet;
+                        frontColor = Color.white;
+                        trailWidth = 2f;
+                        trailLength = 10;
+                        hitEffect = despawnEffect = Fx.flakExplosion;
+                        }};
+                    }};
+            }});
+        }};
+
         twilight = new UnitType("twilight") {{
             constructor = UnitEntity::create;
             shadowElevation = 1.3f;
