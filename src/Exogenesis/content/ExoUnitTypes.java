@@ -3585,7 +3585,7 @@ public class ExoUnitTypes {
             allowLegStep = true;
             shadowElevation = 0.95f;
             weapons.add(new Weapon("exogenesis-sap-energy-gun") {{
-                    reload = 22f;
+                    reload = 32f;
                     mirror = true;
                     rotate = true;
                     rotateSpeed = 2;
@@ -3663,8 +3663,8 @@ public class ExoUnitTypes {
             health = 78750;
             armor = 18f;
             rotateSpeed = 1.3f;
-            legCount = 10;
-            legGroupSize = 2;
+            legCount = 14;
+            legGroupSize = 4;
             legMoveSpace = 0.7f;
             legPairOffset = 0.2f;
             legLength = 176f;
@@ -3682,12 +3682,18 @@ public class ExoUnitTypes {
                 y = 8.75f;
                 shootY = 6.25f - 1f;
                 reload = 57f;
-                recoil = 4f;
+                recoil = 3f;
                 rotate = true;
                 shootCone = 20f;
                 shootSound = Sounds.shootBig;
                 shoot = new ShootSpread(4, 14f);
-
+                parts.addAll(
+                        new RegionPart("-glow"){{
+                            color = Color.purple;
+                            colorTo = Color.purple;
+                            blending = Blending.additive;
+                            outline = mirror = false;
+                        }});
                 bullet = new ShrapnelBulletType(){{
                     length = 130f;
                     damage = 310f;
@@ -3702,7 +3708,7 @@ public class ExoUnitTypes {
                     shootEffect = smokeEffect = Fx.sparkShoot;
                 }};
             }},
-                    new Weapon(name + "-energy-gunner"){{
+                    new Weapon(name + "-plasma-gunner"){{
                         x = 36.25f;
                         y = 1.25f;
                         shootY = 6.25f - 1f;
@@ -3759,6 +3765,7 @@ public class ExoUnitTypes {
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = Pal.sapBullet;
                     speed = 6;
+                    drag = 0;
                     scaleLife = true;
                     lifetime = 120f;
                     hitEffect = despawnEffect = Fx.sapExplosion;
