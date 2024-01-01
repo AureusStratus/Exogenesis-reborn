@@ -2680,6 +2680,7 @@ public class ExoUnitTypes {
             }});
         }};
         gaia = new ErekirUnitType("gaia"){{
+            constructor = UnitEntity::create;
             health = 54000f;
             speed = 2.1f;
             rotateSpeed = 1f;
