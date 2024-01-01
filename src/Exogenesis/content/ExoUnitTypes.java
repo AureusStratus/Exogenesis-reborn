@@ -1,6 +1,7 @@
 package Exogenesis.content;
 
 import Exogenesis.entities.bullet.*;
+import Exogenesis.type.*;
 import Exogenesis.graphics.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -27,7 +28,7 @@ public class ExoUnitTypes {
     //erekir
     //red
     nkarnt, stratiotis, naitis, protathlitis, vasilias,
-    prometheus, atlas, nemesis, hyperion, rhea, cronus,
+    prometheus, atlas, nemesis, hyperion, rhea, cronus, gaia,
     //empyrean
     lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
     public static void load() {
@@ -2678,18 +2679,32 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+        gaia = new ErekirUnitType("gaia"){{
+            health = 54000f;
+            speed = 2.1f;
+            rotateSpeed = 1f;
+            accel = 0.08f;
+            drag = 0.07f;
+            lightRadius = 80;
+            fogRadius = 50;
+            armor = 26f;
+            hitSize = 137.5f;
+            engineSize = -1f;
+            flying = true;
+            lowAltitude = true;
+            }};
 
         nkarnt = new ErekirUnitType("nkarnt"){{
             constructor = LegsUnit::create;
             speed = 0.8f;
-            health = 340;
+            health = 100;
             hitSize = 7.75f * 1.7f;
             range = 250f;
             lockLegBase = true;
             legContinuousMove = true;
             allowLegStep = true;
             baseLegStraightness = 0.6f;
-            legMoveSpace = 1.5f;
+            legMoveSpace= 1.5f;
             legPhysicsLayer = false;
             legCount = 8;
             legPairOffset = 1;
@@ -2716,7 +2731,7 @@ public class ExoUnitTypes {
             }});
         }};
         stratiotis = new ErekirUnitType("stratiotis"){{
-            constructor = LegsUnit::create;
+            constructor= LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
             rotateSpeed = 1.2f;
             speed = 0.7f;
@@ -2724,7 +2739,7 @@ public class ExoUnitTypes {
             hitSize = 9.5f * 1.7f;
             range = 350f;
             allowLegStep = true;
-            legCount = 6;
+            legCount = 4;
             legGroupSize = 2;
             legMoveSpace = 0.5f;
             legLength = 28f;
@@ -2734,8 +2749,8 @@ public class ExoUnitTypes {
                 reload = 50f;
                 x = 6.25f;
                 shoot = new ShootPattern() {{
-                    shots = 6;
-                    shotDelay = 3;
+                shots = 6;
+                shotDelay = 3;
                 }};
                 inaccuracy = 4f;
                 rotate = true;
@@ -2763,7 +2778,7 @@ public class ExoUnitTypes {
             legMoveSpace = 0.6f;
             legGroupSize = 3;
             legPairOffset = 1;
-            legCount = 6;
+            legCount = 4;
             legLength = 36f;
             legExtension = -9.3f;
 
@@ -2882,7 +2897,7 @@ public class ExoUnitTypes {
             legMoveSpace = 0.53f;
             armor = 4f;
             legBaseOffset = 6;
-            legCount = 6;
+            legCount = 4;
             legLength = 41f;
             legExtension = -9.3f;
             legSplashDamage = 20f;
@@ -2931,20 +2946,21 @@ public class ExoUnitTypes {
                     rotate = true;
                     reload = 80f;
                     shake = 1f;
-                    shoot = new ShootSpread() {{
-                        shots = 3;
-                        spread = 3;
-                        shotDelay = 1;
-                    }};
-                    shootSound = Sounds.shotgun;
+                    shoot = new ShootSpread(3, 12f);
+                    shootSound = Sounds.shootBig;
 
                     bullet = new ShrapnelBulletType(){{
-                        damage = 15f;
+                        length = 17f;
+                        damage = 80f;
                         width = 10f;
+                        serrationLenScl = 7f;
+                        serrationSpaceOffset = 60f;
+                        serrationFadeOffset = 0f;
                         serrations = 6;
-                        length = 13f;
-                        lifetime = 25;
+                        serrationWidth = 5f;
                         fromColor = ExoPal.cronusRed;
+                        toColor = ExoPal.cronusRedDark;
+                        shootEffect = smokeEffect = Fx.sparkShoot;
                     }};
             }},
                 new Weapon("exogenesis-red-railgun"){{
@@ -3154,7 +3170,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        ullr = new UnitType("ullr") {{
+        ullr = new ExoUnitType("ullr", 1.2f, 0.85f, 1f, 0.5f, 1f, 1){{
             constructor = LegsUnit::create;
             speed = 0.20f;
             hitSize = 56f;
@@ -3189,7 +3205,7 @@ public class ExoUnitTypes {
                 shoot.firstShotDelay = 280;
                 shootSound = ExoSounds.funnylaserloop;
                 recoilTime = 285;
-                cooldownTime = 205;
+                cooldownTime = 105;
                 continuous = true;
                 recoil = 0;
                 shake = 1f;
@@ -3246,6 +3262,7 @@ public class ExoUnitTypes {
                     shootEffect = ExoFx.blastcolor;
                     chargeEffect = new MultiEffect(ExoFx.ullrChargeBegin, ExoFx.ullrChargeEffect);
                     width = 30f;
+                    damageType = DamageType.energy;
                     collisionWidth = 10f;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
                     pierceCap = 3;
@@ -3664,7 +3681,7 @@ public class ExoUnitTypes {
             armor = 18f;
             rotateSpeed = 1.3f;
             legCount = 14;
-            legGroupSize = 4;
+            legGroupSize = 2;
             legMoveSpace = 0.7f;
             legPairOffset = 0.2f;
             legLength = 176f;
