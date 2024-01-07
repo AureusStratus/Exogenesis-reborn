@@ -1,24 +1,32 @@
 package Exogenesis.entities.bullet;
 
+import Exogenesis.type.ExoUnitType;
+import arc.Events;
+import Exogenesis.type.DamageType;
 import arc.func.Cons2;
 import arc.math.geom.Position;
 import arc.math.geom.Vec2;
 import arc.struct.Seq;
+import arc.util.Structs;
 import arc.util.Tmp;
 import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.entities.Damage;
 import mindustry.entities.Units;
 import mindustry.entities.bullet.BulletType;
+import mindustry.game.EventType;
 import mindustry.gen.Bullet;
+import mindustry.gen.Healthc;
+import mindustry.gen.Hitboxc;
 import mindustry.gen.Unit;
 import Exogenesis.util.feature.PositionLightning;
 import Exogenesis.util.func.ExoFunc;
 
-public class ChainBulletType extends BulletType{
+public class ChainBulletType extends BulletType implements ExoBullet {
 	protected static final Seq<ChainBulletType> all = new Seq<>();
 	protected static final Bullet bu = Bullet.create();
-	
+
+	public DamageType damageType = DamageType.energy;
 	public int maxHit = 12;
 	public float chainRange = 200f;
 	public float length = 200f;
@@ -33,7 +41,7 @@ public class ChainBulletType extends BulletType{
 	public Cons2<Position, Position> effectController = (f, t) -> {
 		PositionLightning.createEffect(f, t, hitColor, boltNum, thick);
 	};
-	
+
 	@Override
 	public void init(){
 		super.init();
@@ -128,6 +136,44 @@ public class ChainBulletType extends BulletType{
 	
 	@Override
 	public void handlePierce(Bullet b, float initialHealth, float x, float y){
+	}
+	@Override
+	public DamageType damageType(){
+		return damageType;
+	}
+	@Override
+	public void hitEntity(Bullet b, Hitboxc entity, float health){
+		boolean wasDead = entity instanceof Unit u && u.dead;
+
+		if(entity instanceof Unit unit){
+			float mul = 1f;
+			if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[Structs.indexOf(DamageType.values(), damageType)];
+
+			if(pierceArmor){
+				unit.damagePierce(b.damage * mul);
+			}else{
+				unit.damage(b.damage * mul);
+			}
+
+			Tmp.v3.set(unit).sub(b).nor().scl(knockback * 80f);
+			if(impact) Tmp.v3.setAngle(b.rotation() + (knockback < 0 ? 180f : 0f));
+			unit.impulse(Tmp.v3);
+			unit.apply(status, statusDuration);
+
+			Events.fire(new EventType.UnitDamageEvent().set(unit, b));
+		} else if(entity instanceof Healthc h){
+			if(pierceArmor){
+				h.damagePierce(b.damage);
+			}else{
+				h.damage(b.damage);
+			}
+		}
+
+		if(!wasDead && entity instanceof Unit unit && unit.dead){
+			Events.fire(new EventType.UnitBulletDestroyEvent(unit, b));
+		}
+
+		handlePierce(b, health, entity.x(), entity.y());
 	}
 	
 //	public @Nullable

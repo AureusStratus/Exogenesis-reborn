@@ -16,7 +16,7 @@ import mindustry.entities.bullet.*;
 import mindustry.game.EventType;
 import mindustry.gen.*;
 
-public class TentacleBulletType extends BulletType{
+public class TentacleBulletType extends BulletType  implements ExoBullet {
     public float length = 100f;
     public DamageType damageType = DamageType.energy;
 
@@ -58,12 +58,17 @@ public class TentacleBulletType extends BulletType{
     }
 
     @Override
+    public DamageType damageType(){
+        return damageType;
+    }
+
+    @Override
     public void hitEntity(Bullet b, Hitboxc entity, float health){
         boolean wasDead = entity instanceof Unit u && u.dead;
 
         if(entity instanceof Unit unit){
             float mul = 1f;
-            if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[damageType.index];
+            if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[Structs.indexOf(DamageType.values(), damageType)];
 
             if(pierceArmor){
                 unit.damagePierce(b.damage * mul);

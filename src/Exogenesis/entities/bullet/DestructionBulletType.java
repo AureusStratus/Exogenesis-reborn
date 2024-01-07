@@ -1,6 +1,8 @@
 package Exogenesis.entities.bullet;
 
 import Exogenesis.content.ExoFx;
+import Exogenesis.type.*;
+import arc.Events;
 import arc.audio.Sound;
 import arc.func.Cons;
 import arc.graphics.g2d.Draw;
@@ -10,7 +12,11 @@ import arc.math.Angles;
 import arc.math.Mathf;
 import arc.math.geom.Position;
 import arc.math.geom.Vec2;
+import arc.util.Structs;
 import arc.util.Time;
+import arc.util.Tmp;
+import mindustry.game.EventType;
+import mindustry.gen.*;
 import mindustry.content.Fx;
 import mindustry.entities.Damage;
 import mindustry.entities.Effect;
@@ -23,15 +29,16 @@ import mindustry.graphics.Drawf;
 import mindustry.graphics.Layer;
 import Exogenesis.util.feature.PositionLightning;
 
+import static Exogenesis.type.DamageType.*;
 import static arc.graphics.g2d.Draw.color;
 import static arc.math.Angles.randLenVectors;
 
-public class DestructionBulletType extends BasicBulletType{
+public class DestructionBulletType extends BasicBulletType implements ExoBullet{
     public float hitSpacing = 10f;
     public float size = 30f;
     public float linkRange = 240f;
     public float boltWidth = PositionLightning.WIDTH;
-
+    public DamageType damageType = DamageType.energy;
     public float randomGenerateRange = -1f;
     public float randomGenerateChance = 0.03f;
     public float randomLightningChance = 0.1f;
@@ -74,10 +81,6 @@ public class DestructionBulletType extends BasicBulletType{
         trailWidth = -1;
 
         liHitEffect = ExoFx.hitMeltColor;
-    }
-
-    public DestructionBulletType(){
-        this(1f, 1f);
     }
 
     @Override
@@ -179,5 +182,44 @@ public class DestructionBulletType extends BasicBulletType{
         });
 
         super.despawned(b);
+    }
+
+    @Override
+    public DamageType damageType(){
+        return damageType;
+    }
+    @Override
+    public void hitEntity(Bullet b, Hitboxc entity, float health){
+        boolean wasDead = entity instanceof Unit u && u.dead;
+
+        if(entity instanceof Unit unit){
+            float mul = 1f;
+            if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[Structs.indexOf(DamageType.values(), damageType)];
+
+            if(pierceArmor){
+                unit.damagePierce(b.damage * mul);
+            }else{
+                unit.damage(b.damage * mul);
+            }
+
+            Tmp.v3.set(unit).sub(b).nor().scl(knockback * 80f);
+            if(impact) Tmp.v3.setAngle(b.rotation() + (knockback < 0 ? 180f : 0f));
+            unit.impulse(Tmp.v3);
+            unit.apply(status, statusDuration);
+
+            Events.fire(new EventType.UnitDamageEvent().set(unit, b));
+        } else if(entity instanceof Healthc h){
+            if(pierceArmor){
+                h.damagePierce(b.damage);
+            }else{
+                h.damage(b.damage);
+            }
+        }
+
+        if(!wasDead && entity instanceof Unit unit && unit.dead){
+            Events.fire(new EventType.UnitBulletDestroyEvent(unit, b));
+        }
+
+        handlePierce(b, health, entity.x(), entity.y());
     }
 }

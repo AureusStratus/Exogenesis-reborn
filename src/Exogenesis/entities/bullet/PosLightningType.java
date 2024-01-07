@@ -2,6 +2,7 @@ package Exogenesis.entities.bullet;
 
 import Exogenesis.type.DamageType;
 import arc.Events;
+import arc.util.Structs;
 import arc.util.Tmp;
 import mindustry.content.Fx;
 import mindustry.entities.Damage;
@@ -13,7 +14,7 @@ import Exogenesis.type.*;
 import Exogenesis.content.ExoFx;
 import Exogenesis.util.feature.PositionLightning;
 
-public class PosLightningType extends BulletType{
+public class PosLightningType extends BulletType implements ExoBullet {
 	public int boltNum = 2;
 	public DamageType damageType = DamageType.energy;
 	public float hitEffectRotation = 12f;
@@ -32,12 +33,17 @@ public class PosLightningType extends BulletType{
 		despawnEffect = Fx.none;
 	}
 	@Override
+	public DamageType damageType(){
+		return damageType;
+	}
+
+	@Override
 	public void hitEntity(Bullet b, Hitboxc entity, float health){
 		boolean wasDead = entity instanceof Unit u && u.dead;
 
 		if(entity instanceof Unit unit){
 			float mul = 1f;
-			if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[damageType.index];
+			if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[Structs.indexOf(DamageType.values(), damageType)];
 
 			if(pierceArmor){
 				unit.damagePierce(b.damage * mul);
@@ -65,6 +71,7 @@ public class PosLightningType extends BulletType{
 
 		handlePierce(b, health, entity.x(), entity.y());
 	}
+
 
 	@Override
 	public void init(){
@@ -119,4 +126,5 @@ public class PosLightningType extends BulletType{
 	
 	@Override
 	public void drawLight(Bullet b){}
+
 }

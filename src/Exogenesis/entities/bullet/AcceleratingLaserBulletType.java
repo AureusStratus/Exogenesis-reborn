@@ -1,6 +1,7 @@
 package Exogenesis.entities.bullet;
 
 import Exogenesis.type.ExoUnitType;
+import Exogenesis.entities.bullet.ExoBullet;
 import arc.Events;
 import arc.func.*;
 import arc.graphics.*;
@@ -17,9 +18,11 @@ import mindustry.graphics.*;
 import Exogenesis.type.DamageType;
 import Exogenesis.util.util.*;
 
+import static Exogenesis.type.DamageType.*;
 /** @author EyeOfDarkness */
-public class AcceleratingLaserBulletType extends BulletType{
+public class AcceleratingLaserBulletType extends BulletType implements ExoBullet {
     public float maxLength = 1000f;
+
     public DamageType damageType = DamageType.energy;
     public float laserSpeed = 15f;
     public float accel = 25f;
@@ -189,12 +192,16 @@ public class AcceleratingLaserBulletType extends BulletType{
         }
     }
     @Override
+    public DamageType damageType(){
+        return damageType;
+    }
+    @Override
     public void hitEntity(Bullet b, Hitboxc entity, float health){
         boolean wasDead = entity instanceof Unit u && u.dead;
 
         if(entity instanceof Unit unit){
             float mul = 1f;
-            if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[damageType.index];
+            if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[Structs.indexOf(DamageType.values(), damageType)];
 
             if(pierceArmor){
                 unit.damagePierce(b.damage * mul);
@@ -222,6 +229,7 @@ public class AcceleratingLaserBulletType extends BulletType{
 
         handlePierce(b, health, entity.x(), entity.y());
     }
+
     void hitEntityAlt(Bullet b, Unit unit, float damage){
         unit.damage(damage);
         Tmp.v3.set(unit).sub(b).nor().scl(knockback * 80f);
