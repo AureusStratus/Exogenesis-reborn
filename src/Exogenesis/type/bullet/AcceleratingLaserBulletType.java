@@ -1,8 +1,6 @@
-package Exogenesis.entities.bullet;
+package Exogenesis.type.bullet;
 
-import Exogenesis.type.ExoUnitType;
-import Exogenesis.entities.bullet.ExoBullet;
-import arc.Events;
+import Exogenesis.type.bullet.vanilla.ExoBulletType;
 import arc.func.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -11,16 +9,13 @@ import arc.math.geom.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.content.*;
-import mindustry.entities.bullet.*;
-import mindustry.game.EventType;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import Exogenesis.type.DamageType;
 import Exogenesis.util.util.*;
 
-import static Exogenesis.type.DamageType.*;
 /** @author EyeOfDarkness */
-public class AcceleratingLaserBulletType extends BulletType implements ExoBullet {
+public class AcceleratingLaserBulletType extends ExoBulletType{
     public float maxLength = 1000f;
 
     public DamageType damageType = DamageType.energy;
@@ -38,7 +33,8 @@ public class AcceleratingLaserBulletType extends BulletType implements ExoBullet
 
 
     public AcceleratingLaserBulletType(float damage){
-        super(0f, damage);
+        this.damage = damage;
+        speed = 0f;
         despawnEffect = Fx.none;
         collides = false;
         pierce = true;
@@ -190,44 +186,6 @@ public class AcceleratingLaserBulletType extends BulletType implements ExoBullet
                 }, (ex, ey) -> hit(b, ex, ey));
             }
         }
-    }
-    @Override
-    public DamageType damageType(){
-        return damageType;
-    }
-    @Override
-    public void hitEntity(Bullet b, Hitboxc entity, float health){
-        boolean wasDead = entity instanceof Unit u && u.dead;
-
-        if(entity instanceof Unit unit){
-            float mul = 1f;
-            if(unit.type instanceof ExoUnitType exoType) mul = exoType.multipliers[Structs.indexOf(DamageType.values(), damageType)];
-
-            if(pierceArmor){
-                unit.damagePierce(b.damage * mul);
-            }else{
-                unit.damage(b.damage * mul);
-            }
-
-            Tmp.v3.set(unit).sub(b).nor().scl(knockback * 80f);
-            if(impact) Tmp.v3.setAngle(b.rotation() + (knockback < 0 ? 180f : 0f));
-            unit.impulse(Tmp.v3);
-            unit.apply(status, statusDuration);
-
-            Events.fire(new EventType.UnitDamageEvent().set(unit, b));
-        } else if(entity instanceof Healthc h){
-            if(pierceArmor){
-                h.damagePierce(b.damage);
-            }else{
-                h.damage(b.damage);
-            }
-        }
-
-        if(!wasDead && entity instanceof Unit unit && unit.dead){
-            Events.fire(new EventType.UnitBulletDestroyEvent(unit, b));
-        }
-
-        handlePierce(b, health, entity.x(), entity.y());
     }
 
     void hitEntityAlt(Bullet b, Unit unit, float damage){

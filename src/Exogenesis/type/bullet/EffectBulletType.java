@@ -1,10 +1,10 @@
-package Exogenesis.entities.bullet;
+package Exogenesis.type.bullet;
 
+import Exogenesis.type.bullet.vanilla.ExoBulletType;
 import mindustry.content.Fx;
-import mindustry.entities.bullet.BulletType;
 import mindustry.gen.Bullet;
 
-public class EffectBulletType extends BulletType{
+public class EffectBulletType extends ExoBulletType{
 	public EffectBulletType(float lifetime){
 		super();
 		this.lifetime = lifetime;
