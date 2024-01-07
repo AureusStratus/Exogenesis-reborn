@@ -5,6 +5,6 @@ public enum DamageType {
     thermal,
     cryogenic,
     explosive,
-    peirce,
-    nuclear
+    pierce,
+    radiation
 }

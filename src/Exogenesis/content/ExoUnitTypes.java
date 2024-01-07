@@ -1,9 +1,12 @@
 package Exogenesis.content;
 
-import Exogenesis.entities.bullet.*;
-import Exogenesis.entities.bullet.vanillabullets.ExoBasicBullet;
 import Exogenesis.type.*;
 import Exogenesis.graphics.*;
+import Exogenesis.type.bullet.AcceleratingLaserBulletType;
+import Exogenesis.type.bullet.DelayedPointBulletType;
+import Exogenesis.type.bullet.PosLightningType;
+import Exogenesis.type.bullet.vanilla.ExoBasicBulletType;
+import Exogenesis.type.unit.ExoUnitType;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -25,13 +28,15 @@ import mindustry.content.*;
 import static arc.graphics.g2d.Draw.*;
 
 public class ExoUnitTypes {
-    public static UnitType ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris,
+    public static UnitType
+    ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris,
     //erekir
     //red
     nkarnt, stratiotis, naitis, protathlitis, vasilias,
     prometheus, atlas, nemesis, hyperion, rhea, cronus, gaia,
     //empyrean
     lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
+
     public static void load() {
         prometheus = new ErekirUnitType("prometheus") {{
             constructor = TankUnit::create;
@@ -253,6 +258,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         atlas = new ErekirUnitType("atlas") {{
             constructor = LegsUnit::create;
             fogRadius = 50;
@@ -1027,6 +1033,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         nemesis = new ErekirUnitType("nemesis") {{
             constructor = UnitEntity::create;
             shadowElevation = 3f;
@@ -1390,6 +1397,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         hyperion = new ErekirUnitType("hyperion") {{
             constructor = ElevationMoveUnit::create;
             speed = 0.78f;
@@ -1634,6 +1642,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         rhea = new ErekirUnitType("rhea") {{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
@@ -2309,6 +2318,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         cronus = new ErekirUnitType("cronus") {{
             constructor = LegsUnit::create;
             fogRadius = 50;
@@ -2680,6 +2690,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         gaia = new ErekirUnitType("gaia"){{
             constructor = UnitEntity::create;
             health = 54000f;
@@ -2695,6 +2706,7 @@ public class ExoUnitTypes {
             flying = true;
             lowAltitude = true;
             }};
+
 
         nkarnt = new ErekirUnitType("nkarnt"){{
             constructor = LegsUnit::create;
@@ -2732,6 +2744,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         stratiotis = new ErekirUnitType("stratiotis"){{
             constructor= LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
@@ -2768,6 +2781,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         naitis = new ErekirUnitType("naitis"){{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
@@ -2887,6 +2901,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         protathlitis = new ErekirUnitType("protathlitis"){{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
@@ -2988,6 +3003,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         vasilias = new ErekirUnitType("vasilias"){{
             constructor = LegsUnit::create;
             speed = 0.55f;
@@ -3110,6 +3126,7 @@ public class ExoUnitTypes {
             }});
         }};
 
+
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
             speed = 0.27f;
@@ -3172,6 +3189,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         ullr = new UnitType("ullr"){{
             constructor = LegsUnit::create;
             speed = 0.20f;
@@ -3300,6 +3318,7 @@ public class ExoUnitTypes {
 
         }};
 
+
         empire = new UnitType("empire"){{
                 constructor = MechUnit::create;
                 speed = 0.35f;
@@ -3355,6 +3374,7 @@ public class ExoUnitTypes {
                     }};
                 }});
             }};
+
         heimdall = new UnitType("heimdall"){{
             constructor = MechUnit::create;
             speed = 0.25f;
@@ -3576,6 +3596,7 @@ public class ExoUnitTypes {
             }});
         }};
 
+
         avicularia = new UnitType("avicularia"){{
             groundLayer = Layer.legUnit;
             constructor = LegsUnit::create;
@@ -3672,6 +3693,7 @@ public class ExoUnitTypes {
                 }};
             }});
     }};
+
         vidar = new UnitType("vidar"){{
             constructor = LegsUnit::create;
             speed = 0.4f;
@@ -3812,6 +3834,7 @@ public class ExoUnitTypes {
             }});
         }};
 
+
         twilight = new UnitType("twilight") {{
             constructor = UnitEntity::create;
             shadowElevation = 1.3f;
@@ -3898,6 +3921,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         notodoris = new UnitType("notodoris") {{
             constructor = UnitWaterMove::create;
             trailLength = 70;
@@ -4019,6 +4043,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         lux = new ExoUnitType("lux", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4099,7 +4124,7 @@ public class ExoUnitTypes {
                             triLengthTo = triLength = 4f;
                         }}
                 );
-                bullet = new ExoBasicBullet(8,15){{
+                bullet = new ExoBasicBulletType(8,15){{
                     width = 7f;
                     height = 13f;
                     sprite = "missile";
@@ -4115,6 +4140,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         glimmer = new ExoUnitType("glimmer", 1.2f, 1.1f, 0.6f, 0.6f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4222,6 +4248,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         shine = new ExoUnitType("shine", 1.1f, 0.85f, 1f, 0.1f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4329,6 +4356,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         auric = new ExoUnitType("auric", 1.3f, 0.35f, 1f, 0.7f, 1.3f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4458,6 +4486,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         radiance = new ExoUnitType("radiance", 0.3f, 0.85f, 0.3f, 1.3f, 0.6f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4598,6 +4627,7 @@ public class ExoUnitTypes {
             }});
         }};
 
+
         prayer = new ExoUnitType("prayer", 1.2f, 0.85f, 1f, 1f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
@@ -4656,6 +4686,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         apprise = new ExoUnitType("apprise", 1.3f, 0.85f, 1f, 1f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4700,6 +4731,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         revelation = new ExoUnitType("revelation", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4799,6 +4831,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         enlightenment = new ExoUnitType("enlightenment", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1.1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4854,6 +4887,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         excelsus = new ExoUnitType("excelsus", 0.9f, 0.9f, 1.3f, 0.2f, 1.15f, 1f, 1f) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4936,6 +4970,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         orion = new UnitType("orion") {{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
