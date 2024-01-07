@@ -1,13 +1,11 @@
 package Exogenesis.content;
 
-import Exogenesis.content.ExoUnitTypes;
-import Exogenesis.Exogenesis;
-import Exogenesis.content.ExoItems;
+import Exogenesis.type.DamageType;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 import Exogenesis.entities.bullet.*;
+import Exogenesis.entities.bullet.vanillabullets.*;
 
-import mindustry.entities.part.DrawPart.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import arc.graphics.*;
@@ -15,35 +13,23 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.Seq;
-import arc.util.*;
-import mindustry.*;
 import mindustry.entities.effect.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
-import mindustry.entities.*;
-import mindustry.entities.abilities.*;
 import mindustry.type.*;
 import mindustry.type.unit.*;
 import mindustry.entities.effect.MultiEffect;
-import mindustry.entities.part.*;
-import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.type.*;
 import mindustry.world.*;
-import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.*;
-import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.distribution.*;
-import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
-import static arc.Core.*;
-import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
@@ -218,9 +204,10 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    }}
    );
   }};
-  shootType = new PointLaserBulletType(){{
-   hitColor = trailColor = ExoPal.empyreanLight;
+  shootType = new ExoPointLaserBulletType(){{
+   hitColor = trailColor = ExoPal.empyreanIndigo;
    color = Color.white;
+   damageType = DamageType.energy;
    sprite = "exogenesis-focal-point-laser";
    beamEffect = Fx.none;
    trailLength = 8;
@@ -252,15 +239,15 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   rotateSpeed = 2.5f;
   coolant = consumeCoolant(0.2f);
   consumePower(6f);
-  drawer = new DrawTurret("elecian-"){{
-  }};
-  shootType = new FlakBulletType(){{
+  drawer = new DrawTurret("elecian-"){{}};
+  shootType = new ExoFlakBulletType(){{
    backColor = hitColor = trailColor = ExoPal.empyrean;
    frontColor = Color.white;
    trailWidth = 2f;
    trailLength = 6;
    width = height = 25f;
    shrinkX = shootY = 0;
+   damageType = DamageType.kinetic;
    lifetime = 40;
    speed = 6;
    spin = 4;
@@ -275,7 +262,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    fragBullets = 5;
    fragVelocityMin = 1f;
 
-   fragBullet = new BasicBulletType(8f, 13){{
+   fragBullet = new ExoBasicBullet(8, 13){{
     sprite = "missile";
     width = 4f;
     pierce = true;
@@ -283,6 +270,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
     homingRange = 30;
     homingPower = 0.1f;
     homingDelay = 2;
+    damageType = DamageType.kinetic;
     height = 13f;
     lifetime = 13f;
     backColor = hitColor = trailColor = ExoPal.empyrean;
@@ -330,20 +318,17 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
   }};
-  shootType = new RailBulletType(){{
+  shootType = new ExoRailBulletType(){{
    length = 160f;
    damage = 8f;
-   hitColor = ExoPal.empyrean;
+   hitColor = ExoPal.empyreanblue;
    hitEffect = endEffect = Fx.hitBulletColor;
    pierceDamageFactor = 0.8f;
-
    smokeEffect = Fx.colorSpark;
-
    endEffect = new Effect(14f, e -> {
     color(e.color);
     Drawf.tri(e.x, e.y, e.fout() * 1.5f, 5f, e.rotation);
    });
-
    lineEffect = new Effect(20f, e -> {
     if(!(e.data instanceof Vec2 v)) return;
 
@@ -386,7 +371,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    parts.addAll(
    new FlarePart(){{
     progress = PartProgress.reload;
-    color1 = ExoPal.empyrean;
+    color1 = ExoPal.empyreanblue;
     y = 6;
     radius = 10;
     radiusTo = 0;
@@ -394,21 +379,24 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    }}
    );
   }};
-  shootType = new BasicBulletType(7f, 25f){{
+  shootType = new ExoBasicBullet(7,25){{
    homingRange = 100;
    homingPower = 0.075f;
    homingDelay = 6;
    parts.addAll(
    new FlarePart(){{
     progress = PartProgress.life;
-    color1 = ExoPal.empyrean;
+    color1 = ExoPal.empyreanblue;
     radius = 16;
     radiusTo = 16;
     stroke = 2.5f;
    }}
    );
    lifetime = 35;
-   hitColor = trailColor = ExoPal.empyrean;
+   damageType = DamageType.energy;
+   speed = 7;
+   damage = 25;
+   hitColor = trailColor = ExoPal.empyreanblue;
    trailWidth = 2f;
    trailLength = 6;
    weaveScale = 6;
@@ -442,7 +430,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             hollow = true;
-            color = ExoPal.empyrean;
+            color = ExoPal.empyreanIndigoDark;
             layer = Layer.effect;
             circle = true;
             stroke = 0;
@@ -453,7 +441,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             hollow = true;
-            color = ExoPal.empyrean;
+            color = ExoPal.empyreanIndigoDark;
             layer = Layer.effect;
             circle = true;
             stroke = 0;
@@ -463,7 +451,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
            }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            color = ExoPal.empyrean;
+            color = ExoPal.empyreanIndigoDark;
             layer = Layer.effect;
             circle = true;
             radius = 0;
@@ -479,9 +467,10 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
            }}
    );
   }};
-  shootType = new PointLaserBulletType(){{
-   hitColor = trailColor = ExoPal.empyreanLight;
+  shootType = new ExoPointLaserBulletType(){{
+   hitColor = trailColor = ExoPal.empyreanIndigoDark;
    color = Color.white;
+   damageType = DamageType.energy;
    sprite = "exogenesis-prism-laser";
    beamEffect = ExoFx.hitMeltColor;
    oscMag = 0.1f;
@@ -512,6 +501,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   }};
   shootType = new PosLightningType(50f){{
    lightningColor = hitColor = ExoPal.empyrean;
+   damageType = DamageType.energy;
    lightningDamage = 8;
    lightning = 7;
    lightningLength = 15;
@@ -583,14 +573,15 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   consumePower(6f);
   drawer = new DrawTurret("elecian-"){{
   }};
-  shootType = new BasicBulletType(8f, 17){{
+  shootType = new ExoBasicBullet(8,17){{
    lifetime = 30f;
+   damageType = DamageType.kinetic;
    width = 7;
    height = 15;
    sprite = "missile-large";
    pierceArmor = true;
    shootEffect = Fx.shootBigColor;
-   backColor = hitColor = trailColor = ExoPal.empyrean;
+   backColor = hitColor = trailColor = ExoPal.empyreanblue;
    frontColor = Color.white;
    trailWidth = 2f;
    trailLength = 6;
@@ -630,16 +621,17 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
     }});
    }
   }};
-  shootType = new LaserBulletType(){{
+  shootType = new ExoLaserBulletType(){{
    damage = 75f;
+   damageType = DamageType.energy;
    sideAngle = 40f;
    sideWidth = 1.5f;
    sideLength = 30f;
    width = 25f;
    length = 210f;
-   hitColor = ExoPal.empyrean;
+   hitColor = ExoPal.empyreanIndigoDark;
    shootEffect = ExoFx.square45_6_45;
-   colors = new Color[]{Color.valueOf("f5c04590"), Color.valueOf("fee761"), Color.white};
+   colors = new Color[]{ExoPal.empyreanIndigoDark.cpy().a(.2f), ExoPal.empyreanIndigo, Color.white};
   }};
  }};
  excalibur = new PowerTurret("excalibur"){{
@@ -678,9 +670,13 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    }}
    );
   }};
-  shootType = new ArtilleryBulletType(4.5f, 350, "shell"){{
+  shootType = new ExoArtilleryBulletType(){{
    hitEffect = new MultiEffect(Fx.titanExplosion, ExoFx.empyreanExplosion, Fx.flakExplosionBig);
    despawnEffect = Fx.none;
+   damageType = DamageType.explosive;
+   speed = 4.5f;
+   damage = 150;
+   sprite = "shell";
    knockback = 2f;
    lifetime = 140f;
    height = 27f;
@@ -688,7 +684,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    splashDamageRadius = 65f;
    splashDamage = 350f;
    scaledSplashDamage = true;
-   backColor = hitColor = trailColor = ExoPal.empyrean;
+   backColor = hitColor = trailColor = ExoPal.empyreanIndigoDark;
    frontColor = Color.white;
    hitSound = Sounds.titanExplosion;
 
@@ -730,7 +726,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             radius = 1.5f;
             tri = true;
-            color = ExoPal.empyrean;
+            color = ExoPal.empyreanIndigoDark;
             layer = Layer.effect;
             haloRotateSpeed = -2.5f;
             haloRadius = 0;
@@ -745,7 +741,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
             radius = 2.5f;
             tri = true;
-            color = ExoPal.empyrean;
+            color = ExoPal.empyreanIndigoDark;
             layer = Layer.effect;
             haloRotateSpeed = -1f;
             haloRadius = 0;
@@ -758,7 +754,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
            }},
            new ShapePart(){{
             progress = PartProgress.warmup.curve(Interp.pow2In);
-            color = ExoPal.empyrean;
+            color = ExoPal.empyreanIndigoDark;
             layer = Layer.effect;
             circle = true;
             radius = 0;
@@ -777,8 +773,9 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   shootType = new ChainBulletType(80f){{
    maxHit = 10;
    chainRange = 270f;
+   damageType = DamageType.energy;
    length = 270f;
-   hitColor = ExoPal.empyrean;
+   hitColor = ExoPal.empyreanIndigoDark;
    hitEffect = despawnEffect = Fx.hitBulletColor;
   }};
  }};
@@ -820,13 +817,14 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
   shootType = new ArrowBulletType(12f, 185){{
    lifetime = 49f;
    collidesGround = collidesTiles = false;
+   damageType = DamageType.kinetic;
    width = 6;
    height = 16;
    drag = -0.02f;
    weaveMag = 1f;
    weaveScale = 3f;
    shootEffect = Fx.shootBigColor;
-   backColor = hitColor = trailColor = ExoPal.empyrean;
+   backColor = hitColor = trailColor = ExoPal.empyreanblue;
    trailWidth = 3f;
    trailLength = 6;
    hitEffect = despawnEffect = Fx.hitBulletColor;
@@ -883,15 +881,15 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
      deathExplosionEffect = shootEffect;
      shootOnDeath = true;
      shake = 2f;
-     bullet = new ExplosionBulletType(35f, 45f){{
+     bullet = new ExoExplosionBulletType(35f, 45f){{
       hitColor = ExoPal.empyrean;
+      damageType = DamageType.explosive;
       shootEffect = new MultiEffect(ExoFx.coloredHitLarge, ExoFx.colorBombSmall);
       collidesGround = true;
       collidesTiles = false;
       buildingDamageMultiplier = 0.3f;
      }};
     }});
-
    }};
   }};
  }};
@@ -956,16 +954,17 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
             }}
     );
    }};
-  shootType = new ContinuousLaserBulletType(){{
-   hitColor = ExoPal.empyrean;
+  shootType = new ExoContinuousLaserBulletType(){{
+   hitColor = ExoPal.empyreanIndigoDark;
+   damageType = DamageType.thermal;
    damage = 175f;
    length = 670f;
    hitEffect = new MultiEffect(
            new ParticleEffect(){{
             line = true;
             rotWithParent = true;
-            colorFrom = ExoPal.empyreanLight;
-            colorTo = ExoPal.empyrean;
+            colorFrom = ExoPal.empyreanIndigo;
+            colorTo = ExoPal.empyreanIndigoDark;
             cone = 35;
             particles = 3;
             length = 100;
@@ -978,8 +977,8 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
            new ParticleEffect(){{
             line = true;
             rotWithParent = true;
-            colorFrom = ExoPal.empyreanLight;
-            colorTo = ExoPal.empyrean;
+            colorFrom = ExoPal.empyreanIndigo;
+            colorTo = ExoPal.empyreanIndigoDark;
             cone = 45;
             particles = 2;
             length = 85;
@@ -995,7 +994,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    width = 19f;
    shake = 2f;
    largeHit = true;
-   colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
+   colors = new Color[]{ExoPal.empyreanIndigoDark.cpy().a(.6f), ExoPal.empyreanIndigoDark, Color.white};
    despawnEffect = Fx.none;
  }};
  }};
@@ -1046,12 +1045,13 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
            }}
    );
   }};
-  shootType = new BasicBulletType(8f, 207){{
+  shootType = new ExoBasicBullet(8f, 207){{
    lifetime = 35f;
-   backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyrean;
+   backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyreanblue;
    impact = true;
    knockback = 3f;
    sprite = "circle-bullet";
+   damageType = DamageType.kinetic;
    hitSize = 12f;
    lightning = 2;
    lightningLengthRand = 5;
@@ -1065,7 +1065,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    pierce = true;
    intervalBullet = new LightningBulletType(){{
     damage = 26;
-    lightningColor = ExoPal.empyrean;
+    lightningColor = ExoPal.empyreanblue;
     lightningLength = 6;
     lightningLengthRand = 12;
     buildingDamageMultiplier = 0.25f;
@@ -1175,7 +1175,6 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    size /= 2.2f;
    trailWidth = 9.5f;
    trailLength = 57;
-
    spreadEffect = slopeEffect = Fx.none;
    backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.empyrean;
    frontColor = Color.white;
@@ -1183,7 +1182,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    randomLightningChance = 1f;
    randomGenerateRange = linkRange = 200f;
    randomLightningNum = 5;
-   maxHit = 10;
+   maxHit = 6;
    range = 200f;
    drawSize = 20f;
    hitSound = Sounds.explosionbig;
@@ -1200,6 +1199,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    });
    homingRange = 80;
    homingPower = 0.01f;
+   damageType = DamageType.energy;
    trailRotation = true;
    trailInterval = 7f;
    intervalBullet = new LightningBulletType(){{
@@ -1218,7 +1218,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
    fragVelocityMin = 0.4f;
    fragLifeMin = 0f;
    fragBullets = 15;
-   fragBullet = new BasicBulletType(4f, 100){{
+   fragBullet = new ExoBasicBullet(4f, 100){{
     width = height = 1f;
     parts.addAll(
             new FlarePart(){{
@@ -1230,6 +1230,7 @@ oreOsmium = new OreBlock(ExoItems.osmium){{
              stroke = 3.5f;
             }}
     );
+    damageType = DamageType.energy;
     backColor = trailColor = lightColor = lightningColor = hitColor = ExoPal.empyrean;
     frontColor = Color.white;
     trailEffect = Fx.missileTrail;

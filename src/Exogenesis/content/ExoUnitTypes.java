@@ -1,6 +1,7 @@
 package Exogenesis.content;
 
 import Exogenesis.entities.bullet.*;
+import Exogenesis.entities.bullet.vanillabullets.ExoBasicBullet;
 import Exogenesis.type.*;
 import Exogenesis.graphics.*;
 import arc.graphics.*;
@@ -3171,7 +3172,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        ullr = new ExoUnitType("ullr", 1.2f, 0.85f, 1f, 0.5f, 1f, 1){{
+        ullr = new UnitType("ullr"){{
             constructor = LegsUnit::create;
             speed = 0.20f;
             hitSize = 56f;
@@ -4018,7 +4019,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        lux = new UnitType("lux") {{
+        lux = new ExoUnitType("lux", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 3;
@@ -4098,13 +4099,14 @@ public class ExoUnitTypes {
                             triLengthTo = triLength = 4f;
                         }}
                 );
-                bullet = new BasicBulletType(8f, 15){{
+                bullet = new ExoBasicBullet(8,15){{
                     width = 7f;
                     height = 13f;
                     sprite = "missile";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
                     lifetime = 16f;
+                    damageType = DamageType.energy;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
                     shootEffect = ExoFx.colorSparkShoot;
@@ -4113,7 +4115,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        glimmer = new UnitType("glimmer") {{
+        glimmer = new ExoUnitType("glimmer", 1.2f, 1.1f, 0.6f, 0.6f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 3;
@@ -4220,7 +4222,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        shine = new UnitType("shine") {{
+        shine = new ExoUnitType("shine", 1.1f, 0.85f, 1f, 0.1f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 3;
@@ -4327,7 +4329,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        auric = new UnitType("auric") {{
+        auric = new ExoUnitType("auric", 1.3f, 0.35f, 1f, 0.7f, 1.3f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 3;
@@ -4456,7 +4458,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        radiance = new UnitType("radiance") {{
+        radiance = new ExoUnitType("radiance", 0.3f, 0.85f, 0.3f, 1.3f, 0.6f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 3;
@@ -4595,7 +4597,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        prayer = new UnitType("prayer") {{
+
+        prayer = new ExoUnitType("prayer", 1.2f, 0.85f, 1f, 1f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
             outlineColor = ExoPal.empyreanOutline;
@@ -4610,10 +4613,10 @@ public class ExoUnitTypes {
             lowAltitude = true;
             armor = 1;
             trailLength = 8;
-            trailColor = ExoPal.empyrean;
+            trailColor = ExoPal.empyreanIndigo;
             rotateSpeed = 3.7f;
             engineSize = 1.7f;
-            engineOffset = 5;
+            engineOffset = 8;
             parts.add(
                     new ShapePart() {{
                         mirror = true;
@@ -4622,7 +4625,7 @@ public class ExoUnitTypes {
                         hollow = true;
                         layer = Layer.effect;
                         y = 0f;
-                        color = ExoPal.empyrean;
+                        color = ExoPal.empyreanIndigo;
                         stroke = strokeTo = 1.4f;
                         radiusTo = radius = 11f;
                     }},
@@ -4630,7 +4633,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         radius = 2.5f;
                         tri = true;
-                        color = ExoPal.empyrean;
+                        color = ExoPal.empyreanIndigo;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
                         haloRadius = haloRadiusTo = 11f;
@@ -4644,7 +4647,7 @@ public class ExoUnitTypes {
                 mirror = rotate = false;
                 shootY = 8;
                 x = 0;
-                laserColor = healColor = ExoPal.empyrean;
+                laserColor = healColor = ExoPal.empyreanIndigo;
                 targetBuildings = true;
                 beamWidth = 0.8f;
                 repairSpeed = 1.7f;
@@ -4653,7 +4656,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        apprise = new UnitType("apprise") {{
+        apprise = new ExoUnitType("apprise", 1.3f, 0.85f, 1f, 1f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2.1f;
@@ -4669,10 +4672,10 @@ public class ExoUnitTypes {
             armor = 2;
             engineLayer = Layer.effect;
             trailLength = 8;
-            trailColor = ExoPal.empyrean;
+            trailColor = ExoPal.empyreanIndigo;
             rotateSpeed = 3.4f;
             engineSize = 2.5f;
-            engineOffset = 10;
+            engineOffset = 13;
             weapons.add(new Weapon("apprise") {{
                 minShootVelocity = 0.75f;
                 reload = 5f;
@@ -4689,7 +4692,7 @@ public class ExoUnitTypes {
                     width = height = 9f;
                     speed = -0.00001f;
                     frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.empyrean;
+                    backColor = hitColor = trailColor = ExoPal.empyreanIndigoDark;
                     lifetime = 16;
                     hitEffect = despawnEffect = ExoFx.colorBombSmaller;
                     shootEffect = Fx.none;
@@ -4697,7 +4700,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        revelation = new UnitType("revelation") {{
+        revelation = new ExoUnitType("revelation", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2;
@@ -4712,14 +4715,16 @@ public class ExoUnitTypes {
             armor = 5;
             rotateSpeed = 4.7f;
             engineSize = 2.5f;
-            engineOffset = 12;
+            engineOffset = 15;
             trailLength = 8;
-            trailColor = ExoPal.empyrean;
+            trailColor = ExoPal.empyreanIndigo;
             weapons.add(new Weapon("revelation-zap") {{
                 reload = 50f;
                 mirror = false;
                 y = 18;
                 x = 0;
+                rotate = true;
+                rotateSpeed = 5.5f;
                 shootSound = Sounds.spark;
                 recoil = 0;
                 shake = 1f;
@@ -4730,12 +4735,12 @@ public class ExoUnitTypes {
                 layer = Layer.effect;
                 y = 0f;
                 stroke = 3;
-                color1 = ExoPal.empyrean;
+                color1 = ExoPal.empyreanIndigo;
                 radius = 8.5f;
                 }}
                 );
                 bullet = new PosLightningType(32f){{
-                    lightningColor = hitColor = ExoPal.empyrean;
+                    lightningColor = hitColor = ExoPal.empyreanIndigo;
                     maxRange = rangeOverride = 250f;
                     hitEffect = Fx.circleColorSpark;
                     smokeEffect = Fx.none;
@@ -4756,7 +4761,7 @@ public class ExoUnitTypes {
                             layer = Layer.effect;
                             y = 0f;
                             stroke = 3;
-                            color1 = ExoPal.empyrean;
+                            color1 = ExoPal.empyreanIndigo;
                             radius = 7f;
                         }}
                 );
@@ -4782,19 +4787,19 @@ public class ExoUnitTypes {
                             layer = Layer.effect;
                             y = 0f;
                             stroke = 3;
-                            color1 = ExoPal.empyrean;
+                            color1 = ExoPal.empyreanIndigo;
                             radius = 7f;
                         }}
                 );
                 bullet = new PosLightningType(32f){{
-                    lightningColor = hitColor = ExoPal.empyrean;
+                    lightningColor = hitColor = ExoPal.empyreanIndigo;
                     maxRange = rangeOverride = 250f;
                     hitEffect = Fx.circleColorSpark;
                     smokeEffect = Fx.none;
                 }};
             }});
         }};
-        enlightenment = new UnitType("enlightenment") {{
+        enlightenment = new ExoUnitType("enlightenment", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1.1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2;
@@ -4808,7 +4813,7 @@ public class ExoUnitTypes {
             lowAltitude = true;
             armor = 8;
             trailLength = 8;
-            trailColor = engineColor = ExoPal.empyrean;
+            trailColor = engineColor = ExoPal.empyreanIndigo;
             rotateSpeed = 1.97f;
             engineSize = 4;
             engineOffset = 15;
@@ -4830,13 +4835,13 @@ public class ExoUnitTypes {
                     height = 14f;
                     sprite = "missile";
                     frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.empyrean;
+                    backColor = hitColor = trailColor = ExoPal.empyreanIndigoDark;
                     lifetime = 45f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = Fx.flakExplosionBig;
                     lightning = 7;
                     lightningLength = 9;
-                    lightningColor = ExoPal.empyrean;
+                    lightningColor = ExoPal.empyreanIndigo;
                     lightningDamage = 11;
                     shootEffect = Fx.lightningShoot;
                     weaveMag = 7;
@@ -4849,7 +4854,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        excelsus = new UnitType("excelsus") {{
+        excelsus = new ExoUnitType("excelsus", 0.9f, 0.9f, 1.3f, 0.2f, 1.15f, 1f, 1f) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2;
@@ -4863,20 +4868,20 @@ public class ExoUnitTypes {
             lowAltitude = true;
             armor = 8;
             trailLength = 8;
-            trailColor = engineColor = ExoPal.empyrean;
+            trailColor = engineColor = ExoPal.empyreanIndigo;
             rotateSpeed = 2.4f;
             engineSize = 4;
             engineOffset = 22;
             abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
                 status = StatusEffects.none;
-                color = ExoPal.empyrean;
+                color = ExoPal.empyreanIndigo;
                 rotateSpeed = 3;
                 effectRadius = 5;
                 maxTargets = 0;
             }});
             abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
                 status = StatusEffects.none;
-                color = ExoPal.empyrean;
+                color = ExoPal.empyreanIndigo;
                 effectRadius = rotateSpeed = 3;
                 x = 15;
                 y = -11;
@@ -4884,14 +4889,14 @@ public class ExoUnitTypes {
             }});
             abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
                 status = StatusEffects.none;
-                color = ExoPal.empyrean;
+                color = ExoPal.empyreanIndigo;
                 effectRadius = rotateSpeed = 3;
                 x = -15;
                 y = -11;
                 maxTargets = 0;
             }});
             setEnginesMirror(
-                    new UnitEngine(0, -27, 5f, 0f)
+                    new UnitEngine(0, -29, 5f, 0f)
             );
             weapons.add(new Weapon("exogenesis-excelsus-mount"){{
                 x = 26;
@@ -4905,7 +4910,7 @@ public class ExoUnitTypes {
                 rotateSpeed = 1.5f;
 
                 bullet = new ContinuousLaserBulletType(){{
-                    hitColor = ExoPal.empyrean;
+                    hitColor = ExoPal.empyreanIndigo;
                     damage = 35f;
                     length = 150f;
                     hitEffect = ExoFx.hitMeltColor;
@@ -4913,18 +4918,18 @@ public class ExoUnitTypes {
                     width = 7.6f;
                     shake = 1f;
                     largeHit = false;
-                    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyrean, Color.white};
+                    colors = new Color[]{ExoPal.empyreanIndigoDark.a(0.4f), ExoPal.empyreanIndigo, Color.white};
                     despawnEffect = Fx.smokeCloud;
                     intervalBullet = new LightningBulletType(){{
                         damage = 10;
                         collidesAir = false;
                         ammoMultiplier = 1f;
-                        lightningColor = ExoPal.empyrean;
+                        lightningColor = ExoPal.empyreanIndigo;
                         lightningLength = 10;
                         lightningLengthRand = 18;
                     }};
                     intervalRandomSpread = 20;
-                    intervalBullets = 2;
+                    intervalBullets = 1;
                     bulletInterval = 3f;
                     smokeEffect = Fx.none;
                     shootEffect = Fx.none;
