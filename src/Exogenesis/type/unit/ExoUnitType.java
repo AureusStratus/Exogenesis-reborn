@@ -6,9 +6,9 @@ import mindustry.type.UnitType;
 public class ExoUnitType extends UnitType implements TypeMultiplierUnitType{
     public float[] multipliers;
 
-    public ExoUnitType(String name, float kinetic, float explosive, float pierce, float energy, float thermal, float cryogenic, float nuclear){
+    public ExoUnitType(String name, float kinetic, float explosive, float pierce, float energy, float thermal, float cryogenic, float radiation){
         super(name);
-        multipliers = new float[]{kinetic, explosive, pierce, energy, thermal, cryogenic, nuclear};
+        multipliers = new float[]{kinetic, explosive, pierce, energy, thermal, cryogenic, radiation};
     }
 
     @Override

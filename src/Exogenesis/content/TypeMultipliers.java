@@ -14,21 +14,20 @@ public class TypeMultipliers{
     public static ObjectMap<UnitType, float[]> map = new ObjectMap<>(32);
 
     public static void load(){
-        addMultipliers(reign, 1f, 1f, 400f, 1f, 1f, 1f);
-        addMultipliers(eclipse, .3f, -2f, 400f, .69f, 76545678987654567876545678f, 21f);
+        addMultipliers(reign, 1f, 1f, 400f, 1f, 1f, 1f, 1f);
 
         ExoStats.addTypeStatsUnit();
     }
 
     /**Compatible with other mods.*/
-    public static void addMultipliers(String name, float kinetic, float explosive, float pierce, float energy, float thermal, float cryogenic){
+    public static void addMultipliers(String name, float kinetic, float explosive, float pierce, float energy, float thermal, float cryogenic, float radiation){
         if(Vars.content.unit(name) != null){
-            map.put(Vars.content.unit(name), new float[]{kinetic, explosive, pierce, energy, thermal, cryogenic});
+            map.put(Vars.content.unit(name), new float[]{kinetic, explosive, pierce, energy, thermal, cryogenic, radiation});
         }
     }
 
-    public static void addMultipliers(UnitType unit, float kinetic, float explosive, float pierce, float energy, float thermal, float cryogenic){
-        map.put(unit, new float[]{kinetic, explosive, pierce, energy, thermal, cryogenic});
+    public static void addMultipliers(UnitType unit, float kinetic, float explosive, float pierce, float energy, float thermal, float cryogenic, float radiation){
+        map.put(unit, new float[]{kinetic, explosive, pierce, energy, thermal, cryogenic, radiation});
     }
 
     public static float getMultiplier(UnitType unit, DamageType type){
