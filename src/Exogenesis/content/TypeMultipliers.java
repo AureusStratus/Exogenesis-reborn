@@ -14,7 +14,7 @@ public class TypeMultipliers{
     public static ObjectMap<UnitType, float[]> map = new ObjectMap<>(32);
 
     public static void load(){
-        addMultipliers(reign, 1f, 1f, 400f, 1f, 1f, 1f, 1f);
+        //addMultipliers(reign, 1f, 1f, 400f, 1f, 1f, 1f, 1f);
 
         ExoStats.addTypeStatsUnit();
     }
