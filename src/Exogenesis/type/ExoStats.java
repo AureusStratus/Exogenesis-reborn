@@ -24,7 +24,7 @@ import mindustry.world.meta.StatValue;
 import static mindustry.Vars.tilesize;
 
 public class ExoStats{
-    public static Stat typeDamage = new Stat("typeDamage"); //add "stat.typeDamage = Damage from Type" to bundle
+    public static Stat typeDamage = new Stat("typeDamage");
     public static String spritePrefix = "exogenesis-damage-";
 
     public static StatValue damageTypes(float[] multipliers){
