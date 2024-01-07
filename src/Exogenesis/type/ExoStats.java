@@ -1,6 +1,6 @@
 package Exogenesis.type;
 
-import Exogenesis.entities.bullet.ExoBullet;
+import Exogenesis.type.bullet.TypedBulletType;
 import arc.Core;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
@@ -86,8 +86,8 @@ public class ExoStats{
 
                     if(type.damage > 0 && (type.collides || type.splashDamage <= 0)){
                         table.table(c -> {
-                            if(type instanceof ExoBullet){
-                                c.add(new Image(Core.atlas.find(spritePrefix + (((ExoBullet)type).damageType()))).setScaling(Scaling.fit)).size(32f).left().padRight(5f);
+                            if(type instanceof TypedBulletType){
+                                c.add(new Image(Core.atlas.find(spritePrefix + (((TypedBulletType)type).damageType()))).setScaling(Scaling.fit)).size(32f).left().padRight(5f);
                             }
 
                             if(type.continuousDamage() > 0){

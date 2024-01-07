@@ -1,7 +1,7 @@
 package Exogenesis.content;
 
 import Exogenesis.type.DamageType;
-import Exogenesis.type.TypeMultiplierUnitType;
+import Exogenesis.type.unit.TypeMultiplierUnitType;
 import Exogenesis.world.meta.ExoStats;
 import arc.struct.ObjectMap;
 import arc.util.Structs;

@@ -7,8 +7,7 @@ import mindustry.gen.*;
 
 public class ArrowBulletType extends ExoBasicBulletType{
     public ArrowBulletType(float speed, float damage){
-        this.speed = speed;
-        this.damage = damage;
+        super(speed, damage);
         trailLength = 35;
     }
 

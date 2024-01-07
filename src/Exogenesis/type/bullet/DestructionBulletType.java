@@ -59,9 +59,8 @@ public class DestructionBulletType extends ExoBasicBulletType{
 
     public static final Vec2 randVec = new Vec2();
 
-    public DestructionBulletType(float speed, float damage) {
-        this.speed = speed;
-        this.damage = damage;
+    public DestructionBulletType(float speed, float damage){
+        super(speed, damage);
         collidesGround = collidesAir = true;
         collides = false;
         scaleLife = despawnHit = true;

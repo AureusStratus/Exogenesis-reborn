@@ -6,6 +6,7 @@ import Exogenesis.type.bullet.AcceleratingLaserBulletType;
 import Exogenesis.type.bullet.DelayedPointBulletType;
 import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.ExoBasicBulletType;
+import Exogenesis.type.unit.ExoUnitType;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;

@@ -2,9 +2,7 @@ package Exogenesis.type.bullet;
 
 import Exogenesis.content.TypeMultipliers;
 import Exogenesis.type.DamageType;
-import Exogenesis.type.ExoUnitType;
 import arc.Events;
-import arc.util.Structs;
 import arc.util.Tmp;
 import mindustry.entities.bullet.BulletType;
 import mindustry.game.EventType;
