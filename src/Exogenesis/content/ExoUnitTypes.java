@@ -258,7 +258,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         atlas = new ErekirUnitType("atlas") {{
             constructor = LegsUnit::create;
             fogRadius = 50;
@@ -1033,7 +1032,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         nemesis = new ErekirUnitType("nemesis") {{
             constructor = UnitEntity::create;
             shadowElevation = 3f;
@@ -1397,7 +1395,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         hyperion = new ErekirUnitType("hyperion") {{
             constructor = ElevationMoveUnit::create;
             speed = 0.78f;
@@ -1642,7 +1639,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         rhea = new ErekirUnitType("rhea") {{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
@@ -2318,7 +2314,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         cronus = new ErekirUnitType("cronus") {{
             constructor = LegsUnit::create;
             fogRadius = 50;
@@ -2690,7 +2685,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         gaia = new ErekirUnitType("gaia"){{
             constructor = UnitEntity::create;
             health = 54000f;
@@ -2706,7 +2700,6 @@ public class ExoUnitTypes {
             flying = true;
             lowAltitude = true;
             }};
-
 
         nkarnt = new ErekirUnitType("nkarnt"){{
             constructor = LegsUnit::create;
@@ -2744,7 +2737,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         stratiotis = new ErekirUnitType("stratiotis"){{
             constructor= LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
@@ -2781,7 +2773,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         naitis = new ErekirUnitType("naitis"){{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
@@ -2901,7 +2892,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         protathlitis = new ErekirUnitType("protathlitis"){{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");
@@ -3003,7 +2993,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         vasilias = new ErekirUnitType("vasilias"){{
             constructor = LegsUnit::create;
             speed = 0.55f;
@@ -3189,7 +3178,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         ullr = new UnitType("ullr"){{
             constructor = LegsUnit::create;
             speed = 0.20f;
@@ -3306,6 +3294,7 @@ public class ExoUnitTypes {
                 shake = 1f;
                 bullet = new PosLightningType(32f){{
                     lightningColor = hitColor = Pal.heal;
+                    damageType = DamageType.energy;
                     maxRange = rangeOverride = 250f;
                     lightning = 4;
                     lightningLength = 6;
