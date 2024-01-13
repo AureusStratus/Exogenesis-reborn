@@ -6,6 +6,7 @@ import Exogenesis.type.bullet.AcceleratingLaserBulletType;
 import Exogenesis.type.bullet.DelayedPointBulletType;
 import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.ExoBasicBulletType;
+import Exogenesis.type.bullet.vanilla.ExoRailBulletType;
 import Exogenesis.type.unit.ExoUnitType;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -26,10 +27,11 @@ import mindustry.type.weapons.*;
 import mindustry.content.*;
 
 import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.stroke;
 
 public class ExoUnitTypes {
     public static UnitType
-    ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris,
+    ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris, thor,
     //erekir
     //red
     nkarnt, stratiotis, naitis, protathlitis, vasilias,
@@ -3115,7 +3117,6 @@ public class ExoUnitTypes {
             }});
         }};
 
-
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
             speed = 0.27f;
@@ -3306,8 +3307,6 @@ public class ExoUnitTypes {
             }});
 
         }};
-
-
         empire = new UnitType("empire"){{
                 constructor = MechUnit::create;
                 speed = 0.35f;
@@ -3363,7 +3362,6 @@ public class ExoUnitTypes {
                     }};
                 }});
             }};
-
         heimdall = new UnitType("heimdall"){{
             constructor = MechUnit::create;
             speed = 0.25f;
@@ -3585,7 +3583,6 @@ public class ExoUnitTypes {
             }});
         }};
 
-
         avicularia = new UnitType("avicularia"){{
             groundLayer = Layer.legUnit;
             constructor = LegsUnit::create;
@@ -3682,7 +3679,6 @@ public class ExoUnitTypes {
                 }};
             }});
     }};
-
         vidar = new UnitType("vidar"){{
             constructor = LegsUnit::create;
             speed = 0.4f;
@@ -3823,7 +3819,6 @@ public class ExoUnitTypes {
             }});
         }};
 
-
         twilight = new UnitType("twilight") {{
             constructor = UnitEntity::create;
             shadowElevation = 1.3f;
@@ -3910,7 +3905,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         notodoris = new UnitType("notodoris") {{
             constructor = UnitWaterMove::create;
             trailLength = 70;
@@ -4032,6 +4026,243 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+        thor = new UnitType("thor") {{
+            constructor = UnitWaterMove::create;
+            trailLength = 70;
+            waveTrailX = 23f;
+            waveTrailY = -39f;
+            trailScl = 3.5f;
+            health = 84000f;
+            omniMovement = true;
+            armor = 25f;
+            speed = 0.53f;
+            accel = 0.2f;
+            drag = 0.4f;
+            hitSize = 80f;
+            rotateSpeed = 1f;
+            faceTarget = false;
+            weapons.add(new Weapon("exogenesis-thor-hammer-mount"){{
+                reload = 36f;
+                mirror = alternate = false;
+                rotate = true;
+                rotateSpeed = 2.5f;
+                x = 23.25f;
+                y = 5;
+                layerOffset = 1;
+                shootY = 17.5f;
+                shoot = new ShootAlternate(){{
+                    spread = 5.5f;
+                }};
+                shootSound = Sounds.bolt;
+                recoil = 0;
+                shake = 1f;
+                parts.add(
+                        new RegionPart("-barrels"){{
+                            mirror = false;
+                            recoilIndex = 1;
+                            progress = PartProgress.recoil;
+                            moveY = -6f;
+                        }}
+                );
+                bullet = new ExoRailBulletType(){{
+                    length = 250f;
+                    damage = 8f;
+                    damageType = DamageType.pierce;
+                    hitColor = Pal.heal;
+                    shootEffect = Fx.shootBigColor;
+                    hitEffect = endEffect = Fx.hitBulletColor;
+                    pierceDamageFactor = 0.8f;
+                    smokeEffect = Fx.colorSpark;
+                    endEffect = new Effect(14f, e -> {
+                        color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                    });
+                    lineEffect = new Effect(20f, e -> {
+                        if(!(e.data instanceof Vec2 v)) return;
+
+                        color(e.color);
+                        stroke(e.fout() * 0.9f + 0.6f);
+
+                        Fx.rand.setSeed(e.id);
+                        for(int i = 0; i < 7; i++){
+                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                        }
+
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 3f);
+                            color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                    });
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-thor-hammer-mount"){{
+                reload = 36f;
+                mirror = alternate = false;
+                rotate = true;
+                rotateSpeed = 2.5f;
+                x = 23.25f;
+                y = 38.75f;
+                layerOffset = 1;
+                shootY = 17.5f;
+                shoot = new ShootAlternate(){{
+                    spread = 5.5f;
+                }};
+                shootSound = Sounds.bolt;
+                recoil = 0;
+                shake = 1f;
+                parts.add(
+                        new RegionPart("-barrels"){{
+                            mirror = false;
+                            recoilIndex = 1;
+                            progress = PartProgress.recoil;
+                            moveY = -6f;
+                        }}
+                );
+                bullet = new ExoRailBulletType(){{
+                    length = 250f;
+                    damage = 8f;
+                    damageType = DamageType.pierce;
+                    hitColor = Pal.heal;
+                    shootEffect = Fx.shootBigColor;
+                    hitEffect = endEffect = Fx.hitBulletColor;
+                    pierceDamageFactor = 0.8f;
+                    smokeEffect = Fx.colorSpark;
+                    endEffect = new Effect(14f, e -> {
+                        color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                    });
+                    lineEffect = new Effect(20f, e -> {
+                        if(!(e.data instanceof Vec2 v)) return;
+
+                        color(e.color);
+                        stroke(e.fout() * 0.9f + 0.6f);
+
+                        Fx.rand.setSeed(e.id);
+                        for(int i = 0; i < 7; i++){
+                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                        }
+
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 3f);
+                            color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                    });
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-thor-hammer-mount"){{
+                reload = 36f;
+                mirror = alternate = false;
+                rotate = true;
+                rotateSpeed = 2.5f;
+                x = 23.25f;
+                y = 71.5f;
+                layerOffset = 1;
+                shootY = 17.5f;
+                shoot = new ShootAlternate(){{
+                    spread = 5.5f;
+                }};
+                shootSound = Sounds.bolt;
+                recoil = 0;
+                shake = 1f;
+                parts.add(
+                        new RegionPart("-barrels"){{
+                            mirror = false;
+                            recoilIndex = 1;
+                            progress = PartProgress.recoil;
+                            moveY = -6f;
+                        }}
+                );
+                bullet = new ExoRailBulletType(){{
+                    length = 250f;
+                    damage = 8f;
+                    damageType = DamageType.pierce;
+                    hitColor = Pal.heal;
+                    shootEffect = Fx.shootBigColor;
+                    hitEffect = endEffect = Fx.hitBulletColor;
+                    pierceDamageFactor = 0.8f;
+                    smokeEffect = Fx.colorSpark;
+                    endEffect = new Effect(14f, e -> {
+                        color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                    });
+                    lineEffect = new Effect(20f, e -> {
+                        if(!(e.data instanceof Vec2 v)) return;
+
+                        color(e.color);
+                        stroke(e.fout() * 0.9f + 0.6f);
+
+                        Fx.rand.setSeed(e.id);
+                        for(int i = 0; i < 7; i++){
+                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                        }
+
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 3f);
+                            color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                    });
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-thor-weapon") {{
+                reload = 360f;
+                mirror = false;
+                x = 21.5f;
+                y = -46;
+                shootSound = ExoSounds.funnylaserloop;
+                shootY = 21;
+                recoil = 4;
+                rotateSpeed = 2;
+                rotate = continuous = true;
+                cooldownTime = 200;
+                shake = 4f;
+                parts.addAll(
+                        new FlarePart(){{
+                            progress = PartProgress.recoil;
+                            color1 = Pal.heal;
+                            color2 = Color.white;
+                            spinSpeed = 0.6f;
+                            radius = 0f;
+                            stroke = 4;
+                            radiusTo = 100f;
+                            layer = 109;
+                            y = 0;
+                        }},
+                        new FlarePart(){{
+                            progress = PartProgress.heat;
+                            color1 = Pal.heal;
+                            color2 = Color.white;
+                            sides = 2;
+                            rotation = 90;
+                            followRotation = true;
+                            radius = 0f;
+                            stroke = 10;
+                            radiusTo = 200f;
+                            layer = 109;
+                            y = 0;
+                        }}
+                );
+                bullet = new AcceleratingLaserBulletType(90f){{
+                    lifetime = 280f;
+                    maxLength = 430f;
+                    maxRange = 430f;
+                    oscOffset = 0.3f;
+                    shootEffect = ExoFx.colorBomb;
+                    width = 20f;
+                    damageType = DamageType.energy;
+                    collisionWidth = 10f;
+                    colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
+                    pierceCap = 3;
+                    hitEffect = ExoFx.ullarTipHit;
+                    hitColor = Pal.heal;
+                }};
+            }});
+        }};
 
         lux = new ExoUnitType("lux", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
@@ -4129,7 +4360,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         glimmer = new ExoUnitType("glimmer", 1.2f, 1.1f, 0.6f, 0.6f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4237,7 +4467,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         shine = new ExoUnitType("shine", 1.1f, 0.85f, 1f, 0.1f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4345,7 +4574,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         auric = new ExoUnitType("auric", 1.3f, 0.35f, 1f, 0.7f, 1.3f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4475,7 +4703,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         radiance = new ExoUnitType("radiance", 0.3f, 0.85f, 0.3f, 1.3f, 0.6f, 1f, 1){{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4615,8 +4842,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
-
         prayer = new ExoUnitType("prayer", 1.2f, 0.85f, 1f, 1f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
@@ -4675,7 +4900,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         apprise = new ExoUnitType("apprise", 1.3f, 0.85f, 1f, 1f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4720,7 +4944,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         revelation = new ExoUnitType("revelation", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4820,7 +5043,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         enlightenment = new ExoUnitType("enlightenment", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1.1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4876,7 +5098,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         excelsus = new ExoUnitType("excelsus", 0.9f, 0.9f, 1.3f, 0.2f, 1.15f, 1f, 1f) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -4959,7 +5180,6 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-
         orion = new UnitType("orion") {{
             constructor = LegsUnit::create;
             outlineColor = Color.valueOf("36363c");

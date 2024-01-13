@@ -221,7 +221,6 @@ public class ExoBlocks{
                 smokeEffect = Fx.colorSparkBig;
             }};
         }};
-
         gale = new PowerTurret("gale"){{
             requirements(Category.turret, with(Items.beryllium, 20, ExoItems.oltuxium, 20));
             range = 130f;
@@ -288,7 +287,6 @@ public class ExoBlocks{
                 }};
             }};
         }};
-
         light = new SpeedupTurret("light"){{
             requirements(Category.turret, with(ExoItems.oltuxium, 25, Items.copper, 25, Items.silicon, 20));
             range = 160f;
@@ -357,7 +355,6 @@ public class ExoBlocks{
                 });
             }};
         }};
-
         bliss = new PowerTurret("bliss"){{
             requirements(Category.turret, with(ExoItems.oltuxium, 40, Items.silicon, 30));
             range = 200f;
@@ -414,7 +411,6 @@ public class ExoBlocks{
                 smokeEffect = Fx.colorSpark;
             }};
         }};
-
         prism = new ContinuousTurret("prism"){{
             requirements(Category.turret, with(Items.copper, 30, Items.silicon, 50, ExoItems.oltuxium, 30, ExoItems.iron, 40));
             range = 270f;
@@ -440,7 +436,7 @@ public class ExoBlocks{
                         new ShapePart(){{
                             progress = PartProgress.warmup.curve(Interp.pow2In);
                             hollow = true;
-                            color = ExoPal.empyreanIndigoDark;
+                            color = ExoPal.empyreanIndigo;
                             layer = Layer.effect;
                             circle = true;
                             stroke = 0;
@@ -451,7 +447,7 @@ public class ExoBlocks{
                         new ShapePart(){{
                             progress = PartProgress.warmup.curve(Interp.pow2In);
                             hollow = true;
-                            color = ExoPal.empyreanIndigoDark;
+                            color = ExoPal.empyreanIndigo;
                             layer = Layer.effect;
                             circle = true;
                             stroke = 0;
@@ -491,7 +487,6 @@ public class ExoBlocks{
                 smokeEffect = Fx.colorSparkBig;
             }};
         }};
-
         tanons = new PowerTurret("tanons"){{
             requirements(Category.turret, with(Items.silicon, 100, ExoItems.magnetite, 40, Items.copper, 40));
             range = 250f;
@@ -522,7 +517,6 @@ public class ExoBlocks{
                 smokeEffect = Fx.shootBigSmoke2;
             }};
         }};
-
         glory = new PowerTurret("glory"){{
             requirements(Category.turret, with(Items.beryllium, 80, ExoItems.iron, 55, ExoItems.magnetite, 55));
             range = 450f;
@@ -555,7 +549,6 @@ public class ExoBlocks{
                 colors = new Color[]{ExoPal.empyreanAlpha.cpy().a(0.4f), ExoPal.empyrean, Color.white};
             }};
         }};
-
         essence = new SpeedupTurret("essence"){{
             requirements(Category.turret, with(Items.beryllium, 1000, ExoItems.iron, 85, ExoItems.oltuxium, 30));
             range = 230f;
@@ -601,7 +594,6 @@ public class ExoBlocks{
                 hitEffect = despawnEffect = Fx.hitBulletColor;
             }};
         }};
-
         purger = new PowerTurret("purger"){{
             requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
             range = 210f;
@@ -648,7 +640,6 @@ public class ExoBlocks{
                 colors = new Color[]{ExoPal.empyreanIndigoDark.cpy().a(.2f), ExoPal.empyreanIndigo, Color.white};
             }};
         }};
-
         excalibur = new PowerTurret("excalibur"){{
             requirements(Category.turret, with(Items.beryllium, 100, ExoItems.oltuxium, 50, Items.copper, 50, ExoItems.vanstariumAlloy, 170, ExoItems.litusiumAlloy, 70));
             range = 270f;
@@ -699,7 +690,7 @@ public class ExoBlocks{
                 splashDamageRadius = 65f;
                 splashDamage = 350f;
                 scaledSplashDamage = true;
-                backColor = hitColor = trailColor = ExoPal.empyreanIndigoDark;
+                backColor = hitColor = trailColor = ExoPal.empyreanIndigo;
                 frontColor = Color.white;
                 hitSound = Sounds.titanExplosion;
 
@@ -720,7 +711,6 @@ public class ExoBlocks{
                 buildingDamageMultiplier = 0.3f;
             }};
         }};
-
         aspect = new PowerTurret("aspect"){{
             requirements(Category.turret, with(Items.copper, 120, ExoItems.oltuxium, 80, ExoItems.magnetite, 120, ExoItems.iron, 70, ExoItems.vanstariumAlloy, 120, ExoItems.litusiumAlloy, 80));
             range = 270f;
@@ -742,7 +732,7 @@ public class ExoBlocks{
                             progress = PartProgress.warmup.curve(Interp.pow2In);
                             radius = 1.5f;
                             tri = true;
-                            color = ExoPal.empyreanIndigoDark;
+                            color = ExoPal.empyreanIndigo;
                             layer = Layer.effect;
                             haloRotateSpeed = -2.5f;
                             haloRadius = 0;
@@ -757,7 +747,7 @@ public class ExoBlocks{
                             progress = PartProgress.warmup.curve(Interp.pow2In);
                             radius = 2.5f;
                             tri = true;
-                            color = ExoPal.empyreanIndigoDark;
+                            color = ExoPal.empyreanIndigo;
                             layer = Layer.effect;
                             haloRotateSpeed = -1f;
                             haloRadius = 0;
@@ -791,11 +781,10 @@ public class ExoBlocks{
                 chainRange = 270f;
                 damageType = DamageType.energy;
                 length = 270f;
-                hitColor = ExoPal.empyreanIndigoDark;
+                hitColor = ExoPal.empyreanIndigo;
                 hitEffect = despawnEffect = Fx.hitBulletColor;
             }};
         }};
-
         godsent = new PowerTurret("godsent"){{
             requirements(Category.turret, with(Items.copper, 120, ExoItems.osmium, 40, ExoItems.oltuxium, 120, ExoItems.magnetite, 60, ExoItems.vanstariumAlloy, 150, ExoItems.iron, 100, ExoItems.litusiumAlloy, 90));
             range = 950f;
@@ -847,7 +836,6 @@ public class ExoBlocks{
                 hitEffect = despawnEffect = Fx.hitBulletColor;
             }};
         }};
-
         eminence = new PowerTurret("eminence"){{
             requirements(Category.turret, with(Items.beryllium, 40, ExoItems.oltuxium, 80, ExoItems.gold, 50, ExoItems.magnetite, 40, ExoItems.iron, 140, ExoItems.vanstariumAlloy, 120, ExoItems.litusiumAlloy, 100));
             range = 300f;
@@ -912,7 +900,6 @@ public class ExoBlocks{
                 }};
             }};
         }};
-
         grandeur = new ContinuousTurret("grandeur"){{
             requirements(Category.turret, with(Items.beryllium, 420, Items.silicon, 280, ExoItems.osmium, 100, ExoItems.magnetite, 320, ExoItems.lightningStone, 250, ExoItems.iron, 170, ExoItems.vanstariumAlloy, 180));
             range = 660f;
@@ -1018,7 +1005,6 @@ public class ExoBlocks{
                 despawnEffect = Fx.none;
             }};
         }};
-
         aether = new PowerTurret("aether"){{
             requirements(Category.turret, with(Items.copper, 420, Items.silicon, 480, ExoItems.gold, 170, ExoItems.magnetite, 320, ExoItems.chronophite, 350, ExoItems.vanstariumAlloy, 200, ExoItems.litusiumAlloy, 200));
             range = 290f;
@@ -1104,8 +1090,6 @@ public class ExoBlocks{
                 });
             }};
         }};
-
-
         agios = new PowerTurret("agios"){{
             requirements(Category.turret, with(Items.copper, 220, Items.silicon, 500, ExoItems.oltuxium, 100, ExoItems.chronophite, 300, ExoItems.lightningStone, 300, ExoItems.iron, 450, ExoItems.vanstariumAlloy, 180, ExoItems.litusiumAlloy, 300));
             range = 290f;
@@ -1277,7 +1261,6 @@ public class ExoBlocks{
                 fragVelocityMin = 0.35f;
             }};
         }};
-
         arbiter = new PowerTurret("arbiter"){{
             requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
             range = 210f;
@@ -1332,7 +1315,6 @@ public class ExoBlocks{
                 colors = new Color[]{Color.valueOf("f5c04590"), Color.valueOf("fee761"), Color.white};
             }};
         }};
-
         genesisFactory = new UnitFactory("genesis-factory"){{
             requirements(Category.units, with(ExoItems.astrolite, 50, Items.silicon, 100, ExoItems.curtuses, 50));
             plans = Seq.with(
