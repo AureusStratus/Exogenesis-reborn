@@ -4055,8 +4055,8 @@ public class ExoUnitTypes {
                 shoot = new ShootBarrel(){{
                     shots = 2;
                     barrels = new float[]{
-                            5.5f, 17.5f, 0f,
-                            -5.5f, 17.5f, 0f,
+                            5.5f, 15.5f, 0f,
+                            -5.5f, 15.5f, 0f,
                     };
                 }};
                 shootSound = Sounds.bolt;
@@ -4071,7 +4071,7 @@ public class ExoUnitTypes {
                         }}
                 );
                 bullet = new ExoRailBulletType(){{
-                    length = 250f;
+                    length = 300f;
                     damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
@@ -4108,14 +4108,14 @@ public class ExoUnitTypes {
                 mirror = alternate = false;
                 rotate = true;
                 rotateSpeed = 1.5f;
-                x = 23.25f;
+                x = -23.25f;
                 y = 38.75f;
                 layerOffset = 1;
                 shoot = new ShootBarrel(){{
                     shots = 2;
                     barrels = new float[]{
-                            5.5f, 17.5f, 0f,
-                            -5.5f, 17.5f, 0f,
+                            5.5f, 15.5f, 0f,
+                            -5.5f, 15.5f, 0f,
                     };
                 }};
                 shootSound = Sounds.bolt;
@@ -4130,7 +4130,7 @@ public class ExoUnitTypes {
                         }}
                 );
                 bullet = new ExoRailBulletType(){{
-                    length = 250f;
+                    length = 300f;
                     damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
@@ -4167,14 +4167,14 @@ public class ExoUnitTypes {
                 mirror = alternate = false;
                 rotate = true;
                 rotateSpeed = 1.5f;
-                x = 23.25f;
+                x = -23.25f;
                 y = 71.5f;
                 layerOffset = 1;
                 shoot = new ShootBarrel(){{
                     shots = 2;
                     barrels = new float[]{
-                            5.5f, 17.5f, 0f,
-                            -5.5f, 17.5f, 0f,
+                            5.5f, 15.5f, 0f,
+                            -5.5f, 15.5f, 0f,
                     };
                 }};
                 shootSound = Sounds.bolt;
@@ -4189,7 +4189,7 @@ public class ExoUnitTypes {
                         }}
                 );
                 bullet = new ExoRailBulletType(){{
-                    length = 250f;
+                    length = 300f;
                     damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
@@ -4224,13 +4224,12 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-thor-weapon") {{
                 reload = 360f;
                 mirror = false;
-                x = 21.5f;
+                x = -21.5f;
                 y = -46;
                 rotateSpeed = 0.5f;
                 shootSound = ExoSounds.funnylaserloop;
                 shootY = 5;
                 recoil = 4;
-                rotateSpeed = 2;
                 rotate = continuous = true;
                 cooldownTime = 200;
                 shake = 4f;
