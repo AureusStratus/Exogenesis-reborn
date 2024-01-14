@@ -3347,10 +3347,11 @@ public class ExoUnitTypes {
                     ejectEffect = Fx.casing4;
                     shootSound = Sounds.shootBig;
 
-                    bullet = new BasicBulletType(25f, 80f) {{
+                    bullet = new ExoBasicBulletType(25f, 80f) {{
                         lifetime = 17f;
                         hitEffect = despawnEffect = Fx.blastExplosion;
                         shootEffect = Fx.shootBig;
+                        damageType = DamageType.kinetic;
                         trailWidth = 3f;
                         trailLength = 8;
                         width = 10f;
@@ -3410,10 +3411,11 @@ public class ExoUnitTypes {
                 ejectEffect = ExoFx.casing5;
                 shootSound = Sounds.shotgun;
                 shoot.shots = 18;
-                bullet = new BasicBulletType(10f, 250f) {{
+                bullet = new ExoBasicBulletType(10f, 250f) {{
                     lifetime = 15f;
                     hitEffect = despawnEffect = Fx.blastExplosion;
                     shootEffect = Fx.shootBig;
+                    damageType = DamageType.kinetic;
                     status = StatusEffects.blasted;
                     statusDuration = 130;
                     trailWidth = 4f;
@@ -3997,11 +3999,12 @@ public class ExoUnitTypes {
                 shootSound = Sounds.mineDeploy;
                 showStatSprite = false;
                 shake = 1f;
-                bullet = new BasicBulletType(2f, 75){{
+                bullet = new ExoBasicBulletType(2f, 75){{
                     width = height = 16f;
                     sprite = "mine-bullet";
                     maxRange = 50f;
                     ignoreRotation = true;
+                    damageType = DamageType.explosive;
                     hitSound = Sounds.plasmaboom;
                     layer = Layer.scorch;
                     inaccuracy = 2f;
@@ -4028,10 +4031,10 @@ public class ExoUnitTypes {
         }};
         thor = new UnitType("thor") {{
             constructor = UnitWaterMove::create;
-            trailLength = 70;
-            waveTrailX = 23f;
-            waveTrailY = -39f;
-            trailScl = 3.5f;
+            trailLength = 90;
+            waveTrailX = 39f;
+            waveTrailY = -49f;
+            trailScl = 7.5f;
             health = 84000f;
             omniMovement = true;
             armor = 25f;
@@ -4045,13 +4048,16 @@ public class ExoUnitTypes {
                 reload = 36f;
                 mirror = alternate = false;
                 rotate = true;
-                rotateSpeed = 2.5f;
-                x = 23.25f;
+                rotateSpeed = 1.5f;
+                x = -23.25f;
                 y = 5;
                 layerOffset = 1;
-                shootY = 17.5f;
-                shoot = new ShootAlternate(){{
-                    spread = 5.5f;
+                shoot = new ShootBarrel(){{
+                    shots = 2;
+                    barrels = new float[]{
+                            5.5f, 17.5f, 0f,
+                            -5.5f, 17.5f, 0f,
+                    };
                 }};
                 shootSound = Sounds.bolt;
                 recoil = 0;
@@ -4066,7 +4072,7 @@ public class ExoUnitTypes {
                 );
                 bullet = new ExoRailBulletType(){{
                     length = 250f;
-                    damage = 8f;
+                    damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
                     shootEffect = Fx.shootBigColor;
@@ -4081,7 +4087,7 @@ public class ExoUnitTypes {
                         if(!(e.data instanceof Vec2 v)) return;
 
                         color(e.color);
-                        stroke(e.fout() * 0.9f + 0.6f);
+                        stroke(e.fout() * 1.1f + 0.6f);
 
                         Fx.rand.setSeed(e.id);
                         for(int i = 0; i < 7; i++){
@@ -4101,13 +4107,16 @@ public class ExoUnitTypes {
                 reload = 36f;
                 mirror = alternate = false;
                 rotate = true;
-                rotateSpeed = 2.5f;
+                rotateSpeed = 1.5f;
                 x = 23.25f;
                 y = 38.75f;
                 layerOffset = 1;
-                shootY = 17.5f;
-                shoot = new ShootAlternate(){{
-                    spread = 5.5f;
+                shoot = new ShootBarrel(){{
+                    shots = 2;
+                    barrels = new float[]{
+                            5.5f, 17.5f, 0f,
+                            -5.5f, 17.5f, 0f,
+                    };
                 }};
                 shootSound = Sounds.bolt;
                 recoil = 0;
@@ -4122,7 +4131,7 @@ public class ExoUnitTypes {
                 );
                 bullet = new ExoRailBulletType(){{
                     length = 250f;
-                    damage = 8f;
+                    damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
                     shootEffect = Fx.shootBigColor;
@@ -4137,7 +4146,7 @@ public class ExoUnitTypes {
                         if(!(e.data instanceof Vec2 v)) return;
 
                         color(e.color);
-                        stroke(e.fout() * 0.9f + 0.6f);
+                        stroke(e.fout() * 1.1f + 0.6f);
 
                         Fx.rand.setSeed(e.id);
                         for(int i = 0; i < 7; i++){
@@ -4157,13 +4166,16 @@ public class ExoUnitTypes {
                 reload = 36f;
                 mirror = alternate = false;
                 rotate = true;
-                rotateSpeed = 2.5f;
+                rotateSpeed = 1.5f;
                 x = 23.25f;
                 y = 71.5f;
                 layerOffset = 1;
-                shootY = 17.5f;
-                shoot = new ShootAlternate(){{
-                    spread = 5.5f;
+                shoot = new ShootBarrel(){{
+                    shots = 2;
+                    barrels = new float[]{
+                            5.5f, 17.5f, 0f,
+                            -5.5f, 17.5f, 0f,
+                    };
                 }};
                 shootSound = Sounds.bolt;
                 recoil = 0;
@@ -4178,7 +4190,7 @@ public class ExoUnitTypes {
                 );
                 bullet = new ExoRailBulletType(){{
                     length = 250f;
-                    damage = 8f;
+                    damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
                     shootEffect = Fx.shootBigColor;
@@ -4193,7 +4205,7 @@ public class ExoUnitTypes {
                         if(!(e.data instanceof Vec2 v)) return;
 
                         color(e.color);
-                        stroke(e.fout() * 0.9f + 0.6f);
+                        stroke(e.fout() * 1.1f + 0.6f);
 
                         Fx.rand.setSeed(e.id);
                         for(int i = 0; i < 7; i++){
@@ -4214,8 +4226,9 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 21.5f;
                 y = -46;
+                rotateSpeed = 0.5f;
                 shootSound = ExoSounds.funnylaserloop;
-                shootY = 21;
+                shootY = 5;
                 recoil = 4;
                 rotateSpeed = 2;
                 rotate = continuous = true;
@@ -4223,7 +4236,7 @@ public class ExoUnitTypes {
                 shake = 4f;
                 parts.addAll(
                         new FlarePart(){{
-                            progress = PartProgress.recoil;
+                            progress = PartProgress.life;
                             color1 = Pal.heal;
                             color2 = Color.white;
                             spinSpeed = 0.6f;
@@ -4231,20 +4244,7 @@ public class ExoUnitTypes {
                             stroke = 4;
                             radiusTo = 100f;
                             layer = 109;
-                            y = 0;
-                        }},
-                        new FlarePart(){{
-                            progress = PartProgress.heat;
-                            color1 = Pal.heal;
-                            color2 = Color.white;
-                            sides = 2;
-                            rotation = 90;
-                            followRotation = true;
-                            radius = 0f;
-                            stroke = 10;
-                            radiusTo = 200f;
-                            layer = 109;
-                            y = 0;
+                            y = 5;
                         }}
                 );
                 bullet = new AcceleratingLaserBulletType(90f){{
@@ -4253,9 +4253,9 @@ public class ExoUnitTypes {
                     maxRange = 430f;
                     oscOffset = 0.3f;
                     shootEffect = ExoFx.colorBomb;
-                    width = 20f;
+                    width = 16f;
                     damageType = DamageType.energy;
-                    collisionWidth = 10f;
+                    collisionWidth = 7f;
                     colors = new Color[]{Pal.heal.cpy().a(0.4f), Pal.heal, Color.white};
                     pierceCap = 3;
                     hitEffect = ExoFx.ullarTipHit;
@@ -4936,7 +4936,7 @@ public class ExoUnitTypes {
                     width = height = 9f;
                     speed = -0.00001f;
                     frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.empyreanIndigoDark;
+                    backColor = hitColor = trailColor = ExoPal.empyreanIndigo;
                     lifetime = 16;
                     hitEffect = despawnEffect = ExoFx.colorBombSmaller;
                     shootEffect = Fx.none;
@@ -5010,7 +5010,7 @@ public class ExoUnitTypes {
                         }}
                 );
                 bullet = new PosLightningType(32f){{
-                    lightningColor = hitColor = ExoPal.empyrean;
+                    lightningColor = hitColor = ExoPal.empyreanIndigo;
                     maxRange = rangeOverride = 250f;
                     hitEffect = Fx.circleColorSpark;
                     smokeEffect = Fx.none;
@@ -5079,7 +5079,7 @@ public class ExoUnitTypes {
                     height = 14f;
                     sprite = "missile";
                     frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.empyreanIndigoDark;
+                    backColor = hitColor = trailColor = ExoPal.empyreanIndigo;
                     lifetime = 45f;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = Fx.flakExplosionBig;
