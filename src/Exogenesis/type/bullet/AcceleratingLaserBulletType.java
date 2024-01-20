@@ -12,13 +12,14 @@ import mindustry.content.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import Exogenesis.type.DamageType;
+import Exogenesis.type.bullet.TypedBulletType;
 import Exogenesis.util.util.*;
 
 /** @author EyeOfDarkness */
-public class AcceleratingLaserBulletType extends ExoBulletType{
+public class AcceleratingLaserBulletType extends ExoBulletType implements TypedBulletType{
     public float maxLength = 1000f;
 
-    public DamageType damageType = DamageType.energy;
+    public DamageType damageType;
     public float laserSpeed = 15f;
     public float accel = 25f;
     public float width = 12f, collisionWidth = 8f;

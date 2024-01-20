@@ -3,11 +3,9 @@ package Exogenesis.content;
 import Exogenesis.type.*;
 import Exogenesis.graphics.*;
 import Exogenesis.type.bullet.*;
-import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.type.bullet.DelayedPointBulletType;
 import Exogenesis.type.bullet.PosLightningType;
-import Exogenesis.type.bullet.vanilla.ExoBasicBulletType;
-import Exogenesis.type.bullet.vanilla.ExoRailBulletType;
+import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.type.unit.ExoUnitType;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -3627,7 +3625,7 @@ public class ExoUnitTypes {
                     shootSound = Sounds.laser;
                     recoil = 2;
                     shake = 1f;
-                    bullet = new LaserBulletType() {{
+                    bullet = new ExoLaserBulletType() {{
                         damage = 115f;
                         sideWidth = 0f;
                         sideLength = 0f;
@@ -3637,6 +3635,7 @@ public class ExoUnitTypes {
                         lightningLength = 4;
                         lightningLengthRand = 2;
                         lightningAngleRand = 15f;
+                        damageType = DamageType.energy;
                         width = 25f;
                         length = 140f;
                         hitColor = lightningColor = Pal.sapBullet;
@@ -3655,9 +3654,10 @@ public class ExoUnitTypes {
                 rotateSpeed = 2;
                 rotate = continuous = alwaysContinuous = true;
                 shake = 1f;
-                bullet = new ContinuousLaserBulletType(){{
+                bullet = new ExoContinuousLaserBulletType(){{
                     hitColor = Pal.sapBullet;
                     damage = 35f;
+                    damageType = DamageType.energy;
                     length = 220f;
                     hitEffect = ExoFx.hitMeltColor;
                     drawSize = 420f;
@@ -3666,8 +3666,9 @@ public class ExoUnitTypes {
                     largeHit = true;
                     colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
                     despawnEffect = Fx.smokeCloud;
-                    intervalBullet = new LightningBulletType(){{
+                    intervalBullet = new ExoLightningBulletType(){{
                         damage = 30;
+                        damageType = DamageType.energy;
                         collidesAir = false;
                         ammoMultiplier = 1f;
                         lightningColor = Pal.sapBullet;
@@ -3723,10 +3724,11 @@ public class ExoUnitTypes {
                             blending = Blending.additive;
                             outline = mirror = false;
                         }});
-                bullet = new ShrapnelBulletType(){{
+                bullet = new ExoShrapnelBulletType(){{
                     length = 130f;
                     damage = 310f;
                     width = 29f;
+                    damageType = DamageType.thermal;
                     serrationLenScl = 7f;
                     serrationSpaceOffset = 60f;
                     serrationFadeOffset = 0f;
@@ -3749,10 +3751,13 @@ public class ExoUnitTypes {
                         shoot.shots = 2;
                         shootSound = Sounds.missile;
 
-                        bullet = new MissileBulletType(3.7f, 15f){{
+                        bullet = new ExoMissileBulletType(){{
                             width = 10f;
                             height = 12f;
                             shrinkY = 0f;
+                            speed = 3.7f;
+                            damage = 15;
+                            damageType = DamageType.explosive;
                             drag = -0.01f;
                             splashDamageRadius = 30f;
                             splashDamage = 55f;
@@ -3786,13 +3791,16 @@ public class ExoUnitTypes {
                 reload = 90f;
                 shake = 6f;
                 recoil = 8f;
-
-                bullet = new BombBulletType(150f, 30){{
+                bullet = new ExoArtilleryBulletType(){{
                     width = 18f;
                     height = 27f;
+                    damageType = DamageType.explosive;
+                    splashDamage = damage = 150;
+                    splashDamageRadius = 70;
+                    scaledSplashDamage = true;
                     sprite = "shell";
                     frontColor = Color.white;
-                    backColor = hitColor = trailColor = Pal.sapBullet;
+                    backColor = hitColor = trailColor = Pal.sapBulletBack;
                     speed = 6;
                     drag = 0;
                     scaleLife = true;
@@ -3800,14 +3808,17 @@ public class ExoUnitTypes {
                     hitEffect = despawnEffect = Fx.sapExplosion;
                     shrinkY = shrinkX = 0;
                     shootEffect = Fx.sapExplosion;
+                    trailChance = 0.6f;
+                    trailSize = 5;
                     trailLength = 10;
-                    trailWidth = 2f;
+                    trailWidth = 5f;
                     fragOnHit = false;
                     fragBullets = 13;
                     fragVelocityMin = 0.7f;
 
-                    fragBullet = new BasicBulletType(8f, 29){{
+                    fragBullet = new ExoBasicBulletType(8f, 29){{
                         sprite = "missile";
+                        damageType = DamageType.kinetic;
                         width = 9f;
                         height = 13f;
                         lifetime = 17f;
@@ -3857,9 +3868,10 @@ public class ExoUnitTypes {
                 shootSound = Sounds.shootBig;
                 recoil = 4;
                 shake = 1f;
-                bullet = new BasicBulletType(9f, 90){{
+                bullet = new ExoBasicBulletType(9f, 90){{
                 width = 11f;
                 height = 20f;
+                damageType = DamageType.kinetic;
                 lifetime = 42f;
                 shootEffect = Fx.shootBig;
                 trailLength = 6;
@@ -3880,9 +3892,10 @@ public class ExoUnitTypes {
                 rotate = true;
                 recoil = 0.5f;
                 shootY = 7.25f;
-                bullet = new BasicBulletType(7f, 70){{
+                bullet = new ExoBasicBulletType(7f, 70){{
                     width = 11f;
                     height = 20f;
+                    damageType = DamageType.kinetic;
                     lifetime = 45f;
                     shootEffect = Fx.shootBig;
                     trailLength = 6;
@@ -3898,9 +3911,10 @@ public class ExoUnitTypes {
                 rotate = true;
                 recoil = 0.5f;
                 shootY = 7.25f;
-                bullet = new BasicBulletType(7f, 70){{
+                bullet = new ExoBasicBulletType(7f, 70){{
                     width = 11f;
                     height = 20f;
+                    damageType = DamageType.kinetic;
                     lifetime = 45f;
                     shootEffect = Fx.shootBig;
                     trailLength = 6;
@@ -3957,10 +3971,11 @@ public class ExoUnitTypes {
                     moveY = -4f;
                 }}
                 );
-                bullet = new EmpBulletType(){{
+                bullet = new ExoEmpBulletType(){{
                     width = 17f;
                     height = 28f;
                     speed = 9;
+                    damageType = DamageType.energy;
                     damage = 170;
                     lifetime = 32f;
                     shootEffect = Fx.shootBig;
