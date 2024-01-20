@@ -2,7 +2,8 @@ package Exogenesis.content;
 
 import Exogenesis.type.*;
 import Exogenesis.graphics.*;
-import Exogenesis.type.bullet.AcceleratingLaserBulletType;
+import Exogenesis.type.bullet.*;
+import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.type.bullet.DelayedPointBulletType;
 import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.ExoBasicBulletType;
@@ -4029,12 +4030,12 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        thor = new UnitType("thor") {{
+        thor = new ExoUnitType("thor", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitWaterMove::create;
             trailLength = 90;
             waveTrailX = 39f;
-            waveTrailY = -49f;
-            trailScl = 7.5f;
+            waveTrailY = -56f;
+            trailScl = 9.5f;
             health = 84000f;
             omniMovement = true;
             armor = 25f;
@@ -4042,7 +4043,7 @@ public class ExoUnitTypes {
             accel = 0.2f;
             drag = 0.4f;
             hitSize = 80f;
-            rotateSpeed = 1f;
+            rotateSpeed = 0.5f;
             faceTarget = false;
             weapons.add(new Weapon("exogenesis-thor-hammer-mount"){{
                 reload = 36f;
@@ -4050,7 +4051,7 @@ public class ExoUnitTypes {
                 rotate = true;
                 rotateSpeed = 1.5f;
                 x = -23.25f;
-                y = 5;
+                y = -12;
                 layerOffset = 1;
                 shoot = new ShootBarrel(){{
                     shots = 2;
@@ -4067,7 +4068,7 @@ public class ExoUnitTypes {
                             mirror = false;
                             recoilIndex = 1;
                             progress = PartProgress.recoil;
-                            moveY = -6f;
+                            moveY = -3f;
                         }}
                 );
                 bullet = new ExoRailBulletType(){{
@@ -4104,12 +4105,12 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-thor-hammer-mount"){{
-                reload = 36f;
+                reload = 36.1f;
                 mirror = alternate = false;
                 rotate = true;
                 rotateSpeed = 1.5f;
                 x = -23.25f;
-                y = 38.75f;
+                y = 24.75f;
                 layerOffset = 1;
                 shoot = new ShootBarrel(){{
                     shots = 2;
@@ -4126,7 +4127,7 @@ public class ExoUnitTypes {
                             mirror = false;
                             recoilIndex = 1;
                             progress = PartProgress.recoil;
-                            moveY = -6f;
+                            moveY = -3f;
                         }}
                 );
                 bullet = new ExoRailBulletType(){{
@@ -4163,7 +4164,66 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-thor-hammer-mount"){{
-                reload = 36f;
+                reload = 36.2f;
+                mirror = alternate = false;
+                rotate = true;
+                rotateSpeed = 1.5f;
+                x = -23.25f;
+                y = 51.5f;
+                layerOffset = 1;
+                shoot = new ShootBarrel(){{
+                    shots = 2;
+                    barrels = new float[]{
+                            5.5f, 15.5f, 0f,
+                            -5.5f, 15.5f, 0f,
+                    };
+                }};
+                shootSound = Sounds.bolt;
+                recoil = 0;
+                shake = 1f;
+                parts.add(
+                        new RegionPart("-barrels"){{
+                            mirror = false;
+                            recoilIndex = 1;
+                            progress = PartProgress.recoil;
+                            moveY = -3f;
+                        }}
+                );
+                bullet = new ExoRailBulletType(){{
+                    length = 300f;
+                    damage = 138f;
+                    damageType = DamageType.pierce;
+                    hitColor = Pal.heal;
+                    shootEffect = Fx.shootBigColor;
+                    hitEffect = endEffect = Fx.hitBulletColor;
+                    pierceDamageFactor = 0.8f;
+                    smokeEffect = Fx.colorSpark;
+                    endEffect = new Effect(14f, e -> {
+                        color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                    });
+                    lineEffect = new Effect(20f, e -> {
+                        if(!(e.data instanceof Vec2 v)) return;
+
+                        color(e.color);
+                        stroke(e.fout() * 1.1f + 0.6f);
+
+                        Fx.rand.setSeed(e.id);
+                        for(int i = 0; i < 7; i++){
+                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                        }
+
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 3f);
+                            color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                    });
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-thor-hammer-mount"){{
+                reload = 36.3f;
                 mirror = alternate = false;
                 rotate = true;
                 rotateSpeed = 1.5f;
@@ -4185,7 +4245,7 @@ public class ExoUnitTypes {
                             mirror = false;
                             recoilIndex = 1;
                             progress = PartProgress.recoil;
-                            moveY = -6f;
+                            moveY = -3f;
                         }}
                 );
                 bullet = new ExoRailBulletType(){{
