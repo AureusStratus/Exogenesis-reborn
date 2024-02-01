@@ -4682,8 +4682,8 @@ public class ExoUnitTypes {
             engineOffset = 0;
             parts.addAll(
             new RegionPart("-mandible"){{
-              moves.add(new PartMove(PartProgress.charge.curve(Interp.circleIn), 0, 0, 45));
-              moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0, 0, 45));
+              moves.add(new PartMove(PartProgress.charge.curve(Interp.circleIn), 0, 0, -45));
+              moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0, 0, -45));
               mirror = true;
               under = true;
               x = 20.75f;
@@ -4707,8 +4707,8 @@ public class ExoUnitTypes {
                 showStatSprite = false;
                 recoil = 0;
                 shake = 1f;
-                bullet = new DestructionBulletType(2.5f, 185){{
-                    size /= 2.3f;
+                bullet = new DestructionBulletType(1.5f, 185){{
+                    size /= 3.3f;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
                     spreadEffect = slopeEffect = Fx.none;
@@ -4722,7 +4722,7 @@ public class ExoUnitTypes {
                     randomLightningNum = 1;
                     maxHit = 4;
                     range = 200f;
-                    lifetime = 125f;
+                    lifetime = 165f;
                     splashDamage = 100;
                     splashDamageRadius = 70;
                     shrinkY = shrinkX = 0;
