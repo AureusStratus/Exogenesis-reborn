@@ -3792,43 +3792,57 @@ public class ExoUnitTypes {
                 shake = 6f;
                 recoil = 8f;
                 bullet = new ExoArtilleryBulletType(){{
-                    width = 18f;
-                    height = 27f;
+                    width = height = 30f;
                     damageType = DamageType.explosive;
-                    splashDamage = damage = 150;
+                    splashDamage = 200;
+                    damage = 100;
                     splashDamageRadius = 70;
-                    scaledSplashDamage = true;
                     sprite = "shell";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = Pal.sapBulletBack;
-                    speed = 6;
-                    drag = 0;
+                    speed = 3;
+                    collidesTiles = collides = true;
                     scaleLife = true;
                     lifetime = 120f;
                     hitEffect = despawnEffect = Fx.sapExplosion;
-                    shrinkY = shrinkX = 0;
                     shootEffect = Fx.sapExplosion;
                     trailChance = 0.6f;
                     trailSize = 5;
                     trailLength = 10;
                     trailWidth = 5f;
-                    fragOnHit = false;
-                    fragBullets = 13;
-                    fragVelocityMin = 0.7f;
+                    hitShake = 10f;
+                    lightRadius = 40f;
+                    lightColor = Pal.sap;
+                    lightOpacity = 0.6f;
 
-                    fragBullet = new ExoBasicBulletType(8f, 29){{
-                        sprite = "missile";
-                        damageType = DamageType.kinetic;
-                        width = 9f;
-                        height = 13f;
-                        lifetime = 17f;
-                        hitSize = 4f;
-                        backColor = hitColor = trailColor = Pal.sapBullet;
-                        frontColor = Color.white;
-                        trailWidth = 2f;
-                        trailLength = 10;
-                        hitEffect = despawnEffect = Fx.flakExplosion;
-                        }};
+                    status = StatusEffects.sapped;
+                    statusDuration = 60f * 10;
+                    fragLifeMin = 0.3f;
+                    fragBullets = 14;
+                    fragBullet = new ExoArtilleryBulletType(){{
+                        hitEffect = Fx.sapExplosion;
+                        knockback = 0.8f;
+                        lifetime = 120f;
+                        damageType = DamageType.explosive;
+                        damage = 30;
+                        speed = 2.3f;
+                        width = height = 25f;
+                        collidesTiles = false;
+                        splashDamageRadius = 70f;
+                        splashDamage = 70f;
+                        backColor = Pal.sapBulletBack;
+                        frontColor = lightningColor = Pal.sapBullet;
+                        lightning = 2;
+                        lightningLength = 5;
+                        smokeEffect = Fx.shootBigSmoke2;
+                        hitShake = 5f;
+                        lightRadius = 30f;
+                        lightColor = Pal.sap;
+                        lightOpacity = 0.5f;
+
+                        status = StatusEffects.sapped;
+                        statusDuration = 60f * 10;
+                    }};
                     }};
             }});
         }};
@@ -4659,7 +4673,7 @@ public class ExoUnitTypes {
             drag = 0.07f;
             accel = 0.04f;
             faceTarget = true;
-            lowAltitude = true;
+            lowAltitude = false;
             armor = 8;
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyrean;
@@ -4674,11 +4688,24 @@ public class ExoUnitTypes {
                 reload = 80f;
                 mirror = false;
                 x = 0;
+                shoot.firstShotDelay = 80;
+                shootStatusDuration = 90;
+                shootStatus = StatusEffects.unmoving;
                 shootSound = Sounds.malignShoot;
                 showStatSprite = false;
                 recoil = 0;
                 shake = 1f;
-                parts.add(
+                parts.addAll(
+                        new RegionPart("-mandible"){{
+                                moves.add(new PartMove(PartProgress.charge.curve(Interp.circleIn), 0, 0, 45));
+                                moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0, 0, 45));
+                                mirror = true;
+                                under = true;
+                                x = 20.75f;
+                                y = 1.25f;
+                                layerOffset = -0.0001f;
+                                heatProgress = PartProgress.charge.curve(Interp.circleIn);
+                            }},
                         new ShapePart() {{
                             mirror = false;
                             progress = PartProgress.warmup;
@@ -4724,18 +4751,29 @@ public class ExoUnitTypes {
                             triLengthTo = triLength = 8.5f;
                         }}
                 );
-                bullet = new BasicBulletType(5f, 85){{
+                bullet = new DestructionBulletType(2.5f, 185){{
                     width = height = 37f;
                     sprite = "exogenesis-plasma";
+                    scaleLife = false;
+                    spreadEffect = slopeEffect = Fx.none;
+                    chargeEffect = ExoFx.auricCharge;
+                    damageType = DamageType.energy;
+                    hitSound = Sounds.explosionbig;
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyrean;
-                    lifetime = 65f;
-                    splashDamage = 50;
-                    splashDamageRadius = 60;
+                    randomLightningChance = 1f;
+                    randomGenerateRange = linkRange = 150f;
+                    randomLightningNum = 1;
+                    maxHit = 4;
+                    range = 200f;
+                    lifetime = 125f;
+                    splashDamage = 100;
+                    splashDamageRadius = 70;
                     shrinkY = shrinkX = 0;
                     hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion, ExoFx.blastcolor);
-                    intervalBullet = new BasicBulletType(4f, 25){{
+                    intervalBullet = new ExoBasicBulletType(4f, 25){{
                         width = height = 7f;
+                        damageType = DamageType.energy;
                         sprite = "circle-bullet";
                         frontColor = Color.white;
                         backColor = hitColor = trailColor = ExoPal.empyrean;

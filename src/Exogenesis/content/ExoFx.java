@@ -96,6 +96,12 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, ang, e.fout() * 4 + 1f);
                 });
             }),
+            auricCharge = new Effect(85, e -> {
+                color(Color.valueOf(String.valueOf(ExoPal.empyrean)));
+                Fill.circle(e.x, e.y, e.fin() * 15f);
+                color(Color.white);
+                Fill.circle(e.x, e.y, e.fin() * 8f);
+            }),
     colorBomb = new Effect(40f, 100f, e -> {
         color(e.color);
         stroke(e.fout() * 2f);
