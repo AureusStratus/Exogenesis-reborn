@@ -4680,11 +4680,23 @@ public class ExoUnitTypes {
             rotateSpeed = 2.6f;
             engineSize = 0;
             engineOffset = 0;
+            parts.addAll(
+            new RegionPart("-mandible"){{
+              moves.add(new PartMove(PartProgress.charge.curve(Interp.circleIn), 0, 0, 45));
+              moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0, 0, 45));
+              mirror = true;
+              under = true;
+              x = 20.75f;
+              y = 1.25f;
+              layerOffset = -0.0001f;
+              heatProgress = PartProgress.charge.curve(Interp.circleIn);
+              }}
+              );
             setEnginesMirror(
                     new UnitEngine(19.5f, -18, 5f, 315f),
                     new UnitEngine(9.5f, -25, 3f, 315f)
             );
-            weapons.add(new Weapon("auric") {{
+            weapons.add(new Weapon("auric-blast") {{
                 reload = 220f;
                 mirror = false;
                 x = 0;
@@ -4695,20 +4707,7 @@ public class ExoUnitTypes {
                 showStatSprite = false;
                 recoil = 0;
                 shake = 1f;
-                parts.addAll(
-                        new RegionPart("-mandible"){{
-                                moves.add(new PartMove(PartProgress.charge.curve(Interp.circleIn), 0, 0, 45));
-                                moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0, 0, 45));
-                                mirror = true;
-                                under = true;
-                                x = 20.75f;
-                                y = 1.25f;
-                                layerOffset = -0.0001f;
-                                heatProgress = PartProgress.charge.curve(Interp.circleIn);
-                            }}
-                );
                 bullet = new DestructionBulletType(2.5f, 185){{
-                    width = height = 37f;
                     size /= 2.3f;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
@@ -4746,8 +4745,6 @@ public class ExoUnitTypes {
                                 Drawf.tri(e.x, e.y, 1.8f, 14f * e.fslope(), e.rotation + 90f*s);
                             }
                         });
-                        homingRange = 60;
-                        homingPower = 0.01f;
                         trailRotation = true;
                         trailInterval = 3f;
                         lightning = 4;
@@ -4768,7 +4765,7 @@ public class ExoUnitTypes {
                     trailSinMag = 0.8f;
                     trailParam = 5;
                     trailLength = 6;
-                    trailWidth = 4f;
+                    trailWidth = 9f;
                 }};
             }});
         }};

@@ -98,9 +98,9 @@ public class ExoFx{
             }),
             auricCharge = new Effect(85, e -> {
                 color(Color.valueOf(String.valueOf(ExoPal.empyrean)));
-                Fill.circle(e.x, e.y, e.fin() * 15f);
+                Fill.circle(e.x, e.y, e.fin() * 25f);
                 color(Color.white);
-                Fill.circle(e.x, e.y, e.fin() * 8f);
+                Fill.circle(e.x, e.y, e.fin() * 18f);
             }),
     colorBomb = new Effect(40f, 100f, e -> {
         color(e.color);
