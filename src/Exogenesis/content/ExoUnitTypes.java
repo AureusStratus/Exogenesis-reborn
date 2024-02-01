@@ -4685,7 +4685,7 @@ public class ExoUnitTypes {
                     new UnitEngine(9.5f, -25, 3f, 315f)
             );
             weapons.add(new Weapon("auric") {{
-                reload = 80f;
+                reload = 220f;
                 mirror = false;
                 x = 0;
                 shoot.firstShotDelay = 80;
@@ -4705,54 +4705,11 @@ public class ExoUnitTypes {
                                 y = 1.25f;
                                 layerOffset = -0.0001f;
                                 heatProgress = PartProgress.charge.curve(Interp.circleIn);
-                            }},
-                        new ShapePart() {{
-                            mirror = false;
-                            progress = PartProgress.warmup;
-                            circle = true;
-                            layer = Layer.effect;
-                            y = 0f;
-                            color = ExoPal.empyrean;
-                            radiusTo = radius = 11f;
-                        }},
-                        new ShapePart() {{
-                            mirror = false;
-                            progress = PartProgress.warmup;
-                            circle = true;
-                            layer = Layer.effect;
-                            y = 0f;
-                            color = Color.white;
-                            radiusTo = radius = 7f;
-                        }},
-                        new HaloPart() {{
-                            y = 0f;
-                            radius = 3.5f;
-                            tri = true;
-                            color = ExoPal.empyrean;
-                            layer = Layer.effect;
-                            haloRotateSpeed = -3f;
-                            haloRadius = haloRadiusTo = 11f;
-                            stroke = 0f;
-                            strokeTo = 2f;
-                            shapes = 3;
-                            triLengthTo = triLength = 6f;
-                        }},
-                        new HaloPart() {{
-                            y = 0f;
-                            radius = 4f;
-                            tri = true;
-                            color = ExoPal.empyrean;
-                            layer = Layer.effect;
-                            haloRotateSpeed = 3f;
-                            haloRadius = haloRadiusTo = 11f;
-                            stroke = 0f;
-                            strokeTo = 2f;
-                            shapes = 3;
-                            triLengthTo = triLength = 8.5f;
-                        }}
+                            }}
                 );
                 bullet = new DestructionBulletType(2.5f, 185){{
                     width = height = 37f;
+                    size /= 2.3f;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
                     spreadEffect = slopeEffect = Fx.none;
