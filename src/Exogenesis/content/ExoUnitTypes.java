@@ -4682,8 +4682,8 @@ public class ExoUnitTypes {
             engineOffset = 0;
             parts.addAll(
             new RegionPart("-mandible"){{
-              moves.add(new PartMove(PartProgress.charge.curve(Interp.circleIn), 0, 0, -45));
-              moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0, 0, -45));
+              moves.add(new PartMove(PartProgress.charge.curve(Interp.circleIn), 0, 0, -50));
+              moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0, 0, -50));
               mirror = true;
               under = true;
               x = 20.75f;
@@ -4700,6 +4700,7 @@ public class ExoUnitTypes {
                 reload = 220f;
                 mirror = false;
                 x = 0;
+                y = 6;
                 shoot.firstShotDelay = 80;
                 shootStatusDuration = 90;
                 shootStatus = StatusEffects.unmoving;
@@ -4708,7 +4709,7 @@ public class ExoUnitTypes {
                 recoil = 0;
                 shake = 1f;
                 bullet = new DestructionBulletType(1.5f, 185){{
-                    size /= 3.3f;
+                    size /= 1.5f;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
                     spreadEffect = slopeEffect = Fx.none;
@@ -4764,8 +4765,8 @@ public class ExoUnitTypes {
                     trailSinScl = 2;
                     trailSinMag = 0.8f;
                     trailParam = 5;
-                    trailLength = 6;
-                    trailWidth = 9f;
+                    trailLength = 10;
+                    trailWidth = 10f;
                 }};
             }});
         }};
