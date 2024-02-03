@@ -1,19 +1,17 @@
 package Exogenesis.content;
 
 import arc.graphics.*;
-import mindustry.content.*;
 import mindustry.type.*;
-import Exogenesis.graphics.*;
 public class ExoItems{
     public static Item
             //multi-faction items
             osmium, gold, leadZinc, uranimite,
             //Vanstar items
-            oltuxium, boron, iron, magnetite, litusiumAlloy, lightningStone, chronophite, vanstariumAlloy, lumeonEnergyCell,
+            oltuxium, boron, iron, empyreanPlating, magnetite, litusiumAlloy, lightningStone, viliotStone, luxiteStone, eternionCore, positeCore, negesiteCore, chronophite, vanstariumAlloy, lumeonEnergyCell,
             //hadrox items
             volcanite, nickel, denseGraphite, primordiumAlloy, hadroxanDiamond, terminusEnergyCell,
             //Axin items
-            astrolite, curtuses, stellarIron, urbium, terrilium, axidamite, lanosium, axinDiamond, axinvaxaAlloy, axionEnergyCell;
+            astrolite, curtuses, stellarIron, urbium, selfHealingAlloy, terrilium, axidamite, lanosium, axinDiamond, axinvaxaAlloy, axionEnergyCell;
     public static void load(){
         //multi-faction items
         uranimite = new Item("uranimite", Color.valueOf("8cdf64")){{
@@ -46,6 +44,10 @@ public class ExoItems{
             cost = 0.8f;
             hardness = 3;
         }};
+        empyreanPlating = new Item("empyrean-plating", Color.valueOf("9295a3")){{
+            cost = 0.8f;
+            hardness = 3;
+        }};
         magnetite = new Item("magnetite", Color.valueOf("3e404c")){{
             cost = 0.85f;
             hardness = 4;
@@ -55,10 +57,30 @@ public class ExoItems{
             cost = 1f;
             charge = 0.25f;
         }};
-        lightningStone = new Item("lightning-stone", Color.valueOf("fee761")){{
+        lightningStone = new Item("lightning-stone", Color.valueOf("d3ffff")){{
             cost = 1.3f;
             hardness = 5;
             charge = 1.25f;
+        }};
+        viliotStone = new Item("viliot-stone", Color.valueOf("bfb1ff")){{
+            cost = 1.3f;
+            hardness = 5;
+        }};
+        luxiteStone = new Item("luxite-stone", Color.valueOf("fcff98")){{
+            cost = 1.3f;
+            hardness = 5;
+        }};
+        eternionCore = new Item("eternion-core", Color.valueOf("9681fb")){{
+            cost = 1f;
+            hardness = 4;
+        }};
+        positeCore = new Item("posite-core", Color.valueOf("6ac4df")){{
+            cost = 1f;
+            hardness = 4;
+        }};
+        negesiteCore = new Item("negesite-core", Color.valueOf("f5c045")){{
+            cost = 1f;
+            hardness = 4;
         }};
         chronophite = new Item("chronophite", Color.valueOf("efefef")){{
             cost = 1.4f;
@@ -112,6 +134,10 @@ public class ExoItems{
             cost = 1f;
             hardness = 3;
             radioactivity = 0.25f;
+        }};
+        selfHealingAlloy = new Item("self-healing-alloy", Color.valueOf("5f6f9a")){{
+            cost = 1f;
+            hardness = 3;
         }};
         terrilium = new Item("terrilium", Color.valueOf("dc93ff")){{
             cost = 1.1f;

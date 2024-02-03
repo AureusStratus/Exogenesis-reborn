@@ -995,6 +995,19 @@ public class ExoBlocks{
                             strokeFrom = 2f;
                             strokeTo = 0.8f;
                         }});
+                intervalBullet = new ChainLightningBulletType() {{
+                    lightningColor = ExoPal.empyreanIndigo;
+                    damageType = DamageType.energy;
+                    range = 650;
+                    targetRange = 350;
+                    damage = 120;
+                    distanceDamageFalloff = 4;
+                    chainLightning = 2;
+                    segmentLength = 8;
+                }};
+                intervalRandomSpread = 50;
+                intervalBullets = 2;
+                bulletInterval = 2f;
                 drawSize = 420f;
                 backLength = 29f;
                 pointyScaling = 0.5f;
