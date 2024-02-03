@@ -4711,7 +4711,7 @@ public class ExoUnitTypes {
                 recoil = 0;
                 shake = 1f;
                 bullet = new ExoBasicBulletType(1.5f, 185){{
-                    width = height = 35;
+                    width = height = 45;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
                     chargeEffect = ExoFx.auricCharge;
@@ -4757,7 +4757,7 @@ public class ExoUnitTypes {
                         lightningColor = ExoPal.empyrean;
                         damageType = DamageType.energy;
                         range = 215;
-                        targetRange = 50;
+                        targetRange = 160;
                         damage = 50;
                         distanceDamageFalloff = 4;
                         chainLightning = 2;
@@ -5253,7 +5253,8 @@ public class ExoUnitTypes {
                         lightningColor = ExoPal.empyreanIndigo;
                         damageType = DamageType.energy;
                         range = 155;
-                        targetRange = 70;
+                        collidesTeam = false;
+                        targetRange = 155;
                         damage = 100;
                         distanceDamageFalloff = 4;
                         chainLightning = 2;

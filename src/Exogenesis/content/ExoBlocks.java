@@ -1000,6 +1000,7 @@ public class ExoBlocks{
                     damageType = DamageType.energy;
                     range = 650;
                     targetRange = 350;
+                    hitSound = Sounds.none;
                     damage = 120;
                     distanceDamageFalloff = 4;
                     chainLightning = 2;
