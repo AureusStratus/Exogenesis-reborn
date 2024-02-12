@@ -55,7 +55,7 @@ public class ExoUnitTypes {
             rotateSpeed = 0.45f;
             treadRects = new Rect[]{new Rect(65, 70, 131, 180), new Rect(46, -248, 85, 63), new Rect(166, -183.5f, 32, 39)};
             weapons.add(new Weapon("exogenesis-prometheus-cannon"){{
-                shootSound = ExoSounds.cannon;
+                shootSound = Sounds.largeCannon;
                 soundPitchMin = 1f;
                 minWarmup = 0.7f;
                 smoothReloadSpeed = 0.08f;
@@ -162,42 +162,25 @@ public class ExoUnitTypes {
                     moveRot = 83f;
                 }}
                 );
-                bullet = new RailBulletType(){{
-                    damage = 1500f;
-                    length = 530;
-                    lightColor = hitColor = lightningColor = Color.valueOf("feb380");
-                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusShootShockWave1, ExoFx.PrometheusShootShockWave2, ExoFx.PrometheusShoot);
-                    pierceEffect = ExoFx.ColorRailHit;
-                    hitEffect = Fx.massiveExplosion;
-                    smokeEffect = Fx.shootBig2;
-                    endEffect = new Effect(24f,530, e -> {
-                        color(e.color);
-                        Drawf.tri(e.x, e.y, e.fout() * 16f, 13f, e.rotation);
-                    });
-                    lineEffect = new Effect(30f, 530, e -> {
-                        if(!(e.data instanceof Vec2 v)) return;
-
-                        color(e.color);
-                        stroke(e.fout() * 1.1f + 0.6f);
-
-                        Fx.rand.setSeed(e.id);
-                        for(int i = 0; i < 7; i++){
-                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
-                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
-                        }
-                        e.scaled(30f, b -> {
-                            stroke(b.fout() * 19f);
-                            color(e.color);
-                            Lines.line(e.x, e.y, v.x, v.y);
-                        });
-                        e.scaled(30f, b -> {
-                            stroke(b.fout() * 15f);
-                            color(Color.white);
-                            Lines.line(e.x, e.y, v.x, v.y);
-                        });
-                    });
-                    pierceDamageFactor = 0.6f;
-                    collidesTiles = true;
+                bullet = new AcceleratingLaserBulletType(140f){{
+                    lifetime = 40f;
+                    maxLength = 530f;
+                    maxRange = 530f;
+                    oscOffset = 0.3f;
+                    lightColor = hitColor = lightningColor = ExoPal.prometheusColor;
+                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusShoot);
+                    trailEffect = ExoFx.PrometheusBeamShockWave2;
+                    trailChance = 1;
+                    trailInterval = 2;
+                    trailRotation = true;
+                    width = 16f;
+                    laserSpeed = 30;
+                    pierceAmount = 20;
+                    pierceArmor = true;
+                    damageType = DamageType.pierce;
+                    collisionWidth = 7f;
+                    colors = new Color[]{ExoPal.prometheusColor.cpy().a(0.4f), ExoPal.prometheusColor, Color.white};
+                    hitEffect = ExoFx.ullarTipHit;
                 }};
             }});
             weapons.add(new Weapon("exogenesis-prometheus-machine-gun") {{
@@ -5833,40 +5816,42 @@ public class ExoUnitTypes {
                             triLength = 0f;
                         }}
                         );
-                bullet = new EmpBulletType() {{
-                    width = 8f;
-                    height = 11f;
-                    sprite = "circle-bullet";
-                    frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.genesisDark;
-                    lifetime = 40f;
-                    speed = 6f;
-                    damage = 25f;
-                    recoil = 0.6f;
-                    splashDamage = 15;
-                    splashDamageRadius = 40;
-                    shrinkY = shrinkX = 0;
-                    radius = 40f;
-                    timeIncrease = 0.5f;
-                    powerDamageScl = 0.3f;
-                    powerSclDecrease = 0.1f;
-                    unitDamageScl = 0.3f;
-                    status = StatusEffects.freezing;
-                    statusDuration = 100;
-                    shootEffect = Fx.lightningShoot;
-                    homingPower = 0.0678f;
-                    homingRange = 40;
-                    trailLength = 10;
-                    trailWidth = 2f;
-                    trailChance = 0.3f;
-                    trailEffect = new ParticleEffect() {{
-                    particles = 13;
-                    length = baseLength = 2.5f;
-                    lifetime = 20f;
-                    colorFrom = colorTo = trailColor;
-                    sizeFrom = 5f;
-                    sizeTo = 0f;
-                    }};
+                bullet = new RailBulletType(){{
+                    damage = 1500f;
+                    length = 530;
+                    lightColor = hitColor = lightningColor = Color.valueOf("feb380");
+                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusShoot);
+                    pierceEffect = ExoFx.ColorRailHit;
+                    hitEffect = Fx.massiveExplosion;
+                    smokeEffect = Fx.shootBig2;
+                    endEffect = new Effect(24f,530, e -> {
+                        color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 16f, 13f, e.rotation);
+                    });
+                    lineEffect = new Effect(30f, 530, e -> {
+                        if(!(e.data instanceof Vec2 v)) return;
+
+                        color(e.color);
+                        stroke(e.fout() * 1.1f + 0.6f);
+
+                        Fx.rand.setSeed(e.id);
+                        for(int i = 0; i < 7; i++){
+                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                        }
+                        e.scaled(30f, b -> {
+                            stroke(b.fout() * 19f);
+                            color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                        e.scaled(30f, b -> {
+                            stroke(b.fout() * 15f);
+                            color(Color.white);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                    });
+                    pierceDamageFactor = 0.6f;
+                    collidesTiles = true;
                 }};
             }});
         }};
