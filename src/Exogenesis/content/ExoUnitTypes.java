@@ -166,13 +166,13 @@ public class ExoUnitTypes {
                     damage = 1500f;
                     length = 530;
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
-                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusShoot);
+                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusShootShockWave1, ExoFx.PrometheusShootShockWave2, ExoFx.PrometheusShoot);
                     pierceEffect = ExoFx.ColorRailHit;
                     hitEffect = Fx.massiveExplosion;
                     smokeEffect = Fx.shootBig2;
                     endEffect = new Effect(24f,530, e -> {
                         color(e.color);
-                        Drawf.tri(e.x, e.y, e.fout() * 16f, 8f, e.rotation);
+                        Drawf.tri(e.x, e.y, e.fout() * 16f, 13f, e.rotation);
                     });
                     lineEffect = new Effect(30f, 530, e -> {
                         if(!(e.data instanceof Vec2 v)) return;
@@ -186,12 +186,12 @@ public class ExoUnitTypes {
                             Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
                         }
                         e.scaled(30f, b -> {
-                            stroke(b.fout() * 16f);
+                            stroke(b.fout() * 19f);
                             color(e.color);
                             Lines.line(e.x, e.y, v.x, v.y);
                         });
                         e.scaled(30f, b -> {
-                            stroke(b.fout() * 10f);
+                            stroke(b.fout() * 15f);
                             color(Color.white);
                             Lines.line(e.x, e.y, v.x, v.y);
                         });
