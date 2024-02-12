@@ -58,15 +58,33 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
-            shootShockWave = new Effect(35f, 600f, e -> {
+
+    PrometheusShoot = new Effect(24f, e -> {
+        e.scaled(10f, b -> {
+            color(Color.white, Color.valueOf("feb380"), b.fin());
+            stroke(b.fout() * 3f + 0.2f);
+            Lines.circle(b.x, b.y, b.fin() * 50f);
+        });
+
+        color(Color.valueOf("feb380"));
+
+        for(int i : Mathf.signs){
+            Drawf.tri(e.x, e.y, 13f * e.fout(), 85f, e.rotation + 90f * i);
+            Drawf.tri(e.x, e.y, 13f * e.fout(), 50f, e.rotation + 20f * i);
+        }
+
+        Drawf.light(e.x, e.y, 180f, Color.valueOf("feb380"), 0.9f * e.fout());
+    }),
+            PrometheusShootShockWave = new Effect(35f, 600f, e -> {
                 //GraphicUtils.drawShockWave(e.x, e.y, 75f, 0f, -e.rotation - 90f, 200f, 4f, 12);
                 color(Color.white);
                 alpha(0.666f * e.fout());
 
                 float size = e.data instanceof Float ? (float)e.data : 200f;
-                float nsize = size - 7f;
-
-                GraphicUtils.drawShockWave(e.x, e.y, -75f, 0f, -e.rotation - 90f, nsize * e.finpow() + 7, 10f * e.finpow() + 4f, 16, 1f);
+                float nsize = size - 5f;
+                GraphicUtils.drawShockWave(e.x, 19, -75f, 0f, -e.rotation - 90f, nsize * e.finpow() + 3.5f, 8f * e.finpow() + 4f, 16, 1f);
+                GraphicUtils.drawShockWave(e.x, 14, -75f, 0f, -e.rotation - 90f, nsize * e.finpow() + 3.5f, 8f * e.finpow() + 4f, 16, 1f);
+                GraphicUtils.drawShockWave(e.x, e.y, -75f, 0f, -e.rotation - 90f, nsize * e.finpow() + 5, 8f * e.finpow() + 4f, 16, 1f);
             }).layer((Layer.bullet + Layer.effect) / 2),
             ullrChargeEffect = new Effect(40f, e -> {
                 Angles.randLenVectors(e.id, 2, 10f, 90f, (x, y) -> {
@@ -111,7 +129,7 @@ public class ExoFx{
                 color(Color.valueOf(String.valueOf(ExoPal.empyrean)));
                 Fill.circle(e.x, e.y, e.fin() * 20f);
                 color(Color.white);
-                Fill.circle(e.x, e.y, e.fin() * 10f);
+                Fill.circle(e.x, e.y, e.fin() * 17f);
             }),
     colorBomb = new Effect(40f, 100f, e -> {
         color(e.color);
