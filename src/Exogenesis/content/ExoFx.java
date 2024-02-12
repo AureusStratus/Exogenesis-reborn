@@ -66,7 +66,7 @@ public class ExoFx{
                 color(Color.white);
                 alpha(0.666f * e.fout());
 
-                GraphicUtils.drawShockWave(e.x, 30, -75f, 20f, -e.rotation - 90f, 8.5f, 6f * e.finpow() + 4f, 16, 2f);
+                GraphicUtils.drawShockWave(e.x, 30, -75f, 60f, -e.rotation - 90f, 11.5f, 6f * e.finpow() + 4f, 16, 1f);
                 float size = e.data instanceof Float ? (float)e.data : 200f;
                 float nsize = size - 4f;
                 GraphicUtils.drawShockWave(e.x, e.y, -75f, 8f, -e.rotation - 90f, nsize * e.finpow() + 4, 8f * e.finpow() + 4f, 16, 1f);

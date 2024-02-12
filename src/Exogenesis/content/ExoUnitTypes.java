@@ -175,11 +175,12 @@ public class ExoUnitTypes {
                     trailRotation = true;
                     width = 26f;
                     accel = 50;
-                    laserSpeed = 30;
+                    laserSpeed = 50;
                     pierceAmount = 20;
+                    pierceBuilding = true;
                     pierceArmor = true;
                     damageType = DamageType.pierce;
-                    collisionWidth = 15f;
+                    collisionWidth = 10f;
                     colors = new Color[]{ExoPal.prometheusColor.cpy().a(0.4f), ExoPal.prometheusColor, Color.white};
                     hitEffect = ExoFx.ullarTipHit;
                 }};
