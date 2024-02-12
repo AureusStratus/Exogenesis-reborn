@@ -1,6 +1,7 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
 import Exogenesis.util.struct.*;
+import Exogenesis.util.util.GraphicUtils;
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -57,6 +58,16 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
+            shootShockWave = new Effect(35f, 600f, e -> {
+                //GraphicUtils.drawShockWave(e.x, e.y, 75f, 0f, -e.rotation - 90f, 200f, 4f, 12);
+                color(Color.white);
+                alpha(0.666f * e.fout());
+
+                float size = e.data instanceof Float ? (float)e.data : 200f;
+                float nsize = size - 7f;
+
+                GraphicUtils.drawShockWave(e.x, e.y, -75f, 0f, -e.rotation - 90f, nsize * e.finpow() + 7, 10f * e.finpow() + 4f, 16, 1f);
+            }).layer((Layer.bullet + Layer.effect) / 2),
             ullrChargeEffect = new Effect(40f, e -> {
                 Angles.randLenVectors(e.id, 2, 10f, 90f, (x, y) -> {
                     float angle = Mathf.angle(x, y);

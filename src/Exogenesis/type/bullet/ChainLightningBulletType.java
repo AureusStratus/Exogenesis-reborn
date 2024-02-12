@@ -37,6 +37,7 @@ public class ChainLightningBulletType extends ExoBulletType {
         keepVelocity = false;
         hittable = false;
         collides = false;
+        collidesTeam = false;
         jumpDamageFactor = 0.85f;
         distanceDamageFalloff = 0.65f;
         targetRange = -1;
@@ -84,7 +85,7 @@ public class ChainLightningBulletType extends ExoBulletType {
 
         for (int i = 0; i < Math.min(chainLightning, units.size); i++) {
             Unit unit = units.get(i);
-            if(!unit.targetable(b.team)) break;
+            if(!unit.targetable(b.team) || !(collidesTeam || unit.team != b.team)) break;
             float dst = unit.dst(b);
             if(dst > range) break;
             float dst2 = unit.dst(aimPos);
@@ -104,7 +105,7 @@ public class ChainLightningBulletType extends ExoBulletType {
         Geometry.circle(b.tileX(), b.tileY(), World.toTile(range), (x, y) -> {
             Tile t = Vars.world.tile(x, y);
 
-            if(t == null || t.build == null || t.build.dst(aimPos) > targetRange || t.build.team.id == b.team.id) return;
+            if(t == null || t.build == null || t.build.dst(aimPos) > targetRange || t.build.team.id == b.team.id && !collidesTeam || buildings.contains(t.build)) return;
             buildings.add(t.build);
         });
 
@@ -113,9 +114,9 @@ public class ChainLightningBulletType extends ExoBulletType {
             return;
         }
 
-        buildings.sort(build -> build.dst2(aimPos));
+        int builds = Math.min(charges, buildings.size);
 
-        for (int i = 0; i < Math.min(charges, buildings.size); i++) {
+        for (int i = 0; i < builds; i++) {
             Building build = buildings.get(i);
 
             build.damage(damage);
