@@ -1,28 +1,19 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
-import Exogenesis.util.struct.*;
 import Exogenesis.util.util.GraphicUtils;
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
-import arc.struct.*;
 import arc.util.*;
 import mindustry.entities.*;
-import mindustry.entities.abilities.*;
-import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.type.*;
-import mindustry.world.*;
-import mindustry.world.blocks.units.UnitAssembler.*;
 
 import static arc.graphics.g2d.Draw.rect;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
-import static mindustry.Vars.*;
-import java.util.Arrays;
 import static arc.math.Angles.randLenVectors;
 import static mindustry.Vars.state;
 
@@ -59,7 +50,7 @@ public class ExoFx{
         }
     }),
 
-    PrometheusShoot = new Effect(40f, e -> {
+    PrometheusShoot = new Effect(80f, e -> {
         color(Color.valueOf("feb380"));
 
         for(int i : Mathf.signs){
@@ -75,7 +66,7 @@ public class ExoFx{
                 color(Color.white);
                 alpha(0.666f * e.fout());
 
-                GraphicUtils.drawShockWave(e.x, e.y, -65f, 0f, -e.rotation - 90f, 3.5f, 6f * e.finpow() + 4f, 16, 1f);
+                GraphicUtils.drawShockWave(e.x, e.y, -75f, 20f, -e.rotation - 90f, 3.5f, 6f * e.finpow() + 4f, 16, 2f);
                 float size = e.data instanceof Float ? (float)e.data : 200f;
                 float nsize = size - 5f;
                 GraphicUtils.drawShockWave(e.x, e.y, -75f, 8f, -e.rotation - 90f, nsize * e.finpow() + 5, 8f * e.finpow() + 4f, 16, 1f);
@@ -151,7 +142,7 @@ public class ExoFx{
 
         Drawf.light(e.x, e.y, circleRad * 1.6f, e.color, e.fout());
     }),
-            empyreancharge = new Effect(100f, 100f, e -> {
+            empyreanCharge = new Effect(100f, 100f, e -> {
                 color(ExoPal.empyrean);
                 stroke(e.fin() * 5f);
                 float circleRad = 6f + e.finpow() * -65f;
@@ -195,7 +186,7 @@ public class ExoFx{
             }),
             colorBombSmaller = new Effect(30f, 100f, e -> {
                 color(e.color);
-                stroke(e.fout() * 1f);
+                stroke(e.fout());
                 float circleRad = 3f + e.finpow() * 18f;
                 Lines.circle(e.x, e.y, circleRad);
 
@@ -439,7 +430,7 @@ public class ExoFx{
 
     colorBombSmall = new Effect(40f, 100f, e -> {
         color(e.color);
-        stroke(e.fout() * 1f);
+        stroke(e.fout());
         float circleRad = 4f + e.finpow() * 30f;
         Lines.circle(e.x, e.y, circleRad);
 

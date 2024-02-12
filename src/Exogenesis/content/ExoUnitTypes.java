@@ -55,7 +55,7 @@ public class ExoUnitTypes {
             rotateSpeed = 0.45f;
             treadRects = new Rect[]{new Rect(65, 70, 131, 180), new Rect(46, -248, 85, 63), new Rect(166, -183.5f, 32, 39)};
             weapons.add(new Weapon("exogenesis-prometheus-cannon"){{
-                shootSound = Sounds.largeCannon;
+                shootSound = Sounds.shootSmite;
                 soundPitchMin = 1f;
                 minWarmup = 0.7f;
                 smoothReloadSpeed = 0.08f;
@@ -163,7 +163,7 @@ public class ExoUnitTypes {
                 }}
                 );
                 bullet = new AcceleratingLaserBulletType(140f){{
-                    lifetime = 40f;
+                    lifetime = 90f;
                     maxLength = 530f;
                     maxRange = 530f;
                     oscOffset = 0.3f;
@@ -174,6 +174,7 @@ public class ExoUnitTypes {
                     trailInterval = 2;
                     trailRotation = true;
                     width = 16f;
+                    accel = 50;
                     laserSpeed = 30;
                     pierceAmount = 20;
                     pierceArmor = true;
