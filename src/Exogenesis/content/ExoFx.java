@@ -59,18 +59,19 @@ public class ExoFx{
         }
     }),
 
-    PrometheusShoot = new Effect(24f, e -> {
+    PrometheusShoot = new Effect(30f, e -> {
         color(Color.valueOf("feb380"));
 
         for(int i : Mathf.signs){
-            Drawf.tri(e.x, e.y, 16f * e.fout(), 125f, e.rotation + 90f * i);
+            Drawf.tri(e.x, e.y, 13f * e.fout(), 145f, e.rotation + -30f * i);
+            Drawf.tri(e.x, e.y, 19f * e.fout(), 175f, e.rotation + 90f * i);
             Drawf.tri(e.x, e.y, 16f * e.fout(), 80f, e.rotation + 20f * i);
         }
 
         Drawf.light(e.x, e.y, 180f, Color.valueOf("feb380"), 0.9f * e.fout());
     }),
             PrometheusShootShockWave = new Effect(35f, 600f, e -> {
-                //GraphicUtils.drawShockWave(e.x, e.y, 75f, 0f, -e.rotation - 90f, 200f, 4f, 12);
+                GraphicUtils.drawShockWave(e.x, e.y, 75f, 0f, -e.rotation - 90f, 200f, 4f, 12);
                 color(Color.white);
                 alpha(0.666f * e.fout());
 
@@ -303,11 +304,11 @@ public class ExoFx{
                 }
                 Drawf.light(e.x, e.y, 60f * e.fout(), e.color, 0.5f);
             }),
-            ColorRailHit = new Effect(18f, 200f, e -> {
+            ColorRailHit = new Effect(22f, 200f, e -> {
                 color(e.color);
                 for(int i : Mathf.signs){
-                    Drawf.tri(e.x, e.y, 10f * e.fout(), 50f, e.rotation + 140f * i);
-                    Drawf.tri(e.x, e.y, 5f * e.fout(), 70f, e.rotation + 170f * i);
+                    Drawf.tri(e.x, e.y, 14f * e.fout(), 70f, e.rotation + 140f * i);
+                    Drawf.tri(e.x, e.y, 8f * e.fout(), 90f, e.rotation + 170f * i);
                 }
             }),
             ColorRailShoot = new Effect(24f, e -> {

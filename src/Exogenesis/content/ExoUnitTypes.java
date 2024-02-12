@@ -196,7 +196,7 @@ public class ExoUnitTypes {
                             Lines.line(e.x, e.y, v.x, v.y);
                         });
                     });
-                    pierceDamageFactor = 0.3f;
+                    pierceDamageFactor = 0.6f;
                     collidesTiles = true;
                 }};
             }});
