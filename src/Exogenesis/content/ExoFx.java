@@ -70,7 +70,7 @@ public class ExoFx{
                 float nsize = size - 4f;
                 GraphicUtils.drawShockWave(e.x, e.y, -75f, 8f, -e.rotation - 90f, nsize * e.finpow() + 4, 8f * e.finpow() + 4f, 16, 1f);
             }).layer((Layer.bullet + Layer.effect) / 2),
-            PrometheusBeamShockWave2 = new Effect(60f, 600f, e -> {
+            PrometheusBeamShockWave = new Effect(60f, 600f, e -> {
                 Draw.z(Layer.effect);
                 Draw.color(ExoPal.prometheusColor,e.fout());
                 Tmp.v1.trns(e.rotation, e.fin()*20f);
@@ -83,7 +83,7 @@ public class ExoFx{
             ullrChargeEffect = new Effect(40f, e -> {
                 Angles.randLenVectors(e.id, 2, 10f, 90f, (x, y) -> {
                     float angle = Mathf.angle(x, y);
-                    color(Pal.heal, Pal.heal, e.fin());
+                    color(e.color, e.color, e.fin());
                     Lines.stroke(1.5f);
                     Lines.lineAngleCenter(e.x + (x * e.fout()), e.y + (y * e.fout()), angle, e.fslope() * 13f);
                 });
