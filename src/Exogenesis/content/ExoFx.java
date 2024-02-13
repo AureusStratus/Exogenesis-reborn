@@ -66,19 +66,20 @@ public class ExoFx{
                 color(Color.white);
                 alpha(0.666f * e.fout());
 
-                GraphicUtils.drawShockWave(e.x, 30, -75f, 60f, -e.rotation - 90f, 11.5f, 6f * e.finpow() + 4f, 16, 1f);
                 float size = e.data instanceof Float ? (float)e.data : 200f;
                 float nsize = size - 4f;
                 GraphicUtils.drawShockWave(e.x, e.y, -75f, 8f, -e.rotation - 90f, nsize * e.finpow() + 4, 8f * e.finpow() + 4f, 16, 1f);
             }).layer((Layer.bullet + Layer.effect) / 2),
-            PrometheusBeamShockWave2 = new Effect(35f, 600f, e -> {
-                color(Color.white);
-                alpha(0.666f * e.fout());
+            PrometheusBeamShockWave2 = new Effect(60f, 600f, e -> {
+                Draw.z(Layer.effect);
+                Draw.color(ExoPal.prometheusColor,e.fout());
+                Tmp.v1.trns(e.rotation, e.fin()*20f);
+                Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 10f * e.fin()+0.1f,8,12, e.rotation);
+                Tmp.v2.trns(e.rotation, e.fin()*10f);
+                Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 10f*e.fin()+0.1f,8, 16,  e.rotation);
+                Lines.stroke(2f*e.fout());
+            }),
 
-                float size = e.data instanceof Float ? (float)e.data : 200f;
-                float nsize = size - 1f;
-                GraphicUtils.drawShockWave(e.x, 19, -75f, 0f, -e.rotation - 90f, nsize * e.finpow() + 1f, 6f * e.finpow() + 4f, 16, 1f);
-            }).layer((Layer.bullet + Layer.effect) / 2),
             ullrChargeEffect = new Effect(40f, e -> {
                 Angles.randLenVectors(e.id, 2, 10f, 90f, (x, y) -> {
                     float angle = Mathf.angle(x, y);
