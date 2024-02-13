@@ -170,15 +170,6 @@ public class ExoUnitTypes {
                     oscOffset = 0.3f;
                     lightColor = hitColor = lightningColor = ExoPal.prometheusColor;
                     shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusBeamShockWave, ExoFx.PrometheusShoot);
-                    smokeEffect = new Effect(60,e->{
-                        Draw.z(Layer.effect);
-                        Draw.color(Color.white,e.fout());
-                        Tmp.v1.trns(e.rotation, e.fin()*20f);
-                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 10f * e.fin()+0.1f,8,12, e.rotation);
-                        Tmp.v2.trns(e.rotation, e.fin()*10f);
-                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 10f*e.fin()+0.1f,8, 16,  e.rotation);
-                        Lines.stroke(2f*e.fout());
-                    });
                     width = 26f;
                     accel = 80;
                     laserSpeed = 50;
