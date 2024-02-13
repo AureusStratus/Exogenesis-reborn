@@ -11,6 +11,7 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
+import arc.util.Tmp;
 import mindustry.ai.*;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
@@ -162,19 +163,27 @@ public class ExoUnitTypes {
                     moveRot = 83f;
                 }}
                 );
-                bullet = new AcceleratingLaserBulletType(140f){{
+                bullet = new AcceleratingLaserBulletType(240f){{
                     lifetime = 90f;
                     maxLength = 530f;
                     maxRange = 530f;
                     oscOffset = 0.3f;
                     lightColor = hitColor = lightningColor = ExoPal.prometheusColor;
-                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusShoot);
+                    shootEffect = new Effect(60,e->{
+                        Draw.z(Layer.effect);
+                        Draw.color(Color.white,e.fout());
+                        Tmp.v1.trns(e.rotation, e.fin()*20f);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.5f*e.fin()+0.1f,8*1,16, e.rotation);
+                        Tmp.v2.trns(e.rotation, e.fin()*10f);
+                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.5f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                        Lines.stroke(2f*e.fout());
+                    });
                     trailEffect = ExoFx.PrometheusBeamShockWave2;
                     trailChance = 1;
                     trailInterval = 2;
                     trailRotation = true;
                     width = 26f;
-                    accel = 50;
+                    accel = 80;
                     laserSpeed = 50;
                     pierceAmount = 20;
                     pierceBuilding = true;
