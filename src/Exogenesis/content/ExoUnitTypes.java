@@ -4111,12 +4111,22 @@ public class ExoUnitTypes {
                     damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
-                    shootEffect = Fx.shootBigColor;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
+                    smokeEffect = new Effect(60,e->{
+                        Draw.z(Layer.effect);
+                        Draw.color(Pal.heal,e.fout());
+                        Tmp.v1.trns(e.rotation, e.fin()*20f);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.5f*e.fin()+0.1f,8,16, e.rotation);
+                        Tmp.v2.trns(e.rotation, e.fin()*10f);
+                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.7f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                        Lines.stroke(3f*e.fout());
+                    });
                     hitEffect = Fx.hitBulletColor;
                     pierceDamageFactor = 0.8f;
-                    smokeEffect = Fx.colorSpark;
                     endEffect = new Effect(14f, e -> {
                         color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                        color(Color.white);
                         Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
                     });
                     lineEffect = new Effect(20f, e -> {
@@ -4134,6 +4144,11 @@ public class ExoUnitTypes {
                         e.scaled(14f, b -> {
                             stroke(b.fout() * 3f);
                             color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 1.5f);
+                            color(Color.white);
                             Lines.line(e.x, e.y, v.x, v.y);
                         });
                     });
@@ -4170,12 +4185,22 @@ public class ExoUnitTypes {
                     damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
-                    shootEffect = Fx.shootBigColor;
-                    hitEffect = endEffect = Fx.hitBulletColor;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
+                    smokeEffect = new Effect(60,e->{
+                        Draw.z(Layer.effect);
+                        Draw.color(Pal.heal,e.fout());
+                        Tmp.v1.trns(e.rotation, e.fin()*20f);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.5f*e.fin()+0.1f,8,16, e.rotation);
+                        Tmp.v2.trns(e.rotation, e.fin()*10f);
+                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.7f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                        Lines.stroke(3f*e.fout());
+                    });
+                    hitEffect = Fx.hitBulletColor;
                     pierceDamageFactor = 0.8f;
-                    smokeEffect = Fx.colorSpark;
                     endEffect = new Effect(14f, e -> {
                         color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                        color(Color.white);
                         Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
                     });
                     lineEffect = new Effect(20f, e -> {
@@ -4193,6 +4218,11 @@ public class ExoUnitTypes {
                         e.scaled(14f, b -> {
                             stroke(b.fout() * 3f);
                             color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 1.5f);
+                            color(Color.white);
                             Lines.line(e.x, e.y, v.x, v.y);
                         });
                     });
@@ -4229,12 +4259,22 @@ public class ExoUnitTypes {
                     damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
-                    shootEffect = Fx.shootBigColor;
-                    hitEffect = endEffect = Fx.hitBulletColor;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
+                    smokeEffect = new Effect(60,e->{
+                        Draw.z(Layer.effect);
+                        Draw.color(Pal.heal,e.fout());
+                        Tmp.v1.trns(e.rotation, e.fin()*20f);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.5f*e.fin()+0.1f,8,16, e.rotation);
+                        Tmp.v2.trns(e.rotation, e.fin()*10f);
+                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.7f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                        Lines.stroke(3f*e.fout());
+                    });
+                    hitEffect = Fx.hitBulletColor;
                     pierceDamageFactor = 0.8f;
-                    smokeEffect = Fx.colorSpark;
                     endEffect = new Effect(14f, e -> {
                         color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                        color(Color.white);
                         Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
                     });
                     lineEffect = new Effect(20f, e -> {
@@ -4252,6 +4292,11 @@ public class ExoUnitTypes {
                         e.scaled(14f, b -> {
                             stroke(b.fout() * 3f);
                             color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 1.5f);
+                            color(Color.white);
                             Lines.line(e.x, e.y, v.x, v.y);
                         });
                     });
@@ -4288,12 +4333,22 @@ public class ExoUnitTypes {
                     damage = 138f;
                     damageType = DamageType.pierce;
                     hitColor = Pal.heal;
-                    shootEffect = Fx.shootBigColor;
-                    hitEffect = endEffect = Fx.hitBulletColor;
+                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
+                    smokeEffect = new Effect(60,e->{
+                        Draw.z(Layer.effect);
+                        Draw.color(Pal.heal,e.fout());
+                        Tmp.v1.trns(e.rotation, e.fin()*20f);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.5f*e.fin()+0.1f, 8,16, e.rotation);
+                        Tmp.v2.trns(e.rotation, e.fin()*10f);
+                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.7f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                        Lines.stroke(3f*e.fout());
+                    });
+                    hitEffect = Fx.hitBulletColor;
                     pierceDamageFactor = 0.8f;
-                    smokeEffect = Fx.colorSpark;
                     endEffect = new Effect(14f, e -> {
                         color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
+                        color(Color.white);
                         Drawf.tri(e.x, e.y, e.fout() * 3f, 5f, e.rotation);
                     });
                     lineEffect = new Effect(20f, e -> {
@@ -4311,6 +4366,11 @@ public class ExoUnitTypes {
                         e.scaled(14f, b -> {
                             stroke(b.fout() * 3f);
                             color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 1.5f);
+                            color(Color.white);
                             Lines.line(e.x, e.y, v.x, v.y);
                         });
                     });

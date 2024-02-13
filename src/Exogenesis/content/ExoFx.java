@@ -73,8 +73,7 @@ public class ExoFx{
             PrometheusBeamShockWave = new Effect(45f, 600f, e -> {
                 Draw.z(Layer.effect);
                 Draw.color(ExoPal.prometheusColor,e.fout());
-                Lines.stroke(6f*e.fout());
-                Tmp.v1.trns(e.rotation, e.fin()*30f);
+                Lines.stroke(6f*e.fout());               Tmp.v1.trns(e.rotation, e.fin()*30f);
                 Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 3f * e.fin()+0.1f,6,10, e.rotation);
                 Tmp.v1.trns(e.rotation, e.fin()*20f);
                 Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 5f * e.fin()+0.1f,8,12, e.rotation);
