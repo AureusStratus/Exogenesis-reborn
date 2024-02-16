@@ -139,22 +139,23 @@ public class ExoUnitTypes {
                     triLength = 0;
                 }},
                 new RegionPart("-tungsten-sinks"){{
-                    mirror = true;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -15f, 0f));
+                    mirror = false;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -6f, 0f));
                 }},
                 new RegionPart("-barrels"){{
-                    mirror = under = true;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -30f, 0f));
+                    mirror = false;
+                    under = true;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -14f, 0f));
                 }}
                 );
                 bullet = new BasicBulletType(14.5f, 820){{
                     sprite = "missile-large";
-                    width = 16f;
+                    width = 14f;
                     height = 36f;
                     splashDamage = 157;
                     splashDamageRadius = 50;
                     hitSound = Sounds.titanExplosion;
-                    lifetime = 45f;
+                    lifetime = 38f;
                     hitColor = trailColor = backColor = ExoPal.prometheusColor;
                     status = StatusEffects.blasted;
                     statusDuration = 100;
@@ -162,14 +163,16 @@ public class ExoUnitTypes {
                         Draw.z(Layer.effect);
                         Draw.color(ExoPal.prometheusColor,e.fout());
                         Tmp.v1.trns(e.rotation, e.fin()*20f);
-                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 1.5f*e.fin()+0.1f, 8,16, e.rotation);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.8f*e.fin()+0.1f, 8,16, e.rotation);
                         Tmp.v2.trns(e.rotation, e.fin()*10f);
-                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 1.3f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.6f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
                         Lines.stroke(4f*e.fout());
                     });
-                    shootEffect = new MultiEffect(Fx.shootBig2, Fx.flakExplosionBig, Fx.titanExplosion);
+                    shootEffect = new MultiEffect(Fx.shootBig2, Fx.blastExplosion);
                     hitEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.PrometheusExplosionSplash, Fx.flakExplosionBig);
                     trailEffect = new MultiEffect(ExoFx.ShockWaveTrail);
+                    trailChance = 1;
+                    trailInterval = 3;
                     trailLength = 10;
                     trailWidth = 4.5f;
                 }};

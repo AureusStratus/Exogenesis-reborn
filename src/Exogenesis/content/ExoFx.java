@@ -64,23 +64,23 @@ public class ExoFx{
                     float lenScl = rand.random(0.5f, 1f);
                     int fi = i;
                     b.scaled(b.lifetime * lenScl, e -> {
-                        randLenVectors(e.id + fi - 1, e.fin(Interp.pow10Out), (int)(2.9f * intensity), 42f * intensity, (x, y, in, out) -> {
+                        randLenVectors(e.id + fi - 1, e.fin(Interp.pow10Out), (int)(2.9f * intensity), 32f * intensity, (x, y, in, out) -> {
                             float fout = e.fout(Interp.pow5Out) * rand.random(0.5f, 1f);
                             float rad = fout * ((2f + intensity) * 2.35f);
 
                             Fill.circle(e.x + x, e.y + y, rad);
-                            Drawf.light(e.x + x, e.y + y, rad * 2.5f, b.color, 0.5f);
+                            Drawf.light(e.x + x, e.y + y, rad * 3.5f, b.color, 0.5f);
                         });
                     });
                 }
             }),
-            PrometheusExplosionSplash = new Effect(30f, 160f, e -> {
+            PrometheusExplosionSplash = new Effect(40f, 160f, e -> {
                 color(e.color);
                 stroke(e.fout() * 5f);
-                float circleRad = 10f + e.finpow() * 60f;
+                float circleRad = 12f + e.finpow() * 60f;
                 Lines.circle(e.x, e.y, circleRad);
                 stroke(e.fout());
-                randLenVectors(e.id + 1, 4, 5f + 60f * e.finpow(), (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f + e.fout() * 3f));
+                randLenVectors(e.id + 1, 8, 6f + 60f * e.finpow(), (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f + e.fout() * 3f));
                 rand.setSeed(e.id);
                 for(int i = 0; i < 16; i++){
                     float angle = rand.random(360f);
