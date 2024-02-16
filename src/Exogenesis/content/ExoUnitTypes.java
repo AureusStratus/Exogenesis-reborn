@@ -148,7 +148,7 @@ public class ExoUnitTypes {
                     moves.add(new PartMove(PartProgress.recoil, 0f, -14f, 0f));
                 }}
                 );
-                bullet = new BasicBulletType(14.5f, 820){{
+                bullet = new BasicBulletType(13f, 820){{
                     sprite = "missile-large";
                     width = 14f;
                     height = 36f;
@@ -172,7 +172,8 @@ public class ExoUnitTypes {
                     hitEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.PrometheusExplosionSplash, Fx.flakExplosionBig);
                     trailEffect = new MultiEffect(ExoFx.ShockWaveTrail);
                     trailChance = 1;
-                    trailInterval = 3;
+                    trailInterval = 25;
+                    trailRotation = true;
                     trailLength = 10;
                     trailWidth = 4.5f;
                 }};
