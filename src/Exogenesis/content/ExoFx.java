@@ -49,7 +49,49 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
+            shootGiant = new Effect(10, e -> {
+                color(Pal.lightOrange, Color.gray, e.fin());
+                float w = 1.2f + 12 * e.fout();
+                Drawf.tri(e.x, e.y, w, 29f * e.fout(), e.rotation);
+                Drawf.tri(e.x, e.y, w, 5f * e.fout(), e.rotation + 180f);
+            }),
+            PrometheusSmoke = new Effect(300f, 300f, b -> {
+                float intensity = 4f;
 
+                color(b.color, 0.7f);
+                for(int i = 0; i < 4; i++){
+                    rand.setSeed(b.id*2 + i);
+                    float lenScl = rand.random(0.5f, 1f);
+                    int fi = i;
+                    b.scaled(b.lifetime * lenScl, e -> {
+                        randLenVectors(e.id + fi - 1, e.fin(Interp.pow10Out), (int)(2.9f * intensity), 42f * intensity, (x, y, in, out) -> {
+                            float fout = e.fout(Interp.pow5Out) * rand.random(0.5f, 1f);
+                            float rad = fout * ((2f + intensity) * 2.35f);
+
+                            Fill.circle(e.x + x, e.y + y, rad);
+                            Drawf.light(e.x + x, e.y + y, rad * 2.5f, b.color, 0.5f);
+                        });
+                    });
+                }
+            }),
+            PrometheusExplosionSplash = new Effect(30f, 160f, e -> {
+                color(e.color);
+                stroke(e.fout() * 5f);
+                float circleRad = 10f + e.finpow() * 60f;
+                Lines.circle(e.x, e.y, circleRad);
+                stroke(e.fout());
+                randLenVectors(e.id + 1, 4, 5f + 60f * e.finpow(), (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f + e.fout() * 3f));
+                rand.setSeed(e.id);
+                for(int i = 0; i < 16; i++){
+                    float angle = rand.random(360f);
+                    float lenRand = rand.random(0.5f, 1f);
+                    Tmp.v1.trns(angle, circleRad);
+
+                    for(int s : Mathf.signs){
+                        Drawf.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, e.foutpow() * 30f, e.fout() * 20f * lenRand + 6f, angle + 90f + s * 90f);
+                    }
+                }
+            }),
     PrometheusShoot = new Effect(80f, e -> {
         color(Color.valueOf("feb380"));
 
@@ -61,14 +103,14 @@ public class ExoFx{
 
         Drawf.light(e.x, e.y, 180f, Color.valueOf("feb380"), 0.9f * e.fout());
     }).followParent(true).rotWithParent(true),
-            PrometheusShootShockWave = new Effect(35f, 600f, e -> {
+            ShockWaveTrail = new Effect(25f, 600f, e -> {
                 //GraphicUtils.drawShockWave(e.x, e.y, 75f, 0f, -e.rotation - 90f, 200f, 4f, 12);
                 color(Color.white);
                 alpha(0.666f * e.fout());
 
                 float size = e.data instanceof Float ? (float)e.data : 200f;
                 float nsize = size - 4f;
-                GraphicUtils.drawShockWave(e.x, e.y, -75f, 8f, -e.rotation - 90f, nsize * e.finpow() + 4, 8f * e.finpow() + 4f, 16, 1f);
+                GraphicUtils.drawShockWave(e.x, e.y, -35f, 8f, -e.rotation - 90f, nsize * e.finpow() + 4, 5f * e.finpow() + 4f, 16, 1f);
             }).layer((Layer.bullet + Layer.effect) / 2),
             PrometheusBeamShockWave = new Effect(45f, 600f, e -> {
                 Draw.z(Layer.effect);

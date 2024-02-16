@@ -55,31 +55,31 @@ public class ExoUnitTypes {
             treadPullOffset = 1;
             rotateSpeed = 0.45f;
             treadRects = new Rect[]{new Rect(65, 70, 131, 180), new Rect(46, -248, 85, 63), new Rect(166, -183.5f, 32, 39)};
-            weapons.add(new Weapon("exogenesis-prometheus-cannon"){{
-                shootSound = Sounds.shootSmite;
+            weapons.add(new Weapon("exogenesis-prometheus-weapon"){{
+                shootSound = ExoSounds.cannon;
                 soundPitchMin = 1f;
-                minWarmup = 0.7f;
-                smoothReloadSpeed = 0.08f;
-                shootWarmupSpeed = 0.03f;
                 shadow = 50f;
                 heatColor = Color.valueOf("f9350f");
                 top = rotate = continuous = true;
                 mirror = false;
                 shake = 14f;
-                shootY = 8f;
+                shootY = 0f;
                 x = y = 0;
-                reload = 200f;
+                reload = 300f;
                 recoil = 3f;
                 layerOffset = 1;
                 rotateSpeed = 0.6f;
-                cooldownTime = 250f;
+                cooldownTime = 350f;
+                shoot = new ShootBarrel(){{
+                    shots = 4;
+                    barrels = new float[]{
+                    6.75f, 61.75f, 0f,
+                    -6.75f, 61.75f, 0f,
+                    19.75f, 61.75f, 0f,
+                    -19.75f, 61.75f, 0f,
+                    };
+                }};
                 parts.addAll(
-                new RegionPart("-glow"){{
-                    color = Color.red;
-                    colorTo = Color.red;
-                    blending = Blending.additive;
-                    outline = mirror = false;
-                }},
                 new ShapePart(){{
                     progress = PartProgress.warmup.delay(0.2f);
                     color = Color.valueOf("feb380");
@@ -138,48 +138,40 @@ public class ExoUnitTypes {
                     triLengthTo = 4f;
                     triLength = 0;
                 }},
-                new RegionPart("-spine1"){{
-                    mirror = under = true;
-                    x = 9;
-                    y = 54;
-                    progress = PartProgress.warmup;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, 0f, 13f));
-                    moveRot = 50f;
+                new RegionPart("-tungsten-sinks"){{
+                    mirror = true;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -15f, 0f));
                 }},
-                new RegionPart("-spine1"){{
+                new RegionPart("-barrels"){{
                     mirror = under = true;
-                    x = 9;
-                    y = 62;
-                    progress = PartProgress.warmup;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, 0f, 16f));
-                    moveRot = 68f;
-                }},
-                new RegionPart("-spine2"){{
-                    mirror = under = true;
-                    x = 9;
-                    y = 68;
-                    progress = PartProgress.warmup;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, 0f, 18f));
-                    moveRot = 83f;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -30f, 0f));
                 }}
                 );
-                bullet = new AcceleratingLaserBulletType(400f){{
-                    lifetime = 90f;
-                    maxLength = 530f;
-                    maxRange = 530f;
-                    oscOffset = 0.3f;
-                    lightColor = hitColor = lightningColor = ExoPal.prometheusColor;
-                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusBeamShockWave, ExoFx.PrometheusShoot);
-                    width = 26f;
-                    accel = 80;
-                    laserSpeed = 50;
-                    pierceAmount = 20;
-                    pierceBuilding = true;
-                    pierceArmor = true;
-                    damageType = DamageType.pierce;
-                    collisionWidth = 10f;
-                    colors = new Color[]{ExoPal.prometheusColor.cpy().a(0.4f), ExoPal.prometheusColor, Color.white};
-                    hitEffect = ExoFx.ullarTipHit;
+                bullet = new BasicBulletType(14.5f, 820){{
+                    sprite = "missile-large";
+                    width = 16f;
+                    height = 36f;
+                    splashDamage = 157;
+                    splashDamageRadius = 50;
+                    hitSound = Sounds.titanExplosion;
+                    lifetime = 45f;
+                    hitColor = trailColor = backColor = ExoPal.prometheusColor;
+                    status = StatusEffects.blasted;
+                    statusDuration = 100;
+                    smokeEffect = new Effect(30,e->{
+                        Draw.z(Layer.effect);
+                        Draw.color(ExoPal.prometheusColor,e.fout());
+                        Tmp.v1.trns(e.rotation, e.fin()*20f);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 1.5f*e.fin()+0.1f, 8,16, e.rotation);
+                        Tmp.v2.trns(e.rotation, e.fin()*10f);
+                        Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 1.3f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                        Lines.stroke(4f*e.fout());
+                    });
+                    shootEffect = new MultiEffect(Fx.shootBig2, Fx.flakExplosionBig, Fx.titanExplosion);
+                    hitEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.PrometheusExplosionSplash, Fx.flakExplosionBig);
+                    trailEffect = new MultiEffect(ExoFx.ShockWaveTrail);
+                    trailLength = 10;
+                    trailWidth = 4.5f;
                 }};
             }});
             weapons.add(new Weapon("exogenesis-prometheus-machine-gun") {{
@@ -216,7 +208,7 @@ public class ExoUnitTypes {
                     status = StatusEffects.blasted;
                     statusDuration = 100;
                     width = height = 19;
-                    splashDamage = 57f;
+                    splashDamage = 40f;
                     splashDamageRadius = 60;
                     trailLength = 10;
                     trailWidth = 3.5f;
@@ -257,7 +249,7 @@ public class ExoUnitTypes {
                     status = StatusEffects.blasted;
                     statusDuration = 100;
                     width = height = 19;
-                    splashDamage = 57f;
+                    splashDamage = 40f;
                     splashDamageRadius = 60;
                     trailLength = 10;
                     trailWidth = 3.5f;
@@ -2707,420 +2699,6 @@ public class ExoUnitTypes {
             flying = true;
             lowAltitude = true;
             }};
-
-        nkarnt = new ErekirUnitType("nkarnt"){{
-            constructor = LegsUnit::create;
-            speed = 0.8f;
-            health = 100;
-            hitSize = 7.75f * 1.7f;
-            range = 250f;
-            lockLegBase = true;
-            legContinuousMove = true;
-            allowLegStep = true;
-            baseLegStraightness = 0.6f;
-            legMoveSpace= 1.5f;
-            legPhysicsLayer = false;
-            legCount = 8;
-            legPairOffset = 1;
-            legBaseOffset = 7;
-            legExtension = -6;
-            legLength = 13f;
-
-            weapons.add(new Weapon("zap"){{
-                reload = 100;
-                x = 0f;
-                y = -1f;
-                shootY = 0f;
-                mirror = false;
-                rotate = false;
-                shootSound = Sounds.spark;
-                bullet = new PosLightningType(100f){{
-                    lightningColor = hitColor = ExoPal.cronusRed;
-                    maxRange = rangeOverride = 250f;
-                    hitShake = 2.5f;
-                    shootEffect = Fx.colorSparkBig;
-                    hitEffect = ExoFx.colorBombSmaller;
-                    smokeEffect = Fx.none;
-                }};
-            }});
-        }};
-        stratiotis = new ErekirUnitType("stratiotis"){{
-            constructor= LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
-            rotateSpeed = 1.2f;
-            speed = 0.7f;
-            health = 640;
-            hitSize = 9.5f * 1.7f;
-            range = 350f;
-            allowLegStep = true;
-            legCount = 4;
-            legGroupSize = 2;
-            legMoveSpace = 0.5f;
-            legLength = 28f;
-            legExtension = -4.3f;
-
-            weapons.add( new Weapon("exogenesis-red-missile-launcher"){{
-                reload = 50f;
-                x = 6.25f;
-                shoot = new ShootPattern() {{
-                shots = 6;
-                shotDelay = 3;
-                }};
-                inaccuracy = 4f;
-                rotate = true;
-                bullet = new MissileBulletType(5f, 25f){{
-                    speed = 5f;
-                    width = 7f;
-                    height = 12f;
-                    shrinkY = 0f;
-                    backColor = trailColor = ExoPal.cronusRed;
-                    frontColor = ExoPal.cronusRed;
-                    weaveMag = 3f;
-                    weaveScale = 4f;
-                }};
-            }});
-        }};
-        naitis = new ErekirUnitType("naitis"){{
-            constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
-            rotateSpeed = 0.8f;
-            speed = 0.7f;
-            health = 1220;
-            hitSize = 17.85f;
-            range = 350f;
-            allowLegStep = true;
-            legMoveSpace = 0.6f;
-            legGroupSize = 3;
-            legPairOffset = 1;
-            legCount = 4;
-            legLength = 36f;
-            legExtension = -9.3f;
-
-            weapons.add(new Weapon("exogenesis-red-missile-launcher"){{
-                        x = 17.25f;
-                        y = 0f;
-                        rotate = true;
-                        reload = 50;
-                        inaccuracy = 1f;
-                        bullet = new BasicBulletType(7f, 45f){{
-                            width = 5f;
-                            height = 7f;
-                            shrinkY = 0f;
-                            shrinkX = 0f;
-                            trailWidth = 1f;
-                            trailLength = 6;
-                            backColor = trailColor = ExoPal.cronusRed;
-                            frontColor = ExoPal.cronusRed;
-                        }};
-                    }});
-            weapons.add(new Weapon("exogenesis-red-missile-launcher"){{
-                x = 10.25f;
-                y = 9.25f;
-                rotate = true;
-                reload = 49;
-                inaccuracy = 1f;
-                bullet = new BasicBulletType(7f, 45f){{
-                    width = 5f;
-                    height = 7f;
-                    shrinkY = 0f;
-                    shrinkX = 0f;
-                    trailWidth = 1f;
-                    trailLength = 6;
-                    backColor = trailColor = ExoPal.cronusRed;
-                    frontColor = ExoPal.cronusRed;
-                }};
-            }});
-            weapons.add(new Weapon("exogenesis-red-missile-launcher"){{
-                x = 12.25f;
-                y = -12.25f;
-                rotate = true;
-                reload = 48;
-                inaccuracy = 1f;
-                bullet = new BasicBulletType(7f, 45f){{
-                    width = 5f;
-                    height = 7f;
-                    shrinkY = 0f;
-                    shrinkX = 0f;
-                    trailWidth = 1f;
-                    trailLength = 6;
-                    backColor = trailColor = ExoPal.cronusRed;
-                    frontColor = ExoPal.cronusRed;
-                }};
-            }});
-            weapons.add(new Weapon("exogenesis-red-flak-turret"){{
-                x = 0f;
-                y = -3f;
-                rotateSpeed = 2.5f;
-                reload = 6f;
-                shootSound = Sounds.shootBig;
-                ejectEffect = Fx.casing2;
-                rotationLimit = 80;
-                shootCone = 40;
-                layerOffset = 1;
-                shadow = 7f;
-                rotate = true;
-                mirror = false;
-                alternate = false;
-                recoils = 2;
-                recoil = 0f;
-                parts.add(
-                        new RegionPart("-barrel-l"){{
-                            mirror = false;
-                            under = true;
-                            recoilIndex = 1;
-                            progress = PartProgress.recoil;
-                            moveY = -5f;
-                        }},
-                        new RegionPart("-barrel-r"){{
-                            mirror = false;
-                            under = true;
-                            recoilIndex = 0;
-                            progress = PartProgress.recoil;
-                            moveY = -5f;
-                        }}
-                );
-                shoot = new ShootBarrel(){{
-                    barrels = new float[]{
-                            3.5f, 15f, 0f,
-                            -3.5f, 15f, 0f,
-                    };
-                }};
-                bullet = new BasicBulletType(6.5f, 60){{
-                    width = 7;
-                    height = 12f;
-                    lifetime = 35f;
-                    hitColor = trailColor = backColor = ExoPal.cronusRed;
-                    smokeEffect = Fx.shootBigSmoke;
-                    shootEffect = Fx.shootBig2;
-                    hitEffect = Fx.flakExplosion;
-                    buildingDamageMultiplier = 0.5f;
-                    trailLength = 10;
-                    trailWidth = 2.5f;
-                }};
-            }});
-        }};
-        protathlitis = new ErekirUnitType("protathlitis"){{
-            constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
-            rotateSpeed = 0.9f;
-            speed = 0.6f;
-            health = 9400;
-            hitSize = 36f;
-            range = 360f;
-            allowLegStep = true;
-            legMoveSpace = 0.53f;
-            armor = 4f;
-            legBaseOffset = 6;
-            legCount = 4;
-            legLength = 41f;
-            legExtension = -9.3f;
-            legSplashDamage = 20f;
-            legSplashRange = 30f;
-
-            groundLayer = Layer.legUnit;
-
-            weapons.add(new Weapon("exogenesis-red-large-launcher"){{
-                x = 13.5f;
-                y = -6.5f;
-                shootY = 5f;
-                shadow = 8f;
-                rotateSpeed = 5f;
-                rotate = true;
-                reload = 80f;
-                shake = 1f;
-                shoot = new ShootSpread() {{
-                    shots = 12;
-                    spread = 3;
-                    shotDelay = 1;
-                }};
-                inaccuracy = 5f;
-                velocityRnd = 0.2f;
-                xRand = 1.2f;
-                shootSound = Sounds.missile;
-
-                bullet = new MissileBulletType(5f, 95f){{
-                    width = 7f;
-                    height = 17f;
-                    shrinkY = 0;
-                    shrinkX = 0;
-                    backColor = trailColor = ExoPal.cronusRed;
-                    frontColor = ExoPal.cronusRed;
-                    weaveMag = 3f;
-                    weaveScale = 4f;
-                }};
-
-            }},
-                new Weapon("exogenesis-red-artillery"){{
-                    x = 13.5f;
-                    y = -6.5f;
-                    shootY = 5f;
-                    shadow = 8f;
-                    rotateSpeed = 1f;
-                    rotationLimit = 60;
-                    rotate = true;
-                    reload = 80f;
-                    shake = 1f;
-                    shoot = new ShootSpread(3, 12f);
-                    shootSound = Sounds.shootBig;
-
-                    bullet = new ShrapnelBulletType(){{
-                        length = 17f;
-                        damage = 80f;
-                        width = 10f;
-                        serrationLenScl = 7f;
-                        serrationSpaceOffset = 60f;
-                        serrationFadeOffset = 0f;
-                        serrations = 6;
-                        serrationWidth = 5f;
-                        fromColor = ExoPal.cronusRed;
-                        toColor = ExoPal.cronusRedDark;
-                        shootEffect = smokeEffect = Fx.sparkShoot;
-                    }};
-            }},
-                new Weapon("exogenesis-red-railgun"){{
-                x = 7f;
-                y = -9.25f;
-                shootY = 10.75f;
-                rotateSpeed = 2f;
-                rotate = true;
-                shadow = 12f;
-                reload = 30;
-                shootSound = Sounds.laser;
-
-                bullet = new LaserBulletType(){{
-                    damage = 140f;
-                    sideWidth = 1f;
-                    sideAngle = 35;
-                    sideLength = 17;
-                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
-                    width = 30f;
-                    length = 200f;
-                    hitColor = ExoPal.cronusRed;
-                    colors = new Color[]{ExoPal.cronusRed.cpy().a(0.4f), ExoPal.cronusRed, Color.white};
-                }};
-            }});
-        }};
-        vasilias = new ErekirUnitType("vasilias"){{
-            constructor = LegsUnit::create;
-            speed = 0.55f;
-            health = 23000;
-            hitSize = 47.5f;
-            range = 390f;
-            allowLegStep = true;
-            rotateSpeed = 1f;
-            armor = 12f;
-
-            hovering = true;
-            groundLayer = Layer.legUnit + 0.01f;
-            legCount = 8;
-            legLength = 50f;
-            legExtension = -9.5f;
-            legSplashDamage = 90f;
-            legSplashRange = 65f;
-            legBaseOffset = 18;
-            legMoveSpace = 0.57f;
-            legPairOffset = 0.8f;
-
-            weapons.add(new Weapon(name + "-laser-weapon"){{
-                x = 30.25f;
-                y = -12.25f;
-                shootY = 7f;
-                top = true;
-                reload = 30f;
-                rotateSpeed = 2;
-                rotate = true;
-                shoot = new ShootPattern() {{
-                    shots = 2;
-                    shotDelay = 4;
-                }};
-                shake = 2;
-                shootSound = Sounds.railgun;
-                bullet = new PosLightningType(2000f){{
-                    lightningColor = hitColor = ExoPal.cronusRed;
-                    maxRange = rangeOverride = 390f;
-                    hitShake = 4;
-                    shootEffect = Fx.colorSparkBig;
-                    hitEffect = ExoFx.colorBomb;
-                    smokeEffect = Fx.none;
-                }};
-            }}, new Weapon("exogenesis-red-large-launcher"){{
-                x = 12.25f;
-                y = 13f;
-                shootY = 5f;
-                xRand = 2.2f;
-                shadow = 8f;
-                rotateSpeed = 5f;
-                rotate = true;
-                reload = 4f;
-                inaccuracy = 5f;
-
-                bullet = new BasicBulletType(6f, 12f){{
-                    lifetime = 35f;
-                    width = 7f;
-                    height = 12f;
-                    backColor = hitColor = ExoPal.cronusRed;
-                    pierce = true;
-                    pierceBuilding = true;
-                    pierceCap = 2;
-                }};
-            }}, new Weapon("exogenesis-red-large-launcher"){{
-                x = 15.75f;
-                y = -17.5f;
-                shootY = 5f;
-                shadow = 8f;
-                rotateSpeed = 5f;
-                rotate = true;
-                reload = 85f;
-                shake = 1f;
-                shoot = new ShootSpread() {{
-                    shots = 9;
-                    shotDelay = 1;
-                }};
-                inaccuracy = 7f;
-                velocityRnd = 0.2f;
-                xRand = 1.2f;
-                shootSound = Sounds.missile;
-
-                bullet = new MissileBulletType(5f, 95f){{
-                    width = 7f;
-                    height = 17f;
-                    shrinkY = 0;
-                    shrinkX = 0;
-                    backColor = trailColor = ExoPal.cronusRed;
-                    frontColor = ExoPal.cronusRed;
-                    weaveMag = 3f;
-                    weaveScale = 4f;
-                }};
-            }}, new Weapon("exogenesis-red-large-launcher"){{
-                x = 9.25f;
-                y = -13.75f;
-                shootY = 5f;
-                shadow = 8f;
-                rotateSpeed = 5f;
-                rotate = true;
-                reload = 90f;
-                shake = 1f;
-                shoot = new ShootSpread() {{
-                    shots = 9;
-                    shotDelay = 1;
-                }};
-                inaccuracy = 7f;
-                velocityRnd = 0.2f;
-                xRand = 1.2f;
-                shootSound = Sounds.missile;
-
-                bullet = new MissileBulletType(5f, 95f){{
-                    width = 7f;
-                    height = 17f;
-                    shrinkY = 0;
-                    shrinkX = 0;
-                    backColor = trailColor = ExoPal.cronusRed;
-                    frontColor = ExoPal.cronusRed;
-                    weaveMag = 3f;
-                    weaveScale = 4f;
-                }};
-            }});
-        }};
 
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
@@ -5879,7 +5457,7 @@ public class ExoUnitTypes {
                     damage = 1500f;
                     length = 530;
                     lightColor = hitColor = lightningColor = Color.valueOf("feb380");
-                    shootEffect = new MultiEffect(ExoFx.PrometheusShootShockWave, ExoFx.PrometheusShoot);
+                    shootEffect = new MultiEffect(ExoFx.PrometheusShoot);
                     pierceEffect = ExoFx.ColorRailHit;
                     hitEffect = Fx.massiveExplosion;
                     smokeEffect = Fx.shootBig2;
