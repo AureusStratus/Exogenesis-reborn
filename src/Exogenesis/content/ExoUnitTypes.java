@@ -60,7 +60,7 @@ public class ExoUnitTypes {
                 soundPitchMin = 1f;
                 shadow = 50f;
                 heatColor = Color.valueOf("f9350f");
-                top = rotate = continuous = true;
+                top = rotate = true;
                 mirror = false;
                 shake = 14f;
                 shootY = 0f;
@@ -80,64 +80,6 @@ public class ExoUnitTypes {
                     };
                 }};
                 parts.addAll(
-                new ShapePart(){{
-                    progress = PartProgress.warmup.delay(0.2f);
-                    color = Color.valueOf("feb380");
-                    circle = hollow = true;
-                    stroke = 0f;
-                    strokeTo = 1.9f;
-                    radius = radiusTo = 18;
-                    layer = Layer.effect;
-                    y = -36;
-                }},
-                new ShapePart(){{
-                    progress = PartProgress.warmup.delay(0.2f);
-                    color = Color.valueOf("feb380");
-                    circle = hollow = true;
-                    stroke = 0f;
-                    strokeTo = 1.1f;
-                    radius = radiusTo = 7;
-                    layer = Layer.effect;
-                    y = -36;
-                }},
-                new ShapePart(){{
-                    progress = PartProgress.warmup.delay(0.2f);
-                    color = Color.valueOf("feb380");
-                    circle = hollow = true;
-                    stroke = 0f;
-                    strokeTo = 0.7f;
-                    radius = radiusTo = 9;
-                    layer = Layer.effect;
-                    y = -36;
-                }},
-                new HaloPart() {{
-                    y = -36f;
-                    radius = 4.6f;
-                    tri = true;
-                    color = Color.valueOf("feb380");
-                    layer = Layer.effect;
-                    haloRotateSpeed = 0.7f;
-                    haloRadius = haloRadiusTo = 18f;
-                    stroke = 0f;
-                    strokeTo = 2f;
-                    shapes = 4;
-                    triLengthTo = 4f;
-                    triLength = 0;
-                }},
-                new HaloPart() {{
-                    y = -36f;
-                    radius = 4.6f;
-                    tri = true;
-                    color = Color.valueOf("feb380");
-                    layer = Layer.effect;
-                    haloRotateSpeed = -0.7f;
-                    haloRadius = haloRadiusTo = 18f;
-                    stroke = 0f;
-                    strokeTo = 2f;
-                    shapes = 4;
-                    triLengthTo = 4f;
-                    triLength = 0;
-                }},
                 new RegionPart("-tungsten-sinks"){{
                     mirror = false;
                     moves.add(new PartMove(PartProgress.recoil, 0f, -6f, 0f));
@@ -147,8 +89,8 @@ public class ExoUnitTypes {
                             under = true;
                             recoilIndex = 0;
                             cooldownTime = 150;
-                            heatProgress = PartProgress.recoil.add(0.2f);
                             progress = PartProgress.recoil;
+                            y = 5;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-2"){{
@@ -156,8 +98,8 @@ public class ExoUnitTypes {
                             under = true;
                             recoilIndex = 1;
                             cooldownTime = 150;
-                            heatProgress = PartProgress.recoil.add(0.2f);
                             progress = PartProgress.recoil;
+                            y = 5;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-3"){{
@@ -165,8 +107,8 @@ public class ExoUnitTypes {
                             under = true;
                             recoilIndex = 2;
                             cooldownTime = 150;
-                            heatProgress = PartProgress.recoil.add(0.2f);
                             progress = PartProgress.recoil;
+                            y = 5;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-4"){{
@@ -174,8 +116,8 @@ public class ExoUnitTypes {
                             under = true;
                             recoilIndex = 3;
                             cooldownTime = 150;
-                            heatProgress = PartProgress.recoil.add(0.2f);
                             progress = PartProgress.recoil;
+                            y = 5;
                             moveY = -8f;
                         }}
                 );
@@ -186,6 +128,7 @@ public class ExoUnitTypes {
                     splashDamage = 157;
                     splashDamageRadius = 50;
                     hitSound = Sounds.titanExplosion;
+                    hitShake = 8;
                     lifetime = 38f;
                     hitColor = trailColor = backColor = ExoPal.prometheusColor;
                     status = StatusEffects.blasted;
@@ -202,7 +145,6 @@ public class ExoUnitTypes {
                     shootEffect = new MultiEffect(Fx.shootBig2, Fx.blastExplosion);
                     hitEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.PrometheusExplosionSplash, Fx.flakExplosionBig);
                     trailChance = 1;
-                    trailScl = 3;
                     trailRotation = true;
                     trailLength = 10;
                     trailWidth = 4.5f;
