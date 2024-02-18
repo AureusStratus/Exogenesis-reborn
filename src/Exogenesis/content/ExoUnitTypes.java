@@ -79,25 +79,25 @@ public class ExoUnitTypes {
                 parts.addAll(
                         new RegionPart("-tungsten-sink-1"){{
                             mirror = false;
-                            recoilIndex = 3;
+                            recoilIndex = 0;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-2"){{
                             mirror = false;
-                            recoilIndex = 2;
+                            recoilIndex = 1;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-3"){{
                             mirror = false;
-                            recoilIndex = 1;
+                            recoilIndex = 2;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-4"){{
                             mirror = false;
-                            recoilIndex = 0;
+                            recoilIndex = 3;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
@@ -162,7 +162,7 @@ public class ExoUnitTypes {
                         Lines.stroke(6f*e.fout());
                     });
                     trailRotation = true;
-                    trailInterval = 13;
+                    trailInterval = 8;
                     trailLength = 10;
                     trailWidth = 4.5f;
                 }};
