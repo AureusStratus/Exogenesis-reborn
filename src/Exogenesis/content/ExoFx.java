@@ -64,7 +64,7 @@ public class ExoFx{
                     float lenScl = rand.random(0.5f, 1f);
                     int fi = i;
                     b.scaled(b.lifetime * lenScl, e -> {
-                        randLenVectors(e.id + fi - 1, e.fin(Interp.pow10Out), (int)(2.9f * intensity), 32f * intensity, (x, y, in, out) -> {
+                        randLenVectors(e.id + fi - 1, e.fin(Interp.pow10Out), (int)(2.9f * intensity), 25f * intensity, (x, y, in, out) -> {
                             float fout = e.fout(Interp.pow5Out) * rand.random(0.5f, 1f);
                             float rad = fout * ((2f + intensity) * 2.35f);
 

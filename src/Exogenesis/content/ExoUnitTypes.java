@@ -65,17 +65,17 @@ public class ExoUnitTypes {
                 shake = 14f;
                 shootY = 0f;
                 x = y = 0;
-                reload = 300f;
+                reload = 130f;
+                recoils = 4;
                 recoil = 3f;
                 layerOffset = 1;
                 rotateSpeed = 0.6f;
                 cooldownTime = 350f;
                 shoot = new ShootBarrel(){{
-                    shots = 4;
                     barrels = new float[]{
+                    19.75f, 61.75f, 0f,
                     6.75f, 61.75f, 0f,
                     -6.75f, 61.75f, 0f,
-                    19.75f, 61.75f, 0f,
                     -19.75f, 61.75f, 0f,
                     };
                 }};
@@ -142,11 +142,42 @@ public class ExoUnitTypes {
                     mirror = false;
                     moves.add(new PartMove(PartProgress.recoil, 0f, -6f, 0f));
                 }},
-                new RegionPart("-barrels"){{
-                    mirror = false;
-                    under = true;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -14f, 0f));
-                }}
+                        new RegionPart("-barrel-1"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 0;
+                            cooldownTime = 150;
+                            heatProgress = PartProgress.recoil.add(0.2f);
+                            progress = PartProgress.recoil;
+                            moveY = -8f;
+                        }},
+                        new RegionPart("-barrel-2"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 1;
+                            cooldownTime = 150;
+                            heatProgress = PartProgress.recoil.add(0.2f);
+                            progress = PartProgress.recoil;
+                            moveY = -8f;
+                        }},
+                        new RegionPart("-barrel-3"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 2;
+                            cooldownTime = 150;
+                            heatProgress = PartProgress.recoil.add(0.2f);
+                            progress = PartProgress.recoil;
+                            moveY = -8f;
+                        }},
+                        new RegionPart("-barrel-4"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 3;
+                            cooldownTime = 150;
+                            heatProgress = PartProgress.recoil.add(0.2f);
+                            progress = PartProgress.recoil;
+                            moveY = -8f;
+                        }}
                 );
                 bullet = new BasicBulletType(13f, 820){{
                     sprite = "missile-large";
@@ -166,13 +197,12 @@ public class ExoUnitTypes {
                         Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.8f*e.fin()+0.1f, 8,16, e.rotation);
                         Tmp.v2.trns(e.rotation, e.fin()*10f);
                         Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.6f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
-                        Lines.stroke(4f*e.fout());
+                        Lines.stroke(6f*e.fout());
                     });
                     shootEffect = new MultiEffect(Fx.shootBig2, Fx.blastExplosion);
                     hitEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.PrometheusExplosionSplash, Fx.flakExplosionBig);
-                    trailEffect = new MultiEffect(ExoFx.ShockWaveTrail);
                     trailChance = 1;
-                    trailInterval = 25;
+                    trailScl = 3;
                     trailRotation = true;
                     trailLength = 10;
                     trailWidth = 4.5f;
