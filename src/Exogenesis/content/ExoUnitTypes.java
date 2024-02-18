@@ -54,7 +54,7 @@ public class ExoUnitTypes {
             rotateSpeed = 0.45f;
             treadRects = new Rect[]{new Rect(65, 70, 131, 180), new Rect(46, -248, 85, 63), new Rect(166, -183.5f, 32, 39)};
             weapons.add(new Weapon("exogenesis-prometheus-weapon"){{
-                shootSound = ExoSounds.cannon;
+                shootSound = Sounds.largeCannon;
                 soundPitchMin = 1f;
                 shadow = 50f;
                 heatColor = Color.valueOf("f9350f");
@@ -66,6 +66,7 @@ public class ExoUnitTypes {
                 reload = 130f;
                 recoils = 4;
                 recoil = 3f;
+                ejectEffect = Fx.casing4;
                 layerOffset = 1;
                 rotateSpeed = 0.6f;
                 cooldownTime = 350f;
@@ -80,28 +81,24 @@ public class ExoUnitTypes {
                 parts.addAll(
                         new RegionPart("-tungsten-sink-1"){{
                             mirror = false;
-                            under = true;
                             recoilIndex = 3;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-2"){{
                             mirror = false;
-                            under = true;
                             recoilIndex = 2;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-3"){{
                             mirror = false;
-                            under = true;
                             recoilIndex = 1;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-3"){{
                             mirror = false;
-                            under = true;
                             recoilIndex = 0;
                             progress = PartProgress.recoil;
                             moveY = -6f;
@@ -135,7 +132,7 @@ public class ExoUnitTypes {
                             moveY = -8f;
                         }}
                 );
-                bullet = new BasicBulletType(9f, 820){{
+                bullet = new BasicBulletType(13f, 820){{
                     sprite = "missile-large";
                     width = 14f;
                     height = 36f;
@@ -148,7 +145,7 @@ public class ExoUnitTypes {
                     hitColor = trailColor = backColor = ExoPal.prometheusColor;
                     status = StatusEffects.blasted;
                     statusDuration = 100;
-                    smokeEffect = new Effect(30,e->{
+                    smokeEffect = new Effect(20,e->{
                         Draw.z(Layer.effect);
                         Draw.color(ExoPal.prometheusColor,e.fout());
                         Tmp.v1.trns(e.rotation, e.fin()*20f);
@@ -157,8 +154,17 @@ public class ExoUnitTypes {
                         Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.6f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
                         Lines.stroke(6f*e.fout());
                     });
-                    shootEffect = new MultiEffect(Fx.shootBig2, Fx.blastExplosion);
+                    shootEffect = new MultiEffect(ExoFx.shootGiant, Fx.blastExplosion);
                     hitEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.PrometheusExplosionSplash, Fx.flakExplosionBig);
+                    trailEffect = new Effect(20,e->{
+                        Draw.z(Layer.effect);
+                        Draw.color(ExoPal.prometheusColor,e.fout());
+                        Tmp.v1.trns(e.rotation, e.fin()*20f);
+                        Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.8f*e.fin()+0.1f, 8,16, e.rotation);
+                        Lines.stroke(6f*e.fout());
+                    });
+                    trailRotation = true;
+                    trailInterval = 20;
                     trailLength = 10;
                     trailWidth = 4.5f;
                 }};

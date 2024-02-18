@@ -49,12 +49,27 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
-            shootGiant = new Effect(10, e -> {
+            shootGiant = new Effect(20, e -> {
                 color(Pal.lightOrange, Color.gray, e.fin());
                 float w = 1.2f + 12 * e.fout();
                 Drawf.tri(e.x, e.y, w, 29f * e.fout(), e.rotation);
                 Drawf.tri(e.x, e.y, w, 5f * e.fout(), e.rotation + 180f);
             }),
+            casingLarge = new Effect(45f, e -> {
+                color(Pal.lightOrange, Pal.lightishGray, Pal.lightishGray, e.fin());
+                alpha(e.fout(0.5f));
+                float rot = Math.abs(e.rotation) + 90f;
+                int i = -Mathf.sign(e.rotation);
+                float len = (4f + e.finpow() * 9f) * i;
+                float lr = rot + Mathf.randomSeedRange(e.id + i + 6, 20f * e.fin()) * i;
+
+                rect(Core.atlas.find("casing"),
+                        e.x + trnsx(lr, len) + Mathf.randomSeedRange(e.id + i + 7, 3f * e.fin()),
+                        e.y + trnsy(lr, len) + Mathf.randomSeedRange(e.id + i + 8, 3f * e.fin()),
+                        4.5f, 8f,
+                        rot + e.fin() * 50f * i
+                );
+            }).layer(Layer.bullet),
             PrometheusSmoke = new Effect(300f, 300f, b -> {
                 float intensity = 4f;
 
