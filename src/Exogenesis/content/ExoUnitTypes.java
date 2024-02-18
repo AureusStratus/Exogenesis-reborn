@@ -66,7 +66,7 @@ public class ExoUnitTypes {
                 reload = 130f;
                 recoils = 4;
                 recoil = 3f;
-                ejectEffect = Fx.casing4;
+                ejectEffect = ExoFx.casingLarge;
                 layerOffset = 1;
                 rotateSpeed = 0.6f;
                 cooldownTime = 350f;
