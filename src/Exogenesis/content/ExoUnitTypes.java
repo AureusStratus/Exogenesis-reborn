@@ -33,8 +33,6 @@ public class ExoUnitTypes {
     public static UnitType
     ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris, thor,
     //erekir
-    //red
-    nkarnt, stratiotis, naitis, protathlitis, vasilias,
     prometheus, atlas, nemesis, hyperion, rhea, cronus, gaia,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
@@ -87,37 +85,37 @@ public class ExoUnitTypes {
                         new RegionPart("-barrel-1"){{
                             mirror = false;
                             under = true;
-                            recoilIndex = 0;
+                            recoilIndex = 3;
                             cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 5;
+                            y = 8;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-2"){{
                             mirror = false;
                             under = true;
-                            recoilIndex = 1;
+                            recoilIndex = 2;
                             cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 5;
+                            y = 8;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-3"){{
                             mirror = false;
                             under = true;
-                            recoilIndex = 2;
+                            recoilIndex = 1;
                             cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 5;
+                            y = 8;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-4"){{
                             mirror = false;
                             under = true;
-                            recoilIndex = 3;
+                            recoilIndex = 0;
                             cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 5;
+                            y = 8;
                             moveY = -8f;
                         }}
                 );
@@ -127,6 +125,7 @@ public class ExoUnitTypes {
                     height = 36f;
                     splashDamage = 157;
                     splashDamageRadius = 50;
+                    pierceArmor = true;
                     hitSound = Sounds.titanExplosion;
                     hitShake = 8;
                     lifetime = 38f;
