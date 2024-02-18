@@ -55,7 +55,6 @@ public class ExoUnitTypes {
             treadRects = new Rect[]{new Rect(65, 70, 131, 180), new Rect(46, -248, 85, 63), new Rect(166, -183.5f, 32, 39)};
             weapons.add(new Weapon("exogenesis-prometheus-weapon"){{
                 shootSound = Sounds.largeCannon;
-                soundPitchMin = 1f;
                 shadow = 50f;
                 heatColor = Color.valueOf("f9350f");
                 top = rotate = true;
@@ -63,10 +62,9 @@ public class ExoUnitTypes {
                 shake = 14f;
                 shootY = 0f;
                 x = y = 0;
-                reload = 130f;
+                reload = 100f;
                 recoils = 4;
                 recoil = 3f;
-                ejectEffect = ExoFx.casingLarge;
                 layerOffset = 1;
                 rotateSpeed = 0.6f;
                 cooldownTime = 350f;
@@ -97,7 +95,7 @@ public class ExoUnitTypes {
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
-                        new RegionPart("-tungsten-sink-3"){{
+                        new RegionPart("-tungsten-sink-4"){{
                             mirror = false;
                             recoilIndex = 0;
                             progress = PartProgress.recoil;
@@ -134,8 +132,8 @@ public class ExoUnitTypes {
                 );
                 bullet = new BasicBulletType(13f, 820){{
                     sprite = "missile-large";
-                    width = 14f;
-                    height = 36f;
+                    width = 17f;
+                    height = 39f;
                     splashDamage = 157;
                     splashDamageRadius = 50;
                     pierceArmor = true;
@@ -164,7 +162,7 @@ public class ExoUnitTypes {
                         Lines.stroke(6f*e.fout());
                     });
                     trailRotation = true;
-                    trailInterval = 20;
+                    trailInterval = 13;
                     trailLength = 10;
                     trailWidth = 4.5f;
                 }};
