@@ -78,48 +78,64 @@ public class ExoUnitTypes {
                     };
                 }};
                 parts.addAll(
-                new RegionPart("-tungsten-sinks"){{
-                    mirror = false;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -6f, 0f));
-                }},
+                        new RegionPart("-tungsten-sink-1"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 3;
+                            progress = PartProgress.recoil;
+                            moveY = -6f;
+                        }},
+                        new RegionPart("-tungsten-sink-2"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 2;
+                            progress = PartProgress.recoil;
+                            moveY = -6f;
+                        }},
+                        new RegionPart("-tungsten-sink-3"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 1;
+                            progress = PartProgress.recoil;
+                            moveY = -6f;
+                        }},
+                        new RegionPart("-tungsten-sink-3"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 0;
+                            progress = PartProgress.recoil;
+                            moveY = -6f;
+                        }},
                         new RegionPart("-barrel-1"){{
                             mirror = false;
                             under = true;
                             recoilIndex = 3;
-                            cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 8;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-2"){{
                             mirror = false;
                             under = true;
                             recoilIndex = 2;
-                            cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 8;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-3"){{
                             mirror = false;
                             under = true;
                             recoilIndex = 1;
-                            cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 8;
                             moveY = -8f;
                         }},
                         new RegionPart("-barrel-4"){{
                             mirror = false;
                             under = true;
                             recoilIndex = 0;
-                            cooldownTime = 150;
                             progress = PartProgress.recoil;
-                            y = 8;
                             moveY = -8f;
                         }}
                 );
-                bullet = new BasicBulletType(13f, 820){{
+                bullet = new BasicBulletType(9f, 820){{
                     sprite = "missile-large";
                     width = 14f;
                     height = 36f;
@@ -143,8 +159,6 @@ public class ExoUnitTypes {
                     });
                     shootEffect = new MultiEffect(Fx.shootBig2, Fx.blastExplosion);
                     hitEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.PrometheusExplosionSplash, Fx.flakExplosionBig);
-                    trailChance = 1;
-                    trailRotation = true;
                     trailLength = 10;
                     trailWidth = 4.5f;
                 }};
