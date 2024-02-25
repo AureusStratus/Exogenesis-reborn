@@ -13,8 +13,8 @@ import mindustry.entities.effect.*;
 import static mindustry.Vars.*;
 
 public class ExoStatusEffects{
-    public static StatusEffect RheaBuff, CronusBuff;
-
+    public static StatusEffect
+    RheaBuff, CronusBuff;
     public static void load(){
         CronusBuff = new StatusEffect("cronus-buff"){{
             color = ExoPal.cronusRed;

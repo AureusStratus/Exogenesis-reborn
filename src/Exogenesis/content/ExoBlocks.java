@@ -856,8 +856,7 @@ public class ExoBlocks{
             shootSound = Sounds.bolt;
             coolant = consumeCoolant(0.2f);
             consumePower(6f);
-            drawer = new DrawTurret("elecian-"){{
-            }};
+            drawer = new DrawTurret("elecian-");
             shootType = new BasicBulletType(0f, 1){{
                 shootEffect = Fx.shootBig;
                 hitColor = ExoPal.empyrean;

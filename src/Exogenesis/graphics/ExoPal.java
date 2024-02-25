@@ -7,6 +7,7 @@ public static Color
 ally = new Color(0, 0, 1, 0.15f), hostile = new Color(1, 0, 0, 0.15f),
 lightSky = Color.valueOf("#8DB0FF"),
 prometheusColor = Color.valueOf("feb380"),
+letoColor = Color.valueOf("63edf8"),
 coldcolor = Color.valueOf("6bc7ff"),
 erekirPink = Color.valueOf("#d370d3"),
 cronusRedlight = Color.valueOf("#ffadad"),
