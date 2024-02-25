@@ -37,7 +37,7 @@ public class ExoUnitTypes {
     ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris, thor,
     //erekir
     //erekir supportMech
-    calm, serene, traquil, sanctuary, ataraxia,
+    calm, serene, tranquil, sanctuary, ataraxia,
     prometheus, atlas, nemesis, hyperion, rhea, cronus, leto,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus, orion;
@@ -2703,7 +2703,9 @@ public class ExoUnitTypes {
                 layerOffset = -0.001f;
                 x = 57.75f;
                 y = 0f;
-                rotate = false;
+                rotate = true;
+                rotateSpeed = 1;
+                rotationLimit = 40;
                 shootY = 52.5f;
                 shootX = -3f;
                 cooldownTime = 100;
@@ -2737,6 +2739,9 @@ public class ExoUnitTypes {
                     hitColor = lightningColor = backColor = ExoPal.letoColor;
                     trailWidth = 3f;
                     trailLength = 8;
+                    intervalRandomSpread = 0;
+                    intervalSpread = 20;
+                    intervalAngle = 4;
                     intervalBullet = new ExoBasicBulletType(-4f, 45){{
                         width = height = 10f;
                         damageType = DamageType.energy;
@@ -2759,19 +2764,22 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-leto-aa-railgun"){{
-                reload = 6f;
+                reload = 10f;
+                playerControllable = false;
+                aiControllable = true;
                 mirror = true;
                 alternate = false;
                 rotate = true;
                 targetGround = false;
                 rotateSpeed = 2.5f;
-                baseRotation = 45;
+                baseRotation = -45;
                 x = 34.25f;
                 y = 18;
                 layerOffset = 1;
                 shootY = 17.5f;
                 shoot = new ShootAlternate(){{
-                    spread = 5.25f;
+                    shots = 2;
+                    spread = 6.25f;
                 }};
                 shootSound = Sounds.bolt;
                 recoil = 1;
@@ -2833,19 +2841,22 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-leto-aa-railgun"){{
-                reload = 6f;
+                reload = 10f;
+                playerControllable = false;
+                aiControllable = true;
                 mirror = true;
                 alternate = false;
                 rotate = true;
                 targetGround = false;
                 rotateSpeed = 2.5f;
-                baseRotation = 135;
+                baseRotation = -135;
                 x = 34.25f;
                 y = -18;
                 layerOffset = 1;
                 shootY = 17.5f;
                 shoot = new ShootAlternate(){{
-                    spread = 5.25f;
+                    shots = 2;
+                    spread = 6.25f;
                 }};
                 shootSound = Sounds.bolt;
                 recoil = 1;
@@ -2930,13 +2941,13 @@ public class ExoUnitTypes {
                 shootCone = 60f;
                 velocityRnd = 0.35f;
                 inaccuracy = 0.5f;
-                shoot.shots = 5;
+                shoot.shots = 3;
                 recoil = 2f;
                 shootSound = Sounds.shootBig;
 
                 bullet = new ExoBasicBulletType(3.5f, 13){{
                     lifetime = 48f;
-                    height = width = 7;
+                    height = width = 5;
                     trailLength = 7;
                     trailWidth = 1;
                     weaveScale = 5f;
@@ -2947,8 +2958,7 @@ public class ExoUnitTypes {
                     sprite = "circle-bullet";
                     trailColor = hitColor = backColor = ExoPal.letoColor;
                     hitEffect = despawnEffect = ExoFx.colorSparkShoot;
-                    shootEffect = ExoFx.colorSparkShoot;
-                    smokeEffect = Fx.lightningShoot;
+                    shootEffect = ExoFx.hitMeltColor;
                 }};
             }});
         }};
@@ -2971,7 +2981,7 @@ public class ExoUnitTypes {
                 recoil = 2.5f;
                 shootSound = Sounds.spark;
 
-                shoot = new ShootSpread(3, 7f);
+                shoot = new ShootSpread(5, 6f);
                 bullet = new ExoBasicBulletType(5f, 46){{
                     homingPower = 0.19f;
                     homingDelay = 4f;
@@ -2989,7 +2999,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        traquil = new ErekirUnitType("traquil"){{
+        tranquil = new ErekirUnitType("tranquil"){{
             constructor = MechUnit::create;
             health = 4140f;
             armor = 13f;
@@ -3015,12 +3025,12 @@ public class ExoUnitTypes {
                 shootSound = Sounds.spark;
                 shootCone = 30;
                 inaccuracy = 4f;
-                shoot.shots = 4;
+                shoot.shots = 3;
                 bullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.letoColor;
                     damageType = DamageType.energy;
-                    range = 45;
-                    targetRange = 60;
+                    range = 65;
+                    targetRange = 80;
                     damage = 40;
                     distanceDamageFalloff = 2;
                     chainLightning = 2;
@@ -3047,7 +3057,7 @@ public class ExoUnitTypes {
             immunities = ObjectSet.with(StatusEffects.burning);
             abilities.add(new EnergyFieldAbility(40f, 65f, 140f){{
                 statusDuration = 60f * 6f;
-                healColor = ExoPal.letoColor;
+                healColor = color = ExoPal.letoColor;
                 maxTargets = 25;
             }});
             abilities.add(new ForceFieldAbility(140f, 0.7f, 900f, 200f, 4, 0));
