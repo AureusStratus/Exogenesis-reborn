@@ -7,7 +7,10 @@ public class ExoItems{
             //multi-faction items
             osmium, gold, leadZinc, uranimite,
             //Vanstar items
-            oltuxium, boron, iron, empyreanPlating, magnetite, litusiumAlloy, lightningStone, viliotStone, luxiteStone, eternionCore, positeCore, negesiteCore, chronophite, vanstariumAlloy, lumeonEnergyCell,
+            oltuxium, rustyCopper, cobolt, iron, quartz, empyreanPlating, magnetite, litusiumAlloy,
+            neodymium, lightningStone, urkaStone, viliotStone, luxiteStone, vousarStone,
+            radCore, eternionCore, positeCore, negesiteCore, thermoCore, chronophite, vastanium, vanstariumAlloy, lumeonEnergyCell,
+
             //hadrox items
             volcanite, nickel, denseGraphite, primordiumAlloy, hadroxanDiamond, terminusEnergyCell,
             //Axin items
@@ -31,60 +34,87 @@ public class ExoItems{
             hardness = 1;
         }};
         //Vanstar items
+        cobolt = new Item("cobolt", Color.valueOf("8aa8ff")){{
+            cost = 0.5f;
+            hardness = 1;
+            alwaysUnlocked = true;
+        }};
+        rustyCopper = new Item("rusty-copper", Color.valueOf("d99d73")){{
+            hardness = 1;
+            cost = 0.5f;
+            alwaysUnlocked = true;
+        }};
         oltuxium = new Item("oltuxium", Color.valueOf("e8d174")){{
-            cost = 0.6f;
+            cost = 0.5f;
             hardness = 1;
             charge = 0.25f;
         }};
-        boron = new Item("boron", Color.valueOf("2a2a2a")){{
-            cost = 0.6f;
-            hardness = 1;
-        }};
         iron = new Item("iron", Color.valueOf("9295a3")){{
-            cost = 0.8f;
+            cost = 1f;
             hardness = 3;
         }};
         empyreanPlating = new Item("empyrean-plating", Color.valueOf("9295a3")){{
-            cost = 0.8f;
-            hardness = 3;
+            cost = 1f;
         }};
         magnetite = new Item("magnetite", Color.valueOf("3e404c")){{
-            cost = 0.85f;
-            hardness = 4;
+            cost = 0.6f;
+            hardness = 2;
             charge = 0.25f;
         }};
         litusiumAlloy = new Item("litusium-alloy", Color.valueOf("2d2f38")){{
             cost = 1f;
             charge = 0.25f;
         }};
+        viliotStone = new Item("viliot-stone", Color.valueOf("bfb1ff")){{
+            cost = 1.1f;
+            hardness = 3;
+        }};
         lightningStone = new Item("lightning-stone", Color.valueOf("d3ffff")){{
-            cost = 1.3f;
-            hardness = 5;
+            cost = 1.1f;
+            hardness = 3;
             charge = 1.25f;
         }};
-        viliotStone = new Item("viliot-stone", Color.valueOf("bfb1ff")){{
-            cost = 1.3f;
-            hardness = 5;
+        urkaStone = new Item("urka-stone", Color.valueOf("7fd957")){{
+            cost = 1.1f;
+            hardness = 3;
+            radioactivity = 0.5f;
         }};
         luxiteStone = new Item("luxite-stone", Color.valueOf("fcff98")){{
-            cost = 1.3f;
-            hardness = 5;
+            cost = 1.1f;
+            hardness = 3;
+        }};
+        vousarStone = new Item("vousar-stone", Color.valueOf("ff636a")){{
+            cost = 1.1f;
+            hardness = 3;
         }};
         eternionCore = new Item("eternion-core", Color.valueOf("9681fb")){{
-            cost = 1f;
-            hardness = 4;
+            cost = 1.2f;
+        }};
+        radCore = new Item("rad-core", Color.valueOf("50a354")){{
+            cost = 1.2f;
         }};
         positeCore = new Item("posite-core", Color.valueOf("6ac4df")){{
-            cost = 1f;
-            hardness = 4;
+            cost = 1.2f;
         }};
         negesiteCore = new Item("negesite-core", Color.valueOf("f5c045")){{
-            cost = 1f;
-            hardness = 4;
+            cost = 1.2f;
+        }};
+        thermoCore = new Item("thermo-core", Color.valueOf("d3254f")){{
+            cost = 1.2f;
+        }};
+        vastanium = new Item("vastanium", Color.valueOf("cbd97f")){{
+            flammability = 0.1f;
+            explosiveness = 0.2f;
+            cost = 1.3f;
+            healthScaling = 0.1f;
+        }};
+        neodymium = new Item("neodymium", Color.valueOf("b4b9b7")){{
+            cost = 1.3f;
+            hardness = 5;
         }};
         chronophite = new Item("chronophite", Color.valueOf("efefef")){{
             cost = 1.4f;
-            hardness = 6;
+            hardness = 5;
         }};
         vanstariumAlloy = new Item("vanstarium-alloy", Color.valueOf("fff451")){{
             cost = 1.4f;
