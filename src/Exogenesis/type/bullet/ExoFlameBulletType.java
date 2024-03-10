@@ -6,13 +6,14 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import mindustry.content.*;
 import mindustry.entities.*;
+import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 
 import java.util.*;
 
 /** @author EyeOfDarkness */
-public class ExoFlameBulletType extends ExoBulletType implements TypedBulletType {
+public class ExoFlameBulletType extends BulletType {
     public Color[] colors = {Pal.lightFlame, Pal.darkFlame, Color.gray};
     public Color[] smokeColors = {};
     public float particleSpread = 10f, particleSizeScl = 1.5f;
@@ -21,6 +22,7 @@ public class ExoFlameBulletType extends ExoBulletType implements TypedBulletType
     private Color[] hitColors;
 
     public ExoFlameBulletType(float speed, float damage){
+        super(speed, damage);
         pierce = true;
         lifetime = 12f;
         despawnEffect = Fx.none;

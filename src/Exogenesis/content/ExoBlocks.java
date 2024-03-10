@@ -439,7 +439,6 @@ public class ExoBlocks{
                         new FlarePart(){{
                             progress = PartProgress.warmup;
                             color1 = ExoPal.empyreanIndigo;
-                            y = 6;
                             sides = 3;
                             spinSpeed = 1;
                             radius = 0;
@@ -449,7 +448,6 @@ public class ExoBlocks{
                         new FlarePart(){{
                             progress = PartProgress.warmup;
                             color1 = ExoPal.empyreanIndigo;
-                            y = 6;
                             sides = 2;
                             spinSpeed = 0.7f;
                             radius = 0;
@@ -935,7 +933,7 @@ public class ExoBlocks{
             minWarmup = 0.99f;
             shootY = 7;
             scaledHealth = 280;
-            shootSound = Sounds.flame2;
+            shootSound = Sounds.flame;
 
             inaccuracy = 4;
             shootCone = 20f;
@@ -944,6 +942,13 @@ public class ExoBlocks{
             consumePower(6f);
             drawer = new DrawTurret("elecian-"){{
                 parts.addAll(
+                        new RegionPart("-bottom"){{
+                            progress = PartProgress.warmup.curve(Interp.pow2In);
+                            moveY = -2f;
+                            moveRot = -5;
+                            mirror = true;
+                            under = true;
+                        }},
                         new RegionPart("-plate2"){{
                             progress = PartProgress.recoil.curve(Interp.pow2In);
                             moveX = 4.5f;
@@ -954,7 +959,7 @@ public class ExoBlocks{
                             progress = PartProgress.warmup.curve(Interp.pow2In);
                             moveY = -2f;
                             moveX = 3f;
-                            moveRot = 8;
+                            moveRot = -8;
                             mirror = true;
                             heatProgress = PartProgress.warmup;
 
@@ -964,7 +969,7 @@ public class ExoBlocks{
                             heatProgress = PartProgress.warmup;
                             moveY = -2f;
                             moveX = 3f;
-                            moveRot = 5;
+                            moveRot = -5;
                             mirror = true;
                             under = true;
                         }},
@@ -975,14 +980,7 @@ public class ExoBlocks{
                             moveX = 2f;
                             mirror = true;
                             under = true;
-                        }},
-                new RegionPart("-bottom"){{
-                    progress = PartProgress.warmup.curve(Interp.pow2In);
-                    moveY = -2f;
-                    moveRot = 5;
-                    mirror = true;
-                    under = true;
-                }}
+                        }}
                 );
             }};
             shootType = new ExoFlameBulletType(6.6f, 75f){{
@@ -999,8 +997,8 @@ public class ExoBlocks{
                 hitSize = 9f;
                 layer = Layer.bullet - 0.001f;
                 status = StatusEffects.melting;
-                smokeColors = new Color[]{ExoPal.radGreenDark, Color.darkGray, Color.gray};
-                colors = new Color[]{Color.white, ExoPal.radGreenLight, ExoPal.radGreen, ExoPal.radGreenDark, Color.gray};
+                smokeColors = new Color[]{ExoPal.radGreenDark, ExoPal.radGreenDark, Color.gray};
+                colors = new Color[]{Color.white, ExoPal.radGreenLight, ExoPal.radGreen, ExoPal.radGreenDark, ExoPal.radGreenDark};
             }};
         }};
         grandeur = new ContinuousTurret("grandeur"){{
@@ -1027,24 +1025,25 @@ public class ExoBlocks{
             drawer = new DrawTurret("elecian-"){{
                 parts.addAll(
                         new FlarePart(){{
-                            progress = PartProgress.warmup.curve(Interp.pow2In);
+                            progress = PartProgress.recoil.curve(Interp.pow2In);
                             color1 = ExoPal.empyreanIndigo;
-                            y = shootY;
+                            y = 5;
                             followRotation = true;
+                            rotation = 90;
                             sides = 2;
                             radius = 0;
                             radiusTo = 70;
-                            stroke = 4.5f;
+                            stroke = 7.5f;
                         }},
                         new FlarePart(){{
-                            progress = PartProgress.warmup.curve(Interp.pow2In);
+                            progress = PartProgress.recoil.curve(Interp.pow2In);
                             color1 = ExoPal.empyreanIndigo;
-                            y = shootY;
+                            y = 5;
                             spinSpeed = 2;
                             sides = 4;
                             radius = 0;
-                            radiusTo = 60;
-                            stroke = 2.5f;
+                            radiusTo = 120;
+                            stroke = 3.5f;
                         }},
                         new RegionPart("-back"){{
                             progress = PartProgress.warmup;
@@ -1239,7 +1238,7 @@ public class ExoBlocks{
         }};
         profane = new ItemTurret("profane"){{
                 requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
-                range = 1000f;
+                range = 1500f;
                 recoil = 0f;
                 reload = 1000f;
                 shake = 4f;
@@ -1248,13 +1247,13 @@ public class ExoBlocks{
                 size = 5;
                 scaledHealth = 280;
                 cooldownTime = 320;
-                shootSound = Sounds.bolt;
+                shootSound = Sounds.mediumCannon;
 
                 warmupMaintainTime = 30f;
                 minWarmup = 0.96f;
                 shootWarmupSpeed = 0.03f;
                 shootY = 16f;
-                rotateSpeed = 2;
+                rotateSpeed = 1;
                 shootCone = 20f;
                 unitSort = UnitSorts.strongest;
                 coolant = consumeCoolant(0.2f);
@@ -1263,9 +1262,9 @@ public class ExoBlocks{
                     parts.addAll(
                             new RegionPart("-plate") {{
                                 progress = PartProgress.warmup.curve(Interp.pow2In);
-                                moveX = 6f;
+                                moveX = 8f;
                                 moveY = -4;
-                                moveRot = 25;
+                                moveRot = 6;
                                 moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
                                 mirror = true;
                             }},
@@ -1279,25 +1278,21 @@ public class ExoBlocks{
                                 children.add(new RegionPart("-maniblebits"){{
                                     progress = PartProgress.warmup.delay(0.6f);
                                     mirror = true;
-                                    under = false;
+                                    under = true;
                                     moveX = 5f;
                                 }});
                                 mirror = true;
                             }},
                             new RegionPart("-nuke"){{
                                 progress = PartProgress.reload.curve(Interp.pow2In);
-
+                                y = 4;
                                 colorTo = new Color(1f, 1f, 1f, 0f);
                                 color = Color.white;
                                 mixColorTo = Pal.accent;
                                 mixColor = new Color(1f, 1f, 1f, 0f);
-                                outline = false;
                                 under = true;
 
-                                moves.add(new PartMove(PartProgress.warmup.inv(), 0f, 6f, 0f));
-                            }},
-                            new RegionPart("-bottom") {{
-                                under = true;
+                                moves.add(new PartMove(PartProgress.warmup.inv(), 0f, -10f, 0f));
                             }}
                     );
                 }};
@@ -1311,10 +1306,10 @@ public class ExoBlocks{
                                 maxRange = 6f;
                                 lifetime = 60f * 5.5f;
                                 outlineColor = ExoPal.empyreanOutline;
-                                engineColor = trailColor = Pal.redLight;
+                                engineColor = trailColor = ExoPal.cronusRed;
                                 engineLayer = Layer.effect;
                                 engineSize = 3.1f;
-                                engineOffset = 10f;
+                                engineOffset = 16f;
                                 rotateSpeed = 0.25f;
                                 trailLength = 18;
                                 missileAccelTime = 50f;
@@ -1335,7 +1330,7 @@ public class ExoBlocks{
                                     deathExplosionEffect = Fx.massiveExplosion;
                                     shootOnDeath = true;
                                     shake = 10f;
-                                    bullet = new ExplosionBulletType(2800f, 65f) {{
+                                    bullet = new ExplosionBulletType(2800f, 100f) {{
                                         hitColor = ExoPal.cronusRed;
                                         shootEffect = new MultiEffect(Fx.massiveExplosion, ExoFx.colorBomb, Fx.scatheExplosion, Fx.scatheLight, new WaveEffect() {{
                                             lifetime = 10f;
