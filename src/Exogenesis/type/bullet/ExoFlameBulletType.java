@@ -6,7 +6,6 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import mindustry.content.*;
 import mindustry.entities.*;
-import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 
@@ -22,7 +21,6 @@ public class ExoFlameBulletType extends ExoBulletType implements TypedBulletType
     private Color[] hitColors;
 
     public ExoFlameBulletType(float speed, float damage){
-        super(speed, damage);
         pierce = true;
         lifetime = 12f;
         despawnEffect = Fx.none;

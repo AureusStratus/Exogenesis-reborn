@@ -9,9 +9,6 @@ import mindustry.gen.Hitboxc;
 public class ExoBulletType extends BulletType implements TypedBulletType{
     public DamageType damageType;
 
-    public ExoBulletType(float speed, float damage) {
-    }
-
     @Override
     public DamageType damageType(){
         return damageType;
