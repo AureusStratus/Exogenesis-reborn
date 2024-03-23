@@ -3,6 +3,8 @@ package Exogenesis.content;
 import Exogenesis.type.DamageType;
 import Exogenesis.type.bullet.*;
 import Exogenesis.type.bullet.vanilla.*;
+import Exogenesis.world.blocks.ExoPowerProp;
+import Exogenesis.world.blocks.PowerHarvester;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 
@@ -49,10 +51,13 @@ public class ExoBlocks{
     //ore
     oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
     //blocks
-    ductEmpyrean,
+    ductEmpyrean, harvesterSmall, harvesterMedium,
     //turrets
     focalPoint, gale, light, bliss, prism, tanons, wrath, glory, essence, purger,
     excalibur, aspect, godsent, eminence, aeon, grandeur, aether, profane, agios, arbiter, phoss,
+    //genesis align
+            astral, starFleet, cosmos, armada, astrology, coldPlasmaThrower, sagittarius, nebula, halley, magnetar, neutronMorter,
+            supernova, polaris, theia, constellation, tesseract, hypernovaBurst,
     genesisFactory, empyreanFactory;
 
     public static void load(){
@@ -166,9 +171,9 @@ public class ExoBlocks{
             itemDrop = ExoItems.magnetite;
             clipSize = 128f;
         }};
-        lightningCrystal = new TallBlock("lightning-crystal"){{
+        lightningCrystal = new ExoPowerProp("lightning-crystal"){{
             variants = 3;
-            itemDrop = ExoItems.lightningStone;
+            attributes.set(ExoAttribute.power, 1f);
             clipSize = 128f;
         }};
         //Empyrean blocks
@@ -178,7 +183,18 @@ public class ExoBlocks{
             speed = 4f;
             researchCost = with(Items.beryllium, 5);
         }};
-
+        harvesterSmall = new PowerHarvester("harvester-small"){{
+            requirements(Category.distribution, with(Items.beryllium, 1));
+            size = 2;
+            health = 90;
+            researchCost = with(Items.beryllium, 5);
+        }};
+        harvesterMedium = new PowerHarvester("harvester-medium"){{
+            requirements(Category.distribution, with(Items.beryllium, 1));
+            size = 3;
+            health = 90;
+            researchCost = with(Items.beryllium, 5);
+        }};
         //turrets Empyrean
         //tier 1
         focalPoint = new ContinuousTurret("focal-point"){{

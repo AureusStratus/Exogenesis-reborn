@@ -4456,12 +4456,12 @@ public class ExoUnitTypes {
                 recoil = 1;
                 shake = 1f;
                 parts.addAll(
-                        new RegionPart("-arm"){{
+                        new RegionPart("soulx-arm"){{
                             progress = PartProgress.warmup;
                             mirror = true;
                             under = true;
-                            moveRot = 8;
-                            x = 2f;
+                            moveRot = 10;
+                            moveX = 3f;
                             y = 0f;
                             layerOffset = -0.0001f;
                         }}
@@ -4491,12 +4491,12 @@ public class ExoUnitTypes {
                 recoil = 1;
                 shake = 1f;
                 parts.addAll(
-                        new RegionPart("-arm"){{
+                        new RegionPart("soulx-arm"){{
                             progress = PartProgress.warmup;
                             mirror = true;
                             under = true;
-                            moveRot = 15;
-                            x = 2f;
+                            moveRot = 17;
+                            moveX = 3f;
                             y = 0f;
                             layerOffset = -0.0001f;
                         }}
@@ -4526,12 +4526,12 @@ public class ExoUnitTypes {
                 recoil = 1;
                 shake = 1f;
                 parts.addAll(
-                        new RegionPart("-arm"){{
+                        new RegionPart("soulx-arm"){{
                             progress = PartProgress.warmup;
                             mirror = true;
                             under = true;
-                            moveRot = 21;
-                            x = 2f;
+                            moveRot = 24;
+                            moveX = 3f;
                             y = 0f;
                             layerOffset = -0.0001f;
                         }}
@@ -4565,10 +4565,10 @@ public class ExoUnitTypes {
             faceTarget = true;
             armor = 7;
             rotateSpeed = 2.3f;
-            weapons.add(new Weapon("glimmer") {{
+            weapons.add(new Weapon("energy-bolts") {{
                 reload = 5f;
                 mirror = true;
-                x = 4;
+                x = 6;
                 y = 3;
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
