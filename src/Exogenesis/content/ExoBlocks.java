@@ -1659,11 +1659,11 @@ public class ExoBlocks{
             consumePower(1f);
             drawer = new DrawTurret("genesux-");
             shootType = new ExoBasicBulletType(5, 5){{
-                backColor = hitColor = trailColor = ExoPal.genesisDark;
+                backColor = hitColor = trailColor = ExoPal.genesis;
                 parts.addAll(
                         new FlarePart(){{
                             progress = PartProgress.life;
-                            color1 = ExoPal.genesisDark;
+                            color1 = ExoPal.genesis;
                             spinSpeed = 3;
                             radius = 12;
                             radiusTo = 12;
@@ -1741,7 +1741,7 @@ public class ExoBlocks{
             requirements(Category.turret, with(ExoItems.nickel, 120, ExoItems.curtuses, 80, Items.silicon, 50));
             range = 160f;
             recoil = 2f;
-            reload = 20;
+            reload = 135;
             smokeEffect = Fx.none;
             outlineColor = Pal.darkOutline;
             size = 2;
@@ -1902,7 +1902,7 @@ public class ExoBlocks{
                         new RegionPart("-body"){{
                             progress = PartProgress.warmup;
                             moveX = 1.5f;
-                            moveRot = 8;
+                            moveRot = -8;
                             mirror = true;
                         }}
                 );
@@ -1943,7 +1943,6 @@ public class ExoBlocks{
             loopSound = Sounds.torch;
             shootSound = Sounds.none;
             loopSoundVolume = 1f;
-
             ammo(
                     ExoLiquids.coldPlasma, new ContinuousFlameBulletType(){{
                         damage = 60f;
@@ -1951,6 +1950,7 @@ public class ExoBlocks{
                         knockback = 1f;
                         pierceCap = 3;
                         buildingDamageMultiplier = 0.3f;
+                        flareColor = ExoPal.genesis;
                         colors = new Color[]{Color.valueOf("6666ff").a(0.55f), ExoPal.genesisDark.a(0.7f), ExoPal.genesis.a(0.8f), ExoPal.genesisLight, Color.white};
                     }}
             );
@@ -1977,11 +1977,11 @@ public class ExoBlocks{
             coolant = consumeCoolant(0.2f);
             consumePower(6f);
             shootType = new ExoBasicBulletType(5, 20){{
-                backColor = hitColor = trailColor = ExoPal.genesisDark;
+                backColor = hitColor = trailColor = ExoPal.genesis;
                 parts.addAll(
                         new FlarePart(){{
                             progress = PartProgress.life;
-                            color1 = ExoPal.genesisDark;
+                            color1 = ExoPal.genesis;
                             spinSpeed = 3;
                             radius = 19;
                             radiusTo = 19;
@@ -1999,11 +1999,11 @@ public class ExoBlocks{
                 hitEffect = despawnEffect = ExoFx.colorBombSmall;
                 fragBullets = 1;
                 fragBullet = new ExoBasicBulletType(6, 55){{
-                    backColor = hitColor = trailColor = ExoPal.genesisDark;
+                    backColor = hitColor = trailColor = ExoPal.genesis;
                     parts.addAll(
                             new FlarePart(){{
                                 progress = PartProgress.life;
-                                color1 = ExoPal.genesisDark;
+                                color1 = ExoPal.genesis;
                                 spinSpeed = 6;
                                 radius = 19;
                                 radiusTo = 19;
@@ -2034,7 +2034,7 @@ public class ExoBlocks{
             squareSprite = false;
             targetAir = false;
             inaccuracy = 5f;
-            heatColor = ExoPal.genesisDark;
+            heatColor = ExoPal.genesis;
             outlineColor = Pal.darkOutline;
             shootEffect = new MultiEffect(
                     new ParticleEffect(){{
@@ -2046,8 +2046,8 @@ public class ExoBlocks{
                         sizeFrom = 5;
                         sizeTo = 1;
                         lightColor = ExoPal.genesis;
-                        colorFrom = ExoPal.genesis;
-                        colorTo = ExoPal.genesisDark;
+                        colorFrom = ExoPal.genesisLight;
+                        colorTo = ExoPal.genesis;
                         cone = 10;
                     }},
                     new ParticleEffect(){{
@@ -2059,8 +2059,8 @@ public class ExoBlocks{
                         sizeFrom = 6;
                         sizeTo = 1;
                         lightColor = ExoPal.genesis;
-                        colorFrom = ExoPal.genesis;
-                        colorTo = ExoPal.genesisDark;
+                        colorFrom = ExoPal.genesisLight;
+                        colorTo = ExoPal.genesis;
                         cone = 15;
                     }},
                     new ParticleEffect(){{
@@ -2162,8 +2162,8 @@ public class ExoBlocks{
                 parts.addAll(
                         new RegionPart("-side"){{
                             moveY = -2;
-                            moveX = 4;
-                            moveRot =- 19;
+                            moveX = 1.5f;
+                            moveRot =- 16;
                             progress = PartProgress.recoil;
                             mirror = true;
                         }}
@@ -2176,8 +2176,6 @@ public class ExoBlocks{
                 hitSize = 7f;
                 height = 20f;
                 damageType = kinetic;
-                shootEffect = Fx.shootBigColor;
-                smokeEffect = Fx.shootSmokeSquareSparse;
                 ammoMultiplier = 1;
                 hitColor = backColor = trailColor = ExoPal.genesisDark;
                 frontColor = Color.white;
@@ -2207,8 +2205,6 @@ public class ExoBlocks{
                 hitSize = 7f;
                 height = 20f;
                 damageType = kinetic;
-                shootEffect = Fx.shootBigColor;
-                smokeEffect = Fx.shootSmokeSquareSparse;
                 ammoMultiplier = 1;
                 hitColor = backColor = trailColor = Color.valueOf("8bc99e");
                 frontColor = Color.white;
