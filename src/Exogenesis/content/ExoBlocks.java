@@ -2038,6 +2038,82 @@ public class ExoBlocks{
             inaccuracy = 5f;
             heatColor = ExoPal.genesisDark;
             outlineColor = Pal.darkOutline;
+            shootEffect = new MultiEffect(
+                    new ParticleEffect(){{
+                        particles = 2;
+                        length = 140;
+                        lifetime = 30;
+                        interp = Interp.circleOut;
+                        sizeInterp = Interp.pow5In;
+                        sizeFrom = 5;
+                        sizeTo = 1;
+                        lightColor = ExoPal.genesis;
+                        colorFrom = ExoPal.genesis;
+                        colorTo = ExoPal.genesisDark;
+                        cone = 10;
+                    }},
+                    new ParticleEffect(){{
+                        particles = 2;
+                        length = 100;
+                        lifetime = 35;
+                        interp = Interp.circleOut;
+                        sizeInterp = Interp.pow5In;
+                        sizeFrom = 6;
+                        sizeTo = 1;
+                        lightColor = ExoPal.genesis;
+                        colorFrom = ExoPal.genesis;
+                        colorTo = ExoPal.genesisDark;
+                        cone = 15;
+                    }},
+                    new ParticleEffect(){{
+                        particles = 2;
+                        length = 110;
+                        lifetime = 40;
+                        interp = Interp.fastSlow;
+                        sizeFrom = 6;
+                        sizeTo = 1.5f;
+                        lightColor = ExoPal.genesis;
+                        colorFrom = ExoPal.genesis;
+                        colorTo = ExoPal.genesisDark;
+                        cone = 15;
+                    }},
+                    new ParticleEffect(){{
+                        particles = 2;
+                        length = 120;
+                        lifetime = 50;
+                        interp = Interp.fastSlow;
+                        sizeFrom = 6;
+                        sizeTo = 1.5f;
+                        lightColor = ExoPal.genesis;
+                        colorFrom = ExoPal.genesis;
+                        colorTo = ExoPal.genesisDark;
+                        cone = 10;
+                    }});
+            smokeEffect = new MultiEffect(
+                    new ParticleEffect(){{
+                        particles = 3;
+                        length = 160;
+                        lifetime = 50;
+                        interp = Interp.fastSlow;
+                        sizeFrom = 5;
+                        sizeTo = 1;
+                        lightColor = ExoPal.genesisDark;
+                        colorFrom = ExoPal.genesisDark;
+                        colorTo = ExoPal.genesisDarkAlpha;
+                        cone = 15;
+                    }},
+                    new ParticleEffect(){{
+                        particles = 3;
+                        length = 180;
+                        lifetime = 60;
+                        interp = Interp.fastSlow;
+                        sizeFrom = 7;
+                        sizeTo = 1;
+                        lightColor = ExoPal.genesisDark;
+                        colorFrom = ExoPal.genesisDark;
+                        colorTo = ExoPal.genesisDarkAlpha;
+                        cone = 10;
+                    }});
             size = 4;
             scaledHealth = 240;
             shootY = 3;
@@ -2060,84 +2136,7 @@ public class ExoBlocks{
                 pierce = pierceBuilding = true;
                 pierceCap = 4;
                 lifetime = 27;
-                shootEffect = new MultiEffect(
-                        new ParticleEffect(){{
-                            particles = 2;
-                            length = 140;
-                            lifetime = 30;
-                            interp = Interp.circleOut;
-                            sizeInterp = Interp.pow5In;
-                            sizeFrom = 5;
-                            sizeTo = 1;
-                            lightColor = ExoPal.genesis;
-                            colorFrom = ExoPal.genesis;
-                            colorTo = ExoPal.genesisDark;
-                            cone = 10;
-                        }},
-                        new ParticleEffect(){{
-                            particles = 2;
-                            length = 100;
-                            lifetime = 35;
-                            interp = Interp.circleOut;
-                            sizeInterp = Interp.pow5In;
-                            sizeFrom = 6;
-                            sizeTo = 1;
-                            lightColor = ExoPal.genesis;
-                            colorFrom = ExoPal.genesis;
-                            colorTo = ExoPal.genesisDark;
-                            cone = 15;
-                        }},
-                        new ParticleEffect(){{
-                            particles = 2;
-                            length = 110;
-                            lifetime = 40;
-                            interp = Interp.fastSlow;
-                            sizeFrom = 6;
-                            sizeTo = 1.5f;
-                            lightColor = ExoPal.genesis;
-                            colorFrom = ExoPal.genesis;
-                            colorTo = ExoPal.genesisDark;
-                            cone = 15;
-                        }},
-                        new ParticleEffect(){{
-                            particles = 2;
-                            length = 120;
-                            lifetime = 50;
-                            interp = Interp.fastSlow;
-                            sizeFrom = 6;
-                            sizeTo = 1.5f;
-                            lightColor = ExoPal.genesis;
-                            colorFrom = ExoPal.genesis;
-                            colorTo = ExoPal.genesisDark;
-                            cone = 10;
-                        }}
-                );
-                smokeEffect = new MultiEffect(
-                        new ParticleEffect(){{
-                            particles = 3;
-                            length = 160;
-                            lifetime = 50;
-                            interp = Interp.fastSlow;
-                            sizeFrom = 5;
-                            sizeTo = 1;
-                            lightColor = ExoPal.genesisDark;
-                            colorFrom = ExoPal.genesisDark;
-                            colorTo = ExoPal.genesisDarkAlpha;
-                            cone = 15;
-                        }},
-                        new ParticleEffect(){{
-                            particles = 3;
-                            length = 180;
-                            lifetime = 60;
-                            interp = Interp.fastSlow;
-                            sizeFrom = 7;
-                            sizeTo = 1;
-                            lightColor = ExoPal.genesisDark;
-                            colorFrom = ExoPal.genesisDark;
-                            colorTo = ExoPal.genesisDarkAlpha;
-                            cone = 10;
-                        }}
-                        );
+                despawnEffect = Fx.none;
                 hitEffect = ExoFx.hitMeltColor;
             }}
             );
