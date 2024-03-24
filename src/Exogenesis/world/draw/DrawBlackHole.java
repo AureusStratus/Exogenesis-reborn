@@ -6,23 +6,23 @@ import Exogenesis.graphics.*;
 import mindustry.gen.*;
 import mindustry.world.draw.*;
 
-public class DrawSingularity extends DrawBlock{
+public class DrawBlackHole extends DrawBlock{
     public float x, y, size, edge;
     public @Nullable Color color;
     public boolean warmup = true;
 
-    public DrawSingularity(float size, float edge){
+    public DrawBlackHole(float size, float edge){
         this.size = size;
         this.edge = edge;
     }
 
-    public DrawSingularity(){
+    public DrawBlackHole(){
     }
 
     @Override
     public void draw(Building build){
         float scl = warmup ? build.warmup() : 1f;
-        SingularityRenderer.addBlackHole(
+        BlackHoleRenderer.addBlackHole(
             build.x + x, build.y + y,
             size * scl, edge * scl,
             color == null ? build.team.color : color

@@ -7,7 +7,7 @@ import Exogenesis.graphics.*;
 import mindustry.entities.part.*;
 import mindustry.graphics.*;
 
-public class SingularityPart extends DrawPart{
+public class BlackHolePart extends DrawPart{
     /** Progress function for determining position/rotation. */
     public PartProgress progress = PartProgress.warmup;
     /** Progress function for scaling. */
@@ -38,7 +38,7 @@ public class SingularityPart extends DrawPart{
             Tmp.c1.set(color);
             if(colorTo != null) Tmp.c1.lerp(colorTo, prog);
 
-            SingularityRenderer.addBlackHole(rx, ry, Mathf.lerp(size, sizeTo, sclProg), Mathf.lerp(edge, edgeTo, sclProg), Tmp.c1);
+            BlackHoleRenderer.addBlackHole(rx, ry, Mathf.lerp(size, sizeTo, sclProg), Mathf.lerp(edge, edgeTo, sclProg), Tmp.c1);
         }
     }
 

@@ -15,7 +15,7 @@ import mindustry.type.*;
 
 import static mindustry.Vars.*;
 
-public class SingularityUtils {
+public class BlackHoleUtils{
     private static final IntSet collidedBlocks = new IntSet();
 
     /**

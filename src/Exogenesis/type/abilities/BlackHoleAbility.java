@@ -1,12 +1,12 @@
-package Exogenesis.entities.abilities;
+package Exogenesis.type.abilities;
 
-import Exogenesis.util.SingularityUtils;
 import arc.graphics.*;
 import arc.math.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import Exogenesis.*;
 import Exogenesis.graphics.*;
+import Exogenesis.util.*;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.gen.*;
@@ -15,7 +15,7 @@ import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
 
-public class SingularityAbility extends Ability{
+public class BlackHoleAbility extends Ability{
     public float x, y;
     public float damageInterval = 2f;
     /** If true, only activates when shooting. */
@@ -37,7 +37,7 @@ public class SingularityAbility extends Ability{
     /** Color of black hole and effects. If null, uses team color. */
     public @Nullable Color color = null;
 
-    public @Nullable Effect swirlEffect = SingulairtyMod.defaultSwirlEffect;
+    public @Nullable Effect swirlEffect = BlackHoleMod.defaultSwirlEffect;
     public float swirlInterval = 3f;
     public int swirlEffects = 4;
     public boolean counterClockwise = false;
@@ -64,7 +64,7 @@ public class SingularityAbility extends Ability{
         if(!drawBlackHole || scl < 0.01f) return;
 
         Tmp.v1.set(x, y).rotate(unit.rotation - 90f).add(unit);
-        SingularityRenderer.addBlackHole(
+        BlackHoleRenderer.addBlackHole(
             Tmp.v1.x, Tmp.v1.y,
             horizonRadius * scl, lensingRadius * scl,
             blackHoleColor(unit)
@@ -84,7 +84,7 @@ public class SingularityAbility extends Ability{
 
         Tmp.v1.set(x, y).rotate(unit.rotation - 90f);
         if((suctionTimer += Time.delta) >= damageInterval){
-            SingularityUtils.blackHoleUpdate(
+            BlackHoleUtils.blackHoleUpdate(
                 unit.team, unit, Tmp.v1.x, Tmp.v1.y,
                 damageRadius * scl, suctionRadius * scl,
                 damage, bulletDamage,

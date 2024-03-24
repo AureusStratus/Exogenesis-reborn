@@ -17,14 +17,14 @@ import static mindustry.Vars.*;
  * Handles rendering of gravitational lensing and the glow around the center.
  * @author MEEPofFaith
  * */
-public class SingularityRenderer {
+public class BlackHoleRenderer{
     private final Seq<BlackHoleZone> zones = new Seq<>(BlackHoleZone.class);
-    private static SingularityRenderer bRenderer;
+    private static BlackHoleRenderer bRenderer;
     private boolean advanced = true;
 
     private FrameBuffer buffer;
 
-    protected SingularityRenderer(boolean advanced){
+    protected BlackHoleRenderer(boolean advanced){
         BShaders.createBlackHoleShaders();
         advanced(advanced);
 
@@ -38,7 +38,7 @@ public class SingularityRenderer {
     }
 
     public static void init(boolean advanced){
-        if(bRenderer == null) bRenderer = new SingularityRenderer(advanced);
+        if(bRenderer == null) bRenderer = new BlackHoleRenderer(advanced);
     }
 
     public static void toggleAdvanced(boolean advanced){

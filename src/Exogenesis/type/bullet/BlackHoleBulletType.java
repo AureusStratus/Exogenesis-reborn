@@ -1,11 +1,12 @@
 package Exogenesis.type.bullet;
 
-import Exogenesis.util.SingularityUtils;
 import arc.audio.*;
 import arc.graphics.*;
 import arc.math.*;
 import arc.util.*;
+import Exogenesis.*;
 import Exogenesis.graphics.*;
+import Exogenesis.util.*;
 import mindustry.audio.*;
 import mindustry.content.*;
 import mindustry.entities.*;
@@ -15,7 +16,7 @@ import mindustry.graphics.*;
 
 import static mindustry.Vars.*;
 
-public class SingularityBulletType extends BulletType{
+public class BlackHoleBulletType extends BulletType{
     public float horizonRadius = -1f, lensingRadius = -1f;
     public float damageRadius = 6f, suctionRadius = 160f;
     public boolean repel;
@@ -32,7 +33,7 @@ public class SingularityBulletType extends BulletType{
     public @Nullable Color color = null;
     public float growTime = 10f, shrinkTime = -1f;
 
-    public @Nullable Effect swirlEffect;
+    public @Nullable Effect swirlEffect = BlackHoleMod.defaultSwirlEffect;
     public float swirlInterval = 3f;
     public int swirlEffects = 4;
     public boolean counterClockwise = false;
@@ -40,7 +41,7 @@ public class SingularityBulletType extends BulletType{
     public Sound loopSound = Sounds.spellLoop;
     public float loopSoundVolume = 2f;
 
-    public SingularityBulletType(float speed, float damage){
+    public BlackHoleBulletType(float speed, float damage){
         super(speed, damage);
         hittable = absorbable = false;
         collides = collidesAir = collidesGround = collidesTiles = false;
@@ -50,7 +51,7 @@ public class SingularityBulletType extends BulletType{
         layer = Layer.effect + 0.03f;
     }
 
-    public SingularityBulletType(){
+    public BlackHoleBulletType(){
         this(1f, 1f);
     }
 
@@ -82,11 +83,11 @@ public class SingularityBulletType extends BulletType{
     public void update(Bullet b){
         if(b.timer(1, 2f)){
             float fout = fout(b);
-            SingularityUtils.blackHoleUpdate(
-                    b.team, b,
-                    damageRadius * fout, suctionRadius * fout,
-                    b.damage, bulletDamage * damageMultiplier(b),
-                    repel, force, scaledForce, bulletForce, scaledBulletForce
+            BlackHoleUtils.blackHoleUpdate(
+                b.team, b,
+                damageRadius * fout, suctionRadius * fout,
+                b.damage, bulletDamage * damageMultiplier(b),
+                repel, force, scaledForce, bulletForce, scaledBulletForce
             );
         }
 
@@ -113,7 +114,7 @@ public class SingularityBulletType extends BulletType{
     @Override
     public void draw(Bullet b){
         float fout = fout(b);
-        SingularityRenderer.addBlackHole(b.x, b.y, horizonRadius * fout, lensingRadius * fout, blackHoleColor(b));
+        BlackHoleRenderer.addBlackHole(b.x, b.y, horizonRadius * fout, lensingRadius * fout, blackHoleColor(b));
     }
 
     @Override
@@ -123,8 +124,8 @@ public class SingularityBulletType extends BulletType{
 
     public float fout(Bullet b){
         return Interp.sineOut.apply(
-                Mathf.curve(b.time, 0f, growTime)
-                        - Mathf.curve(b.time, b.lifetime - shrinkTime, b.lifetime)
+            Mathf.curve(b.time, 0f, growTime)
+                - Mathf.curve(b.time, b.lifetime - shrinkTime, b.lifetime)
         );
     }
 
