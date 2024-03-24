@@ -2147,6 +2147,8 @@ public class ExoBlocks{
             shake = 2f;
             squareSprite = false;
             outlineColor = Pal.darkOutline;
+            shootEffect = Fx.shootBigColor;
+            smokeEffect = Fx.shootSmokeSquareSparse;
             size = 4;
             scaledHealth = 240;
             velocityRnd = 0.25f;
@@ -2182,7 +2184,7 @@ public class ExoBlocks{
                 lifetime = 10;
                 trailWidth = 6f;
                 trailLength = 3;
-                hitEffect = despawnEffect = shootEffect = new MultiEffect( Fx.colorSpark,
+                hitEffect = despawnEffect = new MultiEffect( Fx.colorSpark,
                 new ExplosionEffect(){{
                     smokes = 4;
                     smokeSize = 4.7f;
