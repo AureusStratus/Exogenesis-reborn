@@ -1637,7 +1637,7 @@ public class ExoBlocks{
         //genesis align
         //turrets Genesis Align
         //tier 1
-        starFleet = new PowerTurret("star-fleet"){{
+        starFleet = new PowerTurret("starfleet"){{
             requirements(Category.turret, with(ExoItems.nickel, 35, ExoItems.curtuses, 100));
             squareSprite = false;
             range = 82f;
@@ -1746,12 +1746,8 @@ public class ExoBlocks{
             outlineColor = Pal.darkOutline;
             size = 2;
             scaledHealth = 240;
-            shootSound = Sounds.bigshot;
+            shootSound = Sounds.shootBig;
             shootCone = 30f;
-            shoot = new ShootAlternate(){{
-                barrels = 2;
-                spread = 6;
-            }};
             rotateSpeed = 1.5f;
             coolant = consumeCoolant(0.2f);
             consumePower(6f);
@@ -1777,7 +1773,7 @@ public class ExoBlocks{
                 width = 15;
                 height = 20;
                 backColor = hitColor = lightColor = trailColor = ExoPal.letoColor;
-                hitEffect = despawnEffect = new MultiEffect(ExoFx.coloredHitLarge, Fx.titanSmoke);
+                hitEffect = despawnEffect = new MultiEffect(ExoFx.coloredHitLarge);
                 smokeEffect = Fx.colorSpark;
             }},
                ExoItems.astrolite, new ExoArtilleryBulletType(){{
@@ -1793,7 +1789,7 @@ public class ExoBlocks{
                    width = 15;
                    height = 20;
                    backColor = hitColor = lightColor = trailColor = ExoPal.genesis;
-                   hitEffect = despawnEffect = new MultiEffect(ExoFx.coloredHitLarge, Fx.titanSmoke);
+                   hitEffect = despawnEffect = new MultiEffect(ExoFx.coloredHitLarge);
                    smokeEffect = Fx.colorSpark;
                         fragRandomSpread = 360f;
                         fragBullets = 5;
@@ -1803,7 +1799,7 @@ public class ExoBlocks{
                             width = 7f;
                             damageType = cryogenic;
                             height = 7f;
-                            lifetime = 13f;
+                            lifetime = 8f;
                             backColor = hitColor = trailColor = ExoPal.genesis;
                             frontColor = Color.white;
                             trailWidth = 1.3f;
@@ -1826,7 +1822,7 @@ public class ExoBlocks{
             xRand = 7;
             scaledHealth = 240;
             shootSound = Sounds.bolt;
-            shoot = new ShootMulti(new ShootSummon(0f, 0f, 12, 48f),
+            shoot = new ShootMulti(new ShootSummon(0f, 0f, 12, 20f),
              new ShootPattern(){{
                 shots = 2;
                 shotDelay = 3;
@@ -1961,7 +1957,7 @@ public class ExoBlocks{
                     }}
             );
         }};
-        astrology = new ContinuousTurret("astrology"){{
+        astrology = new PowerTurret("astrology"){{
             requirements(Category.turret, with(ExoItems.astrolite, 430, ExoItems.selfHealingAlloy, 300, Items.silicon, 350, ExoItems.stellarIron, 400));
             range = 200f;
             recoil = 0f;
@@ -2171,6 +2167,7 @@ public class ExoBlocks{
                             moveY = -2;
                             moveX = 4;
                             moveRot =- 19;
+                            progress = PartProgress.recoil;
                             mirror = true;
                         }}
                 );
@@ -2190,7 +2187,7 @@ public class ExoBlocks{
                 lifetime = 10;
                 trailWidth = 6f;
                 trailLength = 3;
-                hitEffect = despawnEffect = shootEffect = new MultiEffect( Fx.colorSparkBig,
+                hitEffect = despawnEffect = shootEffect = new MultiEffect( Fx.colorSpark,
                 new ExplosionEffect(){{
                     smokes = 4;
                     smokeSize = 4.7f;
@@ -2216,12 +2213,12 @@ public class ExoBlocks{
                 shootEffect = Fx.shootBigColor;
                 smokeEffect = Fx.shootSmokeSquareSparse;
                 ammoMultiplier = 1;
-                hitColor = backColor = trailColor = ExoPal.letoColor;
+                hitColor = backColor = trailColor = Color.valueOf("8bc99e");
                 frontColor = Color.white;
                 lifetime = 10;
                 trailWidth = 6f;
                 trailLength = 3;
-                hitEffect = despawnEffect = shootEffect = new MultiEffect( Fx.colorSparkBig,
+                hitEffect = despawnEffect = shootEffect = new MultiEffect( Fx.colorSpark,
                 new ExplosionEffect(){{
                     smokes = 4;
                     smokeSize = 4.7f;
@@ -2234,8 +2231,8 @@ public class ExoBlocks{
                     waveRadBase = 2.0f;
                     sparkLen = 7;
                     sparks = 12;
-                    lightColor = ExoPal.letoColor;
-                    waveColor = sparkColor = ExoPal.letoColor;
+                    lightColor = Color.valueOf("8bc99e");
+                    waveColor = sparkColor = Color.valueOf("8bc99e");
 
                 }});
             }}
@@ -2251,7 +2248,7 @@ public class ExoBlocks{
             heatColor = Color.red;
             outlineColor = ExoPal.empyreanOutline;
             shootY = 4;
-            size = 2;
+            size = 4;
             scaledHealth = 280;
             shootSound = Sounds.none;
             loopSoundVolume = 1f;
