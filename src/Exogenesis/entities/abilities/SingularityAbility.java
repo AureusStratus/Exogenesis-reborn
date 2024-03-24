@@ -15,7 +15,7 @@ import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
 
-public class BlackHoleAbility extends Ability{
+public class SingularityAbility extends Ability{
     public float x, y;
     public float damageInterval = 2f;
     /** If true, only activates when shooting. */
@@ -37,6 +37,7 @@ public class BlackHoleAbility extends Ability{
     /** Color of black hole and effects. If null, uses team color. */
     public @Nullable Color color = null;
 
+    public @Nullable Effect swirlEffect = SingulairtyMod.defaultSwirlEffect;
     public float swirlInterval = 3f;
     public int swirlEffects = 4;
     public boolean counterClockwise = false;
@@ -45,7 +46,6 @@ public class BlackHoleAbility extends Ability{
     protected float suctionTimer;
     protected float scl;
 
-    @Override
     public void addStats(Table t){
         t.add("[lightgray]" + Stat.range.localized() + ": [white]" + StatValues.fixValue(suctionRadius / tilesize) + " " + StatUnit.blocks.localized());
         t.row();

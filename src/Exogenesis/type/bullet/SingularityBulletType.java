@@ -32,7 +32,7 @@ public class SingularityBulletType extends BulletType{
     public @Nullable Color color = null;
     public float growTime = 10f, shrinkTime = -1f;
 
-    public @Nullable Effect swirlEffect = SingularityMod.defaultSwirlEffect;
+    public @Nullable Effect swirlEffect;
     public float swirlInterval = 3f;
     public int swirlEffects = 4;
     public boolean counterClockwise = false;

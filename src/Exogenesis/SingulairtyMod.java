@@ -9,11 +9,11 @@ import mindustry.mod.*;
 import static arc.Core.*;
 import static mindustry.Vars.*;
 
-public class BlackHoleMod extends Mod{
+public class SingulairtyMod extends Mod{
     public static Effect defaultSwirlEffect = new SwirlEffect(90f, 8, 3f, 120f, 480f, true).layer(Layer.effect + 0.005f);
 
-    public BlackHoleMod(){
-        ClassMap.classes.put("BlackHoleAbility", Exogenesis.entities.abilities.BlackHoleAbility.class);
+    public SingulairtyMod(){
+        ClassMap.classes.put("BlackHoleAbility", Exogenesis.entities.abilities.SingularityAbility.class);
         ClassMap.classes.put("BlackHoleBulletType", Exogenesis.type.bullet.SingularityBulletType.class);
         ClassMap.classes.put("BlackHolePart", Exogenesis.entities.part.SingularityPart.class);
         ClassMap.classes.put("DrawBlackHole", Exogenesis.world.draw.DrawSingularity.class);
