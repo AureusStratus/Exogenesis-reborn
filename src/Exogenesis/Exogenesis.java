@@ -18,6 +18,7 @@ public class Exogenesis extends Mod {
         ExoAttribute.load();
         ExoSounds.load();
         ExoUnitTypes.load();
+        ExoLiquids.load();
         ExoItems.load();
         ExoBlocks.load();
         TypeMultipliers.load();

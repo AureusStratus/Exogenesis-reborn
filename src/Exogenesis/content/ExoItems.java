@@ -14,7 +14,7 @@ public class ExoItems{
             //hadrox items
             volcanite, nickel, denseGraphite, primordiumAlloy, hadroxanDiamond, terminusEnergyCell,
             //Axin items
-            astrolite, curtuses, stellarIron, urbium, selfHealingAlloy, terrilium, axidamite, lanosium, axinDiamond, axinvaxaAlloy, axionEnergyCell;
+            astrolite, curtuses, stellarIron, urbium, selfHealingAlloy, axionCell, terrilium, axidamite, lanosium, axinDiamond, axinvaxaAlloy, axionEnergyCell;
     public static void load(){
         //multi-faction items
         uranimite = new Item("uranimite", Color.valueOf("8cdf64")){{
@@ -168,6 +168,9 @@ public class ExoItems{
         selfHealingAlloy = new Item("self-healing-alloy", Color.valueOf("5f6f9a")){{
             cost = 1f;
             hardness = 3;
+        }};
+        axionCell = new Item("axion-cell", Color.valueOf("5f6f9a")){{
+            cost = 1f;
         }};
         terrilium = new Item("terrilium", Color.valueOf("dc93ff")){{
             cost = 1.1f;
