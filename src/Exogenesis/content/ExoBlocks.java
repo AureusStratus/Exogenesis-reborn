@@ -1750,12 +1750,10 @@ public class ExoBlocks{
             shootCone = 30f;
             rotateSpeed = 1.5f;
             coolant = consumeCoolant(0.2f);
-            consumePower(6f);
             drawer = new DrawTurret("genesux-"){{
                 new RegionPart("-back"){{
                     progress = PartProgress.recoil.curve(Interp.pow2In);
                     moveY = -2;
-                    under = true;
                     mirror = false;
                 }};
             }};
