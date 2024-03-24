@@ -1,5 +1,8 @@
 package Exogenesis.world.blocks;
 
+import arc.math.geom.Geometry;
+import mindustry.Vars;
+import mindustry.content.Fx;
 import mindustry.gen.Building;
 import mindustry.graphics.Drawf;
 import mindustry.graphics.Pal;
@@ -9,7 +12,7 @@ import mindustry.world.Tile;
 import static mindustry.Vars.tilesize;
 
 public class PowerHarvester extends Block {
-    public float range;
+    public int range;
 
     public PowerHarvester(String name) {
         super(name);
@@ -23,9 +26,17 @@ public class PowerHarvester extends Block {
         super.drawPlace(x, y, rotation, valid);
         Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, range, Pal.placing);
     }
-    public float countCrystal(Tile tile) {
-        return 0;
-    }
+        public float countCrystal(Tile tile){
+            float returnCount = 0;
+            Geometry.circle(tile.x, tile.y, range, (x, y) -> {
+                Tile currentTile = Vars.world.tile(x, y);
+                if(currentTile == null) return;
+
+                Fx.smoke.at(x * tilesize, y * tilesize);
+            });
+            return returnCount;
+        }
+
     public class PowerHarvesterBuild extends Building {
         public float sum;
         public void drawSelect(){
