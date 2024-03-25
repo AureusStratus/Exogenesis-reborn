@@ -7,6 +7,7 @@ import Exogenesis.world.blocks.ExoPowerProp;
 import Exogenesis.world.blocks.PowerHarvester;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
+import Exogenesis.entities.effect.RepeatEffect;
 
 import arc.util.Tmp;
 import mindustry.entities.abilities.MoveEffectAbility;
@@ -1645,7 +1646,7 @@ public class ExoBlocks{
             shootEffect = ExoFx.colorBombSmaller;
             smokeEffect = Fx.none;
             outlineColor = Pal.darkOutline;
-            shootY = 4;
+            shootY = 8;
             size = 1;
             xRand = 7;
             scaledHealth = 240;
@@ -1665,9 +1666,9 @@ public class ExoBlocks{
                             progress = PartProgress.life;
                             color1 = ExoPal.genesis;
                             spinSpeed = 3;
-                            radius = 12;
-                            radiusTo = 12;
-                            stroke = 2.5f;
+                            radius = 6;
+                            radiusTo = 6;
+                            stroke = 2f;
                         }}
                 );
                 weaveMag = 2.2f;
@@ -1680,7 +1681,7 @@ public class ExoBlocks{
                 shrinkX = shootY = 0;
                 damageType = energy;
                 lifetime = 20;
-                hitEffect = despawnEffect = ExoFx.colorBombSmaller;
+                hitEffect = despawnEffect = Fx.colorSpark;
             }};
         }};
         astral = new ItemTurret("astral"){{
@@ -1762,7 +1763,7 @@ public class ExoBlocks{
                 speed = 5f;
                 ammoPerShot = 5;
                 damageType = explosive;
-                trailWidth = 2f;
+                trailWidth = 3f;
                 trailLength = 6;
                 shrinkX = shrinkY = 0;
                 splashDamage = 42;
@@ -1778,7 +1779,7 @@ public class ExoBlocks{
                    speed = 5f;
                    ammoPerShot = 5;
                    damageType = explosive;
-                   trailWidth = 2f;
+                   trailWidth = 3f;
                    trailLength = 6;
                    shrinkX = shrinkY = 0;
                    splashDamage = 25;
@@ -1812,7 +1813,7 @@ public class ExoBlocks{
             squareSprite = false;
             range = 140f;
             reload = 35f;
-            shootEffect = ExoFx.colorBombSmaller;
+            shootEffect = ExoFx.colorSparkShoot;
             smokeEffect = Fx.none;
             outlineColor = Pal.darkOutline;
             shootY = 0;
@@ -1837,9 +1838,9 @@ public class ExoBlocks{
                             progress = PartProgress.life;
                             color1 = ExoPal.genesisDark;
                             spinSpeed = 3;
-                            radius = 19;
-                            radiusTo = 19;
-                            stroke = 2.8f;
+                            radius = 11;
+                            radiusTo = 11;
+                            stroke = 2.2f;
                         }}
                 );
                 weaveMag = 2.6f;
@@ -1852,7 +1853,7 @@ public class ExoBlocks{
                 shrinkX = shootY = 0;
                 damageType = energy;
                 lifetime = 35;
-                hitEffect = despawnEffect = ExoFx.colorBombSmaller;
+                hitEffect = despawnEffect = ExoFx.coloredHitLarge;
             }};
         }};
         sagittarius = new PowerTurret("sagittarius"){{
@@ -1983,8 +1984,8 @@ public class ExoBlocks{
                             progress = PartProgress.life;
                             color1 = ExoPal.genesis;
                             spinSpeed = 3;
-                            radius = 19;
-                            radiusTo = 19;
+                            radius = 16;
+                            radiusTo = 16;
                             stroke = 2.8f;
                         }}
                 );
@@ -2513,35 +2514,95 @@ public class ExoBlocks{
                 });
             }};
         }};
-        supernova = new ItemTurret("supernova"){{
+        supernova = new PowerTurret("supernova"){{
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
             range = 1500f;
+            squareSprite = false;
             recoil = 0f;
-            reload = 1000f;
+            reload = 650f;
             shake = 4f;
             heatColor = Color.red;
-            outlineColor = ExoPal.empyreanOutline;
+            outlineColor = Pal.darkOutline;
             size = 7;
-            scaledHealth = 280;
+            scaledHealth = 300;
             cooldownTime = 320;
-            shootSound = Sounds.mediumCannon;
+            shoot.firstShotDelay = 100;
+            chargeSound = Sounds.lasercharge2;
+            shootSound = ExoSounds.coolplasmaboom;
 
             warmupMaintainTime = 30f;
             minWarmup = 0.96f;
             shootWarmupSpeed = 0.03f;
-            shootY = 16f;
-            rotateSpeed = 1;
-            shootCone = 20f;
+            shootY = -4.75f;
+            rotateSpeed = 1.5f;
             unitSort = UnitSorts.strongest;
-            coolant = consumeCoolant(0.2f);
-            consumePower(6f);
+            coolant = consumeCoolant(0.8f);
+            consumePower(90f);
             drawer = new DrawTurret("genesux-");
-            ammo(
-                    ExoItems.thermoCore, new BasicBulletType(0f, 1) {{
-                        shootEffect = Fx.shootBig;
-                        smokeEffect = Fx.shootSmokeMissile;
-                        ammoMultiplier = 1f;
-                    }});
+            shootType = new DestructionBulletType(4f, 460){{
+                size /= 2.2f;
+                trailWidth = 9.5f;
+                trailLength = 57;
+                spreadEffect = slopeEffect = Fx.none;
+                backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesis;
+                frontColor = Color.white;
+                scaleLife = false;
+                randomLightningChance = 0.3f;
+                randomGenerateRange = 150;
+                linkRange = 50f;
+                randomLightningNum = 5;
+                maxHit = 6;
+                range = 150f;
+                drawSize = 20f;
+                hitSound = Sounds.explosionbig;
+                splashDamageRadius = 100f;
+                splashDamage = 700;
+                lightningDamage = 11f;
+                intervalBullets = 1;
+                bulletInterval = 2;
+                homingRange = 80;
+                homingPower = 0.01f;
+                damageType = thermal;
+                int times = 25;
+                float life = ExoFx.starCharge.lifetime;
+                chargeEffect = new MultiEffect(
+                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.genesis, 48f),
+                        ExoFx.starCharge
+                        );
+                chargeEffect.lifetime = life;
+                trailEffect = new RepeatEffect(ExoFx.swirly, 1, 600);
+                trailInterval = 7f;
+                intervalBullet = new ChainLightningBulletType() {{
+                    lightningColor = ExoPal.genesis;
+                    damageType = DamageType.energy;
+                    range = 200;
+                    targetRange = 170;
+                    hitSound = Sounds.none;
+                    damage = 120;
+                    distanceDamageFalloff = 4;
+                    chainLightning = 2;
+                    segmentLength = 8;
+                }};
+                pierce = false;
+                collides = true;
+                lifetime = 300;
+                despawnEffect = hitEffect = ExoFx.empyreanExplosion;
+                shootEffect = ExoFx.square45_6_45;
+                hitSpacing = 3;
+                fragLifeMin = 0f;
+                fragBullets = 1;
+                fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
+                    lifetime = 330f;
+                    growTime = 15;
+                    damageRadius = 10;
+                    swirlEffects = 5;
+                    swirlInterval = 3;
+                    color = hitColor;
+                    lightRadius = 8f;
+                    lightOpacity = 0.7f;
+                    despawnEffect = ExoFx.blackHoleDespawn;
+                }};
+            }};
         }};
         polaris = new ItemTurret("polaris"){{
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
