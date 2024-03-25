@@ -2539,7 +2539,7 @@ public class ExoBlocks{
             coolant = consumeCoolant(0.8f);
             consumePower(90f);
             drawer = new DrawTurret("genesux-");
-            shootType = new DestructionBulletType(4f, 460){{
+            shootType = new DestructionBulletType(1.3f, 460){{
                 size /= 2.2f;
                 trailWidth = 9.5f;
                 trailLength = 57;
@@ -2563,15 +2563,6 @@ public class ExoBlocks{
                 homingRange = 80;
                 homingPower = 0.01f;
                 damageType = thermal;
-                int times = 25;
-                float life = ExoFx.starCharge.lifetime;
-                chargeEffect = new MultiEffect(
-                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.genesis, 48f),
-                        ExoFx.starCharge
-                        );
-                chargeEffect.lifetime = life;
-                trailEffect = new RepeatEffect(ExoFx.swirly, 1, 600);
-                trailInterval = 7f;
                 intervalBullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.genesis;
                     damageType = DamageType.energy;

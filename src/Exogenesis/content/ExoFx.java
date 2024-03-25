@@ -486,8 +486,6 @@ public class ExoFx{
                     Lines.circle(e.x, e.y, 4f + e.fout() * 100f);
                     Fill.circle(e.x, e.y, e.fin() * 20);
                 }).followParent(true).rotWithParent(true),
-
-            supernovaCharge = new SwirlEffect(30f, 8, 2f, 30f, 90f, false, false).layer(Layer.bullet - 0.03f),
             blackHoleDespawn = new Effect(80f, e -> {
                 float rad = 24f;
                 e.scaled(60f, s -> {
@@ -498,16 +496,6 @@ public class ExoFx{
                 Lines.stroke(2f * e.fout(), Color.black);
                 Lines.circle(e.x, e.y, rad * e.fin(Interp.pow3Out));
             }).layer(Layer.effect + 0.03f),
-            swirly = new SwirlEffect(){{
-                edgeColor = ExoPal.genesis;
-                width = 3;
-                length = 11;
-                lifetime = 50;
-                minRot = 1;
-                maxRot = 4;
-                minDst = 0f;
-                maxDst = 18;
-            }},
             blastcolor = new Effect(40f, 600,e -> {
                 color(e.color);
                 stroke(e.fout() * 3.7f);

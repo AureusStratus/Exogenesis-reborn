@@ -3,6 +3,9 @@ name: "exogenesis"
 author: "AureusStratus"
 main: "Exogenesis.Exogenesis"
 description: "A big mod will with alot of stuff."
+dependencies {
+compileOnly 'com.github.MEEPofFaith:MindustryBlackHoleRenderer: v11'
+}
 version: 3.0
 minGameVersion: 146
 java: true
