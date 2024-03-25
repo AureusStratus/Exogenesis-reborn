@@ -1,5 +1,4 @@
 package Exogenesis.content;
-import Exogenesis.entities.effect.SwirlEffect;
 import Exogenesis.graphics.ExoPal;
 import Exogenesis.util.util.GraphicUtils;
 import arc.*;
