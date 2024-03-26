@@ -7,6 +7,7 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.util.*;
+import blackhole.entities.effect.SwirlEffect;
 import mindustry.entities.*;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.graphics.*;
@@ -479,11 +480,12 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),
+            supernovaCharge = new SwirlEffect(30f, 8, 2f, 30f, 90f, false, false).layer(Layer.bullet - 0.03f),
             starCharge = new Effect(100f, 100f, e -> {
                     color(ExoPal.genesis);
-                    stroke(e.fin() * 2f);
-                    Lines.circle(e.x, e.y, 4f + e.fout() * 100f);
-                    Fill.circle(e.x, e.y, e.fin() * 20);
+                    Fill.circle(e.x, e.y, e.fin() * 10);
+                    color();
+                    Fill.circle(e.x, e.y, e.fin() * 10);
                 }).followParent(true).rotWithParent(true),
             blackHoleDespawn = new Effect(80f, e -> {
                 float rad = 24f;
