@@ -1295,9 +1295,9 @@ public class ExoBlocks{
                         }},
                         new RegionPart("-plate") {{
                             progress = PartProgress.warmup.curve(Interp.pow2In);
-                            moveX = 8f;
-                            moveY = -4;
-                            moveRot = 6;
+                            moveX = 4f;
+                            moveY = -2;
+                            moveRot = 2;
                             moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
                             mirror = true;
                         }},
@@ -2543,9 +2543,8 @@ public class ExoBlocks{
                 parts.addAll(
                 new RegionPart("-glow") {{
                     progress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
-                    heatColor = Color.blue;
-                    color = Color.blue;
-                    colorTo = Color.blue;
+                    color = Color.valueOf("000000");
+                    colorTo = Color.red;
                     blending = Blending.additive;
                     outline = mirror = false;
                 }},
@@ -2553,16 +2552,16 @@ public class ExoBlocks{
                     circle = true;
                     y = -4.75f;
                     layer = 114;
-                    radiusTo = 2;
-                    radius = 2;
+                    radiusTo = 1;
+                    radius = 1;
                     color = Color.white;
                 }},
                 new ShapePart() {{
                     circle = true;
                     y = -4.75f;
                     layer = 110;
-                    radiusTo = 6;
-                    radius = 6;
+                    radiusTo = 3;
+                    radius = 3;
                     color = ExoPal.genesis;
                 }},
                 new HoverPart(){{
@@ -2570,9 +2569,9 @@ public class ExoBlocks{
                     y = -4.75f;
                     circles = 3;
                     sides = 0;
-                    stroke = 4;
-                    phase = 100;
-                    radius = 38f;
+                    stroke = 3;
+                    phase = 200;
+                    radius = 28f;
                     mirror = false;
                     layer = Layer.effect;
                 }}
@@ -2589,7 +2588,7 @@ public class ExoBlocks{
                             sides = 0;
                             stroke = 4;
                             phase = 100;
-                            radius = 38f;
+                            radius = 58f;
                             mirror = false;
                             layer = Layer.effect;
                         }}
