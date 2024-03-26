@@ -2540,16 +2540,60 @@ public class ExoBlocks{
             coolant = consumeCoolant(0.8f);
             consumePower(90f);
             drawer = new DrawTurret("genesux-"){{
+                parts.addAll(
                 new RegionPart("-glow") {{
                     progress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
                     heatColor = Color.blue;
+                    color = Color.blue;
+                    colorTo = Color.blue;
+                    blending = Blending.additive;
+                    outline = mirror = false;
+                }},
+                new ShapePart() {{
+                    circle = true;
+                    y = -4.75f;
+                    layer = 114;
+                    radiusTo = 2;
+                    radius = 2;
+                    color = Color.white;
+                }},
+                new ShapePart() {{
+                    circle = true;
+                    y = -4.75f;
+                    layer = 110;
+                    radiusTo = 6;
+                    radius = 6;
+                    color = ExoPal.genesis;
+                }},
+                new HoverPart(){{
+                    color = ExoPal.genesis;
+                    y = -4.75f;
+                    circles = 3;
+                    sides = 0;
+                    stroke = 4;
+                    phase = 100;
+                    radius = 38f;
                     mirror = false;
-                }};
+                    layer = Layer.effect;
+                }}
+                );
             }};
             shootType = new DestructionBulletType(1.3f, 460){{
                 size /= 2.2f;
                 trailWidth = 9.5f;
                 trailLength = 57;
+                parts.addAll(
+                        new HoverPart(){{
+                            color = ExoPal.genesis;
+                            circles = 3;
+                            sides = 0;
+                            stroke = 4;
+                            phase = 100;
+                            radius = 38f;
+                            mirror = false;
+                            layer = Layer.effect;
+                        }}
+                );
                 int times = 25;
                 float life = ExoFx.starCharge.lifetime;
                 chargeEffect = new MultiEffect(
@@ -2561,31 +2605,29 @@ public class ExoBlocks{
                 backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesis;
                 frontColor = Color.white;
                 scaleLife = false;
-                randomLightningChance = 0.3f;
+                randomLightningChance = 1f;
                 randomGenerateRange = 150;
                 linkRange = 50f;
-                randomLightningNum = 5;
+                randomLightningNum = 1;
                 maxHit = 6;
                 range = 150f;
                 drawSize = 20f;
-                hitSound = Sounds.explosionbig;
+                hitSound = Sounds.plasmaboom;
                 splashDamageRadius = 100f;
                 splashDamage = 700;
                 lightningDamage = 11f;
                 intervalBullets = 1;
-                bulletInterval = 2;
-                homingRange = 80;
-                homingPower = 0.01f;
+                bulletInterval = 3;
                 damageType = thermal;
                 intervalBullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.genesis;
                     damageType = DamageType.energy;
-                    range = 200;
-                    targetRange = 170;
+                    range = 180;
+                    targetRange = 150;
                     hitSound = Sounds.none;
                     damage = 120;
                     distanceDamageFalloff = 4;
-                    chainLightning = 2;
+                    chainLightning = 0;
                     segmentLength = 8;
                 }};
                 pierce = false;
@@ -2594,7 +2636,7 @@ public class ExoBlocks{
                 despawnEffect = hitEffect = ExoFx.empyreanExplosion;
                 shootEffect = ExoFx.square45_6_45;
                 hitSpacing = 3;
-                fragLifeMin = 0f;
+                fragLifeMin = 1f;
                 fragBullets = 1;
                 fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
                     lifetime = 330f;
@@ -2602,10 +2644,10 @@ public class ExoBlocks{
                     damageRadius = 10;
                     swirlEffects = 5;
                     swirlInterval = 3;
-                    color = hitColor;
+                    color = hitColor = ExoPal.genesis;
                     lightRadius = 8f;
                     lightOpacity = 0.7f;
-                    despawnEffect = ExoFx.blackHoleDespawn;
+                    despawnEffect = hitEffect = ExoFx.blackHoleDespawn;
                 }};
             }};
         }};

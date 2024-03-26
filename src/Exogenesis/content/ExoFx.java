@@ -485,7 +485,7 @@ public class ExoFx{
                     color(ExoPal.genesis);
                     Fill.circle(e.x, e.y, e.fin() * 10);
                     color();
-                    Fill.circle(e.x, e.y, e.fin() * 10);
+                    Fill.circle(e.x, e.y, e.fin() * 6);
                 }).followParent(true).rotWithParent(true),
             blackHoleDespawn = new Effect(80f, e -> {
                 float rad = 24f;
