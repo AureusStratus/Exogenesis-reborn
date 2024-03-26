@@ -3,7 +3,7 @@ name: "Exogenesis"
 author: "AureusStratus"
 main: "Exogenesis.Exogenesis"
 description: "A big mod will with alot of stuff."
-dependencies [
+dependencies: [
 black-hole-renderer
 ]
 version: 3.0
