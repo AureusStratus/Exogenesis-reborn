@@ -2544,7 +2544,7 @@ public class ExoBlocks{
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
                 new RegionPart("-glow") {{
-                    progress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
+                    progress = PartProgress.charge.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
                     color = Color.valueOf("000000");
                     colorTo = Color.red;
                     blending = Blending.additive;
@@ -2552,6 +2552,7 @@ public class ExoBlocks{
                 }},
                 new EffectSpawnPart() {{
                     useProgress = true;
+                    progress = PartProgress.charge;
                     y = -4.75f;
                     effectColor = ExoPal.genesis;
                     randomEffectRot = 360;
@@ -2562,7 +2563,7 @@ public class ExoBlocks{
                     y = -4.75f;
                     layer = 114;
                     radiusTo = 1;
-                    radius = 0.1f;
+                    radius = 0.25f;
                     color = Color.white;
                 }},
                 new ShapePart() {{
@@ -2570,7 +2571,7 @@ public class ExoBlocks{
                     y = -4.75f;
                     layer = 110;
                     radiusTo = 3;
-                    radius = 0.3f;
+                    radius = 0.45f;
                     color = ExoPal.genesis;
                 }}
                 );
@@ -2581,11 +2582,11 @@ public class ExoBlocks{
                 trailLength = 57;
                 parts.addAll(
                         new EffectSpawnPart() {{
-                            useProgress = true;
+                            useProgress = false;
                             effect = new SwirlEffect(10f, 8, 1.3f, 30f, 90f, false, false).layer(Layer.bullet - 0.03f);
                             effectColor = ExoPal.genesis;
                             randomEffectRot = 360;
-                            effectChance = 0.5f;
+                            effectChance = 1f;
                         }}
                 );
                 int times = 25;
@@ -2621,7 +2622,7 @@ public class ExoBlocks{
                     hitSound = Sounds.none;
                     damage = 120;
                     distanceDamageFalloff = 4;
-                    chainLightning = 0;
+                    chainLightning = 1;
                     segmentLength = 8;
                 }};
                 pierce = false;
