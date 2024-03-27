@@ -538,10 +538,10 @@ public class ExoFx{
                 }
             }),
             supernovaSpark = new Effect(16f, e -> {
-                color(ExoPal.genesis, e.fin());
+                color(Color.white, ExoPal.genesis, e.fin());
                 stroke(e.fout() * 1.1f + 0.5f);
 
-                randLenVectors(e.id, 2, 40f * e.fin(), e.rotation, 2f, (x, y) -> {
+                randLenVectors(e.id, 1, 40f * e.fin(), e.rotation, 0f, (x, y) -> {
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
                 });
             }),

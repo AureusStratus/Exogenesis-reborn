@@ -2562,6 +2562,7 @@ public class ExoBlocks{
                 new EffectSpawnPart() {{
                     useProgress = true;
                     y = -4.75f;
+                    effectColor = ExoPal.genesis;
                     effect = ExoFx.singleSpark;
                     randomEffectRot = 360;
                     effectChance = 0.5f;
@@ -2628,17 +2629,17 @@ public class ExoBlocks{
                 hitSound = Sounds.plasmaboom;
                 splashDamageRadius = 100f;
                 splashDamage = 700;
-                lightningDamage = 11f;
+                lightningDamage = 151f;
                 intervalBullets = 1;
                 bulletInterval = 3;
-                damageType = thermal;
+                damageType = DamageType.thermal;
                 intervalBullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.genesis;
-                    damageType = thermal;
+                    damageType = DamageType.thermal;
                     range = 180;
                     targetRange = 150;
                     hitSound = Sounds.none;
-                    damage = 120;
+                    damage = 340;
                     distanceDamageFalloff = 4;
                     chainLightning = 1;
                     segmentLength = 8;
@@ -2654,7 +2655,7 @@ public class ExoBlocks{
                 fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
                     lifetime = 330f;
                     growTime = 15;
-                    damageRadius = 10;
+                    damageRadius = 30;
                     swirlEffects = 5;
                     swirlInterval = 3;
                     color = hitColor = ExoPal.genesis;
