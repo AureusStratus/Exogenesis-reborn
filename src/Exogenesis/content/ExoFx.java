@@ -9,13 +9,11 @@ import arc.math.geom.*;
 import arc.util.*;
 import blackhole.entities.effect.SwirlEffect;
 import mindustry.entities.*;
-import mindustry.entities.effect.ParticleEffect;
 import mindustry.graphics.*;
 
 import static arc.graphics.g2d.Draw.rect;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
-import static arc.input.KeyCode.*;
 import static arc.math.Angles.*;
 import static arc.math.Angles.randLenVectors;
 import static mindustry.Vars.state;
@@ -536,14 +534,14 @@ public class ExoFx{
                     Fill.circle(e.x, e.y, 12f * e.fout());
                     color();
                     Fill.circle(e.x, e.y, 6f * e.fout());
-                    Drawf.light(e.x, e.y, 20 * 1.6f, Pal.heal, e.fout());
+                    Drawf.light(e.x, e.y, 20 * 1.6f, ExoPal.genesis, e.fout());
                 }
             }),
-            supernovaSpark = new Effect(21f, e -> {
-                color(ExoPal.genesis, ExoPal.genesisDark, e.fin());
+            supernovaSpark = new Effect(16f, e -> {
+                color(ExoPal.genesis, e.fin());
                 stroke(e.fout() * 1.1f + 0.5f);
 
-                randLenVectors(e.id, 5, 27f * e.fin(), e.rotation, 3f, (x, y) -> {
+                randLenVectors(e.id, 2, 40f * e.fin(), e.rotation, 2f, (x, y) -> {
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
                 });
             }),

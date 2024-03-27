@@ -2524,7 +2524,7 @@ public class ExoBlocks{
             recoil = 0f;
             reload = 650f;
             shake = 4f;
-            heatColor = Color.blue;
+            heatColor = Color.red;
             outlineColor = Pal.darkOutline;
             size = 7;
             scaledHealth = 300;
@@ -2595,9 +2595,8 @@ public class ExoBlocks{
                 size /= 2.2f;
                 trailWidth = 9.5f;
                 trailLength = 57;
-                trailSinScl = 2;
-                trailSinMag = 1.2f;
-                trailChance = 0.3f;
+                trailSinScl = 1;
+                trailSinMag = 0.5f;
                 trailParam = 3.5f;
                 parts.addAll(
                         new EffectSpawnPart() {{
@@ -2635,7 +2634,7 @@ public class ExoBlocks{
                 damageType = thermal;
                 intervalBullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.genesis;
-                    damageType = DamageType.energy;
+                    damageType = thermal;
                     range = 180;
                     targetRange = 150;
                     hitSound = Sounds.none;
