@@ -1,5 +1,6 @@
 package Exogenesis.content;
 
+import Exogenesis.entities.part.EffectSpawnPart;
 import Exogenesis.type.DamageType;
 import Exogenesis.type.bullet.*;
 import Exogenesis.type.bullet.vanilla.*;
@@ -2548,12 +2549,17 @@ public class ExoBlocks{
                     blending = Blending.additive;
                     outline = mirror = false;
                 }},
+                new EffectSpawnPart() {{
+                    useProgress = false;
+                    y = -4.75f;
+                    effectChance = 5;
+                }},
                 new ShapePart() {{
                     circle = true;
                     y = -4.75f;
                     layer = 114;
                     radiusTo = 1;
-                    radius = 1;
+                    radius = 0.1f;
                     color = Color.white;
                 }},
                 new ShapePart() {{
@@ -2561,19 +2567,8 @@ public class ExoBlocks{
                     y = -4.75f;
                     layer = 110;
                     radiusTo = 3;
-                    radius = 3;
+                    radius = 0.3f;
                     color = ExoPal.genesis;
-                }},
-                new HoverPart(){{
-                    color = ExoPal.genesis;
-                    y = -4.75f;
-                    circles = 3;
-                    sides = 0;
-                    stroke = 3;
-                    phase = 200;
-                    radius = 28f;
-                    mirror = false;
-                    layer = Layer.effect;
                 }}
                 );
             }};
