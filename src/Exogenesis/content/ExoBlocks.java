@@ -12,6 +12,7 @@ import Exogenesis.entities.effect.RepeatEffect;
 
 import arc.util.Tmp;
 import blackhole.entities.bullet.BlackHoleBulletType;
+import blackhole.entities.effect.SwirlEffect;
 import mindustry.entities.abilities.MoveEffectAbility;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
@@ -1645,7 +1646,7 @@ public class ExoBlocks{
             squareSprite = false;
             range = 82f;
             reload = 35f;
-            shootEffect = ExoFx.colorBombSmaller;
+            shootEffect = Fx.colorSpark;
             smokeEffect = Fx.none;
             outlineColor = Pal.darkOutline;
             shootY = 8;
@@ -2550,9 +2551,11 @@ public class ExoBlocks{
                     outline = mirror = false;
                 }},
                 new EffectSpawnPart() {{
-                    useProgress = false;
+                    useProgress = true;
                     y = -4.75f;
-                    effectChance = 5;
+                    effectColor = ExoPal.genesis;
+                    randomEffectRot = 360;
+                    effectChance = 0.5f;
                 }},
                 new ShapePart() {{
                     circle = true;
@@ -2577,15 +2580,12 @@ public class ExoBlocks{
                 trailWidth = 9.5f;
                 trailLength = 57;
                 parts.addAll(
-                        new HoverPart(){{
-                            color = ExoPal.genesis;
-                            circles = 3;
-                            sides = 0;
-                            stroke = 4;
-                            phase = 100;
-                            radius = 58f;
-                            mirror = false;
-                            layer = Layer.effect;
+                        new EffectSpawnPart() {{
+                            useProgress = true;
+                            effect = new SwirlEffect(10f, 8, 1.3f, 30f, 90f, false, false).layer(Layer.bullet - 0.03f);
+                            effectColor = ExoPal.genesis;
+                            randomEffectRot = 360;
+                            effectChance = 0.5f;
                         }}
                 );
                 int times = 25;
