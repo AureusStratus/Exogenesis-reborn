@@ -15,6 +15,7 @@ import mindustry.graphics.*;
 import static arc.graphics.g2d.Draw.rect;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
+import static arc.input.KeyCode.*;
 import static arc.math.Angles.*;
 import static arc.math.Angles.randLenVectors;
 import static mindustry.Vars.state;
@@ -480,23 +481,72 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),
-            supernovaCharge = new SwirlEffect(30f, 8, 2f, 30f, 90f, false, false).layer(Layer.bullet - 0.03f),
+            supernovaCharge = new SwirlEffect(30f, 8, 2f, 30f, 90f, false, false).layer(Layer.effect - 0.03f),
             starCharge = new Effect(100f, 100f, e -> {
                     color(ExoPal.genesis);
                     Fill.circle(e.x, e.y, e.fin() * 10);
                     color();
                     Fill.circle(e.x, e.y, e.fin() * 6);
                 }).followParent(true).rotWithParent(true),
-            blackHoleDespawn = new Effect(80f, e -> {
+            singleSpark = new Effect(21f, e -> {
+                color(Color.white, e.color, e.fin());
+                stroke(e.fout() * 1.1f + 0.5f);
+
+                randLenVectors(e.id, 2, 27f * e.fin(), e.rotation, 9f, (x, y) -> {
+                    lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
+                });
+            }),
+            starPlasma = new Effect(14, e -> {
+                color(ExoPal.genesis, ExoPal.genesisDark, e.fin());
+                stroke(0.5f + e.fout());
+
+                randLenVectors(e.id, 2, 1f + e.fin() * 15f, e.rotation, 70f, (x, y) -> {
+                    float ang = Mathf.angle(x, y);
+                    lineAngle(e.x + x, e.y + y, ang, e.fout() * 3 + 1f);
+                });
+            }).followParent(true).rotWithParent(true),
+            singularityDespawn = new Effect(80f, e -> {
                 float rad = 24f;
                 e.scaled(60f, s -> {
-                    Lines.stroke(6f * s.fout(), e.color);
+                    Lines.stroke(6f * s.fout(), ExoPal.genesis);
                     Lines.circle(e.x, e.y, 1.5f * rad * s.fin(Interp.pow3Out));
                 });
-
                 Lines.stroke(2f * e.fout(), Color.black);
                 Lines.circle(e.x, e.y, rad * e.fin(Interp.pow3Out));
             }).layer(Layer.effect + 0.03f),
+            supernovaShoot = new Effect(50f, 100f, e -> {
+                e.scaled(7f, b -> {
+                    color(ExoPal.genesis, ExoPal.genesisDark, b.fout());
+                    Fill.circle(e.x, e.y, 20);
+                });
+
+                color(ExoPal.genesis);
+                stroke(e.fout() * 3f);
+                Lines.circle(e.x, e.y, 20);
+
+                int points = 4;
+                float offset = Mathf.randomSeed(e.id, 360f);
+                for (int i = 0; i < points; i++) {
+                    float angle = i * 360f / points + offset;
+                    //for(int s : Mathf.zeroOne){
+                    // Drawf.tri(e.x + Angles.trnsx(angle, rad), e.y + Angles.trnsy(angle, rad), 6f, 50f * e.fout(), angle/* + s*180f*/);
+                    // }
+                    // }
+
+                    Fill.circle(e.x, e.y, 12f * e.fout());
+                    color();
+                    Fill.circle(e.x, e.y, 6f * e.fout());
+                    Drawf.light(e.x, e.y, 20 * 1.6f, Pal.heal, e.fout());
+                }
+            }),
+            supernovaSpark = new Effect(21f, e -> {
+                color(ExoPal.genesis, ExoPal.genesisDark, e.fin());
+                stroke(e.fout() * 1.1f + 0.5f);
+
+                randLenVectors(e.id, 5, 27f * e.fin(), e.rotation, 3f, (x, y) -> {
+                    lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
+                });
+            }),
             blastcolor = new Effect(40f, 600,e -> {
                 color(e.color);
                 stroke(e.fout() * 3.7f);

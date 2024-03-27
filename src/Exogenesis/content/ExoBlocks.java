@@ -2530,6 +2530,7 @@ public class ExoBlocks{
             scaledHealth = 300;
             cooldownTime = 320;
             shoot.firstShotDelay = 100;
+            shootEffect = ExoFx.supernovaShoot;
             chargeSound = Sounds.lasercharge2;
             shootSound = ExoSounds.coolplasmaboom;
 
@@ -2558,12 +2559,26 @@ public class ExoBlocks{
                     randomEffectRot = 360;
                     effectChance = 0.5f;
                 }},
+                new EffectSpawnPart() {{
+                    useProgress = true;
+                    y = -4.75f;
+                    effect = ExoFx.singleSpark;
+                    randomEffectRot = 360;
+                    effectChance = 0.5f;
+                }},
+                new EffectSpawnPart() {{
+                    useProgress = mirror = true;
+                    progress = PartProgress.charge;
+                    x = 4f;
+                    effect = ExoFx.supernovaSpark;
+                    effectChance = 0.5f;
+                }},
                 new ShapePart() {{
                     circle = true;
                     y = -4.75f;
                     layer = 114;
                     radiusTo = 1;
-                    radius = 0.25f;
+                    radius = 0.3f;
                     color = Color.white;
                 }},
                 new ShapePart() {{
@@ -2580,10 +2595,14 @@ public class ExoBlocks{
                 size /= 2.2f;
                 trailWidth = 9.5f;
                 trailLength = 57;
+                trailSinScl = 2;
+                trailSinMag = 1.2f;
+                trailChance = 0.3f;
+                trailParam = 3.5f;
                 parts.addAll(
                         new EffectSpawnPart() {{
                             useProgress = false;
-                            effect = new SwirlEffect(10f, 8, 1.3f, 30f, 90f, false, false).layer(Layer.bullet - 0.03f);
+                            effect = ExoFx.starPlasma;
                             effectColor = ExoPal.genesis;
                             randomEffectRot = 360;
                             effectChance = 1f;
@@ -2642,7 +2661,7 @@ public class ExoBlocks{
                     color = hitColor = ExoPal.genesis;
                     lightRadius = 8f;
                     lightOpacity = 0.7f;
-                    despawnEffect = hitEffect = ExoFx.blackHoleDespawn;
+                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
                 }};
             }};
         }};
