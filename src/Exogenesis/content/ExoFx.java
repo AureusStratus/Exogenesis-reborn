@@ -511,6 +511,15 @@ public class ExoFx{
                 });
                 Lines.stroke(2f * e.fout(), Color.black);
                 Lines.circle(e.x, e.y, rad * e.fin(Interp.pow3Out));
+                color(ExoPal.genesis);
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 3f, 50f * e.fout(), i*90);
+                }
+
+                color();
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 1.3f, 30f * e.fout(), i*90);
+                }
             }).layer(Layer.effect + 0.03f),
             supernovaShoot = new Effect(50f, 100f, e -> {
                 e.scaled(7f, b -> {
@@ -545,6 +554,14 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
                 });
             }),
+             railgunSpark = new Effect(26f, e -> {
+                 color(e.color);
+                 float length = !(e.data instanceof Float) ? 70f : (Float)e.data;
+
+                 randLenVectors(e.id, 7, length, e.rotation, 0f, (x, y) -> {
+                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fout() * 9f);
+                 });
+             }),
             blastcolor = new Effect(40f, 600,e -> {
                 color(e.color);
                 stroke(e.fout() * 3.7f);

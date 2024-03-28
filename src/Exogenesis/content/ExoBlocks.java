@@ -2593,20 +2593,20 @@ public class ExoBlocks{
                  //parts
                 new RegionPart("-bodySide"){{
                     progress = PartProgress.warmup;
-                    moveX = 4.5f;
+                    moveX = 6.5f;
                     mirror = under = true;
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
                     moveX = 8.5f;
-                    moveY = -16.5f;
+                    moveY = -20.5f;
                     moveRot = 40;
                     under = mirror = true;
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
                     moveX = 6.5f;
-                    moveY = -13.5f;
+                    moveY = -17.5f;
                     moveRot = 25;
                     under = mirror = true;
                 }},
@@ -2614,14 +2614,14 @@ public class ExoBlocks{
                     progress = PartProgress.warmup;
                     y = -8.5f;
                     x = 14.25f;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, 4f, 6f), new PartMove(PartProgress.warmup.delay(0.7f), 0f, -6f, 0f));
+                    moves.add(new PartMove(PartProgress.recoil, 0f, 4f, 6f));
                     moveRot = -10;
                     moveX = 4.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-bodySidePlate"){{
                     progress = PartProgress.warmup;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, 4f, 6f), new PartMove(PartProgress.warmup.delay(0.7f), 0f, -6f, 0f));
+                    moves.add(new PartMove(PartProgress.recoil, 0f, 4f, 6f));
                     moveX = 4.5f;
                     mirror = true;
                 }}
@@ -2702,9 +2702,9 @@ public class ExoBlocks{
         }};
         polaris = new ItemTurret("polaris"){ {
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
-            range = 500f;
-            recoil = 0f;
-            reload = 1000f;
+            range = 1000f;
+            recoil = 3f;
+            reload = 500f;
             shake = 4f;
             heatColor = Color.red;
             outlineColor = Pal.darkOutline;
@@ -2712,11 +2712,23 @@ public class ExoBlocks{
             scaledHealth = 280;
             cooldownTime = 320;
             shootSound = Sounds.mediumCannon;
+            shootEffect = new Effect(30, e -> {
+                color(e.color);
+                float w = 1.2f + 7 * e.fout();
 
+                Drawf.tri(e.x, e.y, w, 45f * e.fout(), e.rotation);
+                color(e.color);
+
+                for(int i : Mathf.signs){
+                    Drawf.tri(e.x, e.y, w * 1.3f, 18f * e.fout(), e.rotation + i * 90f);
+                }
+
+                Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
+            });
             warmupMaintainTime = 30f;
             minWarmup = 0.96f;
             shootWarmupSpeed = 0.03f;
-            shootY = 16f;
+            shootY = -12.25f;
             rotateSpeed = 1;
             shootCone = 20f;
             unitSort = UnitSorts.strongest;
@@ -2730,6 +2742,16 @@ public class ExoBlocks{
                     colorTo = Color.red;
                     blending = Blending.additive;
                     outline = mirror = false;
+                }},
+                new EffectSpawnPart() {{
+                    useProgress = true;
+                    progress = PartProgress.recoil;
+                    y = -12.25f;
+                    x = 3.5f;
+                    effectColor = ExoPal.genesis;
+                    effect = ExoFx.railgunSpark;
+                    randomEffectRot = 0;
+                    effectChance = 0.5f;
                 }},
                 new RegionPart("-rail") {{
                     progress = PartProgress.warmup.curve(Interp.pow2In);
@@ -2764,11 +2786,39 @@ public class ExoBlocks{
                 );
             }};
             ammo(
-                    ExoItems.thermoCore, new BasicBulletType(0f, 1) {{
-                        shootEffect = Fx.shootBig;
-                        smokeEffect = Fx.shootSmokeMissile;
-                        ammoMultiplier = 1f;
-                    }});
+            Items.tungsten, new ExoRailBulletType(){{
+                length = range;
+                damage = 1000f;
+                ammoPerShot = 50;
+                damageType = DamageType.pierce;
+                hitColor = ExoPal.genesis;
+                hitEffect = Fx.sparkExplosion;
+                pierceDamageFactor = 0.8f;
+                smokeEffect = Fx.colorSpark;
+                endEffect = new Effect(30f, e -> {
+                    color(e.color);
+                    Drawf.tri(e.x, e.y, e.fout() * 1.8f, 9f, e.rotation);
+                });
+                lineEffect = new Effect(30f, e -> {
+                    if(!(e.data instanceof Vec2 v)) return;
+
+                    color(e.color);
+                    stroke(e.fout() * 1.4f + 0.7f);
+
+                    Fx.rand.setSeed(e.id);
+                    for(int i = 0; i < 7; i++){
+                        Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                        Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                    }
+
+                    e.scaled(20f, b -> {
+                        stroke(b.fout() * 1.5f);
+                        color(e.color);
+                        Lines.line(e.x, e.y, v.x, v.y);
+                    });
+                });
+            }}
+        );
         }};
 
         genesisFactory = new UnitFactory("genesis-factory"){{
