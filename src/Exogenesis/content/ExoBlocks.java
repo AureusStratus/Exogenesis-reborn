@@ -2591,39 +2591,36 @@ public class ExoBlocks{
                     color = ExoPal.genesis;
                 }},
                  //parts
-                new RegionPart("-bodySidePlate"){{
+                new RegionPart("-bodySide"){{
                     progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
-                    moveX = 6.5f;
-                    mirror = true;
-                }},
-                new RegionPart("-wing"){{
-                    progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
-                    y = -8.5f;
-                    x = -14.25f;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -20f));
-                    moveRot = 60;
-                    under = true;
-                    mirror = true;
+                    moveX = 4.5f;
+                    mirror = under = true;
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
                     moveX = 1.5f;
                     moveY = -6.5f;
                     moveRot = 40;
-                    under = true;
-                    mirror = true;
+                    under = mirror = true;
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
                     moveX = 1.5f;
                     moveY = -3.5f;
                     moveRot = 25;
-                    under = true;
-                    mirror = true;
+                    under = mirror = true;
                 }},
-                new RegionPart("-bodySide"){{
+                new RegionPart("-wing"){{
                     progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
-                    moveX = 4.5f;
+                    y = -14.25f;
+                    x = - 8.5f;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -20f));
+                    moveRot = 60;
+                    under = mirror = true;
+                }},
+                new RegionPart("-bodySidePlate"){{
+                    progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
+                    moveX = 6.5f;
                     mirror = true;
                 }}
                 );
@@ -2701,7 +2698,7 @@ public class ExoBlocks{
                 }};
             }};
         }};
-        polaris = new ItemTurret("polaris"){{
+        polaris = new ItemTurret("polaris"){ {
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
             range = 500f;
             recoil = 0f;
@@ -2732,7 +2729,7 @@ public class ExoBlocks{
                     blending = Blending.additive;
                     outline = mirror = false;
                 }},
-                new RegionPart("-polaris-rail") {{
+                new RegionPart("-rail") {{
                     progress = PartProgress.warmup.curve(Interp.pow2In);
                     heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
                     moveY = 6;
@@ -2744,13 +2741,13 @@ public class ExoBlocks{
                     moves.add(new PartMove(PartProgress.recoil, 0f, -4f, 0f));
                     heatColor = Color.red;
                     heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
-                    moveX = 6f;
+                    moveX = 4.5f;
                     children.add(
                     new RegionPart("-wingbit"){{
                         progress = PartProgress.warmup.delay(0.5f);
                         mirror = true;
                         under = true;
-                        moveY = 5f;
+                        moveY = 3.3f;
                     }},
                     new RegionPart("-wingbit2"){{
                         progress = PartProgress.warmup.delay(0.6f);
@@ -2759,7 +2756,7 @@ public class ExoBlocks{
                         under = true;
                         moveX = 5f;
                     }});
-                    mirror = true;
+                    mirror = under = true;
                 }}
                 );
             }};
