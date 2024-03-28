@@ -2598,7 +2598,7 @@ public class ExoBlocks{
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
-                    moveX = 8.5f;
+                    moveX = 12.5f;
                     moveY = -24.5f;
                     moveRot = 80;
                     under = mirror = true;
@@ -2613,21 +2613,19 @@ public class ExoBlocks{
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
                     moveX = 6.5f;
-                    moveY = -30.5f;
+                    moveY = -20.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-wing"){{
                     progress = PartProgress.warmup;
                     y = -8.5f;
                     x = 14.25f;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, 4f, 6f));
                     moveRot = -10;
                     moveX = 4.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-bodySidePlate"){{
                     progress = PartProgress.warmup;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, 4f, 6f));
                     moveX = 4.5f;
                     mirror = true;
                 }}
@@ -2716,7 +2714,7 @@ public class ExoBlocks{
             outlineColor = Pal.darkOutline;
             size = 7;
             scaledHealth = 280;
-            cooldownTime = 320;
+            cooldownTime = 2;
             maxAmmo = 200;
             shootSound = Sounds.railgun;
             shootEffect = new Effect(30, e -> {
@@ -2752,7 +2750,7 @@ public class ExoBlocks{
                 }},
                 new EffectSpawnPart() {{
                     useProgress = true;
-                    progress = PartProgress.recoil;
+                    progress = PartProgress.heat;
                     y = -12.25f;
                     x = 3.5f;
                     effectColor = ExoPal.genesis;
@@ -2782,7 +2780,7 @@ public class ExoBlocks{
                     }},
                     new RegionPart("-wingbit2"){{
                         progress = PartProgress.warmup.delay(0.6f);
-                        moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
+                        moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f), new PartMove(PartProgress.warmup.delay(0.5f), 0f, -3f, 0f));
                         layerOffset = -0.001f;
                         mirror = true;
                         under = true;
@@ -2804,13 +2802,15 @@ public class ExoBlocks{
                 smokeEffect = Fx.colorSpark;
                 endEffect = new Effect(30f, e -> {
                     color(e.color);
-                    Drawf.tri(e.x, e.y, e.fout() * 1.8f, 9f, e.rotation);
+                    Drawf.tri(e.x, e.y, e.fout() * 7.8f, 19f, e.rotation);
+                    color(e.color);
+                    Drawf.tri(e.x, e.y, e.fout() * 4.8f, 15f, e.rotation);
                 });
-                lineEffect = new Effect(30f, e -> {
+                lineEffect = new Effect(20f, e -> {
                     if(!(e.data instanceof Vec2 v)) return;
 
                     color(e.color);
-                    stroke(e.fout() * 1.4f + 0.7f);
+                    stroke(e.fout() * 1.1f + 0.6f);
 
                     Fx.rand.setSeed(e.id);
                     for(int i = 0; i < 7; i++){
@@ -2818,9 +2818,14 @@ public class ExoBlocks{
                         Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
                     }
 
-                    e.scaled(20f, b -> {
-                        stroke(b.fout() * 1.5f);
+                    e.scaled(14f, b -> {
+                        stroke(b.fout() * 7f);
                         color(e.color);
+                        Lines.line(e.x, e.y, v.x, v.y);
+                    });
+                    e.scaled(14f, b -> {
+                        stroke(b.fout() * 4.5f);
+                        color(Color.white);
                         Lines.line(e.x, e.y, v.x, v.y);
                     });
                 });
