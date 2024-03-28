@@ -2621,6 +2621,7 @@ public class ExoBlocks{
                 }},
                 new RegionPart("-bodySidePlate"){{
                     progress = PartProgress.warmup;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, 4f, 6f), new PartMove(PartProgress.warmup.delay(0.7f), 0f, -6f, 0f));
                     moveX = 4.5f;
                     mirror = true;
                 }}
