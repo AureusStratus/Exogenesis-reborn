@@ -2616,12 +2616,13 @@ public class ExoBlocks{
                     x = 14.25f;
                     moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -20f));
                     moveRot = 30;
-                    moveX = 3;
+                    moveX = 5.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-bodySidePlate"){{
                     progress = PartProgress.charge;
                     moveX = 4.5f;
+                    moveRot = 20;
                     mirror = true;
                 }}
                 );
