@@ -2612,7 +2612,7 @@ public class ExoBlocks{
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
-                    moveY = -20.5f;
+                    moveY = -17.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-wing"){{
@@ -2748,14 +2748,14 @@ public class ExoBlocks{
                     outline = mirror = false;
                 }},
                 new EffectSpawnPart() {{
-                    useProgress = true;
+                    useProgress = mirror = true;
                     progress = PartProgress.heat;
                     y = -12.25f;
                     x = 3.5f;
                     effectColor = ExoPal.genesis;
                     effect = ExoFx.railgunSpark;
                     randomEffectRot = 0;
-                    effectChance = 0.5f;
+                    effectChance = 1f;
                 }},
                 new RegionPart("-rail") {{
                     progress = PartProgress.warmup.curve(Interp.pow2In);
@@ -2800,12 +2800,14 @@ public class ExoBlocks{
                 pierceDamageFactor = 0.8f;
                 smokeEffect = Fx.colorSpark;
                 endEffect = new Effect(30f, e -> {
+                    clipSize = 140;
                     color(e.color);
-                    Drawf.tri(e.x, e.y, e.fout() * 7.8f, 19f, e.rotation);
+                    Drawf.tri(e.x, e.y, e.fout() * 10f, 19f, e.rotation);
                     color(e.color);
                     Drawf.tri(e.x, e.y, e.fout() * 4.8f, 15f, e.rotation);
                 });
                 lineEffect = new Effect(20f, e -> {
+                    clipSize = 140;
                     if(!(e.data instanceof Vec2 v)) return;
 
                     color(e.color);
@@ -2817,13 +2819,13 @@ public class ExoBlocks{
                         Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
                     }
 
-                    e.scaled(14f, b -> {
-                        stroke(b.fout() * 7f);
+                    e.scaled(22f, b -> {
+                        stroke(b.fout() * 10f);
                         color(e.color);
                         Lines.line(e.x, e.y, v.x, v.y);
                     });
-                    e.scaled(14f, b -> {
-                        stroke(b.fout() * 4.5f);
+                    e.scaled(22f, b -> {
+                        stroke(b.fout() * 6.5f);
                         color(Color.white);
                         Lines.line(e.x, e.y, v.x, v.y);
                     });
