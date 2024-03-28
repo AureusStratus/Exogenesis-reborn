@@ -2519,7 +2519,7 @@ public class ExoBlocks{
         }};
         supernova = new PowerTurret("supernova"){{
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
-            range = 1500f;
+            range = 500f;
             squareSprite = false;
             recoil = 0f;
             reload = 650f;
@@ -2540,7 +2540,7 @@ public class ExoBlocks{
             shootY = -4.75f;
             rotateSpeed = 1.5f;
             unitSort = UnitSorts.strongest;
-            coolant = consumeCoolant(0.8f);
+            coolant = consumeCoolant(0.2f);
             consumePower(90f);
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
@@ -2589,6 +2589,42 @@ public class ExoBlocks{
                     radiusTo = 3;
                     radius = 0.45f;
                     color = ExoPal.genesis;
+                }},
+                 //parts
+                new RegionPart("-bodySidePlate"){{
+                    progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
+                    moveX = 6.5f;
+                    mirror = true;
+                }},
+                new RegionPart("-wing"){{
+                    progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
+                    y = -8.5f;
+                    x = -14.25f;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -20f));
+                    moveRot = 60;
+                    under = true;
+                    mirror = true;
+                }},
+                new RegionPart("-backWing"){{
+                    progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
+                    moveX = 1.5f;
+                    moveY = -6.5f;
+                    moveRot = 40;
+                    under = true;
+                    mirror = true;
+                }},
+                new RegionPart("-backWing"){{
+                    progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
+                    moveX = 1.5f;
+                    moveY = -3.5f;
+                    moveRot = 25;
+                    under = true;
+                    mirror = true;
+                }},
+                new RegionPart("-bodySide"){{
+                    progress = PartProgress.charge.blend(PartProgress.reload, 0.5f);
+                    moveX = 4.5f;
+                    mirror = true;
                 }}
                 );
             }};
@@ -2596,8 +2632,8 @@ public class ExoBlocks{
                 size /= 2.2f;
                 trailWidth = 9.5f;
                 trailLength = 57;
-                trailSinScl = 1;
-                trailSinMag = 0.5f;
+                trailSinScl = 3;
+                trailSinMag = 0.4f;
                 trailParam = 3.5f;
                 parts.addAll(
                         new EffectSpawnPart() {{
@@ -2667,7 +2703,7 @@ public class ExoBlocks{
         }};
         polaris = new ItemTurret("polaris"){{
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
-            range = 1500f;
+            range = 500f;
             recoil = 0f;
             reload = 1000f;
             shake = 4f;
@@ -2689,40 +2725,42 @@ public class ExoBlocks{
             consumePower(6f);
             drawer = new DrawTurret("genesux-") {{
                 parts.addAll(
-                        new RegionPart("-plate") {{
-                            progress = PartProgress.warmup.curve(Interp.pow2In);
-                            moveX = 8f;
-                            moveY = -4;
-                            moveRot = 6;
-                            moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
-                            mirror = true;
-                        }},
-                        new RegionPart("-manbible") {{
-                            progress = PartProgress.warmup.curve(Interp.pow2In);
-                            heatColor = Color.red;
-                            heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
-                            moveX = 6f;
-                            moveY = -2;
-                            moveRot = 20;
-                            children.add(new RegionPart("-maniblebits"){{
-                                progress = PartProgress.warmup.delay(0.6f);
-                                mirror = true;
-                                under = true;
-                                moveX = 5f;
-                            }});
-                            mirror = true;
-                        }},
-                        new RegionPart("-nuke"){{
-                            progress = PartProgress.reload.curve(Interp.pow2In);
-                            y = 4;
-                            colorTo = new Color(1f, 1f, 1f, 0f);
-                            color = Color.white;
-                            mixColorTo = Pal.accent;
-                            mixColor = new Color(1f, 1f, 1f, 0f);
-                            under = true;
-
-                            moves.add(new PartMove(PartProgress.warmup.inv(), 0f, -10f, 0f));
-                        }}
+                new RegionPart("-glow") {{
+                    progress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
+                    color = Color.valueOf("000000");
+                    colorTo = Color.red;
+                    blending = Blending.additive;
+                    outline = mirror = false;
+                }},
+                new RegionPart("-polaris-rail") {{
+                    progress = PartProgress.warmup.curve(Interp.pow2In);
+                    heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
+                    moveY = 6;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
+                    mirror = false;
+                }},
+                new RegionPart("-wing") {{
+                    progress = PartProgress.warmup.curve(Interp.pow2In);
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, 0f));
+                    heatColor = Color.red;
+                    heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
+                    moveX = 6f;
+                    children.add(
+                    new RegionPart("-wingbit"){{
+                        progress = PartProgress.warmup.delay(0.5f);
+                        mirror = true;
+                        under = true;
+                        moveY = 5f;
+                    }},
+                    new RegionPart("-wingbit2"){{
+                        progress = PartProgress.warmup.delay(0.6f);
+                        moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
+                        mirror = true;
+                        under = true;
+                        moveX = 5f;
+                    }});
+                    mirror = true;
+                }}
                 );
             }};
             ammo(
