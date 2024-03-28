@@ -2592,35 +2592,36 @@ public class ExoBlocks{
                 }},
                  //parts
                 new RegionPart("-bodySide"){{
-                    progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
+                    progress = PartProgress.charge;
                     moveX = 4.5f;
                     mirror = under = true;
                 }},
                 new RegionPart("-backWing"){{
-                    progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
-                    moveX = 1.5f;
-                    moveY = -6.5f;
+                    progress = PartProgress.charge;
+                    moveX = 2.5f;
+                    moveY = -9.5f;
                     moveRot = 40;
                     under = mirror = true;
                 }},
                 new RegionPart("-backWing"){{
-                    progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
-                    moveX = 1.5f;
-                    moveY = -3.5f;
+                    progress = PartProgress.charge;
+                    moveX = 2.5f;
+                    moveY = -6.5f;
                     moveRot = 25;
                     under = mirror = true;
                 }},
                 new RegionPart("-wing"){{
-                    progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
+                    progress = PartProgress.charge;
                     y = -8.5f;
                     x = 14.25f;
                     moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -20f));
                     moveRot = 30;
+                    moveX = 3;
                     under = mirror = true;
                 }},
                 new RegionPart("-bodySidePlate"){{
-                    progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
-                    moveX = 6.5f;
+                    progress = PartProgress.charge;
+                    moveX = 4.5f;
                     mirror = true;
                 }}
                 );
@@ -2732,8 +2733,7 @@ public class ExoBlocks{
                 new RegionPart("-rail") {{
                     progress = PartProgress.warmup.curve(Interp.pow2In);
                     heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
-                    moveY = 6;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -2.5f, 0f));
+                    moveY = 8;
                     mirror = false;
                 }},
                 new RegionPart("-wing") {{
@@ -2741,14 +2741,14 @@ public class ExoBlocks{
                     moves.add(new PartMove(PartProgress.recoil, 0f, -8f, 0f), new PartMove(PartProgress.warmup.delay(0.6f), 0f, 5.5f, 0f));
                     heatColor = Color.red;
                     heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
-                    moveX = 3.6f;
+                    moveX = 2.6f;
                     children.add(
                     new RegionPart("-wingbit"){{
                         progress = PartProgress.warmup.delay(0.5f);
                         layerOffset = -0.001f;
                         mirror = true;
                         under = true;
-                        moveY = 2.3f;
+                        moveY = 4.3f;
                     }},
                     new RegionPart("-wingbit2"){{
                         progress = PartProgress.warmup.delay(0.6f);
