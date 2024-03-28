@@ -2705,7 +2705,7 @@ public class ExoBlocks{
             reload = 1000f;
             shake = 4f;
             heatColor = Color.red;
-            outlineColor = ExoPal.empyreanOutline;
+            outlineColor = Pal.darkOutline;
             size = 7;
             scaledHealth = 280;
             cooldownTime = 320;
@@ -2733,22 +2733,22 @@ public class ExoBlocks{
                     progress = PartProgress.warmup.curve(Interp.pow2In);
                     heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
                     moveY = 6;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -1.5f, 0f));
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -2.5f, 0f));
                     mirror = false;
                 }},
                 new RegionPart("-wing") {{
                     progress = PartProgress.warmup.curve(Interp.pow2In);
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, 0f));
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -8f, 0f), new PartMove(PartProgress.warmup.delay(0.6f), 0f, 5.5f, 0f));
                     heatColor = Color.red;
                     heatProgress = PartProgress.warmup.add(-0.2f).add(p -> Mathf.sin(9f, 0.2f) * p.warmup);
-                    moveX = 4.5f;
+                    moveX = 3.6f;
                     children.add(
                     new RegionPart("-wingbit"){{
                         progress = PartProgress.warmup.delay(0.5f);
                         layerOffset = -0.001f;
                         mirror = true;
                         under = true;
-                        moveY = 3.3f;
+                        moveY = 2.3f;
                     }},
                     new RegionPart("-wingbit2"){{
                         progress = PartProgress.warmup.delay(0.6f);
