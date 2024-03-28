@@ -2592,37 +2592,36 @@ public class ExoBlocks{
                 }},
                  //parts
                 new RegionPart("-bodySide"){{
-                    progress = PartProgress.charge;
+                    progress = PartProgress.warmup;
                     moveX = 4.5f;
                     mirror = under = true;
                 }},
                 new RegionPart("-backWing"){{
-                    progress = PartProgress.charge;
+                    progress = PartProgress.warmup;
                     moveX = 2.5f;
                     moveY = -9.5f;
                     moveRot = 40;
                     under = mirror = true;
                 }},
                 new RegionPart("-backWing"){{
-                    progress = PartProgress.charge;
+                    progress = PartProgress.warmup;
                     moveX = 2.5f;
                     moveY = -6.5f;
                     moveRot = 25;
                     under = mirror = true;
                 }},
                 new RegionPart("-wing"){{
-                    progress = PartProgress.charge;
+                    progress = PartProgress.warmup;
                     y = -8.5f;
                     x = 14.25f;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -20f));
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -10f));
                     moveRot = 30;
                     moveX = 5.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-bodySidePlate"){{
-                    progress = PartProgress.charge;
+                    progress = PartProgress.warmup;
                     moveX = 4.5f;
-                    moveRot = 20;
                     mirror = true;
                 }}
                 );
