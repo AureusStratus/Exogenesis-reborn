@@ -2612,7 +2612,6 @@ public class ExoBlocks{
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
-                    moveX = 6.5f;
                     moveY = -20.5f;
                     under = mirror = true;
                 }},
@@ -2704,7 +2703,7 @@ public class ExoBlocks{
                 }};
             }};
         }};
-        polaris = new ItemTurret("polaris"){ {
+        polaris = new ItemTurret("polaris"){{
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
             range = 1000f;
             recoil = 3f;
@@ -2792,7 +2791,7 @@ public class ExoBlocks{
             }};
             ammo(
             Items.tungsten, new ExoRailBulletType(){{
-                length = range;
+                length = 1000;
                 damage = 1000f;
                 ammoPerShot = 50;
                 damageType = DamageType.pierce;
