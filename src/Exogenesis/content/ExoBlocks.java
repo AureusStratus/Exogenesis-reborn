@@ -2599,14 +2599,14 @@ public class ExoBlocks{
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
                     moveX = 2.5f;
-                    moveY = -9.5f;
+                    moveY = -12.5f;
                     moveRot = 40;
                     under = mirror = true;
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
                     moveX = 2.5f;
-                    moveY = -6.5f;
+                    moveY = -9.5f;
                     moveRot = 25;
                     under = mirror = true;
                 }},
@@ -2614,9 +2614,9 @@ public class ExoBlocks{
                     progress = PartProgress.warmup;
                     y = -8.5f;
                     x = 14.25f;
-                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -10f));
-                    moveRot = 30;
-                    moveX = 5.5f;
+                    moves.add(new PartMove(PartProgress.recoil, 0f, -4f, -10f), new PartMove(PartProgress.warmup.delay(0.7f), 0f, 6f, 0f));
+                    moveRot = 20;
+                    moveX = 7.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-bodySidePlate"){{
