@@ -2599,15 +2599,21 @@ public class ExoBlocks{
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
                     moveX = 8.5f;
-                    moveY = -20.5f;
-                    moveRot = 40;
+                    moveY = -24.5f;
+                    moveRot = 80;
                     under = mirror = true;
                 }},
                 new RegionPart("-backWing"){{
                     progress = PartProgress.warmup;
                     moveX = 6.5f;
-                    moveY = -17.5f;
+                    moveY = -20.5f;
                     moveRot = 25;
+                    under = mirror = true;
+                }},
+                new RegionPart("-backWing"){{
+                    progress = PartProgress.warmup;
+                    moveX = 6.5f;
+                    moveY = -30.5f;
                     under = mirror = true;
                 }},
                 new RegionPart("-wing"){{
@@ -2711,7 +2717,8 @@ public class ExoBlocks{
             size = 7;
             scaledHealth = 280;
             cooldownTime = 320;
-            shootSound = Sounds.mediumCannon;
+            maxAmmo = 200;
+            shootSound = Sounds.railgun;
             shootEffect = new Effect(30, e -> {
                 color(e.color);
                 float w = 1.2f + 7 * e.fout();
