@@ -2802,9 +2802,9 @@ public class ExoBlocks{
                 endEffect = new Effect(30f, e -> {
                     clipSize = 140;
                     color(e.color);
-                    Drawf.tri(e.x, e.y, e.fout() * 10f, 19f, e.rotation);
+                    Drawf.tri(e.x, e.y, e.fout() * 10f, 25f, e.rotation);
                     color(e.color);
-                    Drawf.tri(e.x, e.y, e.fout() * 4.8f, 15f, e.rotation);
+                    Drawf.tri(e.x, e.y, e.fout() * 4.8f, 19f, e.rotation);
                 });
                 lineEffect = new Effect(20f, e -> {
                     clipSize = 140;
