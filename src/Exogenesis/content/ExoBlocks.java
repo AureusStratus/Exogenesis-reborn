@@ -2716,7 +2716,7 @@ public class ExoBlocks{
             cooldownTime = 2;
             maxAmmo = 200;
             shootSound = Sounds.railgun;
-            shootEffect = new Effect(30, e -> {
+            shootEffect = new Effect(22, e -> {
                 color(e.color);
                 float w = 1.2f + 7 * e.fout();
 
@@ -2724,10 +2724,19 @@ public class ExoBlocks{
                 color(e.color);
 
                 for(int i : Mathf.signs){
-                    Drawf.tri(e.x, e.y, w * 1.3f, 18f * e.fout(), e.rotation + i * 90f);
+                    Drawf.tri(e.x, e.y, w * 3.3f, 18f * e.fout(), e.rotation + i * 90f);
                 }
 
                 Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
+            });
+            smokeEffect = new Effect(30,e->{
+                Draw.z(Layer.effect);
+                Draw.color(e.color,e.fout());
+                Tmp.v1.trns(e.rotation, e.fin()*20f);
+                Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 1.5f*e.fin()+0.1f, 16,26, e.rotation);
+                Draw.color(e.color,e.fout());
+                Tmp.v2.trns(e.rotation, e.fin()*10f);
+                Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + 26, 1.5f*e.fin()+0.1f, 16,26, e.rotation);
             });
             warmupMaintainTime = 30f;
             minWarmup = 0.96f;
