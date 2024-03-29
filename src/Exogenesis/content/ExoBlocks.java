@@ -2732,11 +2732,9 @@ public class ExoBlocks{
             smokeEffect = new Effect(30,e->{
                 Draw.z(Layer.effect);
                 Draw.color(e.color,e.fout());
-                Tmp.v1.trns(e.rotation, e.fin()*20f);
-                Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 1.5f*e.fin()+0.1f, 16,26, e.rotation);
-                Draw.color(e.color,e.fout());
-                Tmp.v2.trns(e.rotation, e.fin()*10f);
-                Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + 26, 1.5f*e.fin()+0.1f, 16,26, e.rotation);
+                Tmp.v1.trns(e.rotation, e.fin()*10f);
+                Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 1.5f*e.fin()+0.1f, 16,20, e.rotation);
+                Lines.stroke(4f*e.fout());
             });
             warmupMaintainTime = 30f;
             minWarmup = 0.96f;
