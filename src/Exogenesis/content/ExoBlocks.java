@@ -2732,8 +2732,8 @@ public class ExoBlocks{
             smokeEffect = new Effect(30,e->{
                 Draw.z(Layer.effect);
                 Draw.color(e.color,e.fout());
-                Tmp.v1.trns(e.rotation, e.fin()*50f);
-                Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.5f*e.fin()+0.1f, 16,20, e.rotation);
+                Tmp.v1.trns(e.rotation, e.fin()*20f);
+                Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 1.1f*e.fin()+0.1f, 16,27, e.rotation);
                 Lines.stroke(4f*e.fout());
             });
             warmupMaintainTime = 30f;
@@ -2803,8 +2803,8 @@ public class ExoBlocks{
                 ammoPerShot = 50;
                 damageType = DamageType.pierce;
                 hitColor = ExoPal.genesis;
-                hitEffect = Fx.sparkExplosion;
-                pierceDamageFactor = 0.8f;
+                hitEffect = ExoFx.coloredHitLarge;
+                pierceDamageFactor = 1.5f;
                 smokeEffect = Fx.colorSpark;
                 endEffect = new Effect(30f, e -> {
                     clipSize = 140;
