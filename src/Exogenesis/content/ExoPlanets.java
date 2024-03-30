@@ -30,7 +30,7 @@ public class ExoPlanets{
             atmosphereRadOut = 0.3f;
             tidalLock = true;
             orbitSpacing = 1.2f;
-            totalRadius = 1.9f;
+            orbitRadius = 8.9f;
             lightSrcTo = 0.5f;
             lightDstFrom = 0.2f;
             clearSectorOnLose = true;
@@ -60,16 +60,20 @@ public class ExoPlanets{
         tauTiamas = new Planet("tauTiamas", Planets.sun, 1f ,2){{
             generator = new TauTiamasPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 4);
-            accessible = true;
-            visible = true;
         //    cloudMeshLoader = () -> new MultiMesh(
         //            new HexSkyMesh(this, 11, 0.25f, 0.13f, 5, new Color().set(ExoPal.genesisLight).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
         //            new HexSkyMesh(this, 1, 0.8f, 0.16f, 6, Color.white.cpy().lerp(ExoPal.genesisLight, 0.55f).a(0.75f), 2, 0.45f, 1.1f, 0.41f)
         //    );
             atmosphereColor = Color.valueOf("3db899");
             iconColor = Color.valueOf("597be3");
+            allowWaves = true;
+            allowWaveSimulation = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            enemyCoreSpawnReplace = true;
+            allowLaunchLoadout = true;
             startSector = 10;
-            totalRadius = 3.9f;
+            totalRadius = 5.9f;
             atmosphereRadIn = -0.01f;
             atmosphereRadOut = 0.3f;
             defaultEnv = Env.underwater | Env.terrestrial;
@@ -110,7 +114,7 @@ public class ExoPlanets{
             landCloudColor = Pal.spore.cpy().a(0.5f);
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
         }};
-        axin = new Planet("axin", Planets.sun, 1.5f, 2){{
+        axin = new Planet("axin", Planets.sun, 1.2f, 2){{
             generator = new SerpuloPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 6);
 //            cloudMeshLoader = () -> new MultiMesh(
@@ -120,7 +124,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitRadius = 8.9f;
+            orbitRadius = 1f;
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
