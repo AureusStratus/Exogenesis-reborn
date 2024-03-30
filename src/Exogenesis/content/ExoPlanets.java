@@ -1,11 +1,11 @@
 package Exogenesis.content;
+import Exogenesis.maps.planets.HadroxaPlanetGenerator;
 import Exogenesis.maps.planets.TauTiamasPlanetGenerator;
 import arc.graphics.Color;
 import mindustry.content.*;
 import mindustry.game.Team;
 import mindustry.graphics.Pal;
 import mindustry.graphics.g3d.HexMesh;
-import mindustry.maps.planet.ErekirPlanetGenerator;
 import mindustry.maps.planet.SerpuloPlanetGenerator;
 import mindustry.type.Planet;
 import mindustry.world.meta.Attribute;
@@ -15,7 +15,7 @@ public class ExoPlanets{
     public static Planet hadroxa, tauTiamas, vanstar, axin;
     public static void load(){
         hadroxa = new Planet("hadroxa", Planets.sun, 1f, 2){{
-            generator = new ErekirPlanetGenerator();
+            generator = new HadroxaPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 5);
             //    cloudMeshLoader = () -> new MultiMesh(
             //            new HexSkyMesh(this, 2, 0.15f, 0.14f, 5, Color.valueOf("eba768").a(0.75f), 2, 0.42f, 1f, 0.43f),
