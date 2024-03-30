@@ -1,47 +1,13 @@
 package Exogenesis.content;
-import Exogenesis.graphics.ExoPal;
-import Exogenesis.maps.planets.AxinPlanetGenerator;
 import Exogenesis.maps.planets.TauTiamasPlanetGenerator;
 import arc.graphics.Color;
-import arc.math.Mathf;
-import arc.math.Rand;
-import arc.math.geom.*;
-import arc.struct.GridBits;
-import arc.struct.Seq;
-import arc.util.Structs;
-import arc.util.Time;
-import arc.util.Tmp;
-import arc.util.noise.Ridged;
-import arc.util.noise.Simplex;
-import arc.util.pooling.Pool;
-import arc.util.pooling.Pools;
-import mindustry.Vars;
-import mindustry.ai.Astar;
 import mindustry.content.*;
-import mindustry.game.Rules;
-import mindustry.game.Schematics;
 import mindustry.game.Team;
 import mindustry.graphics.Pal;
-import mindustry.graphics.Shaders;
 import mindustry.graphics.g3d.HexMesh;
-import mindustry.graphics.g3d.HexMesher;
-import mindustry.graphics.g3d.HexSkyMesh;
-import mindustry.graphics.g3d.MultiMesh;
-import mindustry.maps.generators.PlanetGenerator;
 import mindustry.maps.planet.ErekirPlanetGenerator;
 import mindustry.maps.planet.SerpuloPlanetGenerator;
-import mindustry.maps.planet.TantrosPlanetGenerator;
 import mindustry.type.Planet;
-import mindustry.type.Sector;
-import mindustry.type.Weather;
-import mindustry.world.Block;
-import mindustry.world.Tile;
-import mindustry.world.TileGen;
-import mindustry.world.blocks.campaign.LaunchPad;
-import mindustry.world.blocks.environment.Floor;
-import mindustry.world.blocks.environment.SteamVent;
-import mindustry.world.blocks.environment.TallBlock;
-import mindustry.world.blocks.production.SolidPump;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 
@@ -145,7 +111,7 @@ public class ExoPlanets{
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
         }};
         axin = new Planet("axin", Planets.sun, 1.5f, 2){{
-            generator = new AxinPlanetGenerator();
+            generator = new SerpuloPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 6);
 //            cloudMeshLoader = () -> new MultiMesh(
 //                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Pal.spore).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
