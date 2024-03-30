@@ -14,33 +14,47 @@ import mindustry.world.meta.Env;
 public class ExoPlanets{
     public static Planet hadroxa, tauTiamas, vanstar, axin;
     public static void load(){
-        tauTiamas = new Planet("tauTiamas", Planets.sun, 1f ,2){{
-            generator = new TauTiamasPlanetGenerator();
-            meshLoader = () -> new HexMesh(this, 4);
-        //    cloudMeshLoader = () -> new MultiMesh(
-        //            new HexSkyMesh(this, 11, 0.25f, 0.13f, 5, new Color().set(ExoPal.genesisLight).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
-        //            new HexSkyMesh(this, 1, 0.8f, 0.16f, 6, Color.white.cpy().lerp(ExoPal.genesisLight, 0.55f).a(0.75f), 2, 0.45f, 1.1f, 0.41f)
-        //    );
-            atmosphereColor = Color.valueOf("3db899");
-            iconColor = Color.valueOf("33af6c");
-            allowWaves = true;
-            allowWaveSimulation = true;
-            allowSectorInvasion = true;
-            allowLaunchSchematics = true;
-            enemyCoreSpawnReplace = true;
-            allowLaunchLoadout = true;
-            orbitSpacing = 2.5f;
-            startSector = 10;
-            totalRadius = 5.9f;
-            atmosphereRadIn = -0.01f;
-            atmosphereRadOut = 0.3f;
-            defaultEnv = Env.underwater | Env.terrestrial;
+        hadroxa = new Planet("hadroxa", Planets.sun, 1f, 2){{
+            generator = new ErekirPlanetGenerator();
+            meshLoader = () -> new HexMesh(this, 5);
+            //    cloudMeshLoader = () -> new MultiMesh(
+            //            new HexSkyMesh(this, 2, 0.15f, 0.14f, 5, Color.valueOf("eba768").a(0.75f), 2, 0.42f, 1f, 0.43f),
+            //            new HexSkyMesh(this, 3, 0.6f, 0.15f, 5, Color.valueOf("eea293").a(0.75f), 2, 0.42f, 1.2f, 0.45f)
+            //    );
             alwaysUnlocked = true;
+            landCloudColor = Color.valueOf("ed6542");
+            atmosphereColor = Color.valueOf("f07218");
+            defaultEnv = Env.scorching | Env.terrestrial;
+            startSector = 10;
+            atmosphereRadIn = 0.02f;
+            atmosphereRadOut = 0.3f;
+            tidalLock = true;
+            orbitSpacing = 0.8f;
+            lightSrcTo = 0.5f;
+            lightDstFrom = 0.2f;
+            clearSectorOnLose = true;
+            defaultCore = Blocks.coreBastion;
+            iconColor = Color.valueOf("ff9266");
+            hiddenItems.addAll (Items.serpuloItems).removeAll(Items.erekirItems);
+            enemyBuildSpeedMultiplier = 0.4f;
+
+            allowLaunchToNumbered = false;
+            updateLighting = false;
+
+            defaultAttributes.set(Attribute.heat, 1f);
+
             ruleSetter = r -> {
-                r.waveTeam = Team.crux;
+                r.waveTeam = Team.malis;
                 r.placeRangeCheck = false;
-                r.showSpawns = false;
+                r.showSpawns = true;
+                r.fog = true;
+                r.staticFog = true;
+                r.lighting = false;
+                r.coreDestroyClear = true;
+                r.onlyDepositCore = true;
             };
+
+            unlockedOnLand.add(Blocks.coreBastion);
         }};
         vanstar = new Planet("vanstar", Planets.sun, 1f, 3){{
             generator = new SerpuloPlanetGenerator();
@@ -52,7 +66,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitSpacing = 2f;
+            orbitSpacing = 1.8f;
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
@@ -74,6 +88,34 @@ public class ExoPlanets{
             alwaysUnlocked = true;
             landCloudColor = Pal.spore.cpy().a(0.5f);
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
+        }};
+        tauTiamas = new Planet("tauTiamas", Planets.sun, 1f ,2){{
+            generator = new TauTiamasPlanetGenerator();
+            meshLoader = () -> new HexMesh(this, 4);
+        //    cloudMeshLoader = () -> new MultiMesh(
+        //            new HexSkyMesh(this, 11, 0.25f, 0.13f, 5, new Color().set(ExoPal.genesisLight).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
+        //            new HexSkyMesh(this, 1, 0.8f, 0.16f, 6, Color.white.cpy().lerp(ExoPal.genesisLight, 0.55f).a(0.75f), 2, 0.45f, 1.1f, 0.41f)
+        //    );
+            atmosphereColor = Color.valueOf("3db899");
+            iconColor = Color.valueOf("33af6c");
+            allowWaves = true;
+            allowWaveSimulation = true;
+            allowSectorInvasion = true;
+            allowLaunchSchematics = true;
+            enemyCoreSpawnReplace = true;
+            allowLaunchLoadout = true;
+            orbitSpacing = 2f;
+            startSector = 10;
+            totalRadius = 5.9f;
+            atmosphereRadIn = -0.01f;
+            atmosphereRadOut = 0.3f;
+            defaultEnv = Env.underwater | Env.terrestrial;
+            alwaysUnlocked = true;
+            ruleSetter = r -> {
+                r.waveTeam = Team.crux;
+                r.placeRangeCheck = false;
+                r.showSpawns = false;
+            };
         }};
         axin = new Planet("axin", Planets.sun, 1f, 2){{
             generator = new SerpuloPlanetGenerator();
@@ -108,48 +150,7 @@ public class ExoPlanets{
             landCloudColor = Pal.spore.cpy().a(0.5f);
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
         }};
-        hadroxa = new Planet("hadroxa", Planets.sun, 1f, 2){{
-            generator = new ErekirPlanetGenerator();
-            meshLoader = () -> new HexMesh(this, 5);
-            //    cloudMeshLoader = () -> new MultiMesh(
-            //            new HexSkyMesh(this, 2, 0.15f, 0.14f, 5, Color.valueOf("eba768").a(0.75f), 2, 0.42f, 1f, 0.43f),
-            //            new HexSkyMesh(this, 3, 0.6f, 0.15f, 5, Color.valueOf("eea293").a(0.75f), 2, 0.42f, 1.2f, 0.45f)
-            //    );
-            alwaysUnlocked = true;
-            landCloudColor = Color.valueOf("ed6542");
-            atmosphereColor = Color.valueOf("f07218");
-            defaultEnv = Env.scorching | Env.terrestrial;
-            startSector = 10;
-            atmosphereRadIn = 0.02f;
-            atmosphereRadOut = 0.3f;
-            tidalLock = true;
-            orbitSpacing = 1.2f;
-            lightSrcTo = 0.5f;
-            lightDstFrom = 0.2f;
-            clearSectorOnLose = true;
-            defaultCore = Blocks.coreBastion;
-            iconColor = Color.valueOf("ff9266");
-            hiddenItems.addAll (Items.serpuloItems).removeAll(Items.erekirItems);
-            enemyBuildSpeedMultiplier = 0.4f;
 
-            allowLaunchToNumbered = false;
-            updateLighting = false;
-
-            defaultAttributes.set(Attribute.heat, 1f);
-
-            ruleSetter = r -> {
-                r.waveTeam = Team.malis;
-                r.placeRangeCheck = false;
-                r.showSpawns = true;
-                r.fog = true;
-                r.staticFog = true;
-                r.lighting = false;
-                r.coreDestroyClear = true;
-                r.onlyDepositCore = true;
-            };
-
-            unlockedOnLand.add(Blocks.coreBastion);
-        }};
     }
 
 }
