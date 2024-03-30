@@ -127,7 +127,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitRadius = 10;
+            orbitRadius = 60;
             orbitSpacing = 30;
             allowWaves = true;
             allowWaveSimulation = true;
