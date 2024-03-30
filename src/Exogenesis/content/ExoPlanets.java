@@ -65,7 +65,7 @@ public class ExoPlanets{
         //            new HexSkyMesh(this, 1, 0.8f, 0.16f, 6, Color.white.cpy().lerp(ExoPal.genesisLight, 0.55f).a(0.75f), 2, 0.45f, 1.1f, 0.41f)
         //    );
             atmosphereColor = Color.valueOf("3db899");
-            iconColor = Color.valueOf("597be3");
+            iconColor = Color.valueOf("33af6c");
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
@@ -77,8 +77,11 @@ public class ExoPlanets{
             atmosphereRadIn = -0.01f;
             atmosphereRadOut = 0.3f;
             defaultEnv = Env.underwater | Env.terrestrial;
+            alwaysUnlocked = true;
             ruleSetter = r -> {
-
+                r.waveTeam = Team.crux;
+                r.placeRangeCheck = false;
+                r.showSpawns = false;
             };
         }};
         vanstar = new Planet("vanstar", Planets.sun, 1f, 3){{
@@ -91,7 +94,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitRadius = 2.9f;
+            orbitRadius = 5.9f;
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
@@ -114,7 +117,7 @@ public class ExoPlanets{
             landCloudColor = Pal.spore.cpy().a(0.5f);
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
         }};
-        axin = new Planet("axin", Planets.sun, 1.2f, 2){{
+        axin = new Planet("axin", Planets.sun, 1f, 2){{
             generator = new SerpuloPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 6);
 //            cloudMeshLoader = () -> new MultiMesh(
@@ -124,7 +127,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitRadius = 1f;
+            orbitRadius = 10f;
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
@@ -138,7 +141,7 @@ public class ExoPlanets{
                 r.placeRangeCheck = false;
                 r.showSpawns = false;
             };
-            iconColor = Color.valueOf("7d4dff");
+            iconColor = Color.valueOf("1e45ff");
             atmosphereColor = Color.valueOf("3c1b8f");
             atmosphereRadIn = 0.02f;
             atmosphereRadOut = 0.3f;
