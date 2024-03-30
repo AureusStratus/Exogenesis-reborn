@@ -29,7 +29,7 @@ public class ExoPlanets{
             atmosphereRadIn = 0.02f;
             atmosphereRadOut = 0.3f;
             tidalLock = true;
-            orbitSpacing = 0.8f;
+            orbitRadius = 1f;
             lightSrcTo = 0.5f;
             lightDstFrom = 0.2f;
             clearSectorOnLose = true;
@@ -66,7 +66,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitSpacing = 1.8f;
+            orbitSpacing = 1f;
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
@@ -127,7 +127,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitSpacing = 18;
+            orbitSpacing = 30;
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
