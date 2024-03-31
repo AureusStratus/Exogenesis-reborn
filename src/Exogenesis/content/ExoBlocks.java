@@ -6,6 +6,7 @@ import Exogenesis.type.bullet.*;
 import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.world.blocks.ExoPowerProp;
 import Exogenesis.world.blocks.PowerHarvester;
+import Exogenesis.world.blocks.environment.Crystal;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 import Exogenesis.entities.effect.RepeatEffect;
@@ -48,12 +49,16 @@ public class ExoBlocks{
     //mic
     oreOsmium,
     //Empyrean
-    //env
+    //env tiles
     powerCrystal,
+    //vanstar
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
     lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
+    //Axin
+    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axinStoneMinerals,
     //ore
     oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
+    //env tile end ^^^
     //blocks
     ductEmpyrean, harvesterSmall, harvesterMedium,
     //turrets
@@ -70,7 +75,7 @@ public class ExoBlocks{
             wallOre = true;
         }};
 
-        //empyrean
+        //Vanstar Tiles
         deepVansterWater = new Floor("deep-vanster-water"){{
             speedMultiplier = 0.2f;
             variants = 0;
@@ -157,6 +162,46 @@ public class ExoBlocks{
         }};
         redLightningStoneWall = new StaticWall("red-lightning-stone-wall"){{
             redLightningStone.asFloor().wall = this;
+        }};
+
+        //Axin Tiles
+        axinStone = new Floor("axin-stone"){{
+            variants = 6;
+        }};
+        axinStoneMinerals = new Floor("axin-stoneMinerals"){{
+            variants = 6;
+        }};
+        axinPurpleStone = new Floor("axinpurple-stone"){{
+            variants = 6;
+        }};
+        axinPurpleStoneMineral = new Floor("axinpurpleMineral-stone"){{
+            variants = 6;
+        }};
+        axinIce = new Floor("axin-ice"){{
+            dragMultiplier = 0.4f;
+            speedMultiplier = 0.9f;
+            variants = 3;
+            liquidDrop = Liquids.hydrogen;
+        }};
+        poolAxinPlasma = new Floor("pooled-axinPlasma"){{
+            drownTime = 150f;
+            status = StatusEffects.freezing;
+            statusDuration = 240f;
+            speedMultiplier = 0.5f;
+            variants = 0;
+            liquidDrop = ExoLiquids.axinian;
+            liquidMultiplier = 0.5f;
+            isLiquid = true;
+            cacheLayer = CacheLayer.cryofluid;
+
+            emitLight = true;
+            lightRadius = 25f;
+            lightColor = ExoPal.genesisDark.cpy().a(0.19f);
+        }};
+        axinCrystal = new Crystal("axin-crystal", ExoItems.astrolite){{
+            sprites = 2;
+            status = StatusEffects.freezing;
+            axinStone.asFloor().decoration = axinStoneMinerals.asFloor().decoration = this;
         }};
         // Empyrean ores
         oreOltuxium = new OreBlock(ExoItems.oltuxium);

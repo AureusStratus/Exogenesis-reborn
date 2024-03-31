@@ -23,8 +23,8 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
     public static float arkThresh = 0.68f, arkScl = 0.83f;
     public static int arkSeed = 7, arkOct = 2;
     public static float liqThresh = 0.64f, liqScl = 87f, redThresh = 3.1f, noArkThresh = 0.3f;
-    public static int crystalSeed = 8, crystalOct = 2;
-    public static float crystalScl = 1.2f, crystalMag = 0.9f;
+    public static int crystalSeed = 8, crystalOct = 4;
+    public static float crystalScl = 1.7f, crystalMag = 0.9f;
     public static float airThresh = 0.13f, airScl = 14;
 
     Block[] terrain = {Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
@@ -70,6 +70,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         return position.dst(0, 0, 1)*2.2f - Simplex.noise3d(seed, 8, 0.54f, 1.4f, 10f + position.x, 10f + position.y, 10f + position.z) * 2.9f;
     }
 
+    //planet?
     Block getBlock(Vec3 position){
         float ice = rawTemp(position);
         Tmp.v32.set(position);
@@ -85,8 +86,8 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
             return Blocks.crystallineStone;
         }
 
-        if(ice < 0.6){
-            if(result == Blocks.rhyolite || result == Blocks.yellowStone || result == Blocks.carbonStone){
+        if(ice < 0.4){
+            if(result == Blocks.carbonStone || result == Blocks.yellowStone || result == Blocks.roughRhyolite){
                 //TODO bio(?) luminescent stuff? ice?
                 return Blocks.carbonStone; //TODO perhaps something else.
             }
@@ -103,9 +104,9 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
 
         if(ice > redThresh){
             result = Blocks.slag;
-        }else if(ice > redThresh - 0.2f){
+        }else if(ice > redThresh - 1f){
             //TODO this may increase the amount of regolith, but it's too obvious a transition.
-            result = Blocks.regolith;
+            result = Blocks.slag;
         }
 
         return result;
