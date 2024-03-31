@@ -87,9 +87,9 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         }
 
         if(ice < 0.4){
-            if(result == Blocks.carbonStone || result == Blocks.yellowStone || result == Blocks.roughRhyolite){
+            if(result == Blocks.carbonStone || result == Blocks.basalt){
                 //TODO bio(?) luminescent stuff? ice?
-                return Blocks.carbonStone; //TODO perhaps something else.
+                return Blocks.regolith; //TODO perhaps something else.
             }
         }
 

@@ -201,6 +201,7 @@ public class ExoBlocks{
         axinCrystal = new Crystal("axin-crystal", ExoItems.astrolite){{
             sprites = 2;
             status = StatusEffects.freezing;
+            scl = 20;
             axinStone.asFloor().decoration = axinStoneMinerals.asFloor().decoration = this;
         }};
         // Empyrean ores
@@ -2851,11 +2852,11 @@ public class ExoBlocks{
                 hitEffect = ExoFx.coloredHitLarge;
                 pierceDamageFactor = 1.5f;
                 smokeEffect = Fx.colorSpark;
-                endEffect = new Effect(30f, e -> {
+                endEffect = new Effect(22f, e -> {
                     clipSize = 140;
                     color(e.color);
                     Drawf.tri(e.x, e.y, e.fout() * 10f, 25f, e.rotation);
-                    color(e.color);
+                    color(Color.white);
                     Drawf.tri(e.x, e.y, e.fout() * 4.8f, 19f, e.rotation);
                 });
                 lineEffect = new Effect(20f, e -> {
