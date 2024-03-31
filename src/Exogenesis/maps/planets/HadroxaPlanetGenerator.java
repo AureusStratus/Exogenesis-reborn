@@ -21,13 +21,13 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
 
     //TODO inline/remove
     public static float arkThresh = 0.68f, arkScl = 0.83f;
-    public static int arkSeed = 7, arkOct = 2;
+    public static int arkSeed = 1, arkOct = 2;
     public static float liqThresh = 0.64f, liqScl = 87f, redThresh = 3.1f, noArkThresh = 0.3f;
     public static int crystalSeed = 8, crystalOct = 4;
     public static float crystalScl = 1.7f, crystalMag = 0.9f;
     public static float airThresh = 0.13f, airScl = 14;
 
-    Block[] terrain = {Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
+    Block[] terrain = {Blocks.carbonStone, Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
 
     {
         baseSeed = 2;
@@ -86,10 +86,10 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
             return Blocks.crystallineStone;
         }
 
-        if(ice < 0.4){
+        if(ice < 0.8){
             if(result == Blocks.carbonStone || result == Blocks.basalt){
                 //TODO bio(?) luminescent stuff? ice?
-                return Blocks.regolith; //TODO perhaps something else.
+                return Blocks.carbonStone; //TODO perhaps something else.
             }
         }
 
@@ -127,7 +127,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         }
 
         //TODO only certain places should have carbon stone...
-        if(Ridged.noise3d(seed + 2, position.x, position.y + 4f, position.z, 3, 6f) > 0.6){
+        if(Ridged.noise3d(seed + 2, position.x, position.y + 4f, position.z, 3, 6f) > 1.5){
             tile.floor = Blocks.carbonStone;
         }
     }
