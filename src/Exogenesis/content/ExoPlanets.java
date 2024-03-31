@@ -97,8 +97,8 @@ public class ExoPlanets{
             generator = new TauTiamasPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 4);
             cloudMeshLoader = () -> new MultiMesh(
-                    new HexSkyMesh(this, 11, 0.25f, 0.13f, 5, new Color().set(ExoPal.genesisLight).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
-                    new HexSkyMesh(this, 1, 0.8f, 0.16f, 6, Color.white.cpy().lerp(ExoPal.genesisLight, 0.55f).a(0.75f), 2, 0.45f, 1.1f, 0.41f)
+                    new HexSkyMesh(this, 11, 0.25f, 0.93f, 5, new Color().set(ExoPal.genesisLight).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
+                    new HexSkyMesh(this, 1, 0.8f, 1.26f, 6, Color.white.cpy().lerp(ExoPal.genesisLight, 0.55f).a(0.75f), 2, 0.45f, 1.1f, 0.41f)
             );
             atmosphereColor = Color.valueOf("021042");
             iconColor = Color.valueOf("33af6c");
