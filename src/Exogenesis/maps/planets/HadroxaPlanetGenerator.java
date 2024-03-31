@@ -17,7 +17,7 @@ import mindustry.world.meta.*;
 import static mindustry.Vars.*;
 
 public class HadroxaPlanetGenerator extends PlanetGenerator{
-    public float heightScl = 1.3f, octaves = 4, persistence = 0.5f, heightPow = 1f, heightMult = 1.6f;
+    public float heightScl = 0.5f, octaves = 4, persistence = 0.5f, heightPow = 3f, heightMult = 1.2f;
 
     //TODO inline/remove
     public static float arkThresh = 0.68f, arkScl = 0.83f;
