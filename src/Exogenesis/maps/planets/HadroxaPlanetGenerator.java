@@ -27,7 +27,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
     public static float crystalScl = 1.7f, crystalMag = 0.9f;
     public static float airThresh = 0.13f, airScl = 14;
 
-    Block[] terrain = {Blocks.carbonStone, Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
+    Block[] terrain = {Blocks.carbonStone, Blocks.carbonStone, Blocks.carbonStone, Blocks.regolith, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
 
     {
         baseSeed = 2;
@@ -116,8 +116,8 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
     public void genTile(Vec3 position, TileGen tile){
         tile.floor = getBlock(position);
 
-        if(tile.floor == Blocks.rhyolite && rand.chance(0.01)){
-            tile.floor = Blocks.rhyoliteCrater;
+        if(tile.floor == Blocks.carbonStone && rand.chance(0.06)){
+            tile.floor = Blocks.carbonStone;
         }
 
         tile.block = tile.floor.asFloor().wall;
