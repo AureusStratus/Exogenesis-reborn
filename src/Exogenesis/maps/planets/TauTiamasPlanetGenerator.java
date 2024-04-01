@@ -15,7 +15,7 @@ import mindustry.world.*;
 import static mindustry.Vars.*;
 
 public class TauTiamasPlanetGenerator extends PlanetGenerator{
-    Color c1 = Color.valueOf("272766"), c2 = Color.valueOf("1a1f73"), out = new Color();
+    Color c1 = Color.valueOf("19195f"), c2 = Color.valueOf("1a1f73"), out = new Color();
 
     Block[][] arr = {
             {Blocks.redmat, Blocks.redmat, Blocks.darksand, Blocks.bluemat, Blocks.bluemat}
