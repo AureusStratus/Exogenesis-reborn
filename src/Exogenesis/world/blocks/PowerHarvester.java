@@ -28,7 +28,7 @@ public class PowerHarvester extends Block {
     }
         public float countCrystal(Tile tile){
             float returnCount = 0;
-            Geometry.circle(tile.x, tile.y, range, (x, y) -> {
+            Geometry.circle(tile.x, tile.y, range/tilesize, (x, y) -> {
                 Tile currentTile = Vars.world.tile(x, y);
                 if(currentTile == null) return;
 

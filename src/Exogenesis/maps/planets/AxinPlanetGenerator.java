@@ -140,11 +140,11 @@ public class AxinPlanetGenerator extends PlanetGenerator{
         if(temp > 0.7){
 
             pass((x, y) -> {
-                if(floor != ExoBlocks.axinIce){
+                if(floor != Blocks.redIce){
                     float noise = noise(x + 782, y, 7, 0.8f, 280f, 1f);
                     if(noise > 0.62f){
                         if(noise > 0.635f){
-                            floor = Blocks.cryofluid;
+                            floor = Blocks.slag;
                         }else{
                             floor = Blocks.yellowStone;
                         }
@@ -152,7 +152,7 @@ public class AxinPlanetGenerator extends PlanetGenerator{
                     }
 
                     //TODO this needs to be tweaked
-                    if(noise > 0.55f && floor == ExoBlocks.axinIce){
+                    if(noise > 0.55f && floor == Blocks.beryllicStone){
                         floor = Blocks.yellowStone;
                     }
                 }
@@ -205,7 +205,7 @@ public class AxinPlanetGenerator extends PlanetGenerator{
         blend(Blocks.arkyciteFloor, Blocks.arkyicStone, 4);
 
         //TODO may overwrite floor blocks under walls and look bad
-        blend(Blocks.cryofluid, Blocks.yellowStonePlates, 4);
+        blend(Blocks.slag, Blocks.yellowStonePlates, 4);
 
         distort(10f, 12f);
         distort(5f, 7f);
@@ -214,7 +214,7 @@ public class AxinPlanetGenerator extends PlanetGenerator{
         median(2, 0.6, Blocks.arkyciteFloor);
 
         //smooth out slag to prevent random 1-tile patches
-        median(3, 0.6, ExoBlocks.poolAxinPlasma);
+        median(3, 0.6, Blocks.slag);
 
         pass((x, y) -> {
             //rough rhyolite
