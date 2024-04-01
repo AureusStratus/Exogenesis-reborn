@@ -1,5 +1,6 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
+import Exogenesis.maps.planets.AxinPlanetGenerator;
 import Exogenesis.maps.planets.HadroxaPlanetGenerator;
 import Exogenesis.maps.planets.TauTiamasPlanetGenerator;
 import arc.graphics.Color;
@@ -69,7 +70,7 @@ public class ExoPlanets{
 
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
-            orbitRadius = 50;
+            orbitRadius = 40;
             orbitSpacing = 0.7f;
             allowWaves = true;
             allowWaveSimulation = true;
@@ -97,7 +98,7 @@ public class ExoPlanets{
             generator = new TauTiamasPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 4);
             cloudMeshLoader = () -> new MultiMesh(
-                    new HexSkyMesh(this, 11, 0.95f, 0.11f, 5, new Color().set(ExoPal.genesisLight).mul(0.9f).a(0.75f), 8, 0.45f, 1.6f, 0.68f),
+                    new HexSkyMesh(this, 11, 0.95f, 0.11f, 5, new Color().set(ExoPal.genesisLight).mul(0.9f).a(0.75f), 8, 0.45f, 1.6f, 0.5f),
                     new HexSkyMesh(this, 1, 1.3f, 0.15f, 6, Color.white.cpy().lerp(ExoPal.genesisLight, 0.55f).a(0.75f), 6, 0.45f, 0.6f, 0.21f)
             );
             atmosphereColor = Color.valueOf("021042");
@@ -108,7 +109,7 @@ public class ExoPlanets{
             allowLaunchSchematics = true;
             enemyCoreSpawnReplace = true;
             allowLaunchLoadout = true;
-            orbitRadius = 70;
+            orbitRadius = 60;
             orbitSpacing = 1f;
             startSector = 10;
             totalRadius = 5.9f;
@@ -123,7 +124,7 @@ public class ExoPlanets{
             };
         }};
         axin = new Planet("axin", Planets.sun, 1f, 2){{
-            generator = new SerpuloPlanetGenerator();
+            generator = new AxinPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 6);
             cloudMeshLoader = () -> new MultiMesh(
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),

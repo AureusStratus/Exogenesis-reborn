@@ -1,5 +1,6 @@
 package Exogenesis.maps.planets;
 
+import Exogenesis.content.ExoBlocks;
 import arc.graphics.*;
 import arc.math.*;
 import arc.math.geom.*;
@@ -16,7 +17,7 @@ import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
 
-public class HadroxaPlanetGenerator extends PlanetGenerator{
+public class AxinPlanetGenerator extends PlanetGenerator{
     public float heightScl = 1.3f, octaves = 2.45f, persistence = 0.5f, heightPow = 3f, heightMult = 1.1f;
 
     //TODO inline/remove
@@ -27,7 +28,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
     public static float crystalScl = 1.7f, crystalMag = 0.9f;
     public static float airThresh = 0.13f, airScl = 14;
 
-    Block[] terrain = {Blocks.carbonStone, Blocks.carbonStone, Blocks.carbonStone, Blocks.regolith, Blocks.basalt, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
+    Block[] terrain = {Blocks.carbonStone, Blocks.carbonStone, Blocks.carbonStone, ExoBlocks.axinStone, ExoBlocks.axinPurpleStone, ExoBlocks.axinIce, Blocks.ice, Blocks.carbonStone};
 
     {
         baseSeed = 2;
@@ -49,7 +50,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         Block block = getBlock(position);
 
         //more obvious color
-        if(block == Blocks.crystallineStone) block = Blocks.crystalFloor;
+        if(block == ExoBlocks.axinStone) block = ExoBlocks.axinStoneMinerals;
         //TODO this might be too green
         //if(block == Blocks.beryllicStone) block = Blocks.arkyicStone;
 
@@ -83,11 +84,11 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         Block result = terrain[Mathf.clamp((int)(height * terrain.length), 0, terrain.length - 1)];
 
         if(ice < 0.3 + Math.abs(Ridged.noise3d(seed + crystalSeed, position.x + 4f, position.y + 8f, position.z + 1f, crystalOct, crystalScl)) * crystalMag){
-            return Blocks.crystallineStone;
+            return ExoBlocks.poolAxinPlasma;
         }
 
         if(ice < 0.8){
-            if(result == Blocks.carbonStone || result == Blocks.basalt){
+            if(result == Blocks.carbonStone || result == ExoBlocks.axinStone){
                 //TODO bio(?) luminescent stuff? ice?
                 return Blocks.carbonStone; //TODO perhaps something else.
             }
@@ -103,10 +104,10 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         }
 
         if(ice > redThresh){
-            result = Blocks.slag;
+            result = ExoBlocks.axinStone;
         }else if(ice > redThresh - 1f){
             //TODO this may increase the amount of regolith, but it's too obvious a transition.
-            result = Blocks.slag;
+            result = ExoBlocks.axinStone;
         }
 
         return result;
@@ -139,11 +140,11 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         if(temp > 0.7){
 
             pass((x, y) -> {
-                if(floor != Blocks.redIce){
+                if(floor != ExoBlocks.axinIce){
                     float noise = noise(x + 782, y, 7, 0.8f, 280f, 1f);
                     if(noise > 0.62f){
                         if(noise > 0.635f){
-                            floor = Blocks.slag;
+                            floor = Blocks.cryofluid;
                         }else{
                             floor = Blocks.yellowStone;
                         }
@@ -151,7 +152,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
                     }
 
                     //TODO this needs to be tweaked
-                    if(noise > 0.55f && floor == Blocks.beryllicStone){
+                    if(noise > 0.55f && floor == ExoBlocks.axinIce){
                         floor = Blocks.yellowStone;
                     }
                 }
@@ -204,7 +205,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         blend(Blocks.arkyciteFloor, Blocks.arkyicStone, 4);
 
         //TODO may overwrite floor blocks under walls and look bad
-        blend(Blocks.slag, Blocks.yellowStonePlates, 4);
+        blend(Blocks.cryofluid, Blocks.yellowStonePlates, 4);
 
         distort(10f, 12f);
         distort(5f, 7f);
@@ -213,7 +214,7 @@ public class HadroxaPlanetGenerator extends PlanetGenerator{
         median(2, 0.6, Blocks.arkyciteFloor);
 
         //smooth out slag to prevent random 1-tile patches
-        median(3, 0.6, Blocks.slag);
+        median(3, 0.6, ExoBlocks.poolAxinPlasma);
 
         pass((x, y) -> {
             //rough rhyolite
