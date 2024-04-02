@@ -5845,7 +5845,7 @@ public class ExoUnitTypes {
                 reload = 100f;
                 mirror = false;
                 x = 0;
-                shootSound = Sounds.artillery;
+                shootSound = Sounds.bolt;
                 showStatSprite = false;
                 smoothReloadSpeed = 0.15f;
                 shootWarmupSpeed = 0.05f;
@@ -5920,9 +5920,9 @@ public class ExoUnitTypes {
                     homingRange = 40;
                     trailLength = 10;
                     trailWidth = 2f;
-                    trailChance = 0.3f;
+                    trailChance = 0.9f;
                     trailEffect = new ParticleEffect() {{
-                        particles = 13;
+                        particles = 3;
                         length = baseLength = 2.5f;
                         lifetime = 20f;
                         colorFrom = colorTo = trailColor;
@@ -5946,31 +5946,28 @@ public class ExoUnitTypes {
             allowLegStep = true;
             hovering = true;
             legMoveSpace = 1.5f;
-            legMaxLength = 1.1f;
-            legMinLength = 0.6f;
-            legLengthScl = 0.96f;
-            legForwardScl = 2f;
             legPhysicsLayer = false;
             legGroupSize = 4;
             legCount = 6;
             legExtension = -2;
+            legMoveSpace = 0.8f;
             legContinuousMove = true;
             lockLegBase = true;
             rippleScale = 0.2f;
-            legBaseOffset = 3;
+            legBaseOffset = 8;
             legLength = 18;
             parts.addAll(
                     new EffectSpawnPart() {{
                         useProgress = mirror = true;
                         y = 0f;
-                        effect = ExoFx.starPlasma;
+                        effect = ExoFx.supernovaCharge;
                         effectChance = 0.5f;
                     }},
                     new ShapePart() {{
                         circle = true;
                         y = 0f;
                         layer = 114;
-                        radiusTo = 4;
+                        radiusTo = 1;
                         radius = 0.8f;
                         color = Color.white;
                     }},
@@ -5978,7 +5975,7 @@ public class ExoUnitTypes {
                         circle = true;
                         y = 0f;
                         layer = 110;
-                        radiusTo = 7;
+                        radiusTo = 2.5f;
                         radius = 1.45f;
                         color = ExoPal.genesis;
                     }}
@@ -6073,10 +6070,8 @@ public class ExoUnitTypes {
             legLength = 21f;
             lockLegBase = legContinuousMove = faceTarget = true;
             legExtension = -10f;
-            legBaseOffset = 10f;
-            legLengthScl = 0.96f;
-            legForwardScl = 0.9f;
-            legMoveSpace = 0.2f;
+            legBaseOffset = 18f;
+            legMoveSpace = 0.6f;
             rippleScale = 2;
             hovering = true;
             legSplashDamage = 22;
@@ -6084,7 +6079,7 @@ public class ExoUnitTypes {
 
             shadowElevation = 0.4f;
             groundLayer = Layer.legUnit - 1f;
-            weapons.add(new Weapon("kuiper-weapon"){{
+            weapons.add(new Weapon("exogenesis-kuiper-weapon"){{
                 shootSound = Sounds.shootBig;
                 x = 19.25f;
                 y = 0;
@@ -6102,8 +6097,8 @@ public class ExoUnitTypes {
                     shotDelay = 4f;
                 }};
                 bullet = new EmpBulletType() {{
-                    width = 8f;
-                    height = 11f;
+                    width = 13f;
+                    height = 13f;
                     sprite = "circle-bullet";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.genesis;
@@ -6112,7 +6107,6 @@ public class ExoUnitTypes {
                     weaveScale = 10;
                     speed = 6f;
                     damage = 95f;
-                    recoil = 0.6f;
                     hitEffect = despawnEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
                     splashDamage = 15;
                     splashDamageRadius = 40;
@@ -6130,16 +6124,7 @@ public class ExoUnitTypes {
                     homingRange = 50;
                     homingDelay = 2;
                     trailLength = 10;
-                    trailWidth = 2f;
-                    trailChance = 0.3f;
-                    trailEffect = new ParticleEffect() {{
-                        particles = 13;
-                        length = baseLength = 2.5f;
-                        lifetime = 20f;
-                        colorFrom = colorTo = trailColor;
-                        sizeFrom = 5f;
-                        sizeTo = 0f;
-                    }};
+                    trailWidth = 3f;
                 }};
             }});
         }};
@@ -6173,23 +6158,23 @@ public class ExoUnitTypes {
             parts.addAll(
                     new EffectSpawnPart() {{
                         useProgress = mirror = true;
-                        y = 0f;
-                        effect = ExoFx.starPlasma;
+                        y = 20f;
+                        effect = ExoFx.supernovaCharge;
                         effectChance = 0.5f;
                     }},
                     new ShapePart() {{
                         circle = true;
-                        y = 0f;
+                        y = 20f;
                         layer = 114;
-                        radiusTo = 7;
+                        radiusTo = 3;
                         radius = 0f;
                         color = Color.white;
                     }},
                     new ShapePart() {{
                         circle = true;
-                        y = 0f;
+                        y = 20f;
                         layer = 110;
-                        radiusTo = 11;
+                        radiusTo = 6;
                         radius = 0f;
                         color = ExoPal.genesis;
                     }},
@@ -6202,15 +6187,15 @@ public class ExoUnitTypes {
                             layerOffset = -0.001f;
                             mirror = true;
                             under = true;
-                            moves.add(new PartMove(PartProgress.recoil, 0f, 0f, -2f));
+                            moves.add(new PartMove(PartProgress.recoil, 0f, 0f, -5f));
                             y = 8.5f;
                             x = 10.75f;
-                            moveRot = 4.3f;
+                            moveRot = 8.3f;
                             moveX = 2.3f;
                         }},
                         new RegionPart("-bodyside2"){{
                             progress = PartProgress.warmup.delay(0.6f);
-                            moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f), new PartMove(PartProgress.warmup.delay(0.5f), 0f, 0f, -4f));
+                            moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f), new PartMove(PartProgress.warmup.delay(0.5f), 0f, 0f, -25f));
                             layerOffset = -0.001f;
                             mirror = true;
                             under = true;
@@ -6218,11 +6203,11 @@ public class ExoUnitTypes {
                             x = 18.5f;
                         }});
                         moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
-                        moveRot = 10;
-                        moveX = 5.5f;
+                        moveRot = 5;
+                        moveX = 3.5f;
                     }}
             );
-            weapons.add(new Weapon("oort-weapon"){{
+            weapons.add(new Weapon("exogenesis-oort-weapon"){{
                 shootSound = Sounds.malignShoot;
                 mirror = false;
                 top = false;
@@ -6234,8 +6219,8 @@ public class ExoUnitTypes {
                 heatColor = Color.red;
                 minWarmup = 0.96f;
                 shootWarmupSpeed = 0.03f;
-                bullet = new ExoBasicBulletType(4.2f, 860){{
-                    sprite = "Exogenesis-plasma";
+                bullet = new ExoBasicBulletType(2.2f, 860){{
+                    sprite = "exogenesis-plasma";
                     homingPower = 0.2f;
                     weaveMag = 4;
                     weaveScale = 4;
@@ -6295,9 +6280,9 @@ public class ExoUnitTypes {
                     }};
                 }};
             }});
-            weapons.add(new Weapon("align-laser"){{
+            weapons.add(new Weapon("exogenesis-align-laser"){{
                 x = 18f;
-                y = 12f;
+                y = 2f;
                 shootY = 8.25f;
                 shootSound = Sounds.laser;
                 rotate = true;
@@ -6338,7 +6323,7 @@ public class ExoUnitTypes {
             stepShake = 1.5f;
             legPairOffset = 3;
             legExtension = -15f;
-            legBaseOffset = 19f;
+            legBaseOffset = 28f;
             legMaxLength = 1.6f;
 
             legSplashDamage = 172;
@@ -6363,31 +6348,25 @@ public class ExoUnitTypes {
             new EffectSpawnPart() {{
                 useProgress = mirror = false;
                 y = 18/4f;
-                effect = ExoFx.starPlasma;
-                effectChance = 0.5f;
-            }},
-            new EffectSpawnPart() {{
-                useProgress = mirror = false;
-                y = 18/4f;
-                effect = ExoFx.supernovaSpark;
+                effect = ExoFx.supernovaCharge;
                 effectChance = 0.5f;
             }},
             new ShapePart() {{
                 circle = true;
                 y = 18/4f;
                 layer = 114;
-                radiusTo = radius = 7f;
+                radiusTo = radius = 3f;
                 color = Color.white;
             }},
             new ShapePart() {{
                 circle = true;
                 y = 18/4f;
                 layer = 110;
-                radiusTo = radius = 11f;
+                radiusTo = radius = 5.5f;
                 color = ExoPal.genesis;
             }}
             );
-            weapons.add(new Weapon("sirius-weapon"){{
+            weapons.add(new Weapon("exogenesis-sirius-weapon"){{
                 shootSound = Sounds.malignShoot;
                 mirror = true;
                 rotationLimit = shootCone = 30f;
@@ -6407,23 +6386,25 @@ public class ExoUnitTypes {
                 shootStatus = StatusEffects.slow;
                 shootStatusDuration = reload + 1f;
 
-                shoot = new ShootSpread(3, 3f);
+                shoot = new ShootSpread(3, 8f);
                 heatColor = Color.red;
-                bullet = new ExoBasicBulletType(8, 130){{
-                    width = 13f;
+                bullet = new ExoBasicBulletType(9, 130){{
+                    width = 9f;
                     height = 17f;
                     sprite = "circle-bullet";
                     shrinkY = shrinkX = 0f;
                     damageType = DamageType.explosive;
-                    drag = -0.01f;
-                    lifetime = 60;
+
+                    lifetime = 30;
                     pierceArmor = true;
                     pierce = true;
                     pierceCap = 3;
-                    shootEffect = new MultiEffect(ExoFx.shootGiant, ExoFx.hitEmpColorSpark);
+                    shootEffect = new MultiEffect(ExoFx.shootGiant, Fx.colorSparkBig);
                     hitEffect = despawnEffect = ExoFx.blastExplosionColor;
-                    backColor = trailColor = ExoPal.genesis;
+                    backColor = trailColor = hitColor = ExoPal.genesis;
                     lightningColor = lightColor = ExoPal.genesis;
+                    trailChance = 1;
+                    trailRotation = true;
                     trailEffect = new MultiEffect(
                         new ParticleEffect(){{
                         lightOpacity = 0.5f;
@@ -6455,13 +6436,12 @@ public class ExoUnitTypes {
                     statusDuration = 60f;
                 }};
             }});
-            weapons.add(new Weapon("align-laser-mount") {{
+            weapons.add(new Weapon("exogenesis-align-laser-mount") {{
                 reload = 245f;
                 mirror = true;
                 x = 25;
                 y = -10;
-                controllable = alternate = false;
-                autoTarget = true;
+                alternate = false;
                 shootSound = Sounds.torch;
                 loopSound = Sounds.torch;
                 shootY = 8.5f;
