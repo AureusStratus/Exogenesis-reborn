@@ -6057,7 +6057,7 @@ public class ExoUnitTypes {
                     width = height = 0f;
                     shrinkX = shootY = 0;
                     damageType = energy;
-                    lifetime = 20;
+                    lifetime = 40;
                     hitEffect = despawnEffect = Fx.colorSpark;
                 }};
             }});
@@ -6068,7 +6068,7 @@ public class ExoUnitTypes {
             rotateSpeed = 2.2f;
             health = 2900;
             armor = 4f;
-
+            constructor = LegsUnit::create;
             legCount = 6;
             legLength = 21f;
             lockLegBase = legContinuousMove = faceTarget = true;
@@ -6238,7 +6238,7 @@ public class ExoUnitTypes {
                     homingPower = 0.2f;
                     weaveMag = 4;
                     weaveScale = 4;
-                    lifetime = 55f;
+                    lifetime = 85f;
                     shootEffect = Fx.shootBig2;
                     smokeEffect = Fx.shootSmokeTitan;
                     splashDamage = 70f;
