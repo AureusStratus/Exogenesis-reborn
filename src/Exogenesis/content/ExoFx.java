@@ -562,6 +562,38 @@ public class ExoFx{
                      lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fout() * 9f);
                  });
              }),
+             hitEmpColorSpark = new Effect(40, e -> {
+                 color(e.color);
+                 stroke(e.fout() * 1.6f);
+
+                 randLenVectors(e.id, 18, e.finpow() * 27f, e.rotation, 360f, (x, y) -> {
+                     float ang = Mathf.angle(x, y);
+                     lineAngle(e.x + x, e.y + y, ang, e.fout() * 6 + 1f);
+                 });
+             }),
+             blastExplosionColor = new Effect(22, e -> {
+                 color(e.color);
+
+                 e.scaled(6, i -> {
+                     stroke(3f * i.fout());
+                     Lines.circle(e.x, e.y, 3f + i.fin() * 15f);
+                 });
+
+                 color(Color.gray);
+
+                 randLenVectors(e.id, 5, 2f + 23f * e.finpow(), (x, y) -> {
+                     Fill.circle(e.x + x, e.y + y, e.fout() * 4f + 0.5f);
+                 });
+
+                 color(e.color);
+                 stroke(e.fout());
+
+                 randLenVectors(e.id + 1, 4, 1f + 23f * e.finpow(), (x, y) -> {
+                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 1f + e.fout() * 3f);
+                 });
+
+                 Drawf.light(e.x, e.y, 45f, e.color, 0.8f * e.fout());
+             }),
             blastcolor = new Effect(40f, 600,e -> {
                 color(e.color);
                 stroke(e.fout() * 3.7f);
