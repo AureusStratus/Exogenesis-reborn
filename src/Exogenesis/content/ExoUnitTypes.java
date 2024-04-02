@@ -6144,6 +6144,7 @@ public class ExoUnitTypes {
             }});
         }};
         oort = new ErekirUnitType("oort"){{
+            constructor = LegsUnit::create;
             drag = 0.2f;
             speed = 0.43f;
             hitSize = 53f;
@@ -6319,6 +6320,7 @@ public class ExoUnitTypes {
             }});
         }};
         sirius = new ErekirUnitType("sirius"){{
+            constructor = LegsUnit::create;
             drag = 0.1f;
             speed = 0.35f;
             hitSize = 56;
