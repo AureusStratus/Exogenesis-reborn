@@ -6359,7 +6359,8 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-sirius-weapon"){{
                 shootSound = Sounds.shootBig;
                 mirror = true;
-                rotationLimit = shootCone = 30f;
+                rotationLimit = 30;
+                shootCone = 70f;
                 rotateSpeed = 0.5f;
                 top = true;
                 rotate = true;
@@ -6446,7 +6447,7 @@ public class ExoUnitTypes {
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.radGreen;
                     trailRotation = true;
-                    lifetime = 165f;
+                    lifetime = 55f;
                     splashDamage = 100;
                     splashDamageRadius = 50;
                     shrinkY = shrinkX = 0;
