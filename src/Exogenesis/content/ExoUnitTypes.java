@@ -24,8 +24,6 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
-import mindustry.type.ammo.ItemAmmoType;
-import mindustry.type.ammo.PowerAmmoType;
 import mindustry.type.unit.*;
 import mindustry.type.weapons.*;
 import mindustry.content.*;
@@ -1417,6 +1415,7 @@ public class ExoUnitTypes {
                     x = 48f;
                     y = 25;
                     mirror = true;
+                    sides = 360;
                     radius = 9f;
                     phase = 30f;
                     layerOffset = -0.001f;
@@ -1426,6 +1425,7 @@ public class ExoUnitTypes {
                     x = 48f;
                     y = -25;
                     mirror = true;
+                    sides = 360;
                     radius = 9f;
                     phase = 30f;
                     layerOffset = -0.001f;
@@ -1436,6 +1436,7 @@ public class ExoUnitTypes {
                     x = 26f;
                     y = 49;
                     mirror = true;
+                    sides = 360;
                     radius = 19f;
                     circles = 4;
                     phase = 90f;
@@ -1446,6 +1447,7 @@ public class ExoUnitTypes {
                     x = 26f;
                     y = -49;
                     mirror = true;
+                    sides = 360;
                     radius = 19f;
                     circles = 4;
                     phase = 90f;
@@ -1699,6 +1701,7 @@ public class ExoUnitTypes {
                         color = ExoPal.erekirPink;
                         circles = 3;
                         stroke = 6;
+                        sides = 360;
                         phase = 100;
                         radius = 48f;
                         mirror = false;
@@ -6167,7 +6170,7 @@ public class ExoUnitTypes {
                             x = 10.75f;
                             moveRot = -15.3f;
                             moveY = 5;
-                            moveX = 2.3f;
+                            moveX = 3.3f;
                         }},
                         new RegionPart("-bodyside2"){{
                             progress = PartProgress.warmup.delay(0.6f);
@@ -6438,7 +6441,7 @@ public class ExoUnitTypes {
 
                 rotate = true;
                 shake = 1.5f;
-                bullet = new ExoBasicBulletType(6.5f, 185){{
+                bullet = new ExoBasicBulletType(3.5f, 185){{
                     width = height = 22;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
@@ -6447,7 +6450,8 @@ public class ExoUnitTypes {
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.radGreen;
                     trailRotation = true;
-                    lifetime = 55f;
+                    collidesTiles = false;
+                    lifetime = 125f;
                     splashDamage = 100;
                     splashDamageRadius = 50;
                     shrinkY = shrinkX = 0;
@@ -6462,6 +6466,8 @@ public class ExoUnitTypes {
                         chainLightning = 2;
                         segmentLength = 6;
                     }};
+                    intervalBullets = 2;
+                    bulletInterval = 2;
                     lightning = 7;
                     lightningLength = 9;
                     lightningColor = ExoPal.radGreen;
@@ -6471,7 +6477,7 @@ public class ExoUnitTypes {
                     trailSinMag = 0.3f;
                     trailParam = 5;
                     trailLength = 10;
-                    trailWidth = 2f;
+                    trailWidth = 3.5f;
                 }};
             }});
         }};
