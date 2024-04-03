@@ -1,4 +1,4 @@
-package Exogenesis.entities.abilities;
+package Exogenesis.type.abilities;
 
 import arc.func.Cons;
 import arc.graphics.Color;
