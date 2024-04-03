@@ -5959,7 +5959,8 @@ public class ExoUnitTypes {
                     new EffectSpawnPart() {{
                         useProgress = mirror = true;
                         y = 0f;
-                        effect = ExoFx.starCharge;
+                        effect = ExoFx.supernovaSpark;
+                        randomEffectRot = 360;
                         effectChance = 0.5f;
                     }},
                     new ShapePart() {{
@@ -6026,13 +6027,13 @@ public class ExoUnitTypes {
             legCount = 6;
             legLength = 17f;
             legForwardScl = 0.45f;
-            legMoveSpace = 1.4f;
+            legMoveSpace = 0.8f;
+            legBaseOffset =  10;
             lockLegBase = legContinuousMove = faceTarget = true;
             legGroupSize = 3;
             legStraightness = 0.4f;
             baseLegStraightness = 0.5f;
             legMaxLength = 1.3f;
-            researchCostMultiplier = 0f;
             rippleScale = 2;
             hovering = true;
             legSplashDamage = 22;
@@ -6061,6 +6062,17 @@ public class ExoUnitTypes {
                     width = 11f;
                     height = 11f;
                     sprite = "circle-bullet";
+                    parts.addAll(
+                    new HoverPart(){{
+                        color = ExoPal.genesisDark;
+                        circles = 3;
+                        sides = 360;
+                        stroke = 6;
+                        phase = 100;
+                        radius = 28f;
+                        mirror = false;
+                        layer = Layer.effect;
+                    }});
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.genesis;
                     lifetime = 30f;
@@ -6120,8 +6132,20 @@ public class ExoUnitTypes {
                     new EffectSpawnPart() {{
                         useProgress = mirror = true;
                         y = 20f;
-                        effect = ExoFx.starCharge;
+                        effect = ExoFx.supernovaSpark;
+                        randomEffectRot = 360;
                         effectChance = 0.5f;
+                    }},
+                    new HoverPart(){{
+                        color = ExoPal.genesisDark;
+                        circles = 3;
+                        sides = 360;
+                        stroke = 6;
+                        phase = 100;
+                        radius = 33f;
+                        mirror = false;
+                        layer = Layer.effect;
+                        y = 20;
                     }},
                     new ShapePart() {{
                         circle = true;
@@ -6311,21 +6335,33 @@ public class ExoUnitTypes {
             new EffectSpawnPart() {{
                 useProgress = mirror = false;
                 y = 18/4f;
-                effect = ExoFx.starCharge;
+                effect = ExoFx.supernovaSpark;
+                randomEffectRot = 360;
                 effectChance = 0.5f;
+            }},
+            new HoverPart(){{
+                color = ExoPal.genesisDark;
+                circles = 3;
+                sides = 360;
+                stroke = 6;
+                phase = 100;
+                radius = 48f;
+                mirror = false;
+                layer = Layer.effect;
+                y = 18/4f;
             }},
             new ShapePart() {{
                 circle = true;
                 y = 18/4f;
                 layer = 114;
-                radiusTo = radius = 3f;
+                radiusTo = radius = 4f;
                 color = Color.white;
             }},
             new ShapePart() {{
                 circle = true;
                 y = 18/4f;
                 layer = 110;
-                radiusTo = radius = 5.5f;
+                radiusTo = radius = 6.5f;
                 color = ExoPal.genesis;
             }}
             );
