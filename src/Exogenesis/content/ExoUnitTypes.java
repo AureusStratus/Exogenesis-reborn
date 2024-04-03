@@ -5922,11 +5922,11 @@ public class ExoUnitTypes {
                     trailWidth = 2f;
                     trailChance = 0.9f;
                     trailEffect = new ParticleEffect() {{
-                        particles = 3;
+                        particles = 1;
                         length = baseLength = 2.5f;
                         lifetime = 20f;
                         colorFrom = colorTo = trailColor;
-                        sizeFrom = 5f;
+                        sizeFrom = 4f;
                         sizeTo = 0f;
                     }};
                 }};
@@ -6028,6 +6028,7 @@ public class ExoUnitTypes {
             legLength = 21f;
             legForwardScl = 0.65f;
             legMoveSpace = 0.8f;
+            legExtension = -15;
             legBaseOffset =  10;
             lockLegBase = legContinuousMove = faceTarget = true;
             legGroupSize = 3;
@@ -6069,7 +6070,7 @@ public class ExoUnitTypes {
                         sides = 360;
                         stroke = 2;
                         phase = 60;
-                        radius = 18f;
+                        radius = 12f;
                         mirror = false;
                         layer = Layer.effect;
                     }});
@@ -6360,7 +6361,7 @@ public class ExoUnitTypes {
                 mirror = true;
                 rotationLimit = shootCone = 30f;
                 rotateSpeed = 0.5f;
-                top = false;
+                top = true;
                 rotate = true;
 
                 x = 38.5f;
@@ -6428,16 +6429,16 @@ public class ExoUnitTypes {
                 mirror = true;
                 x = 25;
                 y = -10;
-                alternate = false;
-                shootSound = Sounds.torch;
+                alternate = true;
+                shootSound = Sounds.blaster;
                 shootY = 8.5f;
                 recoil = 2;
                 rotateSpeed = 2.5f;
 
-                rotate = continuous = true;
-                shake = 0.5f;
+                rotate = true;
+                shake = 1.5f;
                 bullet = new ExoBasicBulletType(6.5f, 185){{
-                    width = height = 25;
+                    width = height = 22;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
                     damageType = DamageType.radiation;
@@ -6453,8 +6454,8 @@ public class ExoUnitTypes {
                     intervalBullet = new ChainLightningBulletType() {{
                         lightningColor = ExoPal.radGreen;
                         damageType = DamageType.radiation;
-                        range = 215;
-                        targetRange = 160;
+                        range = 145;
+                        targetRange = 140;
                         damage = 50;
                         distanceDamageFalloff = 4;
                         chainLightning = 2;
