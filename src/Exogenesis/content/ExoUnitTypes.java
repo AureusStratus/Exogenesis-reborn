@@ -5959,7 +5959,7 @@ public class ExoUnitTypes {
                     new EffectSpawnPart() {{
                         useProgress = mirror = true;
                         y = 0f;
-                        effect = ExoFx.supernovaShoot;
+                        effect = ExoFx.starCharge;
                         effectChance = 0.5f;
                     }},
                     new ShapePart() {{
@@ -6024,12 +6024,15 @@ public class ExoUnitTypes {
             armor = 4f;
             constructor = LegsUnit::create;
             legCount = 6;
-            legLength = 21f;
+            legLength = 17f;
+            legForwardScl = 0.45f;
+            legMoveSpace = 1.4f;
             lockLegBase = legContinuousMove = faceTarget = true;
-            legExtension = -10f;
-            legBaseOffset = 12f;
-            legMoveSpace = 0.6f;
-            legSpeed = 0.4f;
+            legGroupSize = 3;
+            legStraightness = 0.4f;
+            baseLegStraightness = 0.5f;
+            legMaxLength = 1.3f;
+            researchCostMultiplier = 0f;
             rippleScale = 2;
             hovering = true;
             legSplashDamage = 22;
@@ -6055,8 +6058,8 @@ public class ExoUnitTypes {
                     shotDelay = 4f;
                 }};
                 bullet = new EmpBulletType() {{
-                    width = 9f;
-                    height = 9f;
+                    width = 11f;
+                    height = 11f;
                     sprite = "circle-bullet";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.genesis;
@@ -6082,7 +6085,7 @@ public class ExoUnitTypes {
                     homingRange = 50;
                     homingDelay = 2;
                     trailLength = 10;
-                    trailWidth = 3f;
+                    trailWidth = 3.5f;
                 }};
             }});
         }};
@@ -6117,7 +6120,7 @@ public class ExoUnitTypes {
                     new EffectSpawnPart() {{
                         useProgress = mirror = true;
                         y = 20f;
-                        effect = ExoFx.supernovaShoot;
+                        effect = ExoFx.starCharge;
                         effectChance = 0.5f;
                     }},
                     new ShapePart() {{
@@ -6241,7 +6244,7 @@ public class ExoUnitTypes {
             }});
             weapons.add(new Weapon("exogenesis-align-laser"){{
                 x = 18f;
-                y = 2f;
+                y = -7f;
                 shootY = 8.25f;
                 shootSound = Sounds.laser;
                 rotate = true;
@@ -6308,7 +6311,7 @@ public class ExoUnitTypes {
             new EffectSpawnPart() {{
                 useProgress = mirror = false;
                 y = 18/4f;
-                effect = ExoFx.supernovaShoot;
+                effect = ExoFx.starCharge;
                 effectChance = 0.5f;
             }},
             new ShapePart() {{
@@ -6342,9 +6345,6 @@ public class ExoUnitTypes {
                 reload = 50f;
                 shake = 3f;
                 layerOffset = -0.001f;
-
-                shootStatus = StatusEffects.slow;
-                shootStatusDuration = reload + 1f;
 
                 shoot = new ShootSpread(3, 8f);
                 heatColor = Color.red;
