@@ -6185,6 +6185,8 @@ public class ExoUnitTypes {
                     firstShotDelay = 100;
                     shotDelay = 0;
                 }};
+                inaccuracy = 60;
+                velocityRnd = 0.7f;
                 shootStatus = StatusEffects.unmoving;
                 shootStatusDuration = shoot.firstShotDelay + 5f;
                 minWarmup = 0.96f;
@@ -6193,6 +6195,7 @@ public class ExoUnitTypes {
                     hitEffect = new MultiEffect(Fx.titanExplosion, ExoFx.empyreanExplosion, Fx.flakExplosionBig);
                     despawnEffect = Fx.none;
                     damageType = DamageType.explosive;
+                    chargeEffect = ExoFx.starCharge;
                     speed = 4.5f;
                     damage = 150;
                     sprite = "exogenesis-asteroid-bullet";
@@ -6337,13 +6340,13 @@ public class ExoUnitTypes {
                 shootY = 120f / 4f;
                 shootX = -0.25f;
                 recoil = 4f;
-                reload = 50f;
+                reload = 45f;
                 shake = 3f;
                 layerOffset = -0.001f;
 
                 shoot = new ShootSpread(3, 8f);
                 heatColor = Color.red;
-                bullet = new ExoBasicBulletType(9, 130){{
+                bullet = new ExoBasicBulletType(9, 300){{
                     width = 9f;
                     height = 17f;
                     sprite = "circle-bullet";
@@ -6405,7 +6408,7 @@ public class ExoUnitTypes {
 
                 rotate = true;
                 shake = 1.5f;
-                bullet = new ExoBasicBulletType(3.5f, 185){{
+                bullet = new ExoBasicBulletType(3.5f, 125){{
                     width = height = 22;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
@@ -6419,13 +6422,14 @@ public class ExoUnitTypes {
                     splashDamage = 100;
                     splashDamageRadius = 50;
                     shrinkY = shrinkX = 0;
+                    shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
                     hitEffect = despawnEffect = new MultiEffect(ExoFx.blastExplosionColor, Fx.colorSpark);
                     intervalBullet = new ChainLightningBulletType() {{
                         lightningColor = ExoPal.radGreen;
                         damageType = DamageType.radiation;
-                        range = 145;
-                        targetRange = 140;
-                        damage = 50;
+                        range = 125;
+                        targetRange = 125;
+                        damage = 20;
                         distanceDamageFalloff = 4;
                         chainLightning = 2;
                         segmentLength = 6;
