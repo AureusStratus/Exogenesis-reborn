@@ -2659,6 +2659,8 @@ public class ExoBlocks{
             requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
             range = 500f;
             squareSprite = false;
+            loopSound = Sounds.none;
+            extinguish = false;
             recoil = 0f;
             reload = 650f;
             shake = 4f;
@@ -2689,45 +2691,45 @@ public class ExoBlocks{
                     blending = Blending.additive;
                     outline = mirror = false;
                 }},
-                new EffectSpawnPart() {{
-                    useProgress = true;
-                    progress = PartProgress.charge;
-                    y = -4.75f;
-                    effectColor = ExoPal.genesis;
-                    randomEffectRot = 360;
-                    effectChance = 0.5f;
-                }},
-                new EffectSpawnPart() {{
-                    useProgress = true;
-                    y = -4.75f;
-                    effectColor = ExoPal.genesis;
-                    effect = ExoFx.singleSpark;
-                    randomEffectRot = 360;
-                    effectChance = 0.5f;
-                }},
-                new EffectSpawnPart() {{
-                    useProgress = mirror = true;
-                    progress = PartProgress.charge;
-                    x = 4f;
-                    effect = ExoFx.supernovaSpark;
-                    effectChance = 0.5f;
-                }},
-                new ShapePart() {{
-                    circle = true;
-                    y = -4.75f;
-                    layer = 114;
-                    radiusTo = 1;
-                    radius = 0.3f;
-                    color = Color.white;
-                }},
-                new ShapePart() {{
-                    circle = true;
-                    y = -4.75f;
-                    layer = 110;
-                    radiusTo = 3;
-                    radius = 0.45f;
-                    color = ExoPal.genesis;
-                }},
+               // new EffectSpawnPart() {{
+                //    useProgress = true;
+                //    progress = PartProgress.charge;
+                //    y = -4.75f;
+                //   effectColor = ExoPal.genesis;
+                //   randomEffectRot = 360;
+                //   effectChance = 0.5f;
+                //}},
+               // new EffectSpawnPart() {{
+                //    useProgress = true;
+                //    y = -4.75f;
+                //    effectColor = ExoPal.genesis;
+                //    effect = ExoFx.singleSpark;
+                //    randomEffectRot = 360;
+                //    effectChance = 0.5f;
+                //}},
+               // new EffectSpawnPart() {{
+                //    useProgress = mirror = true;
+                //    progress = PartProgress.charge;
+                //    x = 4f;
+                //    effect = ExoFx.supernovaSpark;
+                //    effectChance = 0.5f;
+                //}},
+               // new ShapePart() {{
+               //     circle = true;
+               //     y = -4.75f;
+               //     layer = 114;
+               //     radiusTo = 1;
+               //     radius = 0.3f;
+               //     color = Color.white;
+               // }},
+              //  new ShapePart() {{
+               //     circle = true;
+               //     y = -4.75f;
+               //     layer = 110;
+               //     radiusTo = 3;
+               //     radius = 0.45f;
+               //     color = ExoPal.genesis;
+               // }},
                  //parts
                 new RegionPart("-bodySide"){{
                     progress = PartProgress.warmup;
@@ -2769,8 +2771,8 @@ public class ExoBlocks{
                 );
             }};
             ammo(
-            Liquids.hydrogen, new ExoBasicBulletType(3.5f, 225){{
-                width = height = 22;
+            Liquids.hydrogen, new ExoBasicBulletType(1.3f, 225){{
+                width = height = 27;
                 shrinkY = shrinkX = 0.001f;
                 sprite = "exogenesis-plasma";
                 damageType = thermal;
@@ -2778,7 +2780,7 @@ public class ExoBlocks{
                 frontColor = Color.white;
                 backColor = hitColor = trailColor = ExoPal.cronusRed;
                 trailRotation = true;
-                lifetime = 125f;
+                lifetime = 175f;
                 splashDamage = 100;
                 splashDamageRadius = 50;
                 int times = 25;
@@ -2789,9 +2791,9 @@ public class ExoBlocks{
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
                 hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
-                intervalBullet = new ExoFireBulletType(1,75) {{
+                intervalBullet = new ExoFireBulletType(0.3f,75) {{
                     damageType = thermal;
-                    lifetime = 50;
+                    lifetime = 30;
                     drag = -0.0001f;
                     colorFrom = ExoPal.cronusRedlight;
                     colorMid = ExoPal.cronusRed;
@@ -2805,7 +2807,7 @@ public class ExoBlocks{
                 trailLength = 10;
                 trailWidth = 3.5f;
             }},
-            ExoLiquids.helium, new ExoBasicBulletType(3.5f, 425){{
+            ExoLiquids.helium, new ExoBasicBulletType(1.3f, 425){{
                         width = height = 29;
                         shrinkY = shrinkX = 0.001f;
                         sprite = "exogenesis-plasma";
@@ -2820,7 +2822,7 @@ public class ExoBlocks{
                         int times = 25;
                         float life = ExoFx.starCharge.lifetime;
                         chargeEffect = new MultiEffect(
-                                new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.cronusRed, 48f),
+                                new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starYellow, 48f),
                                 ExoFx.starCharge
                         );
                         shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
@@ -2832,10 +2834,10 @@ public class ExoBlocks{
                             targetRange = 150;
                             hitSound = Sounds.none;
                             damage = 80;
-                            width = 12;
+                            width = 11;
                             distanceDamageFalloff = 4;
                             chainLightning = 1;
-                            segmentLength = 30;
+                            segmentLength = 1;
                         }};
                         intervalBullets = 2;
                         bulletInterval = 3;
@@ -2845,9 +2847,9 @@ public class ExoBlocks{
                         trailLength = 10;
                         trailWidth = 3.5f;
                     }},
-            Liquids.ozone, new ExoBasicBulletType(3.5f, 585){{
+            Liquids.ozone, new ExoBasicBulletType(1.3f, 585){{
                 width = height = 29;
-                shrinkY = shrinkX = -0.001f;
+                shrinkY = shrinkX = -0.002f;
                 sprite = "exogenesis-plasma";
                 damageType = thermal;
                 hitSound = Sounds.dullExplosion;
@@ -2860,19 +2862,19 @@ public class ExoBlocks{
                 int times = 25;
                 float life = ExoFx.starCharge.lifetime;
                 chargeEffect = new MultiEffect(
-                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.cronusRed, 48f),
+                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starWhite, 48f),
                         ExoFx.starCharge
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
                 hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
                 intervalBullet = new ShrapnelBulletType(){{
-                    length = 80;
+                    length = 30;
                     toColor = ExoPal.starWhite;
                     damage = 66f;
                     ammoMultiplier = 4f;
                     width = 27f;
                 }};
-                fragRandomSpread = 360f;
+                fragRandomSpread = 0f;
                 fragSpread =  60;
                 fragBullets = 6;
                 fragBullet = new FancyLaserBulletType(){{
@@ -2880,6 +2882,7 @@ public class ExoBlocks{
                     sideAngle = 27f;
                     sideWidth = 1.5f;
                     sideLength = 20f;
+                    lifetime = 60;
                     width = 35f;
                     length = 200f;
                     colors = new Color[]{ExoPal.starWhite.cpy().a(0.4f), ExoPal.starWhite, Color.white};
@@ -2888,7 +2891,7 @@ public class ExoBlocks{
                     shootEffect = ExoFx.hitEmpColorSpark;
                 }};
                 intervalSpread = 0f;
-                bulletInterval = 3;
+                bulletInterval = 2;
                 trailSinScl = 6;
                 trailSinMag = 0.3f;
                 trailParam = 5;
