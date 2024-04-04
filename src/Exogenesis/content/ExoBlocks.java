@@ -1047,7 +1047,7 @@ public class ExoBlocks{
                         }}
                 );
             }};
-            shootType = new ExoFlameBulletType(6.6f, 75f){{
+            shootType = new FireBulletType(6.6f, 75f){{
                 lifetime = 42f;
                 pierceCap = 6;
                 pierceBuilding = true;
@@ -1055,14 +1055,9 @@ public class ExoBlocks{
                 reflectable = false;
                 incendChance = 0.2f;
                 incendAmount = 1;
-                particleAmount = 23;
-                particleSizeScl = 8f;
-                particleSpread = 11f;
                 hitSize = 9f;
                 layer = Layer.bullet - 0.001f;
                 status = StatusEffects.melting;
-                smokeColors = new Color[]{ExoPal.radGreenDark, ExoPal.radGreenDark, Color.gray};
-                colors = new Color[]{Color.white, ExoPal.radGreenLight, ExoPal.radGreen, ExoPal.radGreenDark, ExoPal.radGreenDark};
             }};
         }};
         grandeur = new ContinuousTurret("grandeur"){{
@@ -2772,11 +2767,12 @@ public class ExoBlocks{
             }};
             ammo(
             Liquids.hydrogen, new StarBulletType(1.3f, 225){{
-                radius = 27;
+                radius = 20;
                 damageType = thermal;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.cronusRed;
                 rotationSpeed = 100;
+
                 trailRotation = true;
                 lifetime = 300f;
                 swirlEffects = 2;
@@ -2886,6 +2882,7 @@ public class ExoBlocks{
                     sideWidth = 1.5f;
                     sideLength = 20f;
                     lifetime = 60;
+                    largeHit = true;
                     width = 35f;
                     length = 200f;
                     colors = new Color[]{ExoPal.starWhite.cpy().a(0.4f), ExoPal.starWhite, Color.white};

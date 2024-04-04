@@ -13,11 +13,10 @@ import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 
-import static Exogenesis.type.DamageType.thermal;
 
 public class StarBulletType extends ExoBulletType {
     public float radius = 9f;
-    public DamageType damageType = thermal;
+    public DamageType damageType = DamageType.thermal;
     public Color realColor = ExoPal.cronusRed;
     public Effect realHitEffect = ExoFx.hitEmpColorSpark;
     public float rotationSpeed;
@@ -95,7 +94,7 @@ public class StarBulletType extends ExoBulletType {
     }
     @Override
     public void draw(Bullet b){
-        Draw.color(Color.white);
+        Draw.color(realColor);
         Fill.circle(b.x, b.y, realRadius(b.fin()));
         Draw.rect("circle-shadow", b.x, b.y, radius * 1.8f, radius * 1.8f, 0);
         float z = Draw.z();
