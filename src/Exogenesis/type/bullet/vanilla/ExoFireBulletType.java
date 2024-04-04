@@ -5,10 +5,10 @@ import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import Exogenesis.type.*;
 
-public class ExoBasicBulletType extends BasicBulletType implements TypedBulletType{
+public class ExoFireBulletType extends FireBulletType implements TypedBulletType{
     public DamageType damageType;
 
-    public ExoBasicBulletType(float speed, float damage){
+    public ExoFireBulletType(float speed, float damage){
         super(speed, damage);
     }
 

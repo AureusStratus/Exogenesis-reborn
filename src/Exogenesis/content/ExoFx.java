@@ -481,7 +481,7 @@ public class ExoFx{
             }),
             supernovaCharge = new SwirlEffect(30f, 8, 2f, 30f, 90f, false, false).layer(Layer.effect - 0.03f),
             starCharge = new Effect(100f, 100f, e -> {
-                    color(ExoPal.genesis);
+                    color(e.color);
                     Fill.circle(e.x, e.y, e.fin() * 10);
                     color();
                     Fill.circle(e.x, e.y, e.fin() * 6);
@@ -547,13 +547,51 @@ public class ExoFx{
                 }
             }),
             supernovaSpark = new Effect(16f, e -> {
-                color(Color.white, ExoPal.genesis, e.fin());
+                color(Color.white, e.color, e.fin());
                 stroke(e.fout() * 1.1f + 0.5f);
 
                 randLenVectors(e.id, 1, 40f * e.fin(), e.rotation, 0f, (x, y) -> {
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
                 });
             }),
+    //test
+            supernovaChargeStar = new Effect(30f, e -> {
+                if(e.data instanceof Float data){
+                    float r = data;
+
+                    color(e.color);
+                    alpha(e.fin() * 2f * r);
+                    circle(e.x, e.y, 150f * Interp.pow2Out.apply(e.fout()) * Mathf.lerp(0.1f, 1f, r));
+                }
+            }),
+            supernovaStarHeatwave = new Effect(40f, e -> {
+                color(e.color);
+                stroke(e.fout());
+                circle(e.x, e.y, 110f * e.fin());
+                circle(e.x, e.y, 120f * e.finpow() * 0.6f);
+            }),
+            supernovaStarDecay = new Effect(56f, e -> randLenVectors(e.id, 1, 36f * e.finpow(), (x, y) -> {
+                color(e.color);
+                Fill.rect(e.x + x, e.y + y, 2.2f * e.fout(), 2.2f * e.fout(), 45f);
+            })),
+            supernovaChargeStar2 = new Effect(27f, e -> {
+        if(e.data instanceof Float data){
+            float r = data;
+            randLenVectors(e.id, (int)(3f * r), e.fout() * ((90f + r * 150f) * (0.3f + Mathf.randomSeed(e.id, 0.7f))), (x, y) -> {
+                color(e.color);
+                Fill.circle(e.x + x, e.y + y, 2f * e.fin());
+            });
+        }
+    }),
+            redBallfire = new Effect(25f, e -> {
+                color(ExoPal.cronusRedlight, ExoPal.cronusRedDark, e.fin());
+
+                randLenVectors(e.id, 2, 2f + e.fin() * 7f, (x, y) -> {
+                    Fill.circle(e.x + x, e.y + y, 0.2f + e.fout() * 1.5f);
+                });
+            }),
+
+    //test
              railgunSpark = new Effect(26f, e -> {
                  color(e.color);
                  float length = !(e.data instanceof Float) ? 70f : (Float)e.data;

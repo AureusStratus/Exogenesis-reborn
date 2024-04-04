@@ -6022,7 +6022,7 @@ public class ExoUnitTypes {
         }};
         kuiper = new ErekirUnitType("kuiper"){{
             speed = 0.5f;
-            hitSize = 36f;
+            hitSize = 32f;
             rotateSpeed = 2.2f;
             health = 2900;
             armor = 4f;
@@ -6183,9 +6183,9 @@ public class ExoUnitTypes {
                 shoot = new ShootPattern(){{
                     shots = 7;
                     firstShotDelay = 100;
-                    shotDelay = 0;
+                    shotDelay = 1;
                 }};
-                inaccuracy = 60;
+                inaccuracy = 30;
                 velocityRnd = 0.7f;
                 shootStatus = StatusEffects.unmoving;
                 shootStatusDuration = shoot.firstShotDelay + 5f;

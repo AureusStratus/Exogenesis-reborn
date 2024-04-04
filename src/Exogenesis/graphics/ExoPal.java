@@ -1,11 +1,13 @@
 package Exogenesis.graphics;
 
 import arc.graphics.*;
-import mindustry.graphics.*;
 public class ExoPal {
 public static Color
 ally = new Color(0, 0, 1, 0.15f), hostile = new Color(1, 0, 0, 0.15f),
 lightSky = Color.valueOf("#8DB0FF"),
+starYellow = Color.valueOf("ffe231"),
+starBlue = Color.valueOf("123fff"),
+starWhite = Color.valueOf("d7e6e9"),
 prometheusColor = Color.valueOf("feb380"),
 letoColor = Color.valueOf("63edf8"),
 coldcolor = Color.valueOf("6bc7ff"),
