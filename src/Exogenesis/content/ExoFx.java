@@ -585,7 +585,7 @@ public class ExoFx{
                 });
             }),
             starShockWave = new Effect(85f, e -> {
-                float shock = 100f * (1f + e.fin() * 2f) + (e.fin() * 50f);
+                float shock = 80f * (1f + e.fin() * 2f) + (e.fin() * 50f);
                 color(e.color);
                 if(e.time < 5f){
                     Fill.circle(e.x, e.y, shock);
@@ -593,12 +593,9 @@ public class ExoFx{
 
                 Lines.stroke(6f * e.fout());
                 Lines.circle(e.x, e.y, shock);
-
-                for(int i = 0; i < 16; i++){
-                    float ang = rand.random(360f);
-                    Vec2 v = Tmp.v1.trns(ang, shock).add(e.x, e.y);
-                    Drawf.tri(v.x, v.y, 8f * e.fout(), (70f + 25f * e.fin()), ang + 180f);
-                }
+                float ang = rand.random(360f);
+                Vec2 v = Tmp.v1.trns(ang, shock).add(e.x, e.y);
+                Drawf.tri(v.x, v.y, 8f * e.fout(), (70f + 25f * e.fin()), ang + 180f);
             }),
             supernovaBlast = new Effect(25f, e -> {
                 int count = 20;
