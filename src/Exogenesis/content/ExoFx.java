@@ -483,12 +483,42 @@ public class ExoFx{
                 });
             }),
             supernovaCharge = new SwirlEffect(30f, 8, 2f, 30f, 90f, false, false).layer(Layer.effect - 0.03f),
-            starCharge = new Effect(100f, 100f, e -> {
-                    color(e.color);
+            starChargeWhite = new Effect(100f, 100f, e -> {
+                    color(ExoPal.starWhite);
                     Fill.circle(e.x, e.y, e.fin() * 10);
                     color(Color.white);
                     Fill.circle(e.x, e.y, e.fin() * 6);
                 }).followParent(true).rotWithParent(true),
+            starChargeRed = new Effect(100f, 100f, e -> {
+                color(ExoPal.cronusRed);
+                Fill.circle(e.x, e.y, e.fin() * 10);
+                color(Color.white);
+                Fill.circle(e.x, e.y, e.fin() * 6);
+            }).followParent(true).rotWithParent(true),
+            starChargeBlue = new Effect(100f, 100f, e -> {
+                color(ExoPal.genesis);
+                Fill.circle(e.x, e.y, e.fin() * 10);
+                color(Color.white);
+                Fill.circle(e.x, e.y, e.fin() * 6);
+            }).followParent(true).rotWithParent(true),
+            starChargeGreen = new Effect(100f, 100f, e -> {
+                color(ExoPal.radGreen);
+                Fill.circle(e.x, e.y, e.fin() * 10);
+                color(Color.white);
+                Fill.circle(e.x, e.y, e.fin() * 6);
+            }).followParent(true).rotWithParent(true),
+            starChargeDeepBlue = new Effect(100f, 100f, e -> {
+                color(ExoPal.starBlue);
+                Fill.circle(e.x, e.y, e.fin() * 10);
+                color(Color.white);
+                Fill.circle(e.x, e.y, e.fin() * 6);
+            }).followParent(true).rotWithParent(true),
+            starChargeYellow = new Effect(100f, 100f, e -> {
+                color(ExoPal.starYellow);
+                Fill.circle(e.x, e.y, e.fin() * 10);
+                color(Color.white);
+                Fill.circle(e.x, e.y, e.fin() * 6);
+            }).followParent(true).rotWithParent(true),
             singleSpark = new Effect(21f, e -> {
                 color(Color.white, e.color, e.fin());
                 stroke(e.fout() * 1.1f + 0.5f);
@@ -584,13 +614,9 @@ public class ExoFx{
                     Fill.circle(e.x + x, e.y + y, 0.2f + e.fout() * 1.5f);
                 });
             }),
-            starShockWave = new Effect(85f, e -> {
+            starShockWave = new Effect(45f, e -> {
                 float shock = 80f * (1f + e.fin() * 2f) + (e.fin() * 50f);
                 color(e.color);
-                if(e.time < 5f){
-                    Fill.circle(e.x, e.y, shock);
-                }
-
                 Lines.stroke(6f * e.fout());
                 Lines.circle(e.x, e.y, shock);
                 float ang = rand.random(360f);

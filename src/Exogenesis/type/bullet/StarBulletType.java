@@ -1,7 +1,5 @@
 package Exogenesis.type.bullet;
 
-import Exogenesis.type.DamageType;
-import Exogenesis.type.bullet.vanilla.ExoBulletType;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -10,13 +8,13 @@ import Exogenesis.graphics.*;
 import blackhole.BlackHoleMod;
 import mindustry.content.*;
 import mindustry.entities.*;
+import mindustry.entities.bullet.BulletType;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 
 
-public class StarBulletType extends ExoBulletType {
+public class StarBulletType extends BulletType {
     public float radius = 9f;
-    public DamageType damageType = DamageType.thermal;
     public Color realColor = ExoPal.cronusRed;
     public Effect realHitEffect = ExoFx.hitEmpColorSpark;
     public float rotationSpeed;

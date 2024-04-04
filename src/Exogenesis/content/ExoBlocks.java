@@ -2768,7 +2768,6 @@ public class ExoBlocks{
             ammo(
             Liquids.hydrogen, new StarBulletType(1.3f, 225){{
                 radius = 20;
-                damageType = thermal;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.cronusRed;
                 rotationSpeed = 100;
@@ -2779,16 +2778,17 @@ public class ExoBlocks{
                 splashDamage = 100;
                 splashDamageRadius = 50;
                 int times = 25;
-                float life = ExoFx.starCharge.lifetime;
+                float life = ExoFx.starChargeRed.lifetime;
                 chargeEffect = new MultiEffect(
                         new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.cronusRed, 48f),
-                        ExoFx.starCharge
+                        ExoFx.starChargeRed
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
+                        hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
                 intervalBullet = new ExoFireBulletType(0.3f,75) {{
                     damageType = thermal;
                     lifetime = 30;
+                    radius = 6;
                     drag = -0.0001f;
                     colorFrom = ExoPal.cronusRedlight;
                     colorMid = ExoPal.cronusRed;
@@ -2804,7 +2804,6 @@ public class ExoBlocks{
             }},
             ExoLiquids.helium, new StarBulletType(1.3f, 425){{
                 radius = 29;
-                damageType = thermal;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.starYellow;
                 trailRotation = true;
@@ -2812,13 +2811,13 @@ public class ExoBlocks{
                 splashDamage = 150;
                 splashDamageRadius = 50;
                 int times = 25;
-                float life = ExoFx.starCharge.lifetime;
+                float life = ExoFx.starChargeYellow.lifetime;
                 chargeEffect = new MultiEffect(
                         new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starYellow, 48f),
-                        ExoFx.starCharge
+                        ExoFx.starChargeYellow
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
+                        hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
                 intervalBullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.starYellow;
                     damageType = DamageType.thermal;
@@ -2841,7 +2840,6 @@ public class ExoBlocks{
             }},
             Liquids.ozone, new StarBulletType(1.3f, 585){{
                 radius = 29;
-                damageType = thermal;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.starWhite;
                 trailRotation = true;
@@ -2849,16 +2847,17 @@ public class ExoBlocks{
                 splashDamage = 150;
                 splashDamageRadius = 50;
                 int times = 25;
-                float life = ExoFx.starCharge.lifetime;
+                float life = ExoFx.starChargeWhite.lifetime;
                 chargeEffect = new MultiEffect(
-                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starWhite, 48f), ExoFx.starCharge );
+                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starWhite, 48f), ExoFx.starChargeWhite );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
                 hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
-                intervalBullet = new ExoBasicBulletType(1, 100){{
+                intervalBullet = new ExoBasicBulletType(1.5f, 100){{
                     width = height = 7f;
                     sprite = "exogenesis-plasma";
                     shrinkY = shrinkX = 0f;
                     damageType = thermal;
+
                     drag = -0.05f;
                     hitEffect = despawnEffect = ExoFx.blastExplosionColor;
                     backColor = trailColor = hitColor = ExoPal.starWhite;
@@ -2866,7 +2865,7 @@ public class ExoBlocks{
                     trailLength = 13;
                     homingRange = 80f;
                     homingPower = 0.003f;
-                    homingDelay = 3;
+                    homingDelay = 2;
 
                     status = StatusEffects.melting;
                     statusDuration = 60f;
@@ -2890,7 +2889,7 @@ public class ExoBlocks{
                 }};
                 intervalSpread = 60f;
                 intervalRandomSpread = 0;
-                bulletInterval = 8;
+                bulletInterval = 30;
                 intervalBullets = 6;
                 trailSinScl = 6;
                 trailSinMag = 0.3f;
@@ -2906,10 +2905,10 @@ public class ExoBlocks{
                 trailSinMag = 0.4f;
                 trailParam = 3.5f;
                 int times = 25;
-                float life = ExoFx.starCharge.lifetime;
+                float life = ExoFx.starChargeBlue.lifetime;
                 chargeEffect = new MultiEffect(
                         new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.genesis, 48f),
-                        ExoFx.starCharge
+                        ExoFx.starChargeBlue
                 );
                 chargeEffect.lifetime = life;
                 realColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesis;
@@ -2919,7 +2918,6 @@ public class ExoBlocks{
                 splashDamage = 700;
                 intervalBullets = 1;
                 bulletInterval = 3;
-                damageType = DamageType.thermal;
                 intervalBullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.genesis;
                     damageType = DamageType.thermal;
@@ -2934,7 +2932,7 @@ public class ExoBlocks{
                 pierce = false;
                 collides = true;
                 lifetime = 300;
-                despawnEffect = hitEffect = ExoFx.empyreanExplosion;
+                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
                 shootEffect = ExoFx.square45_6_45;
                 fragLifeMin = 1f;
                 fragBullets = 1;
