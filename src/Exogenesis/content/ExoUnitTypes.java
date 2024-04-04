@@ -6195,7 +6195,7 @@ public class ExoUnitTypes {
                     hitEffect = new MultiEffect(Fx.titanExplosion, ExoFx.empyreanExplosion, Fx.flakExplosionBig);
                     despawnEffect = Fx.none;
                     damageType = DamageType.explosive;
-                    chargeEffect = ExoFx.starCharge;
+                    chargeEffect = ExoFx.starChargeBlue;
                     speed = 4.5f;
                     damage = 150;
                     sprite = "exogenesis-asteroid-bullet";
