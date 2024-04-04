@@ -2870,7 +2870,7 @@ public class ExoBlocks{
                         ExoFx.starCharge
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.blastgenerate, Fx.colorSpark);
+                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
                 intervalBullet = new ExoBasicBulletType(1, 100){{
                     width = height = 7f;
                     sprite = "exogenesis-plasma";

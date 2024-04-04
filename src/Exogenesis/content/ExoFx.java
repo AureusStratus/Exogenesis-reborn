@@ -601,6 +601,22 @@ public class ExoFx{
                     Fill.circle(e.x + x, e.y + y, 0.2f + e.fout() * 1.5f);
                 });
             }),
+            starShockWave = new Effect(25f, e -> {
+                float shock = 230f * (1f + e.fin() * 2f) + (e.fin() * 50f);
+                color(Pal.lighterOrange);
+                if(e.time < 5f){
+                    Fill.circle(e.x, e.y, shock);
+                }
+
+                Lines.stroke(3f * e.fout());
+                Lines.circle(e.x, e.y, shock);
+
+                for(int i = 0; i < 16; i++){
+                    float ang = rand.random(360f);
+                    Vec2 v = Tmp.v1.trns(ang, shock).add(e.x, e.y);
+                    Drawf.tri(v.x, v.y, 8f * e.fout(), (70f + 25f * e.fin()), ang + 180f);
+                }
+            }),
             desGroundHit = new Effect(30f, 250f, e -> {
                 Rand r = UtilsTwo.rand;
                 r.setSeed(e.id);
