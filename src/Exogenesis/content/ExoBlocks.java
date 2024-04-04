@@ -1752,7 +1752,8 @@ public class ExoBlocks{
                         shrinkX = shrinkY = 0;
                         damageType = cryogenic;
                         lifetime = 11;
-                        hitEffect = despawnEffect = Fx.flakExplosion;
+                        hitEffect = despawnEffect = ExoFx.desCreepHit;
+                      //  hitEffect = despawnEffect = Fx.flakExplosion;
                     }},
                     ExoItems.astrolite, new ExoBasicBulletType(4f, 14) {{
                         backColor = hitColor = trailColor = ExoPal.genesis;
@@ -1763,7 +1764,20 @@ public class ExoBlocks{
                         shrinkX = shrinkY = 0;
                         damageType = energy;
                         lifetime = 11;
-                        hitEffect = despawnEffect = ExoFx.colorBombSmaller;
+                        hitEffect = despawnEffect = ExoFx.desGroundHit;
+                     //   hitEffect = despawnEffect = ExoFx.colorBombSmaller;
+                    }},
+                    ExoItems.stellarIron, new ExoBasicBulletType(4f, 14) {{
+                        backColor = hitColor = trailColor = ExoPal.genesis;
+                        frontColor = Color.white;
+                        trailWidth = 2f;
+                        trailLength = 6;
+                        width = height = 9;
+                        shrinkX = shrinkY = 0;
+                        damageType = energy;
+                        lifetime = 11;
+                        hitEffect = despawnEffect = ExoFx.desCreepHeavyHit;
+                        //   hitEffect = despawnEffect = ExoFx.colorBombSmaller;
                     }},
                     ExoItems.nickel, new ExoBasicBulletType(8f, 6) {{
                         backColor = hitColor = trailColor = Color.valueOf("8bc99e");
@@ -1776,7 +1790,8 @@ public class ExoBlocks{
                         shrinkX = shrinkY = 0;
                         damageType = kinetic;
                         lifetime = 11;
-                        hitEffect = despawnEffect = ExoFx.blastExplosionColor;
+                        hitEffect = despawnEffect = ExoFx.desGroundHitMain;
+                      //  hitEffect = despawnEffect = ExoFx.blastExplosionColor;
                     }}
             );
         }};
