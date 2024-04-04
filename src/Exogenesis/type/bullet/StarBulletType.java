@@ -94,6 +94,8 @@ public class StarBulletType extends ExoBulletType {
     }
     @Override
     public void draw(Bullet b){
+        Draw.color(Color.white);
+        Fill.circle(b.x, b.y, realRadius(b.fin())/2);
         Draw.color(realColor);
         Fill.circle(b.x, b.y, realRadius(b.fin()));
         Draw.rect("circle-shadow", b.x, b.y, radius * 1.8f, radius * 1.8f, 0);

@@ -486,7 +486,7 @@ public class ExoFx{
             starCharge = new Effect(100f, 100f, e -> {
                     color(e.color);
                     Fill.circle(e.x, e.y, e.fin() * 10);
-                    color();
+                    color(Color.white);
                     Fill.circle(e.x, e.y, e.fin() * 6);
                 }).followParent(true).rotWithParent(true),
             singleSpark = new Effect(21f, e -> {
@@ -497,15 +497,6 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
                 });
             }),
-            starPlasma = new Effect(14, e -> {
-                color(ExoPal.genesis, ExoPal.genesisDark, e.fin());
-                stroke(0.5f + e.fout());
-
-                randLenVectors(e.id, 2, 1f + e.fin() * 15f, e.rotation, 70f, (x, y) -> {
-                    float ang = Mathf.angle(x, y);
-                    lineAngle(e.x + x, e.y + y, ang, e.fout() * 3 + 1f);
-                });
-            }).followParent(true).rotWithParent(true),
             singularityDespawn = new Effect(80f, e -> {
                 float rad = 24f;
                 e.scaled(60f, s -> {
@@ -557,14 +548,6 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
                 });
             }),
-            blastgenerate = new MultiEffect(new Effect(40f, 600, e -> {
-                color(e.color);
-                stroke(e.fout() * 3.7f);
-                circle(e.x, e.y, e.fin(pow3Out) * 240 + 15);
-                rand.setSeed(e.id);
-                randLenVectors(e.id, 12, 8 + 60 * e.fin(Interp.pow5Out), (x, y) -> Fill.circle(e.x + x, e.y + y, e.fout(Interp.circleIn) * (6f + rand.random(6f))));
-                Drawf.light(e.x, e.y, e.fout() * 320f, e.color, 0.7f);
-            }), circleOut),
     //test
             supernovaChargeStar = new Effect(30f, e -> {
                 if(e.data instanceof Float data){
@@ -601,14 +584,14 @@ public class ExoFx{
                     Fill.circle(e.x + x, e.y + y, 0.2f + e.fout() * 1.5f);
                 });
             }),
-            starShockWave = new Effect(25f, e -> {
-                float shock = 230f * (1f + e.fin() * 2f) + (e.fin() * 50f);
-                color(Pal.lighterOrange);
+            starShockWave = new Effect(85f, e -> {
+                float shock = 100f * (1f + e.fin() * 2f) + (e.fin() * 50f);
+                color(e.color);
                 if(e.time < 5f){
                     Fill.circle(e.x, e.y, shock);
                 }
 
-                Lines.stroke(3f * e.fout());
+                Lines.stroke(6f * e.fout());
                 Lines.circle(e.x, e.y, shock);
 
                 for(int i = 0; i < 16; i++){
@@ -617,190 +600,24 @@ public class ExoFx{
                     Drawf.tri(v.x, v.y, 8f * e.fout(), (70f + 25f * e.fin()), ang + 180f);
                 }
             }),
-            desGroundHit = new Effect(30f, 250f, e -> {
-                Rand r = UtilsTwo.rand;
-                r.setSeed(e.id);
-
-                int amount = r.random(4, 12);
-                int amount2 = r.random(7, 14);
-                float c = r.random(0.1f, 0.6f);
-                float c2 = r.random(0.1f, 0.3f);
-
-                z(Layer.groundUnit);
-                color(Color.gray);
-                for(int i = 0; i < amount2; i++){
-                    float l = (i / (amount2 - 1f)) * c2;
-                    float f = Mathf.curve(e.fin(), l, (1f - c2) + l);
-                    float ang = r.random(360f);
-                    float len = r.random(80f) * e.rotation;
-                    float scl = r.random(8.5f, 19f) * e.rotation;
-                    if(f > 0f && f < 1f){
-                        float f2 = pow2Out.apply(f) * 0.6f + f * 0.4f;
-                        Vec2 v = Tmp.v1.trns(ang, len * f2).add(e.x, e.y);
-                        Fill.circle(v.x, v.y, scl * (1f - f));
-                    }
-                }
-                z(Layer.groundUnit + 0.02f);
-                color(ExoPal.cronusRed, e.color, pow3Out.apply(e.fin()));
-                for(int i = 0; i < amount; i++){
-                    float l = (i / (amount - 1f)) * c;
-                    float f = Mathf.curve(e.fin(), l, (1f - c) + l);
-                    float ang = r.random(360f);
-                    float len = r.random(100f) * e.rotation;
-                    float scl = r.random(3f, 13f) * e.rotation;
-                    if(f > 0f && f < 1f){
-                        float f2 = pow2Out.apply(f) * 0.4f + f * 0.6f;
-                        Vec2 v = Tmp.v1.trns(ang, len * f2).add(e.x, e.y);
-                        Fill.circle(v.x, v.y, scl * (1f - f));
-                    }
-                }
-            }).layer(Layer.groundUnit),
-            desGroundHitMain = new Effect(90f, 900f, e -> {
-                Rand r = UtilsTwo.rand;
-                r.setSeed(e.id);
-
-                float arange = 25f;
-                float scl = 1f;
-                float range = 300f;
-
-                color(Color.gray, 0.8f);
-                for(int i = 0; i < 4; i++){
-                    int count = r.random(15, 23);
-                    for(int k = 0; k < count; k++){
-                        float f = Mathf.curve(e.fin(), 0f, 1f - r.random(0.2f));
-                        float rr = r.range(arange) + e.rotation;
-                        float len = r.random(range) * pow4Out.apply(e.fin());
-                        float sscl = r.random(21f, 43f) * scl * pow2.apply(1f - f) * Mathf.clamp(e.time / 8f);
-
-                        if(f < 1){
-                            Vec2 v = Tmp.v1.trns(rr, len).add(e.x, e.y);
-                            Fill.circle(v.x, v.y, sscl);
-                        }
-                    }
-
-                    arange *= 2f;
-                    scl *= 1.12f;
-                    range *= 0.6f;
-                }
+            supernovaBlast = new Effect(25f, e -> {
+                int count = 20;
                 float fin2 = Mathf.clamp(e.time / 18f);
+                color(e.color);
+                for(int i = 0; i < count; i++){
+                    float f = Mathf.curve(fin2, 0f, 1f - rand.random(0.2f));
+                    float ang = rand.range(40f) + e.rotation;
+                    float off = rand.random(70f) + rand.random(15f) * f;
+                    float len = rand.random(50f, 140f);
 
-                if(fin2 < 1){
-                    int count = 20;
-                    color(Pal.lighterOrange);
-                    for(int i = 0; i < count; i++){
-                        float f = Mathf.curve(fin2, 0f, 1f - r.random(0.2f));
-                        float ang = r.range(40f) + e.rotation;
-                        float off = r.random(70f) + r.random(15f) * f;
-                        float len = r.random(190f, 450f);
-
-                        if(f < 1){
-                            Vec2 v = Tmp.v1.trns(ang, off).add(e.x, e.y);
-                            Lines.stroke(0.5f + (1f - f) * 3f);
-                            Lines.lineAngle(v.x, v.y, ang, len * f, false);
-                        }
+                    if(f < 1){
+                        Vec2 v = Tmp.v1.trns(ang, off).add(e.x, e.y);
+                        Lines.stroke(0.5f + (1f - f) * 3f);
+                        Lines.lineAngle(v.x, v.y, ang, len * f, false);
                     }
                 }
             }),
-            desCreepHit = new Effect(20f, e -> {
-                float angr = 90f;
-                float len = 1f;
-                Rand r = UtilsTwo.rand;
-                r.setSeed(e.id);
-
-                Draw.color(ExoPal.cronusRed);
-                Lines.stroke(1.75f);
-                for(int i = 0; i < 4; i++){
-                    for(int j = 0; j < 10; j++){
-                        float f = Mathf.curve(e.fin(), 0f, 1f - r.random(0.2f));
-                        float tlen = r.random(32f) * len * f + r.random(15f);
-                        float rot = r.range(angr) + e.rotation;
-                        float slope = pow2Out.apply(Mathf.slope(f)) * 24f * len;
-                        Vec2 v = Tmp.v1.trns(rot, tlen).add(e.x, e.y);
-                        Lines.lineAngle(v.x, v.y, rot, slope, false);
-                    }
-
-                    angr *= 0.7f;
-                    len *= 1.7f;
-                }
-                Draw.reset();
-            }),
-    desCreepHeavyHit = new Effect(300f, 1200f, e -> {
-        float sizeScl = e.data instanceof Float ? (float)e.data : 1f;
-
-        Rand r = UtilsTwo.rand;
-        r.setSeed(e.id);
-
-        float scl = Mathf.clamp(e.time / 8f);
-        float range = 32f;
-        float countScl = 1f;
-        float z = z();
-        Tmp.c2.set(Color.gray).a(0.8f);
-        for(int i = 0; i < 5; i++){
-            color(Pal.lightOrange, Tmp.c2, i / 4f);
-            float arange = 180f;
-            float range2 = 1f;
-            for(int j = 0; j < 5; j++){
-                int count = (int)(r.random(12, 15) * countScl);
-                for(int k = 0; k < count; k++){
-                    float f = Mathf.curve(e.fin(), 0f, 1f - r.random(0.3f));
-                    float ang = r.range(arange) + e.rotation;
-                    float len = r.random(range * range2) * sizeScl * 0.5f;
-                    float size = r.random(10f, 24f) * scl * sizeScl * 0.5f;
-
-                    z(z - r.random(0.002f));
-                    if(f < 1f){
-                        Vec2 v = Tmp.v1.trns(ang, len * pow5Out.apply(f)).add(e.x, e.y);
-                        Fill.circle(v.x, v.y, size * (1f - pow10In.apply(f)));
-                    }
-                }
-
-                arange *= 0.6f;
-                range2 *= 1.75f;
-            }
-            scl *= 1.5f;
-            range *= 1.6f;
-            countScl *= 1.4f;
-        }
-        z(z);
-
-        float shock = 230f * sizeScl * (1f + e.fin() * 2f) + (e.fin() * 50f);
-        color(Pal.lighterOrange);
-        if(e.time < 5f){
-            Fill.circle(e.x, e.y, shock);
-        }
-
-        Lines.stroke(3f * e.fout());
-        Lines.circle(e.x, e.y, shock);
-
-        for(int i = 0; i < 16; i++){
-            float ang = r.random(360f);
-            Vec2 v = Tmp.v1.trns(ang, shock).add(e.x, e.y);
-            Drawf.tri(v.x, v.y, 8f * e.fout() * sizeScl, (70f + 25f * e.fin()) * sizeScl, ang + 180f);
-        }
-
-        color(Pal.lighterOrange, Pal.lightOrange, e.fin());
-        float arange = 180f;
-        float range2 = 1f;
-        Lines.stroke(3f);
-        for(int i = 0; i < 6; i++){
-            int count = r.random(8, 12);
-            for(int k = 0; k < count; k++){
-                float f = Mathf.curve(e.fin(), 0f, 1f - r.random(0.3f));
-                float f2 = pow5Out.apply(f);
-                float rot = e.rotation + r.range(arange);
-                float len = range2 * r.random(120f) * sizeScl * f2 + r.random(50f * sizeScl);
-                float str = r.random(34f, 60f) * range2 * sizeScl * pow2Out.apply(Mathf.slope(f2));
-                if(f < 1f){
-                    Vec2 v = Tmp.v1.trns(rot, len).add(e.x, e.y);
-                    Lines.lineAngle(v.x, v.y, rot, str);
-                }
-            }
-
-            arange *= 0.65f;
-            range2 *= 1.6f;
-        }
-    }),
-    //test
+            //test
              railgunSpark = new Effect(26f, e -> {
                  color(e.color);
                  float length = !(e.data instanceof Float) ? 70f : (Float)e.data;
