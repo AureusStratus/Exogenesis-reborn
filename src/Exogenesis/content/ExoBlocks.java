@@ -2771,16 +2771,13 @@ public class ExoBlocks{
                 );
             }};
             ammo(
-            Liquids.hydrogen, new ExoBasicBulletType(1.3f, 225){{
-                width = height = 27;
-                shrinkY = shrinkX = 0.001f;
-                sprite = "exogenesis-plasma";
+            Liquids.hydrogen, new StarBulletType(1.3f, 225){{
+                radius = 27;
                 damageType = thermal;
                 hitSound = Sounds.dullExplosion;
-                frontColor = Color.white;
-                backColor = hitColor = trailColor = ExoPal.cronusRed;
+                realColor = hitColor = trailColor = ExoPal.cronusRed;
                 trailRotation = true;
-                lifetime = 175f;
+                lifetime = 300f;
                 splashDamage = 100;
                 splashDamageRadius = 50;
                 int times = 25;
@@ -2807,56 +2804,50 @@ public class ExoBlocks{
                 trailLength = 10;
                 trailWidth = 3.5f;
             }},
-            ExoLiquids.helium, new ExoBasicBulletType(1.3f, 425){{
-                        width = height = 29;
-                        shrinkY = shrinkX = 0.001f;
-                        sprite = "exogenesis-plasma";
-                        damageType = thermal;
-                        hitSound = Sounds.dullExplosion;
-                        frontColor = Color.white;
-                        backColor = hitColor = trailColor = ExoPal.starYellow;
-                        trailRotation = true;
-                        lifetime = 125f;
-                        splashDamage = 150;
-                        splashDamageRadius = 50;
-                        int times = 25;
-                        float life = ExoFx.starCharge.lifetime;
-                        chargeEffect = new MultiEffect(
-                                new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starYellow, 48f),
-                                ExoFx.starCharge
-                        );
-                        shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                        hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
-                        intervalBullet = new ChainLightningBulletType() {{
-                            lightningColor = ExoPal.starYellow;
-                            damageType = DamageType.thermal;
-                            range = 180;
-                            targetRange = 150;
-                            hitSound = Sounds.none;
-                            damage = 80;
-                            width = 11;
-                            distanceDamageFalloff = 4;
-                            chainLightning = 1;
-                            segmentLength = 1;
-                        }};
-                        intervalBullets = 2;
-                        bulletInterval = 3;
-                        trailSinScl = 6;
-                        trailSinMag = 0.3f;
-                        trailParam = 5;
-                        trailLength = 10;
-                        trailWidth = 3.5f;
-                    }},
-            Liquids.ozone, new ExoBasicBulletType(1.3f, 585){{
-                width = height = 29;
-                shrinkY = shrinkX = -0.002f;
-                sprite = "exogenesis-plasma";
+            ExoLiquids.helium, new StarBulletType(1.3f, 425){{
+                radius = 29;
                 damageType = thermal;
                 hitSound = Sounds.dullExplosion;
-                frontColor = Color.white;
-                backColor = hitColor = trailColor = ExoPal.starWhite;
+                realColor = hitColor = trailColor = ExoPal.starYellow;
                 trailRotation = true;
-                lifetime = 125f;
+                lifetime = 300f;
+                splashDamage = 150;
+                splashDamageRadius = 50;
+                int times = 25;
+                float life = ExoFx.starCharge.lifetime;
+                chargeEffect = new MultiEffect(
+                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starYellow, 48f),
+                        ExoFx.starCharge
+                );
+                shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
+                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
+                intervalBullet = new ChainLightningBulletType() {{
+                    lightningColor = ExoPal.starYellow;
+                    damageType = DamageType.thermal;
+                    range = 180;
+                    targetRange = 150;
+                    hitSound = Sounds.none;
+                    damage = 80;
+                    width = 11;
+                    distanceDamageFalloff = 4;
+                    chainLightning = 1;
+                    segmentLength = 1;
+                }};
+                intervalBullets = 2;
+                bulletInterval = 3;
+                trailSinScl = 6;
+                trailSinMag = 0.3f;
+                trailParam = 5;
+                trailLength = 10;
+                trailWidth = 3.5f;
+            }},
+            Liquids.ozone, new StarBulletType(1.3f, 585){{
+                radius = 29;
+                damageType = thermal;
+                hitSound = Sounds.dullExplosion;
+                realColor = hitColor = trailColor = ExoPal.starWhite;
+                trailRotation = true;
+                lifetime = 300f;
                 splashDamage = 150;
                 splashDamageRadius = 50;
                 int times = 25;
@@ -2867,12 +2858,22 @@ public class ExoBlocks{
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
                 hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
-                intervalBullet = new ShrapnelBulletType(){{
-                    length = 30;
-                    toColor = ExoPal.starWhite;
-                    damage = 66f;
-                    ammoMultiplier = 4f;
-                    width = 27f;
+                intervalBullet = new ExoBasicBulletType(1, 100){{
+                    width = height = 7f;
+                    sprite = "exogenesis-plasma";
+                    shrinkY = shrinkX = 0f;
+                    damageType = thermal;
+                    drag = -0.01f;
+                    hitEffect = despawnEffect = ExoFx.blastExplosionColor;
+                    backColor = trailColor = hitColor = ExoPal.starWhite;
+                    frontColor = lightningColor = lightColor = hitColor;
+                    trailLength = 13;
+                    homingRange = 80f;
+                    homingPower = 0.003f;
+                    homingDelay = 3;
+
+                    status = StatusEffects.melting;
+                    statusDuration = 60f;
                 }};
                 fragRandomSpread = 0f;
                 fragSpread =  60;
@@ -2890,16 +2891,18 @@ public class ExoBlocks{
                     hitColor = ExoPal.starWhite;
                     shootEffect = ExoFx.hitEmpColorSpark;
                 }};
-                intervalSpread = 0f;
-                bulletInterval = 2;
+                intervalSpread = 60f;
+                intervalRandomSpread = 0;
+                bulletInterval = 4;
+                intervalBullets = 6;
                 trailSinScl = 6;
                 trailSinMag = 0.3f;
                 trailParam = 5;
                 trailLength = 10;
                 trailWidth = 3.5f;
             }},
-            ExoLiquids.coldPlasma, new DestructionBulletType(1.3f, 660){{
-                size /= 2.2f;
+            ExoLiquids.coldPlasma, new StarBulletType(1.3f, 660){{
+                radius = 29;
                 trailWidth = 9.5f;
                 trailLength = 57;
                 trailSinScl = 3;
@@ -2912,21 +2915,11 @@ public class ExoBlocks{
                         ExoFx.starCharge
                 );
                 chargeEffect.lifetime = life;
-                spreadEffect = slopeEffect = Fx.none;
-                backColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesis;
-                frontColor = Color.white;
+                realColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesis;
                 scaleLife = false;
-                randomLightningChance = 1f;
-                randomGenerateRange = 150;
-                linkRange = 50f;
-                randomLightningNum = 1;
-                maxHit = 6;
-                range = 150f;
-                drawSize = 20f;
                 hitSound = Sounds.plasmaboom;
                 splashDamageRadius = 100f;
                 splashDamage = 700;
-                lightningDamage = 151f;
                 intervalBullets = 1;
                 bulletInterval = 3;
                 damageType = DamageType.thermal;
@@ -2946,7 +2939,6 @@ public class ExoBlocks{
                 lifetime = 300;
                 despawnEffect = hitEffect = ExoFx.empyreanExplosion;
                 shootEffect = ExoFx.square45_6_45;
-                hitSpacing = 3;
                 fragLifeMin = 1f;
                 fragBullets = 1;
                 fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
