@@ -37,7 +37,6 @@ public class StarBulletType extends ExoBulletType {
         despawnEffect = Fx.none;
         pierce = true;
         pierceCap = 3;
-        drag = -0.008f;
         collidesAir = true;
         lightRadius = 25f;
         lightColor = hitColor;

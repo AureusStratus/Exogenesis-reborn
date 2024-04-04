@@ -2776,8 +2776,10 @@ public class ExoBlocks{
                 damageType = thermal;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.cronusRed;
+                rotationSpeed = 100;
                 trailRotation = true;
                 lifetime = 300f;
+                swirlEffects = 2;
                 splashDamage = 100;
                 splashDamageRadius = 50;
                 int times = 25;
@@ -2857,13 +2859,13 @@ public class ExoBlocks{
                         ExoFx.starCharge
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, Fx.colorSpark);
+                hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.blastgenerate, Fx.colorSpark);
                 intervalBullet = new ExoBasicBulletType(1, 100){{
                     width = height = 7f;
                     sprite = "exogenesis-plasma";
                     shrinkY = shrinkX = 0f;
                     damageType = thermal;
-                    drag = -0.01f;
+                    drag = -0.05f;
                     hitEffect = despawnEffect = ExoFx.blastExplosionColor;
                     backColor = trailColor = hitColor = ExoPal.starWhite;
                     frontColor = lightningColor = lightColor = hitColor;
@@ -2893,7 +2895,7 @@ public class ExoBlocks{
                 }};
                 intervalSpread = 60f;
                 intervalRandomSpread = 0;
-                bulletInterval = 4;
+                bulletInterval = 8;
                 intervalBullets = 6;
                 trailSinScl = 6;
                 trailSinMag = 0.3f;

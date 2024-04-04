@@ -9,6 +9,7 @@ import arc.math.geom.*;
 import arc.util.*;
 import blackhole.entities.effect.SwirlEffect;
 import mindustry.entities.*;
+import mindustry.entities.effect.MultiEffect;
 import mindustry.graphics.*;
 
 import static arc.graphics.g2d.Draw.rect;
@@ -554,6 +555,14 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
                 });
             }),
+            blastgenerate = new MultiEffect(new Effect(40f, 600, e -> {
+                color(e.color);
+                stroke(e.fout() * 3.7f);
+                circle(e.x, e.y, e.fin(Interp.pow3Out) * 240 + 15);
+                rand.setSeed(e.id);
+                randLenVectors(e.id, 12, 8 + 60 * e.fin(Interp.pow5Out), (x, y) -> Fill.circle(e.x + x, e.y + y, e.fout(Interp.circleIn) * (6f + rand.random(6f))));
+                Drawf.light(e.x, e.y, e.fout() * 320f, e.color, 0.7f);
+            }), circleOut),
     //test
             supernovaChargeStar = new Effect(30f, e -> {
                 if(e.data instanceof Float data){
