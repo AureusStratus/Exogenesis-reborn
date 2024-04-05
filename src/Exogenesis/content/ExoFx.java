@@ -615,13 +615,22 @@ public class ExoFx{
                 });
             }),
             starShockWave = new Effect(95f, e -> {
-                float shock = 60f * (1f + e.fin() * 2f) + (e.fin() * 50f);
+                float shock = 80f * (1f + e.fin(Interp.pow5Out) * 2f) + (e.fin() * 50f);
                 color(e.color);
-                Lines.stroke(6f * e.fout());
+                Lines.stroke(6f * e.fout(Interp.pow5Out));
                 Lines.circle(e.x, e.y, shock);
                 float ang = rand.random(360f);
                 Vec2 v = Tmp.v1.trns(ang, shock).add(e.x, e.y);
-                Drawf.tri(v.x, v.y, 8f * e.fout(), (70f + 25f * e.fin()), ang);
+                Drawf.tri(v.x, v.y, 8f * e.fout(Interp.pow5Out), (70f * e.fin()), ang + 180f);
+            }),
+            supernovaBlast = new Effect(30, e -> {
+                color(e.color);
+                stroke(e.fout() * 1.6f);
+
+                randLenVectors(e.id, 18, e.finpow() * 27f, e.rotation, 60f, (x, y) -> {
+                    float ang = Mathf.angle(x, y);
+                    lineAngle(e.x + x, e.y + y, ang, e.fout() * 18 + 1f);
+                });
             }),
             //test
              railgunSpark = new Effect(26f, e -> {
@@ -639,15 +648,6 @@ public class ExoFx{
                  randLenVectors(e.id, 18, e.finpow() * 27f, e.rotation, 360f, (x, y) -> {
                      float ang = Mathf.angle(x, y);
                      lineAngle(e.x + x, e.y + y, ang, e.fout() * 6 + 1f);
-                 });
-             }),
-             supernovaBlast = new Effect(30, e -> {
-                 color(e.color);
-                 stroke(e.fout() * 1.6f);
-
-                 randLenVectors(e.id, 18, e.finpow() * 27f, e.rotation, 60f, (x, y) -> {
-                     float ang = Mathf.angle(x, y);
-                     lineAngle(e.x + x, e.y + y, ang, e.fout() * 18 + 1f);
                  });
              }),
              blastExplosionColor = new Effect(22, e -> {

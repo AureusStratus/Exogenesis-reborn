@@ -2770,7 +2770,7 @@ public class ExoBlocks{
                 radius = 20;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.cronusRed;
-                rotationSpeed = 400;
+                rotationSpeed = 80;
 
                 trailRotation = true;
                 lifetime = 300f;
@@ -2864,14 +2864,15 @@ public class ExoBlocks{
                     frontColor = lightningColor = lightColor = hitColor;
                     trailLength = 13;
                     homingRange = 200f;
-                    homingPower = 0.003f;
+                    homingPower = 0.006f;
                     homingDelay = 2;
 
                     status = StatusEffects.melting;
                     statusDuration = 60f;
                 }};
-                fragRandomSpread = 360f;
-                fragBullets = 1;
+                fragRandomSpread = 0f;
+                fragSpread =  60;
+                fragBullets = 6;
                 fragBullet = new FancyLaserBulletType(){{
                     damage = 425f;
                     sideAngle = 27f;
@@ -2886,10 +2887,9 @@ public class ExoBlocks{
                     hitColor = ExoPal.starWhite;
                     shootEffect = ExoFx.hitEmpColorSpark;
                 }};
-                intervalSpread = 60f;
-                intervalRandomSpread = 0;
+                intervalRandomSpread = 360;
                 bulletInterval = 30;
-                intervalBullets = 6;
+                intervalBullets = 1;
                 trailSinScl = 6;
                 trailSinMag = 0.3f;
                 trailParam = 5;
