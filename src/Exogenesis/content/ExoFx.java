@@ -614,31 +614,14 @@ public class ExoFx{
                     Fill.circle(e.x + x, e.y + y, 0.2f + e.fout() * 1.5f);
                 });
             }),
-            starShockWave = new Effect(45f, e -> {
-                float shock = 80f * (1f + e.fin() * 2f) + (e.fin() * 50f);
+            starShockWave = new Effect(95f, e -> {
+                float shock = 60f * (1f + e.fin() * 2f) + (e.fin() * 50f);
                 color(e.color);
                 Lines.stroke(6f * e.fout());
                 Lines.circle(e.x, e.y, shock);
                 float ang = rand.random(360f);
                 Vec2 v = Tmp.v1.trns(ang, shock).add(e.x, e.y);
-                Drawf.tri(v.x, v.y, 8f * e.fout(), (70f + 25f * e.fin()), ang + 180f);
-            }),
-            supernovaBlast = new Effect(25f, e -> {
-                int count = 20;
-                float fin2 = Mathf.clamp(e.time / 18f);
-                color(e.color);
-                for(int i = 0; i < count; i++){
-                    float f = Mathf.curve(fin2, 0f, 1f - rand.random(0.2f));
-                    float ang = rand.range(40f) + e.rotation;
-                    float off = rand.random(70f) + rand.random(15f) * f;
-                    float len = rand.random(50f, 140f);
-
-                    if(f < 1){
-                        Vec2 v = Tmp.v1.trns(ang, off).add(e.x, e.y);
-                        Lines.stroke(0.5f + (1f - f) * 3f);
-                        Lines.lineAngle(v.x, v.y, ang, len * f, false);
-                    }
-                }
+                Drawf.tri(v.x, v.y, 8f * e.fout(), (70f + 25f * e.fin()), ang);
             }),
             //test
              railgunSpark = new Effect(26f, e -> {
@@ -656,6 +639,15 @@ public class ExoFx{
                  randLenVectors(e.id, 18, e.finpow() * 27f, e.rotation, 360f, (x, y) -> {
                      float ang = Mathf.angle(x, y);
                      lineAngle(e.x + x, e.y + y, ang, e.fout() * 6 + 1f);
+                 });
+             }),
+             supernovaBlast = new Effect(30, e -> {
+                 color(e.color);
+                 stroke(e.fout() * 1.6f);
+
+                 randLenVectors(e.id, 18, e.finpow() * 27f, e.rotation, 60f, (x, y) -> {
+                     float ang = Mathf.angle(x, y);
+                     lineAngle(e.x + x, e.y + y, ang, e.fout() * 18 + 1f);
                  });
              }),
              blastExplosionColor = new Effect(22, e -> {

@@ -2770,7 +2770,7 @@ public class ExoBlocks{
                 radius = 20;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.cronusRed;
-                rotationSpeed = 100;
+                rotationSpeed = 400;
 
                 trailRotation = true;
                 lifetime = 300f;
@@ -2852,7 +2852,7 @@ public class ExoBlocks{
                         new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starWhite, 48f), ExoFx.starChargeWhite );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
                 hitEffect = despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
-                intervalBullet = new ExoBasicBulletType(1.5f, 100){{
+                intervalBullet = new ExoBasicBulletType(2f, 100){{
                     width = height = 7f;
                     sprite = "exogenesis-plasma";
                     shrinkY = shrinkX = 0f;
@@ -2863,16 +2863,15 @@ public class ExoBlocks{
                     backColor = trailColor = hitColor = ExoPal.starWhite;
                     frontColor = lightningColor = lightColor = hitColor;
                     trailLength = 13;
-                    homingRange = 80f;
+                    homingRange = 200f;
                     homingPower = 0.003f;
                     homingDelay = 2;
 
                     status = StatusEffects.melting;
                     statusDuration = 60f;
                 }};
-                fragRandomSpread = 0f;
-                fragSpread =  60;
-                fragBullets = 6;
+                fragRandomSpread = 360f;
+                fragBullets = 1;
                 fragBullet = new FancyLaserBulletType(){{
                     damage = 425f;
                     sideAngle = 27f;
