@@ -29,3 +29,4 @@ Exogenesis contains five different Factions each with there own lore, weapons, d
 ![Gaia-protocol](https://github.com/AureusStratus/ExoGenesis/assets/68311340/4e2d8c45-0048-45e3-a156-f0554ba80248)
 
 `The Architects`: .
+![TheArchitects](https://github.com/AureusStratus/Exogenesis-reborn/assets/68311340/4eabca12-0eb7-482b-a467-c86e63493af6)
