@@ -16,13 +16,14 @@ a lot of stuff.
 Exogenesis contains five different Factions each with there own lore, weapons, defense, and units.
 
 `Genesis Align`: The Genesis Align is a militaristic and powerful AI with the only purpose to expand and conquer. Specializes with ground units and is heavily efficient with resources.
-![Genesis-Align](https://github.com/AureusStratus/ExoGenesis/assets/68311340/6a229526-6536-4611-a831-9211d473aad8)
+![GenesisAlign](https://github.com/AureusStratus/Exogenesis-reborn/assets/68311340/166ff10b-c1dc-4e46-8fd4-91ecc1be03ca)
+
 
 `The Resiliency`: The Resiliency was originally a system with the task of heavy defenses and heavy armory, but has now a lone fragment running rogue based on its purposes and is expanding and fighting the other factions viewing all as a threat. specializes in heavy ground forces and heavy-duty weaponry, yet are slower in construction and speed
 ![The-Resiliency](https://github.com/AureusStratus/ExoGenesis/assets/68311340/457e16b1-123b-43e8-a24e-295f64c1a5f6)
 
 `The Empyrean`: .
-![The empyrean](https://github.com/AureusStratus/Exogenesis-reborn/assets/68311340/be642388-f542-445a-9cbc-e877f2adf9da)
+![TheEmpyrean](https://github.com/AureusStratus/Exogenesis-reborn/assets/68311340/ffa12a5e-8538-4cab-bf2d-a41a37863e4b)
 
 
 `Gaia protocol`: .
