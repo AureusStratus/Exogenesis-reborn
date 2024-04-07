@@ -55,7 +55,7 @@ public class ExoBlocks{
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
     lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
     //Axin
-    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axinStoneWall, axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile,
+    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axinRock, axinStoneWall, axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile,
     //ore
     oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
     //env tile end ^^^
@@ -164,11 +164,14 @@ public class ExoBlocks{
         }};
 
         //Axin Tiles
-        axinStone = new Floor("axin-stone-wall"){{
-            variants = 2;
+        axinStone = new Floor("axin-stone"){{
+            variants = 6;
         }};
-        axinStoneWall = new StaticWall("align-plating"){{
-            variants = 14;
+        axinRock = new Floor("axin-rock"){{
+            variants = 5;
+        }};
+        axinStoneWall = new StaticWall("axin-stone-wall"){{
+            variants = 2;
         }};
         axinStoneMinerals = new Floor("axin-stoneMinerals"){{
             variants = 6;
