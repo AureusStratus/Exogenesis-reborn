@@ -68,7 +68,6 @@ public class ExoBlocks{
     astral, starFleet, cosmos, armada, astrology, stellar, coldPlasmaThrower, sagittarius, nebula, halley, magnetar, neutronMortar,
             supernova, thuban, polaris, theia, constellation, tesseract, hypernovaBurst,
             genesisFactory, empyreanFactory;
-
     public static void load(){
         oreOsmium = new OreBlock(ExoItems.osmium){{
             variants = 5;
