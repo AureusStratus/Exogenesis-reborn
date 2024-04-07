@@ -55,7 +55,7 @@ public class ExoBlocks{
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
     lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
     //Axin
-    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axinStoneMinerals,
+    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axinStoneWall, axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile,
     //ore
     oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
     //env tile end ^^^
@@ -165,8 +165,11 @@ public class ExoBlocks{
         }};
 
         //Axin Tiles
-        axinStone = new Floor("axin-stone"){{
-            variants = 6;
+        axinStone = new Floor("axin-stone-wall"){{
+            variants = 2;
+        }};
+        axinStoneWall = new StaticWall("align-plating"){{
+            variants = 14;
         }};
         axinStoneMinerals = new Floor("axin-stoneMinerals"){{
             variants = 6;
@@ -177,11 +180,19 @@ public class ExoBlocks{
         axinPurpleStoneMineral = new Floor("axinpurpleMineral-stone"){{
             variants = 6;
         }};
+        axinCrystalTile = new Floor("axin-crystaltile"){{
+            variants = 4;
+        }};
+        axinCrystalBlue = new Floor("axin-crystalblue"){{
+            variants = 4;
+        }};
+        alignPlating = new StaticWall("align-plating"){{
+            variants = 14;
+        }};
         axinIce = new Floor("axin-ice"){{
             dragMultiplier = 0.4f;
             speedMultiplier = 0.9f;
             variants = 3;
-            liquidDrop = Liquids.hydrogen;
         }};
         poolAxinPlasma = new Floor("pooled-axinPlasma"){{
             drownTime = 150f;
@@ -3046,6 +3057,9 @@ public class ExoBlocks{
             Items.tungsten, new ExoRailBulletType(){{
                 length = 1000;
                 damage = 1000f;
+                pierceArmor = true;
+                pierce = true;
+                pierceCap = 10;
                 ammoPerShot = 50;
                 damageType = DamageType.pierce;
                 hitColor = ExoPal.genesis;
