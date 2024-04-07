@@ -33,7 +33,7 @@ public class StarBulletType extends BulletType {
         hitEffect = Fx.none;
         despawnEffect = Fx.none;
         pierce = true;
-        pierceCap = 3;
+        pierceBuilding = true;
         collidesAir = true;
         lightRadius = 25f;
         lightColor = hitColor;
