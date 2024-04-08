@@ -2795,6 +2795,7 @@ public class ExoBlocks{
                 swirlEffects = 2;
                 splashDamage = 100;
                 splashDamageRadius = 50;
+                despawnHit = true;
                 int times = 25;
                 float life = ExoFx.starChargeRed.lifetime;
                 chargeEffect = new MultiEffect(
@@ -2809,127 +2810,131 @@ public class ExoBlocks{
                         fragBullets = 1;
                         fragBullet = new BulletType(){{
                             instantDisappear = true;
-                            despawnUnit = new MissileUnitType("RedStarDeath"){{
-                                speed = 0f;
-                                maxRange = 1f;
-                                lifetime = 125f;
-                                lowAltitude = true;
-                                drawCell = false;
-                                isEnemy = false;
-                                targetable = false;
-                                hittable = false;
-                                engineSize = 0f;
-                                rotateSpeed = 0f;
-                                missileAccelTime = 20f;
-                                loopSound = Sounds.spellLoop;
-                                deathSound = Sounds.dullExplosion;
-                                abilities.add(new EnergyFieldAbility(1f, 1f, 100f){{
-                                    statusDuration = 60f * 6f;
-                                    maxTargets = 100;
-                                    radius = sectors = 0;
-                                    hitSound = Sounds.none;
-                                    hitEffect = ExoFx.ullarTipHit;
-                                    status = StatusEffects.melting;
-                                    damageEffect = Fx.none;
-                                    healEffect = Fx.none;
-                                    healPercent = 0f;
-                                }});
-                                parts.addAll(
-                                        new ShapePart() {{
-                                            circle = true;
-                                            progress = PartProgress.life;
-                                            y = 0f;
-                                            layer = 110;
-                                            radiusTo = 1;
-                                            radius = 13f;
-                                            color = Color.white;
-                                        }},
-                                        new ShapePart() {{
-                                            circle = true;
-                                            progress = PartProgress.life;
-                                            y = 0f;
-                                            layer = 109;
-                                            radiusTo = 3;
-                                            radius = 20f;
-                                            color = ExoPal.cronusRed;
-                                        }},
-                                        new HoverPart(){{
-                                            color = ExoPal.cronusRed;
-                                            circles = 3;
-                                            sides = 360;
-                                            stroke = 3;
-                                            phase = 50;
-                                            radius = 38f;
+                            fragLifeMin = 1f;
+                            fragBullets = 1;
+                            fragBullet = new BulletType(){{
+                                    despawnUnit = new MissileUnitType("RedStarDeath") {{
+                                        speed = 0f;
+                                        maxRange = 1f;
+                                        lifetime = 125f;
+                                        lowAltitude = true;
+                                        drawCell = false;
+                                        isEnemy = false;
+                                        targetable = false;
+                                        hittable = false;
+                                        engineSize = 0f;
+                                        rotateSpeed = 0f;
+                                        missileAccelTime = 20f;
+                                        loopSound = Sounds.spellLoop;
+                                        deathSound = Sounds.dullExplosion;
+                                        abilities.add(new EnergyFieldAbility(1f, 1f, 100f) {{
+                                            statusDuration = 60f * 6f;
+                                            maxTargets = 100;
+                                            radius = sectors = 0;
+                                            hitSound = Sounds.none;
+                                            hitEffect = ExoFx.ullarTipHit;
+                                            status = StatusEffects.melting;
+                                            damageEffect = Fx.none;
+                                            healEffect = Fx.none;
+                                            healPercent = 0f;
+                                        }});
+                                        parts.addAll(
+                                                new ShapePart() {{
+                                                    circle = true;
+                                                    progress = PartProgress.life;
+                                                    y = 0f;
+                                                    layer = 110;
+                                                    radiusTo = 1;
+                                                    radius = 13f;
+                                                    color = Color.white;
+                                                }},
+                                                new ShapePart() {{
+                                                    circle = true;
+                                                    progress = PartProgress.life;
+                                                    y = 0f;
+                                                    layer = 109;
+                                                    radiusTo = 3;
+                                                    radius = 20f;
+                                                    color = ExoPal.cronusRed;
+                                                }},
+                                                new HoverPart() {{
+                                                    color = ExoPal.cronusRed;
+                                                    circles = 3;
+                                                    sides = 360;
+                                                    stroke = 3;
+                                                    phase = 50;
+                                                    radius = 38f;
+                                                    mirror = false;
+                                                    layer = Layer.effect;
+                                                    y = 0;
+                                                }},
+                                                new EffectSpawnPart() {{
+                                                    useProgress = false;
+                                                    y = 0f;
+                                                    effect = new ParticleEffect() {{
+                                                        lightOpacity = 0.5f;
+                                                        particles = 5;
+                                                        length = 80;
+                                                        lifetime = 30;
+                                                        interp = Interp.sineOut;
+                                                        sizeFrom = 6;
+                                                        sizeTo = 0;
+                                                        lightColor = colorFrom = ExoPal.cronusRed;
+                                                        colorTo = ExoPal.cronusRedDark;
+                                                    }};
+                                                    effectColor = ExoPal.cronusRed;
+                                                    randomEffectRot = 360;
+                                                    effectChance = 0.6f;
+                                                }},
+                                                new EffectSpawnPart() {{
+                                                    useProgress = false;
+                                                    y = 0f;
+                                                    effect = new ParticleEffect() {{
+                                                        lightOpacity = 0.5f;
+                                                        particles = 5;
+                                                        length = 60;
+                                                        lifetime = 40;
+                                                        interp = Interp.sineOut;
+                                                        sizeFrom = 3;
+                                                        sizeTo = 0;
+                                                        lightColor = colorFrom = ExoPal.cronusRed;
+                                                        colorTo = ExoPal.cronusRedDark;
+                                                    }};
+                                                    effectColor = ExoPal.cronusRed;
+                                                    randomEffectRot = 360;
+                                                    effectChance = 0.9f;
+                                                }},
+                                                new EffectSpawnPart() {{
+                                                    useProgress = false;
+                                                    y = 0f;
+                                                    effect = ExoFx.supernovaStarDecay;
+                                                    effectColor = ExoPal.cronusRed;
+                                                    randomEffectRot = 0;
+                                                    effectChance = 1f;
+                                                }}
+                                        );
+                                        health = 1;
+                                        weapons.add(new Weapon() {{
+                                            shootCone = 360f;
                                             mirror = false;
-                                            layer = Layer.effect;
-                                            y = 0;
-                                        }},
-                                        new EffectSpawnPart() {{
-                                            useProgress = false;
-                                            y = 0f;
-                                            effect = new ParticleEffect(){{
-                                                lightOpacity = 0.5f;
-                                                particles = 5;
-                                                length = 80;
-                                                lifetime = 30;
-                                                interp = Interp.sineOut;
-                                                sizeFrom = 6;
-                                                sizeTo = 0;
-                                                lightColor = colorFrom = ExoPal.cronusRed;
-                                                colorTo = ExoPal.cronusRedDark;
+                                            targetGround = targetAir = false;
+                                            reload = 1f;
+                                            y = shootY = 0;
+                                            deathExplosionEffect = shootEffect;
+                                            shootOnDeath = true;
+                                            shake = 10f;
+                                            bullet = new ExoExplosionBulletType(450f, 60f) {{
+                                                hitColor = ExoPal.cronusRed;
+                                                splashDamagePierce = true;
+                                                damageType = thermal;
+                                                shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
+                                                collidesGround = true;
+                                                collidesTiles = false;
+                                                buildingDamageMultiplier = 0.3f;
                                             }};
-                                            effectColor = ExoPal.cronusRed;
-                                            randomEffectRot = 360;
-                                            effectChance = 0.6f;
-                                        }},
-                                        new EffectSpawnPart() {{
-                                            useProgress = false;
-                                            y = 0f;
-                                            effect = new ParticleEffect(){{
-                                                lightOpacity = 0.5f;
-                                                particles = 5;
-                                                length = 60;
-                                                lifetime = 40;
-                                                interp = Interp.sineOut;
-                                                sizeFrom = 3;
-                                                sizeTo = 0;
-                                                lightColor = colorFrom = ExoPal.cronusRed;
-                                                colorTo = ExoPal.cronusRedDark;
-                                            }};
-                                            effectColor = ExoPal.cronusRed;
-                                            randomEffectRot = 360;
-                                            effectChance = 0.9f;
-                                        }},
-                                        new EffectSpawnPart() {{
-                                            useProgress = false;
-                                            y = 0f;
-                                            effect = ExoFx.supernovaStarDecay;
-                                            effectColor = ExoPal.cronusRed;
-                                            randomEffectRot = 0;
-                                            effectChance = 1f;
-                                        }}
-                                );
-                                health = 1;
-                                weapons.add(new Weapon(){{
-                                    shootCone = 360f;
-                                    mirror = false;
-                                    targetGround = targetAir = false;
-                                    reload = 1f;
-                                    y = shootY = 0;
-                                    deathExplosionEffect = shootEffect;
-                                    shootOnDeath = true;
-                                    shake = 10f;
-                                    bullet = new ExoExplosionBulletType(450f, 60f){{
-                                        hitColor = ExoPal.cronusRed;
-                                        splashDamagePierce = true;
-                                        damageType = thermal;
-                                        shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
-                                        collidesGround = true;
-                                        collidesTiles = false;
-                                        buildingDamageMultiplier = 0.3f;
+                                        }});
                                     }};
-                                }});
-                            }};
+                                }};
                         }};
                 intervalBullet = new ExoFireBulletType(0.3f,75) {{
                     damageType = thermal;
