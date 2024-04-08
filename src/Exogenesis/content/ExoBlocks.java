@@ -2690,7 +2690,6 @@ public class ExoBlocks{
             shootY = -4.75f;
             rotateSpeed = 1.5f;
             unitSort = UnitSorts.strongest;
-            coolant = consumeCoolant(0.2f);
             consumePower(90f);
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
@@ -2808,11 +2807,13 @@ public class ExoBlocks{
                         fragOnHit = false;
                         fragLifeMin = 1f;
                         fragBullets = 1;
-                        fragBullet = new BulletType(){{
+                        fragBullet = new BasicBulletType(){{
                             instantDisappear = true;
+                            lifetime = 1;
                             fragLifeMin = 1f;
                             fragBullets = 1;
                             fragBullet = new BulletType(){{
+                                despawnUnitCount = 1;
                                     despawnUnit = new MissileUnitType("RedStarDeath") {{
                                         speed = 0f;
                                         maxRange = 1f;
@@ -2830,7 +2831,7 @@ public class ExoBlocks{
                                         abilities.add(new EnergyFieldAbility(1f, 1f, 100f) {{
                                             statusDuration = 60f * 6f;
                                             maxTargets = 100;
-                                            radius = sectors = 0;
+                                            effectRadius = sectors = 0;
                                             hitSound = Sounds.none;
                                             hitEffect = ExoFx.ullarTipHit;
                                             status = StatusEffects.melting;
@@ -3098,7 +3099,7 @@ public class ExoBlocks{
                 hitEffect = ExoFx.ullarTipHit;
                 despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
                 shootEffect = ExoFx.square45_6_45;
-                fragOnHit = false;
+                fragOnHit = true;
                 fragLifeMin = 1f;
                 fragBullets = 1;
                 fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
