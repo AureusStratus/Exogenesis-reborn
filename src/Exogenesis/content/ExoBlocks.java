@@ -38,6 +38,7 @@ import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.distribution.*;
+import mindustry.world.consumers.ConsumeLiquid;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
@@ -2625,6 +2626,7 @@ public class ExoBlocks{
             scaledHealth = 300;
             cooldownTime = 320;
             shoot.firstShotDelay = 100;
+            liquidCapacity = 40f;
             shootEffect = ExoFx.supernovaBlast;
             chargeSound = Sounds.lasercharge2;
             shootSound = ExoSounds.coolplasmaboom;
@@ -2635,6 +2637,7 @@ public class ExoBlocks{
             shootY = -4.75f;
             rotateSpeed = 1.5f;
             unitSort = UnitSorts.strongest;
+            coolant = consume(new ConsumeLiquid(Liquids.cryofluid, 15f / 60f));
             consumePower(90f);
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
@@ -2735,7 +2738,7 @@ public class ExoBlocks{
                 homingPower = 0.01f;
 
                 trailRotation = true;
-                lifetime = 300f;
+                lifetime = 350f;
                 swirlEffects = 2;
                 splashDamage = 100;
                 splashDamageRadius = 50;
@@ -2888,7 +2891,7 @@ public class ExoBlocks{
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.starYellow;
                 trailRotation = true;
-                lifetime = 300f;
+                lifetime = 350f;
                 homingRange = 150;
                 homingPower = 0.01f;
                 splashDamage = 150;
@@ -3047,7 +3050,7 @@ public class ExoBlocks{
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.starWhite;
                 trailRotation = true;
-                lifetime = 300f;
+                lifetime = 350f;
                 homingRange = 150;
                 homingPower = 0.01f;
                 splashDamage = 150;
@@ -3226,9 +3229,9 @@ public class ExoBlocks{
                             stroke = 2.5f;
                         }}
                 );
-                lifetime = 300f;
+                lifetime = 350f;
                 homingRange = 150;
-                homingPower = 0.01f;
+                homingPower = 0.02f;
                 splashDamage = 150;
                 splashDamageRadius = 50;
                 swirlEffects = 2;
@@ -3245,7 +3248,7 @@ public class ExoBlocks{
                 fragLifeMin = 1f;
                 fragBullets = 1;
                 intervalBullets = 1;
-                bulletInterval = 6;
+                bulletInterval = 10;
                 fragBullet = new BasicBulletType(){{
                     width = height = 0.001f;
                     instantDisappear = true;
@@ -3426,7 +3429,7 @@ public class ExoBlocks{
                     }};
                 }};
                 intervalBullet = new ExoRailBulletType(){{
-                    length = 200;
+                    length = 400;
                     damage = 250f;
                     pierceArmor = true;
                     pierce = true;
@@ -3507,7 +3510,7 @@ public class ExoBlocks{
                 }};
                 pierce = false;
                 collides = true;
-                lifetime = 300;
+                lifetime = 350;
                 despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
                 fragOnHit = false;
                 fragLifeMin = 1f;
@@ -3657,17 +3660,18 @@ public class ExoBlocks{
                 bulletInterval = 3;
                 intervalBullet = new ContinuousFlameBulletType(){{
                     damage = 80f;
-                    length = 120;
+                    length = 80;
                     knockback = 1f;
+                    width = 10;
                     pierceArmor = true;
                     pierceCap = 4;
                     buildingDamageMultiplier = 0.3f;
                     flareColor = ExoPal.starBlue;
-                    colors = new Color[]{ExoPal.genesisDark.a(0.55f), ExoPal.starBlue2.a(0.7f), ExoPal.starBlue.a(0.8f), ExoPal.genesisLight, Color.white};
+                    colors = new Color[]{ExoPal.starBlue2.a(0.7f), ExoPal.starBlue.a(0.8f), ExoPal.genesisLight, Color.white};
                 }};
                 pierce = false;
                 collides = true;
-                lifetime = 300;
+                lifetime = 350;
                 despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
                 fragOnHit = false;
                 fragLifeMin = 1f;
