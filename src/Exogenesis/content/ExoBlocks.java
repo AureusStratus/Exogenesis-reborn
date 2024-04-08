@@ -2942,10 +2942,10 @@ public class ExoBlocks{
                                     layer = 109;
                                     radiusTo = 3;
                                     radius = 25f;
-                                    color = hitColor;
+                                    color = ExoPal.starYellow;
                                 }},
                                 new HoverPart() {{
-                                    color = hitColor;
+                                    color = ExoPal.starYellow;
                                     circles = 3;
                                     sides = 360;
                                     stroke = 3;
@@ -2967,8 +2967,8 @@ public class ExoBlocks{
                                         interp = Interp.sineOut;
                                         sizeFrom = 6;
                                         sizeTo = 0;
-                                        lightColor = colorFrom = ExoPal.cronusRed;
-                                        colorTo = ExoPal.cronusRedDark;
+                                        lightColor = colorFrom = ExoPal.starYellow;
+                                        colorTo = ExoPal.starYellow;
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -2986,8 +2986,7 @@ public class ExoBlocks{
                                         interp = Interp.sineOut;
                                         sizeFrom = 3;
                                         sizeTo = 0;
-                                        lightColor = colorFrom = hitColor;
-                                        colorTo = ExoPal.cronusRedDark;
+                                        lightColor = colorFrom = colorTo = ExoPal.starYellow;
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3065,7 +3064,7 @@ public class ExoBlocks{
                 fragLifeMin = 1f;
                 fragBullets = 1;
                 intervalBullets = 1;
-                bulletInterval = 3;
+                bulletInterval = 4;
                 fragBullet = new BasicBulletType(){{
                     width = height = 0.001f;
                     instantDisappear = true;
@@ -3102,10 +3101,10 @@ public class ExoBlocks{
                                     layer = 109;
                                     radiusTo = 5;
                                     radius = 28f;
-                                    color = hitColor;
+                                    color = ExoPal.starWhite;
                                 }},
                                 new HoverPart() {{
-                                    color = hitColor;
+                                    color = ExoPal.starWhite;
                                     circles = 3;
                                     sides = 360;
                                     stroke = 4;
@@ -3202,7 +3201,7 @@ public class ExoBlocks{
                 }};
             }},
             ExoLiquids.impurePlasma, new StarBulletType(1.3f, 585){{
-                radius = 22;
+                radius = 18;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.radGreen;
                 trailRotation = true;
@@ -3278,10 +3277,10 @@ public class ExoBlocks{
                             y = 0f;
                             layer = 109;
                             radiusTo = 5;
-                            radius = 28f;
+                            radius = 18f;
                             color = hitColor;
                         }}, new HoverPart() {{
-                            color = hitColor;
+                            color = ExoPal.radGreen;
                             circles = 3;
                             sides = 360;
                             stroke = 2;
@@ -3401,7 +3400,7 @@ public class ExoBlocks{
                     }};
                 }};
                 intervalBullet = new ExoRailBulletType(){{
-                    length = 1200;
+                    length = 200;
                     damage = 250f;
                     pierceArmor = true;
                     pierce = true;
@@ -3467,14 +3466,14 @@ public class ExoBlocks{
                 splashDamage = 170;
                 despawnHit = true;
                 intervalBullets = 1;
-                bulletInterval = 3;
+                bulletInterval = 4;
                 intervalBullet = new FancyLaserBulletType(){{
                     damage = 175f;
                     sideAngle = 40f;
                     sideWidth = 1.5f;
                     sideLength = 30f;
                     width = 35f;
-                    length = 100f;
+                    length = 80f;
                     colors = new Color[]{ExoPal.genesisDark.cpy().a(0.4f), ExoPal.genesis, Color.white};
                     hitEffect = ExoFx.coloredHitLarge;
                     hitColor = ExoPal.genesis;
@@ -3526,7 +3525,7 @@ public class ExoBlocks{
                                     color = hitColor;
                                 }},
                                 new HoverPart() {{
-                                    color = hitColor;
+                                    color = ExoPal.genesis;
                                     circles = 3;
                                     sides = 360;
                                     stroke = 4;
@@ -3607,6 +3606,7 @@ public class ExoBlocks{
             }},
             ExoLiquids.axinian, new StarBulletType(1.3f, 760){{
                 radius = 35;
+                rotationSpeed = 200;
                 trailWidth = 10.5f;
                 trailLength = 57;
                 trailSinScl = 4;
@@ -3637,12 +3637,11 @@ public class ExoBlocks{
                     pierceCap = 4;
                     buildingDamageMultiplier = 0.3f;
                     flareColor = ExoPal.starBlue;
-                    colors = new Color[]{Color.valueOf("0b0075").a(0.55f), ExoPal.starBlue2.a(0.7f), ExoPal.starBlue.a(0.8f), ExoPal.genesisLight, Color.white};
+                    colors = new Color[]{ExoPal.genesisDark.a(0.55f), ExoPal.starBlue2.a(0.7f), ExoPal.starBlue.a(0.8f), ExoPal.genesisLight, Color.white};
                 }};
                 pierce = false;
                 collides = true;
                 lifetime = 300;
-                hitEffect = ExoFx.ullarTipHit;
                 despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
                 fragOnHit = false;
                 fragLifeMin = 1f;
@@ -3682,16 +3681,16 @@ public class ExoBlocks{
                                     y = 0f;
                                     layer = 109;
                                     radiusTo = 5;
-                                    radius = 28f;
+                                    radius = 35f;
                                     color = hitColor;
                                 }},
                                 new HoverPart() {{
                                     color = hitColor;
                                     circles = 3;
                                     sides = 360;
-                                    stroke = 4;
-                                    phase = 100;
-                                    radius = 69f;
+                                    stroke = 6;
+                                    phase = 160;
+                                    radius = 89f;
                                     mirror = false;
                                     layer = Layer.effect;
                                     y = 0;
