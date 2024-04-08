@@ -2513,71 +2513,16 @@ public class ExoBlocks{
                         }}
                 );
             }};
-            shootType = new ExoContinuousLaserBulletType(){{
-                hitColor = ExoPal.empyreanIndigoDark;
-                damageType = DamageType.thermal;
-                damage = 125f;
-                length = 670f;
-                hitEffect = new MultiEffect(
-                        new ParticleEffect(){{
-                            line = true;
-                            rotWithParent = true;
-                            colorFrom = ExoPal.empyreanIndigo;
-                            colorTo = ExoPal.empyreanIndigoDark;
-                            cone = 35;
-                            particles = 3;
-                            length = 100;
-                            lifetime = 21f;
-                            lenFrom = 10;
-                            lenTo = 7;
-                            strokeFrom = 2f;
-                            strokeTo = 0.8f;
-                        }},
-                        new ParticleEffect(){{
-                            line = true;
-                            rotWithParent = true;
-                            colorFrom = ExoPal.empyreanIndigo;
-                            colorTo = ExoPal.empyreanIndigoDark;
-                            cone = 45;
-                            particles = 2;
-                            length = 85;
-                            lifetime = 21f;
-                            lenFrom = 10;
-                            lenTo = 10;
-                            strokeFrom = 2f;
-                            strokeTo = 0.8f;
-                        }});
-                intervalBullet = new ChainLightningBulletType() {{
-                    lightningColor = ExoPal.empyreanIndigo;
-                    damageType = DamageType.energy;
-                    range = 650;
-                    targetRange = 350;
-                    hitSound = Sounds.none;
-                    damage = 120;
-                    distanceDamageFalloff = 4;
-                    chainLightning = 2;
-                    segmentLength = 8;
-                }};
-                intervalRandomSpread = 50;
-                intervalBullets = 2;
-                bulletInterval = 5f;
-                drawSize = 420f;
-                backLength = 29f;
-                pointyScaling = 0.5f;
-                shootEffect = new Effect(20,e->{
-                    Draw.z(Layer.effect);
-                    Draw.color(ExoPal.empyreanIndigo,e.fout());
-                    Tmp.v1.trns(e.rotation, e.fin()*20f);
-                    Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.8f*e.fin()+0.1f, 8,16, e.rotation);
-                    Tmp.v2.trns(e.rotation, e.fin()*10f);
-                    Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.6f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
-                    Lines.stroke(6f*e.fout());
-                });
-                width = 19f;
-                shake = 2f;
-                largeHit = true;
-                colors = new Color[]{ExoPal.empyreanIndigoDark.cpy().a(.6f), ExoPal.empyreanIndigoDark, Color.white};
-                despawnEffect = Fx.none;
+            shootType = new BlackHoleBulletType(0f, 1400f / 30f){{
+                lifetime = 330f;
+                growTime = 15;
+                damageRadius = 30;
+                swirlEffects = 5;
+                swirlInterval = 3;
+                color = hitColor = ExoPal.genesis;
+                lightRadius = 8f;
+                lightOpacity = 0.7f;
+                despawnEffect = hitEffect = ExoFx.singularityDespawn;
             }};
         }};
         neutronMortar = new PowerTurret("neutron-mortar"){{
@@ -2802,141 +2747,124 @@ public class ExoBlocks{
                         ExoFx.starChargeRed
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                hitEffect = ExoFx.hitEmpColorSpark;
-                despawnEffect = new MultiEffect(ExoFx.hitEmpColorSpark);
-                        fragOnHit = false;
-                        fragLifeMin = 1f;
-                        fragBullets = 1;
-                        fragBullet = new BasicBulletType(){{
-                            width = height = 0.001f;
-                            instantDisappear = true;
-                            lifetime = 1;
-                            fragLifeMin = 1f;
-                            fragBullets = 1;
-                            fragBullet = new BulletType(){{
-                                despawnUnitCount = 1;
-                                    despawnUnit = new MissileUnitType("RedStarDeath") {{
-                                        speed = 0f;
-                                        maxRange = 1f;
-                                        lifetime = 125f;
-                                        lowAltitude = true;
-                                        drawCell = false;
-                                        isEnemy = false;
-                                        targetable = false;
-                                        hittable = false;
-                                        engineSize = 0f;
-                                        rotateSpeed = 0f;
-                                        missileAccelTime = 20f;
-                                        loopSound = Sounds.spellLoop;
-                                        deathSound = Sounds.dullExplosion;
-                                        abilities.add(new EnergyFieldAbility(1f, 1f, 100f) {{
-                                            statusDuration = 60f * 6f;
-                                            maxTargets = 100;
-                                            effectRadius = sectors = 0;
-                                            hitSound = Sounds.none;
-                                            hitEffect = ExoFx.ullarTipHit;
-                                            status = StatusEffects.melting;
-                                            damageEffect = Fx.none;
-                                            healEffect = Fx.none;
-                                            healPercent = 0f;
-                                        }});
-                                        parts.addAll(
-                                                new ShapePart() {{
-                                                    circle = true;
-                                                    progress = PartProgress.life;
-                                                    y = 0f;
-                                                    layer = 110;
-                                                    radiusTo = 1;
-                                                    radius = 13f;
-                                                    color = Color.white;
-                                                }},
-                                                new ShapePart() {{
-                                                    circle = true;
-                                                    progress = PartProgress.life;
-                                                    y = 0f;
-                                                    layer = 109;
-                                                    radiusTo = 3;
-                                                    radius = 20f;
-                                                    color = ExoPal.cronusRed;
-                                                }},
-                                                new HoverPart() {{
-                                                    color = ExoPal.cronusRed;
-                                                    circles = 3;
-                                                    sides = 360;
-                                                    stroke = 3;
-                                                    phase = 50;
-                                                    radius = 38f;
-                                                    mirror = false;
-                                                    layer = Layer.effect;
-                                                    y = 0;
-                                                }},
-                                                new EffectSpawnPart() {{
-                                                    useProgress = false;
-                                                    y = 0f;
-                                                    effect = new ParticleEffect() {{
-                                                        lightOpacity = 0.5f;
-                                                        particles = 5;
-                                                        length = 80;
-                                                        lifetime = 30;
-                                                        interp = Interp.sineOut;
-                                                        sizeFrom = 6;
-                                                        sizeTo = 0;
-                                                        lightColor = colorFrom = ExoPal.cronusRed;
-                                                        colorTo = ExoPal.cronusRedDark;
-                                                    }};
-                                                    effectColor = ExoPal.cronusRed;
-                                                    randomEffectRot = 360;
-                                                    effectChance = 0.6f;
-                                                }},
-                                                new EffectSpawnPart() {{
-                                                    useProgress = false;
-                                                    y = 0f;
-                                                    effect = new ParticleEffect() {{
-                                                        lightOpacity = 0.5f;
-                                                        particles = 5;
-                                                        length = 60;
-                                                        lifetime = 40;
-                                                        interp = Interp.sineOut;
-                                                        sizeFrom = 3;
-                                                        sizeTo = 0;
-                                                        lightColor = colorFrom = ExoPal.cronusRed;
-                                                        colorTo = ExoPal.cronusRedDark;
-                                                    }};
-                                                    effectColor = ExoPal.cronusRed;
-                                                    randomEffectRot = 360;
-                                                    effectChance = 0.9f;
-                                                }},
-                                                new EffectSpawnPart() {{
-                                                    useProgress = false;
-                                                    y = 0f;
-                                                    effect = ExoFx.supernovaStarDecay;
-                                                    effectColor = ExoPal.cronusRed;
-                                                    randomEffectRot = 0;
-                                                    effectChance = 1f;
-                                                }}
-                                        );
-                                        health = 1;
-                                        weapons.add(new Weapon() {{
-                                            shootCone = 360f;
-                                            mirror = false;
-                                            targetGround = targetAir = false;
-                                            reload = 1f;
-                                            y = shootY = 0;
-                                            deathExplosionEffect = shootEffect;
-                                            shootOnDeath = true;
-                                            shake = 10f;
-                                            bullet = new ExoExplosionBulletType(450f, 60f) {{
-                                                hitColor = ExoPal.cronusRed;
-                                                splashDamagePierce = true;
-                                                damageType = thermal;
-                                                shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
-                                                collidesGround = true;
-                                                collidesTiles = false;
-                                                buildingDamageMultiplier = 0.3f;
-                                            }};
-                                        }});
+                hitEffect = despawnEffect = ExoFx.hitEmpColorSpark;
+                fragOnHit = false;
+                fragLifeMin = 1f;
+                fragBullets = 1;
+                fragBullet = new BasicBulletType(){{
+                    width = height = 0.001f;
+                    instantDisappear = true;
+                    fragLifeMin = 1f;
+                    fragBullets = 1;
+                    despawnUnit = new MissileUnitType("RedStarDeath") {{
+                        speed = 0f;
+                        maxRange = 1f;
+                        lifetime = 125f;
+                        lowAltitude = true;
+                        drawCell = false;
+                        isEnemy = false;
+                        targetable = false;
+                        hittable = false;
+                        engineSize = 0f;
+                        rotateSpeed = 0f;
+                        missileAccelTime = 20f;
+                        loopSound = Sounds.spellLoop;
+                        deathSound = Sounds.dullExplosion;
+                        parts.addAll(
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 110;
+                                    radiusTo = 1;
+                                    radius = 13f;
+                                    color = Color.white;
+                                }},
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 109;
+                                    radiusTo = 3;
+                                    radius = 20f;
+                                    color = hitColor;
+                                }},
+                                new HoverPart() {{
+                                    color = hitColor;
+                                    circles = 3;
+                                    sides = 360;
+                                    stroke = 3;
+                                    phase = 50;
+                                    radius = 38f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    y = 0;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 80;
+                                        lifetime = 30;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 6;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = ExoPal.cronusRed;
+                                        colorTo = ExoPal.cronusRedDark;
                                     }};
-                                }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.6f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 60;
+                                        lifetime = 40;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 3;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = hitColor;
+                                        colorTo = ExoPal.cronusRedDark;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.9f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = ExoFx.supernovaStarDecay;
+                                    effectColor = hitColor;
+                                    randomEffectRot = 0;
+                                    effectChance = 1f;
+                                }}
+                        );
+                        health = 1;
+                        weapons.add(new Weapon() {{
+                            shootCone = 360f;
+                            mirror = false;
+                            targetGround = targetAir = false;
+                            reload = 1f;
+                            y = shootY = 0;
+                            deathExplosionEffect = shootEffect;
+                            shootOnDeath = true;
+                            shake = 10f;
+                            bullet = new ExoExplosionBulletType(450f, 60f) {{
+                                hitColor = ExoPal.cronusRed;
+                                splashDamagePierce = true;
+                                damageType = thermal;
+                                shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
+                                collidesGround = true;
+                                collidesTiles = false;
+                            }};
+                        }});
+                    }};
                         }};
                 intervalBullet = new ExoFireBulletType(0.3f,75) {{
                     damageType = thermal;
@@ -2956,7 +2884,7 @@ public class ExoBlocks{
                 trailWidth = 3.5f;
             }},
             ExoLiquids.helium, new StarBulletType(1.3f, 425){{
-                radius = 29;
+                radius = 25;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.starYellow;
                 trailRotation = true;
@@ -2974,8 +2902,127 @@ public class ExoBlocks{
                         ExoFx.starChargeYellow
                 );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                        hitEffect = ExoFx.hitEmpColorSpark;
-                        despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
+                despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
+                fragOnHit = false;
+                fragLifeMin = 1f;
+                fragBullets = 1;
+                fragBullet = new BasicBulletType(){{
+                    width = height = 0.001f;
+                    instantDisappear = true;
+                    fragLifeMin = 1f;
+                    fragBullets = 1;
+                    despawnUnit = new MissileUnitType("YellowStarDeath") {{
+                        speed = 0f;
+                        maxRange = 1f;
+                        lifetime = 160f;
+                        lowAltitude = true;
+                        drawCell = false;
+                        isEnemy = false;
+                        targetable = false;
+                        hittable = false;
+                        engineSize = 0f;
+                        rotateSpeed = 0f;
+                        missileAccelTime = 0f;
+                        loopSound = Sounds.spellLoop;
+                        deathSound = Sounds.dullExplosion;
+                        parts.addAll(
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 110;
+                                    radiusTo = 1;
+                                    radius = 13f;
+                                    color = Color.white;
+                                }},
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 109;
+                                    radiusTo = 3;
+                                    radius = 25f;
+                                    color = hitColor;
+                                }},
+                                new HoverPart() {{
+                                    color = hitColor;
+                                    circles = 3;
+                                    sides = 360;
+                                    stroke = 3;
+                                    phase = 50;
+                                    radius = 42f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    y = 0;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 100;
+                                        baseLength = 20;
+                                        lifetime = 30;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 6;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = ExoPal.cronusRed;
+                                        colorTo = ExoPal.cronusRedDark;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.6f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 80;
+                                        baseLength = 20;
+                                        lifetime = 40;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 3;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = hitColor;
+                                        colorTo = ExoPal.cronusRedDark;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.9f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = ExoFx.supernovaStarDecay;
+                                    effectColor = hitColor;
+                                    randomEffectRot = 0;
+                                    effectChance = 1f;
+                                }}
+                                );
+                                health = 1;
+                                weapons.add(new Weapon() {{
+                                    shootCone = 360f;
+                                    mirror = false;
+                                    targetGround = targetAir = false;
+                                    reload = 1f;
+                                    y = shootY = 0;
+                                    deathExplosionEffect = shootEffect;
+                                    shootOnDeath = true;
+                                    shake = 10f;
+                                    bullet = new ExoExplosionBulletType(565f, 70f) {{
+                                        hitColor = ExoPal.starYellow;
+                                        splashDamagePierce = true;
+                                        damageType = thermal;
+                                        shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
+                                        collidesGround = true;
+                                        collidesTiles = false;
+                                    }};
+                                }});
+                            }};
+                        }};
                 intervalBullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.starYellow;
                     damageType = DamageType.thermal;
@@ -2996,8 +3043,8 @@ public class ExoBlocks{
                 trailLength = 10;
                 trailWidth = 3.5f;
             }},
-            Liquids.ozone, new StarBulletType(1.3f, 585){{
-                radius = 29;
+            Liquids.ozone, new StarBulletType(1.3f, 535){{
+                radius = 28;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.starWhite;
                 trailRotation = true;
@@ -3013,8 +3060,128 @@ public class ExoBlocks{
                 chargeEffect = new MultiEffect(
                         new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starWhite, 48f), ExoFx.starChargeWhite );
                 shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
-                        hitEffect = ExoFx.hitEmpColorSpark;
-                        despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
+                despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
+                fragOnHit = false;
+                fragLifeMin = 1f;
+                fragBullets = 1;
+                intervalBullets = 1;
+                bulletInterval = 3;
+                fragBullet = new BasicBulletType(){{
+                    width = height = 0.001f;
+                    instantDisappear = true;
+                    fragLifeMin = 1f;
+                    fragBullets = 1;
+                    despawnUnit = new MissileUnitType("whiteStarDeath") {{
+                        speed = 0f;
+                        maxRange = 1f;
+                        lifetime = 180f;
+                        lowAltitude = true;
+                        drawCell = false;
+                        isEnemy = false;
+                        targetable = false;
+                        hittable = false;
+                        engineSize = 0f;
+                        rotateSpeed = 0f;
+                        missileAccelTime = 0f;
+                        loopSound = Sounds.spellLoop;
+                        deathSound = Sounds.dullExplosion;
+                        parts.addAll(
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 110;
+                                    radiusTo = 3;
+                                    radius = 13f;
+                                    color = Color.white;
+                                }},
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 109;
+                                    radiusTo = 5;
+                                    radius = 28f;
+                                    color = hitColor;
+                                }},
+                                new HoverPart() {{
+                                    color = hitColor;
+                                    circles = 3;
+                                    sides = 360;
+                                    stroke = 4;
+                                    phase = 70;
+                                    radius = 49f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    y = 0;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 110;
+                                        baseLength = 20;
+                                        lifetime = 30;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 6;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = colorTo = ExoPal.starWhite;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.6f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 90;
+                                        baseLength = 20;
+                                        lifetime = 40;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 3;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = hitColor;
+                                        colorTo = ExoPal.starWhite;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.9f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = ExoFx.supernovaStarDecay;
+                                    effectColor = hitColor;
+                                    randomEffectRot = 0;
+                                    effectChance = 1f;
+                                }}
+                        );
+                        health = 1;
+                        weapons.add(new Weapon() {{
+                            shootCone = 360f;
+                            mirror = false;
+                            targetGround = targetAir = false;
+                            reload = 1f;
+                            y = shootY = 0;
+                            deathExplosionEffect = shootEffect;
+                            shootOnDeath = true;
+                            shake = 10f;
+                            bullet = new ExoExplosionBulletType(645f, 70f) {{
+                                hitColor = ExoPal.starWhite;
+                                splashDamagePierce = true;
+                                damageType = thermal;
+                                shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
+                                collidesGround = true;
+                                collidesTiles = false;
+                            }};
+                        }});
+                    }};
+                }};
                 intervalBullet = new ExoBasicBulletType(2f, 100){{
                     width = height = 7f;
                     sprite = "exogenesis-plasma";
@@ -3028,39 +3195,257 @@ public class ExoBlocks{
                     frontColor = lightningColor = lightColor = hitColor;
                     trailLength = 13;
                     homingRange = 200f;
-                    homingPower = 0.02f;
+                    homingPower = 0.07f;
 
                     status = StatusEffects.melting;
                     statusDuration = 60f;
                 }};
-                fragRandomSpread = 0f;
-                fragSpread =  60;
-                fragBullets = 6;
-                fragBullet = new FancyLaserBulletType(){{
-                    damage = 425f;
-                    sideAngle = 27f;
-                    sideWidth = 1.5f;
-                    sideLength = 20f;
-                    lifetime = 60;
-                    largeHit = true;
-                    width = 35f;
-                    length = 200f;
-                    colors = new Color[]{ExoPal.starWhite.cpy().a(0.4f), ExoPal.starWhite, Color.white};
-                    hitEffect = ExoFx.coloredHitLarge;
-                    hitColor = ExoPal.starWhite;
-                    shootEffect = ExoFx.hitEmpColorSpark;
-                }};
-                intervalRandomSpread = 360;
-                bulletInterval = 30;
+            }},
+            ExoLiquids.impurePlasma, new StarBulletType(1.3f, 585){{
+                radius = 22;
+                hitSound = Sounds.dullExplosion;
+                realColor = hitColor = trailColor = ExoPal.radGreen;
+                trailRotation = true;
+                parts.addAll(
+                        new FlarePart(){{
+                            progress = PartProgress.life;
+                            color1 = ExoPal.radGreen;
+                            spinSpeed = 13;
+                            sides = 2;
+                            radius = 16;
+                            radiusTo = 16;
+                            stroke = 4f;
+                        }},
+                        new FlarePart(){{
+                            progress = PartProgress.life;
+                            color1 = ExoPal.radGreen;
+                            spinSpeed = -12;
+                            sides = 2;
+                            radius = 9;
+                            radiusTo = 9;
+                            stroke = 2.5f;
+                        }}
+                );
+                lifetime = 300f;
+                homingRange = 150;
+                homingPower = 0.01f;
+                splashDamage = 150;
+                splashDamageRadius = 50;
+                despawnHit = true;
+                rotationSpeed = 100;
+                int times = 25;
+                float life = ExoFx.starChargeWhite.lifetime;
+                chargeEffect = new MultiEffect(
+                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.radGreen, 48f), ExoFx.starChargeGreen);
+                shootEffect = new MultiEffect(ExoFx.blastExplosionColor, ExoFx.hitEmpColorSpark);
+                despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
+                fragOnHit = false;
+                fragLifeMin = 1f;
+                fragBullets = 1;
                 intervalBullets = 1;
-                trailSinScl = 6;
-                trailSinMag = 0.3f;
-                trailParam = 5;
-                trailLength = 10;
-                trailWidth = 3.5f;
+                bulletInterval = 3;
+                fragBullet = new BasicBulletType(){{
+                    width = height = 0.001f;
+                    instantDisappear = true;
+                    fragLifeMin = 1f;
+                    fragBullets = 1;
+                    despawnUnit = new MissileUnitType("strangeStarDeath") {{
+                        speed = 0f;
+                        maxRange = 1f;
+                        lifetime = 120f;
+                        lowAltitude = true;
+                        drawCell = false;
+                        isEnemy = false;
+                        targetable = false;
+                        hittable = false;
+                        engineSize = 0f;
+                        rotateSpeed = 0f;
+                        missileAccelTime = 0f;
+                        loopSound = Sounds.spellLoop;
+                        deathSound = Sounds.dullExplosion;
+                        parts.addAll(
+                        new ShapePart() {{
+                            circle = true;
+                            progress = PartProgress.life;
+                            y = 0f;
+                            layer = 110;
+                            radiusTo = 3;
+                            radius = 13f;
+                            color = Color.white;
+                        }}, new ShapePart() {{
+                            circle = true;
+                            progress = PartProgress.life;
+                            y = 0f;
+                            layer = 109;
+                            radiusTo = 5;
+                            radius = 28f;
+                            color = hitColor;
+                        }}, new HoverPart() {{
+                            color = hitColor;
+                            circles = 3;
+                            sides = 360;
+                            stroke = 2;
+                            phase = 30;
+                            radius = 49f;
+                            mirror = false;
+                            layer = Layer.effect;
+                            y = 0;
+                        }}, new EffectSpawnPart() {{
+                            useProgress = false;
+                            y = 0f;
+                            effect = new ParticleEffect() {{
+                                lightOpacity = 0.5f;
+                                particles = 3;
+                                length = 110;
+                                baseLength = 20;
+                                lifetime = 30;
+                                interp = Interp.sineOut;
+                                sizeFrom = 6;
+                                sizeTo = 0;
+                                lightColor = colorFrom = colorTo = ExoPal.radGreen;
+                            }};
+                            effectColor = hitColor;
+                            randomEffectRot = 360;
+                            effectChance = 0.6f;
+                        }}, new EffectSpawnPart() {{
+                            useProgress = false;
+                            y = 0f;
+                            effect = new ParticleEffect() {{
+                                lightOpacity = 0.5f;
+                                particles = 1;
+                                length = 90;
+                                baseLength = 20;
+                                lifetime = 40;
+                                interp = Interp.sineOut;
+                                sizeFrom = 3;
+                                sizeTo = 0;
+                                lightColor = colorFrom = hitColor;
+                                colorTo = ExoPal.radGreen;
+                            }};
+                            effectColor = hitColor;
+                            randomEffectRot = 360;
+                            effectChance = 1f;
+                        }}, new EffectSpawnPart() {{
+                            useProgress = false;
+                            y = 0f;
+                            effect = ExoFx.supernovaStarDecay;
+                            effectColor = hitColor;
+                            randomEffectRot = 0;
+                            effectChance = 1f;
+                        }});
+                        health = 1;
+                        weapons.add(new Weapon() {{
+                            shootCone = 360f;
+                            mirror = false;
+                            targetGround = targetAir = false;
+                            reload = 1f;
+                            y = shootY = 0;
+                            deathExplosionEffect = shootEffect;
+                            shootOnDeath = true;
+                            shake = 10f;
+                            bullet = new ExoExplosionBulletType(645f, 70f) {{
+                                hitColor = ExoPal.radGreen;
+                                splashDamagePierce = true;
+                                damageType = radiation;
+                                fragBullets = 2;
+                                fragLifeMin = 1;
+                                fragRandomSpread = 0;
+                                fragSpread = 180;
+                                fragBullet = new ExoRailBulletType(){{
+                                    length = 400;
+                                    damage = 1250f;
+                                    pierceArmor = true;
+                                    pierce = true;
+                                    pierceCap = 10;
+                                    damageType = radiation;
+                                    hitColor = ExoPal.radGreen;
+                                    hitEffect = ExoFx.coloredHitLarge;
+                                    pierceDamageFactor = 0.1f;
+                                    smokeEffect = Fx.colorSpark;
+                                    endEffect = new Effect(32f, e -> {
+                                        clipSize = 140;
+                                        color(e.color);
+                                        Drawf.tri(e.x, e.y, e.fout() * 12f, 25f, e.rotation);
+                                        color(Color.white);
+                                        Drawf.tri(e.x, e.y, e.fout() * 6f, 19f, e.rotation);
+                                    });
+                                    lineEffect = new Effect(20f, e -> {
+                                        clipSize = 140;
+                                        if(!(e.data instanceof Vec2 v)) return;
+
+                                        color(e.color);
+                                        stroke(e.fout() * 1.1f + 0.6f);
+
+                                        Fx.rand.setSeed(e.id);
+                                        for(int i = 0; i < 7; i++){
+                                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                                        }
+                                        e.scaled(32f, b -> {
+                                            stroke(b.fout() * 12f);
+                                            color(e.color);
+                                            Lines.line(e.x, e.y, v.x, v.y);
+                                        });
+                                        e.scaled(32f, b -> {
+                                            stroke(b.fout() * 8f);
+                                            color(Color.white);
+                                            Lines.line(e.x, e.y, v.x, v.y);
+                                        });
+                                    });
+                                }};
+                                shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
+                                collidesGround = true;
+                                collidesTiles = false;
+                            }};
+                        }});
+                    }};
+                }};
+                intervalBullet = new ExoRailBulletType(){{
+                    length = 1200;
+                    damage = 250f;
+                    pierceArmor = true;
+                    pierce = true;
+                    pierceCap = 10;
+                    damageType = radiation;
+                    hitColor = ExoPal.radGreen;
+                    hitEffect = ExoFx.coloredHitLarge;
+                    pierceDamageFactor = 0.1f;
+                    smokeEffect = Fx.colorSpark;
+                    endEffect = new Effect(22f, e -> {
+                        clipSize = 140;
+                        color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 7f, 25f, e.rotation);
+                        color(Color.white);
+                        Drawf.tri(e.x, e.y, e.fout() * 4f, 19f, e.rotation);
+                    });
+                    lineEffect = new Effect(20f, e -> {
+                        clipSize = 140;
+                        if(!(e.data instanceof Vec2 v)) return;
+
+                        color(e.color);
+                        stroke(e.fout() * 1.1f + 0.6f);
+
+                        Fx.rand.setSeed(e.id);
+                        for(int i = 0; i < 7; i++){
+                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                        }
+
+                        e.scaled(22f, b -> {
+                            stroke(b.fout() * 7f);
+                            color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                        e.scaled(22f, b -> {
+                            stroke(b.fout() * 4f);
+                            color(Color.white);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                    });
+                }};
             }},
             ExoLiquids.coldPlasma, new StarBulletType(1.3f, 660){{
-                radius = 29;
+                radius = 28;
                 trailWidth = 9.5f;
                 trailLength = 57;
                 trailSinScl = 3;
@@ -3078,41 +3463,306 @@ public class ExoBlocks{
                 hitSound = Sounds.plasmaboom;
                 homingRange = 150;
                 homingPower = 0.01f;
-                splashDamageRadius = 100f;
-                splashDamage = 200;
+                splashDamageRadius = 80f;
+                splashDamage = 170;
                 despawnHit = true;
                 intervalBullets = 1;
                 bulletInterval = 3;
-                intervalBullet = new ChainLightningBulletType() {{
-                    lightningColor = ExoPal.genesis;
-                    damageType = DamageType.thermal;
-                    range = 180;
-                    targetRange = 150;
-                    hitSound = Sounds.none;
-                    damage = 340;
-                    distanceDamageFalloff = 4;
-                    chainLightning = 1;
-                    segmentLength = 8;
+                intervalBullet = new FancyLaserBulletType(){{
+                    damage = 175f;
+                    sideAngle = 40f;
+                    sideWidth = 1.5f;
+                    sideLength = 30f;
+                    width = 35f;
+                    length = 100f;
+                    colors = new Color[]{ExoPal.genesisDark.cpy().a(0.4f), ExoPal.genesis, Color.white};
+                    hitEffect = ExoFx.coloredHitLarge;
+                    hitColor = ExoPal.genesis;
+                    shootEffect = ExoFx.colorBombSmall;
+                }};
+                pierce = false;
+                collides = true;
+                lifetime = 300;
+                despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
+                fragOnHit = false;
+                fragLifeMin = 1f;
+                fragBullets = 1;
+                fragBullet = new BasicBulletType(){{
+                    width = height = 0.001f;
+                    instantDisappear = true;
+                    fragLifeMin = 1f;
+                    fragBullets = 1;
+                    despawnUnit = new MissileUnitType("blueStarDeath") {{
+                        speed = 0f;
+                        maxRange = 1f;
+                        lifetime = 185f;
+                        lowAltitude = true;
+                        drawCell = false;
+                        isEnemy = false;
+                        targetable = false;
+                        hittable = false;
+                        engineSize = 0f;
+                        rotateSpeed = 0f;
+                        missileAccelTime = 0f;
+                        loopSound = Sounds.spellLoop;
+                        deathSound = Sounds.dullExplosion;
+                        parts.addAll(
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 110;
+                                    radiusTo = 3;
+                                    radius = 13f;
+                                    color = Color.white;
+                                }},
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 109;
+                                    radiusTo = 5;
+                                    radius = 28f;
+                                    color = hitColor;
+                                }},
+                                new HoverPart() {{
+                                    color = hitColor;
+                                    circles = 3;
+                                    sides = 360;
+                                    stroke = 4;
+                                    phase = 70;
+                                    radius = 49f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    y = 0;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 110;
+                                        baseLength = 20;
+                                        lifetime = 30;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 6;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = ExoPal.genesis;
+                                        colorTo = ExoPal.genesisDark;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.6f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 90;
+                                        baseLength = 20;
+                                        lifetime = 40;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 3;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = hitColor;
+                                        colorTo = ExoPal.genesisDark;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.9f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = ExoFx.supernovaStarDecay;
+                                    effectColor = hitColor;
+                                    randomEffectRot = 0;
+                                    effectChance = 1f;
+                                }}
+                        );
+                        health = 1;
+                        weapons.add(new Weapon() {{
+                            shootCone = 360f;
+                            mirror = false;
+                            targetGround = targetAir = false;
+                            reload = 1f;
+                            y = shootY = 0;
+                            deathExplosionEffect = shootEffect;
+                            shootOnDeath = true;
+                            shake = 10f;
+                            bullet = new ExoExplosionBulletType(645f, 70f) {{
+                                hitColor = ExoPal.genesis;
+                                splashDamagePierce = true;
+                                damageType = thermal;
+                                shootEffect = new MultiEffect(Fx.titanSmoke, ExoFx.PrometheusSmoke, ExoFx.empyreanExplosion, ExoFx.starExplodeTest, Fx.colorSpark);
+                                collidesGround = true;
+                                collidesTiles = false;
+                            }};
+                        }});
+                    }};
+                }};
+            }},
+            ExoLiquids.axinian, new StarBulletType(1.3f, 760){{
+                radius = 35;
+                trailWidth = 10.5f;
+                trailLength = 57;
+                trailSinScl = 4;
+                trailSinMag = 0.6f;
+                trailParam = 3.5f;
+                int times = 25;
+                float life = ExoFx.starChargeBlue.lifetime;
+                chargeEffect = new MultiEffect(
+                        new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.starBlue, 48f),
+                        ExoFx.starChargeDeepBlue
+                );
+                chargeEffect.lifetime = life;
+                realColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.starBlue;
+                scaleLife = false;
+                hitSound = Sounds.explosionbig;
+                homingRange = 180;
+                homingPower = 0.01f;
+                splashDamageRadius = 100f;
+                splashDamage = 250;
+                despawnHit = true;
+                intervalBullets = 1;
+                bulletInterval = 3;
+                intervalBullet = new ContinuousFlameBulletType(){{
+                    damage = 80f;
+                    length = 120;
+                    knockback = 1f;
+                    pierceArmor = true;
+                    pierceCap = 4;
+                    buildingDamageMultiplier = 0.3f;
+                    flareColor = ExoPal.starBlue;
+                    colors = new Color[]{Color.valueOf("0b0075").a(0.55f), ExoPal.starBlue2.a(0.7f), ExoPal.starBlue.a(0.8f), ExoPal.genesisLight, Color.white};
                 }};
                 pierce = false;
                 collides = true;
                 lifetime = 300;
                 hitEffect = ExoFx.ullarTipHit;
-                despawnEffect = new MultiEffect(Fx.titanSmoke, ExoFx.empyreanExplosion, ExoFx.starShockWave, Fx.colorSpark);
-                shootEffect = ExoFx.square45_6_45;
-                fragOnHit = true;
+                despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
+                fragOnHit = false;
                 fragLifeMin = 1f;
                 fragBullets = 1;
-                fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
-                    lifetime = 330f;
-                    growTime = 15;
-                    damageRadius = 30;
-                    swirlEffects = 5;
-                    swirlInterval = 3;
-                    color = hitColor = ExoPal.genesis;
-                    lightRadius = 8f;
-                    lightOpacity = 0.7f;
-                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
+                fragBullet = new BasicBulletType(){{
+                    width = height = 0.001f;
+                    instantDisappear = true;
+                    fragLifeMin = 1f;
+                    fragBullets = 1;
+                    despawnUnit = new MissileUnitType("BigBlueStarDeath") {{
+                        speed = 0f;
+                        maxRange = 1f;
+                        lifetime = 235f;
+                        lowAltitude = true;
+                        drawCell = false;
+                        isEnemy = false;
+                        targetable = false;
+                        hittable = false;
+                        engineSize = 0f;
+                        rotateSpeed = 0f;
+                        missileAccelTime = 0f;
+                        loopSound = Sounds.spellLoop;
+                        deathSound = ExoSounds.coolplasmaboom;
+                        parts.addAll(
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 110;
+                                    radiusTo = 3;
+                                    radius = 13f;
+                                    color = Color.white;
+                                }},
+                                new ShapePart() {{
+                                    circle = true;
+                                    progress = PartProgress.life;
+                                    y = 0f;
+                                    layer = 109;
+                                    radiusTo = 5;
+                                    radius = 28f;
+                                    color = hitColor;
+                                }},
+                                new HoverPart() {{
+                                    color = hitColor;
+                                    circles = 3;
+                                    sides = 360;
+                                    stroke = 4;
+                                    phase = 100;
+                                    radius = 69f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    y = 0;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 130;
+                                        baseLength = 30;
+                                        lifetime = 30;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 6;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = Pal.techBlue;
+                                        colorTo = ExoPal.starBlue;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.6f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = new ParticleEffect() {{
+                                        lightOpacity = 0.5f;
+                                        particles = 5;
+                                        length = 100;
+                                        baseLength = 30;
+                                        lifetime = 40;
+                                        interp = Interp.sineOut;
+                                        sizeFrom = 3;
+                                        sizeTo = 0;
+                                        lightColor = colorFrom = hitColor;
+                                        colorTo = ExoPal.starBlue2;
+                                    }};
+                                    effectColor = hitColor;
+                                    randomEffectRot = 360;
+                                    effectChance = 0.9f;
+                                }},
+                                new EffectSpawnPart() {{
+                                    useProgress = false;
+                                    y = 0f;
+                                    effect = ExoFx.supernovaStarDecay;
+                                    effectColor = hitColor;
+                                    randomEffectRot = 0;
+                                    effectChance = 1f;
+                                }}
+                        );
+                        health = 1;
+                        weapons.add(new Weapon() {{
+                            shootCone = 360f;
+                            mirror = false;
+                            targetGround = targetAir = false;
+                            reload = 1f;
+                            y = shootY = 0;
+                            deathExplosionEffect = shootEffect;
+                            shootOnDeath = true;
+                            shake = 10f;
+                            bullet = new ExoExplosionBulletType(855f, 100f) {{
+                                hitColor = ExoPal.starBlue;
+                                splashDamagePierce = true;
+                                damageType = thermal;
+                                shootEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.starExplodeBlue, ExoFx.empyreanExplosion, ExoFx.starExplodeBlue, Fx.colorSpark);
+                                collidesGround = true;
+                                collidesTiles = false;
+                            }};
+                        }});
+                    }};
                 }};
             }}
         );
