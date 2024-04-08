@@ -2808,6 +2808,8 @@ public class ExoBlocks{
                     speed = 0f;
                     maxRange = 1f;
                     lifetime = 85f;
+                    lowAltitude = true;
+                    drawCell = false;
                     isEnemy = false;
                     targetable = false;
                     hittable = false;
@@ -2815,7 +2817,7 @@ public class ExoBlocks{
                     rotateSpeed = 0f;
                     missileAccelTime = 20f;
                     loopSound = Sounds.spellLoop;
-                    deathSound = Sounds.explosion;
+                    deathSound = Sounds.dullExplosion;
                     abilities.add(new StatusFieldAbility(StatusEffects.none, 1f, 20f, 2f){{
                         parentizeEffects = true;
                         hidden = true;
@@ -2826,6 +2828,7 @@ public class ExoBlocks{
                     parts.addAll(
                     new ShapePart() {{
                         circle = true;
+                        progress = PartProgress.life;
                         y = 0f;
                         layer = 114;
                         radiusTo = 1;
@@ -2834,22 +2837,12 @@ public class ExoBlocks{
                     }},
                     new ShapePart() {{
                         circle = true;
+                        progress = PartProgress.life;
                         y = 0f;
                         layer = 111;
                         radiusTo = 3;
                         radius = 20f;
                         color = ExoPal.cronusRed;
-                    }},
-                    new RegionPart("circle-shadow") {{
-                        progress = growProgress = PartProgress.life;
-                        xScl = 8f;
-                        yScl = 8f;
-                        growX = -1;
-                        growY = -1;
-                        color = ExoPal.cronusRed;
-                        colorTo = ExoPal.cronusRed;
-                        blending = Blending.additive;
-                        outline = mirror = false;
                     }},
                     new EffectSpawnPart() {{
                         useProgress = false;
@@ -2887,7 +2880,7 @@ public class ExoBlocks{
                         shootOnDeath = true;
                         shake = 2f;
                         bullet = new ExoExplosionBulletType(450f, 60f){{
-                            hitColor = ExoPal.empyrean;
+                            hitColor = ExoPal.cronusRed;
                             splashDamagePierce = true;
                             damageType = thermal;
                             shootEffect = ExoFx.starExplodeTest;
