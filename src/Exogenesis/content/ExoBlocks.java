@@ -2808,6 +2808,7 @@ public class ExoBlocks{
                         fragLifeMin = 1f;
                         fragBullets = 1;
                         fragBullet = new BasicBulletType(){{
+                            width = height = 0.001f;
                             instantDisappear = true;
                             lifetime = 1;
                             fragLifeMin = 1f;

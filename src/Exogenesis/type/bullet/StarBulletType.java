@@ -77,6 +77,10 @@ public class StarBulletType extends BulletType {
         if(despawnHit){
             hit(b);
         }
+
+        if(!fragOnHit){
+            createFrags(b, b.x, b.y);
+        }
         despawnSound.at(b);
 
         Effect.shake(despawnShake, despawnShake, b);
