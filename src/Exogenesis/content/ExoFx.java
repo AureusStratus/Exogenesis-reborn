@@ -589,33 +589,10 @@ public class ExoFx{
                     circle(e.x, e.y, 150f * pow2Out.apply(e.fout()) * Mathf.lerp(0.1f, 1f, r));
                 }
             }),
-            supernovaStarHeatwave = new Effect(20f, e -> {
-                color(ExoPal.cronusRed);
-                stroke( 4 );
-                circle(e.x, e.y, 80f * e.fin());
-                circle(e.x, e.y, 100f * e.finpow() * 0.6f);
-            }),
-            starPlasma = new Effect(16f, e -> {
-                color(Color.white, e.color, e.fin());
-                stroke(e.fout() * 1.1f + 0.5f);
-
-                randLenVectors(e.id, 1, 40f * e.fin(), e.rotation, 0f, (x, y) -> {
-                    lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
-                });
-            }),
             supernovaStarDecay = new Effect(56f, e -> randLenVectors(e.id, 1, 36f * e.finpow(), (x, y) -> {
                 color(e.color);
                 Fill.rect(e.x + x, e.y + y, 2.2f * e.fout(), 2.2f * e.fout(), 45f);
             })),
-            supernovaChargeStar2 = new Effect(27f, e -> {
-        if(e.data instanceof Float data){
-            float r = data;
-            randLenVectors(e.id, (int)(3f * r), e.fout() * ((90f + r * 150f) * (0.3f + Mathf.randomSeed(e.id, 0.7f))), (x, y) -> {
-                color(e.color);
-                Fill.circle(e.x + x, e.y + y, 2f * e.fin());
-            });
-        }
-    }),
 
             starExplodeTest = new Effect(150F, 1600f, e -> {
         float rad = 60f;
@@ -659,7 +636,28 @@ public class ExoFx{
 
                 Drawf.light(e.x, e.y, rad * e.fout(Interp.circleOut) * 4f, e.color, 0.7f);
             }).layer(Layer.effect + 0.001f),
-            blueStarExplosion = new Effect(60, 500f, b -> {
+            starExplodeRed = new Effect(150F, 1600f, e -> {
+                float rad = 45f;
+                rand.setSeed(e.id);
+
+                Draw.color(Color.white, e.color, e.fin() + 0.6f);
+                float circleRad = e.fin(Interp.circleOut) * rad * 4f;
+                Lines.stroke(4 * e.fout());
+                Lines.circle(e.x, e.y, circleRad);
+                for(int i = 0; i < 24; i++){
+                    Tmp.v1.set(1, 0).setToRandomDirection(rand).scl(circleRad);
+                    DrawFunc.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, rand.random(circleRad / 16, circleRad / 12) * e.fout(), rand.random(circleRad / 4, circleRad / 1.5f) * (1 + e.fin()) / 2, Tmp.v1.angle() - 180);
+                }
+                Draw.blend(Blending.additive);
+                Draw.z(Layer.effect + 0.1f);
+
+                Fill.light(e.x, e.y, circleVertices(circleRad), circleRad, Color.clear, Tmp.c1.set(Draw.getColor()).a(e.fout(Interp.pow10Out)));
+                Draw.blend();
+                Draw.z(Layer.effect);
+
+                Drawf.light(e.x, e.y, rad * e.fout(Interp.circleOut) * 4f, e.color, 0.7f);
+            }).layer(Layer.effect + 0.001f),
+            blueStarExplosionCloud = new Effect(60, 500f, b -> {
                 float intensity = 6.8f;
                 float baseLifetime = 25f + intensity * 11f;
                 b.lifetime = 50f + intensity * 65f;
@@ -697,6 +695,15 @@ public class ExoFx{
             });
         });
     }),
+            starngeStarSwirl = (new SwirlEffect(70.0F, 10, 1.7F, 100.0F, 280.0F, true)).layer(110.005F),
+            strangeStarSparks = new Effect(16f, e -> {
+                color(Color.white, e.color, e.fin());
+                stroke(e.fout() * 1.1f + 0.5f);
+
+                randLenVectors(e.id, 3, 140f * e.fin(), e.rotation, 0f, (x, y) -> {
+                    lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
+                });
+            }),
             redBallfire = new Effect(25f, e -> {
                 color(ExoPal.cronusRedlight, ExoPal.cronusRedDark, e.fin());
 
