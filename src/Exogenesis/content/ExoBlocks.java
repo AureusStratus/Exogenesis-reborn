@@ -2830,7 +2830,7 @@ public class ExoBlocks{
                         circle = true;
                         progress = PartProgress.life;
                         y = 0f;
-                        layer = 114;
+                        layer = 110;
                         radiusTo = 1;
                         radius = 13f;
                         color = Color.white;
@@ -2839,10 +2839,21 @@ public class ExoBlocks{
                         circle = true;
                         progress = PartProgress.life;
                         y = 0f;
-                        layer = 111;
+                        layer = 109;
                         radiusTo = 3;
                         radius = 20f;
                         color = ExoPal.cronusRed;
+                    }},
+                    new HoverPart(){{
+                        color = ExoPal.genesis;
+                        circles = 1;
+                        sides = 360;
+                        stroke = 3;
+                        phase = 50;
+                        radius = 24f;
+                        mirror = false;
+                        layer = Layer.effect;
+                        y = 0;
                     }},
                     new EffectSpawnPart() {{
                         useProgress = false;
@@ -2850,16 +2861,35 @@ public class ExoBlocks{
                         effect = new ParticleEffect(){{
                             lightOpacity = 0.5f;
                             particles = 5;
-                            length = 90;
-                            lifetime = 15;
-                            interp = Interp.circleOut;
-                            sizeFrom = 4;
+                            length = 80;
+                            lifetime = 30;
+                            interp = Interp.sineOut;
+                            sizeFrom = 6;
                             sizeTo = 1;
-                            lightColor = colorFrom = colorTo = ExoPal.cronusRed;
+                            lightColor = colorFrom = ExoPal.cronusRed;
+                            colorTo = ExoPal.cronusRedDark;
                         }};
                         effectColor = ExoPal.cronusRed;
                         randomEffectRot = 360;
-                        effectChance = 0.5f;
+                        effectChance = 0.6f;
+                    }},
+                    new EffectSpawnPart() {{
+                        useProgress = false;
+                        y = 0f;
+                        effect = new ParticleEffect(){{
+                            lightOpacity = 0.5f;
+                            particles = 5;
+                            length = 60;
+                            lifetime = 40;
+                            interp = Interp.sineOut;
+                            sizeFrom = 3;
+                            sizeTo = 1;
+                            lightColor = colorFrom = ExoPal.cronusRed;
+                            colorTo = ExoPal.cronusRedDark;
+                        }};
+                        effectColor = ExoPal.cronusRed;
+                        randomEffectRot = 360;
+                        effectChance = 0.9f;
                     }},
                     new EffectSpawnPart() {{
                         useProgress = false;

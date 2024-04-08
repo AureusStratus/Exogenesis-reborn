@@ -591,7 +591,7 @@ public class ExoFx{
             }),
             supernovaStarHeatwave = new Effect(20f, e -> {
                 color(ExoPal.cronusRed);
-                stroke( 4 * e.finpow());
+                stroke( 4 );
                 circle(e.x, e.y, 80f * e.fin());
                 circle(e.x, e.y, 100f * e.finpow() * 0.6f);
             }),
@@ -618,7 +618,7 @@ public class ExoFx{
     }),
 
             starExplodeTest = new Effect(150F, 1600f, e -> {
-        float rad = 80f;
+        float rad = 60f;
         rand.setSeed(e.id);
 
         Draw.color(Color.white, e.color, e.fin() + 0.6f);
