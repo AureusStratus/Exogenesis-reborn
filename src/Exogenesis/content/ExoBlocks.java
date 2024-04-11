@@ -2729,7 +2729,7 @@ public class ExoBlocks{
                 );
             }};
             ammo(
-            Liquids.hydrogen, new StarBulletType(1.3f, 225){{
+            Liquids.hydrogen, new StarBulletType(1f, 225){{
                 radius = 20;
                 hitSound = Sounds.dullExplosion;
                 realColor = hitColor = trailColor = ExoPal.cronusRed;
@@ -2738,7 +2738,7 @@ public class ExoBlocks{
                 homingPower = 0.01f;
 
                 trailRotation = true;
-                lifetime = 350f;
+                lifetime = 370f;
                 swirlEffects = 2;
                 splashDamage = 100;
                 splashDamageRadius = 50;
@@ -3218,15 +3218,6 @@ public class ExoBlocks{
                             radius = 16;
                             radiusTo = 16;
                             stroke = 4f;
-                        }},
-                        new FlarePart(){{
-                            progress = PartProgress.life;
-                            color1 = ExoPal.radGreen;
-                            spinSpeed = -12;
-                            sides = 2;
-                            radius = 9;
-                            radiusTo = 9;
-                            stroke = 2.5f;
                         }}
                 );
                 lifetime = 350f;
@@ -3234,7 +3225,7 @@ public class ExoBlocks{
                 homingPower = 0.02f;
                 splashDamage = 150;
                 splashDamageRadius = 50;
-                swirlEffects = 2;
+                swirlEffects = 3;
                 swirlEffect = ExoFx.starngeStarSwirl;
                 despawnHit = true;
                 rotationSpeed = 100;
@@ -3380,7 +3371,7 @@ public class ExoBlocks{
                                 fragSpread = 180;
                                 fragBullet = new ExoRailBulletType(){{
                                     length = 1000;
-                                    damage = 1250f;
+                                    damage = 3250f;
                                     pierceArmor = true;
                                     pierce = true;
                                     pierceCap = 10;
@@ -3428,6 +3419,7 @@ public class ExoBlocks{
                         }});
                     }};
                 }};
+                /*
                 intervalBullet = new ExoRailBulletType(){{
                     length = 400;
                     damage = 250f;
@@ -3471,6 +3463,8 @@ public class ExoBlocks{
                         });
                     });
                 }};
+
+                 */
             }},
             ExoLiquids.coldPlasma, new StarBulletType(1.3f, 660){{
                 radius = 28;
@@ -3633,7 +3627,7 @@ public class ExoBlocks{
                     }};
                 }};
             }},
-            ExoLiquids.axinian, new StarBulletType(1.3f, 760){{
+            ExoLiquids.axinian, new StarBulletType(0.9f, 760){{
                 radius = 35;
                 rotationSpeed = 200;
                 trailWidth = 10.5f;
@@ -3671,7 +3665,7 @@ public class ExoBlocks{
                 }};
                 pierce = false;
                 collides = true;
-                lifetime = 350;
+                lifetime = 420;
                 despawnEffect = hitEffect = ExoFx.hitEmpColorSpark;
                 fragOnHit = false;
                 fragLifeMin = 1f;
@@ -3786,6 +3780,20 @@ public class ExoBlocks{
                                 hitColor = ExoPal.starBlue;
                                 splashDamagePierce = true;
                                 damageType = thermal;
+                                fragOnHit = false;
+                                fragLifeMin = 1f;
+                                fragBullets = 1;
+                                fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
+                                    lifetime = 330f;
+                                    growTime = 15;
+                                    damageRadius = 30;
+                                    swirlEffects = 5;
+                                    swirlInterval = 3;
+                                    color = hitColor = Color.orange;
+                                    lightRadius = 8f;
+                                    lightOpacity = 0.7f;
+                                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
+                                }};
                                 shootEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.blueStarExplosionCloud, ExoFx.starExplodeBlue, ExoFx.empyreanExplosion, ExoFx.starExplodeBlue, Fx.colorSpark);
                                 collidesGround = true;
                                 collidesTiles = false;
