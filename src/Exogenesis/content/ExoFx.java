@@ -696,6 +696,7 @@ public class ExoFx{
         });
     }),
             starngeStarSwirl = (new SwirlEffect(70.0F, 18, 1.7F, 140.0F, 680.0F, true)).layer(110.005F),
+
             strangeStarSparks = new Effect(16f, e -> {
                 color(Color.white, e.color, e.fin());
                 stroke(e.fout() * 1.1f + 0.5f);

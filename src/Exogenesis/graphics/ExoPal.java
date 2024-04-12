@@ -5,7 +5,7 @@ public class ExoPal {
 public static Color
 ally = new Color(0, 0, 1, 0.15f), hostile = new Color(1, 0, 0, 0.15f),
 lightSky = Color.valueOf("#8DB0FF"),
-starYellow = Color.valueOf("ffe231"),
+starYellow = Color.valueOf("ffbf57"),
 starBlue = Color.valueOf("6f6fff"),
 starBlue2 = Color.valueOf("4747ff"),
 starWhite = Color.valueOf("d7e6e9"),
