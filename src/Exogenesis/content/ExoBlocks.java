@@ -6,17 +6,13 @@ import Exogenesis.type.bullet.*;
 import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.world.blocks.ExoPowerProp;
 import Exogenesis.world.blocks.PowerHarvester;
-import Exogenesis.world.blocks.environment.Crystal;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 import Exogenesis.entities.effect.RepeatEffect;
 
 import arc.util.Tmp;
 import blackhole.entities.bullet.BlackHoleBulletType;
-import blackhole.entities.effect.SwirlEffect;
-import mindustry.entities.abilities.EnergyFieldAbility;
 import mindustry.entities.abilities.MoveEffectAbility;
-import mindustry.entities.abilities.StatusFieldAbility;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import arc.graphics.*;
@@ -58,18 +54,18 @@ public class ExoBlocks{
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
     lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
     //Axin
-    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axinRock, axinStoneWall, axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile,
+    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall, axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile,
     //ore
     oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
     //env tile end ^^^
     //blocks
     ductEmpyrean, harvesterSmall, harvesterMedium,
     //turrets
-    focalPoint, gale, light, bliss, prism, tanons, wrath, glory, essence, purger,
-    excalibur, aspect, godsent, eminence, aeon, grandeur, aether, profane, agios, arbiter, phoss,
+    focalPoint, gale, light, bliss, prism, tanons, /*wrath,*/ glory, essence, purger,
+    excalibur, aspect, godsent, eminence, aeon, grandeur, aether, profane, agios, arbiter, //phoss,
     //genesis align
     astral, starFleet, cosmos, armada, astrology, stellar, coldPlasmaThrower, sagittarius, nebula, halley, magnetar, neutronMortar,
-            supernova, thuban, polaris, theia, constellation, tesseract, hypernovaBurst,
+            supernova, thuban, polaris, /*theia, constellation, tesseract, hypernovaBurst,*/
             genesisFactory, empyreanFactory;
     public static void load(){
         oreOsmium = new OreBlock(ExoItems.osmium){{
@@ -167,6 +163,9 @@ public class ExoBlocks{
         }};
 
         //Axin Tiles
+        axincarbonStone = new Floor("axincarbon-stone"){{
+            variants = 6;
+        }};
         axinStone = new Floor("axin-stone"){{
             variants = 6;
         }};
@@ -215,7 +214,7 @@ public class ExoBlocks{
             lightColor = ExoPal.genesisDark.cpy().a(0.19f);
         }};
         axinCrystal = new Prop("axin-crystal"){{
-            variants = 3;
+            variants = 2;
             axinStone.asFloor().decoration = axinStoneMinerals.asFloor().decoration = this;
         }};
         // Empyrean ores
