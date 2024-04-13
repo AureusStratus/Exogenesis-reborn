@@ -2740,17 +2740,7 @@ public class ExoBlocks{
                 trailRotation = true;
                 lifetime = 400f;
                 swirlEffects = 2;
-                swirlEffect = new SwirlEffect(){{
-                    width = 3f;
-                    length = 8;
-                    minRot = 120;
-                    maxRot = 480;
-                    lifetime = 90;
-                    layer = 110.005F;
-                    lerp = true;
-                    edgeColor = Color.valueOf("8a0035");
-                    lightColor = ExoPal.cronusRed;
-                }};
+                swirlEffect = ExoFx.redStarSwirl;
                 splashDamage = 100;
                 splashDamageRadius = 50;
                 despawnHit = true;
@@ -2826,7 +2816,7 @@ public class ExoBlocks{
                                         sizeFrom = 6;
                                         sizeTo = 0;
                                         lightColor = colorFrom = ExoPal.cronusRed;
-                                        colorTo = ExoPal.cronusRedDark;
+                                        colorTo = Color.valueOf("af041d");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -2844,7 +2834,7 @@ public class ExoBlocks{
                                         sizeFrom = 3;
                                         sizeTo = 0;
                                         lightColor = colorFrom = hitColor;
-                                        colorTo = ExoPal.cronusRedDark;
+                                        colorTo = Color.valueOf("af041d");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -2909,17 +2899,7 @@ public class ExoBlocks{
                 splashDamageRadius = 50;
                 despawnHit = true;
                 rotationSpeed = 90;
-                swirlEffect = new SwirlEffect(){{
-                    width = 3f;
-                    length = 8;
-                    minRot = 120;
-                    maxRot = 480;
-                    lifetime = 90;
-                    layer = 110.005F;
-                    lerp = true;
-                    edgeColor = Color.valueOf("752c00");
-                    lightColor = ExoPal.starYellow;
-                }};
+                swirlEffect = ExoFx.yellowStarSwirl;
                 int times = 25;
                 float life = ExoFx.starChargeYellow.lifetime;
                 chargeEffect = new MultiEffect(
@@ -2993,7 +2973,7 @@ public class ExoBlocks{
                                         sizeFrom = 6;
                                         sizeTo = 0;
                                         lightColor = colorFrom = ExoPal.starYellow;
-                                        colorTo = ExoPal.starYellow;
+                                        colorTo = Color.valueOf("ff8428");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3011,7 +2991,8 @@ public class ExoBlocks{
                                         interp = Interp.sineOut;
                                         sizeFrom = 3;
                                         sizeTo = 0;
-                                        lightColor = colorFrom = colorTo = ExoPal.starYellow;
+                                        lightColor = colorFrom = ExoPal.starYellow;
+                                        colorTo = Color.valueOf("ff8428");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3079,17 +3060,7 @@ public class ExoBlocks{
                 splashDamageRadius = 50;
                 despawnHit = true;
                 rotationSpeed = 100;
-                swirlEffect = new SwirlEffect(){{
-                    width = 3f;
-                    length = 8;
-                    minRot = 120;
-                    maxRot = 480;
-                    lifetime = 90;
-                    layer = 110.005F;
-                    lerp = true;
-                    edgeColor = Color.valueOf("485f75");
-                    lightColor = ExoPal.starWhite;
-                }};
+                swirlEffect = ExoFx.whiteStarSwirl;
                 int times = 25;
                 float life = ExoFx.starChargeWhite.lifetime;
                 chargeEffect = new MultiEffect(
@@ -3162,7 +3133,8 @@ public class ExoBlocks{
                                         interp = Interp.sineOut;
                                         sizeFrom = 6;
                                         sizeTo = 0;
-                                        lightColor = colorFrom = colorTo = ExoPal.starWhite;
+                                        lightColor = colorFrom = ExoPal.starWhite;
+                                        colorTo = Color.valueOf("a1b9e9");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3180,8 +3152,8 @@ public class ExoBlocks{
                                         interp = Interp.sineOut;
                                         sizeFrom = 3;
                                         sizeTo = 0;
-                                        lightColor = colorFrom = hitColor;
-                                        colorTo = ExoPal.starWhite;
+                                        lightColor = colorFrom = ExoPal.starWhite;
+                                        colorTo = Color.valueOf("a1b9e9");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3258,17 +3230,7 @@ public class ExoBlocks{
                 splashDamage = 150;
                 splashDamageRadius = 50;
                 swirlEffects = 3;
-                swirlEffect = new SwirlEffect(){{
-                    width = 1.7f;
-                    length = 18;
-                    minRot = 140;
-                    maxRot = 680;
-                    lifetime = 70;
-                    layer = 110.005F;
-                    lerp = true;
-                    edgeColor = Color.valueOf("003a32");
-                    lightColor = ExoPal.radGreen;
-                }};
+                swirlEffect = ExoFx.starngeStarSwirl;
                 despawnHit = true;
                 rotationSpeed = 100;
                 int times = 25;
@@ -3343,7 +3305,8 @@ public class ExoBlocks{
                                 interp = Interp.sineOut;
                                 sizeFrom = 6;
                                 sizeTo = 0;
-                                lightColor = colorFrom = colorTo = ExoPal.radGreen;
+                                lightColor = colorFrom = ExoPal.radGreen;
+                                colorTo = Color.valueOf("15bd6d");
                             }};
                             effectColor = hitColor;
                             randomEffectRot = 360;
@@ -3361,8 +3324,8 @@ public class ExoBlocks{
                                 interp = Interp.sineOut;
                                 sizeFrom = 3;
                                 sizeTo = 0;
-                                lightColor = colorFrom = hitColor;
-                                colorTo = ExoPal.radGreen;
+                                lightColor = colorFrom = ExoPal.radGreen;
+                                colorTo = Color.valueOf("15bd6d");
                             }};
                             effectColor = hitColor;
                             randomEffectRot = 360;
@@ -3521,17 +3484,7 @@ public class ExoBlocks{
                         new WrapEffect(new RepeatEffect(ExoFx.supernovaCharge, (life - ExoFx.supernovaCharge.lifetime - 1f) / times, times), ExoPal.genesis, 48f),
                         ExoFx.starChargeBlue
                 );
-                swirlEffect = new SwirlEffect(){{
-                    width = 3f;
-                    length = 8;
-                    minRot = 120;
-                    maxRot = 480;
-                    lifetime = 90;
-                    layer = 110.005F;
-                    lerp = true;
-                    edgeColor = Color.valueOf("001a8a");
-                    lightColor = ExoPal.genesis;
-                }};
+                swirlEffect = ExoFx.blueStarSwirl;
                 chargeEffect.lifetime = life;
                 realColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesis;
                 scaleLife = false;
@@ -3624,7 +3577,7 @@ public class ExoBlocks{
                                         sizeFrom = 6;
                                         sizeTo = 0;
                                         lightColor = colorFrom = ExoPal.genesis;
-                                        colorTo = ExoPal.genesisDark;
+                                        colorTo = Color.valueOf("3d62ff");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3643,7 +3596,7 @@ public class ExoBlocks{
                                         sizeFrom = 3;
                                         sizeTo = 0;
                                         lightColor = colorFrom = hitColor;
-                                        colorTo = ExoPal.genesisDark;
+                                        colorTo = Color.valueOf("3d62ff");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3689,17 +3642,7 @@ public class ExoBlocks{
                 trailSinMag = 0.6f;
                 trailParam = 3.5f;
                 swirlEffects = 2;
-                swirlEffect = new SwirlEffect(){{
-                    width = 5.5f;
-                    length = 8;
-                    minRot = 140;
-                    maxRot = 780;
-                    lifetime = 120;
-                    layer = 110.005F;
-                    lerp = true;
-                    edgeColor = Color.valueOf("130042");
-                    lightColor = ExoPal.starBlue;
-                }};
+                swirlEffect = ExoFx.darkBlueStarSwirl;
                 int times = 25;
                 float life = ExoFx.starChargeBlue.lifetime;
                 chargeEffect = new MultiEffect(
@@ -3784,6 +3727,17 @@ public class ExoBlocks{
                                     layer = Layer.effect;
                                     y = 0;
                                 }},
+                                new HoverPart() {{
+                                    color = ExoPal.starBlue;
+                                    circles = 1;
+                                    sides = 360;
+                                    stroke = 8;
+                                    phase = 230;
+                                    radius = 149f;
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    y = 0;
+                                }},
                                 new EffectSpawnPart() {{
                                     useProgress = false;
                                     y = 0f;
@@ -3816,7 +3770,7 @@ public class ExoBlocks{
                                         sizeFrom = 3;
                                         sizeTo = 0;
                                         lightColor = colorFrom = hitColor;
-                                        colorTo = ExoPal.starBlue2;
+                                        colorTo = Color.valueOf("5024db");
                                     }};
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
@@ -3825,17 +3779,7 @@ public class ExoBlocks{
                                 new EffectSpawnPart() {{
                                     useProgress = false;
                                     y = 0f;
-                                    effect = new SwirlEffect(){{
-                                        width = 5.5f;
-                                        length = 8;
-                                        minRot = 140;
-                                        maxRot = 780;
-                                        lifetime = 120;
-                                        layer = 110.005F;
-                                        lerp = true;
-                                        edgeColor = Color.valueOf("130042");
-                                        lightColor = ExoPal.starBlue;
-                                    }};
+                                    effect = ExoFx.darkBlueStarSwirl;
                                     effectColor = ExoPal.starBlue;
                                     randomEffectRot = 0;
                                     effectChance = 1f;

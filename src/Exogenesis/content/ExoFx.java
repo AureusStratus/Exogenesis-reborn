@@ -695,7 +695,12 @@ public class ExoFx{
             });
         });
     }),
-            starngeStarSwirl = (new SwirlEffect(70.0F, 18, 1.7F, 140.0F, 680.0F, true)).layer(110.005F),
+            redStarSwirl = new SwirlEffect(75.0F, 8, 3F, 100.0F, 380.0F, true).layer(110.005F),
+            yellowStarSwirl = new SwirlEffect(90.0F, 10, 3F, 120.0F, 480.0F, true).layer(110.005F),
+            whiteStarSwirl = new SwirlEffect(90.0F, 8, 3F, 120.0F, 480.0F, true).layer(110.005F),
+            starngeStarSwirl = new SwirlEffect(70.0F, 18, 1.7F, 140.0F, 680.0F, true).layer(110.005F),
+            blueStarSwirl = new SwirlEffect(90.0F, 10, 3F, 120.0F, 480.0F, true).layer(110.005F),
+            darkBlueStarSwirl = new SwirlEffect(120.0F, 9, 5.5F, 140.0F, 780.0F, true).layer(110.005F),
 
             strangeStarSparks = new Effect(16f, e -> {
                 color(Color.white, e.color, e.fin());
