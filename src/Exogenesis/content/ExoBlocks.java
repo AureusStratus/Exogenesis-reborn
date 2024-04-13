@@ -9,7 +9,6 @@ import Exogenesis.world.blocks.PowerHarvester;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 import Exogenesis.entities.effect.RepeatEffect;
-
 import arc.util.Tmp;
 import blackhole.entities.bullet.BlackHoleBulletType;
 import mindustry.entities.abilities.MoveEffectAbility;
@@ -54,7 +53,8 @@ public class ExoBlocks{
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
     lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
     //Axin
-    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall, axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile,
+    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
+    axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile, axinCrystalBlend, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith,
     //ore
     oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
     //env tile end ^^^
@@ -187,7 +187,10 @@ public class ExoBlocks{
         axinCrystalTile = new Floor("axin-crystaltile"){{
             variants = 4;
         }};
-        axinCrystalBlue = new Floor("axin-crystalblue"){{
+        axinCrystalBlend = new Floor("axin-crystaltile"){{
+            variants = 4;
+        }};
+        axinCrystalBlue = new Floor("axin-crystalblend"){{
             variants = 4;
         }};
         alignPlating = new StaticWall("align-plating"){{
@@ -216,6 +219,18 @@ public class ExoBlocks{
         axinCrystal = new Prop("axin-crystal"){{
             variants = 2;
             axinStone.asFloor().decoration = axinStoneMinerals.asFloor().decoration = this;
+        }};
+        largeAxinMonolith = new TallBlock("large-AxinMonolith"){{
+            clipSize = 228f;
+            layer = 76;
+            shadowOffset = -25f;
+        }};
+        mediumAxinMonolith = new TallBlock("medium-AxinMonolith"){{
+            clipSize = 148f;
+            shadowOffset = -13f;
+        }};
+        smallAxinMonolith = new TallBlock("small-AxinMonolith"){{
+            clipSize = 88f;
         }};
         // Empyrean ores
         oreOltuxium = new OreBlock(ExoItems.oltuxium);
