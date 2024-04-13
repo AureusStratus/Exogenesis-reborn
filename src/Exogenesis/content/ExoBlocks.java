@@ -187,10 +187,10 @@ public class ExoBlocks{
         axinCrystalTile = new Floor("axin-crystaltile"){{
             variants = 4;
         }};
-        axinCrystalBlend = new Floor("axin-crystaltile"){{
+        axinCrystalBlend = new Floor("axin-crystalblend"){{
             variants = 4;
         }};
-        axinCrystalBlue = new Floor("axin-crystalblend"){{
+        axinCrystalBlue = new Floor("axin-crystalblue"){{
             variants = 4;
         }};
         alignPlating = new StaticWall("align-plating"){{
