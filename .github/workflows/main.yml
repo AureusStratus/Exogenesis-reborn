@@ -1,0 +1,45 @@
+            - name: Delete Artifacts
+  # You may pin to the exact commit or the version.
+  # uses: jimschubert/delete-artifacts-action@5e12816fde69c33b3374ee9d14d0e97137064bce
+  uses: jimschubert/delete-artifacts-action@v1
+  with:
+    # GitHub token used to access the repository defined in the GITHUB_REPOSITORY input.
+It is recommended to [create a new personal access token](https://github.com/settings/tokens/new) with the least permissions (e.g. public_repo). Using a service account for the GitHub Token is also highly recommended.
+[Learn more about using secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
+
+    GITHUB_TOKEN: # default is ${{github.token}}
+    # The target github repo in the format owner/repo
+    GITHUB_REPOSITORY: # default is ${{github.repository}}
+    # A specific Actions run identifier. You can use this to specify the current run and do some post-run cleanup.
+
+    run_id: # optional
+    # The minimum file size in bytes. The default is 0, effectively meaning it will start off by matching all files.
+Consider applying another filter such as name or pattern if you'd like to avoid deleting everything.
+**NOTE** This value must be a quoted integer.
+
+    min_bytes: # default is 0
+    # The maximum file size in bytes. If not specified, there is no limit.
+This option is useful if you have many small artifacts and want to keep a specific larger artifact.
+**NOTE** This value must be a quoted integer.
+
+    max_bytes: # optional
+    # The name of a specific artifact to delete. If not specified, this may result in _all_ artifacts being deleted.
+
+    artifact_name: # optional
+    # A POSIX regular expression. This is useful, for example, if you have matrix artifacts with a common prefix or suffix.
+
+    pattern: # optional
+    # A duration string which defines the duration during which artifacts are considered "active" and will therefore not be deleted.
+This setting is useful to avoid deleting artifacts for current or very recent runs (e.g. specify "10m"), or to allow for debugging of artifacts for some amount of time (e.g. specify "23h59m"). This acts as a retention period for artifacts when using otherwise aggressive deletion settings.
+This format follows the [go Duration](https://golang.org/pkg/time/#ParseDuration) formatting.
+
+    active_duration: # optional
+    # Specifies a custom log level.
+Choose from these options:
+* debug * info * warn * error
+
+    log_level: # optional
+    # Perform a dry-run. It's recommended to do this first to be sure you have correct settings.
+
+    dry_run: # optional, default is false
+          
