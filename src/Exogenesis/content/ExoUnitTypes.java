@@ -4624,7 +4624,7 @@ public class ExoUnitTypes {
             drag = 0.08f;
             drawCell = false;
             faceTarget = true;
-            armor = 10;
+            armor = 14;
             rotateSpeed = 2.3f;
             weapons.add(new Weapon("shine") {{
                 reload = 60f;
