@@ -41,7 +41,7 @@ public class ExoUnitTypes {
     prometheus, atlas, nemesis, hyperion, rhea, cronus, leto,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus,
-    orion, galileo, kuiper, oort, sirius;
+    orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer, stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon;
 
 
     public static void load() {
@@ -5813,7 +5813,7 @@ public class ExoUnitTypes {
             outlineColor = Color.valueOf("36363c");
             speed = 0.7f;
             hitSize = 13f;
-            health = 360f;
+            health = 460f;
             faceTarget = true;
             armor = 2;
             shadowElevation = 0.1f;
@@ -5940,7 +5940,7 @@ public class ExoUnitTypes {
             outlineColor = Color.valueOf("36363c");
             speed = 0.8f;
             hitSize = 13f;
-            health = 890f;
+            health = 920f;
             rotateSpeed = 2.5f;
             faceTarget = true;
             armor = 4;
@@ -6020,11 +6020,11 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        kuiper = new ErekirUnitType("kuiper"){{
+        kuiper = new UnitType("kuiper"){{
             speed = 0.5f;
             hitSize = 32f;
             rotateSpeed = 2.2f;
-            health = 2900;
+            health = 3100;
             armor = 4f;
             constructor = LegsUnit::create;
             legCount = 6;
@@ -6105,12 +6105,12 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        oort = new ErekirUnitType("oort"){{
+        oort = new UnitType("oort"){{
             constructor = LegsUnit::create;
             drag = 0.2f;
             speed = 0.43f;
             hitSize = 53f;
-            health = 12000;
+            health = 14500;
             rotateSpeed = 1.5f;
             armor = 7f;
             legCount = 4;
@@ -6252,12 +6252,12 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        sirius = new ErekirUnitType("sirius"){{
+        sirius = new UnitType("sirius"){{
             constructor = LegsUnit::create;
             drag = 0.1f;
             speed = 0.35f;
             hitSize = 56;
-            health = 45000;
+            health = 47000;
             armor = 9f;
             drawShields = false;
             rotateSpeed = 1.2f;
@@ -6446,6 +6446,258 @@ public class ExoUnitTypes {
                     trailParam = 5;
                     trailLength = 10;
                     trailWidth = 3.5f;
+                }};
+            }});
+        }};
+        scout = new UnitType("scout") {{
+            constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
+            speed = 1.3f;
+            hitSize = 13f;
+            health = 360f;
+            omniMovement = true;
+            faceTarget = true;
+            armor = 4;
+            shadowElevation = 0.1f;
+            targetAir = false;
+            allowLegStep = false;
+            hovering = true;
+            rotateSpeed = 1.8f;
+            legMoveSpace = 1.5f;
+            legMaxLength = 1.1f;
+            legMinLength = 0.2f;
+            legLengthScl = 0.96f;
+            legForwardScl = 1.1f;
+            legPhysicsLayer = false;
+            legGroupSize = 1;
+            legCount = 4;
+            legExtension = -2;
+            legContinuousMove = true;
+            lockLegBase = true;
+            rippleScale = 0.2f;
+            legBaseOffset = 7;
+            legLength = 10;
+            weapons.add(new Weapon("exogenesis-scout-core") {{
+                mirror = false;
+                x = 0;
+                top = false;
+                shootSound = Sounds.none;
+                shootY = 6.25f;
+                recoil = 0;
+                shake = 0f;
+                rotate = continuous = alwaysContinuous = true;
+                rotateSpeed = 2f;
+
+                bullet = new ContinuousLaserBulletType(){{
+                    hitColor = ExoPal.genesis;
+                    damage = 10f;
+                    length = 100f;
+                    pierce = false;
+                    hitEffect = new Effect(18, e -> {
+                        color(e.color);
+                        float w = 1.2f + 7 * e.fout();
+
+                        Drawf.tri(e.x, e.y, w, 30f * e.fout(), e.rotation);
+                        color(e.color);
+
+                        for(int i : Mathf.signs){
+                            Drawf.tri(e.x, e.y, w * 0.9f, 18f * e.fout(), e.rotation + i * 90f);
+                        }
+
+                        Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
+                    });
+                    drawSize = 420f;
+                    width = 3.6f;
+                    shake = 0f;
+                    largeHit = false;
+                    colors = new Color[]{ExoPal.genesis.a(0.4f), ExoPal.genesisLight, Color.white};
+                    despawnEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    shootEffect = Fx.none;
+                }};
+            }});
+        }};
+        guard = new UnitType("guard") {{
+            constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
+            speed = 1.27f;
+            hitSize = 13f;
+            health = 890f;
+            rotateSpeed = 1.8f;
+            faceTarget = true;
+            omniMovement = true;
+            armor = 7;
+            shadowElevation = 0.1f;
+            allowLegStep = false;
+            hovering = true;
+            legPhysicsLayer = false;
+            legGroupSize = 2;
+            legCount = 6;
+            legExtension = -2;
+            legMoveSpace = 0.8f;
+            legContinuousMove = true;
+            lockLegBase = true;
+            rippleScale = 0.7f;
+            legBaseOffset = 9;
+            legLength = 18;
+            weapons.add(new Weapon("exogenesis-guard-core") {{
+                reload = 5;
+                mirror = top = false;
+                x = 0;
+                rotate = true;
+                rotateSpeed = 2;
+                shootSound = Sounds.none;
+                shootCone = 30;
+                shootY = 0;
+                recoil = 0;
+                bullet = new ExoBasicBulletType(6, 10){{
+                    instantDisappear = true;
+                    width = height = 0f;
+                    shrinkX = shootY = 0;
+                    lifetime = 40;
+                    hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                }};
+            }});
+        }};
+        sentry = new UnitType("sentry"){{
+            speed = 1.25f;
+            hitSize = 32f;
+            rotateSpeed = 1.8f;
+            health = 2900;
+            armor = 10f;
+            constructor = LegsUnit::create;
+            legCount = 6;
+            legLength = 21f;
+            legForwardScl = 0.65f;
+            legMoveSpace = 0.8f;
+            legExtension = -15;
+            legBaseOffset =  16;
+            lockLegBase = legContinuousMove = faceTarget = omniMovement = true;
+            legGroupSize = 3;
+            legMaxLength = 1.3f;
+            rippleScale = 2;
+            hovering = true;
+            legSplashDamage = 22;
+            legSplashRange = 30;
+
+            shadowElevation = 0.4f;
+            groundLayer = Layer.legUnit - 1f;
+            weapons.add(new Weapon("exogenesis-sentry-core"){{
+                shootSound = Sounds.none;
+                x = 0f;
+                y = 0;
+                shootY = 13.5f;
+                shake = 0;
+                reload = 70f;
+                top = false;
+                rotate = true;
+                rotateSpeed = 2;
+                recoil = 0;
+                bullet = new ExoBasicBulletType(6, 10){{
+                        instantDisappear = true;
+                        width = height = 0f;
+                        shrinkX = shootY = 0;
+                        lifetime = 40;
+                        hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                }};
+            }});
+        }};
+        sentinel = new UnitType("sentinel"){{
+            constructor = LegsUnit::create;
+            drag = 0.2f;
+            speed = 1.24f;
+            hitSize = 53f;
+            health = 12000;
+            rotateSpeed = 1.8f;
+            armor = 14f;
+            legCount = 6;
+            legMoveSpace = 1.1f;
+
+            lockLegBase = true;
+            legContinuousMove = true;
+            legSpeed = 0.001f;
+            legLength = 32f;
+            legForwardScl = 0.45f;
+            rippleScale = 2f;
+            stepShake = 4.5f;
+            legBaseOffset = 12f;
+
+            legSplashDamage = 62;
+            legSplashRange = 30;
+            drownTimeMultiplier = 2f;
+
+            hovering = true;
+            shadowElevation = 0.4f;
+            groundLayer = Layer.legUnit;
+            weapons.add(new Weapon("exogenesis-sentinel-core"){{
+                shootSound = Sounds.none;
+                mirror = false;
+                top = false;
+                x = 0;
+                y = 0f;
+                rotate = true;
+                rotateSpeed = 2;
+                shootY = 0;
+                reload = 400f;
+                shake = 0f;
+                heatColor = Color.red;
+
+                bullet = new ExoBasicBulletType(6, 10){{
+                    instantDisappear = true;
+                    width = height = 0f;
+                    shrinkX = shootY = 0;
+                    lifetime = 40;
+                    hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                }};
+            }});
+        }};
+        overseer = new UnitType("overseer"){{
+            constructor = LegsUnit::create;
+            drag = 0.1f;
+            speed = 1.23f;
+            hitSize = 56;
+            health = 45000;
+            drawShields = false;
+
+            rotateSpeed = 1.8f;
+            armor = 20f;
+            legCount = 8;
+            legMoveSpace = 1.1f;
+
+            lockLegBase = true;
+            legContinuousMove = true;
+            legSpeed = 0.001f;
+            legLength = 32f;
+            legForwardScl = 0.45f;
+            rippleScale = 2f;
+            stepShake = 4.5f;
+            legBaseOffset = 12f;
+
+            legSplashDamage = 172;
+            legSplashRange = 32;
+            drownTimeMultiplier = 2f;
+
+            hovering = true;
+            shadowElevation = 0.8f;
+            groundLayer = Layer.legUnit;
+            weapons.add(new Weapon("exogenesis-overseer-core"){{
+                shootSound = Sounds.none;
+                mirror = false;
+                shootCone = 70f;
+                rotateSpeed = 2f;
+                top = false;
+                rotate = true;
+                x = 0f;
+                y = 0;
+                recoil = 0f;
+                reload = 45f;
+                shake = 0f;
+                bullet = new ExoBasicBulletType(6, 10){{
+                    instantDisappear = true;
+                    width = height = 0f;
+                    shrinkX = shootY = 0;
+                    lifetime = 40;
+                    hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
                 }};
             }});
         }};
