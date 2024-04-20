@@ -1,4 +1,4 @@
-            - name: Delete Artifacts
+   name: Delete Artifacts
   # You may pin to the exact commit or the version.
   # uses: jimschubert/delete-artifacts-action@5e12816fde69c33b3374ee9d14d0e97137064bce
   uses: jimschubert/delete-artifacts-action@v1
