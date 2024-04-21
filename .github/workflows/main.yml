@@ -6,11 +6,11 @@
     # Access token for the repository.
     GITHUB_TOKEN: # default is ${{ github.token }}
     # Exact string for filtering artifacts by name.
-    only-name: # optional
+    only-name: Build Mod
     # Regex for filtering artifacts by name.
     regex-name: # optional
     # Maximum number of artifacts to keep.
     max-count: # optional
     # Maximum age(by seconds) of artifacts to keep.
-    max-age: # 10
+    max-age:  10
           
