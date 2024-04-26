@@ -1,9 +1,15 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
+import Exogenesis.maps.ColorPass.*;
+import Exogenesis.maps.HeightPass;
+import Exogenesis.maps.HeightPass.*;
+import Exogenesis.maps.planets.*;
 import Exogenesis.maps.planets.AxinPlanetGenerator;
 import Exogenesis.maps.planets.HadroxaPlanetGenerator;
 import Exogenesis.maps.planets.TauTiamasPlanetGenerator;
 import arc.graphics.Color;
+import arc.math.Interp;
+import arc.math.geom.Vec3;
 import mindustry.content.*;
 import mindustry.game.Team;
 import mindustry.graphics.Pal;
@@ -12,6 +18,7 @@ import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.MultiMesh;
 import mindustry.maps.planet.SerpuloPlanetGenerator;
 import mindustry.type.Planet;
+import mindustry.ui.dialogs.PlanetDialog;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 
@@ -124,7 +131,89 @@ public class ExoPlanets{
             };
         }};
         axin = new Planet("axin", Planets.sun, 1f, 2){{
-            generator = new AxinPlanetGenerator();
+            generator = new AxinPlanetGenerator() {{
+                baseHeight = -1f;
+                baseColor = ExoEnvironmentBlocks.axinStone.mapColor;
+                heights.addAll(
+                        new HeightPass.AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 10);
+                            dir.set(1f, 0f, 0f);
+                            magnitude = 5;
+                        }},
+                        new AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 10);
+                            dir.set(-0.5f, 0.5f, 1);
+                            magnitude = 5;
+                        }},
+                        new AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 10);
+                            dir.set(-0.3f, -1f, -0.6f);
+                            magnitude = 5;
+                        }},
+                        new ClampHeight(0f, 0.8f),
+                        new NoiseHeight() {{
+                            scale = 1.5;
+                            persistence = 0.5;
+                            octaves = 3;
+                            magnitude = 1.2f;
+                            heightOffset = -1f;
+                            offset.set(1500f, 300f, -500f);
+                        }},
+                        new ClampHeight(-0.2f, 0.8f),
+                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1f), 0.3f, -0.3f),
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.8f), 0.17f, 0.2f) {{
+                            set = true;
+                        }},
+                        new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
+                            set = true;
+                        }},
+                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.17f, -0.2f)
+                );
+
+                colors.addAll(
+                        new NoiseColorPass() {{
+                            scale = 1.5;
+                            persistence = 0.5;
+                            octaves = 3;
+                            magnitude = 1.2f;
+                            min = 0.3f;
+                            max = 0.6f;
+                            out = ExoEnvironmentBlocks.axinIce.mapColor;
+                            offset.set(1500f, 300f, -500f);
+                        }},
+                        new NoiseColorPass() {{
+                            seed = 5;
+                            scale = 1.5;
+                            persistence = 0.5;
+                            octaves = 5;
+                            magnitude = 1.2f;
+                            min = 0.1f;
+                            max = 0.4f;
+                            out = ExoEnvironmentBlocks.axinCyanSlate.mapColor;
+                            offset.set(1500f, 300f, -500f);
+                        }},
+                        new NoiseColorPass() {{
+                            seed = 8;
+                            scale = 1.5;
+                            persistence = 0.5;
+                            octaves = 7;
+                            magnitude = 1.2f;
+                            min = 0.1f;
+                            max = 0.4f;
+                            out = ExoEnvironmentBlocks.axinCyanSlate.mapColor;
+                            offset.set(1500f, 300f, -500f);
+                        }},
+                        new FlatColorPass() {{
+                            min = -1f;
+                            max = -0.19f;
+                            out = ExoEnvironmentBlocks.axinIce.mapColor;
+                        }},
+                        new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, ExoEnvironmentBlocks.axinPurpleStone.mapColor),
+                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.1f, ExoEnvironmentBlocks.thenmialPlasma.mapColor),
+                        new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, Blocks.carbonStone.mapColor),
+                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.axincarbonStone.mapColor)
+                );
+            }};
             meshLoader = () -> new HexMesh(this, 6);
             cloudMeshLoader = () -> new MultiMesh(
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
@@ -156,6 +245,7 @@ public class ExoPlanets{
             landCloudColor = Color.blue.cpy().a(0.5f);
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
         }};
+
 
     }
 

@@ -44,20 +44,6 @@ import static arc.graphics.g2d.Lines.*;
 
 public class ExoBlocks{
     public static Block
-    //mic
-    oreOsmium,
-    //Empyrean
-    //env tiles
-    powerCrystal,
-    //vanstar
-    deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
-    lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
-    //Axin
-    axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
-    axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile, axinCrystalBlend, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith,
-    //ore
-    oreOltuxium, oreChronophite, oreGold, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal,
-    //env tile end ^^^
     //blocks
     ductEmpyrean, harvesterSmall, harvesterMedium,
     //turrets
@@ -65,195 +51,9 @@ public class ExoBlocks{
     excalibur, aspect, godsent, eminence, aeon, grandeur, aether, profane, agios, arbiter, //phoss,
     //genesis align
     astral, starFleet, cosmos, armada, astrology, stellar, coldPlasmaThrower, sagittarius, nebula, halley, magnetar, neutronMortar,
-            supernova, thuban, polaris, /*theia, constellation, tesseract, hypernovaBurst,*/
+            supernova, thuban, polaris, lunar, /*theia, constellation, tesseract, hypernovaBurst,*/
             genesisFactory, empyreanFactory;
     public static void load(){
-        oreOsmium = new OreBlock(ExoItems.osmium){{
-            variants = 5;
-            wallOre = true;
-        }};
-
-        //Vanstar Tiles
-        deepVansterWater = new Floor("deep-vanster-water"){{
-            speedMultiplier = 0.2f;
-            variants = 0;
-            liquidDrop = Liquids.water;
-            liquidMultiplier = 1.5f;
-            isLiquid = true;
-            status = StatusEffects.wet;
-            statusDuration = 120f;
-            drownTime = 200f;
-            cacheLayer = CacheLayer.water;
-            albedo = 0.9f;
-            supportsOverlay = true;
-        }};
-        vansterWater = new Floor("vanster-water"){{
-            speedMultiplier = 0.5f;
-            variants = 0;
-            status = StatusEffects.wet;
-            statusDuration = 90f;
-            liquidDrop = Liquids.water;
-            isLiquid = true;
-            cacheLayer = CacheLayer.water;
-            albedo = 0.9f;
-            supportsOverlay = true;
-        }};
-        shallowVansterWater = new Floor("shallow-vanster-water"){{
-            speedMultiplier = 0.65f;
-            status = StatusEffects.wet;
-            liquidDrop = Liquids.water;
-            statusDuration = 50f;
-            cacheLayer = CacheLayer.water;
-            isLiquid = true;
-            albedo = 0.9f;
-        }};
-        vansterSandyWater = new Floor("vanster-sandy-water"){{
-            speedMultiplier = 0.8f;
-            statusDuration = 50f;
-            liquidDrop = Liquids.water;
-            isLiquid = true;
-            albedo = 0.9f;
-        }};
-        yellowIce = new Floor("yellow-ice"){{
-            dragMultiplier = 0.35f;
-            variants = 2;
-            speedMultiplier = 0.9f;
-            attributes.set(Attribute.water, 0.4f);
-            albedo = 0.65f;
-        }};
-        yellowGrass = new Floor("yellow-grass"){{
-            variants = 4;
-        }};
-        redLightningStone = new Floor("red-lightning-stone"){{
-            variants = 4;
-        }};
-        lightningStoneCharged = new Floor("lightning-stone-charged"){{
-            variants = 4;
-        }};
-        lightningStoneDim = new Floor("lightning-stone-dim"){{
-            variants = 4;
-        }};
-        vanstarock = new Floor("vanstarock"){{
-            variants = 7;
-        }};
-        vanstarockRound = new Floor("vanstarockRound"){{
-            variants = 4;
-        }};
-        skystonegrey = new Floor("skystonegrey"){{
-            variants = 5;
-        }};
-        skystone = new Floor("skystone"){{
-            variants = 4;
-        }};
-        skystonebright = new Floor("skystonebright"){{
-            variants = 4;
-        }};
-        blackSand = new Floor("blacksand"){{
-            itemDrop = Items.sand;
-            playerUnmineable = true;
-        }};
-        lightningStoneChargedWall = new StaticWall("lightning-stone-wall-charged"){{
-            lightningStoneCharged.asFloor().wall = this;
-        }};
-        lightningStoneDimWall = new StaticWall("lightning-stone-wall-dim"){{
-            lightningStoneDim.asFloor().wall = this;
-        }};
-        redLightningStoneWall = new StaticWall("red-lightning-stone-wall"){{
-            redLightningStone.asFloor().wall = this;
-        }};
-
-        //Axin Tiles
-        axincarbonStone = new Floor("axincarbon-stone"){{
-            variants = 6;
-        }};
-        axinStone = new Floor("axin-stone"){{
-            variants = 6;
-        }};
-        axinRock = new Floor("axin-rock"){{
-            variants = 5;
-        }};
-        axinStoneWall = new StaticWall("axin-stone-wall"){{
-            variants = 2;
-        }};
-        axinStoneMinerals = new Floor("axin-stoneMinerals"){{
-            variants = 6;
-        }};
-        axinPurpleStone = new Floor("axinpurple-stone"){{
-            variants = 6;
-        }};
-        axinPurpleStoneMineral = new Floor("axinpurpleMineral-stone"){{
-            variants = 6;
-        }};
-        axinCrystalTile = new Floor("axin-crystaltile"){{
-            variants = 4;
-        }};
-        axinCrystalBlend = new Floor("axin-crystalblend"){{
-            variants = 4;
-        }};
-        axinCrystalBlue = new Floor("axin-crystalblue"){{
-            variants = 4;
-        }};
-        alignPlating = new StaticWall("align-plating"){{
-            variants = 14;
-        }};
-        axinIce = new Floor("axin-ice"){{
-            dragMultiplier = 0.4f;
-            speedMultiplier = 0.9f;
-            variants = 3;
-        }};
-        poolAxinPlasma = new Floor("pooled-axinPlasma"){{
-            drownTime = 150f;
-            status = StatusEffects.freezing;
-            statusDuration = 240f;
-            speedMultiplier = 0.5f;
-            variants = 0;
-            liquidDrop = ExoLiquids.axinian;
-            liquidMultiplier = 0.5f;
-            isLiquid = true;
-            cacheLayer = CacheLayer.water;
-
-            emitLight = true;
-            lightRadius = 25f;
-            lightColor = ExoPal.genesisDark.cpy().a(0.19f);
-        }};
-        axinCrystal = new Prop("axin-crystal"){{
-            variants = 2;
-            axinStone.asFloor().decoration = axinStoneMinerals.asFloor().decoration = this;
-        }};
-        largeAxinMonolith = new TallBlock("large-AxinMonolith"){{
-            clipSize = 228f;
-            layer = 76;
-            shadowOffset = -25f;
-        }};
-        mediumAxinMonolith = new TallBlock("medium-AxinMonolith"){{
-            clipSize = 148f;
-            shadowOffset = -13f;
-        }};
-        smallAxinMonolith = new TallBlock("small-AxinMonolith"){{
-            clipSize = 88f;
-        }};
-        // Empyrean ores
-        oreOltuxium = new OreBlock(ExoItems.oltuxium);
-        oreChronophite = new OreBlock(ExoItems.chronophite);
-        oreGold = new OreBlock(ExoItems.gold);
-        ferricIronWall = new StaticWall("ferric-iron-wall"){{
-            itemDrop = ExoItems.iron;
-            variants = 3;
-        }};
-        magnetiteOreWall = new StaticWall("magnetite-ore-wall"){{
-            itemDrop = ExoItems.magnetite;
-            variants = 3;
-        }};
-        magnetiteCrystal = new TallBlock("magnetite-crystal-blocks"){{
-            variants = 3;
-            itemDrop = ExoItems.magnetite;
-            clipSize = 128f;
-        }};
-        lightningCrystal = new ExoPowerProp("lightning-crystal"){{
-            variants = 3;
-            attributes.set(ExoAttribute.power, 1f);
-            clipSize = 128f;
-        }};
         //Empyrean blocks
         ductEmpyrean = new Duct("duct-empyrean"){{
             requirements(Category.distribution, with(Items.beryllium, 1));
@@ -2316,7 +2116,7 @@ public class ExoBlocks{
             outlineColor = Pal.darkOutline;
             shootEffect = Fx.shootBigColor;
             smokeEffect = Fx.shootSmokeSquareSparse;
-            size = 4;
+            size = 5;
             scaledHealth = 240;
             velocityRnd = 0.25f;
             shootCone = 90;
@@ -2330,9 +2130,17 @@ public class ExoBlocks{
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
                         new RegionPart("-side"){{
-                            moveY = -2;
-                            moveX = 1.5f;
-                            moveRot =- 16;
+                            moveY = 5;
+                            moveX = 3.5f;
+                            moveRot = 6;
+                            children.add(
+                                    new RegionPart("-side2"){{
+                                        progress = PartProgress.warmup.delay(0.6f);
+                                        moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f), new PartMove(PartProgress.warmup.delay(0.5f), 0f, -3f, 0f));
+                                        mirror = true;
+                                        moveX = 2;
+                                        moveY = 6f;
+                                    }});
                             progress = PartProgress.recoil;
                             mirror = true;
                         }}
@@ -2443,6 +2251,60 @@ public class ExoBlocks{
                 damage = 10;
                 hitEffect = ExoFx.hitMeltColor;
                 smokeEffect = Fx.colorSparkBig;
+            }};
+        }};
+        lunar = new PowerTurret("lunar"){{
+            requirements(Category.turret, with(ExoItems.rustyCopper, 420, Items.silicon, 300, ExoItems.osmium, 200, ExoItems.neodymium, 320, ExoItems.lightningStone, 250, ExoItems.vanstariumAlloy, 200, ExoItems.empyreanPlating, 300, ExoItems.litusiumAlloy, 150));
+            range = 260f;
+            recoil = 3f;
+            reload = 100f;
+            shootEffect = Fx.shootSmokeSmite;
+            heatColor = Color.red;
+            outlineColor = ExoPal.empyreanOutline;
+            size = 4;
+            minWarmup = 0.99f;
+            shootY = 9;
+            scaledHealth = 280;
+            cooldownTime = 320;
+            shootSound = ExoSounds.shockblast;
+            shootCone = 65f;
+            coolant = consumeCoolant(0.2f);
+            consumePower(6f);
+            drawer = new DrawTurret("genesux-"){{
+                parts.add(
+                        new RegionPart("-lunar-blade"){{
+                            progress = PartProgress.warmup.curve(Interp.pow2In);
+                            moveX = 3.5f;
+                            moveY = -4;
+                            moveRot = -15;
+                            mirror = true;
+                        }},
+                        new RegionPart("-cell"){{
+                            progress = PartProgress.warmup.curve(Interp.pow2In);
+                            moveY = -2f;
+                            moveRot = 7;
+                        }}
+                );
+            }};
+            shootType = new ExoBasicBulletType(8f, 207){{
+                lifetime = 35f;
+                backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.genesis;
+                sprite = "exogenesis-pulse";
+                damageType = energy;
+                hitSize = 18f;
+                width = 16f;
+                height = 10;
+                pierce = true;
+                smokeEffect = ExoFx.square45_6_45;
+                hitEffect = ExoFx.square45_6_45;
+                despawnEffect = new Effect(35f, 70f, e -> {
+                    Draw.color(e.color, Color.white, e.fout() * 0.7f);
+                    for(int i : Mathf.signs){
+
+                        Drawf.tri(e.x, e.y, height * 1.5f * e.fout(), width * 0.885f * e.fout(), e.rotation + i * 90);
+                        Drawf.tri(e.x, e.y, height * 0.8f * e.fout(), width * 0.252f * e.fout(), e.rotation + 90 + i * 90);
+                    }
+                });
             }};
         }};
         magnetar = new ContinuousTurret("magnetar"){{

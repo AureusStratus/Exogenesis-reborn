@@ -6021,6 +6021,7 @@ public class ExoUnitTypes {
             }});
         }};
         kuiper = new UnitType("kuiper"){{
+            outlineColor = Color.valueOf("36363c");
             speed = 0.5f;
             hitSize = 32f;
             rotateSpeed = 2.2f;
@@ -6107,6 +6108,7 @@ public class ExoUnitTypes {
         }};
         oort = new UnitType("oort"){{
             constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
             drag = 0.2f;
             speed = 0.43f;
             hitSize = 53f;
@@ -6254,6 +6256,7 @@ public class ExoUnitTypes {
         }};
         sirius = new UnitType("sirius"){{
             constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
             drag = 0.1f;
             speed = 0.35f;
             hitSize = 56;
@@ -6463,7 +6466,6 @@ public class ExoUnitTypes {
             allowLegStep = false;
             hovering = true;
             rotateSpeed = 1.8f;
-            legMoveSpace = 1.5f;
             legMaxLength = 1.1f;
             legMinLength = 0.2f;
             legLengthScl = 0.96f;
@@ -6486,13 +6488,14 @@ public class ExoUnitTypes {
                 recoil = 0;
                 shake = 0f;
                 rotate = continuous = alwaysContinuous = true;
-                rotateSpeed = 2f;
+                rotateSpeed = 3.5f;
 
                 bullet = new ContinuousLaserBulletType(){{
                     hitColor = ExoPal.genesis;
                     damage = 10f;
                     length = 100f;
                     pierce = false;
+                    pierceCap = 1;
                     hitEffect = new Effect(18, e -> {
                         color(e.color);
                         float w = 1.2f + 7 * e.fout();
@@ -6503,11 +6506,9 @@ public class ExoUnitTypes {
                         for(int i : Mathf.signs){
                             Drawf.tri(e.x, e.y, w * 0.9f, 18f * e.fout(), e.rotation + i * 90f);
                         }
-
-                        Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
                     });
-                    drawSize = 420f;
-                    width = 3.6f;
+                    drawSize = 120f;
+                    width = 2.6f;
                     shake = 0f;
                     largeHit = false;
                     colors = new Color[]{ExoPal.genesis.a(0.4f), ExoPal.genesisLight, Color.white};
@@ -6545,7 +6546,7 @@ public class ExoUnitTypes {
                 mirror = top = false;
                 x = 0;
                 rotate = true;
-                rotateSpeed = 2;
+                rotateSpeed = 3.5f;
                 shootSound = Sounds.none;
                 shootCone = 30;
                 shootY = 0;
@@ -6560,6 +6561,7 @@ public class ExoUnitTypes {
             }});
         }};
         sentry = new UnitType("sentry"){{
+            outlineColor = Color.valueOf("36363c");
             speed = 1.25f;
             hitSize = 32f;
             rotateSpeed = 1.8f;
@@ -6591,7 +6593,7 @@ public class ExoUnitTypes {
                 reload = 70f;
                 top = false;
                 rotate = true;
-                rotateSpeed = 2;
+                rotateSpeed = 3.5f;
                 recoil = 0;
                 bullet = new ExoBasicBulletType(6, 10){{
                         instantDisappear = true;
@@ -6604,6 +6606,7 @@ public class ExoUnitTypes {
         }};
         sentinel = new UnitType("sentinel"){{
             constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
             drag = 0.2f;
             speed = 1.24f;
             hitSize = 53f;
@@ -6616,7 +6619,7 @@ public class ExoUnitTypes {
             lockLegBase = true;
             legContinuousMove = true;
             legSpeed = 0.001f;
-            legLength = 32f;
+            legLength = 45f;
             legForwardScl = 0.45f;
             rippleScale = 2f;
             stepShake = 4.5f;
@@ -6636,7 +6639,7 @@ public class ExoUnitTypes {
                 x = 0;
                 y = 0f;
                 rotate = true;
-                rotateSpeed = 2;
+                rotateSpeed = 3.5f;
                 shootY = 0;
                 reload = 400f;
                 shake = 0f;
@@ -6653,6 +6656,7 @@ public class ExoUnitTypes {
         }};
         overseer = new UnitType("overseer"){{
             constructor = LegsUnit::create;
+            outlineColor = Color.valueOf("36363c");
             drag = 0.1f;
             speed = 1.23f;
             hitSize = 56;
@@ -6667,7 +6671,7 @@ public class ExoUnitTypes {
             lockLegBase = true;
             legContinuousMove = true;
             legSpeed = 0.001f;
-            legLength = 32f;
+            legLength = 52f;
             legForwardScl = 0.45f;
             rippleScale = 2f;
             stepShake = 4.5f;
@@ -6684,7 +6688,7 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 mirror = false;
                 shootCone = 70f;
-                rotateSpeed = 2f;
+                rotateSpeed = 3.5f;
                 top = false;
                 rotate = true;
                 x = 0f;
