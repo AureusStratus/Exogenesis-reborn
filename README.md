@@ -4,13 +4,13 @@
 
 My discord Aureus#6109
 
-Official Exogenesis youtube channel link https://youtube.com/channel/UCkIHhwPP42TkNtdx56vbHGA
+Official Exogenesis youtube channel link. https://youtube.com/channel/UCkIHhwPP42TkNtdx56vbHGA
 
 A mod that adds a lot more content to the game.
 <br>I just hope you guys enjoy my mod.
 
 ## The mod adds: 
-a lot of stuff.
+a lot of stuff
 
 ## Mod factions 
 Exogenesis contains five different Factions each with there own lore, weapons, defense, and units.
