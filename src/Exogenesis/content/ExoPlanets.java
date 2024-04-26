@@ -3,7 +3,6 @@ import Exogenesis.graphics.ExoPal;
 import Exogenesis.maps.ColorPass.*;
 import Exogenesis.maps.HeightPass;
 import Exogenesis.maps.HeightPass.*;
-import Exogenesis.maps.planets.*;
 import Exogenesis.maps.planets.AxinPlanetGenerator;
 import Exogenesis.maps.planets.HadroxaPlanetGenerator;
 import Exogenesis.maps.planets.TauTiamasPlanetGenerator;
@@ -18,7 +17,6 @@ import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.MultiMesh;
 import mindustry.maps.planet.SerpuloPlanetGenerator;
 import mindustry.type.Planet;
-import mindustry.ui.dialogs.PlanetDialog;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 
@@ -133,7 +131,7 @@ public class ExoPlanets{
         axin = new Planet("axin", Planets.sun, 1f, 2){{
             generator = new AxinPlanetGenerator() {{
                 baseHeight = -1f;
-                baseColor = ExoEnvironmentBlocks.axinStone.mapColor;
+                baseColor = Color.valueOf("242833");
                 heights.addAll(
                         new HeightPass.AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 10);
@@ -178,7 +176,7 @@ public class ExoPlanets{
                             magnitude = 1.2f;
                             min = 0.3f;
                             max = 0.6f;
-                            out = ExoEnvironmentBlocks.axinIce.mapColor;
+                            out = Color.valueOf("121733");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
@@ -189,7 +187,7 @@ public class ExoPlanets{
                             magnitude = 1.2f;
                             min = 0.1f;
                             max = 0.4f;
-                            out = ExoEnvironmentBlocks.axinCyanSlate.mapColor;
+                            out = Color.valueOf("2d67a1");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
@@ -200,18 +198,18 @@ public class ExoPlanets{
                             magnitude = 1.2f;
                             min = 0.1f;
                             max = 0.4f;
-                            out = ExoEnvironmentBlocks.axinCyanSlate.mapColor;
+                            out = Color.valueOf("2d67a1");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new FlatColorPass() {{
                             min = -1f;
                             max = -0.19f;
-                            out = ExoEnvironmentBlocks.axinIce.mapColor;
+                            out = Color.valueOf("c5d7f0");
                         }},
-                        new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, ExoEnvironmentBlocks.axinPurpleStone.mapColor),
-                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.1f, ExoEnvironmentBlocks.thenmialPlasma.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, Blocks.carbonStone.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.axincarbonStone.mapColor)
+                        new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, Color.valueOf("252142")),
+                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.1f, Color.valueOf("3c5acc")),
+                        new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, Color.valueOf("3c4448")),
+                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("282b34"))
                 );
             }};
             meshLoader = () -> new HexMesh(this, 6);
