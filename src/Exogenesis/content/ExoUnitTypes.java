@@ -6619,7 +6619,7 @@ public class ExoUnitTypes {
             lockLegBase = true;
             legContinuousMove = true;
             legSpeed = 0.001f;
-            legLength = 45f;
+            legLength = 65f;
             legForwardScl = 0.45f;
             rippleScale = 2f;
             stepShake = 4.5f;
@@ -6671,7 +6671,7 @@ public class ExoUnitTypes {
             lockLegBase = true;
             legContinuousMove = true;
             legSpeed = 0.001f;
-            legLength = 52f;
+            legLength = 62f;
             legForwardScl = 0.45f;
             rippleScale = 2f;
             stepShake = 4.5f;

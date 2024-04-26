@@ -23,7 +23,7 @@ public class ExoEnvironmentBlocks {
     //Axin
     axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
     thenmialPlasma, thenmialPlasmaShallow, thenmialPlasmaDeep, thenmialPlasmaAbyssal, axinCyanSlate, axinSlate, axinCrystalStone, axinPurpleRock, axinPurpleSlate,
-    axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile, axinCrystalBlend, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith,
+    axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile, colossalAxinMonolith, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith,
     //ore
     oreOltuxium, oreChronophite, oreGold, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, nickelGeodeGiant;
     public static void load() {
@@ -133,7 +133,7 @@ public class ExoEnvironmentBlocks {
         }};
 
         //Axin Tiles
-        thenmialPlasmaAbyssal = new Floor("Thenmial-plasma-abyssal") {{
+        thenmialPlasmaAbyssal = new Floor("thenmial-plasma-abyssal") {{
             speedMultiplier = 0.2f;
             variants = 0;
             liquidDrop = ExoLiquids.coldPlasma;
@@ -146,7 +146,7 @@ public class ExoEnvironmentBlocks {
             albedo = 0.9f;
             supportsOverlay = true;
         }};
-        thenmialPlasmaDeep = new Floor("Thenmial-plasma-deep") {{
+        thenmialPlasmaDeep = new Floor("thenmial-plasma-deep") {{
             speedMultiplier = 0.5f;
             variants = 0;
             status = StatusEffects.freezing;
@@ -157,7 +157,7 @@ public class ExoEnvironmentBlocks {
             albedo = 0.9f;
             supportsOverlay = true;
         }};
-        thenmialPlasma = new Floor("Thenmial-plasma") {{
+        thenmialPlasma = new Floor("thenmial-plasma") {{
             speedMultiplier = 0.65f;
             status = StatusEffects.freezing;
             liquidDrop = ExoLiquids.coldPlasma;
@@ -166,7 +166,7 @@ public class ExoEnvironmentBlocks {
             isLiquid = true;
             albedo = 0.9f;
         }};
-        thenmialPlasmaShallow = new Floor("Thenmial-plasma-shallow") {{
+        thenmialPlasmaShallow = new Floor("thenmial-plasma-shallow") {{
             speedMultiplier = 0.8f;
             statusDuration = 50f;
             liquidDrop = ExoLiquids.coldPlasma;
@@ -175,12 +175,7 @@ public class ExoEnvironmentBlocks {
         }};
         nickelGeode = new StaticWall("nickel-geode") {{
             itemDrop = ExoItems.nickel;
-            variants = 3;
-        }};
-        nickelGeodeGiant = new StaticWall("nickel-geode-giant") {{
-            itemDrop = ExoItems.nickel;
-            size = 4;
-            variants = 0;
+            variants = 2;
         }};
         axincarbonStone = new Floor("axincarbon-stone") {{
             variants = 6;
@@ -194,7 +189,7 @@ public class ExoEnvironmentBlocks {
         axinPurpleRock = new Floor("axinpurple-rock") {{
             variants = 5;
         }};
-        axinSlate = new Floor("axin-slate") {{
+        axinSlate = new Floor("axin1-slate") {{
             variants = 3;
         }};
         axinCrystalStone = new Floor("axin-crystalStone") {{
@@ -219,9 +214,6 @@ public class ExoEnvironmentBlocks {
             variants = 6;
         }};
         axinCrystalTile = new Floor("axin-crystaltile") {{
-            variants = 4;
-        }};
-        axinCrystalBlend = new Floor("axin-crystalblend") {{
             variants = 4;
         }};
         axinCrystalBlue = new Floor("axin-crystalblue") {{
@@ -254,7 +246,7 @@ public class ExoEnvironmentBlocks {
             variants = 2;
             axinStone.asFloor().decoration = axinStoneMinerals.asFloor().decoration = this;
         }};
-        largeAxinMonolith = new TallBlock("colossal-AxinMonolith") {{
+        colossalAxinMonolith = new TallBlock("colossal-AxinMonolith") {{
             clipSize = 228f;
             size = 7;
             layer = 77;
