@@ -1,13 +1,9 @@
 package Exogenesis;
 
 import Exogenesis.util.util.Utils;
-import arc.files.*;
-import arc.util.*;
-import mindustry.*;
 import Exogenesis.content.ExoBlocks;
 import Exogenesis.content.ExoUnitTypes;
 import Exogenesis.content.*;
-import Exogenesis.util.*;
 import mindustry.mod.Mod;
 
 public class Exogenesis extends Mod {
@@ -20,6 +16,7 @@ public class Exogenesis extends Mod {
         ExoUnitTypes.load();
         ExoLiquids.load();
         ExoItems.load();
+        ExoEnvironmentBlocks.load();
         ExoBlocks.load();
         TypeMultipliers.load();
         ExoPlanets.load();
