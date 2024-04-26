@@ -188,10 +188,10 @@ public class ExoEnvironmentBlocks {
         axinCyanSlate = new Floor("axinCyan-slate") {{
             variants = 3;
         }};
-        axinPurpleSlate = new Floor("axinCyan-slate") {{
+        axinPurpleSlate = new Floor("axinpurple-slate") {{
             variants = 3;
         }};
-        axinPurpleRock = new Floor("axinCyan-slate") {{
+        axinPurpleRock = new Floor("axinpurple-rock") {{
             variants = 5;
         }};
         axinSlate = new Floor("axin-slate") {{
@@ -254,7 +254,7 @@ public class ExoEnvironmentBlocks {
             variants = 2;
             axinStone.asFloor().decoration = axinStoneMinerals.asFloor().decoration = this;
         }};
-        largeAxinMonolith = new TallBlock("large-AxinMonolith") {{
+        largeAxinMonolith = new TallBlock("colossal-AxinMonolith") {{
             clipSize = 228f;
             size = 7;
             layer = 77;
