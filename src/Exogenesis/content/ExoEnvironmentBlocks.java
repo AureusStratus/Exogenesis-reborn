@@ -23,9 +23,10 @@ public class ExoEnvironmentBlocks {
     //Axin
     axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
     thenmialPlasma, thenmialPlasmaShallow, thenmialPlasmaDeep, thenmialPlasmaAbyssal, axinCyanSlate, axinSlate, axinCrystalStone, axinPurpleRock, axinPurpleSlate,
-    axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalTile, colossalAxinMonolith, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith,
+    axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalPurple, axinCrystalTile, colossalAxinMonolith, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith, diamondGrowth, diamondTile,
+    diamondWall, axinPurpleWall, axinCrystalStoneWall,
     //ore
-    oreOltuxium, oreChronophite, oreGold, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, nickelGeodeGiant;
+    oreOltuxium, oreChronophite, oreGold, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, nickelGeodeGiant, curtusesOre;
     public static void load() {
         oreOsmium = new OreBlock(ExoItems.osmium) {{
             variants = 5;
@@ -40,8 +41,13 @@ public class ExoEnvironmentBlocks {
         oreUrbium = new OreBlock("ore-urbium",ExoItems.urbium) {{
             variants = 3;
         }};
-        oreLanosium = new OreBlock(ExoItems.lanosium) {{
+        oreLanosium = new OreBlock("oreLanosium",ExoItems.lanosium) {{
             variants = 3;
+        }};
+        curtusesOre = new TallBlock("curtusesOre-boulder") {{
+            variants = 3;
+            itemDrop = ExoItems.curtuses;
+            clipSize = 128f;
         }};
         //Vanstar Tiles
         deepVansterWater = new Floor("deep-vanster-water") {{
@@ -195,6 +201,9 @@ public class ExoEnvironmentBlocks {
         axinCrystalStone = new Floor("axin-crystalStone") {{
             variants = 4;
         }};
+        axinCrystalStoneWall = new StaticWall("axin-crystalStone-wall") {{
+            axinCrystalStone.asFloor().wall = this;
+        }};
         axinStone = new Floor("axin-stone") {{
             variants = 6;
         }};
@@ -210,6 +219,9 @@ public class ExoEnvironmentBlocks {
         axinPurpleStone = new Floor("axinpurple-stone") {{
             variants = 6;
         }};
+        axinPurpleWall = new StaticWall("axin-purple-wall") {{
+            axinPurpleRock.asFloor().wall = this;
+        }};
         axinPurpleStoneMineral = new Floor("axinpurpleMineral-stone") {{
             variants = 6;
         }};
@@ -218,6 +230,20 @@ public class ExoEnvironmentBlocks {
         }};
         axinCrystalBlue = new Floor("axin-crystalblue") {{
             variants = 4;
+        }};
+        axinCrystalPurple = new Floor("axin-crystalPurple") {{
+            variants = 4;
+        }};
+        diamondTile = new Floor("axin-diamondTile") {{
+            variants = 4;
+        }};
+        diamondWall = new StaticWall("axin-diamond-wall") {{
+            diamondTile.asFloor().wall = this;
+        }};
+        diamondGrowth = new TallBlock("axin-diamond-growths") {{
+            clipSize = 88f;
+            itemDrop = ExoItems.axinDiamond;
+            variants = 3;
         }};
         alignPlating = new StaticWall("align-plating") {{
             variants = 14;
@@ -248,13 +274,11 @@ public class ExoEnvironmentBlocks {
         }};
         colossalAxinMonolith = new TallBlock("colossal-AxinMonolith") {{
             clipSize = 228f;
-            size = 7;
             layer = 77;
             shadowOffset = -25f;
         }};
         largeAxinMonolith = new TallBlock("large-AxinMonolith") {{
             clipSize = 228f;
-            size = 5;
             layer = 76;
             shadowOffset = -25f;
         }};
@@ -269,6 +293,7 @@ public class ExoEnvironmentBlocks {
         oreOltuxium = new OreBlock(ExoItems.oltuxium);
         oreChronophite = new OreBlock(ExoItems.chronophite);
         oreGold = new OreBlock(ExoItems.gold);
+
         ferricIronWall = new StaticWall("ferric-iron-wall") {{
             itemDrop = ExoItems.iron;
             variants = 3;

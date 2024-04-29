@@ -134,17 +134,17 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("242833");
                 heights.addAll(
                         new HeightPass.AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 7);
-                            dir.set(1f, 0f, 0f);
+                            interp = new Interp.ExpIn(2, 5);
+                            dir.set(5f, 0f, 0f);
                             magnitude = 3;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 7);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(-0.5f, 0.5f, 1);
                             magnitude = 3;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 7);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 3;
                         }},
@@ -158,11 +158,11 @@ public class ExoPlanets{
                             offset.set(1500f, 300f, -500f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1f), 0.3f, -0.3f),
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.8f), 0.17f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1.5f), 0.3f, -0.3f),
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 1f), 0.17f, 0.2f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
+                        new CraterHeight(new Vec3(1f, 0f, 0.8f), 0.17f, 0.1f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(1f, 0f, 0f), 0.17f, -0.2f)
