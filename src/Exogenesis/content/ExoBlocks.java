@@ -2472,7 +2472,8 @@ public class ExoBlocks{
                         }},
                         new RegionPart("-barrel"){{
                             progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
-                            outlineLayerOffset = -1;
+                            outlineLayerOffset = -2;
+                            layerOffset = 1;
                             moves.add(new PartMove(PartProgress.charge.delay(0.60f).blend(PartProgress.recoil, 0.5f), 0f, -4f, 0f));
                             moveX = 3f;
                             mirror = true;
