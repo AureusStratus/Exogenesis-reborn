@@ -2315,17 +2315,17 @@ public class ExoBlocks{
             heatColor = Color.red;
             outlineColor = ExoPal.empyreanOutline;
             cooldownTime = 30;
-            reload = 400;
+            reload = 700;
             size = 5;
             minWarmup = 0.85f;
             shootWarmupSpeed = 0.07f;
             scaledHealth = 280;
             shootY = 10;
             shoot.firstShotDelay = 180;
-            rotateSpeed = 1f;
+            rotateSpeed = 0.8f;
             loopSound = ExoSounds.funnylaserloop;
             shootSound = ExoSounds.bigLaserShoot;
-            shootDuration = 300f;
+            shootDuration = 600f;
             loopSoundVolume = 1.1f;
             coolant = consumeCoolant(0.2f);
             consumePower(26f);
@@ -2338,7 +2338,7 @@ public class ExoBlocks{
                             sides = 4;
                             radius = 0;
                             radiusTo = 150;
-                            stroke = 3.5f;
+                            stroke = 2.5f;
                         }},
                         new EffectSpawnPart() {{
                             useProgress = true;
@@ -2348,7 +2348,7 @@ public class ExoBlocks{
                             new ParticleEffect() {{
                                 particles = 3;
                                 cone = 35;
-                                length = 50;
+                                length = 80;
                                 lifetime = 40;
                                 sizeFrom = 8;
                                 sizeTo = 0;
@@ -2358,7 +2358,7 @@ public class ExoBlocks{
                                 new ParticleEffect() {{
                                 particles = 3;
                                 cone = 15;
-                                length = 80;
+                                length = 120;
                                 lifetime = 30;
                                 sizeFrom = 6;
                                 sizeTo = 0;
@@ -2370,6 +2370,7 @@ public class ExoBlocks{
                             randomEffectRot = 0;
                             effectChance = 0.5f;
                         }},
+                        /*
                         new EffectSpawnPart() {{
                             useProgress = true;
                             progress = PartProgress.heat;
@@ -2379,9 +2380,10 @@ public class ExoBlocks{
                             randomEffectRot = 360;
                             effectChance = 0.5f;
                         }},
+                        */
                         new EffectSpawnPart() {{
                             useProgress = true;
-                            progress = PartProgress.charge;
+                            progress = PartProgress.heat;
                             y = 9f;
                             effectColor = ExoPal.genesis;
                             effect = new ParticleEffect() {{
@@ -2389,8 +2391,8 @@ public class ExoBlocks{
                                 line = true;
                                 cone = 25;
                                 length = 60;
+                                baseLength = -60;
                                 lifetime = 20;
-                                interp = Interp.circleOut;
                                 lenFrom = 8;
                                 lenTo = 3;
                                 strokeFrom = 1.5f;
@@ -2424,9 +2426,9 @@ public class ExoBlocks{
                             progress = PartProgress.charge;
                             circle = true;
                             moveY = -6;
-                            y = -5f;
+                            y = -5.5f;
                             layer = 114;
-                            radiusTo = 3.5f;
+                            radiusTo = 2.5f;
                             radius = 0f;
                             color = Color.white;
                         }},
@@ -2434,9 +2436,9 @@ public class ExoBlocks{
                             progress = PartProgress.charge;
                             circle = true;
                             moveY = -6;
-                            y = -5f;
+                            y = -5.5f;
                             layer = 110;
-                            radiusTo = 6;
+                            radiusTo = 4;
                             radius = 0f;
                             color = ExoPal.genesis;
                         }},
@@ -2444,18 +2446,28 @@ public class ExoBlocks{
                         new ShapePart() {{
                             progress = PartProgress.charge;
                             circle = true;
+                            y = shootY;
                             layer = 114;
-                            radiusTo = 3.5f;
+                            radiusTo = 1.5f;
                             radius = 0f;
                             color = Color.white;
                         }},
                         new ShapePart() {{
                             progress = PartProgress.charge;
                             circle = true;
+                            y = shootY;
                             layer = 110;
-                            radiusTo = 5;
+                            radiusTo = 3;
                             radius = 0f;
                             color = ExoPal.genesis;
+                        }},
+                        new RegionPart("-barrel"){{
+                            progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
+                            outlineLayerOffset = -2;
+                            layerOffset = 1;
+                            moves.add(new PartMove(PartProgress.charge.delay(0.60f).blend(PartProgress.recoil, 0.5f), 0f, -4f, 0f));
+                            moveX = 3f;
+                            mirror = true;
                         }},
                         new RegionPart("-body-top"){{
                             progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
@@ -2470,14 +2482,7 @@ public class ExoBlocks{
                             under = true;
                             mirror = false;
                         }},
-                        new RegionPart("-barrel"){{
-                            progress = PartProgress.charge.blend(PartProgress.recoil, 0.5f);
-                            outlineLayerOffset = -2;
-                            layerOffset = 1;
-                            moves.add(new PartMove(PartProgress.charge.delay(0.60f).blend(PartProgress.recoil, 0.5f), 0f, -4f, 0f));
-                            moveX = 3f;
-                            mirror = true;
-                        }},
+
                         new RegionPart("-bottom-seg"){{
                             outlineLayerOffset = -2;
                             layerOffset = 1;
@@ -2514,10 +2519,10 @@ public class ExoBlocks{
                         }}
                 );
             }};
-            shootType = new ExoContinuousLaserBulletType(){{
+            shootType = new ContinuousLaserBulletType(){{
                 hitColor = ExoPal.genesis;
                 damage = 150f;
-                length = range;
+                length = 340f;
                 hitEffect = new MultiEffect(
                         new ParticleEffect(){{
                             line = true;
@@ -2560,7 +2565,7 @@ public class ExoBlocks{
                 intervalBullets = 2;
                 bulletInterval = 3f;
 
-                drawSize = 420f;
+                drawSize = 260f;
                 pointyScaling = 0.5f;
                 shootEffect = new Effect(20,e->{
                     Draw.z(Layer.effect);
