@@ -2115,21 +2115,28 @@ public class ExoBlocks{
             smokeEffect = Fx.shootSmokeSquareSparse;
             size = 5;
             scaledHealth = 240;
-            velocityRnd = 0.25f;
             shootCone = 90;
             shootSound = Sounds.shotgun;
             ammoPerShot = 4;
             maxAmmo = 40;
             consumeAmmoOnce = true;
-            shoot = new ShootSpread(18, 7f);
+            shoot = new ShootAlternate(){{
+                shots = 1;
+                barrels = 2;
+                spread = 16;
+            }};
             coolant = consumeCoolant(0.4f);
 
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
+                        new RegionPart("-bottom"){{
+                            mirror = false;
+                        }},
                         new RegionPart("-side"){{
                             moveY = 5;
-                            moveX = 3.5f;
-                            moveRot = 6;
+                            moveX = 4.5f;
+                            moveRot = 13;
+                            moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
                             children.add(
                                     new RegionPart("-side2"){{
                                         progress = PartProgress.warmup.delay(0.6f);
@@ -2323,8 +2330,10 @@ public class ExoBlocks{
             shootY = 10;
             shoot.firstShotDelay = 180;
             rotateSpeed = 0.8f;
+            firingMoveFract = 0.35f;
             loopSound = ExoSounds.funnylaserloop;
             shootSound = ExoSounds.bigLaserShoot;
+            chargeSound = Sounds.torch;
             shootDuration = 600f;
             loopSoundVolume = 1.1f;
             coolant = consumeCoolant(0.2f);
@@ -2332,9 +2341,10 @@ public class ExoBlocks{
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
                         new FlarePart(){{
-                            progress = PartProgress.recoil.curve(Interp.pow2In);
+                            progress = PartProgress.recoil.curve(Interp.circleOut);
                             color1 = ExoPal.genesis;
                             y = 9;
+                            rotateSpeed = 1.5f;
                             sides = 4;
                             radius = 0;
                             radiusTo = 150;
@@ -2349,7 +2359,8 @@ public class ExoBlocks{
                                 particles = 3;
                                 cone = 35;
                                 length = 80;
-                                lifetime = 40;
+                                interp = Interp.circleOut;
+                                lifetime = 30;
                                 sizeFrom = 8;
                                 sizeTo = 0;
                                 lightColor = colorFrom = ExoPal.genesis;
@@ -2359,9 +2370,23 @@ public class ExoBlocks{
                                 particles = 3;
                                 cone = 15;
                                 length = 120;
-                                lifetime = 30;
+                                interp = Interp.circleOut;
+                                lifetime = 20;
                                 sizeFrom = 6;
                                 sizeTo = 0;
+                                lightColor = colorFrom = ExoPal.genesis;
+                                colorTo = ExoPal.starBlue;
+                            }},
+                            new ParticleEffect() {{
+                                particles = 1;
+                                line = true;
+                                cone = 25;
+                                length = 60;
+                                lifetime = 20;
+                                lenFrom = 15;
+                                lenTo = 8;
+                                strokeFrom = 0.5f;
+                                strokeTo = 1.5f;
                                 lightColor = colorFrom = ExoPal.genesis;
                                 colorTo = ExoPal.starBlue;
                             }}
@@ -2383,7 +2408,8 @@ public class ExoBlocks{
                         */
                         new EffectSpawnPart() {{
                             useProgress = true;
-                            progress = PartProgress.heat;
+                            progress = PartProgress.charge;
+                            rotation = 180;
                             y = 9f;
                             effectColor = ExoPal.genesis;
                             effect = new ParticleEffect() {{
@@ -2395,8 +2421,8 @@ public class ExoBlocks{
                                 lifetime = 20;
                                 lenFrom = 8;
                                 lenTo = 3;
-                                strokeFrom = 1.5f;
-                                strokeTo = 0.5f;
+                                strokeFrom = 0.5f;
+                                strokeTo = 1.5f;
                                 lightColor = colorFrom = ExoPal.starBlue;
                                 colorTo = ExoPal.genesisLight;
                             }};
@@ -2425,8 +2451,7 @@ public class ExoBlocks{
                         new ShapePart() {{
                             progress = PartProgress.charge;
                             circle = true;
-                            moveY = -6;
-                            y = -5.5f;
+                            moveY = -5;
                             layer = 114;
                             radiusTo = 2.5f;
                             radius = 0f;
@@ -2435,8 +2460,7 @@ public class ExoBlocks{
                         new ShapePart() {{
                             progress = PartProgress.charge;
                             circle = true;
-                            moveY = -6;
-                            y = -5.5f;
+                            moveY = -5;
                             layer = 110;
                             radiusTo = 4;
                             radius = 0f;
@@ -2521,6 +2545,7 @@ public class ExoBlocks{
             }};
             shootType = new ContinuousLaserBulletType(){{
                 hitColor = ExoPal.genesis;
+                layer = Layer.effect;
                 damage = 150f;
                 length = 340f;
                 hitEffect = new MultiEffect(
@@ -2581,7 +2606,7 @@ public class ExoBlocks{
                 width = 7.8f;
                 shake = 3f;
                 largeHit = true;
-                colors = new Color[]{ExoPal.genesisDark.cpy().a(.6f), ExoPal.genesis, Color.white};
+                colors = new Color[]{ExoPal.starBlue.cpy().a(.6f), ExoPal.genesisDark.cpy().a(.8f), ExoPal.genesis, Color.white};
                 despawnEffect = Fx.none;
             }};
         }};
