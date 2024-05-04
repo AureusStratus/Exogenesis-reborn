@@ -2103,9 +2103,9 @@ public class ExoBlocks{
                     }}
             );
         }};
-        thuban = new ItemTurret("thuban"){{
+        thuban = new SpeedupTurret("thuban"){{
             requirements(Category.turret, with(ExoItems.nickel, 800, ExoItems.selfHealingAlloy, 550, ExoItems.stellarIron, 450, ExoItems.curtuses, 350, Items.graphite, 550));
-            range = 105f;
+            range = 145f;
             recoil = 3f;
             reload = 70f;
             shake = 2f;
@@ -2150,67 +2150,39 @@ public class ExoBlocks{
                         }}
                 );
             }};
-            ammo(
-                    ExoItems.axinvaxaAlloy, new ExoBasicBulletType(9f, 120){{
-                        knockback = 4f;
-                        width = 25f;
-                        hitSize = 7f;
-                        height = 20f;
-                        damageType = kinetic;
-                        ammoMultiplier = 1;
-                        hitColor = backColor = trailColor = ExoPal.genesisDark;
-                        frontColor = Color.white;
-                        lifetime = 10;
-                        trailWidth = 6f;
-                        trailLength = 3;
-                        hitEffect = despawnEffect = new MultiEffect( Fx.colorSpark,
-                                new ExplosionEffect(){{
-                                    smokes = 4;
-                                    smokeSize = 4.7f;
-                                    lifetime = 35;
-                                    smokeSizeBase = 1.6f;
-                                    smokeRad = 36;
-                                    waveLife = 10;
-                                    waveStroke = 4.1f;
-                                    waveRad = 25;
-                                    waveRadBase = 2.0f;
-                                    sparkLen = 7;
-                                    sparks = 12;
-                                    lightColor = ExoPal.genesis;
-                                    waveColor = sparkColor = ExoPal.genesis;
-                                }});
-                    }},
-                    ExoItems.nickel, new ExoBasicBulletType(9f, 40){{
-                        knockback = 6f;
-                        width = 25f;
-                        hitSize = 7f;
-                        height = 20f;
-                        damageType = kinetic;
-                        ammoMultiplier = 1;
-                        hitColor = backColor = trailColor = Color.valueOf("8bc99e");
-                        frontColor = Color.white;
-                        lifetime = 10;
-                        trailWidth = 6f;
-                        trailLength = 3;
-                        hitEffect = despawnEffect = shootEffect = new MultiEffect( Fx.colorSpark,
-                                new ExplosionEffect(){{
-                                    smokes = 4;
-                                    smokeSize = 4.7f;
-                                    lifetime = 35;
-                                    smokeSizeBase = 1.6f;
-                                    smokeRad = 36;
-                                    waveLife = 10;
-                                    waveStroke = 4.1f;
-                                    waveRad = 25;
-                                    waveRadBase = 2.0f;
-                                    sparkLen = 7;
-                                    sparks = 12;
-                                    lightColor = Color.valueOf("8bc99e");
-                                    waveColor = sparkColor = Color.valueOf("8bc99e");
+            shootType = new ChainLightningBulletType() {{
+                lightningColor = ExoPal.starBlue;
+                damageType = DamageType.energy;
+                width = 12;
+                shootEffect = new Effect(20,e->{
+                    Draw.z(Layer.effect);
+                    Draw.color(ExoPal.genesis,e.fout());
+                    Tmp.v1.trns(e.rotation, e.fin()*20f);
+                    Lines.ellipse(Tmp.v1.x + e.x, Tmp.v1.y + e.y , 0.8f*e.fin()+0.1f, 8,16, e.rotation);
+                    Tmp.v2.trns(e.rotation, e.fin()*10f);
+                    Lines.ellipse(Tmp.v2.x + e.x, Tmp.v2.y + e.y , 0.6f*e.fin()+0.1f,8f*0.75f, 12,  e.rotation);
+                    Lines.stroke(6f*e.fout());
+                });
+                smokeEffect = new Effect(10, e -> {
+                    color(e.color);
+                    float w = 1.2f + 7 * e.fout();
 
-                                }});
-                    }}
-            );
+                    Drawf.tri(e.x, e.y, w, 45f * e.fout(), e.rotation);
+                    color(e.color);
+
+                    for(int i : Mathf.signs){
+                        Drawf.tri(e.x, e.y, w * 0.9f, 18f * e.fout(), e.rotation + i * 90f);
+                    }
+
+                    Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
+                });
+                range = 105;
+                targetRange = 145;
+                damage = 100;
+                distanceDamageFalloff = 2;
+                chainLightning = 2;
+                segmentLength = 5;
+            }};
         }};
         halley = new ContinuousTurret("halley"){{
             requirements(Category.turret, with(ExoItems.oltuxium, 15, ExoItems.cobolt, 20, ExoItems.quartz, 20));
