@@ -2105,7 +2105,7 @@ public class ExoBlocks{
         }};
         thuban = new SpeedupTurret("thuban"){{
             requirements(Category.turret, with(ExoItems.nickel, 800, ExoItems.selfHealingAlloy, 550, ExoItems.stellarIron, 450, ExoItems.curtuses, 350, Items.graphite, 550));
-            range = 145f;
+            range = 175f;
             recoil = 3f;
             reload = 70f;
             shake = 2f;
@@ -2115,8 +2115,12 @@ public class ExoBlocks{
             smokeEffect = Fx.shootSmokeSquareSparse;
             size = 5;
             scaledHealth = 240;
+            warmupMaintainTime = 120f;
+            maxSpeedupScl = 9f;
+            speedupPerShoot = 0.095f;
+            overheatTime = 800f;
             shootCone = 90;
-            shootSound = Sounds.shotgun;
+            shootSound = Sounds.spark;
             ammoPerShot = 4;
             maxAmmo = 40;
             consumeAmmoOnce = true;
@@ -2133,8 +2137,8 @@ public class ExoBlocks{
                             mirror = false;
                         }},
                         new RegionPart("-side"){{
-                            moveY = 5;
-                            moveX = 4.5f;
+                            moveY = 7;
+                            moveX = 6.5f;
                             moveRot = 13;
                             moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
                             children.add(
@@ -2151,7 +2155,7 @@ public class ExoBlocks{
                 );
             }};
             shootType = new ChainLightningBulletType() {{
-                lightningColor = ExoPal.starBlue;
+                lightningColor = ExoPal.genesis;
                 damageType = DamageType.energy;
                 width = 12;
                 shootEffect = new Effect(20,e->{
@@ -2176,9 +2180,9 @@ public class ExoBlocks{
 
                     Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
                 });
-                range = 105;
-                targetRange = 145;
-                damage = 100;
+                range = 145;
+                targetRange = 175;
+                damage = 120;
                 distanceDamageFalloff = 2;
                 chainLightning = 2;
                 segmentLength = 5;
@@ -2239,24 +2243,25 @@ public class ExoBlocks{
             outlineColor = ExoPal.empyreanOutline;
             size = 4;
             minWarmup = 0.99f;
+            shoot.firstShotDelay = 80;
             shootY = 9;
             scaledHealth = 280;
             cooldownTime = 320;
-            shootSound = ExoSounds.shockblast;
+            shootSound = Sounds.laser;
             shootCone = 65f;
             coolant = consumeCoolant(0.2f);
             consumePower(6f);
             drawer = new DrawTurret("genesux-"){{
                 parts.add(
-                        new RegionPart("-lunar-blade"){{
-                            progress = PartProgress.warmup.curve(Interp.pow2In);
+                        new RegionPart("-blade"){{
+                            progress = PartProgress.charge.curve(Interp.pow2In);
                             moveX = 3.5f;
                             moveY = -4;
                             moveRot = -15;
                             mirror = true;
                         }},
                         new RegionPart("-cell"){{
-                            progress = PartProgress.warmup.curve(Interp.pow2In);
+                            progress = PartProgress.charge.curve(Interp.pow2In);
                             moveY = -2f;
                             moveRot = 7;
                             mirror = true;
@@ -2266,12 +2271,11 @@ public class ExoBlocks{
             shootType = new ExoBasicBulletType(8f, 207){{
                 lifetime = 35f;
                 backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.genesis;
-                sprite = "exogenesis-pulse";
+                sprite = "exogenesis-plasma";
                 damageType = energy;
                 hitSize = 18f;
-                width = 56f;
-                height = 30;
-                pierce = true;
+                width = 45f;
+                height = 45;
                 smokeEffect = ExoFx.square45_6_45;
                 hitEffect = ExoFx.square45_6_45;
                 despawnEffect = new Effect(35f, 70f, e -> {
@@ -2282,6 +2286,31 @@ public class ExoBlocks{
                         Drawf.tri(e.x, e.y, height * 0.8f * e.fout(), width * 0.252f * e.fout(), e.rotation + 90 + i * 90);
                     }
                 });
+                fragBullets = 8;
+                fragSpread = 45;
+                fragRandomSpread = 0;
+                fragBullet = new ExoBasicBulletType(6, 55){{
+                    backColor = hitColor = trailColor = ExoPal.genesis;
+                    parts.addAll(
+                            new FlarePart(){{
+                                progress = PartProgress.life;
+                                color1 = ExoPal.genesis;
+                                spinSpeed = 6;
+                                radius = 15;
+                                radiusTo = 15;
+                                stroke = 2f;
+                            }}
+                    );
+                    trailWidth = 2f;
+                    trailLength = 8;
+                    homingPower = 0.0889f;
+                    homingRange = 170;
+                    width = height = 0f;
+                    shrinkX = shootY = 0;
+                    damageType = energy;
+                    lifetime = 60;
+                    hitEffect = despawnEffect = ExoFx.colorBombSmall;
+                }};
             }};
         }};
         magnetar = new LaserTurret("magnetar"){{
@@ -2306,7 +2335,7 @@ public class ExoBlocks{
             loopSound = ExoSounds.funnylaserloop;
             shootSound = ExoSounds.bigLaserShoot;
             chargeSound = Sounds.torch;
-            shootDuration = 600f;
+            shootDuration = 800f;
             loopSoundVolume = 1.1f;
             coolant = consumeCoolant(0.2f);
             consumePower(26f);
@@ -2316,7 +2345,7 @@ public class ExoBlocks{
                             progress = PartProgress.recoil.curve(Interp.circleOut);
                             color1 = ExoPal.genesis;
                             y = 9;
-                            rotateSpeed = 1.5f;
+                            spinSpeed = 1.5f;
                             sides = 4;
                             radius = 0;
                             radiusTo = 150;
@@ -2330,6 +2359,7 @@ public class ExoBlocks{
                             new ParticleEffect() {{
                                 particles = 3;
                                 cone = 35;
+                                layer = 109;
                                 length = 80;
                                 interp = Interp.circleOut;
                                 lifetime = 30;
@@ -2341,6 +2371,8 @@ public class ExoBlocks{
                                 new ParticleEffect() {{
                                 particles = 3;
                                 cone = 15;
+                                layer = 109;
+                                layer = 109;
                                 length = 120;
                                 interp = Interp.circleOut;
                                 lifetime = 20;
@@ -2353,6 +2385,7 @@ public class ExoBlocks{
                                 particles = 1;
                                 line = true;
                                 cone = 25;
+                                layer = 109;
                                 length = 60;
                                 lifetime = 20;
                                 lenFrom = 15;
@@ -2360,7 +2393,7 @@ public class ExoBlocks{
                                 strokeFrom = 0.5f;
                                 strokeTo = 1.5f;
                                 lightColor = colorFrom = ExoPal.genesis;
-                                colorTo = ExoPal.starBlue;
+                                colorTo = ExoPal.genesis;
                             }}
                             );
                             effectColor = ExoPal.genesis;
@@ -2395,11 +2428,11 @@ public class ExoBlocks{
                                 lenTo = 3;
                                 strokeFrom = 0.5f;
                                 strokeTo = 1.5f;
-                                lightColor = colorFrom = ExoPal.starBlue;
+                                lightColor = colorFrom = ExoPal.genesis;
                                 colorTo = ExoPal.genesisLight;
                             }};
                             randomEffectRot = 0;
-                            effectChance = 0.5f;
+                            effectChance = 0.6f;
                         }},
                         /*
                         new EffectSpawnPart() {{
@@ -2424,6 +2457,7 @@ public class ExoBlocks{
                             progress = PartProgress.charge;
                             circle = true;
                             moveY = -5;
+                            y = 1;
                             layer = 114;
                             radiusTo = 2.5f;
                             radius = 0f;
@@ -2433,6 +2467,7 @@ public class ExoBlocks{
                             progress = PartProgress.charge;
                             circle = true;
                             moveY = -5;
+                            y = 1;
                             layer = 110;
                             radiusTo = 4;
                             radius = 0f;
