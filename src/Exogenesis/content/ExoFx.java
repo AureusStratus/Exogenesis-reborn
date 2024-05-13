@@ -701,6 +701,7 @@ public class ExoFx{
             starngeStarSwirl = new SwirlEffect(70.0F, 18, 1.7F, 140.0F, 680.0F, true).layer(110.005F),
             blueStarSwirl = new SwirlEffect(90.0F, 10, 3F, 120.0F, 480.0F, true).layer(110.005F),
             darkBlueStarSwirl = new SwirlEffect(120.0F, 9, 5.5F, 140.0F, 780.0F, true).layer(110.005F),
+            smolSwirl = new SwirlEffect(120.0F, 6, 2.5F, 140.0F, 780.0F, true).layer(110.005F),
 
             strangeStarSparks = new Effect(16f, e -> {
                 color(Color.white, e.color, e.fin());

@@ -2181,7 +2181,7 @@ public class ExoBlocks{
                     Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
                 });
                 range = 145;
-                targetRange = 175;
+                targetRange = 45;
                 damage = 120;
                 distanceDamageFalloff = 2;
                 chainLightning = 2;
@@ -2342,7 +2342,7 @@ public class ExoBlocks{
             drawer = new DrawTurret("genesux-"){{
                 parts.addAll(
                         new FlarePart(){{
-                            progress = PartProgress.recoil.curve(Interp.circleOut);
+                            progress = PartProgress.recoil;
                             color1 = ExoPal.genesis;
                             y = 9;
                             spinSpeed = 1.5f;
@@ -2366,7 +2366,7 @@ public class ExoBlocks{
                                 sizeFrom = 8;
                                 sizeTo = 0;
                                 lightColor = colorFrom = ExoPal.genesis;
-                                colorTo = ExoPal.starBlue;
+                                colorTo = ExoPal.genesisDark;
                             }},
                                 new ParticleEffect() {{
                                 particles = 3;
@@ -2379,7 +2379,7 @@ public class ExoBlocks{
                                 sizeFrom = 6;
                                 sizeTo = 0;
                                 lightColor = colorFrom = ExoPal.genesis;
-                                colorTo = ExoPal.starBlue;
+                                colorTo = ExoPal.genesisDark;
                             }},
                             new ParticleEffect() {{
                                 particles = 1;
@@ -2553,7 +2553,7 @@ public class ExoBlocks{
             shootType = new ContinuousLaserBulletType(){{
                 hitColor = ExoPal.genesis;
                 layer = Layer.effect;
-                damage = 150f;
+                damage = 180f;
                 length = 340f;
                 hitEffect = new MultiEffect(
                         new ParticleEffect(){{
@@ -2584,14 +2584,12 @@ public class ExoBlocks{
                             strokeFrom = 2f;
                             strokeTo = 0.8f;
                         }});
-                intervalBullet = new FireBulletType(0.3f,75) {{
-                    makeFire = false;
-                    lifetime = 30;
-                    radius = 6;
-                    drag = -0.0001f;
-                    colorFrom = ExoPal.genesis;
-                    colorMid = ExoPal.starBlue;
-                    colorTo = ExoPal.genesisDark;
+                intervalBullet = new LightningBulletType(){{
+                    damage = 16;
+                    ammoMultiplier = 1f;
+                    lightningColor = ExoPal.genesis;
+                    lightningLength = 3;
+                    lightningLengthRand = 6;
                 }};
                 intervalRandomSpread = 18;
                 intervalBullets = 2;

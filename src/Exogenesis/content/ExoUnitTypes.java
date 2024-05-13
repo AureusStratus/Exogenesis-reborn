@@ -7,6 +7,7 @@ import Exogenesis.type.bullet.*;
 import Exogenesis.type.bullet.DelayedPointBulletType;
 import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.*;
+import Exogenesis.type.unit.AxinUnitType;
 import Exogenesis.type.unit.ExoUnitType;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -14,7 +15,10 @@ import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.ObjectSet;
 import arc.util.Tmp;
+import blackhole.entities.bullet.BlackHoleBulletType;
+import blackhole.entities.part.BlackHolePart;
 import mindustry.ai.*;
+import mindustry.ai.types.BuilderAI;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
@@ -31,6 +35,7 @@ import mindustry.content.*;
 import static Exogenesis.type.DamageType.energy;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.stroke;
+import static mindustry.Vars.tilesize;
 
 public class ExoUnitTypes {
     public static UnitType
@@ -41,7 +46,7 @@ public class ExoUnitTypes {
     prometheus, atlas, nemesis, hyperion, rhea, cronus, leto,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus,
-    orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer, stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon;
+    twinkle, starlight, stardustVoyager, orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer, stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon;
 
 
     public static void load() {
@@ -5808,9 +5813,278 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        orion = new UnitType("orion") {{
+        twinkle = new AxinUnitType("twinkle"){{
+            constructor = UnitEntity::create;
+            coreUnitDock = true;
+            isEnemy = false;
+            envDisabled = 0;
+
+            targetPriority = -2;
+            lowAltitude = true;
+            mineWalls = true;
+            mineHardnessScaling = false;
+            flying = true;
+            mineSpeed = 6f;
+            mineTier = 3;
+            buildSpeed = 1.2f;
+            drag = 0.08f;
+            speed = 6f;
+            rotateSpeed = 7f;
+            accel = 0.09f;
+            itemCapacity = 40;
+            health = 300f;
+            armor = 2f;
+            hitSize = 10f;
+            engineSize = 3;
+            engineOffset = 5;
+            payloadCapacity = 2f * 2f * tilesize * tilesize;
+            pickupUnits = false;
+            vulnerableWithPayloads = false;
+
+            fogRadius = 0f;
+            targetable = false;
+            hittable = true;
+            parts.addAll(
+                    new EffectSpawnPart() {{
+                        useProgress = true;
+                        y = 0f;
+                        effect = ExoFx.supernovaStarDecay;
+                        randomEffectRot = 360;
+                        effectChance = 0.5f;
+                    }},
+                    new HoverPart(){{
+                        color = ExoPal.genesis;
+                        circles = 3;
+                        sides = 360;
+                        stroke = 3;
+                        phase = 100;
+                        radius = 12f;
+                        mirror = false;
+                        y = 0;
+                    }},
+                    new ShapePart() {{
+                        circle = true;
+                        y = 0f;
+                        layer = 114;
+                        radiusTo = 0.8f;
+                        radius = 0.5f;
+                        color = Color.white;
+                    }},
+                    new ShapePart() {{
+                        circle = true;
+                        y = 0f;
+                        layer = 110;
+                        radiusTo = 1.5f;
+                        radius = 1f;
+                        color = ExoPal.genesis;
+                    }}
+            );
+            weapons.add(new Weapon("twinkle-star") {{
+                reload = 50;
+                mirror = false;
+                x = 0;
+                shootSound = Sounds.bolt;
+                showStatSprite = false;
+                shootCone = 30;
+                shootY = 0;
+                recoil = 0;
+                bullet = new ExoBasicBulletType(9, 24.5f){{
+                    backColor = hitColor = trailColor = ExoPal.genesis;
+                    parts.addAll(
+                            new FlarePart(){{
+                                progress = PartProgress.life;
+                                color1 = ExoPal.genesis;
+                                radius = 8;
+                                radiusTo = 8;
+                                stroke = 2f;
+                            }}
+                    );
+                    trailWidth = 1.5f;
+                    trailLength = 8;
+                    drag = 0.004f;
+                    homingPower = 0.0989f;
+                    homingRange = 90;
+                    homingDelay = 2;
+                    width = height = 0f;
+                    shrinkX = shootY = 0;
+                    splashDamage = 10;
+                    splashDamageRadius = 15;
+                    damageType = energy;
+                    lifetime = 40;
+                    hitEffect = despawnEffect = Fx.colorSpark;
+                }};
+            }});
+        }};
+        starlight = new AxinUnitType("starlight"){{
+            constructor = UnitEntity::create;
+            coreUnitDock = true;
+            isEnemy = false;
+            envDisabled = 0;
+
+            targetPriority = -2;
+            lowAltitude = true;
+            mineWalls = true;
+            mineHardnessScaling = false;
+            flying = true;
+            mineSpeed = 8f;
+            mineTier = 3;
+            buildSpeed = 1.4f;
+            drag = 0.08f;
+            speed = 7.5f;
+            rotateSpeed = 8f;
+            accel = 0.09f;
+            itemCapacity = 90;
+            health = 600f;
+            armor = 3f;
+            hitSize = 15f;
+            payloadCapacity = 2f * 2f * tilesize * tilesize;
+            pickupUnits = false;
+            vulnerableWithPayloads = true;
+            fogRadius = 0f;
+            targetable = false;
+
+            engineOffset = 7.2f;
+            engineSize = 3.1f;
+
+            parts.addAll(
+                    new BlackHolePart(){{
+                        color = ExoPal.genesis;
+                        size = 0;
+                        sizeTo = 12;
+                        mirror = false;
+                        y = 0;
+                    }},
+                    new HoverPart(){{
+                        color = ExoPal.genesis;
+                        circles = 3;
+                        sides = 360;
+                        stroke = 3;
+                        phase = 100;
+                        radius = 14f;
+                        mirror = true;
+                        x = 30;
+                        y = 18;
+                    }},
+                    new HoverPart(){{
+                        color = ExoPal.genesis;
+                        circles = 3;
+                        sides = 360;
+                        stroke = 3;
+                        phase = 100;
+                        radius = 14f;
+                        mirror = true;
+                        x = 30;
+                        y = -18;
+                    }}
+            );
+            weapons.add(new Weapon("starblast") {{
+                reload = 60;
+                mirror = false;
+                x = 0;
+                shootSound = Sounds.bolt;
+                showStatSprite = false;
+                shootCone = 30;
+
+                shootY = 0;
+                recoil = 0;
+                bullet = new BlackHoleBulletType(6f, 25f){{
+                    lifetime = 70f;
+                    growTime = 15;
+                    horizonRadius = 10;
+                    lensingRadius = 13;
+                    suctionRadius = 45;
+                    damageRadius = 30;
+                    homingRange = 70;
+                    homingPower = 0.007f;
+                    swirlEffect = ExoFx.smolSwirl;
+                    swirlEffects = 2;
+                    swirlInterval = 3;
+                    color = hitColor = ExoPal.genesis;
+                    lightRadius = 8f;
+                    lightOpacity = 0.7f;
+                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
+                }};
+            }});
+
+            drawBuildBeam = false;
+
+            weapons.add(new BuildWeapon("build-weapon"){{
+                rotate = true;
+                rotateSpeed = 7f;
+                x = 7f;
+                y = 0f;
+                layerOffset = -0.001f;
+                shootY = 0f;
+            }});
+        }};
+        stardustVoyager = new AxinUnitType("stardust-voyager"){{
+            constructor = UnitEntity::create;
+            coreUnitDock = true;
+            isEnemy = false;
+            envDisabled = 0;
+
+            targetPriority = -2;
+            lowAltitude = true;
+            mineWalls = true;
+            mineHardnessScaling = false;
+            flying = true;
+            mineSpeed = 9f;
+            mineTier = 3;
+            buildSpeed = 1.5f;
+            drag = 0.08f;
+            speed = 7.5f;
+            rotateSpeed = 8f;
+            accel = 0.08f;
+            itemCapacity = 110;
+            health = 700f;
+            armor = 3f;
+            hitSize = 12f;
+            buildBeamOffset = 8f;
+            payloadCapacity = 2f * 2f * tilesize * tilesize;
+            pickupUnits = false;
+            vulnerableWithPayloads = true;
+
+            fogRadius = 0f;
+            targetable = false;
+            hittable = false;
+
+            engineOffset = 7.5f;
+            engineSize = 3.4f;
+
+            setEnginesMirror(
+                    new UnitEngine(35 / 4f, -13 / 4f, 2.7f, 315f),
+                    new UnitEngine(28 / 4f, -35 / 4f, 2.7f, 315f)
+            );
+
+            weapons.add(new RepairBeamWeapon(){{
+                widthSinMag = 0.11f;
+                reload = 20f;
+                x = 19f/4f;
+                y = 19f/4f;
+                rotate = false;
+                shootY = 0f;
+                beamWidth = 0.7f;
+                aimDst = 0f;
+                shootCone = 40f;
+                mirror = true;
+
+                repairSpeed = 3.6f / 2f;
+                fractionRepairSpeed = 0.03f;
+
+                targetUnits = false;
+                targetBuildings = true;
+                autoTarget = false;
+                controllable = true;
+                laserColor = Pal.accent;
+                healColor = Pal.accent;
+
+                bullet = new BulletType(){{
+                    maxRange = 65f;
+                }};
+            }});
+        }};
+        orion = new AxinUnitType("orion") {{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             speed = 0.7f;
             hitSize = 13f;
             health = 460f;
@@ -5935,9 +6209,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        galileo = new UnitType("galileo") {{
+        galileo = new AxinUnitType("galileo") {{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             speed = 0.8f;
             hitSize = 13f;
             health = 920f;
@@ -6020,8 +6293,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        kuiper = new UnitType("kuiper"){{
-            outlineColor = Color.valueOf("36363c");
+        kuiper = new AxinUnitType("kuiper"){{
             speed = 0.5f;
             hitSize = 32f;
             rotateSpeed = 2.2f;
@@ -6106,9 +6378,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        oort = new UnitType("oort"){{
+        oort = new AxinUnitType("oort"){{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             drag = 0.2f;
             speed = 0.43f;
             hitSize = 53f;
@@ -6254,9 +6525,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        sirius = new UnitType("sirius"){{
+        sirius = new AxinUnitType("sirius"){{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             drag = 0.1f;
             speed = 0.35f;
             hitSize = 56;
@@ -6452,9 +6722,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        scout = new UnitType("scout") {{
+        scout = new AxinUnitType("scout") {{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             speed = 1.3f;
             hitSize = 13f;
             health = 360f;
@@ -6518,9 +6787,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        guard = new UnitType("guard") {{
+        guard = new AxinUnitType("guard") {{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             speed = 1.27f;
             hitSize = 13f;
             health = 890f;
@@ -6560,8 +6828,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        sentry = new UnitType("sentry"){{
-            outlineColor = Color.valueOf("36363c");
+        sentry = new AxinUnitType("sentry"){{
             speed = 1.25f;
             hitSize = 32f;
             rotateSpeed = 1.8f;
@@ -6604,9 +6871,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        sentinel = new UnitType("sentinel"){{
+        sentinel = new AxinUnitType("sentinel"){{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             drag = 0.2f;
             speed = 1.24f;
             hitSize = 53f;
@@ -6654,9 +6920,8 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        overseer = new UnitType("overseer"){{
+        overseer = new AxinUnitType("overseer"){{
             constructor = LegsUnit::create;
-            outlineColor = Color.valueOf("36363c");
             drag = 0.1f;
             speed = 1.23f;
             hitSize = 56;
