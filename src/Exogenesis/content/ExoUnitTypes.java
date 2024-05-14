@@ -5920,7 +5920,7 @@ public class ExoUnitTypes {
             coreUnitDock = true;
             isEnemy = false;
             envDisabled = 0;
-
+///
             targetPriority = -2;
             lowAltitude = true;
             mineWalls = true;
