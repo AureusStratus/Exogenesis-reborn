@@ -5828,7 +5828,7 @@ public class ExoUnitTypes {
             mineTier = 3;
             buildSpeed = 1.2f;
             drag = 0.08f;
-            speed = 6f;
+            speed = 5f;
             rotateSpeed = 7f;
             accel = 0.09f;
             itemCapacity = 40;
@@ -5849,8 +5849,9 @@ public class ExoUnitTypes {
                         useProgress = true;
                         y = 0f;
                         effect = ExoFx.supernovaStarDecay;
+                        effectColor = ExoPal.genesis;
                         randomEffectRot = 360;
-                        effectChance = 0.5f;
+                        effectChance = 0.3f;
                     }},
                     new HoverPart(){{
                         color = ExoPal.genesis;
@@ -5859,6 +5860,7 @@ public class ExoUnitTypes {
                         stroke = 3;
                         phase = 100;
                         radius = 12f;
+                        layer = Layer.flyingUnitLow -1;
                         mirror = false;
                         y = 0;
                     }},
@@ -5894,12 +5896,12 @@ public class ExoUnitTypes {
                             new FlarePart(){{
                                 progress = PartProgress.life;
                                 color1 = ExoPal.genesis;
-                                radius = 8;
-                                radiusTo = 8;
-                                stroke = 2f;
+                                radius = 13;
+                                radiusTo = 13;
+                                stroke = 4.1f;
                             }}
                     );
-                    trailWidth = 1.5f;
+                    trailWidth = 1.7f;
                     trailLength = 8;
                     drag = 0.004f;
                     homingPower = 0.0989f;
@@ -5907,11 +5909,11 @@ public class ExoUnitTypes {
                     homingDelay = 2;
                     width = height = 0f;
                     shrinkX = shootY = 0;
-                    splashDamage = 10;
-                    splashDamageRadius = 15;
+                    splashDamage = 15;
+                    splashDamageRadius = 25;
                     damageType = energy;
                     lifetime = 40;
-                    hitEffect = despawnEffect = Fx.colorSpark;
+                    hitEffect = despawnEffect = ExoFx.colorBombSmall;
                 }};
             }});
         }};
@@ -5930,7 +5932,7 @@ public class ExoUnitTypes {
             mineTier = 3;
             buildSpeed = 1.4f;
             drag = 0.08f;
-            speed = 7.5f;
+            speed = 6f;
             rotateSpeed = 8f;
             accel = 0.09f;
             itemCapacity = 90;
@@ -5948,9 +5950,11 @@ public class ExoUnitTypes {
 
             parts.addAll(
                     new BlackHolePart(){{
-                        color = ExoPal.genesis;
-                        size = 0;
-                        sizeTo = 12;
+                        color = colorTo = ExoPal.genesis;
+                        size = 12;
+                        sizeTo = 0;
+                        edge = 15;
+                        edgeTo = 0;
                         mirror = false;
                         y = 0;
                     }},
@@ -5960,10 +5964,11 @@ public class ExoUnitTypes {
                         sides = 360;
                         stroke = 3;
                         phase = 100;
-                        radius = 14f;
+                        radius = 7f;
                         mirror = true;
-                        x = 30;
-                        y = 18;
+                        layer = Layer.flyingUnitLow -1;
+                        x = 7.5f;
+                        y = 4.5f;
                     }},
                     new HoverPart(){{
                         color = ExoPal.genesis;
@@ -5971,10 +5976,11 @@ public class ExoUnitTypes {
                         sides = 360;
                         stroke = 3;
                         phase = 100;
-                        radius = 14f;
+                        radius = 7f;
                         mirror = true;
-                        x = 30;
-                        y = -18;
+                        layer = Layer.flyingUnitLow -1;
+                        x = 7.5f;
+                        y = -4.5f;
                     }}
             );
             weapons.add(new Weapon("starblast") {{
@@ -5987,12 +5993,13 @@ public class ExoUnitTypes {
 
                 shootY = 0;
                 recoil = 0;
-                bullet = new BlackHoleBulletType(6f, 25f){{
+                bullet = new BlackHoleBulletType(3f, 25f){{
                     lifetime = 70f;
                     growTime = 15;
+                    force = 20;
                     horizonRadius = 10;
-                    lensingRadius = 13;
-                    suctionRadius = 45;
+                    lensingRadius = 19;
+                    suctionRadius = 95;
                     damageRadius = 30;
                     homingRange = 70;
                     homingPower = 0.007f;
@@ -6005,9 +6012,7 @@ public class ExoUnitTypes {
                     despawnEffect = hitEffect = ExoFx.singularityDespawn;
                 }};
             }});
-
             drawBuildBeam = false;
-
             weapons.add(new BuildWeapon("build-weapon"){{
                 rotate = true;
                 rotateSpeed = 7f;
@@ -6032,7 +6037,7 @@ public class ExoUnitTypes {
             mineTier = 3;
             buildSpeed = 1.5f;
             drag = 0.08f;
-            speed = 7.5f;
+            speed = 6.5f;
             rotateSpeed = 8f;
             accel = 0.08f;
             itemCapacity = 110;

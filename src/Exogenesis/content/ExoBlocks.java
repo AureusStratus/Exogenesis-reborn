@@ -1834,7 +1834,7 @@ public class ExoBlocks{
             shootEffect = Fx.colorSparkBig;
             outlineColor = Pal.darkOutline;
             size = 3;
-            shootY = 0;
+            shootY = 8;
             inaccuracy = 100;
             shootCone = 100;
             rotateSpeed = 1.5f;
@@ -2140,7 +2140,6 @@ public class ExoBlocks{
                             moveY = 7;
                             moveX = 6.5f;
                             moveRot = 13;
-                            moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f));
                             children.add(
                                     new RegionPart("-side2"){{
                                         progress = PartProgress.warmup.delay(0.6f);
@@ -2321,7 +2320,7 @@ public class ExoBlocks{
             shootEffect = Fx.colorSparkBig;
             smokeEffect = Fx.none;
             heatColor = Color.red;
-            outlineColor = ExoPal.empyreanOutline;
+            outlineColor = ExoPal.genesisOutline;
             cooldownTime = 30;
             reload = 700;
             size = 5;
@@ -2351,6 +2350,16 @@ public class ExoBlocks{
                             radiusTo = 150;
                             stroke = 2.5f;
                         }},
+                        new FlarePart(){{
+                            progress = PartProgress.recoil;
+                            color1 = ExoPal.genesis;
+                            y = 9;
+                            spinSpeed = -1.9f;
+                            sides = 4;
+                            radius = 0;
+                            radiusTo = 100;
+                            stroke = 2.1f;
+                        }},
                         new EffectSpawnPart() {{
                             useProgress = true;
                             progress = PartProgress.heat;
@@ -2368,7 +2377,7 @@ public class ExoBlocks{
                                 lightColor = colorFrom = ExoPal.genesis;
                                 colorTo = ExoPal.genesisDark;
                             }},
-                                new ParticleEffect() {{
+                            new ParticleEffect() {{
                                 particles = 3;
                                 cone = 15;
                                 layer = 109;
@@ -2424,10 +2433,33 @@ public class ExoBlocks{
                                 length = 60;
                                 baseLength = -60;
                                 lifetime = 20;
-                                lenFrom = 8;
-                                lenTo = 3;
+                                lenFrom = 7;
+                                lenTo = 4;
                                 strokeFrom = 0.5f;
                                 strokeTo = 1.5f;
+                                lightColor = colorFrom = ExoPal.genesis;
+                                colorTo = ExoPal.genesisLight;
+                            }};
+                            randomEffectRot = 0;
+                            effectChance = 0.6f;
+                        }},
+                        new EffectSpawnPart() {{
+                            useProgress = true;
+                            progress = PartProgress.charge;
+                            rotation = 180;
+                            y = 9f;
+                            effectColor = ExoPal.genesis;
+                            effect = new ParticleEffect() {{
+                                particles = 2;
+                                line = true;
+                                cone = 65;
+                                length = 60;
+                                baseLength = -60;
+                                lifetime = 24;
+                                lenFrom = 5;
+                                lenTo = 4;
+                                strokeFrom = 0.5f;
+                                strokeTo = 1.8f;
                                 lightColor = colorFrom = ExoPal.genesis;
                                 colorTo = ExoPal.genesisLight;
                             }};
@@ -2588,8 +2620,8 @@ public class ExoBlocks{
                     damage = 16;
                     ammoMultiplier = 1f;
                     lightningColor = ExoPal.genesis;
-                    lightningLength = 3;
-                    lightningLengthRand = 6;
+                    lightningLength = 9;
+                    lightningLengthRand = 14;
                 }};
                 intervalRandomSpread = 18;
                 intervalBullets = 2;
@@ -2623,7 +2655,7 @@ public class ExoBlocks{
             shake = 4f;
             shootEffect = Fx.shootSmokeSmite;
             heatColor = Color.red;
-            outlineColor = ExoPal.empyreanOutline;
+            outlineColor = ExoPal.genesisOutline;
             size = 7;
             minWarmup = 0.99f;
             shootY = 12;
@@ -2710,7 +2742,7 @@ public class ExoBlocks{
             reload = 650f;
             shake = 4f;
             heatColor = Color.red;
-            outlineColor = Pal.darkOutline;
+            outlineColor = ExoPal.genesisOutline;
             size = 7;
             scaledHealth = 300;
             cooldownTime = 320;
@@ -3835,7 +3867,7 @@ public class ExoBlocks{
                                         particles = 5;
                                         length = 130;
                                         baseLength = 30;
-                                        lifetime = 30;
+                                        lifetime = 40;
                                         interp = Interp.sineOut;
                                         sizeFrom = 6;
                                         sizeTo = 0;
@@ -3854,7 +3886,7 @@ public class ExoBlocks{
                                         particles = 5;
                                         length = 100;
                                         baseLength = 30;
-                                        lifetime = 40;
+                                        lifetime = 47;
                                         interp = Interp.sineOut;
                                         sizeFrom = 3;
                                         sizeTo = 0;
@@ -3864,14 +3896,6 @@ public class ExoBlocks{
                                     effectColor = hitColor;
                                     randomEffectRot = 360;
                                     effectChance = 0.9f;
-                                }},
-                                new EffectSpawnPart() {{
-                                    useProgress = false;
-                                    y = 0f;
-                                    effect = ExoFx.darkBlueStarSwirl;
-                                    effectColor = ExoPal.starBlue;
-                                    randomEffectRot = 0;
-                                    effectChance = 1f;
                                 }},
                                 new EffectSpawnPart() {{
                                     useProgress = false;
@@ -3927,7 +3951,7 @@ public class ExoBlocks{
             reload = 500f;
             shake = 4f;
             heatColor = Color.red;
-            outlineColor = Pal.darkOutline;
+            outlineColor = ExoPal.genesisOutline;
             size = 7;
             scaledHealth = 280;
             cooldownTime = 2;
