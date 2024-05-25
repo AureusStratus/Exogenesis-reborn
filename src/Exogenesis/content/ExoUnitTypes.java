@@ -9,6 +9,7 @@ import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.type.unit.AxinUnitType;
 import Exogenesis.type.unit.ExoUnitType;
+import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -5951,10 +5952,10 @@ public class ExoUnitTypes {
             parts.addAll(
                     new BlackHolePart(){{
                         color = colorTo = ExoPal.genesis;
-                        size = 12;
-                        sizeTo = 0;
-                        edge = 15;
-                        edgeTo = 0;
+                        size = 0;
+                        sizeTo = 7;
+                        edge = 0;
+                        edgeTo = 9;
                         mirror = false;
                         y = 0;
                     }},
@@ -5994,7 +5995,7 @@ public class ExoUnitTypes {
                 shootY = 0;
                 recoil = 0;
                 bullet = new BlackHoleBulletType(3f, 25f){{
-                    lifetime = 70f;
+                    lifetime = 100f;
                     growTime = 15;
                     force = 20;
                     horizonRadius = 10;

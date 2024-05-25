@@ -2106,7 +2106,8 @@ public class ExoBlocks{
         thuban = new SpeedupTurret("thuban"){{
             requirements(Category.turret, with(ExoItems.nickel, 800, ExoItems.selfHealingAlloy, 550, ExoItems.stellarIron, 450, ExoItems.curtuses, 350, Items.graphite, 550));
             range = 175f;
-            recoil = 3f;
+            recoil = 0f;
+            recoils = 2;
             reload = 70f;
             shake = 2f;
             squareSprite = false;
@@ -2132,26 +2133,30 @@ public class ExoBlocks{
             coolant = consumeCoolant(0.4f);
 
             drawer = new DrawTurret("genesux-"){{
-                parts.addAll(
-                        new RegionPart("-bottom"){{
-                            mirror = false;
-                        }},
-                        new RegionPart("-side"){{
-                            moveY = 7;
-                            moveX = 6.5f;
-                            moveRot = 13;
-                            children.add(
-                                    new RegionPart("-side2"){{
-                                        progress = PartProgress.warmup.delay(0.6f);
-                                        moves.add(new PartMove(PartProgress.recoil, 0f, -3f, 0f), new PartMove(PartProgress.warmup.delay(0.5f), 0f, -3f, 0f));
-                                        mirror = true;
-                                        moveX = 2;
-                                        moveY = 6f;
-                                    }});
-                            progress = PartProgress.recoil;
-                            mirror = true;
-                        }}
-                );
+                for(int i = 0; i < 2; i++) {
+                    int f = i;
+                    parts.addAll(
+                            new RegionPart("-bottom") {{
+                                mirror = false;
+                            }},
+                            new RegionPart("-side-" + (i == 0 ? "l" : "r")) {{
+                                progress = PartProgress.recoil;
+                                recoilIndex = f;
+                                under = true;
+                                children.add(
+                                        new RegionPart("-side2") {{
+                                            progress = PartProgress.warmup.delay(0.6f);
+                                            moves.add(new PartMove(PartProgress.warmup.delay(0.5f), 0f, -3f, 0f));
+                                            mirror = true;
+                                            moveX = 2;
+                                            moveY = 9f;
+                                        }});
+                                moveY = 7;
+                                moveX = 6.5f;
+                                moveRot = 13;
+                            }}
+                    );
+                }
             }};
             shootType = new ChainLightningBulletType() {{
                 lightningColor = ExoPal.genesis;
