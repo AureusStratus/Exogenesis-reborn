@@ -206,14 +206,13 @@ public class ExoEnvironmentBlocks {
         }};
         axincarbonStone = new Floor("axincarbon-stone") {{
             variants = 6;
-            blendGroup = Blocks.carbonStone;
         }};
         axinCyanSlate = new Floor("axinCyan-slate") {{
             variants = 3;
         }};
         axinSlate = new Floor("axin1-slate") {{
             variants = 3;
-            blendGroup = axinCyanSlate;
+            blendGroup = ExoEnvironmentBlocks.axinCyanSlate;
         }};
         axinCarvakStone = new Floor("axincarvak-stone") {{
             variants = 5;
@@ -226,7 +225,7 @@ public class ExoEnvironmentBlocks {
         }};
         axinCrystalRock = new Floor("axincrystalrock") {{
             variants = 8;
-            blendGroup = axinCrystalStone;
+            blendGroup = ExoEnvironmentBlocks.axinCrystalStone;
         }};
         axinCrystalStoneWall = new StaticWall("axin-crystalStone-wall") {{
             axinCrystalStone.asFloor().wall = axinCrystalRock.asFloor().wall = this;
@@ -237,11 +236,11 @@ public class ExoEnvironmentBlocks {
         }};
         axinRock = new Floor("axin-rock") {{
             variants = 5;
-            blendGroup = axinStone;
+            blendGroup = ExoEnvironmentBlocks.axinStone;
         }};
         axinSlate2 = new Floor("axin-slate") {{
             variants = 9;
-            blendGroup = axinStone;
+            blendGroup = ExoEnvironmentBlocks.axinStone;
         }};
         axinStoneWall = new StaticWall("axin-stone-wall") {{
             variants = 2;
@@ -249,7 +248,7 @@ public class ExoEnvironmentBlocks {
         }};
         axinStoneMinerals = new Floor("axin-stoneMinerals") {{
             variants = 6;
-            blendGroup = axinStone;
+            blendGroup = ExoEnvironmentBlocks.axinStone;
         }};
 
         axinPurpleStone = new Floor("axinpurple-stone") {{
@@ -260,15 +259,15 @@ public class ExoEnvironmentBlocks {
         }};
         axinPurpleSlate = new Floor("axinpurple-slate") {{
             variants = 3;
-            blendGroup = axinPurpleStone;
+            blendGroup = ExoEnvironmentBlocks.axinPurpleStone;
         }};
         axinPurpleRock = new Floor("axinpurple-rock") {{
             variants = 5;
-            blendGroup = axinPurpleStone;
+            blendGroup = ExoEnvironmentBlocks.axinPurpleStone;
         }};
         axinPurpleStoneMineral = new Floor("axinpurpleMineral-stone") {{
             variants = 6;
-            blendGroup = axinPurpleStone;
+            blendGroup = ExoEnvironmentBlocks.axinPurpleStone;
         }};
 
         axinCrystalTile = new Floor("axin-crystaltile") {{
@@ -280,7 +279,7 @@ public class ExoEnvironmentBlocks {
         axinCrystalPurple = new Floor("axin-crystalPurple") {{
             variants = 4;
         }};
-        thermakronxCrystal = new Floor("Thermakronx-crystal"){{
+        thermakronxCrystal = new Floor("Thermakronx-crystal") {{
             itemDrop = ExoItems.thermkronxite;
             playerUnmineable = true;
         }};
