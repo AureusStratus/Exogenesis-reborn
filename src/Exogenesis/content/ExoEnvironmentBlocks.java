@@ -212,7 +212,6 @@ public class ExoEnvironmentBlocks {
         }};
         axinSlate = new Floor("axin1-slate") {{
             variants = 3;
-            blendGroup = ExoEnvironmentBlocks.axinCyanSlate;
         }};
         axinCarvakStone = new Floor("axincarvak-stone") {{
             variants = 5;
@@ -225,7 +224,6 @@ public class ExoEnvironmentBlocks {
         }};
         axinCrystalRock = new Floor("axincrystalrock") {{
             variants = 8;
-            blendGroup = ExoEnvironmentBlocks.axinCrystalStone;
         }};
         axinCrystalStoneWall = new StaticWall("axin-crystalStone-wall") {{
             axinCrystalStone.asFloor().wall = axinCrystalRock.asFloor().wall = this;
@@ -236,11 +234,9 @@ public class ExoEnvironmentBlocks {
         }};
         axinRock = new Floor("axin-rock") {{
             variants = 5;
-            blendGroup = ExoEnvironmentBlocks.axinStone;
         }};
         axinSlate2 = new Floor("axin-slate") {{
             variants = 9;
-            blendGroup = ExoEnvironmentBlocks.axinStone;
         }};
         axinStoneWall = new StaticWall("axin-stone-wall") {{
             variants = 2;
@@ -248,7 +244,6 @@ public class ExoEnvironmentBlocks {
         }};
         axinStoneMinerals = new Floor("axin-stoneMinerals") {{
             variants = 6;
-            blendGroup = ExoEnvironmentBlocks.axinStone;
         }};
 
         axinPurpleStone = new Floor("axinpurple-stone") {{
@@ -259,15 +254,12 @@ public class ExoEnvironmentBlocks {
         }};
         axinPurpleSlate = new Floor("axinpurple-slate") {{
             variants = 3;
-            blendGroup = ExoEnvironmentBlocks.axinPurpleStone;
         }};
         axinPurpleRock = new Floor("axinpurple-rock") {{
             variants = 5;
-            blendGroup = ExoEnvironmentBlocks.axinPurpleStone;
         }};
         axinPurpleStoneMineral = new Floor("axinpurpleMineral-stone") {{
             variants = 6;
-            blendGroup = ExoEnvironmentBlocks.axinPurpleStone;
         }};
 
         axinCrystalTile = new Floor("axin-crystaltile") {{
