@@ -6,6 +6,7 @@ import arc.math.*;
 import Exogenesis.content.*;
 import Exogenesis.graphics.*;
 import blackhole.BlackHoleMod;
+import blackhole.entities.effect.SwirlEffect;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.BulletType;
@@ -26,7 +27,7 @@ public class StarBulletType extends BulletType {
     public StarBulletType(float speed, float damage){
         this.speed = speed;
         this.damage = damage;
-        this.swirlEffect = BlackHoleMod.defaultSwirlEffect;
+        this.swirlEffect = new SwirlEffect();
         this.swirlInterval = 3.0F;
         this.swirlEffects = 4;
         this.rotationSpeed = 160;
