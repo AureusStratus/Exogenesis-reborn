@@ -483,7 +483,17 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),
-            supernovaCharge = new SwirlEffect(30f, 8, 2f, 30f, 90f).layer(Layer.effect - 0.03f),
+            supernovaCharge = new SwirlEffect(){{
+                lightOpacity = 0.5f;
+                lifetime = 30;
+                length = 8;
+                width = 3;
+                minRot = 30;
+                maxRot = 90;
+                minDst = 0;
+                maxDst = 0;
+                layer = Layer.effect - 0.03f;
+    }},
             starChargeWhite = new Effect(100f, 100f, e -> {
                     color(ExoPal.starWhite);
                     Fill.circle(e.x, e.y, e.fin() * 10);
@@ -695,12 +705,54 @@ public class ExoFx{
             });
         });
     }),
-            redStarSwirl = new SwirlEffect(75.0F, 8, 3F, 100.0F, 380.0F).layer(110.005F),
-            yellowStarSwirl = new SwirlEffect(90.0F, 10, 3F, 120.0F, 480.0F).layer(110.005F),
-            whiteStarSwirl = new SwirlEffect(90.0F, 8, 3F, 120.0F, 480.0F).layer(110.005F),
-            starngeStarSwirl = new SwirlEffect(70.0F, 18, 1.7F, 140.0F, 680.0F).layer(110.005F),
-            blueStarSwirl = new SwirlEffect(90.0F, 10, 3F, 120.0F, 480.0F).layer(110.005F),
-            darkBlueStarSwirl = new SwirlEffect(120.0F, 9, 5.5F, 140.0F, 780.0F).layer(110.005F),
+            redStarSwirl = new SwirlEffect(){{
+                lifetime = 75.0F;
+                length = 8;
+                width = 3;
+                minRot = 100.0F;
+                maxRot = 380.0F;
+                layer = 110.005F;
+            }},
+            yellowStarSwirl = new SwirlEffect(){{
+                lifetime = 90.0F;
+                length = 10;
+                width = 3;
+                minRot = 120.0F;
+                maxRot = 480.0F;
+                layer = 110.005F;
+            }},
+            whiteStarSwirl = new SwirlEffect(){{
+                lifetime = 90.0F;
+                length = 8;
+                width = 3;
+                minRot = 120.0F;
+                maxRot = 480.0F;
+                layer = 110.005F;
+            }},
+            strangeStarSwirl = new SwirlEffect(){{
+                lifetime = 70.0F;
+                length = 18;
+                width = 1.7F;
+                minRot = 140.0F;
+                maxRot = 680.0F;
+                layer = 110.005F;
+            }},
+            blueStarSwirl = new SwirlEffect(){{
+                lifetime = 90.0F;
+                length = 10;
+                width = 3;
+                minRot = 120.0F;
+                maxRot = 480.0F;
+                layer = 110.005F;
+            }},
+            darkBlueStarSwirl = new SwirlEffect(){{
+                lifetime = 120.0F;
+                length = 9;
+                width = 5.5F;
+                minRot = 140.0F;
+                maxRot = 780.0F;
+                layer = 110.005F;
+            }},
             smolSwirl = new SwirlEffect(120.0F, 6, 2.5F, 140.0F, 780.0F).layer(110.005F),
 
             strangeStarSparks = new Effect(16f, e -> {

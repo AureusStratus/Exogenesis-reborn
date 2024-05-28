@@ -283,6 +283,7 @@ public class ExoEnvironmentBlocks {
             variants = 0;
             playerUnmineable = true;
         }};
+
         diamondTile = new Floor("axin-diamondTile") {{
             variants = 4;
         }};

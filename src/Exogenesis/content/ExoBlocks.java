@@ -3356,7 +3356,7 @@ public class ExoBlocks{
                 splashDamage = 150;
                 splashDamageRadius = 50;
                 swirlEffects = 3;
-                swirlEffect = ExoFx.starngeStarSwirl;
+                swirlEffect = ExoFx.strangeStarSwirl;
                 despawnHit = true;
                 rotationSpeed = 100;
                 int times = 25;
