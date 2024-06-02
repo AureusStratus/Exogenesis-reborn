@@ -7014,7 +7014,7 @@ public class ExoUnitTypes {
                     speed = 0f;
                     keepVelocity = false;
                     collidesAir = false;
-                    spawnUnit = new MissileUnitType("siravaxa-missile"){{
+                    spawnUnit = new MissileUnitType("siravax-missile"){{
                         targetAir = false;
                         speed = 4.6f;
                         maxRange = 5f;
@@ -7092,7 +7092,7 @@ public class ExoUnitTypes {
                     speed = 0f;
                     keepVelocity = false;
                     collidesAir = false;
-                    spawnUnit = new MissileUnitType("siravaxa-missile"){{
+                    spawnUnit = new MissileUnitType("siravax-missile"){{
                         targetAir = false;
                         speed = 4.6f;
                         maxRange = 5f;
