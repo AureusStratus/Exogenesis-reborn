@@ -6021,7 +6021,7 @@ public class ExoUnitTypes {
                         mirror = true;
                         layer = Layer.flyingUnitLow -1;
                         x = 7.5f;
-                        y = -5.5f;
+                        y = -7.5f;
                     }}
             );
             weapons.add(new Weapon("starblast") {{
@@ -6034,7 +6034,7 @@ public class ExoUnitTypes {
 
                 shootY = 0;
                 recoil = 0;
-                bullet = new BlackHoleBulletType(3f, 3f){{
+                bullet = new BlackHoleBulletType(3f, 1f){{
                     lifetime = 100f;
                     growTime = 2;
                     force = 20;
@@ -6355,8 +6355,8 @@ public class ExoUnitTypes {
             legBaseOffset =  10;
             lockLegBase = legContinuousMove = faceTarget = true;
             legGroupSize = 3;
-            legStraightness = 0.55f;
-            baseLegStraightness = 0.5f;
+            legStraightness = 0.35f;
+            baseLegStraightness = 0.3f;
             legMaxLength = 1.3f;
             rippleScale = 2;
             hovering = true;
@@ -6453,13 +6453,6 @@ public class ExoUnitTypes {
             shadowElevation = 0.4f;
             groundLayer = Layer.legUnit;
             parts.addAll(
-                    new EffectSpawnPart() {{
-                        useProgress = mirror = true;
-                        y = 20f;
-                        effect = ExoFx.supernovaSpark;
-                        randomEffectRot = 360;
-                        effectChance = 0.5f;
-                    }},
                     new RegionPart("-bodyside"){{
                         mirror = true;
                         progress = PartProgress.warmup;
@@ -6798,6 +6791,7 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 0;
                 top = false;
+                reload = 40;
                 shootSound = Sounds.none;
                 shootY = 6.25f;
                 recoil = 0;
@@ -6809,7 +6803,7 @@ public class ExoUnitTypes {
                     damage = 10f;
                     width = 14f;
                     delayEffectLifeTime = lifetime = 0f;
-                    rangeOverride = 50;
+                    rangeOverride = 80;
                     trailEffect = Fx.none;
                     lightning = 2;
                     lightningLength = 2;
@@ -6818,23 +6812,6 @@ public class ExoUnitTypes {
                     lightColor = hitColor = lightningColor = ExoPal.genesis;
                     hitEffect = despawnEffect = ExoFx.colorBombSmaller;
                     colors = new Color[]{ExoPal.genesisDark.cpy().a(0.4f), ExoPal.genesis, Color.white};
-                    fragOnHit = false;
-                    fragRandomSpread = 0f;
-                    fragSpread = 13f;
-                    fragBullets = 2;
-                    fragVelocityMin = 1f;
-                    fragBullet = new ExoLaserBulletType() {{
-                        damage = 15f;
-                        damageType = DamageType.energy;
-                        sideAngle = 40f;
-                        sideWidth = 0f;
-                        sideLength = 0f;
-                        width = 25f;
-                        length = 210f;
-                        hitColor = ExoPal.genesis;
-                        shootEffect = ExoFx.square45_6_45;
-                        colors = new Color[]{ExoPal.genesisDark.cpy().a(.2f), ExoPal.genesis, Color.white};
-                    }};
                 }};
             }});
         }};
@@ -6866,9 +6843,9 @@ public class ExoUnitTypes {
                 x = 0;
                 shoot = new ShootBarrel(){{
                     barrels = new float[]{
-                            7.0f, 7.0f, 45f,
-                            0f, 9.75f, 0f,
                             -7.0f, 7.0f, -45f,
+                            0f, 9.75f, 0f,
+                            7.0f, 7.0f, 45f,
                     };
                 }};
                 rotate = true;
@@ -6878,7 +6855,7 @@ public class ExoUnitTypes {
                 shootY = 0;
                 recoil = 0;
                 bullet = new ExoBasicBulletType(5.5f, 15){{
-                    width = height = 14;
+                    width = height = 8;
                     sprite = "exogenesis-plasma";
                     homingPower = 0.007f;
                     homingRange = 50;
@@ -6889,14 +6866,13 @@ public class ExoUnitTypes {
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.genesis;
                     trailRotation = true;
-                    collidesTiles = false;
-                    lifetime = 55f;
+                    lifetime = 35f;
                     shrinkY = shrinkX = 0;
                     shootEffect = new MultiEffect(ExoFx.hitEmpColorSpark);
                     hitEffect = despawnEffect = new MultiEffect(ExoFx.blastExplosionColor, Fx.colorSpark);
 
-                    lightning = 7;
-                    lightningLength = 9;
+                    lightning = 3;
+                    lightningLength = 7;
                     lightningColor = ExoPal.genesis;
                     lightningDamage = 6;
                     shootEffect = Fx.shootBigColor;
@@ -6917,7 +6893,7 @@ public class ExoUnitTypes {
             legForwardScl = 0.65f;
             legMoveSpace = 0.8f;
             legExtension = -6;
-            legBaseOffset = 16;
+            legBaseOffset = 8.5f;
             lockLegBase = legContinuousMove = faceTarget = omniMovement = true;
             legGroupSize = 3;
             legMaxLength = 1.3f;
@@ -6934,17 +6910,20 @@ public class ExoUnitTypes {
                 y = 0;
                 shootY = 13.5f;
                 shake = 0;
-                reload = 70f;
+                reload = 2f;
                 top = false;
                 rotate = true;
                 rotateSpeed = 3.5f;
                 recoil = 0;
-                bullet = new ExoBasicBulletType(6, 10){{
-                        instantDisappear = true;
-                        width = height = 0f;
-                        shrinkX = shootY = 0;
-                        lifetime = 40;
-                        hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                bullet = new ChainLightningBulletType() {{
+                    lightningColor = ExoPal.genesis;
+                    damageType = DamageType.energy;
+                    range = 85;
+                    targetRange = 10;
+                    damage = 10;
+                    distanceDamageFalloff = 2;
+                    chainLightning = 1;
+                    segmentLength = 6;
                 }};
             }});
         }};
@@ -6967,7 +6946,7 @@ public class ExoUnitTypes {
             legForwardScl = 0.45f;
             rippleScale = 2f;
             stepShake = 4.5f;
-            legBaseOffset = 19f;
+            legBaseOffset = 13f;
             legExtension = -6;
 
             legSplashDamage = 62;
@@ -6996,6 +6975,162 @@ public class ExoUnitTypes {
                     shrinkX = shootY = 0;
                     lifetime = 40;
                     hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                }};
+            }});
+            weapons.add(new Weapon("siravaxa"){{
+                shootSound = Sounds.cannon;
+                mirror = true;
+                top = false;
+                x = 0;
+                y = 0f;
+                rotate = false;
+                minWarmup = 0.96f;
+                shootWarmupSpeed = 0.03f;
+                layerOffset = -0.001f;
+                baseRotation = 45;
+                shootY = 0;
+                reload = 200f;
+                shake = recoil = 0f;
+                parts.addAll(
+                        new RegionPart("-missile"){{
+                            progress = PartProgress.reload.curve(Interp.pow2In);
+                            y = 0;
+
+                            colorTo = new Color(1f, 1f, 1f, 0f);
+                            color = Color.white;
+                            mixColorTo = ExoPal.genesis;
+                            mixColor = new Color(1f, 1f, 1f, 0f);
+                            mirror = true;
+                            under = true;
+                            moves.add(new PartMove(PartProgress.warmup.delay(0.8f), 0f, 0f, 45f));
+                            moves.add(new PartMove(PartProgress.warmup.inv(), 16f, 0f, 0f));
+                        }}
+                );
+                bullet = new BulletType(){{
+                    shootEffect = Fx.sparkShoot;
+                    smokeEffect = Fx.shootSmokeTitan;
+                    hitColor = ExoPal.genesis;
+                    shake = 1f;
+                    speed = 0f;
+                    keepVelocity = false;
+                    collidesAir = false;
+                    spawnUnit = new MissileUnitType("siravaxa-missile"){{
+                        targetAir = false;
+                        speed = 4.6f;
+                        maxRange = 5f;
+                        outlineColor = ExoPal.genesisOutline;
+                        health = 200;
+                        homingDelay = 10f;
+                        lowAltitude = true;
+                        engineOffset = 10;
+                        engineSize = 3f;
+                        engineColor = trailColor = ExoPal.genesis;
+                        engineLayer = Layer.effect;
+                        deathExplosionEffect = Fx.none;
+                        loopSoundVolume = 0.1f;
+                        weapons.add(new Weapon(){{
+                            shootCone = 360f;
+                            mirror = false;
+                            reload = 1f;
+                            shootOnDeath = true;
+                            bullet = new ExplosionBulletType(140f, 25f){{
+                                collidesAir = false;
+                                shootEffect = new ExplosionEffect(){{
+                                    lifetime = 50f;
+                                    waveStroke = 5f;
+                                    waveLife = 8f;
+                                    waveColor = Color.white;
+                                    sparkColor = smokeColor = ExoPal.genesis;
+                                    waveRad = 40f;
+                                    smokeSize = 4f;
+                                    smokes = 7;
+                                    smokeSizeBase = 0f;
+                                    sparks = 10;
+                                    sparkRad = 40f;
+                                    sparkLen = 6f;
+                                    sparkStroke = 2f;
+                                }};
+                            }};
+                        }});
+                    }};
+                }};
+            }});
+            weapons.add(new Weapon("siravaxa"){{
+                shootSound = Sounds.cannon;
+                mirror = true;
+                top = false;
+                x = 0;
+                y = 0f;
+                rotate = false;
+                minWarmup = 0.96f;
+                shootWarmupSpeed = 0.03f;
+                layerOffset = -0.001f;
+                baseRotation = 90;
+                shootY = 0;
+                reload = 200f;
+                shake = recoil = 0f;
+                parts.addAll(
+                        new RegionPart("-missile"){{
+                            progress = PartProgress.reload.curve(Interp.pow2In);
+                            y = 0;
+
+                            colorTo = new Color(1f, 1f, 1f, 0f);
+                            color = Color.white;
+                            mixColorTo = ExoPal.genesis;
+                            mirror = true;
+                            mixColor = new Color(1f, 1f, 1f, 0f);
+                            under = true;
+                            moves.add(new PartMove(PartProgress.warmup.delay(0.8f), 0f, 0f, 135f));
+                            moves.add(new PartMove(PartProgress.warmup.inv(), 16f, 0f, 0f));
+                        }}
+                );
+                bullet = new BulletType(){{
+                    shootEffect = Fx.sparkShoot;
+                    smokeEffect = Fx.shootSmokeTitan;
+                    hitColor = ExoPal.genesis;
+                    shake = 1f;
+                    speed = 0f;
+                    keepVelocity = false;
+                    collidesAir = false;
+                    spawnUnit = new MissileUnitType("siravaxa-missile"){{
+                        targetAir = false;
+                        speed = 4.6f;
+                        maxRange = 5f;
+                        outlineColor = ExoPal.genesisOutline;
+                        health = 200;
+                        homingDelay = 10f;
+                        lowAltitude = true;
+                        engineOffset = 10;
+                        engineSize = 3f;
+                        engineColor = trailColor = ExoPal.genesis;
+                        engineLayer = Layer.effect;
+                        deathExplosionEffect = Fx.none;
+                        loopSoundVolume = 0.1f;
+                        weapons.add(new Weapon(){{
+                            shootCone = 360f;
+                            mirror = false;
+                            reload = 1f;
+                            shootOnDeath = true;
+                            bullet = new ExplosionBulletType(140f, 25f){{
+                                collidesAir = false;
+                                shootEffect = new ExplosionEffect(){{
+                                    lifetime = 50f;
+                                    waveStroke = 5f;
+                                    waveLife = 8f;
+                                    waveColor = Color.white;
+                                    sparkColor = smokeColor = ExoPal.genesis;
+                                    waveRad = 40f;
+                                    smokeSize = 4f;
+                                    smokes = 7;
+                                    smokeSizeBase = 0f;
+                                    sparks = 10;
+                                    sparkRad = 40f;
+                                    sparkLen = 6f;
+                                    sparkStroke = 2f;
+                                }};
+                            }};
+                        }});
+                    }};
                 }};
             }});
         }};
