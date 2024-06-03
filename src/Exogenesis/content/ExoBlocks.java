@@ -2147,7 +2147,6 @@ public class ExoBlocks{
                                         new RegionPart("-side2") {{
                                             progress = PartProgress.warmup.delay(0.6f);
                                             moves.add(new PartMove(PartProgress.warmup.delay(0.5f), 0f, -3f, 0f));
-                                            mirror = true;
                                             recoilIndex = f;
                                             moveX = 2;
                                             moveY = 9f;

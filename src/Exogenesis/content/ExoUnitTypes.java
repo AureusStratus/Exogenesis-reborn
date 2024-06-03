@@ -6453,6 +6453,16 @@ public class ExoUnitTypes {
             shadowElevation = 0.4f;
             groundLayer = Layer.legUnit;
             parts.addAll(
+                    new BlackHolePart(){{
+                        color = colorTo = ExoPal.genesis;
+                        progress = growProgress = PartProgress.charge;
+                        size = 0;
+                        sizeTo = 13;
+                        edge = 0;
+                        edgeTo = 16;
+                        mirror = false;
+                        y = 20;
+                    }},
                     new RegionPart("-bodyside"){{
                         mirror = true;
                         progress = PartProgress.warmup;
@@ -6493,51 +6503,20 @@ public class ExoUnitTypes {
                 reload = 400f;
                 shake = 3f;
                 heatColor = Color.red;
-                shoot = new ShootPattern(){{
-                    shots = 7;
-                    firstShotDelay = 100;
-                    shotDelay = 1;
-                }};
-                inaccuracy = 30;
-                velocityRnd = 0.7f;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = shoot.firstShotDelay + 5f;
+                shootStatusDuration = shoot.firstShotDelay = 100 + 5f;
                 minWarmup = 0.96f;
                 shootWarmupSpeed = 0.03f;
-                bullet = new ExoArtilleryBulletType(){{
-                    hitEffect = new MultiEffect(Fx.titanExplosion, ExoFx.empyreanExplosion, Fx.flakExplosionBig);
-                    despawnEffect = Fx.none;
-                    damageType = DamageType.explosive;
-                    chargeEffect = ExoFx.starChargeBlue;
-                    speed = 4.5f;
-                    damage = 150;
-                    sprite = "exogenesis-asteroid-bullet";
-                    knockback = 2f;
-                    lifetime = 140f;
-                    height = 25f;
-                    width = 25f;
-                    splashDamageRadius = 65f;
-                    splashDamage = 350f;
-                    scaledSplashDamage = true;
-                    backColor = hitColor = trailColor = ExoPal.genesis;
-                    frontColor = Color.white;
-                    hitSound = Sounds.dullExplosion;
-
-                    status = StatusEffects.blasted;
-
-                    trailLength = 32;
-                    trailWidth = 3f;
-                    trailSinScl = 2.5f;
-                    trailSinMag = 0.5f;
-                    despawnShake = 7f;
-
-                    shootEffect = Fx.shootTitan;
-                    smokeEffect = Fx.shootSmokeTitan;
-
-                    trailInterp = v -> Math.max(Mathf.slope(v), 0.8f);
-                    shrinkX = 0.2f;
-                    shrinkY = 0.1f;
-                    buildingDamageMultiplier = 0.3f;
+                bullet = new BlackHoleBulletType(2f, 1400f / 30f){{
+                    lifetime = 330f;
+                    growTime = 15;
+                    damageRadius = 30;
+                    swirlEffects = 5;
+                    swirlInterval = 3;
+                    color = hitColor = ExoPal.genesis;
+                    lightRadius = 8f;
+                    lightOpacity = 0.7f;
+                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
                 }};
             }});
             weapons.add(new Weapon("exogenesis-align-laser"){{
