@@ -6796,7 +6796,7 @@ public class ExoUnitTypes {
                 shootY = 6.25f;
                 recoil = 0;
                 shake = 0f;
-                rotate = continuous = alwaysContinuous = true;
+                rotate = true;
                 rotateSpeed = 3.5f;
 
                 bullet = new DelayedPointBulletType(){{
@@ -6843,14 +6843,14 @@ public class ExoUnitTypes {
                 x = 0;
                 shoot = new ShootBarrel(){{
                     barrels = new float[]{
-                            -7.0f, 7.0f, -45f,
+                            -7.0f, 7.0f, 45f,
                             0f, 9.75f, 0f,
-                            7.0f, 7.0f, 45f,
+                            7.0f, 7.0f, -45f,
                     };
                 }};
                 rotate = true;
                 rotateSpeed = 3.5f;
-                shootSound = Sounds.none;
+                shootSound = Sounds.bolt;
                 shootCone = 30;
                 shootY = 0;
                 recoil = 0;
@@ -6862,7 +6862,6 @@ public class ExoUnitTypes {
                     homingDelay = 2;
                     scaleLife = false;
                     damageType = energy;
-                    hitSound = Sounds.dullExplosion;
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.genesis;
                     trailRotation = true;
@@ -6908,7 +6907,7 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 x = 0f;
                 y = 0;
-                shootY = 13.5f;
+                shootY = 12.5f;
                 shake = 0;
                 reload = 2f;
                 top = false;
@@ -6918,7 +6917,7 @@ public class ExoUnitTypes {
                 bullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.genesis;
                     damageType = DamageType.energy;
-                    range = 85;
+                    range = 125;
                     targetRange = 10;
                     damage = 10;
                     distanceDamageFalloff = 2;
@@ -6977,13 +6976,14 @@ public class ExoUnitTypes {
                     hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
                 }};
             }});
-            weapons.add(new Weapon("siravaxa"){{
+            weapons.add(new Weapon("cores"){{
                 shootSound = Sounds.cannon;
                 mirror = true;
                 top = false;
                 x = 0;
                 y = 0f;
                 rotate = false;
+                shootCone = 260;
                 minWarmup = 0.96f;
                 shootWarmupSpeed = 0.03f;
                 layerOffset = -0.001f;
@@ -6995,7 +6995,7 @@ public class ExoUnitTypes {
                         new RegionPart("-missile"){{
                             progress = PartProgress.reload.curve(Interp.pow2In);
                             y = 0;
-
+                            rotation = -90;
                             colorTo = new Color(1f, 1f, 1f, 0f);
                             color = Color.white;
                             mixColorTo = ExoPal.genesis;
@@ -7055,13 +7055,14 @@ public class ExoUnitTypes {
                     }};
                 }};
             }});
-            weapons.add(new Weapon("siravaxa"){{
+            weapons.add(new Weapon("cores"){{
                 shootSound = Sounds.cannon;
                 mirror = true;
                 top = false;
                 x = 0;
                 y = 0f;
                 rotate = false;
+                shootCone = 260;
                 minWarmup = 0.96f;
                 shootWarmupSpeed = 0.03f;
                 layerOffset = -0.001f;
@@ -7073,7 +7074,7 @@ public class ExoUnitTypes {
                         new RegionPart("-missile"){{
                             progress = PartProgress.reload.curve(Interp.pow2In);
                             y = 0;
-
+                            rotation = -90;
                             colorTo = new Color(1f, 1f, 1f, 0f);
                             color = Color.white;
                             mixColorTo = ExoPal.genesis;
