@@ -90,25 +90,25 @@ public class ExoUnitTypes {
                 parts.addAll(
                         new RegionPart("-tungsten-sink-1"){{
                             mirror = false;
-                            recoilIndex = 0;
+                            recoilIndex = 3;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-2"){{
                             mirror = false;
-                            recoilIndex = 1;
+                            recoilIndex = 2;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-3"){{
                             mirror = false;
-                            recoilIndex = 2;
+                            recoilIndex = 1;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
                         new RegionPart("-tungsten-sink-4"){{
                             mirror = false;
-                            recoilIndex = 3;
+                            recoilIndex = 0;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
@@ -2777,7 +2777,6 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-leto-aa-railgun"){{
                 reload = 10f;
                 playerControllable = false;
-                aiControllable = true;
                 mirror = true;
                 alternate = false;
                 rotate = true;
@@ -2854,7 +2853,6 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-leto-aa-railgun"){{
                 reload = 10f;
                 playerControllable = false;
-                aiControllable = true;
                 mirror = true;
                 alternate = false;
                 rotate = true;
@@ -3252,7 +3250,52 @@ public class ExoUnitTypes {
                 shake = 1f;
                 parts.addAll(
                         // weapon parts
-                        new FlarePart(){{
+                        new EffectSpawnPart() {{
+                            useProgress = true;
+                            y = 0f;
+                            effect = ExoFx.supernovaSpark;
+                            progress = PartProgress.reload;
+                            effectColor = Pal.heal;
+                            randomEffectRot = 360;
+                            effectChance = 0.5f;
+                        }},
+                        new EffectSpawnPart() {{
+                            useProgress = true;
+                            y = 0f;
+                            effect = ExoFx.ullrChargeEffect;
+                            progress = PartProgress.charge;
+                            effectColor = Pal.heal;
+                            randomEffectRot = 360;
+                            effectChance = 0.2f;
+                        }},
+                        new EffectSpawnPart() {{
+                            useProgress = true;
+                            y = 0f;
+                            effect = ExoFx.ullrChargeEffect;
+                            progress = PartProgress.charge.delay(0.9f);
+                            effectColor = Pal.heal;
+                            randomEffectRot = 360;
+                            effectChance = 0.45f;
+                        }},
+                        new EffectSpawnPart() {{
+                            useProgress = true;
+                            y = 0f;
+                            effect = ExoFx.ullrChargeEffect;
+                            progress = PartProgress.charge.delay(0.75f);
+                            effectColor = Pal.heal;
+                            randomEffectRot = 360;
+                            effectChance = 0.75f;
+                        }},
+                        new EffectSpawnPart() {{
+                            useProgress = true;
+                            y = 0f;
+                            effect = ExoFx.ullarTipHit;
+                            progress = PartProgress.recoil;
+                            effectColor = Pal.heal;
+                            randomEffectRot = 0;
+                            effectChance = 0.5f;
+                        }},
+                         new FlarePart(){{
                             progress = PartProgress.recoil;
                             color1 = Pal.heal;
                             color2 = Color.white;
@@ -5066,7 +5109,7 @@ public class ExoUnitTypes {
                     lifetime = 10f;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
                     shrinkY = shrinkX = 0;
-                    shootEffect = Fx.shootSmallColor;
+                    shootEffect = new MultiEffect(Fx.shootSmallColor, ExoFx.hitEmpColorSpark);
                     trailLength = 10;
                     trailWidth = 2f;
                     fragOnHit = false;
@@ -5867,7 +5910,7 @@ public class ExoUnitTypes {
                         circle = true;
                         y = 0f;
                         layer = 114;
-                        radiusTo = 0.8f;
+                        radiusTo = 2f;
                         radius = 0.5f;
                         color = Color.white;
                     }},
@@ -5875,7 +5918,7 @@ public class ExoUnitTypes {
                         circle = true;
                         y = 0f;
                         layer = 110;
-                        radiusTo = 1.5f;
+                        radiusTo = 4f;
                         radius = 1f;
                         color = ExoPal.genesis;
                     }}
@@ -6158,10 +6201,11 @@ public class ExoUnitTypes {
             parts.add(
             new RegionPart("-blade"){{
                 mirror = true;
+                moves.add(new PartMove(PartProgress.recoil, 0f, 0f, -12f));
                 heatColor = Color.valueOf("66B1FF");
                 progress = PartProgress.warmup;
                 heatProgress = PartProgress.warmup;
-                moveRot = -22f;
+                moveRot = -26f;
             }}
             );
             weapons.add(new Weapon("orion") {{
@@ -6282,7 +6326,8 @@ public class ExoUnitTypes {
                         useProgress = mirror = true;
                         y = 0f;
                         effect = ExoFx.supernovaSpark;
-                        randomEffectRot = 360;
+                        effectColor = ExoPal.genesis;
+                        randomEffectRot = 30;
                         effectChance = 0.5f;
                     }},
                     new ShapePart() {{
@@ -6362,17 +6407,9 @@ public class ExoUnitTypes {
             hovering = true;
             legSplashDamage = 22;
             legSplashRange = 30;
-            abilities.add(new ShieldArcAbility(){{
-                region = "exogensis-kuiper-shield";
-                radius = 60f;
-                drawArc = false;
-                regen = 11f;
-                cooldown = 60f * 8f;
-                max = 4000f;
-                y = -20f;
-                width = 6f;
-                whenShooting = true;
-            }});
+            drawShields = false;
+
+            abilities.add(new ForceFieldAbility(60f, 0.3f, 400f, 60f, 360, 45));
 
             shadowElevation = 0.4f;
             groundLayer = Layer.legUnit - 1f;
@@ -6457,9 +6494,9 @@ public class ExoUnitTypes {
                         color = colorTo = ExoPal.genesis;
                         progress = growProgress = PartProgress.charge;
                         size = 0;
-                        sizeTo = 13;
+                        sizeTo = 15;
                         edge = 0;
-                        edgeTo = 16;
+                        edgeTo = 19;
                         mirror = false;
                         y = 20;
                     }},
@@ -6507,10 +6544,10 @@ public class ExoUnitTypes {
                 shootStatusDuration = shoot.firstShotDelay = 100 + 5f;
                 minWarmup = 0.96f;
                 shootWarmupSpeed = 0.03f;
-                bullet = new BlackHoleBulletType(2f, 1400f / 30f){{
+                bullet = new BlackHoleBulletType(1f, 1400f / 35f){{
                     lifetime = 330f;
                     growTime = 15;
-                    damageRadius = 30;
+                    damageRadius = 20;
                     swirlEffects = 5;
                     swirlInterval = 3;
                     color = hitColor = ExoPal.genesis;
@@ -6797,7 +6834,7 @@ public class ExoUnitTypes {
         guard = new AxinUnitType("guard") {{
             constructor = LegsUnit::create;
             speed = 1.27f;
-            hitSize = 13f;
+            hitSize = 17f;
             health = 890f;
             rotateSpeed = 1.8f;
             faceTarget = true;
@@ -6829,16 +6866,16 @@ public class ExoUnitTypes {
                 }};
                 rotate = true;
                 rotateSpeed = 3.5f;
-                shootSound = Sounds.bolt;
+                shootSound = Sounds.blaster;
                 shootCone = 30;
                 shootY = 0;
                 recoil = 0;
-                bullet = new ExoBasicBulletType(5.5f, 15){{
+                bullet = new ExoBasicBulletType(5.5f, 10){{
                     width = height = 8;
                     sprite = "exogenesis-plasma";
                     homingPower = 0.007f;
                     homingRange = 50;
-                    homingDelay = 2;
+                    homingDelay = 1;
                     scaleLife = false;
                     damageType = energy;
                     frontColor = Color.white;
@@ -6861,7 +6898,7 @@ public class ExoUnitTypes {
         }};
         sentry = new AxinUnitType("sentry"){{
             speed = 1.25f;
-            hitSize = 32f;
+            hitSize = 17f;
             rotateSpeed = 1.8f;
             health = 2900;
             armor = 10f;
@@ -6896,9 +6933,10 @@ public class ExoUnitTypes {
                 bullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.genesis;
                     damageType = DamageType.energy;
+                    shootEffect = ExoFx.hitSparkHuge;
                     range = 125;
                     targetRange = 10;
-                    damage = 10;
+                    damage = 8;
                     distanceDamageFalloff = 2;
                     chainLightning = 1;
                     segmentLength = 6;
@@ -6909,7 +6947,7 @@ public class ExoUnitTypes {
             constructor = LegsUnit::create;
             drag = 0.2f;
             speed = 1.24f;
-            hitSize = 53f;
+            hitSize = 25f;
             health = 12000;
             rotateSpeed = 1.8f;
             armor = 14f;
@@ -6940,6 +6978,7 @@ public class ExoUnitTypes {
                 top = false;
                 x = 0;
                 y = 0f;
+
                 rotate = true;
                 rotateSpeed = 3.5f;
                 shootY = 0;
@@ -6955,12 +6994,16 @@ public class ExoUnitTypes {
                     hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
                 }};
             }});
-            weapons.add(new Weapon("cores"){{
+            weapons.add(new Weapon("exgenesis-cores"){{
                 shootSound = Sounds.cannon;
                 mirror = true;
                 top = false;
                 x = 0;
                 y = 0f;
+                shoot = new ShootPattern(){{
+                    shots = 2;
+                    shotDelay = 4f;
+                }};
                 rotate = false;
                 shootCone = 260;
                 minWarmup = 0.96f;
@@ -7034,12 +7077,16 @@ public class ExoUnitTypes {
                     }};
                 }};
             }});
-            weapons.add(new Weapon("cores"){{
+            weapons.add(new Weapon("exgenesis-cores"){{
                 shootSound = Sounds.cannon;
                 mirror = true;
                 top = false;
                 x = 0;
                 y = 0f;
+                shoot = new ShootPattern(){{
+                    shots = 2;
+                    shotDelay = 4f;
+                }};
                 rotate = false;
                 shootCone = 260;
                 minWarmup = 0.96f;
@@ -7099,12 +7146,12 @@ public class ExoUnitTypes {
                                     waveLife = 8f;
                                     waveColor = Color.white;
                                     sparkColor = smokeColor = ExoPal.genesis;
-                                    waveRad = 40f;
+                                    waveRad = 70f;
                                     smokeSize = 4f;
                                     smokes = 7;
                                     smokeSizeBase = 0f;
                                     sparks = 10;
-                                    sparkRad = 40f;
+                                    sparkRad = 70f;
                                     sparkLen = 6f;
                                     sparkStroke = 2f;
                                 }};
@@ -7118,7 +7165,7 @@ public class ExoUnitTypes {
             constructor = LegsUnit::create;
             drag = 0.1f;
             speed = 1.23f;
-            hitSize = 56;
+            hitSize = 27;
             health = 45000;
             drawShields = false;
 

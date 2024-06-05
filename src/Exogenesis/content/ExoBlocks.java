@@ -470,7 +470,7 @@ public class ExoBlocks{
             outlineColor = ExoPal.empyreanOutline;
             size = 3;
             scaledHealth = 280;
-            shootSound = Sounds.bolt;
+            shootSound = Sounds.blaster;
             inaccuracy = 3;
             shootY = 9;
             warmupMaintainTime = 120f;
@@ -516,11 +516,12 @@ public class ExoBlocks{
             heatColor = Color.red;
             recoils = 2;
             shootSound = Sounds.laser;
-            inaccuracy = 1;
+            inaccuracy = 8;
             shootCone = 30f;
             shootY = 12;
             shoot = new ShootAlternate(){{
                 barrels = 2;
+                shots = 4;
                 spread = 12;
             }};
             rotateSpeed = 2f;
@@ -537,9 +538,8 @@ public class ExoBlocks{
                     }});
                 }
             }};
-            shootType = new ExoLaserBulletType(){{
+            shootType = new FancyLaserBulletType(){{
                 damage = 75f;
-                damageType = DamageType.energy;
                 sideAngle = 40f;
                 sideWidth = 1.5f;
                 sideLength = 30f;
@@ -1447,7 +1447,7 @@ public class ExoBlocks{
             scaledHealth = 280;
             heatColor = Color.red;
             recoils = 2;
-            shootSound = Sounds.shootSmite;
+            shootSound = Sounds.largeCannon;
             shootCone = 20f;
             shootY = 27;
             shoot = new ShootAlternate(){{
@@ -1480,7 +1480,7 @@ public class ExoBlocks{
                 }
             }};
             shootType = new ExoBasicBulletType(9, 270){{
-                lifetime = 30f;
+                lifetime = 80f;
                 damageType = kinetic;
                 width = 9;
                 height = 15;
@@ -2136,27 +2136,26 @@ public class ExoBlocks{
                 for(int i = 0; i < 2; i++) {
                     int f = i;
                     parts.addAll(
-                            new RegionPart("-bottom") {{
-                                mirror = false;
-                            }},
                             new RegionPart("-side-" + (i == 0 ? "l" : "r")) {{
-                                progress = PartProgress.recoil;
+                                progress = PartProgress.warmup;
+                                moves.add(new PartMove(PartProgress.recoil, 0f, -8f, 0f));
                                 recoilIndex = f;
-                                under = true;
-                                children.add(
-                                        new RegionPart("-side2") {{
-                                            progress = PartProgress.warmup.delay(0.6f);
-                                            moves.add(new PartMove(PartProgress.warmup.delay(0.5f), 0f, -3f, 0f));
-                                            recoilIndex = f;
-                                            moveX = 2;
-                                            moveY = 9f;
-                                        }});
                                 moveY = 7;
                                 moveX = 6.5f;
                                 moveRot = 13;
-                            }}
+                            }},
+                    new RegionPart("-bottom") {{
+                        mirror = false;
+                    }}
                     );
                 }
+                new RegionPart("-side2") {{
+                    progress = PartProgress.warmup.delay(0.6f);
+                    moves.add(new PartMove(PartProgress.warmup.delay(0.5f), 0f, -3f, 0f));
+                    mirror = false;
+                    moveX = 2;
+                    moveY = 9f;
+                }};
             }};
             shootType = new ChainLightningBulletType() {{
                 lightningColor = ExoPal.genesis;
