@@ -75,10 +75,10 @@ public class ExoFx{
                         rot + e.fin() * 50f * i
                 );
             }).layer(Layer.bullet),
-            PrometheusSmoke = new Effect(300f, 300f, b -> {
+            PrometheusSmoke = new Effect(120f, 300f, b -> {
                 float intensity = 4f;
 
-                color(b.color, 0.7f);
+                color(b.color, 0.3f);
                 for(int i = 0; i < 4; i++){
                     rand.setSeed(b.id*2 + i);
                     float lenScl = rand.random(0.5f, 1f);
@@ -152,7 +152,7 @@ public class ExoFx{
                 });
             }),
 
-    ullrChargeBegin = new Effect(288f, e -> {
+    ullrChargeBegin = new Effect(388f, e -> {
         Color[] colors = {Pal.heal, Pal.heal, Color.white};
         for(int ii = 0; ii < 3; ii++){
             float s = (3 - ii) / 3f;
