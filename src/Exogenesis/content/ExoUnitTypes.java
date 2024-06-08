@@ -1411,6 +1411,7 @@ public class ExoUnitTypes {
             faceTarget = false;
             fogRadius = 50;
             armor = 45;
+            outlineRadius = 6;
             rotateMoveFirst = true;
             hovering = true;
             singleTarget = true;
@@ -1471,7 +1472,7 @@ public class ExoUnitTypes {
                 y = -10;
                 reload = 16;
                 recoil = 0f;
-                recoils = 4;
+                recoils = 3;
                 layerOffset = 2;
                 cooldownTime = 250f;
                 rotateSpeed = 1;
@@ -1479,29 +1480,29 @@ public class ExoUnitTypes {
                         new RegionPart("-barrel-1"){{
                             mirror = false;
                             under = true;
-                            recoilIndex = 3;
-                            cooldownTime = 50;
-                            heatProgress = PartProgress.recoil;
-                            progress = PartProgress.recoil;
-                            moveY = -6f;
-                        }},
-                        new RegionPart("-barrel-2"){{
-                            mirror = false;
-                            under = true;
                             recoilIndex = 2;
                             cooldownTime = 50;
                             heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
-                            moveY = -6f;
+                            moveY = -4f;
                         }},
-                        new RegionPart("-barrel-3"){{
+                        new RegionPart("-barrel-2"){{
                             mirror = false;
                             under = true;
                             recoilIndex = 1;
                             cooldownTime = 50;
                             heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
-                            moveY = -6f;
+                            moveY = -4f;
+                        }},
+                        new RegionPart("-barrel-3"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 0;
+                            cooldownTime = 50;
+                            heatProgress = PartProgress.recoil;
+                            progress = PartProgress.recoil;
+                            moveY = -4f;
                         }}
                 );
                 shoot = new ShootBarrel(){{
@@ -1568,8 +1569,8 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-hyperion-flak-turret"){{
-                x = 30f;
-                y = 20f;
+                x = 46.25f;
+                y = 0f;
                 rotateSpeed = 2.5f;
                 reload = 6f;
                 shootSound = Sounds.shootBig;
