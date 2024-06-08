@@ -45,7 +45,6 @@ public class SpeedUpWeapon extends Weapon{
         }
         super.update(unit, mount);
     }
-
     protected void shoot(Unit unit, WeaponMount mount, float shootX, float shootY, float aimX, float aimY, float mountX, float mountY, float rotation, int side){
         AcceleratingMount aMount = (AcceleratingMount)mount;
         aMount.accel = Mathf.clamp(aMount.accel + accelPerShot, 0f, minReload);

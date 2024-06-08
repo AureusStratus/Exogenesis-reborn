@@ -1464,11 +1464,12 @@ public class ExoUnitTypes {
                     color = Pal.surge;
                 }});
             weapons.add(new Weapon("exogenesis-hyperion-weapon"){{
-                shootSound = Sounds.shootBig;
+                shootSound = Sounds.mediumCannon;
                 top = rotate = true;
                 mirror = false;
-                x = y = 0;
-                reload = 11;
+                x = 0;
+                y = -10;
+                reload = 16;
                 recoil = 0f;
                 recoils = 4;
                 layerOffset = 2;
@@ -1480,7 +1481,7 @@ public class ExoUnitTypes {
                             under = true;
                             recoilIndex = 3;
                             cooldownTime = 50;
-                            heatProgress = PartProgress.recoil.add(0.2f);
+                            heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
@@ -1489,7 +1490,7 @@ public class ExoUnitTypes {
                             under = true;
                             recoilIndex = 2;
                             cooldownTime = 50;
-                            heatProgress = PartProgress.recoil.add(0.2f);
+                            heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }},
@@ -1498,32 +1499,21 @@ public class ExoUnitTypes {
                             under = true;
                             recoilIndex = 1;
                             cooldownTime = 50;
-                            heatProgress = PartProgress.recoil.add(0.2f);
-                            progress = PartProgress.recoil;
-                            moveY = -6f;
-                        }},
-                        new RegionPart("-barrel-4"){{
-                            mirror = false;
-                            under = true;
-
-                            recoilIndex = 0;
-                            cooldownTime = 50;
-                            heatProgress = PartProgress.recoil.add(0.2f);
+                            heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
                             moveY = -6f;
                         }}
                 );
                 shoot = new ShootBarrel(){{
                     barrels = new float[]{
-                    19f, 48f, 0f,
-                    6.25f, 48f, 0f,
-                    -6.25f, 48f, 0f,
-                    -19f, 48f, 0f,
+                    15.5f, 43.0f, 0f,
+                    0f, 47.75f, 0f,
+                    -15.5f, 43.0f, 0f,
                     };
                 }};
                 bullet = new EmpBulletType() {{
                     sprite = "missile-large";
-                    width = 12f;
+                    width = 15f;
                     height = 36f;
                     speed = 13;
                     damage = 550;
@@ -1645,8 +1635,6 @@ public class ExoUnitTypes {
                         shootEffect = Fx.shootBig2;
                         hitEffect = Fx.flakExplosion;
                         buildingDamageMultiplier = 0.5f;
-                        trailLength = 10;
-                        trailWidth = 2.5f;
                     }};
                 }};
             }});
@@ -3480,6 +3468,7 @@ public class ExoUnitTypes {
                 rotate = true;
                 rotationLimit = 50;
                 rotateSpeed = 1.4f;
+
                 shootY = 30.25f;
                 cooldownTime = 100;
                 reload = 100f;
