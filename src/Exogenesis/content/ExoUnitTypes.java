@@ -5,7 +5,6 @@ import Exogenesis.type.*;
 import Exogenesis.graphics.*;
 import Exogenesis.type.abilities.TurretShield;
 import Exogenesis.type.bullet.*;
-import Exogenesis.type.bullet.DelayedPointBulletType;
 import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.type.unit.AxinUnitType;
@@ -35,7 +34,6 @@ import mindustry.type.weapons.*;
 import mindustry.content.*;
 
 import static Exogenesis.type.DamageType.energy;
-import static Exogenesis.type.DamageType.thermal;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.stroke;
 import static mindustry.Vars.tilesize;
@@ -58,6 +56,7 @@ public class ExoUnitTypes {
             speed = 0.28f;
             hitSize = 110f;
             health = 80000f;
+            outlineRadius = 6;
             fogRadius = 50;
             crushDamage = 1.5f;
             faceTarget = false;
@@ -272,6 +271,7 @@ public class ExoUnitTypes {
             speed = 0.45f;
             hitSize = 56f;
             health = 78000f;
+            outlineRadius = 6;
             faceTarget = singleTarget = true;
             armor = 30;
             shadowElevation = 0.3f;
@@ -1045,6 +1045,7 @@ public class ExoUnitTypes {
             shadowElevation = 3f;
             fogRadius = 50;
             health = 46500;
+            outlineRadius = 6;
             crashDamageMultiplier = 10;
             rotateSpeed = 0.7f;
             armor = 20f;
@@ -1099,6 +1100,7 @@ public class ExoUnitTypes {
                 circles = 3;
                 phase = 50;
                 radius = 15;
+                sides = 360;
                 mirror = false;
                 layer = Layer.effect;
                 y = 25.5f;
@@ -1349,7 +1351,6 @@ public class ExoUnitTypes {
                             mirror = false;
                             under = true;
                             recoilIndex = 1;
-                            outlineLayerOffset = -0.0002f;
                             progress = PartProgress.recoil;
                             moveY = -3.5f;
                         }},
@@ -1357,7 +1358,6 @@ public class ExoUnitTypes {
                             mirror = false;
                             under = true;
                             recoilIndex = 0;
-                            outlineLayerOffset = -0.0002f;
                             progress = PartProgress.recoil;
                             moveY = -3.5f;
                         }},
@@ -1365,7 +1365,6 @@ public class ExoUnitTypes {
                             mirror = false;
                             under = true;
                             recoilIndex = 3;
-                            outlineLayerOffset = -0.0002f;
                             progress = PartProgress.recoil;
                             moveY = -3.5f;
                         }},
@@ -1373,7 +1372,6 @@ public class ExoUnitTypes {
                             mirror = false;
                             under = true;
                             recoilIndex = 2;
-                            outlineLayerOffset = -0.0002f;
                             progress = PartProgress.recoil;
                             moveY = -3.5f;
                         }}
@@ -1569,8 +1567,8 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-hyperion-flak-turret"){{
-                x = 46.25f;
-                y = 0f;
+                x = 41.0f;
+                y = 3.25f;
                 rotateSpeed = 2.5f;
                 reload = 6f;
                 shootSound = Sounds.shootBig;
@@ -1650,6 +1648,7 @@ public class ExoUnitTypes {
             health = 76500f;
             lightRadius = 80;
             fogRadius = 50;
+            outlineRadius = 6;
             armor = 16f;
             speed = 1.4f;
             accel = 0.04f;
@@ -2322,6 +2321,7 @@ public class ExoUnitTypes {
             speed = 0.8f;
             hitSize = 76f;
             health = 78000f;
+            outlineRadius = 6;
             faceTarget = singleTarget = true;
             armor = 38;
             shadowElevation = 0.3f;
@@ -2694,6 +2694,7 @@ public class ExoUnitTypes {
             fogRadius = 50;
             rotateSpeed = 0.8f;
             health = 66500f;
+            outlineRadius = 6;
             armor = 45f;
             mechStepParticles = true;
             stepShake = 4f;
@@ -3152,6 +3153,7 @@ public class ExoUnitTypes {
             speed = 0.27f;
             hitSize = 37f;
             health = 37000f;
+            outlineRadius = 5;
             faceTarget = true;
             armor = 10;
             shadowElevation = 0.23f;
@@ -3260,6 +3262,7 @@ public class ExoUnitTypes {
             speed = 0.20f;
             hitSize = 56f;
             health = 65000f;
+            outlineRadius = 6;
             faceTarget = singleTarget = true;
             armor = 15;
             shadowElevation = 0.3f;
@@ -3296,7 +3299,7 @@ public class ExoUnitTypes {
                 y = 2f;
                 shootY = 0;
                 shootStatus = StatusEffects.unmoving;
-                shootStatusDuration = 560;
+                shootStatusDuration = 660;
                 shoot.firstShotDelay = 380;
                 shootSound = ExoSounds.funnylaserloop;
                 recoilTime = 285;
@@ -3453,6 +3456,7 @@ public class ExoUnitTypes {
             hitSize = 49f;
             rotateSpeed = 1.5f;
             health = 78000f;
+            outlineRadius = 5;
             armor = 35f;
             mechStepParticles = singleTarget = true;
             stepShake = 1f;
@@ -3508,6 +3512,7 @@ public class ExoUnitTypes {
             hitSize = 49f;
             rotateSpeed = 1.25f;
             health = 180000f;
+            outlineRadius = 6;
             armor = 80f;
             mechStepParticles = true;
             singleTarget = true;
@@ -3731,6 +3736,7 @@ public class ExoUnitTypes {
             speed = 0.42f;
             hitSize = 35.5f;
             health = 52000;
+            outlineRadius = 5;
             rotateSpeed = 1.3f;
             legContinuousMove = true;
             legCount = 8;
@@ -3831,6 +3837,7 @@ public class ExoUnitTypes {
             hovering = true;
             allowLegStep = true;
             health = 78750;
+            outlineRadius = 6;
             armor = 18f;
             rotateSpeed = 1.3f;
             legCount = 14;
@@ -3991,6 +3998,7 @@ public class ExoUnitTypes {
             constructor = UnitEntity::create;
             shadowElevation = 1.3f;
             health = 54000f;
+            outlineRadius = 5;
             armor = 17f;
             speed = 0.45f;
             accel = 0.04f;
@@ -4055,7 +4063,8 @@ public class ExoUnitTypes {
                     trailLength = 6;
                     trailWidth = 2f;
                 }};
-            }}, new Weapon("exogenesis-heavy-gunner"){{
+            }},
+            new Weapon("exogenesis-heavy-gunner"){{
                 x = 14f;
                 y = 20f;
                 rotateSpeed = 3f;
@@ -4083,6 +4092,7 @@ public class ExoUnitTypes {
             waveTrailY = -39f;
             trailScl = 3.5f;
             health = 54000f;
+            outlineRadius = 5;
             omniMovement = true;
             armor = 17f;
             speed = 0.56f;
@@ -4206,6 +4216,7 @@ public class ExoUnitTypes {
             waveTrailY = -56f;
             trailScl = 9.5f;
             health = 84000f;
+            outlineRadius = 6;
             omniMovement = true;
             armor = 25f;
             speed = 0.53f;
@@ -6160,6 +6171,7 @@ public class ExoUnitTypes {
             constructor = UnitEntity::create;
             coreUnitDock = true;
             isEnemy = false;
+
             envDisabled = 0;
 
             targetPriority = -2;
@@ -6663,7 +6675,7 @@ public class ExoUnitTypes {
             abilities.add(new ShieldArcAbility(){{
                 region = "exogensis-sirius-shield";
                 radius = 60f;
-                drawArc = false;
+                drawArc = true;
                 regen = 11f;
                 cooldown = 60f * 8f;
                 max = 6000f;

@@ -13,6 +13,7 @@ public class AxinUnitType extends UnitType{
         super(name);
         outlineColor = ExoPal.genesisOutline;
         envDisabled = ExoEnv.freezing;
+        outlineRadius = 4;
         ammoType = new ItemAmmoType(ExoItems.curtuses);
         researchCostMultiplier = 10f;
     }
