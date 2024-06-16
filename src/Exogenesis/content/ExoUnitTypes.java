@@ -20,6 +20,8 @@ import blackhole.entities.bullet.BlackHoleBulletType;
 import blackhole.entities.effect.SwirlEffect;
 import blackhole.entities.part.BlackHolePart;
 import mindustry.ai.*;
+import mindustry.ai.types.DefenderAI;
+import mindustry.ai.types.MinerAI;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
@@ -29,13 +31,16 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
+import mindustry.type.ammo.PowerAmmoType;
 import mindustry.type.unit.*;
 import mindustry.type.weapons.*;
 import mindustry.content.*;
+import mindustry.world.meta.BlockFlag;
 
 import static Exogenesis.type.DamageType.energy;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.stroke;
+import static mindustry.Vars.tilePayload;
 import static mindustry.Vars.tilesize;
 
 public class ExoUnitTypes {
@@ -44,6 +49,7 @@ public class ExoUnitTypes {
     //erekir
     //erekir supportMech
     calm, serene, tranquil, sanctuary, ataraxia,
+    ivy, yew, lantana, kalmia, hemlock,
     prometheus, atlas, nemesis, hyperion, rhea, cronus, leto,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus,
@@ -2715,22 +2721,25 @@ public class ExoUnitTypes {
                 shootY = 52.5f;
                 shootX = -3f;
                 cooldownTime = 100;
+                alternate = false;
                 recoil = 3f;
                 shake = 2f;
-                alwaysContinuous = true;
+                reload = 100;
                 continuous = true;
                 ejectEffect = Fx.casing4;
                 shootSound = Sounds.shootSmite;
                 parts.addAll(
                         new RegionPart("-bit1"){{
-                            mirror = true;
+                            mirror = false;
+                            under = true;
                             moveX = 1.5f;
                             heatColor = Color.red;
                             moves.add(new PartMove(PartProgress.recoil.curve(Interp.bounceIn), 2f, 0f, 0f));
                             progress = PartProgress.warmup;
                         }},
                         new RegionPart("-bit2"){{
-                            mirror = true;
+                            mirror = false;
+                            under = true;
                             moveX = 1.5f;
                             heatColor = Color.red;
                             moves.add(new PartMove(PartProgress.recoil.curve(Interp.bounceIn), -2f, 0f, 0f));
@@ -2745,7 +2754,7 @@ public class ExoUnitTypes {
                     width = 30f;
                     damageType = DamageType.energy;
                     collisionWidth = 10f;
-                    colors = new Color[]{ExoPal.letoColor.cpy().a(0.6f), ExoPal.letoColor, Color.white};
+                    colors = new Color[]{ExoPal.letoColor.cpy().a(0.4f), ExoPal.letoColor, Color.white};
                     pierceCap = 3;
                     hitEffect = ExoFx.ullarTipHit;
                     hitColor = ExoPal.letoColor;
@@ -2788,6 +2797,7 @@ public class ExoUnitTypes {
                     buildingDamageMultiplier = 0.5f;
                     damageType = DamageType.pierce;
                     hitColor = ExoPal.letoColor;
+                    collidesGround = false;
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
                     smokeEffect = new Effect(30,e->{
                         Draw.z(Layer.effect);
@@ -2866,6 +2876,7 @@ public class ExoUnitTypes {
                     length = 300f;
                     damage = 138f;
                     damageType = DamageType.pierce;
+                    collidesGround = false;
                     buildingDamageMultiplier = 0.5f;
                     hitColor = ExoPal.letoColor;
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
@@ -2964,6 +2975,7 @@ public class ExoUnitTypes {
             hitSize = 11f;
             health = 2000f;
             armor = 9f;
+            fogRadius = 25;
             researchCostMultiplier = 0f;
 
             weapons.add(new Weapon(name + "-weapon"){{
@@ -3000,6 +3012,7 @@ public class ExoUnitTypes {
             constructor = MechUnit::create;
             health = 4140f;
             armor = 13f;
+            fogRadius = 25;
             mechLandShake = 2f;
             riseSpeed = 0.05f;
             mechFrontSway = 0.55f;
@@ -3047,6 +3060,7 @@ public class ExoUnitTypes {
             stepShake = 0.15f;
             drownTimeMultiplier = 4f;
             researchCostMultiplier = 0f;
+            outlineRadius = 5;
             speed = 0.59f;
             clipSize = 250f;
             health = 9200f;
@@ -3112,6 +3126,7 @@ public class ExoUnitTypes {
             mechStepParticles = true;
             stepShake = 0.75f;
             researchCostMultiplier = 0f;
+            outlineRadius = 5;
             drownTimeMultiplier = 6f;
             mechFrontSway = 1.9f;
             mechSideSway = 0.6f;
@@ -3141,6 +3156,262 @@ public class ExoUnitTypes {
                 }};
                 }});
         }};
+        //region Erekir air support
+        ivy = new ErekirUnitType("ivy"){{
+            defaultCommand = UnitCommand.repairCommand;
+            constructor = UnitEntity::create;
+            flying = true;
+            lowAltitude = false;
+            drag = 0.06f;
+            accel = 0.12f;
+            speed = 1.5f;
+            health = 600;
+            engineSize = 1.8f;
+            engineOffset = 5.7f;
+            engineColor = healColor = ExoPal.erekirPink;
+            range = 50f;
+            isEnemy = false;
+
+            ammoType = new PowerAmmoType(500);
+            abilities.add(new RegenAbility(){{
+                amount = 10f;
+            }});
+            abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
+
+            weapons.add(new Weapon("heal-weapon"){{
+                top = false;
+                y = 2.5f;
+                x = 0f;
+                reload = 60f;
+                ejectEffect = Fx.none;
+                recoil = 0f;
+                shootSound = Sounds.bolt;
+                bullet = new HealingConeBulletType(8f){{;
+                    shootEffect = ExoFx.hitMeltColor;
+                    hitSound = Sounds.none;
+                    status = ExoStatusEffects.toxin1;
+                    statusDuration = 200;
+                    allyStatus = StatusEffects.overclock;
+                    allyStatusDuration = 80;
+                    cone = 35f;
+                    length = 150f;
+                    scanAccuracy = 20;
+                    healPercent = 5.5f;
+                    collidesTeam = true;
+                    hitColor = color = ExoPal.erekirPink;
+                }};
+            }});
+        }};
+        yew = new ErekirUnitType("yew"){{
+            controller = u -> new MinerAI();
+            defaultCommand = UnitCommand.mineCommand;
+            constructor = UnitEntity::create;
+            fogRadius = 25;
+            flying = true;
+            drag = 0.05f;
+            speed = 2.6f;
+            rotateSpeed = 15f;
+            accel = 0.1f;
+            range = 130f;
+            health = 1130;
+            buildSpeed = 0.5f;
+            engineOffset = 6.5f;
+            hitSize = 9f;
+            engineColor = healColor = ExoPal.erekirPink;
+            lowAltitude = true;
+
+            ammoType = new PowerAmmoType(900);
+
+            mineTier = 2;
+            mineSpeed = 3.5f;
+
+            abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
+
+            weapons.add(new Weapon("poly-weapon"){{
+                top = false;
+                y = -2.5f;
+                x = 3.75f;
+                reload = 30f;
+                ejectEffect = Fx.none;
+                recoil = 2f;
+                shootSound = Sounds.missile;
+                velocityRnd = 0.5f;
+                inaccuracy = 15f;
+                alternate = true;
+
+                bullet = new MissileBulletType(4f, 12){{
+                    homingPower = 0.08f;
+                    weaveMag = 4;
+                    weaveScale = 4;
+                    lifetime = 50f;
+                    keepVelocity = false;
+                    shootEffect = Fx.shootHeal;
+                    smokeEffect = Fx.hitLaser;
+                    hitEffect = despawnEffect = Fx.hitLaser;
+                    frontColor = Color.white;
+                    hitSound = Sounds.none;
+
+                    healPercent = 5.5f;
+                    collidesTeam = true;
+                    backColor = Pal.heal;
+                    trailColor = Pal.heal;
+                }};
+            }});
+        }};
+        lantana = new ErekirUnitType("lantana"){{
+            defaultCommand = UnitCommand.repairCommand;
+            constructor = UnitEntity::create;
+            fogRadius = 25;
+            mineTier = 3;
+            mineSpeed = 4f;
+            health = 460;
+            armor = 3f;
+            speed = 2.5f;
+            accel = 0.06f;
+            drag = 0.017f;
+            lowAltitude = true;
+            flying = true;
+            engineOffset = 10.5f;
+            faceTarget = false;
+            hitSize = 16.05f;
+            engineSize = 3f;
+            engineColor = healColor = ExoPal.erekirPink;
+            payloadCapacity = (2 * 2) * tilePayload;
+            buildSpeed = 2.6f;
+            isEnemy = false;
+
+            ammoType = new PowerAmmoType(1100);
+
+            weapons.add(
+                    new Weapon("heal-weapon-mount"){{
+                        shootSound = Sounds.lasershoot;
+                        reload = 24f;
+                        x = 8f;
+                        y = -6f;
+                        rotate = true;
+                        bullet = new LaserBoltBulletType(5.2f, 10){{
+                            lifetime = 35f;
+                            healPercent = 5.5f;
+                            collidesTeam = true;
+                            backColor = Pal.heal;
+                            frontColor = Color.white;
+                        }};
+                    }},
+                    new Weapon("heal-weapon-mount"){{
+                        shootSound = Sounds.lasershoot;
+                        reload = 15f;
+                        x = 4f;
+                        y = 5f;
+                        rotate = true;
+                        bullet = new LaserBoltBulletType(5.2f, 8){{
+                            lifetime = 35f;
+                            healPercent = 3f;
+                            collidesTeam = true;
+                            backColor = Pal.heal;
+                            frontColor = Color.white;
+                        }};
+                    }});
+        }};
+        kalmia = new ErekirUnitType("kalmia"){{
+            constructor = UnitEntity::create;
+            armor = 8f;
+            health = 6000;
+            speed = 1.2f;
+            fogRadius = 25;
+            rotateSpeed = 2f;
+            accel = 0.05f;
+            drag = 0.017f;
+            lowAltitude = false;
+            flying = true;
+            circleTarget = true;
+            engineOffset = 13f;
+            engineSize = 7f;
+            faceTarget = false;
+            hitSize = 36f;
+            engineColor = healColor = ExoPal.erekirPink;
+            payloadCapacity = (3 * 3) * tilePayload;
+            outlineRadius = 4;
+            buildSpeed = 2.5f;
+            buildBeamOffset = 23;
+            range = 140f;
+            targetAir = false;
+            targetFlags = new BlockFlag[]{BlockFlag.battery, BlockFlag.factory, null};
+
+            ammoType = new PowerAmmoType(3000);
+
+            weapons.add(
+                    new Weapon(){{
+                        x = y = 0f;
+                        mirror = false;
+                        reload = 55f;
+                        minShootVelocity = 0.01f;
+
+                        soundPitchMin = 1f;
+                        shootSound = Sounds.plasmadrop;
+
+                        bullet = new BasicBulletType(){{
+                            sprite = "large-bomb";
+                            width = height = 120/4f;
+
+                            maxRange = 30f;
+                            ignoreRotation = true;
+
+                            backColor = Pal.heal;
+                            frontColor = Color.white;
+                            mixColorTo = Color.white;
+
+                            hitSound = Sounds.plasmaboom;
+
+                            shootCone = 180f;
+                            ejectEffect = Fx.none;
+                            hitShake = 4f;
+
+                            collidesAir = false;
+
+                            lifetime = 70f;
+
+                            despawnEffect = Fx.greenBomb;
+                            hitEffect = Fx.massiveExplosion;
+                            keepVelocity = false;
+                            spin = 2f;
+
+                            shrinkX = shrinkY = 0.7f;
+
+                            speed = 0f;
+                            collides = false;
+
+                            healPercent = 15f;
+                            splashDamage = 220f;
+                            splashDamageRadius = 80f;
+                        }};
+                    }});
+        }};
+        hemlock = new ErekirUnitType("hemlock"){{
+            aiController = DefenderAI::new;
+            constructor = UnitEntity::create;
+            outlineRadius = 5;
+            armor = 16f;
+            health = 24000;
+            speed = 0.8f;
+            rotateSpeed = 1f;
+            accel = 0.04f;
+            drag = 0.018f;
+            flying = true;
+            engineOffset = 46f;
+            engineSize = 7.8f;
+            faceTarget = false;
+            hitSize = 66f;
+            engineColor = healColor = ExoPal.erekirPink;
+            payloadCapacity = (5.5f * 5.5f) * tilePayload;
+            buildSpeed = 4f;
+            drawShields = false;
+            lowAltitude = true;
+            buildBeamOffset = 43;
+            ammoCapacity = 1;
+
+            abilities.add(new ForceFieldAbility(140f, 4f, 7000f, 60f * 8, 8, 0f), new RepairFieldAbility(130f, 60f * 2, 140f));
+        }};
+        //end
         ursa = new UnitType("ursa") {{
             constructor = LegsUnit::create;
             speed = 0.27f;

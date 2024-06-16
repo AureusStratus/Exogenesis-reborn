@@ -182,6 +182,13 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, ang, e.fout() * 4 + 1f);
                 });
             }),
+            toxicified = new Effect(40f, e -> {
+                color(ExoPal.erekirPink);
+
+                randLenVectors(e.id, 2, 1f + e.fin() * 2f, (x, y) -> {
+                    Fill.square(e.x + x, e.y + y, e.fslope() * 1.1f, 45f);
+                });
+            }),
             auricCharge = new Effect(85, e -> {
                 color(Color.valueOf(String.valueOf(ExoPal.empyrean)));
                 Fill.circle(e.x, e.y, e.fin() * 20f);

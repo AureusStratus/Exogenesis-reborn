@@ -1,20 +1,17 @@
 package Exogenesis.content;
 
-import arc.*;
+import arc.Events;
 import arc.graphics.*;
-import arc.math.*;
-import mindustry.game.EventType.*;
-import mindustry.game.*;
-import Exogenesis.graphics.ExoPal;
-import mindustry.graphics.*;
+import mindustry.game.EventType;
 import mindustry.type.*;
+import Exogenesis.graphics.ExoPal;
 import mindustry.entities.effect.*;
 
 import static mindustry.Vars.*;
+import static mindustry.content.StatusEffects.sapped;
 
 public class ExoStatusEffects{
-    public static StatusEffect
-    RheaBuff, CronusBuff;
+    public static StatusEffect toxin1, toxin2, toxin3, superBlasted, RheaBuff, energyZapped, CronusBuff;
     public static void load(){
         CronusBuff = new StatusEffect("cronus-buff"){{
             color = ExoPal.cronusRed;
@@ -45,6 +42,85 @@ public class ExoStatusEffects{
                 strokeTo = 1;
                 strokeFrom = 0f;
             }};
+        }};
+        energyZapped = new StatusEffect("energy-zapped"){{
+            effectChance = 0.35f;
+            damage = 0.25f;
+            transitionDamage = 15;
+            init(() -> {
+                affinity(sapped, (unit, result, time) -> {
+                    float pierceFraction = 0.3f;
+
+                    unit.damagePierce(transitionDamage * pierceFraction);
+                    unit.damage(transitionDamage * (1f - pierceFraction));
+                    if (unit.team == state.rules.waveTeam) {
+                        Events.fire(EventType.Trigger.shock);
+                    }
+                });
+                opposite();
+            });
+            effect = ExoFx.supernovaSpark;
+        }};
+        superBlasted = new StatusEffect("superblasted"){{
+            color = Color.valueOf("e35140");
+            reactive = true;
+        }};
+        toxin1 = new StatusEffect("toxin1"){{
+            effectChance = 0.15f;
+            damage = 0.15f;
+            speedMultiplier = 0.95f;
+            transitionDamage = 5;
+            init(() -> {
+                affinity(sapped, (unit, result, time) -> {
+                    float pierceFraction = 0.3f;
+
+                    unit.damagePierce(transitionDamage * pierceFraction);
+                    unit.damage(transitionDamage * (1f - pierceFraction));
+                    if (unit.team == state.rules.waveTeam) {
+                        Events.fire(EventType.Trigger.shock);
+                    }
+                });
+                opposite();
+            });
+            effect = ExoFx.toxicified;
+        }};
+        toxin2 = new StatusEffect("toxin2"){{
+            effectChance = 0.15f;
+            damage = 0.22f;
+            speedMultiplier = 0.90f;
+            transitionDamage = 8;
+            init(() -> {
+                affinity(toxin1, (unit, result, time) -> {
+                    float pierceFraction = 0.3f;
+
+                    unit.damagePierce(transitionDamage * pierceFraction);
+                    unit.damage(transitionDamage * (1f - pierceFraction));
+                    if (unit.team == state.rules.waveTeam) {
+                        Events.fire(EventType.Trigger.shock);
+                    }
+                });
+                opposite();
+            });
+            effect = ExoFx.toxicified;
+        }};
+        toxin3 = new StatusEffect("toxin3"){{
+            effectChance = 0.15f;
+            damage = 0.28f;
+            speedMultiplier = 0.85f;
+            transitionDamage = 12;
+            init(() -> {
+                affinity(toxin2, (unit, result, time) -> {
+                    float pierceFraction = 0.3f;
+
+                    unit.damagePierce(transitionDamage * pierceFraction);
+                    unit.damage(transitionDamage * (1f - pierceFraction));
+                    if (unit.team == state.rules.waveTeam) {
+                        Events.fire(EventType.Trigger.shock);
+                    }
+                });
+                opposite();
+            });
+            effect = ExoFx.toxicified;
         }};
     }
 }

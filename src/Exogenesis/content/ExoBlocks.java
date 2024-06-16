@@ -4152,7 +4152,7 @@ public class ExoBlocks{
                     new UnitType[]{UnitTypes.avert, UnitTypes.obviate}
             );
         }};
-        trueMechAssembler = new UnitAssembler("tank-assembler"){{
+        trueMechAssembler = new UnitAssembler("true-mech-assembler"){{
             requirements(Category.units, with(Items.thorium, 500, Items.oxide, 150, Items.carbide, 80, Items.silicon, 500));
             regionSuffix = "-dark";
             size = 5;
@@ -4166,7 +4166,7 @@ public class ExoBlocks{
             consumePower(3f);
             consumeLiquid(Liquids.cyanogen, 9f / 60f);
         }};
-        supportAssembler = new UnitAssembler("ship-assembler"){{
+        supportAssembler = new UnitAssembler("support-assembler"){{
             requirements(Category.units, with(Items.carbide, 100, Items.oxide, 200, Items.tungsten, 500, Items.silicon, 800, Items.thorium, 400));
             regionSuffix = "-dark";
             size = 5;
@@ -4179,7 +4179,7 @@ public class ExoBlocks{
             consumePower(3f);
             consumeLiquid(Liquids.cyanogen, 12f / 60f);
         }};
-        hoverAssembler = new UnitAssembler("mech-assembler"){{
+        hoverAssembler = new UnitAssembler("hover-assembler"){{
             requirements(Category.units, with(Items.carbide, 200, Items.thorium, 600, Items.oxide, 200, Items.tungsten, 500, Items.silicon, 900));
             regionSuffix = "-dark";
             size = 5;
@@ -4196,12 +4196,12 @@ public class ExoBlocks{
         airTitanAssembler = new UnitAssembler("air-titan-assembler"){{
             requirements(Category.units, with(Items.thorium, 500, Items.oxide, 150, Items.carbide, 80, Items.silicon, 500));
             regionSuffix = "-dark";
-            size = 5;
+            size = 6;
             plans.add(
                     new AssemblerUnitPlan(ExoUnitTypes.nemesis, 60f * 60f * 5, PayloadStack.list(UnitTypes.quell, 8, Blocks.carbideWallLarge, 20, Blocks.reinforcedSurgeWallLarge, 20)),
                     new AssemblerUnitPlan(ExoUnitTypes.rhea, 60f * 60f * 5f, PayloadStack.list(UnitTypes.quell, 8, Blocks.carbideWallLarge, 20, Blocks.reinforcedSurgeWallLarge, 20))
             );
-            areaSize = 20;
+            areaSize = 26;
             researchCostMultiplier = 0.4f;
 
             consumePower(3f);
@@ -4210,13 +4210,13 @@ public class ExoBlocks{
         groundTitanAssembler = new UnitAssembler("ground-titan-assembler"){{
             requirements(Category.units, with(Items.carbide, 100, Items.oxide, 200, Items.tungsten, 500, Items.silicon, 800, Items.thorium, 400));
             regionSuffix = "-dark";
-            size = 5;
+            size = 6;
             plans.add(
                     new AssemblerUnitPlan(ExoUnitTypes.hyperion, 60f * 60f * 5, PayloadStack.list(UnitTypes.quell, 8, Blocks.carbideWallLarge, 20, Blocks.reinforcedSurgeWallLarge, 20)),
                     new AssemblerUnitPlan(ExoUnitTypes.leto, 60f * 60f * 5, PayloadStack.list(ExoUnitTypes.sanctuary, 8, Blocks.carbideWallLarge, 20, Blocks.reinforcedSurgeWallLarge, 20)),
                     new AssemblerUnitPlan(ExoUnitTypes.prometheus, 60f * 60f * 5f, PayloadStack.list(UnitTypes.vanquish, 8, Blocks.carbideWallLarge, 20, Blocks.reinforcedSurgeWallLarge, 20))
             );
-            areaSize = 20
+            areaSize = 26
             ;
 
             consumePower(3f);
@@ -4225,13 +4225,12 @@ public class ExoBlocks{
         leggedTitanAssembler = new UnitAssembler("legged-titan-assembler"){{
             requirements(Category.units, with(Items.carbide, 200, Items.thorium, 600, Items.oxide, 200, Items.tungsten, 500, Items.silicon, 900));
             regionSuffix = "-dark";
-            size = 5;
-            //TODO different reqs
+            size = 6;
             plans.add(
                     new AssemblerUnitPlan(ExoUnitTypes.cronus, 60f * 60f * 5, PayloadStack.list(UnitTypes.quell, 8, Blocks.carbideWallLarge, 20, Blocks.reinforcedSurgeWallLarge, 20)),
                     new AssemblerUnitPlan(ExoUnitTypes.atlas, 60f * 60f * 5f, PayloadStack.list(UnitTypes.tecta, 8, Blocks.carbideWallLarge, 20, Blocks.reinforcedSurgeWallLarge, 20))
             );
-            areaSize = 20;
+            areaSize = 26;
 
             consumePower(3.5f);
             consumeLiquid(Liquids.cyanogen, 12f / 60f);
