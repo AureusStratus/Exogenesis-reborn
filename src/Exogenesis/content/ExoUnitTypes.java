@@ -2724,7 +2724,7 @@ public class ExoUnitTypes {
                 alternate = false;
                 recoil = 3f;
                 shake = 2f;
-                reload = 100;
+                reload = 120;
                 continuous = true;
                 ejectEffect = Fx.casing4;
                 shootSound = Sounds.shootSmite;
@@ -2732,18 +2732,14 @@ public class ExoUnitTypes {
                         new RegionPart("-bit1"){{
                             mirror = false;
                             under = true;
-                            moveX = 1.5f;
                             heatColor = Color.red;
-                            moves.add(new PartMove(PartProgress.recoil.curve(Interp.bounceIn), 2f, 0f, 0f));
-                            progress = PartProgress.warmup;
+                            moves.add(new PartMove(PartProgress.recoil.curve(Interp.bounceIn), 3.5f, 0f, 0f));
                         }},
                         new RegionPart("-bit2"){{
                             mirror = false;
                             under = true;
-                            moveX = 1.5f;
                             heatColor = Color.red;
-                            moves.add(new PartMove(PartProgress.recoil.curve(Interp.bounceIn), -2f, 0f, 0f));
-                            progress = PartProgress.warmup;
+                            moves.add(new PartMove(PartProgress.recoil.curve(Interp.bounceIn), -3.5f, 0f, 0f));
                      }}
                 );
                 bullet = new AcceleratingLaserBulletType(260f){{
@@ -2751,7 +2747,8 @@ public class ExoUnitTypes {
                     maxRange = 530f;
                     oscOffset = 0.3f;
                     shootEffect = ExoFx.blastcolor;
-                    width = 30f;
+                    lifetime = 200;
+                    width = 40f;
                     damageType = DamageType.energy;
                     collisionWidth = 10f;
                     colors = new Color[]{ExoPal.letoColor.cpy().a(0.4f), ExoPal.letoColor, Color.white};
@@ -2993,7 +2990,7 @@ public class ExoUnitTypes {
                 shoot = new ShootSpread(5, 6f);
                 bullet = new ExoBasicBulletType(5f, 46){{
                     homingPower = 0.07f;
-                    homingDelay = 1.2f;
+                    homingDelay = 0.8f;
                     pierce = true;
                     pierceCap = 4;
                     width = 8f;
@@ -3037,7 +3034,7 @@ public class ExoUnitTypes {
                 inaccuracy = 1f;
                 shoot.shots = 3;
                 bullet = new ChainLightningBulletType() {{
-                    lightningColor = ExoPal.letoColor;
+                    lightningColor = hitColor = ExoPal.letoColor;
                     damageType = DamageType.energy;
                     shootEffect = ExoFx.hitMeltColor;
                     smokeEffect = Fx.colorSpark;
@@ -3143,13 +3140,13 @@ public class ExoUnitTypes {
                 bullet = new FancyLaserBulletType(){{
                     damage = 425f;
                     sideAngle = 40f;
-                    sideWidth = 1.1f;
-                    sideLength = 90f;
+                    sideWidth = 0.8f;
+                    sideLength = 130f;
                     boltNum = 5;
                     liWidth = 2.8f;
-                    width = 50f;
+                    width = 44f;
                     length = 240f;
-                    colors = new Color[]{ExoPal.letoColor.cpy().a(0.8f), ExoPal.letoColor, Color.white};
+                    colors = new Color[]{ExoPal.letoColor.cpy().a(0.3f), ExoPal.letoColor, Color.white};
                     hitEffect = ExoFx.coloredHitLarge;
                     hitColor = ExoPal.letoColor;
                     shootEffect = ExoFx.colorBombSmall;
@@ -3178,8 +3175,9 @@ public class ExoUnitTypes {
             }});
             abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
 
-            weapons.add(new Weapon("heal-weapon"){{
+            weapons.add(new Weapon("cone-weapon"){{
                 top = false;
+                continuous =  true;
                 y = 2.5f;
                 x = 0f;
                 reload = 60f;
@@ -3193,9 +3191,9 @@ public class ExoUnitTypes {
                     statusDuration = 200;
                     allyStatus = StatusEffects.overclock;
                     allyStatusDuration = 80;
-                    cone = 35f;
-                    length = 150f;
-                    scanAccuracy = 20;
+                    cone = 25f;
+                    length = 100f;
+                    scanAccuracy = 10;
                     healPercent = 5.5f;
                     collidesTeam = true;
                     hitColor = color = ExoPal.erekirPink;

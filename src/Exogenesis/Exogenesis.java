@@ -3,6 +3,7 @@ package Exogenesis;
 import Exogenesis.util.util.Utils;
 import Exogenesis.content.ExoBlocks;
 import Exogenesis.content.ExoUnitTypes;
+import Exogenesis.content.ExoStatusEffects;
 import Exogenesis.content.*;
 import mindustry.mod.Mod;
 
