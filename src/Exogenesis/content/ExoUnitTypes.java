@@ -3005,7 +3005,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        tranquil = new ErekirUnitType("tranquil"){{
+        tranquil = new ErekirUnitType("tranquil"){  {
             constructor = MechUnit::create;
             health = 4140f;
             armor = 13f;
@@ -3024,14 +3024,14 @@ public class ExoUnitTypes {
                 top = false;
                 alternate = mirror = true;
                 shake = 2f;
-                shootY = 7.5f;
+                shootY = 6f;
                 x = 7.5f;
                 y = 0;
                 reload = 35f;
                 recoil = 4f;
                 shootSound = Sounds.spark;
                 shootCone = 30;
-                inaccuracy = 1f;
+                inaccuracy = 5f;
                 shoot.shots = 3;
                 bullet = new ChainLightningBulletType() {{
                     lightningColor = hitColor = ExoPal.letoColor;
@@ -3132,7 +3132,7 @@ public class ExoUnitTypes {
                 alternate = mirror = true;
                 y = 1.75f;
                 x = 27f;
-                shootY = 15f;
+                shootY = 13f;
                 reload = 50f;
                 recoil = 5f;
                 shake = 2f;
@@ -3187,6 +3187,7 @@ public class ExoUnitTypes {
                 bullet = new HealingConeBulletType(8f){{;
                     shootEffect = ExoFx.hitMeltColor;
                     hitSound = Sounds.none;
+                    lifetime = 60;
                     status = ExoStatusEffects.toxin1;
                     statusDuration = 200;
                     allyStatus = StatusEffects.overclock;
@@ -3201,8 +3202,6 @@ public class ExoUnitTypes {
             }});
         }};
         yew = new ErekirUnitType("yew"){{
-            controller = u -> new MinerAI();
-            defaultCommand = UnitCommand.mineCommand;
             constructor = UnitEntity::create;
             fogRadius = 25;
             flying = true;
@@ -3222,13 +3221,17 @@ public class ExoUnitTypes {
 
             mineTier = 2;
             mineSpeed = 3.5f;
-
+            abilities.add(new EnergyFieldAbility(40f, 65f, 140f){{
+                statusDuration = 60f * 6f;
+                healColor = color = ExoPal.letoColor;
+                maxTargets = 25;
+            }});
             abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
 
-            weapons.add(new Weapon("poly-weapon"){{
+            weapons.add(new Weapon("weapon"){{
                 top = false;
-                y = -2.5f;
-                x = 3.75f;
+                y = 3.5f;
+                x = 0f;
                 reload = 30f;
                 ejectEffect = Fx.none;
                 recoil = 2f;
