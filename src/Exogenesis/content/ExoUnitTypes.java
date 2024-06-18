@@ -48,9 +48,10 @@ public class ExoUnitTypes {
     ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris, thor,
     //erekir
     //erekir supportMech
-    calm, serene, tranquil, sanctuary, ataraxia,
-    ivy, yew, lantana, kalmia, hemlock,
-    prometheus, atlas, nemesis, hyperion, rhea, cronus, leto,
+    calm, serene, tranquil, sanctuary, ataraxia, leto,
+    ivy, yew, lantana, kalmia, hemlock, rhea,
+    squall, gust, storm, thunderstorm, hurricane, hyperion,
+    prometheus, atlas, nemesis, cronus,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus,
     twinkle, starlight, stardustVoyager, orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer, stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon;
@@ -2709,7 +2710,8 @@ public class ExoUnitTypes {
             mechSideSway = 0.7f;
             mechStride = (4f + (hitSize - 8f) / 2.1f) / 1.25f;
             immunities.add(StatusEffects.blasted);
-
+            abilities.add(new ShieldRegenFieldAbility(40f, 120f, 60f * 2, 260f));
+            abilities.add(new RepairFieldAbility(450f, 60f * 3, 260f));
             weapons.add(new Weapon(name + "-weapon") {{
                 top = false;
                 layerOffset = -0.001f;
@@ -2747,11 +2749,13 @@ public class ExoUnitTypes {
                     maxRange = 530f;
                     oscOffset = 0.3f;
                     shootEffect = ExoFx.blastcolor;
+                    status = ExoStatusEffects.energyZapped;
+                    statusDuration = 400;
                     lifetime = 200;
-                    width = 40f;
+                    width = 33f;
                     damageType = DamageType.energy;
                     collisionWidth = 10f;
-                    colors = new Color[]{ExoPal.letoColor.cpy().a(0.4f), ExoPal.letoColor, Color.white};
+                    colors = new Color[]{ExoPal.letoColor.cpy().a(0.2f), ExoPal.letoColor, Color.white};
                     pierceCap = 3;
                     hitEffect = ExoFx.ullarTipHit;
                     hitColor = ExoPal.letoColor;
@@ -2794,7 +2798,7 @@ public class ExoUnitTypes {
                     buildingDamageMultiplier = 0.5f;
                     damageType = DamageType.pierce;
                     hitColor = ExoPal.letoColor;
-                    collidesGround = false;
+                    collidesGround = collidesTiles = false;
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
                     smokeEffect = new Effect(30,e->{
                         Draw.z(Layer.effect);
@@ -2873,7 +2877,7 @@ public class ExoUnitTypes {
                     length = 300f;
                     damage = 138f;
                     damageType = DamageType.pierce;
-                    collidesGround = false;
+                    collidesGround = collidesTiles = false;
                     buildingDamageMultiplier = 0.5f;
                     hitColor = ExoPal.letoColor;
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSpark);
@@ -2928,6 +2932,7 @@ public class ExoUnitTypes {
             hitSize = 8f;
             health = 720f;
             buildSpeed = 0.8f;
+            healColor = ExoPal.letoColor;
             armor = 5f;
             researchCostMultiplier = 0f;
 
@@ -2973,21 +2978,22 @@ public class ExoUnitTypes {
             health = 2000f;
             armor = 9f;
             fogRadius = 25;
+            healColor = ExoPal.letoColor;
             researchCostMultiplier = 0f;
-
+            abilities.add(new RepairFieldAbility(25f, 60f * 4, 60f));
             weapons.add(new Weapon(name + "-weapon"){{
                 top = false;
                 alternate = mirror = true;
                 x = 5f;
                 y = 0.5f;
                 shootY = 2.5f;
-                reload = 36f;
+                reload = 23f;
                 ejectEffect = Fx.none;
                 recoil = 2.5f;
                 shootSound = Sounds.blaster;
                 velocityRnd = 0.2f;
 
-                shoot = new ShootSpread(5, 6f);
+                shoot = new ShootSpread(3, 6f);
                 bullet = new ExoBasicBulletType(5f, 46){{
                     homingPower = 0.07f;
                     homingDelay = 0.8f;
@@ -3005,7 +3011,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        tranquil = new ErekirUnitType("tranquil"){  {
+        tranquil = new ErekirUnitType("tranquil"){{
             constructor = MechUnit::create;
             health = 4140f;
             armor = 13f;
@@ -3014,11 +3020,12 @@ public class ExoUnitTypes {
             riseSpeed = 0.05f;
             mechFrontSway = 0.55f;
             researchCostMultiplier = 0f;
+            healColor = ExoPal.letoColor;
             speed = 0.64f;
             hitSize = 13f;
             drawShields = false;
 
-            abilities.add(new ForceFieldAbility(60f, 0.3f, 400f, 60f, 4, 45));
+            abilities.add(new ForceFieldAbility(90f, 0.7f, 1100f, 60f, 4, 45));
 
             weapons.add(new Weapon(name + "-weapon"){{
                 top = false;
@@ -3028,7 +3035,7 @@ public class ExoUnitTypes {
                 x = 7.5f;
                 y = 0;
                 reload = 35f;
-                recoil = 4f;
+                recoil = 3f;
                 shootSound = Sounds.spark;
                 shootCone = 30;
                 inaccuracy = 5f;
@@ -3070,7 +3077,7 @@ public class ExoUnitTypes {
                 healColor = color = ExoPal.letoColor;
                 maxTargets = 25;
             }});
-            abilities.add(new ForceFieldAbility(140f, 0.7f, 900f, 200f, 4, 45));
+            abilities.add(new StatusFieldAbility(StatusEffects.overclock, 100f, 100, 100f));
 
             weapons.add(new Weapon(name + "-weapon"){{
                 mirror = alternate = true;
@@ -3123,35 +3130,66 @@ public class ExoUnitTypes {
             mechStepParticles = true;
             stepShake = 0.75f;
             researchCostMultiplier = 0f;
+            healColor = ExoPal.letoColor;
             outlineRadius = 5;
             drownTimeMultiplier = 6f;
             mechFrontSway = 1.9f;
             mechSideSway = 0.6f;
-            weapons.add(new Weapon(name + "-weapon"){{
-                top = false;
-                alternate = mirror = true;
-                y = 1.75f;
-                x = 27f;
-                shootY = 13f;
-                reload = 50f;
-                recoil = 5f;
-                shake = 2f;
-                shootSound = Sounds.malignShoot;
-                bullet = new FancyLaserBulletType(){{
-                    damage = 425f;
-                    sideAngle = 40f;
-                    sideWidth = 0.8f;
-                    sideLength = 130f;
-                    boltNum = 5;
-                    liWidth = 2.8f;
-                    width = 44f;
-                    length = 240f;
-                    colors = new Color[]{ExoPal.letoColor.cpy().a(0.3f), ExoPal.letoColor, Color.white};
-                    hitEffect = ExoFx.coloredHitLarge;
-                    hitColor = ExoPal.letoColor;
-                    shootEffect = ExoFx.colorBombSmall;
-                }};
-                }});
+            weapons.add(
+                    new Weapon(name + "-weapon"){{
+                        top = false;
+                        alternate = mirror = true;
+                        y = 1.75f;
+                        x = 27f;
+                        shootY = 13f;
+                        reload = 50f;
+                        recoil = 5f;
+                        shake = 2f;
+                        shootSound = Sounds.malignShoot;
+                        bullet = new FancyLaserBulletType(){{
+                            damage = 425f;
+                            sideAngle = 40f;
+                            sideWidth = 0.8f;
+                            sideLength = 130f;
+                            boltNum = 3;
+                            liWidth = 2.8f;
+                            width = 44f;
+                            length = 240f;
+                            colors = new Color[]{ExoPal.letoColor.cpy().a(0.3f), ExoPal.letoColor, Color.white};
+                            hitEffect = ExoFx.coloredHitLarge;
+                            hitColor = ExoPal.letoColor;
+                            shootEffect = ExoFx.colorBombSmall;
+                        }};
+                    }},
+                    new Weapon(name + "ES-heal-gun"){{
+                        shootSound = Sounds.lasershoot;
+                        reload = 34f;
+                        x = 16.25f;
+                        y = 7.25f;
+                        rotate = true;
+                        bullet = new LaserBoltBulletType(5.2f, 20){{
+                            lifetime = 35f;
+                            healAmount = 50;
+                            collidesTeam = true;
+                            backColor = hitColor = ExoPal.erekirPink;
+                            frontColor = Color.white;
+                        }};
+                    }},
+                    new Weapon(name + "ES-heal-gun"){{
+                        shootSound = Sounds.lasershoot;
+                        reload = 34f;
+                        x = 16.25f;
+                        y = -8.75f;
+                        rotate = true;
+                        bullet = new LaserBoltBulletType(5.2f, 20){{
+                            lifetime = 35f;
+                            healAmount = 50;
+                            collidesTeam = true;
+                            backColor = hitColor = ExoPal.erekirPink;
+                            frontColor = Color.white;
+                        }};
+                    }}
+            );
         }};
         //region Erekir air support
         ivy = new ErekirUnitType("ivy"){{
@@ -3177,7 +3215,7 @@ public class ExoUnitTypes {
 
             weapons.add(new Weapon("cone-weapon"){{
                 top = false;
-                continuous =  true;
+                continuous = true;
                 y = 2.5f;
                 x = 0f;
                 reload = 60f;
@@ -3213,51 +3251,91 @@ public class ExoUnitTypes {
             health = 1130;
             buildSpeed = 0.5f;
             engineOffset = 6.5f;
+            engineSize = 3;
             hitSize = 9f;
             engineColor = healColor = ExoPal.erekirPink;
             lowAltitude = true;
 
             ammoType = new PowerAmmoType(900);
 
-            mineTier = 2;
-            mineSpeed = 3.5f;
-            abilities.add(new EnergyFieldAbility(40f, 65f, 140f){{
-                statusDuration = 60f * 6f;
-                healColor = color = ExoPal.letoColor;
-                maxTargets = 25;
-            }});
             abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
 
-            weapons.add(new Weapon("weapon"){{
-                top = false;
-                y = 3.5f;
-                x = 0f;
-                reload = 30f;
-                ejectEffect = Fx.none;
-                recoil = 2f;
-                shootSound = Sounds.missile;
-                velocityRnd = 0.5f;
-                inaccuracy = 15f;
-                alternate = true;
-
-                bullet = new MissileBulletType(4f, 12){{
-                    homingPower = 0.08f;
-                    weaveMag = 4;
-                    weaveScale = 4;
-                    lifetime = 50f;
-                    keepVelocity = false;
-                    shootEffect = Fx.shootHeal;
-                    smokeEffect = Fx.hitLaser;
-                    hitEffect = despawnEffect = Fx.hitLaser;
-                    frontColor = Color.white;
-                    hitSound = Sounds.none;
-
-                    healPercent = 5.5f;
-                    collidesTeam = true;
-                    backColor = Pal.heal;
-                    trailColor = Pal.heal;
-                }};
-            }});
+            weapons.add(
+                    new Weapon("weapon"){{
+                        top = false;
+                        y = 3.5f;
+                        x = 0f;
+                        reload = 30f;
+                        ejectEffect = Fx.none;
+                        recoil = 0f;
+                        showStatSprite = false;
+                        shootSound = Sounds.blaster;
+                        velocityRnd = 0.5f;
+                        inaccuracy = 15f;
+                        alternate = mirror = false;
+                        bullet = new MissileBulletType(4f, 12){{
+                            homingPower = 0.08f;
+                            weaveMag = 4;
+                            weaveScale = 4;
+                            lifetime = 50f;
+                            keepVelocity = false;
+                            shootEffect = Fx.shootHeal;
+                            smokeEffect = Fx.hitLaser;
+                            hitEffect = despawnEffect = Fx.hitLaser;
+                            frontColor = Color.white;
+                            hitSound = Sounds.none;
+                            healPercent = 5.5f;
+                            collidesTeam = true;
+                            backColor = Pal.heal;
+                            trailColor = Pal.heal;
+                        }};
+                    }},
+                    new Weapon("weapon") {{
+                        reload = 48f;
+                        mirror = false;
+                        x = 0;
+                        y = 3.5f;
+                        shootSound = Sounds.bolt;
+                        showStatSprite = false;
+                        shootY = 0;
+                        recoil = 0;
+                        parts.add(
+                                new ShapePart() {{
+                                    mirror = true;
+                                    progress = PartProgress.warmup;
+                                    hollow = true;
+                                    circle = true;
+                                    layer = Layer.effect;
+                                    y = 3f;
+                                    color = Color.valueOf("66B1FF");
+                                    stroke = 0f;
+                                    strokeTo = 1f;
+                                    radiusTo = radius = 3f;
+                                }}
+                        );
+                        bullet = new BasicBulletType(6, 28) {{
+                            width = 8f;
+                            height = 11f;
+                            sprite = "circle-bullet";
+                            frontColor = Color.white;
+                            backColor = hitColor = trailColor = ExoPal.erekirPink;
+                            lifetime = 33f;
+                            shrinkY = shrinkX = 0;
+                            homingPower = 0.0678f;
+                            homingRange = 40;
+                            trailLength = 10;
+                            trailWidth = 2f;
+                            trailChance = 0.9f;
+                            trailEffect = new ParticleEffect() {{
+                                particles = 1;
+                                length = baseLength = 2.5f;
+                                lifetime = 20f;
+                                colorFrom = colorTo = trailColor;
+                                sizeFrom = 4f;
+                                sizeTo = 0f;
+                            }};
+                        }};
+                    }});
         }};
         lantana = new ErekirUnitType("lantana"){{
             defaultCommand = UnitCommand.repairCommand;
