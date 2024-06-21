@@ -2057,12 +2057,12 @@ public class ExoUnitTypes {
                     trailWidth = 1;
                     weaveScale = 5f;
                     weaveMag = 2f;
-                    homingPower = 0.07f;
+                    homingPower = 0.007f;
                     homingRange = 50f;
                     collidesTeam = true;
                     healAmount = 15;
                     sprite = "circle-bullet";
-                    trailColor = hitColor = backColor = ExoPal.letoColor;
+                    trailColor = hitColor = healColor = backColor = ExoPal.letoColor;
                     hitEffect = despawnEffect = Fx.colorSpark;
                     smokeEffect = Fx.colorSpark;
                     shootEffect = Fx.shootSmallColor;
@@ -2092,10 +2092,10 @@ public class ExoUnitTypes {
                 velocityRnd = 0.3f;
 
                 shoot = new ShootSpread(3, 6f);
-                bullet = new ExoBasicBulletType(5f, 46){{
-                    homingPower = 0.07f;
+                bullet = new ExoBasicBulletType(5f, 12){{
+                    homingPower = 0.007f;
                     homingDelay = 0.8f;
-                    buildingDamageMultiplier = 1.2f;
+                    buildingDamageMultiplier = 1.1f;
                     pierce = true;
                     pierceCap = 4;
                     width = 8f;
@@ -2105,7 +2105,7 @@ public class ExoUnitTypes {
                     healAmount = 15;
                     shootEffect = Fx.sparkShoot;
                     smokeEffect = Fx.colorSpark;
-                    hitColor = backColor = trailColor = ExoPal.letoColor;
+                    hitColor = backColor = healColor = trailColor = ExoPal.letoColor;
                     trailWidth = 1.5f;
                     trailLength = 5;
                     hitEffect = despawnEffect = Fx.hitBulletColor;
@@ -2192,16 +2192,7 @@ public class ExoUnitTypes {
                     strokeTo = 0;
                     strokeFrom = 5f;
                 }};
-                applyEffect = new WaveEffect(){{
-                    colorFrom = ExoPal.letoColorLight;
-                    colorTo = ExoPal.letoColor;
-                    interp = Interp.slope;
-                    sizeFrom = 0;
-                    sizeTo = 50f;
-                    lifetime = 35f;
-                    strokeTo = 0;
-                    strokeFrom = 3f;
-                }};
+                applyEffect = Fx.none;
             }});
 
             weapons.add(new Weapon(name + "-weapon"){{
@@ -2230,7 +2221,7 @@ public class ExoUnitTypes {
                     shootEffect = Fx.shootBig;
                     lightning = 3;
                     lightningLength = 6;
-                    lightningColor = trailColor = hitColor = backColor = ExoPal.letoColor;
+                    lightningColor = trailColor = hitColor = backColor = healColor = ExoPal.letoColor;
                     lightningDamage = 20;
                 }};
             }});
@@ -2267,6 +2258,7 @@ public class ExoUnitTypes {
                             sideWidth = 0.8f;
                             sideLength = 130f;
                             collidesTeam = true;
+                            pierceCap = 3;
                             healAmount = 230;
                             boltNum = 3;
                             liWidth = 2.8f;
@@ -2274,7 +2266,7 @@ public class ExoUnitTypes {
                             length = 240f;
                             colors = new Color[]{ExoPal.letoColor.cpy().a(0.3f), ExoPal.letoColor, Color.white};
                             hitEffect = ExoFx.coloredHitLarge;
-                            hitColor = ExoPal.letoColor;
+                            hitColor = healColor = ExoPal.letoColor;
                             shootEffect = ExoFx.colorBombSmall;
                         }};
                     }},
@@ -2284,14 +2276,23 @@ public class ExoUnitTypes {
                         x = 16.25f;
                         y = 7.25f;
                         rotate = true;
-                        bullet = new LaserBoltBulletType(5.2f, 20){{
-                            lifetime = 35f;
-                            width = 3.4f;
-                            height = 8;
-                            healAmount = 50;
+                        bullet = new ExoBasicBulletType(5f, 32){{
+                            homingPower = 0.007f;
+                            homingDelay = 0.8f;
+                            buildingDamageMultiplier = 1.1f;
+                            pierce = true;
+                            pierceCap = 1;
+                            width = 10f;
+                            height = 19f;
+                            lifetime = 40f;
                             collidesTeam = true;
-                            backColor = hitColor = ExoPal.letoColor;
-                            frontColor = Color.white;
+                            healAmount = 15;
+                            shootEffect = Fx.sparkShoot;
+                            smokeEffect = Fx.colorSpark;
+                            hitColor = backColor = healColor = trailColor = ExoPal.letoColor;
+                            trailWidth = 1.7f;
+                            trailLength = 5;
+                            hitEffect = despawnEffect = Fx.hitBulletColor;
                         }};
                     }},
                     new Weapon("exogenesis-ES-heal-gun"){{
@@ -2300,14 +2301,23 @@ public class ExoUnitTypes {
                         x = 16.25f;
                         y = -8.75f;
                         rotate = true;
-                        bullet = new LaserBoltBulletType(5.2f, 20){{
-                            lifetime = 35f;
-                            width = 3.4f;
-                            height = 8;
-                            healAmount = 50;
+                        bullet = new ExoBasicBulletType(5f, 32){{
+                            homingPower = 0.007f;
+                            homingDelay = 0.8f;
+                            buildingDamageMultiplier = 1.1f;
+                            pierce = true;
+                            pierceCap = 1;
+                            width = 10f;
+                            height = 19f;
+                            lifetime = 40f;
                             collidesTeam = true;
-                            backColor = hitColor = ExoPal.erekirPink;
-                            frontColor = Color.white;
+                            healAmount = 15;
+                            shootEffect = Fx.sparkShoot;
+                            smokeEffect = Fx.colorSpark;
+                            hitColor = backColor = healColor = trailColor = ExoPal.letoColor;
+                            trailWidth = 1.7f;
+                            trailLength = 5;
+                            hitEffect = despawnEffect = Fx.hitBulletColor;
                         }};
                     }}
             );
@@ -2340,18 +2350,11 @@ public class ExoUnitTypes {
                     strokeTo = 0;
                     strokeFrom = 6f;
                 }};
-                applyEffect = new WaveEffect(){{
-                    colorFrom = ExoPal.letoColorLight;
-                    colorTo = ExoPal.letoColor;
-                    interp = Interp.slope;
-                    sizeFrom = 0;
-                    sizeTo = 60f;
-                    lifetime = 35f;
-                    strokeTo = 0;
-                    strokeFrom = 3f;
-                }};
+                applyEffect = Fx.none;
             }});
-            abilities.add(new RepairFieldAbility(450f, 60f * 3, 260f));
+            abilities.add(new RepairFieldAbility(450f, 60f * 3, 260f){{
+                activeEffect = Fx.none;
+            }});
             weapons.add(new Weapon(name + "-weapon") {{
                 top = false;
                 layerOffset = -0.001f;
@@ -2599,7 +2602,7 @@ public class ExoUnitTypes {
                 bullet = new HealingConeBulletType(8f){{
                     shootEffect = ExoFx.hitMeltColor;
                     hitSound = Sounds.none;
-                    lifetime = 60;
+                    lifetime = 120;
                     status = ExoStatusEffects.toxin1;
                     statusDuration = 200;
                     allyStatus = StatusEffects.overclock;
@@ -2635,7 +2638,7 @@ public class ExoUnitTypes {
             abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
 
             weapons.add(
-                    new Weapon("weapon"){{
+                    new Weapon("yew-weapon"){{
                         top = false;
                         y = 3.5f;
                         x = 0f;
@@ -2661,10 +2664,10 @@ public class ExoUnitTypes {
                             trailWidth = 2.5f;
                             healAmount = 50f;
                             collidesTeam = true;
-                            trailColor = hitColor = backColor = ExoPal.erekirPink;
+                            trailColor = hitColor = healColor = backColor = ExoPal.erekirPink;
                         }};
                     }},
-                    new Weapon("weapon") {{
+                    new Weapon("yew-weapon") {{
                         reload = 48f;
                         mirror = false;
                         x = 0;
@@ -2678,7 +2681,7 @@ public class ExoUnitTypes {
                             height = 11f;
                             sprite = "circle-bullet";
                             frontColor = Color.white;
-                            backColor = hitColor = trailColor = ExoPal.erekirPink;
+                            backColor = hitColor = healColor = trailColor = ExoPal.erekirPink;
                             lifetime = 33f;
                             shrinkY = shrinkX = 0;
                             collidesTeam = true;
