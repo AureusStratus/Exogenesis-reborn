@@ -2713,48 +2713,89 @@ public class ExoUnitTypes {
             speed = 2.5f;
             accel = 0.06f;
             drag = 0.017f;
-            lowAltitude = true;
+            lowAltitude = false;
             flying = true;
             engineOffset = 10.5f;
-            faceTarget = false;
             hitSize = 16.05f;
             engineSize = 3f;
             engineColor = healColor = ExoPal.erekirPink;
-            payloadCapacity = (2 * 2) * tilePayload;
             buildSpeed = 2.6f;
             isEnemy = false;
 
             ammoType = new PowerAmmoType(1100);
 
             weapons.add(
-                    new Weapon("heal-weapon-mount"){{
-                        shootSound = Sounds.lasershoot;
-                        reload = 24f;
-                        x = 8f;
-                        y = -6f;
-                        rotate = true;
-                        bullet = new LaserBoltBulletType(5.2f, 10){{
-                            lifetime = 35f;
-                            healPercent = 5.5f;
-                            collidesTeam = true;
-                            backColor = Pal.heal;
-                            frontColor = Color.white;
-                        }};
-                    }},
-                    new Weapon("heal-weapon-mount"){{
-                        shootSound = Sounds.lasershoot;
-                        reload = 15f;
-                        x = 4f;
-                        y = 5f;
-                        rotate = true;
-                        bullet = new LaserBoltBulletType(5.2f, 8){{
-                            lifetime = 35f;
-                            healPercent = 3f;
-                            collidesTeam = true;
-                            backColor = Pal.heal;
-                            frontColor = Color.white;
-                        }};
-                    }});
+                    new Weapon("lantana-weapon"){{
+                            reload = 48f;
+                            mirror = false;
+                            x = y = 0f;
+                            shootSound = Sounds.bolt;
+                            showStatSprite = false;
+                            shootY = 0;
+                            recoil = 0;
+                            bullet = new BasicBulletType(3, 68) {{
+                                width = 11f;
+                                height = 18f;
+                                sprite = "circle-bullet";
+                                frontColor = Color.white;
+                                backColor = hitColor = healColor = trailColor = ExoPal.erekirPink;
+                                lifetime = 93f;
+                                shrinkY = shrinkX = 0;
+                                collidesTeam = true;
+                                healAmount = 120;
+                                homingPower = 0.0678f;
+                                homingRange = 40;
+                                int count = 6;
+                                for(int j = 0; j < count; j++){
+                                    int s = j;
+                                    for(int i : Mathf.signs){
+                                        float fin = 0.05f + (j + 1) / (float)count;
+                                        float spd = speed;
+                                        float life = lifetime / Mathf.lerp(fin, 1f, 0.5f);
+                                        spawnBullets.add(new MissileBulletType(spd * fin, 60){{
+                                            drag = 0.002f;
+                                            height = 11f;
+                                            lifetime = life + 5f;
+                                            weaveRandom = false;
+                                            weaveScale = (4f + s/2f) / 1.2f;
+                                            weaveMag = i * (4f - fin * 2f);
+                                            keepVelocity = false;
+                                            hitEffect = despawnEffect = Fx.hitBulletColor;
+                                            hitSize = 5f;
+                                            healAmount = 50f;
+                                            collidesTeam = true;
+                                            trailColor = hitColor = healColor = backColor = ExoPal.erekirPink;
+                                            frontColor = Color.white;
+                                            trailWidth = 2.5f;
+                                            trailLength = 7;
+                                        }});
+                                    }
+                                }
+                                trailLength = 10;
+                                trailWidth = 2f;
+                                trailChance = 0.9f;
+                                trailEffect = new ParticleEffect() {{
+                                    particles = 1;
+                                    length = baseLength = 2.5f;
+                                    lifetime = 20f;
+                                    colorFrom = colorTo = trailColor;
+                                    sizeFrom = 4f;
+                                    sizeTo = 0f;
+                                }};
+                                fragOnHit = false;
+                                fragRandomSpread = 0f;
+                                fragSpread = 10f;
+                                fragBullets = 5;
+                                fragBullet = new ShrapnelBulletType(){{
+                                    length = 20;
+                                    damage = 26f;
+                                    serrations = 3;
+                                    backColor = hitColor = toColor = ExoPal.erekirPink;
+                                    width = 0f;
+                                }};
+                            }};
+                        }}
+            );
         }};
         kalmia = new ErekirUnitType("kalmia"){{
             constructor = UnitEntity::create;
@@ -2763,9 +2804,9 @@ public class ExoUnitTypes {
             speed = 1.2f;
             fogRadius = 25;
             rotateSpeed = 2f;
-            accel = 0.05f;
+            accel = 0.005f;
             drag = 0.017f;
-            lowAltitude = false;
+            lowAltitude = true;
             flying = true;
             circleTarget = true;
             engineOffset = 13f;
@@ -2779,54 +2820,45 @@ public class ExoUnitTypes {
             buildBeamOffset = 23;
             range = 140f;
             targetAir = false;
-            targetFlags = new BlockFlag[]{BlockFlag.battery, BlockFlag.factory, null};
 
             ammoType = new PowerAmmoType(3000);
+            abilities.add(new EnergyFieldAbility(40f, 65f, 140f){{
+                effectRadius = 0;
+                hitBuildings = targetAir = targetGround = false;
+                healColor = color = ExoPal.erekirPink;
+                maxTargets = 0;
+            }});
+            abilities.add(new SuppressionFieldAbility(){{
+                orbRadius = 5.3f;
+                particleColor = color = ExoPal.erekirPink;
+                reload = 40;
+                range = 150;
+                layer = 109;
+                x = y = 0f;
+            }});
 
             weapons.add(
                     new Weapon(){{
                         x = y = 0f;
                         mirror = false;
-                        reload = 55f;
+                        reload = 225f;
                         minShootVelocity = 0.01f;
-
                         soundPitchMin = 1f;
-                        shootSound = Sounds.plasmadrop;
-
-                        bullet = new BasicBulletType(){{
-                            sprite = "large-bomb";
-                            width = height = 120/4f;
-
-                            maxRange = 30f;
-                            ignoreRotation = true;
-
-                            backColor = Pal.heal;
-                            frontColor = Color.white;
-                            mixColorTo = Color.white;
-
-                            hitSound = Sounds.plasmaboom;
-
-                            shootCone = 180f;
-                            ejectEffect = Fx.none;
-                            hitShake = 4f;
-
-                            collidesAir = false;
-
-                            lifetime = 70f;
-
-                            despawnEffect = Fx.greenBomb;
-                            hitEffect = Fx.massiveExplosion;
-                            keepVelocity = false;
-                            spin = 2f;
-
-                            shrinkX = shrinkY = 0.7f;
-
-                            speed = 0f;
-                            collides = false;
-
-                            healPercent = 15f;
-                            splashDamage = 220f;
-                            splashDamageRadius = 80f;
+                        shootSound = Sounds.plasmaboom;
+                        bullet = new ExplosionBulletType(100f, 140f){{
+                            shootEffect = ExoFx.colorBomb;
+                            suppressionRange = 140;
+                            suppressionDuration = 80 * 5;
+                            lightningColor = hitColor = healColor = trailColor = ExoPal.erekirPink;
+                            lightning = 4;
+                            lightningLength = 16;
+                            lightningDamage = 20;
+                            splashDamagePierce = true;
+                            status = ExoStatusEffects.toxin2;
+                            statusDuration = 100;
+                            healAmount = 100;
+                            collidesGround = collidesAir = collidesTiles = collidesTeam = true;
+                            buildingDamageMultiplier = 0.8f;
                         }};
                     }});
         }};
