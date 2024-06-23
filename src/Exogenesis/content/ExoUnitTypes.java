@@ -2092,7 +2092,7 @@ public class ExoUnitTypes {
                 velocityRnd = 0.3f;
 
                 shoot = new ShootSpread(3, 6f);
-                bullet = new ExoBasicBulletType(5f, 12){{
+                bullet = new BasicBulletType(5f, 12){{
                     homingPower = 0.007f;
                     homingDelay = 0.8f;
                     buildingDamageMultiplier = 1.1f;
@@ -2126,7 +2126,7 @@ public class ExoUnitTypes {
             hitSize = 13f;
             drawShields = false;
 
-            abilities.add(new ForceFieldAbility(160f, 0.7f, 1100f, 60f, 4, 45));
+            abilities.add(new ForceFieldAbility(140f, 0.7f, 1100f, 60f, 4, 45));
 
             weapons.add(new Weapon(name + "-weapon"){{
                 top = false;
@@ -2199,7 +2199,7 @@ public class ExoUnitTypes {
                 mirror = alternate = true;
                 top = false;
                 shake = 2f;
-                shootY = 16.75f;
+                shootY = 14.0f;
                 x = 20.5f;
                 y = 0f;
                 reload = 65f;
@@ -2598,11 +2598,11 @@ public class ExoUnitTypes {
                 reload = 60f;
                 ejectEffect = Fx.none;
                 recoil = 0f;
-                shootSound = Sounds.bolt;
-                bullet = new HealingConeBulletType(8f){{
+                shootSound = Sounds.minebeam;
+                bullet = new HealingConeBulletType(3f){{
                     shootEffect = ExoFx.hitMeltColor;
                     hitSound = Sounds.none;
-                    lifetime = 120;
+                    lifetime = 120 * 4;
                     status = ExoStatusEffects.toxin1;
                     statusDuration = 200;
                     allyStatus = StatusEffects.overclock;
@@ -2636,13 +2636,20 @@ public class ExoUnitTypes {
             ammoType = new PowerAmmoType(900);
 
             abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
+            abilities.add(new EnergyFieldAbility(5f, 65f, 40f){{
+                effectRadius = 3;
+                y = 3.5f;
+                hitBuildings = false;
+                healColor = color = ExoPal.erekirPink;
+                maxTargets = 10;
+            }});
 
             weapons.add(
                     new Weapon("yew-weapon"){{
                         top = false;
                         y = 3.5f;
                         x = 0f;
-                        reload = 30f;
+                        reload = 23f;
                         ejectEffect = Fx.none;
                         recoil = 0f;
                         showStatSprite = false;
@@ -2713,7 +2720,7 @@ public class ExoUnitTypes {
             speed = 2.5f;
             accel = 0.06f;
             drag = 0.017f;
-            lowAltitude = false;
+            lowAltitude = true;
             flying = true;
             engineOffset = 10.5f;
             hitSize = 16.05f;
@@ -2742,10 +2749,11 @@ public class ExoUnitTypes {
                                 lifetime = 93f;
                                 shrinkY = shrinkX = 0;
                                 collidesTeam = true;
+                                keepVelocity = false;
                                 healAmount = 120;
                                 homingPower = 0.0678f;
                                 homingRange = 40;
-                                int count = 6;
+                                int count = 2;
                                 for(int j = 0; j < count; j++){
                                     int s = j;
                                     for(int i : Mathf.signs){
@@ -2789,9 +2797,9 @@ public class ExoUnitTypes {
                                 fragBullet = new ShrapnelBulletType(){{
                                     length = 20;
                                     damage = 26f;
-                                    serrations = 3;
+                                    serrations = 0;
                                     backColor = hitColor = toColor = ExoPal.erekirPink;
-                                    width = 0f;
+                                    width = 8f;
                                 }};
                             }};
                         }}
@@ -2824,9 +2832,9 @@ public class ExoUnitTypes {
             ammoType = new PowerAmmoType(3000);
             abilities.add(new EnergyFieldAbility(40f, 65f, 140f){{
                 effectRadius = 0;
-                hitBuildings = targetAir = targetGround = false;
+                hitBuildings = false;
                 healColor = color = ExoPal.erekirPink;
-                maxTargets = 0;
+                maxTargets = 10;
             }});
             abilities.add(new SuppressionFieldAbility(){{
                 orbRadius = 5.3f;
@@ -2851,6 +2859,7 @@ public class ExoUnitTypes {
                             suppressionDuration = 80 * 5;
                             lightningColor = hitColor = healColor = trailColor = ExoPal.erekirPink;
                             lightning = 4;
+                            killShooter = false;
                             lightningLength = 16;
                             lightningDamage = 20;
                             splashDamagePierce = true;
