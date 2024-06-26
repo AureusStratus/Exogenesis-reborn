@@ -11,6 +11,7 @@ public class ExoUnitType extends UnitType implements TypeMultiplierUnitType{
         multipliers = new float[]{kinetic, explosive, pierce, energy, thermal, cryogenic, radiation};
     }
 
+
     @Override
     public float[] multipliers(){
         return multipliers;

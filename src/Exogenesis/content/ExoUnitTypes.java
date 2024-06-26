@@ -2208,12 +2208,15 @@ public class ExoUnitTypes {
                 shoot.shots = 2;
                 shoot.shotDelay = 4f;
 
-                bullet = new ArrowBulletType(7f, 150){{
-                    width = 5f;
+                bullet = new BasicBulletType(8f, 150){{
+                    width = 12f;
                     height = 12f;
+                    sprite = "circle-bullet";
                     lifetime = 25f;
-                    trailWidth = 2;
-                    trailLength = 9;
+                    trailWidth = 2.5f;
+                    trailLength = 5;
+                    splashDamageRadius = 50;
+                    splashDamage = 25;
                     collidesTeam = true;
                     healAmount = 55;
                     pierce = true;
@@ -2593,7 +2596,7 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("cone-weapon"){{
                 top = false;
                 continuous = true;
-                y = 2.5f;
+                y = 0f;
                 x = 0f;
                 reload = 60f;
                 ejectEffect = Fx.none;
@@ -2602,7 +2605,7 @@ public class ExoUnitTypes {
                 bullet = new HealingConeBulletType(3f){{
                     shootEffect = ExoFx.hitMeltColor;
                     hitSound = Sounds.none;
-                    lifetime = 120 * 4;
+                    lifetime = 120 * 2.5f;
                     status = ExoStatusEffects.toxin1;
                     statusDuration = 200;
                     allyStatus = StatusEffects.overclock;
@@ -2636,7 +2639,7 @@ public class ExoUnitTypes {
             ammoType = new PowerAmmoType(900);
 
             abilities.add(new RepairFieldAbility(5f, 60f * 8, 50f));
-            abilities.add(new EnergyFieldAbility(5f, 65f, 40f){{
+            abilities.add(new EnergyFieldAbility(5f, 65f, 20f){{
                 effectRadius = 3;
                 y = 3.5f;
                 hitBuildings = false;
@@ -2753,13 +2756,13 @@ public class ExoUnitTypes {
                                 healAmount = 120;
                                 homingPower = 0.0678f;
                                 homingRange = 40;
-                                int count = 2;
+                                int count = 3;
                                 for(int j = 0; j < count; j++){
                                     int s = j;
                                     for(int i : Mathf.signs){
                                         float fin = 0.05f + (j + 1) / (float)count;
                                         float spd = speed;
-                                        float life = lifetime / Mathf.lerp(fin, 1f, 0.5f);
+                                        float life = lifetime / Mathf.lerp(fin, 0.8f, 0.5f);
                                         spawnBullets.add(new MissileBulletType(spd * fin, 60){{
                                             drag = 0.002f;
                                             height = 11f;
@@ -3236,7 +3239,7 @@ public class ExoUnitTypes {
                     shootEffect = ExoFx.explodeyscathe;
                     bulletInterval = 3;
                     intervalRandomSpread = 60;
-                    intervalBullet = new BasicBulletType(7, 50){{
+                    intervalBullet = new BasicBulletType(7, 40){{
                         parts.addAll(
                                 new ShapePart() {{
                                     circle = true;
@@ -3277,7 +3280,7 @@ public class ExoUnitTypes {
                     }};
                     fragRandomSpread = 0f;
                     fragBullets = 1;
-                    fragBullet = new BasicBulletType(0f, 9){{
+                    fragBullet = new BasicBulletType(0f, 5){{
                         parts.addAll(
                                 new ShapePart() {{
                                     circle = true;
@@ -3364,7 +3367,7 @@ public class ExoUnitTypes {
                         );
                         bulletInterval = 1;
                         intervalRandomSpread = 360;
-                        intervalBullet = new BasicBulletType(5, 35){{
+                        intervalBullet = new BasicBulletType(5, 16){{
                             parts.addAll(
                                     new ShapePart() {{
                                         circle = true;
@@ -3424,7 +3427,7 @@ public class ExoUnitTypes {
                             trailLength = 9;
                             trailWidth = 2;
                             despawnHit = true;
-                            spawnBullets.add(new BasicBulletType(7, 12){{
+                            spawnBullets.add(new BasicBulletType(7, 9){{
                                 parts.addAll(
                                         new ShapePart() {{
                                             circle = true;
@@ -3449,7 +3452,7 @@ public class ExoUnitTypes {
                                 fragSpread = 120;
                                 fragBullets = 3;
                                 fragBullet = new ShrapnelBulletType(){{
-                                    damage = 35f;
+                                    damage = 15f;
                                     width = 10f;
                                     serrations = 0;
                                     length = 3f;
@@ -3474,7 +3477,7 @@ public class ExoUnitTypes {
                             fragRandomSpread = 0f;
                             fragBullets = 1;
                             fragBullet = new LaserBulletType(){{
-                                damage = 35f;
+                                damage = 20f;
                                 sideWidth = 0f;
                                 width = 25f;
                                 length = 80f;
