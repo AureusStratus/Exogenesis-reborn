@@ -2162,7 +2162,6 @@ public class ExoUnitTypes {
             hitSize = 24f;
             rotateSpeed = 1.8f;
             mechFrontSway = 1f;
-
             mechStepParticles = true;
             stepShake = 0.15f;
             drownTimeMultiplier = 4f;
@@ -2175,29 +2174,21 @@ public class ExoUnitTypes {
             armor = 15f;
             mechLandShake = 4f;
             immunities = ObjectSet.with(StatusEffects.overclock);
-            abilities.add(new EnergyFieldAbility(40f, 65f, 140f){{
+            abilities.add(new EnergyFieldAbility(40f, 65f, 100f){{
                 statusDuration = 60f * 6f;
                 healColor = color = ExoPal.letoColor;
                 maxTargets = 25;
             }});
             abilities.add(new StatusFieldAbility(StatusEffects.overclock, 100f, 100, 100f){{
                 parentizeEffects = true;
-                activeEffect = new WaveEffect(){{
-                    colorFrom = ExoPal.letoColorLight;
-                    colorTo = ExoPal.letoColor;
-                    interp = Interp.slope;
-                    sizeFrom = 0;
-                    sizeTo = 100f;
-                    lifetime = 65f;
-                    strokeTo = 0;
-                    strokeFrom = 5f;
-                }};
+                activeEffect = Fx.none;
                 applyEffect = Fx.none;
             }});
 
             weapons.add(new Weapon(name + "-weapon"){{
                 mirror = alternate = true;
                 top = false;
+                layerOffset = -0.001f;
                 shake = 2f;
                 shootY = 14.0f;
                 x = 20.5f;
@@ -2205,15 +2196,14 @@ public class ExoUnitTypes {
                 reload = 65f;
                 recoil = 3f;
                 shootSound = Sounds.laser;
-                shoot.shots = 2;
-                shoot.shotDelay = 4f;
-
-                bullet = new BasicBulletType(8f, 150){{
-                    width = 12f;
-                    height = 12f;
+                shoot = new ShootSpread(3, 6f);
+                bullet = new BasicBulletType(9f, 150){{
+                    width = height = 18f;
                     sprite = "circle-bullet";
-                    lifetime = 25f;
-                    trailWidth = 2.5f;
+                    shrinkX = shrinkY = 0;
+                    drag = 0.0003f;
+                    lifetime = 55f;
+                    trailWidth = 5.5f;
                     trailLength = 5;
                     splashDamageRadius = 50;
                     splashDamage = 25;
@@ -2377,6 +2367,15 @@ public class ExoUnitTypes {
                 ejectEffect = Fx.casing4;
                 shootSound = Sounds.laserbeam;
                 parts.addAll(
+                        new EffectSpawnPart() {                                                    {
+                            useProgress = true;
+                            y = 0f;
+                            effect = ExoFx.ullrChargeEffect;
+                            progress = PartProgress.charge;
+                            effectColor = ExoPal.letoColor;
+                            randomEffectRot = 360;
+                            effectChance = 0.2f;
+                        }},
                         new RegionPart("-bit1"){{
                             mirror = false;
                             under = true;
@@ -2394,7 +2393,7 @@ public class ExoUnitTypes {
                     maxLength = 530f;
                     maxRange = 530f;
                     oscOffset = 0.3f;
-                    shootEffect = ExoFx.blastcolor;
+                    shootEffect = ExoFx.ullarTipHit;
                     status = ExoStatusEffects.energyZapped;
                     statusDuration = 400;
                     lifetime = 200;
@@ -2812,12 +2811,12 @@ public class ExoUnitTypes {
             constructor = UnitEntity::create;
             armor = 8f;
             health = 6000;
-            speed = 1.2f;
+            speed = 1.4f;
             fogRadius = 25;
             rotateSpeed = 2f;
-            accel = 0.005f;
+            accel = 0.05f;
             drag = 0.017f;
-            lowAltitude = true;
+            lowAltitude = false;
             flying = true;
             circleTarget = true;
             engineOffset = 13f;
@@ -2852,25 +2851,40 @@ public class ExoUnitTypes {
                     new Weapon(){{
                         x = y = 0f;
                         mirror = false;
-                        reload = 225f;
+                        reload = 125f;
                         minShootVelocity = 0.01f;
+
                         soundPitchMin = 1f;
-                        shootSound = Sounds.plasmaboom;
-                        bullet = new ExplosionBulletType(100f, 140f){{
-                            shootEffect = ExoFx.colorBomb;
-                            suppressionRange = 140;
-                            suppressionDuration = 80 * 5;
-                            lightningColor = hitColor = healColor = trailColor = ExoPal.erekirPink;
-                            lightning = 4;
-                            killShooter = false;
-                            lightningLength = 16;
-                            lightningDamage = 20;
-                            splashDamagePierce = true;
-                            status = ExoStatusEffects.toxin2;
-                            statusDuration = 100;
-                            healAmount = 100;
-                            collidesGround = collidesAir = collidesTiles = collidesTeam = true;
-                            buildingDamageMultiplier = 0.8f;
+                        shootSound = Sounds.plasmadrop;
+                        shoot = new ShootPattern(){{
+                            shots = 5;
+                            shotDelay = 3.5f;
+                        }};
+                        velocityRnd = 0.2f;
+                        bullet = new BasicBulletType(){{
+                            sprite = "large-bomb";
+                            width = height = 120/4f;
+                            maxRange = 30f;
+                            ignoreRotation = true;
+                            backColor = ExoPal.letoColor;
+                            frontColor = Color.white;
+                            mixColorTo = Color.white;
+                            hitSound = Sounds.plasmaboom;
+                            shootCone = 180f;
+                            ejectEffect = Fx.none;
+                            hitShake = 4f;
+                            collidesAir = false;
+                            lifetime = 70f;
+                            despawnEffect = ExoFx.colorBomb;
+                            hitEffect = Fx.massiveExplosion;
+                            keepVelocity = false;
+                            spin = 2f;
+                            shrinkX = shrinkY = 0.7f;
+                            speed = 0f;
+                            collides = false;
+                            healAmount = 265f;
+                            splashDamage = 100f;
+                            splashDamageRadius = 80f;
                         }};
                     }});
         }};

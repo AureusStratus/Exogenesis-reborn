@@ -151,18 +151,18 @@ public class ExoPlanets{
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
                             scale = 1.5;
-                            persistence = 0.5;
+                            persistence = 0.9;
                             octaves = 3;
                             magnitude = 1.2f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1.5f), 0.3f, -0.3f),
+                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1.8f), 0.3f, -0.3f),
                         new CraterHeight(new Vec3(-0.3f, 0.5f, 1f), 0.17f, 0.2f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 0.8f), 0.17f, 0.1f) {{
+                        new CraterHeight(new Vec3(1f, 0f, 1.5f), 0.17f, 0.1f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(1f, 0f, 0f), 0.17f, -0.2f)
