@@ -38,6 +38,7 @@ import mindustry.content.*;
 import mindustry.world.meta.BlockFlag;
 
 import static Exogenesis.type.DamageType.energy;
+import static Exogenesis.type.DamageType.kinetic;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.stroke;
 import static mindustry.Vars.tilePayload;
@@ -1678,7 +1679,7 @@ public class ExoUnitTypes {
             legSplashRange = 10;
             groundLayer = 77;
             range = 300;
-            abilities.add(new StatusFieldAbility(ExoStatusEffects.CronusBuff, 110f, 90f, 200f){{
+            abilities.add(new StatusFieldAbility(StatusEffects.overclock, 110f, 90f, 200f){{
                 parentizeEffects = true;
                 effectY = 20f;
                 activeEffect = new WaveEffect(){{
@@ -1693,7 +1694,7 @@ public class ExoUnitTypes {
                 }};
                 applyEffect = Fx.none;
             }});
-            immunities.add(ExoStatusEffects.CronusBuff);
+            immunities.add(StatusEffects.overclock);
             parts.addAll(
                     new ShapePart() {{
                         circle = true;
@@ -2196,14 +2197,14 @@ public class ExoUnitTypes {
                 reload = 65f;
                 recoil = 3f;
                 shootSound = Sounds.laser;
-                shoot = new ShootSpread(3, 6f);
+                shoot = new ShootSpread(3, 9f);
                 bullet = new BasicBulletType(9f, 150){{
                     width = height = 18f;
                     sprite = "circle-bullet";
                     shrinkX = shrinkY = 0;
-                    drag = 0.0003f;
+                    drag = 0.008f;
                     lifetime = 55f;
-                    trailWidth = 5.5f;
+                    trailWidth = 6f;
                     trailLength = 5;
                     splashDamageRadius = 50;
                     splashDamage = 25;
@@ -2273,6 +2274,7 @@ public class ExoUnitTypes {
                             homingPower = 0.007f;
                             homingDelay = 0.8f;
                             buildingDamageMultiplier = 1.1f;
+                            damageType = kinetic;
                             pierce = true;
                             pierceCap = 1;
                             width = 10f;
@@ -2298,6 +2300,7 @@ public class ExoUnitTypes {
                             homingPower = 0.007f;
                             homingDelay = 0.8f;
                             buildingDamageMultiplier = 1.1f;
+                            damageType = kinetic;
                             pierce = true;
                             pierceCap = 1;
                             width = 10f;
@@ -2330,7 +2333,6 @@ public class ExoUnitTypes {
             mechFrontSway = 2f;
             mechSideSway = 0.7f;
             mechStride = (4f + (hitSize - 8f) / 2.1f) / 1.25f;
-            immunities.add(StatusEffects.blasted);
             abilities.add(new ShieldRegenFieldAbility(40f, 120f, 60f * 2, 260f){{
                 parentizeEffects = true;
                 activeEffect = new WaveEffect(){{
@@ -2348,6 +2350,21 @@ public class ExoUnitTypes {
             abilities.add(new RepairFieldAbility(450f, 60f * 3, 260f){{
                 activeEffect = Fx.none;
             }});
+            abilities.add(new StatusFieldAbility(ExoStatusEffects.LetoBuff, 110f, 90f, 200f){{
+                parentizeEffects = true;
+                activeEffect = new WaveEffect(){{
+                    colorFrom = ExoPal.letoColorLight;
+                    colorTo = ExoPal.letoColor;
+                    interp = Interp.circle;
+                    sizeFrom = 0;
+                    sizeTo = 260f;
+                    lifetime = 95f;
+                    strokeTo = 0;
+                    strokeFrom = 6f;
+                }};
+                applyEffect = Fx.none;
+            }});
+            immunities.add(ExoStatusEffects.LetoBuff);
             weapons.add(new Weapon(name + "-weapon") {{
                 top = false;
                 layerOffset = -0.001f;
@@ -2371,10 +2388,10 @@ public class ExoUnitTypes {
                             useProgress = true;
                             y = 0f;
                             effect = ExoFx.ullrChargeEffect;
-                            progress = PartProgress.charge;
+                            progress = PartProgress.recoil;
                             effectColor = ExoPal.letoColor;
-                            randomEffectRot = 360;
-                            effectChance = 0.2f;
+                            randomEffectRot = 60;
+                            effectChance = 0.6f;
                         }},
                         new RegionPart("-bit1"){{
                             mirror = false;
@@ -2398,7 +2415,7 @@ public class ExoUnitTypes {
                     statusDuration = 400;
                     lifetime = 200;
                     width = 33f;
-                    damageType = DamageType.energy;
+                    damageType = energy;
                     collisionWidth = 10f;
                     colors = new Color[]{ExoPal.letoColor.cpy().a(0.2f), ExoPal.letoColor, Color.white};
                     pierceCap = 3;

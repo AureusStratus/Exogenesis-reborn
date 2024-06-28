@@ -11,15 +11,15 @@ import static mindustry.Vars.*;
 import static mindustry.content.StatusEffects.sapped;
 
 public class ExoStatusEffects{
-    public static StatusEffect toxin1, toxin2, toxin3, superBlasted, RheaBuff, energyZapped, CronusBuff;
+    public static StatusEffect toxin1, toxin2, toxin3, superBlasted, RheaBuff, energyZapped, LetoBuff;
     public static void load(){
-        CronusBuff = new StatusEffect("cronus-buff"){{
-            color = ExoPal.cronusRed;
-            damageMultiplier = 1.25f;
+        LetoBuff = new StatusEffect("cronus-buff"){{
+            color = ExoPal.letoColor;
+            damageMultiplier = 1.15f;
             effectChance = 0.07f;
             effect = new WaveEffect(){{
-                colorFrom = ExoPal.cronusRedlight;
-                colorTo = ExoPal.cronusRed;
+                colorFrom = ExoPal.letoColorLight;
+                colorTo = ExoPal.letoColor;
                 sides = 4;
                 sizeFrom = 2;
                 sizeTo = 0f;
