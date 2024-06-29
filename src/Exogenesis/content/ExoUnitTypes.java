@@ -1450,7 +1450,7 @@ public class ExoUnitTypes {
                 amount = 10f;
             }});
             abilities.add(new SuppressionFieldAbility(){{
-                orbRadius = 5.3f;
+                orbRadius = 0f;
                 reload = 40;
                 range = 150;
                 layer = 109;
@@ -1463,7 +1463,7 @@ public class ExoUnitTypes {
                 x = 34;
                 y = 46.25f;
                 shootSound = Sounds.missile;
-                baseRotation = -45;
+                baseRotation = -65;
                 shootY = 2;
                 shoot = new ShootMulti(new ShootAlternate(){{
                     spread = 7;
@@ -1485,7 +1485,7 @@ public class ExoUnitTypes {
                     sprite = "missile-large";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.erekirPurple;
-                    lifetime = 40f;
+                    lifetime = 60f;
                     hitEffect = Fx.blastExplosion;
                     shrinkY = shrinkX = 0;
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
@@ -1493,19 +1493,18 @@ public class ExoUnitTypes {
                     despawnHit = true;
                     weaveMag = weaveScale = 2;
                     keepVelocity = false;
-                    homingRange = 300;
+                    homingRange = 200;
                     homingDelay = 1;
-                    homingPower = 0.08f;
+                    homingPower = 0.09f;
                     trailLength = 10;
                     trailWidth = 2f;
                 }};
             }});
             weapons.add(new EnergyChargeWeapon("nemesis-weapon"){{
-                reload = 30f;
+                reload = 150f;
                 rotate = mirror = false;
                 x = 0;
-                y = 0;
-                layerOffset = -0.0001f;
+                y = 39.25f;
                 shootSound = Sounds.mediumCannon;
                 recoils = 4;
                 recoil = shootY = shootX = 0;
@@ -1519,12 +1518,12 @@ public class ExoUnitTypes {
                             scl = Math.max(1f - (mount.reload / reload), 0f) / 2f;
 
                     Draw.color(ExoPal.erekirPurple);
-                    ExoDrawf.shiningCircle(unit.id, Time.time, wx, wy, 10f * scl, 5, 70f, 15f, 4f * scl, 90f);
+                    ExoDrawf.shiningCircle(unit.id, Time.time, wx, wy, 20f * scl, 5, 70f, 15f, 4f * scl, 90f);
                     Draw.color(Color.white);
-                    ExoDrawf.shiningCircle(unit.id, Time.time, wx, wy, 5f * scl, 5, 70f, 15f, 3f * scl, 90f);
+                    ExoDrawf.shiningCircle(unit.id, Time.time, wx, wy, 10f * scl, 5, 70f, 15f, 3f * scl, 90f);
 
                     Lines.stroke(2f);
-                    Draw.color(Pal.lancerLaser);
+                    Draw.color(ExoPal.erekirPurple);
                     ExoDrawf.dashCircleAngle(wx, wy, rad, Mathf.sin(Time.time + Mathf.randomSeed(unit.id, 0f, 6f), 90f, 30f));
                     Draw.reset();
                 };
@@ -1571,24 +1570,21 @@ public class ExoUnitTypes {
                             moveY = -3.5f;
                         }}
                 );
-                bullet = new NemesisLaserBulletType(300f){{
-                    lifetime = 40f;
-                    shootEffect = new MultiEffect(Fx.explosion, Fx.colorSparkBig);
-                    hitEffect = new MultiEffect(Fx.sapExplosion, Fx.circleColorSpark, ExoFx.colorBombSmall);
-                    despawnHit = true;
-                    intervalRandomSpread = 50;
-                    intervalBullets = 3;
-                    intervalBullet = new LightningBulletType(){{
-                        damage = 78;
-                        lightningColor = Color.valueOf("9681fb");
-                        lightningLength = 8;
-                        lightningLengthRand = 11;
-                        buildingDamageMultiplier = 0.25f;
-                    }};
-                    trailLength = 10;
-                    trailWidth = 4.5f;
-                    hitColor = Color.valueOf("a393fe");
-                    lightningColor = trailColor = Color.valueOf("a393fe");
+                bullet = new AcceleratingLaserBulletType(60f){{
+                    maxLength = 400f;
+                    maxRange = 400f;
+                    oscOffset = 0.3f;
+                    shootEffect = ExoFx.ullarTipHit;
+                    status = ExoStatusEffects.energyZapped;
+                    statusDuration = 400;
+                    lifetime = 200;
+                    width = 33f;
+                    damageType = energy;
+                    collisionWidth = 10f;
+                    colors = new Color[]{ExoPal.erekirPurple.cpy().a(0.2f), ExoPal.erekirPurple, Color.white};
+                    pierceCap = 3;
+                    hitEffect = ExoFx.ullarTipHit;
+                    hitColor = ExoPal.erekirPurple;
                 }};
             }});
         }};
@@ -2556,7 +2552,7 @@ public class ExoUnitTypes {
                 shootX = -3f;
                 cooldownTime = 100;
                 alternate = false;
-                recoilTime = 190;
+                recoilTime = 3;
                 recoil = 3f;
                 shake = 2f;
                 reload = 120;
@@ -2566,6 +2562,7 @@ public class ExoUnitTypes {
                 parts.addAll(
                         new EffectSpawnPart() {{
                             useProgress = true;
+                            parentizeEffects = true;
                             y = 52.5f;
                             x = -3f;
                             effect = ExoFx.ullrChargeEffect;
