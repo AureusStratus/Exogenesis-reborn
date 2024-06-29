@@ -9,14 +9,12 @@ import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.type.unit.AxinUnitType;
 import Exogenesis.type.unit.ExoUnitType;
-import Exogenesis.type.weapons.EnergyChargeWeapon;
 import Exogenesis.type.weapons.SpeedUpWeapon;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.ObjectSet;
-import arc.util.Time;
 import arc.util.Tmp;
 import blackhole.entities.abilities.BlackHoleAbility;
 import blackhole.entities.bullet.BlackHoleBulletType;
@@ -24,7 +22,6 @@ import blackhole.entities.effect.SwirlEffect;
 import blackhole.entities.part.BlackHolePart;
 import mindustry.ai.*;
 import mindustry.ai.types.DefenderAI;
-import mindustry.ai.types.MinerAI;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
@@ -38,7 +35,6 @@ import mindustry.type.ammo.PowerAmmoType;
 import mindustry.type.unit.*;
 import mindustry.type.weapons.*;
 import mindustry.content.*;
-import mindustry.world.meta.BlockFlag;
 
 import static Exogenesis.type.DamageType.energy;
 import static Exogenesis.type.DamageType.kinetic;
@@ -54,11 +50,11 @@ public class ExoUnitTypes {
     //erekir supportMech
     calm, serene, tranquil, sanctuary, ataraxia, leto,
     ivy, yew, lantana, kalmia, hemlock, rhea,
-    squall, gust, storm, thunderstorm, hurricane, hyperion,
+    /* squall, gust, storm, thunderstorm, hurricane, */ hyperion,
     prometheus, atlas, nemesis, cronus,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus,
-    twinkle, starlight, stardustVoyager, orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer, stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon;
+    twinkle, starlight, stardustVoyager, orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer /* stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon */;
 
 
     public static void load() {
@@ -1426,17 +1422,20 @@ public class ExoUnitTypes {
             health = 46500;
             outlineRadius = 6;
             crashDamageMultiplier = 10;
+            fallSpeed = 3000;
+            faceTarget = false;
             rotateSpeed = 0.7f;
             armor = 20f;
             speed = 1.1f;
             accel = 0.04f;
             drag = 0.04f;
-            range = 200;
             flying = true;
-            hitSize = lightRadius = 80f;
+            hitSize = 100;
+            lightRadius = 80f;
+            deathExplosionEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.starExplodeBlue, Fx.colorSpark);
             healColor = ExoPal.erekirPurple;
             engineSize = 0f;
-            faceTarget = singleTarget = lowAltitude = true;
+            singleTarget = lowAltitude = true;
             /*
             abilities.add(new EnergyFieldAbility(25f, 45f, 280f){{
                 statusDuration = 60f * 6f;
@@ -1454,18 +1453,21 @@ public class ExoUnitTypes {
             }});
             abilities.add(new BlackHoleAbility(){{
                 suctionRadius = 350f;
+                swirlEffect = ExoFx.smolSwirl;
+                swirlEffects = 2;
+                swirlInterval = 10;
                 damageRadius = 180;
+                damage = 3F;
                 y = 39.25f;
                 bulletForce = 0.4f;
-                starWidth = 20;
-                starHeight = 20;
-                lensingRadius = 30;
-                horizonRadius = 26;
+                lensingRadius = 23;
+                horizonRadius = 15;
                 color = ExoPal.erekirPurple;
             }});
             abilities.add(new SuppressionFieldAbility(){{
                 orbRadius = 0f;
                 particleSize = 0;
+
                 reload = 40;
                 range = 350;
                 layer = 109;
@@ -1515,8 +1517,38 @@ public class ExoUnitTypes {
                     trailWidth = 2f;
                 }};
             }});
+            weapons.add(new Weapon("death-singularity"){{
+                reload = 230f;
+                rotate = true;
+                rotateSpeed = 15;
+                mirror = false;
+                range = 0;
+                shootOnDeath = true;
+                controllable = false;
+                targetGround = targetAir = false;
+                x = 0;
+                y = 39.25f;
+                shootSound = Sounds.none;
+                recoil = shootY = shootX = 0;
+                shake = 2f;
+                bullet = new BlackHoleBulletType(0f, 15f){{
+                    lifetime = 550f;
+                    growTime = 0;
+                    force = 20;
+                    horizonRadius = 20;
+                    lensingRadius = 29;
+                    suctionRadius = 350;
+                    damageRadius = 180;
+                    swirlEffects = 2;
+                    swirlInterval = 3;
+                    color = hitColor = ExoPal.erekirPurple;
+                    lightRadius = 8f;
+                    lightOpacity = 0.7f;
+                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
+                }};
+            }});
             weapons.add(new Weapon("exogenesis-nemesis-singularity"){{
-                reload = 150f;
+                reload = 230f;
                 rotate = true;
                 rotateSpeed = 15;
                 mirror = false;
@@ -1526,11 +1558,11 @@ public class ExoUnitTypes {
                 recoil = shootY = shootX = 0;
                 shake = 2f;
                 bullet = new BlackHoleBulletType(0.6f, 6f){{
-                    lifetime = 250f;
+                    lifetime = 550f;
                     growTime = 0;
                     force = 10;
-                    horizonRadius = 12;
-                    lensingRadius = 19;
+                    horizonRadius = 20;
+                    lensingRadius = 29;
                     suctionRadius = 100;
                     damageRadius = 50;
                     swirlEffect = ExoFx.smolSwirl;
