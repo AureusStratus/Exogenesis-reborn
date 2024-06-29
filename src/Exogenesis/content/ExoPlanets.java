@@ -141,15 +141,15 @@ public class ExoPlanets{
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 5);
                             dir.set(-0.5f, 0.5f, 1);
-                            magnitude = 3;
+                            magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 5);
                             dir.set(-0.3f, -1f, -0.6f);
-                            magnitude = 9;
+                            magnitude = 2;
                         }},
                         new ClampHeight(0f, 0.8f),
-                        /*
+
                         new NoiseHeight() {{
                             scale = 1.5;
                             persistence = 0.9;
@@ -158,7 +158,6 @@ public class ExoPlanets{
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
-                        */
                         new ClampHeight(-0.2f, 0.8f),
                         new CraterHeight(new Vec3(-0.5f, 0.25f, 1.8f), 0.3f, -0.3f),
                         new CraterHeight(new Vec3(-0.3f, 0.5f, 1f), 0.17f, 0.2f) {{

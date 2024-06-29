@@ -13,7 +13,7 @@ import static mindustry.content.StatusEffects.sapped;
 public class ExoStatusEffects{
     public static StatusEffect toxin1, toxin2, toxin3, superBlasted, RheaBuff, energyZapped, LetoBuff;
     public static void load(){
-        LetoBuff = new StatusEffect("cronus-buff"){{
+        LetoBuff = new StatusEffect("leto-buff"){{
             color = ExoPal.letoColor;
             damageMultiplier = 1.15f;
             effectChance = 0.07f;

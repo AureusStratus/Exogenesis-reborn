@@ -107,6 +107,24 @@ public final class ExoDrawf{
         Draw.rect(nRegion, x, y, w, h, w * 0.5f, h * 0.5f, rot);
     }
 
+    public static void dashCircleAngle(float x, float y, float radius, float rotation){
+        float scaleFactor = 0.6f;
+        int sides = 10 + (int)(radius * scaleFactor);
+        if(sides % 2 == 1) sides++;
+
+        vec1.set(0, 0);
+
+        for(int i = 0; i < sides; i++){
+            if(i % 2 == 0) continue;
+            vec1.set(radius, 0).setAngle((360f / sides * i + 90) + rotation);
+            float x1 = vec1.x;
+            float y1 = vec1.y;
+
+            vec1.set(radius, 0).setAngle((360f / sides * (i + 1) + 90) + rotation);
+
+            Lines.line(x1 + x, y1 + y, vec1.x + x, vec1.y + y);
+        }
+    }
     static float getypos(float d,float r, float h){
         float c1 = Mathf.pi*r;
         if(d<c1){
