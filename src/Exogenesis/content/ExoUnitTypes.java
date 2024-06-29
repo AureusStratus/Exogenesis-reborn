@@ -18,6 +18,7 @@ import arc.math.geom.*;
 import arc.struct.ObjectSet;
 import arc.util.Time;
 import arc.util.Tmp;
+import blackhole.entities.abilities.BlackHoleAbility;
 import blackhole.entities.bullet.BlackHoleBulletType;
 import blackhole.entities.effect.SwirlEffect;
 import blackhole.entities.part.BlackHolePart;
@@ -1436,6 +1437,7 @@ public class ExoUnitTypes {
             healColor = ExoPal.erekirPurple;
             engineSize = 0f;
             faceTarget = singleTarget = lowAltitude = true;
+            /*
             abilities.add(new EnergyFieldAbility(25f, 45f, 280f){{
                 statusDuration = 60f * 6f;
                 sectors = 0;
@@ -1446,13 +1448,26 @@ public class ExoUnitTypes {
                 y = 39.25f;
                 maxTargets = 35;
             }});
+             */
             abilities.add(new RegenAbility(){{
                 amount = 10f;
             }});
+            abilities.add(new BlackHoleAbility(){{
+                suctionRadius = 350f;
+                damageRadius = 180;
+                y = 39.25f;
+                bulletForce = 0.4f;
+                starWidth = 20;
+                starHeight = 20;
+                lensingRadius = 30;
+                horizonRadius = 26;
+                color = ExoPal.erekirPurple;
+            }});
             abilities.add(new SuppressionFieldAbility(){{
                 orbRadius = 0f;
+                particleSize = 0;
                 reload = 40;
-                range = 150;
+                range = 350;
                 layer = 109;
                 y = 39.25f;
             }});
@@ -1485,7 +1500,7 @@ public class ExoUnitTypes {
                     sprite = "missile-large";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.erekirPurple;
-                    lifetime = 60f;
+                    lifetime = 45f;
                     hitEffect = Fx.blastExplosion;
                     shrinkY = shrinkX = 0;
                     shootEffect = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
@@ -1500,6 +1515,34 @@ public class ExoUnitTypes {
                     trailWidth = 2f;
                 }};
             }});
+            weapons.add(new Weapon("exogenesis-nemesis-singularity"){{
+                reload = 150f;
+                rotate = true;
+                rotateSpeed = 15;
+                mirror = false;
+                x = 0;
+                y = 39.25f;
+                shootSound = Sounds.none;
+                recoil = shootY = shootX = 0;
+                shake = 2f;
+                bullet = new BlackHoleBulletType(0.6f, 6f){{
+                    lifetime = 250f;
+                    growTime = 0;
+                    force = 10;
+                    horizonRadius = 12;
+                    lensingRadius = 19;
+                    suctionRadius = 100;
+                    damageRadius = 50;
+                    swirlEffect = ExoFx.smolSwirl;
+                    swirlEffects = 2;
+                    swirlInterval = 3;
+                    color = hitColor = ExoPal.erekirPurple;
+                    lightRadius = 8f;
+                    lightOpacity = 0.7f;
+                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
+                }};
+            }});
+            /*
             weapons.add(new EnergyChargeWeapon("nemesis-weapon"){{
                 reload = 150f;
                 rotate = mirror = false;
@@ -1587,6 +1630,7 @@ public class ExoUnitTypes {
                     hitColor = ExoPal.erekirPurple;
                 }};
             }});
+             */
         }};
         hyperion = new ErekirUnitType("hyperion") {{
             constructor = ElevationMoveUnit::create;
@@ -3180,7 +3224,7 @@ public class ExoUnitTypes {
                     new UnitEngine(28, -56, 5, 270),
                     new UnitEngine(-28, -56, 5, 270)
             );
-            weapons.add(new Weapon("Rhea-energy-ball"){{
+            weapons.add(new Weapon("exogenesis-rhea-energy-ball"){{
                 x = 0f;
                 y = 14.25f;
                 shootCone = 25;
