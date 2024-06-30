@@ -1519,7 +1519,7 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("death-singularity"){{
                 reload = 1f;
                 rotate = false;
-                mirror = false;
+                mirror = controllable = false;
                 hidden = true;
                 deathExplosionEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.starExplodeBlue, Fx.colorSpark);
                 range = 0;
