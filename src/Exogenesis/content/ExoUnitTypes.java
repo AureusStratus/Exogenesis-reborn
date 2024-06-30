@@ -1422,7 +1422,8 @@ public class ExoUnitTypes {
             health = 46500;
             outlineRadius = 6;
             crashDamageMultiplier = 10;
-            fallSpeed = 3000;
+            targetPriority = 4f;
+            fallSpeed = 13000;
             faceTarget = false;
             rotateSpeed = 0.7f;
             armor = 20f;
@@ -1432,7 +1433,7 @@ public class ExoUnitTypes {
             flying = true;
             hitSize = 100;
             lightRadius = 80f;
-            deathExplosionEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.starExplodeBlue, Fx.colorSpark);
+
             healColor = ExoPal.erekirPurple;
             engineSize = 0f;
             singleTarget = lowAltitude = true;
@@ -1449,25 +1450,23 @@ public class ExoUnitTypes {
             }});
              */
             abilities.add(new RegenAbility(){{
-                amount = 10f;
+                amount = 4f;
             }});
             abilities.add(new BlackHoleAbility(){{
                 suctionRadius = 350f;
-                swirlEffect = ExoFx.smolSwirl;
-                swirlEffects = 2;
-                swirlInterval = 10;
+                swirlEffects = 0;
                 damageRadius = 180;
-                damage = 3F;
+                force = 3;
+                damage = 1F;
                 y = 39.25f;
                 bulletForce = 0.4f;
-                lensingRadius = 23;
+                lensingRadius = 20;
                 horizonRadius = 15;
                 color = ExoPal.erekirPurple;
             }});
             abilities.add(new SuppressionFieldAbility(){{
                 orbRadius = 0f;
                 particleSize = 0;
-
                 reload = 40;
                 range = 350;
                 layer = 109;
@@ -1479,7 +1478,7 @@ public class ExoUnitTypes {
                 rotate = false;
                 x = 34;
                 y = 46.25f;
-                shootSound = Sounds.missile;
+                shootSound = Sounds.blaster;
                 baseRotation = -65;
                 shootY = 2;
                 shoot = new ShootMulti(new ShootAlternate(){{
@@ -1518,16 +1517,17 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("death-singularity"){{
-                reload = 230f;
-                rotate = true;
-                rotateSpeed = 15;
+                reload = 1f;
+                rotate = false;
                 mirror = false;
+                hidden = true;
+                deathExplosionEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.starExplodeBlue, Fx.colorSpark);
                 range = 0;
                 shootOnDeath = true;
-                controllable = false;
+                noAttack = true;
                 targetGround = targetAir = false;
                 x = 0;
-                y = 39.25f;
+                y = 0f;
                 shootSound = Sounds.none;
                 recoil = shootY = shootX = 0;
                 shake = 2f;
@@ -1557,12 +1557,12 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 recoil = shootY = shootX = 0;
                 shake = 2f;
-                bullet = new BlackHoleBulletType(0.6f, 6f){{
+                bullet = new BlackHoleBulletType(1f, 6f){{
                     lifetime = 550f;
                     growTime = 0;
                     force = 10;
-                    horizonRadius = 20;
-                    lensingRadius = 29;
+                    horizonRadius = 15;
+                    lensingRadius = 24;
                     suctionRadius = 100;
                     damageRadius = 50;
                     swirlEffect = ExoFx.smolSwirl;
@@ -2624,14 +2624,15 @@ public class ExoUnitTypes {
                 rotate = true;
                 rotateSpeed = 1;
                 rotationLimit = 40;
+                parentizeEffects = true;
                 shootY = 52.5f;
                 shootX = -3f;
-                cooldownTime = 100;
+                cooldownTime = 2;
                 alternate = false;
-                recoilTime = 3;
+                recoilTime = 15;
                 recoil = 3f;
                 shake = 2f;
-                reload = 120;
+                reload = 170;
                 continuous = true;
                 ejectEffect = Fx.casing4;
                 shootSound = Sounds.laserbeam;
@@ -2642,7 +2643,7 @@ public class ExoUnitTypes {
                             y = 52.5f;
                             x = -3f;
                             effect = ExoFx.ullrChargeEffect;
-                            progress = PartProgress.recoil;
+                            progress = PartProgress.heat;
                             effectColor = ExoPal.letoColor;
                             randomEffectRot = 60;
                             effectChance = 0.6f;
