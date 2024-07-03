@@ -140,8 +140,8 @@ public class ExoPlanets{
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
-                            dir.set(-0.5f, 0.5f, 1);
-                            magnitude = 1;
+                            dir.set(-0.5f, 0.5f, 0.2f);
+                            magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
@@ -244,8 +244,6 @@ public class ExoPlanets{
             landCloudColor = Color.blue.cpy().a(0.5f);
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
         }};
-
-
     }
 
 }

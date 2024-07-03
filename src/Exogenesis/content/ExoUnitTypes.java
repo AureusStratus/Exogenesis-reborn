@@ -1473,7 +1473,7 @@ public class ExoUnitTypes {
                 y = 39.25f;
             }});
             weapons.add(new Weapon("exogenesis-cronus-rocket-launcher"){{
-                reload = 70f;
+                reload = 130f;
                 mirror = true;
                 rotate = false;
                 x = 34;
@@ -1796,24 +1796,6 @@ public class ExoUnitTypes {
                         shapes = 4;
                         triLength = triLengthTo = 6;
                         color = ExoPal.cronusRed;
-                    }},
-                    new RegionPart("-wing-2"){{
-                        mirror = true;
-                        x = 50;
-                        y = 0;
-                        layerOffset = -0.002f;
-                        rotation = -20;
-                        progress = PartProgress.warmup.delay(0.1f);
-                        moveRot = 30f;
-                    }},
-                    new RegionPart("-wing-1"){{
-                        mirror = true;
-                        x = 43;
-                        y = -30;
-                        layerOffset = -0.002f;
-                        rotation = -30;
-                        progress = PartProgress.warmup.delay(0.2f);
-                        moveRot = 50f;
                     }}
             );
             weapons.add(new Weapon("disk") {{
@@ -1887,7 +1869,7 @@ public class ExoUnitTypes {
                     smokeEffect = Fx.none;
                 }};
             }});
-            weapons.add(new Weapon("test-weapon") {{
+            weapons.add(new Weapon("cronus") {{
                 reload = 80f;
                 alwaysShooting = true;
                 mirror = rotate = false;
@@ -1905,10 +1887,27 @@ public class ExoUnitTypes {
                             mirror = true;
                             x = 46;
                             y = 25;
-
                             layerOffset = -0.002f;
-                            progress = PartProgress.smoothReload.curve(Interp.fastSlow);
+                            progress = PartProgress.smoothReload.curve(Interp.linear);
                             moveRot = 30f;
+                        }},
+                        new RegionPart("-wing-2"){{
+                            mirror = true;
+                            x = 50;
+                            y = 0;
+                            layerOffset = -0.002f;
+                            rotation = -20;
+                            progress = PartProgress.smoothReload.curve(Interp.linear).delay(0.1f);
+                            moveRot = 30f;
+                        }},
+                        new RegionPart("-wing-1"){{
+                            mirror = true;
+                            x = 43;
+                            y = -30;
+                            layerOffset = -0.002f;
+                            rotation = -30;
+                            progress = PartProgress.smoothReload.curve(Interp.linear).delay(0.2f);
+                            moveRot = 50f;
                         }}
                 );
                 bullet = new BasicBulletType(9, 20){{
