@@ -50,7 +50,7 @@ public class ExoUnitTypes {
     //erekir supportMech
     calm, serene, tranquil, sanctuary, ataraxia, leto,
     ivy, yew, lantana, kalmia, hemlock, rhea,
-    /* squall, gust, storm, thunderstorm, hurricane, */ hyperion,
+    squall, gust, storm, thunderstorm, hurricane,  hyperion,
     prometheus, atlas, nemesis, cronus,
     //empyrean
     soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus,
@@ -1664,243 +1664,7 @@ public class ExoUnitTypes {
             }});
              */
         }};
-        hyperion = new ErekirUnitType("hyperion") {{
-            constructor = ElevationMoveUnit::create;
-            speed = 0.78f;
-            hitSize = 90f;
-            health = 32000f;
-            faceTarget = false;
-            fogRadius = 50;
-            armor = 45;
-            outlineRadius = 6;
-            rotateMoveFirst = true;
-            hovering = true;
-            singleTarget = true;
-            useEngineElevation = false;
-            flying = false;
-            shadowElevation = 0.1f;
-            groundLayer = Layer.groundUnit;
-            rotateSpeed = 0.8f;
-                //small
-                parts.add(new HoverPart(){{
-                    x = 48f;
-                    y = 25;
-                    mirror = true;
-                    sides = 360;
-                    radius = 9f;
-                    phase = 30f;
-                    layerOffset = -0.001f;
-                    color = Pal.surge;
-                }});
-                parts.add(new HoverPart(){{
-                    x = 48f;
-                    y = -25;
-                    mirror = true;
-                    sides = 360;
-                    radius = 9f;
-                    phase = 30f;
-                    layerOffset = -0.001f;
-                    color = Pal.surge;
-                }});
-                //large
-                parts.add(new HoverPart(){{
-                    x = 26f;
-                    y = 49;
-                    mirror = true;
-                    sides = 360;
-                    radius = 19f;
-                    circles = 4;
-                    phase = 90f;
-                    layerOffset = -0.001f;
-                    color = Pal.surge;
-                }});
-                parts.add(new HoverPart(){{
-                    x = 26f;
-                    y = -49;
-                    mirror = true;
-                    sides = 360;
-                    radius = 19f;
-                    circles = 4;
-                    phase = 90f;
-                    layerOffset = -0.001f;
-                    color = Pal.surge;
-                }});
-            weapons.add(new Weapon("exogenesis-hyperion-weapon"){{
-                shootSound = Sounds.mediumCannon;
-                top = rotate = true;
-                mirror = false;
-                x = 0;
-                y = -10;
-                reload = 16;
-                recoil = 0f;
-                recoils = 3;
-                layerOffset = 2;
-                cooldownTime = 250f;
-                rotateSpeed = 1;
-                parts.add(
-                        new RegionPart("-barrel-1"){{
-                            mirror = false;
-                            under = true;
-                            recoilIndex = 2;
-                            cooldownTime = 50;
-                            heatProgress = PartProgress.recoil;
-                            progress = PartProgress.recoil;
-                            moveY = -4f;
-                        }},
-                        new RegionPart("-barrel-2"){{
-                            mirror = false;
-                            under = true;
-                            recoilIndex = 1;
-                            cooldownTime = 50;
-                            heatProgress = PartProgress.recoil;
-                            progress = PartProgress.recoil;
-                            moveY = -4f;
-                        }},
-                        new RegionPart("-barrel-3"){{
-                            mirror = false;
-                            under = true;
-                            recoilIndex = 0;
-                            cooldownTime = 50;
-                            heatProgress = PartProgress.recoil;
-                            progress = PartProgress.recoil;
-                            moveY = -4f;
-                        }}
-                );
-                shoot = new ShootBarrel(){{
-                    barrels = new float[]{
-                    15.5f, 43.0f, 0f,
-                    0f, 47.75f, 0f,
-                    -15.5f, 43.0f, 0f,
-                    };
-                }};
-                bullet = new EmpBulletType() {{
-                    sprite = "missile-large";
-                    width = 15f;
-                    height = 36f;
-                    speed = 13;
-                    damage = 550;
-                    lifetime = 32f;
-                    shootEffect = Fx.shootBig;
-                    smokeEffect = new ParticleEffect(){{
-                        particles = 8;
-                        line = true;
-                        length = 60f;
-                        lifetime = 40f;
-                        baseLength = 8;
-                        cone = offset = 30;
-                        interp = Interp.circleOut;
-                        colorFrom = colorTo = Pal.surge;
-                        strokeFrom = 4;
-                        lenFrom = lenTo = 6f;
-                    }};
-                    shootEffect = new MultiEffect(Fx.blastExplosion, Fx.flakExplosionBig, Fx.massiveExplosion);
-                    hitEffect = new MultiEffect(Fx.blastExplosion, Fx.colorSparkBig, Fx.shootBigColor);
-                    despawnHit = true;
-                    shrinkY = shrinkX = 0;
-                    hitPowerEffect = chainEffect = Fx.none;
-                    pierceCap = 1;
-                    pierceArmor = true;
-                    pierceBuilding = false;
-                    unitDamageScl = 1.5f;
-                    buildingDamageMultiplier = 0.3f;
-                    bulletInterval = 1;
-                    intervalBullets = 2;
-                    intervalRandomSpread = 30;
-                    intervalBullet = new LightningBulletType(){{
-                        damage = 30;
-                        ammoMultiplier = 1f;
-                        collidesTiles = false;
-                        lightningColor = Pal.surge;
-                        lightningLength = 3;
-                        lightningLengthRand = 5;
-                        buildingDamageMultiplier = 0.2f;
-                    }};
-                    radius = 0;
-                    trailChance = 1;
-                    trailRotation = true;
-                    trailInterval = 5f;
-                    trailLength = 12;
-                    trailWidth = 4f;
-                    trailEffect = Fx.shootHealYellow;
-                    lightning = 2;
-                    lightningLength = 3;
-                    lightningLengthRand = 6;
-                    lightningColor = backColor = trailColor = hitColor = Pal.surge;
-                    lightningDamage = 50;
-                }};
-            }});
-            weapons.add(new Weapon("exogenesis-hyperion-flak-turret"){{
-                x = 41.0f;
-                y = 3.25f;
-                rotateSpeed = 2.5f;
-                reload = 6f;
-                shootSound = Sounds.shootBig;
-                ejectEffect = Fx.casing2;
-                rotationLimit = 60;
-                cooldownTime = 80;
-                shootCone = 40;
-                layerOffset = 1;
-                shadow = 7f;
-                rotate = true;
-                mirror = true;
-                alternate = false;
-                recoils = 2;
-                recoil = 0f;
-                parts.add(
-                        new RegionPart("-barrel-l"){{
-                            mirror = false;
-                            under = true;
-                            recoilIndex = 1;
-                            progress = PartProgress.recoil;
-                            moveY = -5f;
-                        }},
-                        new RegionPart("-barrel-r"){{
-                            mirror = false;
-                            under = true;
-                            recoilIndex = 0;
-                            progress = PartProgress.recoil;
-                            moveY = -5f;
-                        }}
-                );
-                shoot = new ShootBarrel(){{
-                    barrels = new float[]{
-                            3.5f, 15f, 0f,
-                            -3.5f, 15f, 0f,
-                    };
-                }};
-                bullet = new BasicBulletType(6.5f, 60){{
-                    width = height = 13f;
-                    splashDamage = 57;
-                    splashDamageRadius = 40;
-                    lifetime = 35f;
-                    hitColor = trailColor = backColor = Pal.surge;
-                    status = StatusEffects.blasted;
-                    statusDuration = 100;
-                    smokeEffect = Fx.shootBigSmoke;
-                    shootEffect = Fx.shootBig2;
-                    hitEffect = Fx.flakExplosion;
-                    buildingDamageMultiplier = 0.5f;
-                    trailLength = 10;
-                    trailWidth = 2.5f;
-                    fragBullets = 6;
-                    fragLifeMin = 0.3f;
-                    fragBullet = new BasicBulletType(8.5f, 6){{
-                        width = 5;
-                        height = 9f;
-                        splashDamage = 30;
-                        splashDamageRadius = 25;
-                        lifetime = 5f;
-                        hitColor = trailColor = backColor = Pal.surge;
-                        status = StatusEffects.blasted;
-                        statusDuration = 100;
-                        smokeEffect = Fx.shootBigSmoke;
-                        shootEffect = Fx.shootBig2;
-                        hitEffect = Fx.flakExplosion;
-                        buildingDamageMultiplier = 0.5f;
-                    }};
-                }};
-            }});
-        }};
+
         cronus = new ErekirUnitType("cronus") {{
             constructor = LegsUnit::create;
             fogRadius = 50;
@@ -2035,14 +1799,6 @@ public class ExoUnitTypes {
                     }},
                     new RegionPart("-wing-2"){{
                         mirror = true;
-                        x = 46;
-                        y = 25;
-                        layerOffset = -0.002f;
-                        progress = PartProgress.warmup;
-                        moveRot = 30f;
-                    }},
-                    new RegionPart("-wing-2"){{
-                        mirror = true;
                         x = 50;
                         y = 0;
                         layerOffset = -0.002f;
@@ -2127,6 +1883,38 @@ public class ExoUnitTypes {
                     trailWidth = 3;
                     trailLength = 10;
                     hitEffect = Fx.circleColorSpark;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                }};
+            }});
+            weapons.add(new Weapon("test-weapon") {{
+                reload = 80f;
+                alwaysShooting = true;
+                mirror = rotate = false;
+                alternate = true;
+                shootCone = 45;
+                cooldownTime = 80;
+                layerOffset = 2;
+                rotateSpeed = 0;
+                x = 0;
+                y = 0f;
+                shootSound = Sounds.none;
+                recoil = shake = shootY = 0f;
+                parts.addAll(
+                        new RegionPart("-wing-2"){{
+                            mirror = true;
+                            x = 46;
+                            y = 25;
+                            layerOffset = -0.002f;
+                            progress = PartProgress.reload.curve(Interp.fastSlow);
+                            moveRot = 30f;
+                        }}
+                );
+                bullet = new BasicBulletType(9, 20){{
+                    instantDisappear = true;
+                    width = height = 0;
+                    lifetime = 1;
+                    hitEffect = Fx.none;
                     shootEffect = Fx.none;
                     smokeEffect = Fx.none;
                 }};
@@ -2842,6 +2630,721 @@ public class ExoUnitTypes {
             }});
         }};
 
+        // erekir hover tanks
+
+        squall = new ErekirUnitType("squall"){{
+            constructor = ElevationMoveUnit::create;
+            hitSize = 12f;
+            speed = 0.75f;
+            rotateSpeed = 3.5f;
+            health = 850;
+            armor = 6f;
+            itemCapacity = 0;
+            rotateMoveFirst = true;
+            hovering = true;
+            singleTarget = true;
+            useEngineElevation = false;
+            flying = false;
+            shadowElevation = 0.1f;
+            groundLayer = Layer.groundUnit;
+
+            weapons.add(new Weapon("exogenesis-squall-weapon"){{
+                layerOffset = 0.0001f;
+                reload = 50f;
+                shootY = 4.5f;
+                recoil = 1f;
+                rotate = true;
+                rotateSpeed = 2.2f;
+                mirror = false;
+                x = 0f;
+                y = 0f;
+                cooldownTime = 30f;
+                bullet = new EmpBulletType(){{
+                    sprite = "exogenesis-arrow-bullet";
+                    smokeEffect = Fx.shootBigSmoke;
+                    shootEffect = Fx.shootBigColor;
+                    hitPowerEffect = chainEffect = Fx.none;
+                    unitDamageScl = 1.5f;
+                    buildingDamageMultiplier = 0.5f;
+                    radius = 0;
+                    speed = 4;
+                    damage = 40;
+                    width = 4f;
+                    height = 12f;
+                    lifetime = 40f;
+                    hitSize = 4f;
+                    hitColor = backColor = trailColor = ExoPal.erekirYellow;
+                    frontColor = Color.white;
+                    trailWidth = 1f;
+                    trailLength = 4;
+                    despawnEffect = hitEffect = Fx.hitBulletColor;
+                }};
+            }});
+        }};
+        gust = new ErekirUnitType("gust"){{
+            constructor = ElevationMoveUnit::create;
+            hitSize = 18f;
+            speed = 0.7f;
+            rotateSpeed = 2.6f;
+            health = 2100;
+            armor = 8f;
+            itemCapacity = 0;
+            rotateMoveFirst = true;
+            hovering = true;
+            singleTarget = true;
+            useEngineElevation = false;
+            flying = false;
+            shadowElevation = 0.1f;
+            groundLayer = Layer.groundUnit;
+            researchCostMultiplier = 0f;
+
+            weapons.add(new Weapon("locus-weapon"){{
+                shootSound = Sounds.bolt;
+                layerOffset = 0.0001f;
+                reload = 18f;
+                shootY = 10f;
+                recoil = 1f;
+                rotate = true;
+                rotateSpeed = 1.4f;
+                mirror = false;
+                shootCone = 2f;
+                x = 0f;
+                y = 0f;
+                heatColor = Color.valueOf("f9350f");
+                cooldownTime = 30f;
+
+                shoot = new ShootAlternate(3.5f);
+
+                bullet = new RailBulletType(){{
+                    length = 160f;
+                    damage = 48f;
+                    hitColor = Color.valueOf("feb380");
+                    hitEffect = endEffect = Fx.hitBulletColor;
+                    pierceDamageFactor = 0.8f;
+
+                    smokeEffect = Fx.colorSpark;
+
+                    endEffect = new Effect(14f, e -> {
+                        color(e.color);
+                        Drawf.tri(e.x, e.y, e.fout() * 1.5f, 5f, e.rotation);
+                    });
+
+                    shootEffect = new Effect(10, e -> {
+                        color(e.color);
+                        float w = 1.2f + 7 * e.fout();
+
+                        Drawf.tri(e.x, e.y, w, 30f * e.fout(), e.rotation);
+                        color(e.color);
+
+                        for(int i : Mathf.signs){
+                            Drawf.tri(e.x, e.y, w * 0.9f, 18f * e.fout(), e.rotation + i * 90f);
+                        }
+
+                        Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
+                    });
+
+                    lineEffect = new Effect(20f, e -> {
+                        if(!(e.data instanceof Vec2 v)) return;
+
+                        color(e.color);
+                        stroke(e.fout() * 0.9f + 0.6f);
+
+                        Fx.rand.setSeed(e.id);
+                        for(int i = 0; i < 7; i++){
+                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
+                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
+                        }
+
+                        e.scaled(14f, b -> {
+                            stroke(b.fout() * 1.5f);
+                            color(e.color);
+                            Lines.line(e.x, e.y, v.x, v.y);
+                        });
+                    });
+                }};
+            }});
+        }};
+        storm = new ErekirUnitType("storm"){{
+            constructor = ElevationMoveUnit::create;
+            hitSize = 26f;
+            treadPullOffset = 5;
+            speed = 0.64f;
+            rotateSpeed = 1.5f;
+            health = 5000;
+            armor = 11f;
+            itemCapacity = 0;
+            rotateMoveFirst = true;
+            hovering = true;
+            singleTarget = true;
+            useEngineElevation = false;
+            flying = false;
+            shadowElevation = 0.1f;
+            groundLayer = Layer.groundUnit;
+            researchCostMultiplier = 0f;
+
+            weapons.add(new Weapon("precept-weapon"){{
+                shootSound = Sounds.dullExplosion;
+                layerOffset = 0.0001f;
+                reload = 80f;
+                shootY = 16f;
+                recoil = 3f;
+                rotate = true;
+                rotateSpeed = 1.3f;
+                mirror = false;
+                shootCone = 2f;
+                x = 0f;
+                y = -1f;
+                heatColor = Color.valueOf("f9350f");
+                cooldownTime = 30f;
+                bullet = new BasicBulletType(7f, 120){{
+                    sprite = "missile-large";
+                    width = 7.5f;
+                    height = 13f;
+                    lifetime = 28f;
+                    hitSize = 6f;
+                    pierceCap = 2;
+                    pierce = true;
+                    pierceBuilding = true;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
+                    trailWidth = 2.8f;
+                    trailLength = 8;
+                    hitEffect = despawnEffect = Fx.blastExplosion;
+                    shootEffect = Fx.shootTitan;
+                    smokeEffect = Fx.shootSmokeTitan;
+                    splashDamageRadius = 20f;
+                    splashDamage = 50f;
+
+                    trailEffect = Fx.hitSquaresColor;
+                    trailRotation = true;
+                    trailInterval = 3f;
+
+                    fragBullets = 4;
+
+                    fragBullet = new BasicBulletType(5f, 35){{
+                        sprite = "missile-large";
+                        width = 5f;
+                        height = 7f;
+                        lifetime = 15f;
+                        hitSize = 4f;
+                        pierceCap = 3;
+                        pierce = true;
+                        pierceBuilding = true;
+                        hitColor = backColor = trailColor = Color.valueOf("feb380");
+                        frontColor = Color.white;
+                        trailWidth = 1.7f;
+                        trailLength = 3;
+                        drag = 0.01f;
+                        despawnEffect = hitEffect = Fx.hitBulletColor;
+                    }};
+                }};
+            }});
+        }};
+        thunderstorm = new ErekirUnitType("thunderstorm"){{
+            constructor = ElevationMoveUnit::create;
+            hitSize = 28f;
+            speed = 0.63f;
+            health = 11000;
+            armor = 20f;
+            itemCapacity = 0;
+            rotateMoveFirst = true;
+            hovering = true;
+            singleTarget = true;
+            useEngineElevation = false;
+            flying = false;
+            shadowElevation = 0.1f;
+            groundLayer = Layer.groundUnit;
+
+            weapons.add(new Weapon("vanquish-weapon"){{
+                shootSound = Sounds.mediumCannon;
+                layerOffset = 0.0001f;
+                reload = 70f;
+                shootY = 71f / 4f;
+                shake = 5f;
+                recoil = 4f;
+                rotate = true;
+                rotateSpeed = 1f;
+                mirror = false;
+                x = 0f;
+                y = 0;
+                shadow = 28f;
+                heatColor = Color.valueOf("f9350f");
+                cooldownTime = 80f;
+
+                bullet = new BasicBulletType(8f, 190){{
+                    sprite = "missile-large";
+                    width = 9.5f;
+                    height = 13f;
+                    lifetime = 18f;
+                    hitSize = 6f;
+                    shootEffect = Fx.shootTitan;
+                    smokeEffect = Fx.shootSmokeTitan;
+                    pierceCap = 2;
+                    pierce = true;
+                    pierceBuilding = true;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
+                    trailWidth = 3.1f;
+                    trailLength = 8;
+                    hitEffect = despawnEffect = Fx.blastExplosion;
+                    splashDamageRadius = 20f;
+                    splashDamage = 50f;
+
+                    fragOnHit = false;
+                    fragRandomSpread = 0f;
+                    fragSpread = 10f;
+                    fragBullets = 5;
+                    fragVelocityMin = 1f;
+                    despawnSound = Sounds.dullExplosion;
+
+                    fragBullet = new BasicBulletType(8f, 35){{
+                        sprite = "missile-large";
+                        width = 8f;
+                        height = 12f;
+                        lifetime = 15f;
+                        hitSize = 4f;
+                        hitColor = backColor = trailColor = Color.valueOf("feb380");
+                        frontColor = Color.white;
+                        trailWidth = 2.8f;
+                        trailLength = 6;
+                        hitEffect = despawnEffect = Fx.blastExplosion;
+                        splashDamageRadius = 10f;
+                        splashDamage = 20f;
+                    }};
+                }};
+            }});
+
+            int i = 0;
+            for(float f : new float[]{34f / 4f, -36f / 4f}){
+                int fi = i ++;
+                weapons.add(new Weapon("vanquish-point-weapon"){{
+                    reload = 35f + fi * 5;
+                    x = 48f / 4f;
+                    y = f;
+                    shootY = 5.5f;
+                    recoil = 2f;
+                    rotate = true;
+                    rotateSpeed = 2f;
+
+                    bullet = new BasicBulletType(4.5f, 25){{
+                        width = 6.5f;
+                        height = 11f;
+                        shootEffect = Fx.sparkShoot;
+                        smokeEffect = Fx.shootBigSmoke;
+                        hitColor = backColor = trailColor = Color.valueOf("feb380");
+                        frontColor = Color.white;
+                        trailWidth = 1.5f;
+                        trailLength = 4;
+                        hitEffect = despawnEffect = Fx.hitBulletColor;
+                    }};
+                }});
+            }
+        }};
+        hurricane = new ErekirUnitType("hurricane"){{
+            constructor = ElevationMoveUnit::create;
+            hitSize = 46f;
+            treadPullOffset = 1;
+            speed = 0.48f;
+            health = 22000;
+            armor = 26f;
+            rotateSpeed = 0.8f;
+            rotateMoveFirst = true;
+            hovering = true;
+            singleTarget = true;
+            useEngineElevation = false;
+            flying = false;
+            shadowElevation = 0.1f;
+            groundLayer = Layer.groundUnit;
+            weapons.add(new Weapon("conquer-weapon"){{
+                shootSound = Sounds.largeCannon;
+                layerOffset = 0.1f;
+                reload = 100f;
+                shootY = 32.5f;
+                shake = 5f;
+                recoil = 5f;
+                rotate = true;
+                rotateSpeed = 0.6f;
+                mirror = false;
+                x = 0f;
+                y = -2f;
+                shadow = 50f;
+                heatColor = Color.valueOf("f9350f");
+                shootWarmupSpeed = 0.06f;
+                cooldownTime = 110f;
+                heatColor = Color.valueOf("f9350f");
+                minWarmup = 0.9f;
+
+                parts.addAll(
+                        new RegionPart("-glow"){{
+                            color = Color.red;
+                            blending = Blending.additive;
+                            outline = mirror = false;
+                        }},
+                        new RegionPart("-sides"){{
+                            progress = PartProgress.warmup;
+                            mirror = true;
+                            under = true;
+                            moveX = 0.75f;
+                            moveY = 0.75f;
+                            moveRot = 82f;
+                            x = 37 / 4f;
+                            y = 8 / 4f;
+                        }},
+                        new RegionPart("-sinks"){{
+                            progress = PartProgress.warmup;
+                            mirror = true;
+                            under = true;
+                            heatColor = new Color(1f, 0.1f, 0.1f);
+                            moveX = 17f / 4f;
+                            moveY = -15f / 4f;
+                            x = 32 / 4f;
+                            y = -34 / 4f;
+                        }},
+                        new RegionPart("-sinks-heat"){{
+                            blending = Blending.additive;
+                            progress = PartProgress.warmup;
+                            mirror = true;
+                            outline = false;
+                            colorTo = new Color(1f, 0f, 0f, 0.5f);
+                            color = colorTo.cpy().a(0f);
+                            moveX = 17f / 4f;
+                            moveY = -15f / 4f;
+                            x = 32 / 4f;
+                            y = -34 / 4f;
+                        }}
+                );
+
+                for(int i = 1; i <= 3; i++){
+                    int fi = i;
+                    parts.add(new RegionPart("-blade"){{
+                        progress = PartProgress.warmup.delay((3 - fi) * 0.3f).blend(PartProgress.reload, 0.3f);
+                        heatProgress = PartProgress.heat.add(0.3f).min(PartProgress.warmup);
+                        heatColor = new Color(1f, 0.1f, 0.1f);
+                        mirror = true;
+                        under = true;
+                        moveRot = -40f * fi;
+                        moveX = 3f;
+                        layerOffset = -0.002f;
+
+                        x = 11 / 4f;
+                    }});
+                }
+
+                bullet = new BasicBulletType(8f, 360f){{
+                    sprite = "missile-large";
+                    width = 12f;
+                    height = 20f;
+                    lifetime = 35f;
+                    hitSize = 6f;
+
+                    smokeEffect = Fx.shootSmokeTitan;
+                    pierceCap = 3;
+                    pierce = true;
+                    pierceBuilding = true;
+                    hitColor = backColor = trailColor = Color.valueOf("feb380");
+                    frontColor = Color.white;
+                    trailWidth = 4f;
+                    trailLength = 9;
+                    hitEffect = despawnEffect = Fx.massiveExplosion;
+
+                    shootEffect = new ExplosionEffect(){{
+                        lifetime = 40f;
+                        waveStroke = 4f;
+                        waveColor = sparkColor = trailColor;
+                        waveRad = 15f;
+                        smokeSize = 5f;
+                        smokes = 8;
+                        smokeSizeBase = 0f;
+                        smokeColor = trailColor;
+                        sparks = 8;
+                        sparkRad = 40f;
+                        sparkLen = 4f;
+                        sparkStroke = 3f;
+                    }};
+
+                    int count = 6;
+                    for(int j = 0; j < count; j++){
+                        int s = j;
+                        for(int i : Mathf.signs){
+                            float fin = 0.05f + (j + 1) / (float)count;
+                            float spd = speed;
+                            float life = lifetime / Mathf.lerp(fin, 1f, 0.5f);
+                            spawnBullets.add(new BasicBulletType(spd * fin, 60){{
+                                drag = 0.002f;
+                                width = 12f;
+                                height = 11f;
+                                lifetime = life + 5f;
+                                weaveRandom = false;
+                                hitSize = 5f;
+                                pierceCap = 2;
+                                pierce = true;
+                                pierceBuilding = true;
+                                hitColor = backColor = trailColor = Color.valueOf("feb380");
+                                frontColor = Color.white;
+                                trailWidth = 2.5f;
+                                trailLength = 7;
+                                weaveScale = (3f + s/2f) / 1.2f;
+                                weaveMag = i * (4f - fin * 2f);
+
+                                splashDamage = 65f;
+                                splashDamageRadius = 30f;
+                                despawnEffect = new ExplosionEffect(){{
+                                    lifetime = 50f;
+                                    waveStroke = 4f;
+                                    waveColor = sparkColor = trailColor;
+                                    waveRad = 30f;
+                                    smokeSize = 7f;
+                                    smokes = 6;
+                                    smokeSizeBase = 0f;
+                                    smokeColor = trailColor;
+                                    sparks = 5;
+                                    sparkRad = 30f;
+                                    sparkLen = 3f;
+                                    sparkStroke = 1.5f;
+                                }};
+                            }});
+                        }
+                    }
+                }};
+            }});
+        }};
+        hyperion = new ErekirUnitType("hyperion") {{
+            constructor = ElevationMoveUnit::create;
+            speed = 0.78f;
+            hitSize = 90f;
+            health = 32000f;
+            faceTarget = false;
+            fogRadius = 50;
+            armor = 45;
+            outlineRadius = 6;
+            rotateMoveFirst = true;
+            hovering = true;
+            singleTarget = true;
+            useEngineElevation = false;
+            flying = false;
+            shadowElevation = 0.1f;
+            groundLayer = Layer.groundUnit;
+            rotateSpeed = 0.8f;
+            //small
+            parts.add(new HoverPart(){{
+                x = 48f;
+                y = 25;
+                mirror = true;
+                sides = 360;
+                radius = 9f;
+                phase = 30f;
+                layerOffset = -0.001f;
+                color = Pal.surge;
+            }});
+            parts.add(new HoverPart(){{
+                x = 48f;
+                y = -25;
+                mirror = true;
+                sides = 360;
+                radius = 9f;
+                phase = 30f;
+                layerOffset = -0.001f;
+                color = Pal.surge;
+            }});
+            //large
+            parts.add(new HoverPart(){{
+                x = 26f;
+                y = 49;
+                mirror = true;
+                sides = 360;
+                radius = 19f;
+                circles = 4;
+                phase = 90f;
+                layerOffset = -0.001f;
+                color = Pal.surge;
+            }});
+            parts.add(new HoverPart(){{
+                x = 26f;
+                y = -49;
+                mirror = true;
+                sides = 360;
+                radius = 19f;
+                circles = 4;
+                phase = 90f;
+                layerOffset = -0.001f;
+                color = Pal.surge;
+            }});
+            weapons.add(new Weapon("exogenesis-hyperion-weapon"){{
+                shootSound = Sounds.mediumCannon;
+                top = rotate = true;
+                mirror = false;
+                x = 0;
+                y = -10;
+                reload = 16;
+                recoil = 0f;
+                recoils = 3;
+                layerOffset = 2;
+                cooldownTime = 250f;
+                rotateSpeed = 1;
+                parts.add(
+                        new RegionPart("-barrel-1"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 2;
+                            cooldownTime = 50;
+                            heatProgress = PartProgress.recoil;
+                            progress = PartProgress.recoil;
+                            moveY = -4f;
+                        }},
+                        new RegionPart("-barrel-2"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 1;
+                            cooldownTime = 50;
+                            heatProgress = PartProgress.recoil;
+                            progress = PartProgress.recoil;
+                            moveY = -4f;
+                        }},
+                        new RegionPart("-barrel-3"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 0;
+                            cooldownTime = 50;
+                            heatProgress = PartProgress.recoil;
+                            progress = PartProgress.recoil;
+                            moveY = -4f;
+                        }}
+                );
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                            15.5f, 43.0f, 0f,
+                            0f, 47.75f, 0f,
+                            -15.5f, 43.0f, 0f,
+                    };
+                }};
+                bullet = new EmpBulletType() {{
+                    sprite = "missile-large";
+                    width = 15f;
+                    height = 36f;
+                    speed = 13;
+                    damage = 550;
+                    lifetime = 32f;
+                    shootEffect = Fx.shootBig;
+                    smokeEffect = new ParticleEffect(){{
+                        particles = 8;
+                        line = true;
+                        length = 60f;
+                        lifetime = 40f;
+                        baseLength = 8;
+                        cone = offset = 30;
+                        interp = Interp.circleOut;
+                        colorFrom = colorTo = Pal.surge;
+                        strokeFrom = 4;
+                        lenFrom = lenTo = 6f;
+                    }};
+                    shootEffect = new MultiEffect(Fx.blastExplosion, Fx.flakExplosionBig, Fx.massiveExplosion);
+                    hitEffect = new MultiEffect(Fx.blastExplosion, Fx.colorSparkBig, Fx.shootBigColor);
+                    despawnHit = true;
+                    shrinkY = shrinkX = 0;
+                    pierceCap = 1;
+                    pierceArmor = true;
+                    pierceBuilding = false;
+                    hitPowerEffect = chainEffect = Fx.none;
+                    unitDamageScl = 1.5f;
+                    buildingDamageMultiplier = 0.3f;
+                    radius = 0;
+                    bulletInterval = 1;
+                    intervalBullets = 2;
+                    intervalRandomSpread = 30;
+                    intervalBullet = new LightningBulletType(){{
+                        damage = 30;
+                        ammoMultiplier = 1f;
+                        collidesTiles = false;
+                        lightningColor = Pal.surge;
+                        lightningLength = 3;
+                        lightningLengthRand = 5;
+                        buildingDamageMultiplier = 0.2f;
+                    }};
+                    trailChance = 1;
+                    trailRotation = true;
+                    trailInterval = 5f;
+                    trailLength = 12;
+                    trailWidth = 4f;
+                    trailEffect = Fx.shootHealYellow;
+                    lightning = 2;
+                    lightningLength = 3;
+                    lightningLengthRand = 6;
+                    lightningColor = backColor = trailColor = hitColor = Pal.surge;
+                    lightningDamage = 50;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-hyperion-flak-turret"){{
+                x = 41.0f;
+                y = 3.25f;
+                rotateSpeed = 2.5f;
+                reload = 6f;
+                shootSound = Sounds.shootBig;
+                ejectEffect = Fx.casing2;
+                rotationLimit = 60;
+                cooldownTime = 80;
+                shootCone = 40;
+                layerOffset = 1;
+                shadow = 7f;
+                rotate = true;
+                mirror = true;
+                alternate = false;
+                recoils = 2;
+                recoil = 0f;
+                parts.add(
+                        new RegionPart("-barrel-l"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 1;
+                            progress = PartProgress.recoil;
+                            moveY = -5f;
+                        }},
+                        new RegionPart("-barrel-r"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 0;
+                            progress = PartProgress.recoil;
+                            moveY = -5f;
+                        }}
+                );
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                            3.5f, 15f, 0f,
+                            -3.5f, 15f, 0f,
+                    };
+                }};
+                bullet = new BasicBulletType(6.5f, 60){{
+                    width = height = 13f;
+                    splashDamage = 57;
+                    splashDamageRadius = 40;
+                    lifetime = 35f;
+                    hitColor = trailColor = backColor = Pal.surge;
+                    status = StatusEffects.blasted;
+                    statusDuration = 100;
+                    smokeEffect = Fx.shootBigSmoke;
+                    shootEffect = Fx.shootBig2;
+                    hitEffect = Fx.flakExplosion;
+                    buildingDamageMultiplier = 0.5f;
+                    trailLength = 10;
+                    trailWidth = 2.5f;
+                    fragBullets = 6;
+                    fragLifeMin = 0.3f;
+                    fragBullet = new BasicBulletType(8.5f, 6){{
+                        width = 5;
+                        height = 9f;
+                        splashDamage = 30;
+                        splashDamageRadius = 25;
+                        lifetime = 5f;
+                        hitColor = trailColor = backColor = Pal.surge;
+                        status = StatusEffects.blasted;
+                        statusDuration = 100;
+                        smokeEffect = Fx.shootBigSmoke;
+                        shootEffect = Fx.shootBig2;
+                        hitEffect = Fx.flakExplosion;
+                        buildingDamageMultiplier = 0.5f;
+                    }};
+                }};
+            }});
+        }};
         //region Erekir air support
         ivy = new ErekirUnitType("ivy"){{
             defaultCommand = UnitCommand.repairCommand;

@@ -63,6 +63,7 @@ public class ExoStatusEffects{
         }};
         superBlasted = new StatusEffect("superblasted"){{
             color = Color.valueOf("e35140");
+            healthMultiplier = 0.8f;
             reactive = true;
         }};
         toxin1 = new StatusEffect("toxin1"){{

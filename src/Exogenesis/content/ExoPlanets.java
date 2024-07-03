@@ -151,22 +151,22 @@ public class ExoPlanets{
                         new ClampHeight(0f, 0.8f),
 
                         new NoiseHeight() {{
-                            scale = 1.5;
-                            persistence = 0.9;
-                            octaves = 3;
+                            scale = 2;
+                            persistence = 0.5;
+                            octaves = 5;
                             magnitude = 1.2f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
                         new CraterHeight(new Vec3(-0.5f, 0.25f, 1.8f), 0.3f, -0.3f),
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 1f), 0.17f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 1f), 0.13f, 0.2f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 1.5f), 0.17f, 0.1f) {{
+                        new CraterHeight(new Vec3(1f, 0f, 1.5f), 0.13f, 0.1f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.17f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.13f, -0.2f)
                 );
 
                 colors.addAll(
@@ -188,18 +188,18 @@ public class ExoPlanets{
                             magnitude = 1.2f;
                             min = 0.1f;
                             max = 0.4f;
-                            out = Color.valueOf("2d67a1");
+                            out = Color.valueOf("314860");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
                             seed = 8;
                             scale = 1.5;
-                            persistence = 0.5;
+                            persistence = 0.7;
                             octaves = 7;
-                            magnitude = 1.2f;
+                            magnitude = 0.8f;
                             min = 0.1f;
                             max = 0.4f;
-                            out = Color.valueOf("2d67a1");
+                            out = Color.valueOf("314860");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new FlatColorPass() {{
@@ -208,7 +208,7 @@ public class ExoPlanets{
                             out = Color.valueOf("c5d7f0");
                         }},
                         new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, Color.valueOf("252142")),
-                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.1f, Color.valueOf("3c5acc")),
+                        new CraterColorPass(new Vec3(-0.3f, 0.8f, 0.8f), 0.1f, Color.valueOf("3c5acc")),
                         new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, Color.valueOf("3c4448")),
                         new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("282b34"))
                 );

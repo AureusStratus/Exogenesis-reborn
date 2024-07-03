@@ -19,6 +19,8 @@ erekirPink = Color.valueOf("d370d3"),
 erekirPurple = Color.valueOf("9681fb"),
 cronusRedlight = Color.valueOf("ffadad"),
 cronusRed = Color.valueOf("ff6363"),
+
+erekirYellow = Color.valueOf("ffbe5d"),
 cronusRedDark = Color.valueOf("e13131"),
 radGreenLight = Color.valueOf("c3ff73"),
 radGreen = Color.valueOf("7fd957"),
