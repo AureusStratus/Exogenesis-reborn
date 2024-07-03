@@ -1888,7 +1888,7 @@ public class ExoUnitTypes {
                             x = 46;
                             y = 25;
                             layerOffset = -0.002f;
-                            progress = PartProgress.smoothReload.curve(Interp.pow10Out);
+                            progress = PartProgress.smoothReload.curve(Interp.pow10Out).delay(0.8f);
                             moveRot = 30f;
                         }},
                         new RegionPart("-wing-2"){{
@@ -1897,7 +1897,7 @@ public class ExoUnitTypes {
                             y = 0;
                             layerOffset = -0.002f;
                             rotation = -20;
-                            progress = PartProgress.smoothReload.curve(Interp.pow10Out).delay(0.4f);
+                            progress = PartProgress.smoothReload.curve(Interp.pow10Out).delay(0.5f);
                             moveRot = 30f;
                         }},
                         new RegionPart("-wing-1"){{
@@ -1906,7 +1906,7 @@ public class ExoUnitTypes {
                             y = -30;
                             layerOffset = -0.002f;
                             rotation = -30;
-                            progress = PartProgress.smoothReload.curve(Interp.pow10Out).delay(0.7f);
+                            progress = PartProgress.smoothReload.curve(Interp.pow10Out);
                             moveRot = 50f;
                         }}
                 );
