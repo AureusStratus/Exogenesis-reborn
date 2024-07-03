@@ -1905,8 +1905,9 @@ public class ExoUnitTypes {
                             mirror = true;
                             x = 46;
                             y = 25;
+
                             layerOffset = -0.002f;
-                            progress = PartProgress.reload.curve(Interp.fastSlow);
+                            progress = PartProgress.smoothReload.curve(Interp.fastSlow);
                             moveRot = 30f;
                         }}
                 );
@@ -2417,7 +2418,6 @@ public class ExoUnitTypes {
                 shootX = -3f;
                 cooldownTime = 2;
                 alternate = false;
-                recoilTime = 15;
                 recoil = 3f;
                 shake = 2f;
                 reload = 170;

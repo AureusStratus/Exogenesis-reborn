@@ -150,7 +150,7 @@ public class ExoFx{
                     Lines.stroke(1.5f);
                     Lines.lineAngleCenter(e.x + (x * e.fout()), e.y + (y * e.fout()), angle, e.fslope() * 13f);
                 });
-            }),
+            }).followParent(true).rotWithParent(true),
 
     ullrChargeBegin = new Effect(388f, e -> {
         Color[] colors = {Pal.heal, Pal.heal, Color.white};
