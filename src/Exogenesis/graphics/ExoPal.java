@@ -22,7 +22,7 @@ cronusRed = Color.valueOf("ff6363"),
 
 erekirYellow = Color.valueOf("ffbe5d"),
 cronusRedDark = Color.valueOf("e13131"),
-radGreenLight = Color.valueOf("c3ff73"),
+ adGreenLight = Color.valueOf("c3ff73"),
 radGreen = Color.valueOf("7fd957"),
 radGreenDark = Color.valueOf("3eaf44"),
 lightSkyBack = lightSky.cpy().lerp(Color.white, 0.2f),

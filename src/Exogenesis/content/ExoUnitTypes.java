@@ -1870,7 +1870,7 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-cronus") {{
-                reload = 100f;
+                reload = 80f;
                 recoilTime = 90;
                 alwaysShooting = true;
                 mirror = rotate = false;
@@ -1889,18 +1889,68 @@ public class ExoUnitTypes {
                             x = 46;
                             y = 25;
                             layerOffset = -0.002f;
-                            progress = PartProgress.recoil.curve(Interp.slowFast).delay(0.4f);
+                            progress = PartProgress.smoothReload.curve(Interp.slowFast);
                             moveRot = 30f;
-                        }},
+                        }}
+                );
+                bullet = new BasicBulletType(9, 20){{
+                    instantDisappear = true;
+                    width = height = 0;
+                    lifetime = 1;
+                    hitEffect = Fx.none;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-cronus") {{
+                reload = 90f;
+                recoilTime = 90;
+                alwaysShooting = true;
+                mirror = rotate = false;
+                alternate = true;
+                shootCone = 45;
+                cooldownTime = 80;
+                layerOffset = 2;
+                rotateSpeed = 0;
+                x = 0;
+                y = 0f;
+                shootSound = Sounds.none;
+                recoil = shake = shootY = 0f;
+                parts.addAll(
                         new RegionPart("-wing-2"){{
                             mirror = true;
                             x = 50;
                             y = 0;
                             layerOffset = -0.002f;
                             rotation = -20;
-                            progress = PartProgress.recoil.curve(Interp.slowFast).delay(0.2f);
+                            progress = PartProgress.smoothReload.curve(Interp.slowFast);
                             moveRot = 30f;
-                        }},
+                        }}
+                );
+                bullet = new BasicBulletType(9, 20){{
+                    instantDisappear = true;
+                    width = height = 0;
+                    lifetime = 1;
+                    hitEffect = Fx.none;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                }};
+            }});
+            weapons.add(new Weapon("exogenesis-cronus") {{
+                reload = 100f;
+                recoilTime = 90;
+                alwaysShooting = true;
+                mirror = rotate = false;
+                alternate = true;
+                shootCone = 45;
+                cooldownTime = 80;
+                layerOffset = 2;
+                rotateSpeed = 0;
+                x = 0;
+                y = 0f;
+                shootSound = Sounds.none;
+                recoil = shake = shootY = 0f;
+                parts.addAll(
                         new RegionPart("-wing-1"){{
                             mirror = true;
                             x = 43;
@@ -2744,7 +2794,7 @@ public class ExoUnitTypes {
                         color = Pal.surge;
                     }}
             );
-            weapons.add(new Weapon("gust-weapon"){{
+            weapons.add(new Weapon("exogenesis-gust-weapon"){{
                 shootSound = Sounds.bolt;
                 layerOffset = 0.0001f;
                 reload = 38f;
@@ -2807,7 +2857,7 @@ public class ExoUnitTypes {
             groundLayer = Layer.groundUnit;
             researchCostMultiplier = 0f;
 
-            weapons.add(new Weapon("storm-weapon"){{
+            weapons.add(new Weapon("exogenesis-storm-weapon"){{
                 shootSound = Sounds.dullExplosion;
                 layerOffset = 0.0001f;
                 reload = 80f;
@@ -2879,7 +2929,7 @@ public class ExoUnitTypes {
             flying = false;
             shadowElevation = 0.2f;
             groundLayer = Layer.groundUnit;
-            weapons.add(new Weapon("thunderstorm-weapon"){{
+            weapons.add(new Weapon("exogenesis-thunderstorm-weapon"){{
                 shootSound = Sounds.mediumCannon;
                 layerOffset = 0.0001f;
                 reload = 70f;
@@ -2979,7 +3029,7 @@ public class ExoUnitTypes {
             flying = false;
             shadowElevation = 0.2f;
             groundLayer = Layer.groundUnit;
-            weapons.add(new Weapon("hurricane-weapon"){{
+            weapons.add(new Weapon("exogenesis-hurricane-weapon"){{
                 shootSound = Sounds.largeCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
