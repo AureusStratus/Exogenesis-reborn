@@ -6,6 +6,7 @@ import Exogenesis.maps.HeightPass.*;
 import Exogenesis.maps.planets.AxinPlanetGenerator;
 import Exogenesis.maps.planets.HadroxaPlanetGenerator;
 import Exogenesis.maps.planets.TauTiamasPlanetGenerator;
+import Exogenesis.maps.planets.VanstarPlanetGenerator;
 import arc.graphics.Color;
 import arc.math.Interp;
 import arc.math.geom.Vec3;
@@ -15,7 +16,6 @@ import mindustry.graphics.Pal;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.MultiMesh;
-import mindustry.maps.planet.SerpuloPlanetGenerator;
 import mindustry.type.Planet;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
@@ -66,7 +66,90 @@ public class ExoPlanets{
             unlockedOnLand.add(Blocks.coreBastion);
         }};
         vanstar = new Planet("vanstar", Planets.sun, 1f, 3){{
-            generator = new SerpuloPlanetGenerator();
+            generator = new VanstarPlanetGenerator() {{
+                baseHeight = -1f;
+                baseColor = Color.valueOf("242833");
+                heights.addAll(
+                        new HeightPass.AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 4);
+                            dir.set(9f, 0f, 0f);
+                            magnitude = 1.5f;
+                        }},
+                        new AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 4);
+                            dir.set(-1.5f, 0.5f, 0.2f);
+                            magnitude = 1.7f;
+                        }},
+                        new AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 4);
+                            dir.set(0.3f, -1f, -0.6f);
+                            magnitude = 2;
+                        }},
+                        new ClampHeight(0f, 0.8f),
+
+                        new NoiseHeight() {{
+                            scale = 5;
+                            persistence = 0.5;
+                            octaves = 5;
+                            magnitude = 1.2f;
+                            heightOffset = -1f;
+                            offset.set(1200f, 300f, -500f);
+                        }},
+                        new ClampHeight(-0.2f, 0.8f),
+                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1.8f), 0.3f, -0.3f),
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 1f), 0.13f, 0.2f) {{
+                            set = true;
+                        }},
+                        new CraterHeight(new Vec3(1f, 0f, 1.5f), 0.13f, 0.1f) {{
+                            set = true;
+                        }},
+                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.13f, -0.2f)
+                );
+
+                colors.addAll(
+                        new NoiseColorPass() {{
+                            scale = 1.5;
+                            persistence = 0.5;
+                            octaves = 3;
+                            magnitude = 1.2f;
+                            min = 0.3f;
+                            max = 0.6f;
+                            out = Color.valueOf("675b53");
+                            offset.set(1500f, 300f, -500f);
+                        }},
+                        new NoiseColorPass() {{
+                            seed = 6;
+                            scale = 1.5;
+                            persistence = 0.2;
+                            octaves = 5;
+                            magnitude = 1.2f;
+                            min = 0.1f;
+                            max = 0.4f;
+                            out = Color.valueOf("d29232");
+                            offset.set(1500f, 300f, -500f);
+                        }},
+                        new NoiseColorPass() {{
+                            seed = 2;
+                            scale = 1.5;
+                            persistence = 0.2;
+                            octaves = 7;
+                            magnitude = 1.8f;
+                            min = 0.1f;
+                            max = 0.4f;
+                            out = Color.valueOf("b26d1f");
+                            offset.set(1500f, 300f, -500f);
+                        }},
+                        new FlatColorPass() {{
+                            min = -1f;
+                            max = -0.19f;
+                            out = Color.valueOf("2b2f3b");
+                        }},
+                        new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, Color.valueOf("2b2f3b")),
+                        new CraterColorPass(new Vec3(-0.3f, 0.8f, 0.8f), 0.1f, Color.valueOf("717482")),
+                        new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, Color.valueOf("bda34a")),
+                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("5b6567"))
+                );
+            }};
             meshLoader = () -> new HexMesh(this, 6);
 //            cloudMeshLoader = () -> new MultiMesh(
 //                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Pal.spore).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),

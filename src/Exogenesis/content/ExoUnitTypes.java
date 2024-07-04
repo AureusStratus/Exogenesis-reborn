@@ -1548,7 +1548,7 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-nemesis-singularity"){{
-                reload = 230f;
+                reload = 280f;
                 rotate = true;
                 rotateSpeed = 15;
                 mirror = false;
@@ -1557,7 +1557,7 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 recoil = shootY = shootX = 0;
                 shake = 2f;
-                bullet = new BlackHoleBulletType(1f, 6f){{
+                bullet = new BlackHoleBulletType(1f, 8f){{
                     lifetime = 550f;
                     growTime = 0;
                     force = 10;
@@ -1870,7 +1870,8 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-cronus") {{
-                reload = 80f;
+                reload = 100f;
+                recoilTime = 90;
                 alwaysShooting = true;
                 mirror = rotate = false;
                 alternate = true;
@@ -1888,7 +1889,7 @@ public class ExoUnitTypes {
                             x = 46;
                             y = 25;
                             layerOffset = -0.002f;
-                            progress = PartProgress.smoothReload.curve(Interp.pow10Out).delay(0.8f);
+                            progress = PartProgress.recoil.curve(Interp.slowFast).delay(0.4f);
                             moveRot = 30f;
                         }},
                         new RegionPart("-wing-2"){{
@@ -1897,7 +1898,7 @@ public class ExoUnitTypes {
                             y = 0;
                             layerOffset = -0.002f;
                             rotation = -20;
-                            progress = PartProgress.smoothReload.curve(Interp.pow10Out).delay(0.5f);
+                            progress = PartProgress.recoil.curve(Interp.slowFast).delay(0.2f);
                             moveRot = 30f;
                         }},
                         new RegionPart("-wing-1"){{
@@ -1906,7 +1907,7 @@ public class ExoUnitTypes {
                             y = -30;
                             layerOffset = -0.002f;
                             rotation = -30;
-                            progress = PartProgress.smoothReload.curve(Interp.pow10Out);
+                            progress = PartProgress.smoothReload.curve(Interp.slowFast);
                             moveRot = 50f;
                         }}
                 );
@@ -2634,19 +2635,41 @@ public class ExoUnitTypes {
         squall = new ErekirUnitType("squall"){{
             constructor = ElevationMoveUnit::create;
             hitSize = 12f;
-            speed = 0.75f;
+            speed = 1.6f;
             rotateSpeed = 3.5f;
             health = 850;
             armor = 6f;
             itemCapacity = 0;
             rotateMoveFirst = true;
+            faceTarget = false;
             hovering = true;
             singleTarget = true;
             useEngineElevation = false;
             flying = false;
             shadowElevation = 0.1f;
             groundLayer = Layer.groundUnit;
-
+            parts.addAll(
+                    new HoverPart(){{
+                        x = 3f;
+                        y = 6.25f;
+                        mirror = true;
+                        sides = 360;
+                        radius = 3f;
+                        phase = 30f;
+                        layerOffset = -0.001f;
+                        color = Pal.surge;
+                    }},
+                    new HoverPart(){{
+                        x = 3f;
+                        y = -6.25f;
+                        mirror = true;
+                        sides = 360;
+                        radius = 3f;
+                        phase = 30f;
+                        layerOffset = -0.001f;
+                        color = Pal.surge;
+                    }}
+            );
             weapons.add(new Weapon("exogenesis-squall-weapon"){{
                 layerOffset = 0.0001f;
                 reload = 50f;
@@ -2666,6 +2689,8 @@ public class ExoUnitTypes {
                     unitDamageScl = 1.5f;
                     buildingDamageMultiplier = 0.5f;
                     radius = 0;
+                    pierce = true;
+                    pierceCap = 2;
                     speed = 4;
                     damage = 40;
                     width = 4f;
@@ -2683,7 +2708,7 @@ public class ExoUnitTypes {
         gust = new ErekirUnitType("gust"){{
             constructor = ElevationMoveUnit::create;
             hitSize = 18f;
-            speed = 0.7f;
+            speed = 1.4f;
             rotateSpeed = 2.6f;
             health = 2100;
             armor = 8f;
@@ -2691,87 +2716,88 @@ public class ExoUnitTypes {
             rotateMoveFirst = true;
             hovering = true;
             singleTarget = true;
+            faceTarget = false;
             useEngineElevation = false;
             flying = false;
             shadowElevation = 0.1f;
             groundLayer = Layer.groundUnit;
             researchCostMultiplier = 0f;
-
-            weapons.add(new Weapon("locus-weapon"){{
+            parts.addAll(
+                    new HoverPart(){{
+                        x = 5.0f;
+                        y = 8.75f;
+                        mirror = true;
+                        sides = 360;
+                        radius = 4f;
+                        phase = 30f;
+                        layerOffset = -0.001f;
+                        color = Pal.surge;
+                    }},
+                    new HoverPart(){{
+                        x = 5.0f;
+                        y = -8.75f;
+                        mirror = true;
+                        sides = 360;
+                        radius = 6f;
+                        phase = 30f;
+                        layerOffset = -0.001f;
+                        color = Pal.surge;
+                    }}
+            );
+            weapons.add(new Weapon("gust-weapon"){{
                 shootSound = Sounds.bolt;
                 layerOffset = 0.0001f;
-                reload = 18f;
+                reload = 38f;
                 shootY = 10f;
                 recoil = 1f;
                 rotate = true;
                 rotateSpeed = 1.4f;
                 mirror = false;
-                shootCone = 2f;
+                shootCone = 30f;
+                inaccuracy = 8;
                 x = 0f;
                 y = 0f;
-                heatColor = Color.valueOf("f9350f");
                 cooldownTime = 30f;
+                shoot.shotDelay = 2;
 
-                shoot = new ShootAlternate(3.5f);
+                shoot.shots = 3;
 
-                bullet = new RailBulletType(){{
-                    length = 160f;
-                    damage = 48f;
-                    hitColor = Color.valueOf("feb380");
-                    hitEffect = endEffect = Fx.hitBulletColor;
-                    pierceDamageFactor = 0.8f;
-
-                    smokeEffect = Fx.colorSpark;
-
-                    endEffect = new Effect(14f, e -> {
-                        color(e.color);
-                        Drawf.tri(e.x, e.y, e.fout() * 1.5f, 5f, e.rotation);
-                    });
-
-                    shootEffect = new Effect(10, e -> {
-                        color(e.color);
-                        float w = 1.2f + 7 * e.fout();
-
-                        Drawf.tri(e.x, e.y, w, 30f * e.fout(), e.rotation);
-                        color(e.color);
-
-                        for(int i : Mathf.signs){
-                            Drawf.tri(e.x, e.y, w * 0.9f, 18f * e.fout(), e.rotation + i * 90f);
-                        }
-
-                        Drawf.tri(e.x, e.y, w, 4f * e.fout(), e.rotation + 180f);
-                    });
-
-                    lineEffect = new Effect(20f, e -> {
-                        if(!(e.data instanceof Vec2 v)) return;
-
-                        color(e.color);
-                        stroke(e.fout() * 0.9f + 0.6f);
-
-                        Fx.rand.setSeed(e.id);
-                        for(int i = 0; i < 7; i++){
-                            Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
-                            Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
-                        }
-
-                        e.scaled(14f, b -> {
-                            stroke(b.fout() * 1.5f);
-                            color(e.color);
-                            Lines.line(e.x, e.y, v.x, v.y);
-                        });
-                    });
+                bullet = new EmpBulletType(){{
+                    width = height = 8f;
+                    sprite = "circle-bullet";
+                    shrinkX = shrinkY = 0;
+                    hitPowerEffect = chainEffect = Fx.none;
+                    unitDamageScl = 1.5f;
+                    buildingDamageMultiplier = 0.5f;
+                    radius = 0;
+                    speed = 9;
+                    damage = 40;
+                    drag = 0.06f;
+                    lifetime = 55f;
+                    trailWidth = 6f;
+                    trailLength = 5;
+                    splashDamageRadius = 40;
+                    splashDamage = 25;
+                    pierce = true;
+                    pierceCap = 2;
+                    hitEffect = Fx.blastExplosion;
+                    shootEffect = Fx.shootBig;
+                    lightning = 3;
+                    lightningLength = 6;
+                    lightningColor = trailColor = hitColor = backColor = healColor = ExoPal.erekirYellow;
+                    lightningDamage = 20;
                 }};
             }});
         }};
         storm = new ErekirUnitType("storm"){{
             constructor = ElevationMoveUnit::create;
             hitSize = 26f;
-            treadPullOffset = 5;
-            speed = 0.64f;
+            speed = 1.15f;
             rotateSpeed = 1.5f;
             health = 5000;
             armor = 11f;
             itemCapacity = 0;
+            faceTarget = false;
             rotateMoveFirst = true;
             hovering = true;
             singleTarget = true;
@@ -2781,7 +2807,7 @@ public class ExoUnitTypes {
             groundLayer = Layer.groundUnit;
             researchCostMultiplier = 0f;
 
-            weapons.add(new Weapon("precept-weapon"){{
+            weapons.add(new Weapon("storm-weapon"){{
                 shootSound = Sounds.dullExplosion;
                 layerOffset = 0.0001f;
                 reload = 80f;
@@ -2842,7 +2868,7 @@ public class ExoUnitTypes {
         thunderstorm = new ErekirUnitType("thunderstorm"){{
             constructor = ElevationMoveUnit::create;
             hitSize = 28f;
-            speed = 0.63f;
+            speed = 0.85f;
             health = 11000;
             armor = 20f;
             itemCapacity = 0;
@@ -2851,10 +2877,9 @@ public class ExoUnitTypes {
             singleTarget = true;
             useEngineElevation = false;
             flying = false;
-            shadowElevation = 0.1f;
+            shadowElevation = 0.2f;
             groundLayer = Layer.groundUnit;
-
-            weapons.add(new Weapon("vanquish-weapon"){{
+            weapons.add(new Weapon("thunderstorm-weapon"){{
                 shootSound = Sounds.mediumCannon;
                 layerOffset = 0.0001f;
                 reload = 70f;
@@ -2942,19 +2967,19 @@ public class ExoUnitTypes {
         hurricane = new ErekirUnitType("hurricane"){{
             constructor = ElevationMoveUnit::create;
             hitSize = 46f;
-            treadPullOffset = 1;
-            speed = 0.48f;
+            speed = 0.7f;
             health = 22000;
             armor = 26f;
             rotateSpeed = 0.8f;
             rotateMoveFirst = true;
             hovering = true;
+            faceTarget = false;
             singleTarget = true;
             useEngineElevation = false;
             flying = false;
-            shadowElevation = 0.1f;
+            shadowElevation = 0.2f;
             groundLayer = Layer.groundUnit;
-            weapons.add(new Weapon("conquer-weapon"){{
+            weapons.add(new Weapon("hurricane-weapon"){{
                 shootSound = Sounds.largeCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
