@@ -1874,6 +1874,7 @@ public class ExoUnitTypes {
                 recoilTime = 90;
                 alwaysShooting = true;
                 mirror = rotate = false;
+                linearWarmup = true;
                 alternate = true;
                 shootCone = 45;
                 cooldownTime = 80;
@@ -1907,6 +1908,7 @@ public class ExoUnitTypes {
                 recoilTime = 90;
                 alwaysShooting = true;
                 mirror = rotate = false;
+                linearWarmup = true;
                 alternate = true;
                 shootCone = 45;
                 cooldownTime = 80;
@@ -1941,6 +1943,7 @@ public class ExoUnitTypes {
                 recoilTime = 90;
                 alwaysShooting = true;
                 mirror = rotate = false;
+                linearWarmup = true;
                 alternate = true;
                 shootCone = 45;
                 cooldownTime = 80;
