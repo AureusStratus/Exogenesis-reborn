@@ -34,7 +34,7 @@ public class ExoPlanets{
             meshLoader = () -> new SunMesh(
                     this, 5,
                     5, 0.3, 2.7, 1.2, 1,
-                    1.1f,
+                    1.6f,
                     Color.valueOf("1c5dff"),
                     Color.valueOf("3f7fff"),
                     Color.valueOf("47b0ff"),
@@ -131,7 +131,7 @@ public class ExoPlanets{
                             octaves = 8;
                             magnitude = 0.4f;
                             heightOffset = -1f;
-                            offset.set(0f, 0f, -200f);
+                            offset.set(0f, 0f, -500f);
                         }}
                 );
                 colors.addAll(
@@ -178,7 +178,6 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("5b6567"))
                 );
             }};
-            meshLoader = () -> new HexMesh(this, 6);
             /*
             cloudMeshLoader = () -> new MultiMesh(
                     new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.white).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.48f),
@@ -327,7 +326,6 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("282b34"))
                 );
             }};
-            meshLoader = () -> new HexMesh(this, 6);
             cloudMeshLoader = () -> new MultiMesh(
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.55f), 2, 0.45f, 0.9f, 0.38f),
                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.white.cpy().lerp(Color.blue, 0.55f).a(0.25f), 2, 0.45f, 1f, 0.61f)
