@@ -1,4 +1,5 @@
 package Exogenesis.maps;
+
 import arc.math.*;
 import arc.math.geom.*;
 import arc.util.noise.*;
