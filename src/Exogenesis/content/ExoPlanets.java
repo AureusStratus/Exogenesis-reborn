@@ -72,8 +72,8 @@ public class ExoPlanets{
                 heights.addAll(
                         new HeightPass.AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
-                            dir.set(9f, 0f, 0f);
-                            magnitude = 1.5f;
+                            dir.set(0f, 0f, 0f);
+                            magnitude = 8f;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
@@ -88,22 +88,14 @@ public class ExoPlanets{
                         new ClampHeight(0f, 0.8f),
 
                         new NoiseHeight() {{
-                            scale = 5;
+                            scale = 6;
                             persistence = 0.5;
-                            octaves = 1;
-                            magnitude = 1f;
+                            octaves = 8;
+                            magnitude = 0.4f;
                             heightOffset = -1f;
-                            offset.set(0f, 0f, -500f);
-                        }},
-                        new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-3.5f, 0.25f, 1.8f), 0.3f, -0.3f),
-                        new CraterHeight(new Vec3(5.3f, 0.5f, 1f), 0.13f, 0.2f) {{
-                            set = true;
-                        }},
-                        new CraterHeight(new Vec3(8f, 0f, 1.5f), 0.13f, 0.1f) {{
-                            set = true;
-                        }},
-                        new CraterHeight(new Vec3(-81f, 0f, 0f), 0.13f, -0.2f)
+                            offset.set(0f, 0f, -200f);
+                        }}
+
                 );
 
                 colors.addAll(
