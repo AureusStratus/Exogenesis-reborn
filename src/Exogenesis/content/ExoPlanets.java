@@ -332,6 +332,7 @@ public class ExoPlanets{
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.55f), 2, 0.45f, 0.9f, 0.38f),
                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.white.cpy().lerp(Color.blue, 0.55f).a(0.25f), 2, 0.45f, 1f, 0.61f)
             );
+            /*
             Vec3 ringPos = new Vec3(0,1,0).rotate(Vec3.X, 15);
             meshLoader = () -> new MultiMesh(
                     new HexMesh(this, 6),
@@ -339,6 +340,8 @@ public class ExoPlanets{
                     new CircleMesh(atlas.find("omaloon-ring2"), this,80, 1.9f, 2.1f, ringPos),
                     new CircleMesh(atlas.find("omaloon-ring1"), this,80, 1.8f, 1.85f, ringPos)
             );
+
+             */
             launchCapacityMultiplier = 0.5f;
             solarSystem = zetaTitanus;
             sectorSeed = 2;
