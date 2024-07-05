@@ -1,6 +1,5 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
-import Exogenesis.graphics.g3d.CircleMesh;
 import Exogenesis.maps.ColorPass.*;
 import Exogenesis.maps.HeightPass;
 import Exogenesis.maps.HeightPass.*;
@@ -131,7 +130,7 @@ public class ExoPlanets{
                             octaves = 8;
                             magnitude = 0.4f;
                             heightOffset = -1f;
-                            offset.set(0f, 0f, -500f);
+                            offset.set(0f, 0f, -200f);
                         }}
                 );
                 colors.addAll(
@@ -140,8 +139,8 @@ public class ExoPlanets{
                             persistence = 0.5;
                             octaves = 3;
                             magnitude = 1.2f;
-                            minNoise = 0.3f;
-                            maxNoise = 0.6f;
+                            min = 0.3f;
+                            max = 0.6f;
                             out = Color.valueOf("675b53");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -151,8 +150,8 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 5;
                             magnitude = 1.2f;
-                            minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            min = 0.1f;
+                            max = 0.4f;
                             out = Color.valueOf("d29232");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -162,14 +161,14 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 7;
                             magnitude = 1.8f;
-                            minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            min = 0.1f;
+                            max = 0.4f;
                             out = Color.valueOf("b26d1f");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new FlatColorPass() {{
-                            minHeight = -1f;
-                            maxHeight = -0.19f;
+                            min = -1f;
+                            max = -0.19f;
                             out = Color.valueOf("36bcdb");
                         }},
                         new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, Color.valueOf("2b2f3b")),
@@ -178,6 +177,7 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("5b6567"))
                 );
             }};
+            meshLoader = () -> new HexMesh(this, 6);
             /*
             cloudMeshLoader = () -> new MultiMesh(
                     new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.white).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.48f),
@@ -288,8 +288,8 @@ public class ExoPlanets{
                             persistence = 0.5;
                             octaves = 3;
                             magnitude = 1.2f;
-                            minNoise = 0.3f;
-                            maxNoise = 0.6f;
+                            min = 0.3f;
+                            max = 0.6f;
                             out = Color.valueOf("121733");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -299,8 +299,8 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 5;
                             magnitude = 1.2f;
-                            minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            min = 0.1f;
+                            max = 0.4f;
                             out = Color.valueOf("314860");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -310,14 +310,14 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 7;
                             magnitude = 0.8f;
-                            minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            min = 0.1f;
+                            max = 0.4f;
                             out = Color.valueOf("314860");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new FlatColorPass() {{
-                            minHeight = -1f;
-                            maxHeight = -0.19f;
+                            min = -1f;
+                            max = -0.19f;
                             out = Color.valueOf("c5d7f0");
                         }},
                         new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, Color.valueOf("252142")),
@@ -326,20 +326,11 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("282b34"))
                 );
             }};
+            meshLoader = () -> new HexMesh(this, 6);
             cloudMeshLoader = () -> new MultiMesh(
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.55f), 2, 0.45f, 0.9f, 0.38f),
                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.white.cpy().lerp(Color.blue, 0.55f).a(0.25f), 2, 0.45f, 1f, 0.61f)
             );
-            /*
-            Vec3 ringPos = new Vec3(0,1,0).rotate(Vec3.X, 15);
-            meshLoader = () -> new MultiMesh(
-                    new HexMesh(this, 6),
-                    new CircleMesh(atlas.find("omaloon-ring3"), this,80, 2.2f, 2.5f, ringPos),
-                    new CircleMesh(atlas.find("omaloon-ring2"), this,80, 1.9f, 2.1f, ringPos),
-                    new CircleMesh(atlas.find("omaloon-ring1"), this,80, 1.8f, 1.85f, ringPos)
-            );
-
-             */
             launchCapacityMultiplier = 0.5f;
             solarSystem = zetaTitanus;
             sectorSeed = 2;
