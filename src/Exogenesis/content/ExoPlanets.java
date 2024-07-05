@@ -160,6 +160,7 @@ public class ExoPlanets{
             sectorSeed = 2;
             orbitRadius = 40;
             orbitSpacing = 0.7f;
+            tidalLock = true;
             allowWaves = true;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
