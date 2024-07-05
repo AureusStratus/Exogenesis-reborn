@@ -130,7 +130,7 @@ public class ExoPlanets{
                             octaves = 8;
                             magnitude = 0.4f;
                             heightOffset = -1f;
-                            offset.set(0f, 0f, -200f);
+                            offset.set(0f, 0f, -500f);
                         }}
                 );
                 colors.addAll(
