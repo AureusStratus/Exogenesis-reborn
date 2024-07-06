@@ -92,26 +92,26 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 5);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(1f, 0f, 0f);
                             magnitude = 5;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 5);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.5f, 0.5f, 1);
                             magnitude = 5;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 5);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 5;
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 2.5;
+                            scale = 1.5;
                             persistence = 0.5;
                             octaves = 8;
-                            magnitude = 1f;
+                            magnitude = 0.4f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -500f);
                         }},
@@ -167,7 +167,7 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, ExoEnvironmentBlocks.redLightningStone.mapColor),
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.1f, ExoEnvironmentBlocks.vanstarock.mapColor),
                         new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, -2f), 0.25f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
+                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
                 );
             }};
             /*
@@ -310,7 +310,7 @@ public class ExoPlanets{
                             maxHeight = -0.19f;
                             out = Color.valueOf("c5d7f0");
                         }},
-                        new CraterColorPass(new Vec3(-6.5f, 0.25f, -0.4f), 1f, Color.valueOf("252142")),
+                        new CraterColorPass(new Vec3(-6.5f, 0.25f, 0f), 1f, Color.valueOf("252142")),
                         new CraterColorPass(new Vec3(-0.3f, 0.8f, 0.8f), 0.1f, Color.valueOf("3c5acc")),
                         new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, Color.valueOf("3c4448")),
                         new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("282b34"))
