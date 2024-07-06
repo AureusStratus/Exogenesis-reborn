@@ -111,13 +111,13 @@ public class ExoPlanets{
                             scale = 19.5;
                             persistence = 0.8;
                             octaves = 10;
-                            magnitude = 0.3f;
+                            magnitude = 0.8f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -400f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
                         //mountain
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.5f), 0.37f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.1f), 0.37f, 0.2f) {{
                             set = true;
                         }},
 
@@ -169,7 +169,7 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.5f, ExoEnvironmentBlocks.ferricIronWall.mapColor),
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.3f, ExoEnvironmentBlocks.vanstarock.mapColor),
                         new CraterColorPass(new Vec3(4f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.27f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
+                        new CraterColorPass(new Vec3(1f, 0f, 0.2f), 0.27f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
                 );
             }};
             /*
@@ -264,9 +264,16 @@ public class ExoPlanets{
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
+                        new NoiseHeight() {{
+                            scale = 8.5;
+                            persistence = 0.8;
+                            octaves = 10;
+                            magnitude = 4f;
+                            heightOffset = -1f;
+                            offset.set(0f, 600f, -400f);
+                        }},
                         new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-6.5f, 0.25f, 0.4f), 1f, -0.3f),
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.8f), 0.17f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.37f, 0.2f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
