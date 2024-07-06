@@ -110,6 +110,7 @@ public class ExoPlanets{
                         new NoiseHeight() {{
                             scale = 69.5;
                             persistence = 6;
+                            seed = 8;
                             octaves = 10;
                             magnitude = 0.3f;
                             heightOffset = -1f;
@@ -248,7 +249,7 @@ public class ExoPlanets{
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.5f, 0.5f, 1);
-                            magnitude = 2;
+                            magnitude = 4;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
@@ -258,7 +259,7 @@ public class ExoPlanets{
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
                             scale = 9;
-                            persistence = 0.6;
+                            persistence = 1.6;
                             octaves = 8;
                             magnitude = 0.5f;
                             heightOffset = -1f;
@@ -268,12 +269,13 @@ public class ExoPlanets{
                             scale = 3;
                             persistence = 0.8;
                             octaves = 10;
-                            magnitude = 2f;
+                            seed = 4;
+                            magnitude = 6f;
                             heightOffset = -1f;
                             offset.set(0f, 600f, -400f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.37f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.17f, 0.2f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
