@@ -117,7 +117,7 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(-0.2f, 0.8f),
                         //mountain
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.8f), 0.37f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.5f), 0.37f, 0.2f) {{
                             set = true;
                         }},
 
@@ -125,7 +125,7 @@ public class ExoPlanets{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.57f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, 0.2f), 0.27f, -0.2f)
                 );
 
                 colors.addAll(
@@ -166,10 +166,10 @@ public class ExoPlanets{
                             maxHeight = -0.19f;
                             out = ExoEnvironmentBlocks.vansterWater.mapColor;
                         }},
-                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.8f, ExoEnvironmentBlocks.ferricIronWall.mapColor),
-                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.6f, ExoEnvironmentBlocks.vanstarock.mapColor),
+                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.5f, ExoEnvironmentBlocks.ferricIronWall.mapColor),
+                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.3f, ExoEnvironmentBlocks.vanstarock.mapColor),
                         new CraterColorPass(new Vec3(4f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
+                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.27f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
                 );
             }};
             /*
