@@ -92,16 +92,16 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 6);
+                            interp = new Interp.ExpIn(2, 3);
                             dir.set(9f, 0f, 0f);
                             magnitude = 3;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 6);
+                            interp = new Interp.ExpIn(2, 3);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 3;
                         }},
-                        new ClampHeight(0f, 0.8f),
+                        new ClampHeight(0f, 0.6f),
                         new NoiseHeight() {{
                             scale = 10;
                             persistence = 0.8;
@@ -237,30 +237,30 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(1f, 0f, 0f);
                             magnitude = 1.5f;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.5f, 0.5f, 1);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 2;
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 4;
+                            scale = 2;
                             persistence = 0.8f;
                             octaves = 1;
-                            magnitude = 4f;
+                            magnitude = 1f;
                             heightOffset = -1f;
                             offset.set(1500f, 100f, -500f);
                         }},
-                        new ClampHeight(-0.5f, 0.8f),
+                        new ClampHeight(-0.2f, 0.8f),
                         new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.17f, 0.2f) {{
                             set = true;
                         }},
