@@ -10,6 +10,7 @@ import mindustry.mod.Mods;
 
 import static arc.Core.*;
 public class Exogenesis extends Mod {
+    public static Mods.LoadedMod modInfo;
     @Override
     public void loadContent() {
         Utils.init();
