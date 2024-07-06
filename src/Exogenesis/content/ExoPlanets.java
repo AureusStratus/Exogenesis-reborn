@@ -24,7 +24,7 @@ import mindustry.content.Blocks;
 
 public class ExoPlanets{
 
-    public static Planet zetaTitanus, zetaMinus, hadroxa, tauTiamas, vanstar, axin;
+    public static Planet zetaTitanus, hadroxa, tauTiamas, vanstar, axin;
     public static void load(){
         PlanetDialog.debugSelect = true;
         zetaTitanus = new Planet("zetaTitanus", null, 6f){{
@@ -43,25 +43,6 @@ public class ExoPlanets{
                     Color.valueOf("a0dfff")
             );
         }};
-        /*
-        zetaMinus = new Planet("zetaMinus", ExoPlanets.zetaTitanus, 3f){{
-            bloom = true;
-            accessible = false;
-            solarSystem = zetaTitanus;
-            orbitRadius = 130;
-            meshLoader = () -> new SunMesh(
-                    this, 5,
-                    3, 0.5, 2, 1.2, 1,
-                    1.1f,
-                    Color.valueOf("e7123d"),
-                    Color.valueOf("ff3844"),
-                    Color.valueOf("ff5757"),
-                    Color.valueOf("ff5757"),
-                    Color.valueOf("ff8079"),
-                    Color.valueOf("ff9792")
-            );
-        }};
-        */
         hadroxa = new Planet("hadroxa", ExoPlanets.zetaTitanus, 1f, 2){{
             generator = new HadroxaPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 5);
@@ -108,7 +89,6 @@ public class ExoPlanets{
         vanstar = new Planet("vanstar", ExoPlanets.zetaTitanus, 1f, 3){{
             generator = new VanstarPlanetGenerator() {{
                 baseHeight = -1f;
-
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
@@ -128,10 +108,10 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 1.5;
+                            scale = 2.5;
                             persistence = 0.5;
-                            octaves = 3;
-                            magnitude = 1.2f;
+                            octaves = 8;
+                            magnitude = 0.7f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -253,7 +233,7 @@ public class ExoPlanets{
                 r.showSpawns = false;
             };
         }};
-        axin = new Planet("axin", Planets.sun, 1f, 3){{
+        axin = new Planet("axin", ExoPlanets.zetaTitanus, 1f, 3){{
             generator = new AxinPlanetGenerator() {{
                 baseHeight = -1f;
                 baseColor = Color.valueOf("242833");
