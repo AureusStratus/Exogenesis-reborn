@@ -99,16 +99,16 @@ public class ExoPlanets{
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.5f, 0.5f, 1);
-                            magnitude = 5;
+                            magnitude = 3;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.3f, -1f, -0.6f);
-                            magnitude = 5;
+                            magnitude = 3;
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 1.5;
+                            scale = 6.5;
                             persistence = 0.5;
                             octaves = 8;
                             magnitude = 0.4f;
@@ -116,7 +116,7 @@ public class ExoPlanets{
                             offset.set(0f, 0f, -500f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1f), 0.3f, -0.3f),
+                        new CraterHeight(new Vec3(-0.5f, 0.25f, 4f), 0.3f, -0.3f),
                         new CraterHeight(new Vec3(-0.3f, 0.5f, 0.8f), 0.17f, 0.2f) {{
                             set = true;
                         }},
@@ -258,7 +258,7 @@ public class ExoPlanets{
                             scale = 2;
                             persistence = 0.5;
                             octaves = 5;
-                            magnitude = 1.2f;
+                            magnitude = 1f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -270,7 +270,7 @@ public class ExoPlanets{
                         new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.17f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, 3f), 0.17f, -0.2f)
                 );
                 colors.addAll(
                         new NoiseColorPass() {{
