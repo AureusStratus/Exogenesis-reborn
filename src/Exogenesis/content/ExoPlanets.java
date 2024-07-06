@@ -167,7 +167,7 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, ExoEnvironmentBlocks.redLightningStone.mapColor),
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.1f, ExoEnvironmentBlocks.vanstarock.mapColor),
                         new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
+                        new CraterColorPass(new Vec3(0f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
                 );
             }};
             /*
