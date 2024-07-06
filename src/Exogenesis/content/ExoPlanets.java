@@ -107,11 +107,11 @@ public class ExoPlanets{
                             persistence = 0.8;
                             seed = 8;
                             octaves = 7;
-                            magnitude = 0.5f;
+                            magnitude = 0.7f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -400f);
                         }},
-                        new ClampHeight(-0.2f, 1f),
+                        new ClampHeight(0f, 1f),
                         //mountain
                         new CraterHeight(new Vec3(-0.3f, 0.5f, 0.7f), 0.37f, 0.2f) {{
                             set = true;
@@ -236,26 +236,17 @@ public class ExoPlanets{
                 baseHeight = -1f;
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
-                        new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 6);
-                            dir.set(5f, 0f, 0f);
-                            magnitude = 1.3f;
-                        }},
-                        new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(3, 5);
-                            dir.set(-0.5f, 0.5f, 1);
-                            magnitude = 1.3f;
-                        }},
-                        new ClampHeight(0f, 0.8f),
+
+                        new ClampHeight(0f, 1f),
                         new NoiseHeight() {{
                             scale = 9;
-                            persistence = 0.6;
+                            persistence = 1;
                             octaves = 1;
                             magnitude = 0.5f;
                             heightOffset = 0f;
                             offset.set(1500f, 100f, -500f);
                         }},
-                        new ClampHeight(-0.2f, 0.8f),
+                        new ClampHeight(0f, 1f),
                         new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.17f, 0.2f) {{
                             set = true;
                         }},
