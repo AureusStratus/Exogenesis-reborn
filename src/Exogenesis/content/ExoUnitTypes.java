@@ -45,6 +45,9 @@ import static mindustry.Vars.tilesize;
 
 public class ExoUnitTypes {
     public static UnitType
+    // Disaster unis
+    calamity, war, entropy, apathy, silence,
+
     ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris, thor,
     //erekir
     //erekir supportMech

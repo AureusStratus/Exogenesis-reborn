@@ -17,12 +17,16 @@ import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.MultiMesh;
 import mindustry.graphics.g3d.SunMesh;
 import mindustry.type.Planet;
+import mindustry.ui.dialogs.PlanetDialog;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
+import mindustry.content.Blocks;
 
 public class ExoPlanets{
+
     public static Planet zetaTitanus, zetaMinus, hadroxa, tauTiamas, vanstar, axin;
     public static void load(){
+        PlanetDialog.debugSelect = true;
         zetaTitanus = new Planet("zetaTitanus", null, 6f){{
             bloom = true;
             accessible = false;
@@ -39,6 +43,7 @@ public class ExoPlanets{
                     Color.valueOf("a0dfff")
             );
         }};
+        /*
         zetaMinus = new Planet("zetaMinus", ExoPlanets.zetaTitanus, 3f){{
             bloom = true;
             accessible = false;
@@ -56,6 +61,7 @@ public class ExoPlanets{
                     Color.valueOf("ff9792")
             );
         }};
+        */
         hadroxa = new Planet("hadroxa", ExoPlanets.zetaTitanus, 1f, 2){{
             generator = new HadroxaPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 5);
@@ -102,6 +108,7 @@ public class ExoPlanets{
         vanstar = new Planet("vanstar", ExoPlanets.zetaTitanus, 1f, 3){{
             generator = new VanstarPlanetGenerator() {{
                 baseHeight = -1f;
+
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
@@ -189,11 +196,11 @@ public class ExoPlanets{
                     new HexSkyMesh(this, 5, 0.15f, 0.17f, 5, new Color().set(Color.white).mul(0.9f).a(0.45f), 6, 0.35f, 0.4f, 0.18f)
             );
              */
+            meshLoader = () -> new HexMesh(this, 6);
             launchCapacityMultiplier = 0.5f;
             solarSystem = zetaTitanus;
             sectorSeed = 2;
             orbitRadius = 40;
-            orbitSpacing = 0.7f;
             tidalLock = true;
             allowWaves = true;
             allowWaveSimulation = true;
@@ -210,7 +217,7 @@ public class ExoPlanets{
             };
             iconColor = Color.valueOf("ffc63c");
             atmosphereColor = Color.valueOf("0e5fa0");
-            atmosphereRadIn = 0.02f;
+            atmosphereRadIn = -0.05f;
             atmosphereRadOut = 0.3f;
             startSector = 15;
             alwaysUnlocked = true;
@@ -330,6 +337,7 @@ public class ExoPlanets{
                 );
             }};
             solarSystem = ExoPlanets.zetaTitanus;
+            meshLoader = () -> new HexMesh(this, 6);
             cloudMeshLoader = () -> new MultiMesh(
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.55f), 2, 0.45f, 0.9f, 0.38f),
                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.white.cpy().lerp(Color.blue, 0.55f).a(0.25f), 2, 0.45f, 1f, 0.61f)
@@ -353,7 +361,7 @@ public class ExoPlanets{
             };
             iconColor = Color.valueOf("0044ff");
             atmosphereColor = Color.valueOf("1c037c");
-            atmosphereRadIn = 0.02f;
+            atmosphereRadIn = -0.05f;
             atmosphereRadOut = 0.3f;
             startSector = 15;
             alwaysUnlocked = true;
