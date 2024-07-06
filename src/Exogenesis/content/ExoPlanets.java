@@ -1,6 +1,5 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
-import Exogenesis.graphics.g3d.CircleMesh;
 import Exogenesis.maps.ColorPass.*;
 import Exogenesis.maps.HeightPass.*;
 import Exogenesis.maps.planets.AxinPlanetGenerator;
@@ -22,8 +21,6 @@ import mindustry.ui.dialogs.PlanetDialog;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 import mindustry.content.Blocks;
-
-import static arc.Core.atlas;
 
 public class ExoPlanets{
 
@@ -113,8 +110,8 @@ public class ExoPlanets{
                         new NoiseHeight() {{
                             scale = 12.5;
                             persistence = 0.5;
-                            octaves = 3;
-                            magnitude = 0.6f;
+                            octaves = 10;
+                            magnitude = 0.2f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -500f);
                         }},
@@ -260,8 +257,8 @@ public class ExoPlanets{
                         new NoiseHeight() {{
                             scale = 7;
                             persistence = 0.5;
-                            octaves = 5;
-                            magnitude = 0.6f;
+                            octaves = 8;
+                            magnitude = 0.8f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -273,7 +270,7 @@ public class ExoPlanets{
                         new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 3f), 0.17f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 5f, 1f), 0.17f, -0.2f)
                 );
                 colors.addAll(
                         new NoiseColorPass() {{
