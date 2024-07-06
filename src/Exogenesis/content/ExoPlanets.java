@@ -113,8 +113,8 @@ public class ExoPlanets{
                         new NoiseHeight() {{
                             scale = 12.5;
                             persistence = 0.5;
-                            octaves = 8;
-                            magnitude = 0.4f;
+                            octaves = 3;
+                            magnitude = 0.6f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -500f);
                         }},
@@ -258,10 +258,10 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 2;
+                            scale = 7;
                             persistence = 0.5;
                             octaves = 5;
-                            magnitude = 0.4f;
+                            magnitude = 0.6f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -324,14 +324,6 @@ public class ExoPlanets{
             cloudMeshLoader = () -> new MultiMesh(
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.55f), 2, 0.45f, 0.9f, 0.38f),
                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.white.cpy().lerp(Color.blue, 0.55f).a(0.25f), 2, 0.45f, 1f, 0.61f)
-            );
-            Vec3 ringPos = new Vec3(0,1,0).rotate(Vec3.X, 25);
-
-            meshLoader = () -> new MultiMesh(
-                    new HexMesh(this, 6),
-                    new CircleMesh(atlas.find("exogenesis-ring3"), this,80, 2.2f, 2.5f, ringPos),
-                    new CircleMesh(atlas.find("exogenesis-ring2"), this,80, 1.9f, 2.1f, ringPos),
-                    new CircleMesh(atlas.find("exogenesis-ring1"), this,80, 1.8f, 1.85f, ringPos)
             );
             launchCapacityMultiplier = 0.5f;
             sectorSeed = 2;
