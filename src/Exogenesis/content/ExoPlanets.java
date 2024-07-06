@@ -93,7 +93,7 @@ public class ExoPlanets{
                 heights.addAll(
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
-                            dir.set(1f, 0f, 0f);
+                            dir.set(9f, 0f, 0f);
                             magnitude = 3;
                         }},
                         new AngleInterpHeight() {{
@@ -236,17 +236,26 @@ public class ExoPlanets{
                 baseHeight = -1f;
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
-
-                        new ClampHeight(0f, 1f),
+                        new AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 4);
+                            dir.set(9f, 0f, 0f);
+                            magnitude = 3;
+                        }},
+                        new AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 4);
+                            dir.set(-0.3f, -1f, 0f);
+                            magnitude = 3;
+                        }},
+                        new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 9;
-                            persistence = 1;
+                            scale = 4;
+                            persistence = 0.8f;
                             octaves = 1;
-                            magnitude = 0.5f;
+                            magnitude = 4f;
                             heightOffset = 0f;
                             offset.set(1500f, 100f, -500f);
                         }},
-                        new ClampHeight(0f, 1f),
+                        new ClampHeight(0f, 0.8f),
                         new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.17f, 0.2f) {{
                             set = true;
                         }},
