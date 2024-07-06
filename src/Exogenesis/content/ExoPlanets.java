@@ -108,10 +108,10 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 19.5;
-                            persistence = 0.8;
+                            scale = 69.5;
+                            persistence = 6;
                             octaves = 10;
-                            magnitude = 0.8f;
+                            magnitude = 0.3f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -400f);
                         }},
@@ -265,10 +265,10 @@ public class ExoPlanets{
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseHeight() {{
-                            scale = 8.5;
+                            scale = 3;
                             persistence = 0.8;
                             octaves = 10;
-                            magnitude = 4f;
+                            magnitude = 2f;
                             heightOffset = -1f;
                             offset.set(0f, 600f, -400f);
                         }},
