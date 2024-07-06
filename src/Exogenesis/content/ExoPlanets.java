@@ -92,28 +92,28 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(3, 3);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(9f, 0f, 0f);
-                            magnitude = 3;
+                            magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(3, 3);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(-0.3f, -1f, -0.6f);
-                            magnitude = 3;
+                            magnitude = 2;
                         }},
-                        new ClampHeight(0f, 0.6f),
+                        new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 10;
+                            scale = 6;
                             persistence = 1;
                             seed = 8;
                             octaves = 1;
-                            magnitude = 1f;
+                            magnitude = 0.5f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -400f);
                         }},
-                        new ClampHeight(-0.5f, 0.8f),
+                        new ClampHeight(-0.2f, 0.8f),
                         //mountain
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.7f), 0.37f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.4f), 0.37f, 0.2f) {{
                             set = true;
                         }},
 
@@ -121,7 +121,7 @@ public class ExoPlanets{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, 0.2f), 0.27f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.27f, -0.2f)
                 );
 
                 colors.addAll(
@@ -254,11 +254,21 @@ public class ExoPlanets{
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
                             scale = 2;
+                            seed = 3;
                             persistence = 1f;
                             octaves = 1;
-                            magnitude = 0.5f;
+                            magnitude = 0.6f;
                             heightOffset = -1f;
                             offset.set(1500f, 100f, -500f);
+                        }},
+                        new NoiseHeight() {{
+                            scale = 7;
+                            seed = 2;
+                            persistence = 1f;
+                            octaves = 1;
+                            magnitude = 0.6f;
+                            heightOffset = -1f;
+                            offset.set(1000f, 100f, -500f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
                         new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.17f, 0.2f) {{
