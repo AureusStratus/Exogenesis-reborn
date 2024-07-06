@@ -117,7 +117,7 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(-0.2f, 0.8f),
                         //mountain
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.1f), 0.37f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.7f), 0.37f, 0.2f) {{
                             set = true;
                         }},
 
