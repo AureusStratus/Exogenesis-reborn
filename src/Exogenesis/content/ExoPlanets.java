@@ -108,7 +108,7 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 6.5;
+                            scale = 12.5;
                             persistence = 0.5;
                             octaves = 8;
                             magnitude = 0.4f;
@@ -164,10 +164,10 @@ public class ExoPlanets{
                             maxHeight = -0.19f;
                             out = ExoEnvironmentBlocks.vansterWater.mapColor;
                         }},
-                        new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, ExoEnvironmentBlocks.redLightningStone.mapColor),
+                        new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.6f, ExoEnvironmentBlocks.redLightningStone.mapColor),
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.1f, ExoEnvironmentBlocks.vanstarock.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
-                        new CraterColorPass(new Vec3(0f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
+                        new CraterColorPass(new Vec3(4f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
+                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
                 );
             }};
             /*
@@ -197,7 +197,7 @@ public class ExoPlanets{
             };
             iconColor = Color.valueOf("ffc63c");
             atmosphereColor = Color.valueOf("0e5fa0");
-            atmosphereRadIn = -0.01f;
+            atmosphereRadIn = -0.03f;
             atmosphereRadOut = 0.3f;
             startSector = 15;
             alwaysUnlocked = true;
@@ -258,7 +258,7 @@ public class ExoPlanets{
                             scale = 2;
                             persistence = 0.5;
                             octaves = 5;
-                            magnitude = 1f;
+                            magnitude = 0.4f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -341,7 +341,7 @@ public class ExoPlanets{
             };
             iconColor = Color.valueOf("0044ff");
             atmosphereColor = Color.valueOf("1c037c");
-            atmosphereRadIn = -0.01f;
+            atmosphereRadIn = -0.02f;
             atmosphereRadOut = 0.3f;
             startSector = 15;
             alwaysUnlocked = true;
