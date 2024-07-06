@@ -92,17 +92,17 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(1f, 0f, 0f);
                             magnitude = 5;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(-0.5f, 0.5f, 1);
                             magnitude = 5;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 5;
                         }},
@@ -111,7 +111,7 @@ public class ExoPlanets{
                             scale = 2.5;
                             persistence = 0.5;
                             octaves = 8;
-                            magnitude = 0.7f;
+                            magnitude = 1f;
                             heightOffset = -1f;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -197,7 +197,7 @@ public class ExoPlanets{
             };
             iconColor = Color.valueOf("ffc63c");
             atmosphereColor = Color.valueOf("0e5fa0");
-            atmosphereRadIn = -0.05f;
+            atmosphereRadIn = -0.01f;
             atmosphereRadOut = 0.3f;
             startSector = 15;
             alwaysUnlocked = true;
@@ -341,7 +341,7 @@ public class ExoPlanets{
             };
             iconColor = Color.valueOf("0044ff");
             atmosphereColor = Color.valueOf("1c037c");
-            atmosphereRadIn = -0.05f;
+            atmosphereRadIn = -0.01f;
             atmosphereRadOut = 0.3f;
             startSector = 15;
             alwaysUnlocked = true;
