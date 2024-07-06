@@ -26,7 +26,7 @@ import static arc.Core.atlas;
 public class ExoPlanets{
     public static Planet zetaTitanus, zetaMinus, hadroxa, tauTiamas, vanstar, axin;
     public static void load(){
-        zetaTitanus = new Planet("zetaTitanus", null, 7f){{
+        zetaTitanus = new Planet("zetaTitanus", null, 6f){{
             bloom = true;
             accessible = false;
             solarSystem = this;
@@ -241,7 +241,7 @@ public class ExoPlanets{
                 r.showSpawns = false;
             };
         }};
-        axin = new Planet("axin", ExoPlanets.zetaTitanus, 1f, 3){{
+        axin = new Planet("axin", Planets.sun, 1f, 3){{
             generator = new AxinPlanetGenerator() {{
                 baseHeight = -1f;
                 baseColor = Color.valueOf("242833");
@@ -330,7 +330,6 @@ public class ExoPlanets{
                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.white.cpy().lerp(Color.blue, 0.55f).a(0.25f), 2, 0.45f, 1f, 0.61f)
             );
             launchCapacityMultiplier = 0.5f;
-            solarSystem = zetaTitanus;
             sectorSeed = 2;
             orbitRadius = 80;
             orbitSpacing = 30;
