@@ -46,7 +46,7 @@ public class ExoPlanets{
             bloom = true;
             accessible = false;
             solarSystem = zetaTitanus;
-            orbitRadius = 150;
+            orbitRadius = 130;
             meshLoader = () -> new SunMesh(
                     this, 5,
                     3, 0.5, 2, 1.2, 1,
@@ -75,7 +75,7 @@ public class ExoPlanets{
             atmosphereRadIn = 0.02f;
             atmosphereRadOut = 0.3f;
             tidalLock = true;
-            orbitRadius = 11f;
+            orbitRadius = 22f;
             lightSrcTo = 0.5f;
             lightDstFrom = 0.2f;
             clearSectorOnLose = true;
@@ -139,8 +139,8 @@ public class ExoPlanets{
                             persistence = 0.5;
                             octaves = 3;
                             magnitude = 1.2f;
-                            min = 0.3f;
-                            max = 0.6f;
+                            minNoise = 0.3f;
+                            maxNoise = 0.6f;
                             out = Color.valueOf("675b53");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -150,8 +150,8 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 5;
                             magnitude = 1.2f;
-                            min = 0.1f;
-                            max = 0.4f;
+                            minNoise = 0.1f;
+                            maxNoise = 0.4f;
                             out = Color.valueOf("d29232");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -161,14 +161,14 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 7;
                             magnitude = 1.8f;
-                            min = 0.1f;
-                            max = 0.4f;
+                            minNoise = 0.1f;
+                            maxNoise = 0.4f;
                             out = Color.valueOf("b26d1f");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new FlatColorPass() {{
-                            min = -1f;
-                            max = -0.19f;
+                            minHeight = -1f;
+                            maxHeight = -0.19f;
                             out = Color.valueOf("36bcdb");
                         }},
                         new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, Color.valueOf("2b2f3b")),
@@ -241,19 +241,19 @@ public class ExoPlanets{
                 r.showSpawns = false;
             };
         }};
-        axin = new Planet("axin", ExoPlanets.zetaTitanus, 1f, 2){{
+        axin = new Planet("axin", ExoPlanets.zetaTitanus, 1f, 3){{
             generator = new AxinPlanetGenerator() {{
                 baseHeight = -1f;
                 baseColor = Color.valueOf("242833");
                 heights.addAll(
-                        new HeightPass.AngleInterpHeight() {{
+                        new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
                             dir.set(5f, 0f, 0f);
                             magnitude = 1.5f;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
-                            dir.set(-0.5f, 0.5f, 0.2f);
+                            dir.set(-0.5f, 0.5f, 1);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
@@ -262,7 +262,6 @@ public class ExoPlanets{
                             magnitude = 2;
                         }},
                         new ClampHeight(0f, 0.8f),
-
                         new NoiseHeight() {{
                             scale = 2;
                             persistence = 0.5;
@@ -272,24 +271,23 @@ public class ExoPlanets{
                             offset.set(1500f, 300f, -500f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1.8f), 0.3f, -0.3f),
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 1f), 0.13f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.5f, 0.25f, 1f), 0.3f, -0.3f),
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.8f), 0.17f, 0.2f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 1.5f), 0.13f, 0.1f) {{
+                        new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.13f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.17f, -0.2f)
                 );
-
                 colors.addAll(
                         new NoiseColorPass() {{
                             scale = 1.5;
                             persistence = 0.5;
                             octaves = 3;
                             magnitude = 1.2f;
-                            min = 0.3f;
-                            max = 0.6f;
+                            minNoise = 0.3f;
+                            maxNoise = 0.6f;
                             out = Color.valueOf("121733");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -299,8 +297,8 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 5;
                             magnitude = 1.2f;
-                            min = 0.1f;
-                            max = 0.4f;
+                            minNoise = 0.1f;
+                            maxNoise = 0.4f;
                             out = Color.valueOf("314860");
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -310,14 +308,14 @@ public class ExoPlanets{
                             persistence = 0.2;
                             octaves = 7;
                             magnitude = 0.8f;
-                            min = 0.1f;
-                            max = 0.4f;
+                            minNoise = 0.1f;
+                            maxNoise = 0.4f;
                             out = Color.valueOf("314860");
                             offset.set(1500f, 300f, -500f);
                         }},
                         new FlatColorPass() {{
-                            min = -1f;
-                            max = -0.19f;
+                            minHeight = -1f;
+                            maxHeight = -0.19f;
                             out = Color.valueOf("c5d7f0");
                         }},
                         new CraterColorPass(new Vec3(-0.5f, 0.25f, 1f), 0.4f, Color.valueOf("252142")),
@@ -334,7 +332,7 @@ public class ExoPlanets{
             launchCapacityMultiplier = 0.5f;
             solarSystem = zetaTitanus;
             sectorSeed = 2;
-            orbitRadius = 100;
+            orbitRadius = 80;
             orbitSpacing = 30;
             allowWaves = true;
             allowWaveSimulation = true;

@@ -11,6 +11,7 @@ public abstract class ColorPass {
 
     /**
      * A pass that fills regions inside a sphere for use in craters
+     *
      */
     public static class CraterColorPass extends ColorPass {
         public Vec3 position;
@@ -29,35 +30,50 @@ public abstract class ColorPass {
             return null;
         }
     }
+
     /**
      * A pass that uses noise to fill regions on the planet
-     * @see omaloon.maps.HeightPass.NoiseHeight NoiseHeight
+     *
      */
     public static class NoiseColorPass extends ColorPass {
+        /**
+         * noise parameters
+         */
         public int seed;
         public double octaves = 1.0, persistence = 1.0, scale = 1.0;
-        public float magnitude = 1, min = 0f, max = 1f;
+        public float magnitude = 1;
         public Vec3 offset = new Vec3();
+
+        public float minNoise = 0f, maxNoise = 1f;
+        public float minHeight = -10f, maxHeight = 10f;
+
         public Color out = Color.white;
 
         @Override
         public Color color(Vec3 pos, float height) {
-            pos = new Vec3(pos).add(offset);
-            float noise = Simplex.noise3d(seed, octaves, persistence, scale, pos.x, pos.y, pos.z) * magnitude;
-            if (min < noise && noise < max) return out;
+            float noise = Simplex.noise3d(
+                    seed,
+                    octaves, persistence, scale,
+                    pos.x + offset.x, pos.y + offset.y, pos.z + offset.z
+            ) * magnitude;
+            if (
+                    (minNoise <= noise && noise <= maxNoise) &&
+                            (minHeight <= height && height <= maxHeight)
+            ) return out;
             return null;
         }
     }
+
     /**
      * A pass that paints regions whose height is within a boundary
      */
     public static class FlatColorPass extends ColorPass {
-        public float min = 0f, max = 1f;
+        public float minHeight = 0f, maxHeight = 1f;
         public Color out = Color.white;
 
         @Override
         public Color color(Vec3 pos, float height) {
-            if (min < height && height < max) return out;
+            if (minHeight < height && height < maxHeight) return out;
             return null;
         }
     }

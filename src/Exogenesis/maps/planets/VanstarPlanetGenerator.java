@@ -8,13 +8,11 @@ import arc.struct.Seq;
 import mindustry.maps.generators.*;
 import mindustry.type.*;
 
-import static mindustry.Vars.*;
-
 public class VanstarPlanetGenerator extends PlanetGenerator {
     public Seq<HeightPass> heights = new Seq<>();
     public Seq<ColorPass> colors = new Seq<>();
     public float baseHeight = 1;
-    public Color baseColor = Color.valueOf("36bcdb");
+    public Color baseColor = Color.white;
 
     public float rawHeight(Vec3 position) {
         float height = baseHeight;
