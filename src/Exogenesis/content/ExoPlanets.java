@@ -284,7 +284,7 @@ public class ExoPlanets{
                             seed = 5;
                             scale = 4.5;
                             persistence = 0.2;
-                            octaves = 15;
+                            octaves = 1;
                             magnitude = 3.2f;
                             minNoise = 0.1f;
                             maxNoise = 0.4f;
@@ -294,8 +294,8 @@ public class ExoPlanets{
                         new NoiseColorPass() {{
                             seed = 8;
                             scale = 4.5;
-                            persistence = 0.6;
-                            octaves = 7;
+                            persistence = 1;
+                            octaves = 2;
                             magnitude = 6f;
                             minNoise = 0.1f;
                             maxNoise = 0.4f;
