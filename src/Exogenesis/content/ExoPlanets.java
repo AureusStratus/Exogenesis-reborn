@@ -236,7 +236,7 @@ public class ExoPlanets{
         axin = new Planet("axin", ExoPlanets.zetaTitanus, 1f, 3){{
             generator = new AxinPlanetGenerator() {{
                 baseHeight = -1f;
-                baseColor = Color.valueOf("242833");
+                baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
@@ -308,7 +308,7 @@ public class ExoPlanets{
                         new FlatColorPass() {{
                             minHeight = -1f;
                             maxHeight = -0.19f;
-                            out = Color.valueOf("c5d7f0");
+                            out = Color.valueOf("212630");
                         }},
                         new CraterColorPass(new Vec3(-6.5f, 0.25f, 0f), 1f, Color.valueOf("252142")),
                         new CraterColorPass(new Vec3(-0.3f, 0.8f, 0.8f), 0.1f, Color.valueOf("3c5acc")),
