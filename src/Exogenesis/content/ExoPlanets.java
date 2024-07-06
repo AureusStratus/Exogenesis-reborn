@@ -108,11 +108,11 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 3.5;
+                            scale = 10.5;
                             persistence = 0.8;
                             seed = 8;
                             octaves = 7;
-                            magnitude = 0.7f;
+                            magnitude = 0.5f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -400f);
                         }},
@@ -244,12 +244,12 @@ public class ExoPlanets{
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 6);
                             dir.set(5f, 0f, 0f);
-                            magnitude = 1.5f;
+                            magnitude = 1.3f;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(3, 5);
                             dir.set(-0.5f, 0.5f, 1);
-                            magnitude = 2;
+                            magnitude = 1.3f;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 5);
@@ -259,13 +259,13 @@ public class ExoPlanets{
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
                             scale = 9;
-                            persistence = 1.6;
-                            octaves = 8;
-                            magnitude = 1.5f;
+                            persistence = 0.6;
+                            octaves = 1;
+                            magnitude = 0.5f;
                             heightOffset = -1f;
-                            offset.set(1500f, 300f, -500f);
+                            offset.set(1500f, 100f, -500f);
                         }},
-                        new ClampHeight(-0.2f, 0.95f),
+                        new ClampHeight(-0.2f, 0.8f),
                         new CraterHeight(new Vec3(-0.6f, 0.5f, 0.8f), 0.17f, 0.2f) {{
                             set = true;
                         }},
