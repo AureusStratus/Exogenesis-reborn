@@ -92,12 +92,12 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 6);
                             dir.set(9f, 0f, 0f);
                             magnitude = 3;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 6);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 3;
                         }},
@@ -107,7 +107,7 @@ public class ExoPlanets{
                             persistence = 0.8;
                             seed = 8;
                             octaves = 7;
-                            magnitude = 0.3f;
+                            magnitude = 0.7f;
                             heightOffset = -1f;
                             offset.set(0f, 0f, -400f);
                         }},
@@ -237,14 +237,19 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 4);
-                            dir.set(9f, 0f, 0f);
-                            magnitude = 3;
+                            interp = new Interp.ExpIn(2, 10);
+                            dir.set(1f, 0f, 0f);
+                            magnitude = 1.5f;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 4);
-                            dir.set(-0.3f, -1f, 0f);
-                            magnitude = 3;
+                            interp = new Interp.ExpIn(2, 10);
+                            dir.set(-0.5f, 0.5f, 1);
+                            magnitude = 2;
+                        }},
+                        new AngleInterpHeight() {{
+                            interp = new Interp.ExpIn(2, 10);
+                            dir.set(-0.3f, -1f, -0.6f);
+                            magnitude = 2;
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
@@ -252,7 +257,7 @@ public class ExoPlanets{
                             persistence = 0.8f;
                             octaves = 1;
                             magnitude = 4f;
-                            heightOffset = 0f;
+                            heightOffset = -1f;
                             offset.set(1500f, 100f, -500f);
                         }},
                         new ClampHeight(-0.5f, 0.8f),
