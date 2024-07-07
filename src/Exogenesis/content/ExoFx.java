@@ -204,24 +204,30 @@ public class ExoFx{
                 color(Color.white);
                 Fill.circle(e.x, e.y, e.fin() * 17f);
             }),
-    colorBomb = new Effect(40f, 100f, e -> {
-        color(e.color);
-        stroke(e.fout() * 2f);
-        float circleRad = 4f + e.finpow() * 45f;
-        Lines.circle(e.x, e.y, circleRad);
+            calamityCharge = new Effect(140, e -> {
+                color(Color.valueOf(String.valueOf(ExoPal.genesisTitan)));
+                Fill.circle(e.x, e.y, e.fin() * 25f);
+                color(Color.white);
+                Fill.circle(e.x, e.y, e.fin() * 20f);
+            }),
+            colorBomb = new Effect(40f, 100f, e -> {
+                color(e.color);
+                stroke(e.fout() * 2f);
+                float circleRad = 4f + e.finpow() * 45f;
+                Lines.circle(e.x, e.y, circleRad);
 
-        color(e.color);
-        for(int i = 0; i < 4; i++){
-            Drawf.tri(e.x, e.y, 4f, 50f * e.fout(), i*90);
-        }
+                color(e.color);
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 4f, 50f * e.fout(), i*90);
+                }
 
-        color();
-        for(int i = 0; i < 4; i++){
-            Drawf.tri(e.x, e.y, 2f, 15f * e.fout(), i*90);
-        }
+                color();
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 2f, 15f * e.fout(), i*90);
+                }
 
-        Drawf.light(e.x, e.y, circleRad * 1.6f, e.color, e.fout());
-    }),
+                Drawf.light(e.x, e.y, circleRad * 1.6f, e.color, e.fout());
+            }),
             empyreanCharge = new Effect(100f, 100f, e -> {
                 color(ExoPal.empyrean);
                 stroke(e.fin() * 5f);
@@ -620,6 +626,27 @@ public class ExoFx{
                 Fill.rect(e.x + x, e.y + y, 2.2f * e.fout(), 2.2f * e.fout(), 45f);
             })),
 
+           calamityExplostion = new Effect(170F, 1600f, e -> {
+               float rad = 105f;
+               rand.setSeed(e.id);
+
+               Draw.color(Color.white, e.color, e.fin() + 0.6f);
+               float circleRad = e.fin(Interp.circleOut) * rad * 4f;
+               Lines.stroke(7 * e.fout());
+               Lines.circle(e.x, e.y, circleRad);
+               for(int i = 0; i < 24; i++){
+                   Tmp.v1.set(1, 0).setToRandomDirection(rand).scl(circleRad);
+                   DrawFunc.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, rand.random(circleRad / 16, circleRad / 12) * e.fout(), rand.random(circleRad / 4, circleRad / 1.5f) * (1 + e.fin()) / 2, Tmp.v1.angle() - 180);
+               }
+               Draw.blend(Blending.additive);
+               Draw.z(Layer.effect + 0.1f);
+
+               Fill.light(e.x, e.y, circleVertices(circleRad), circleRad, Color.clear, Tmp.c1.set(Draw.getColor()).a(e.fout(Interp.pow10Out)));
+               Draw.blend();
+               Draw.z(Layer.effect);
+
+               Drawf.light(e.x, e.y, rad * e.fout(Interp.circleOut) * 4f, e.color, 0.7f);
+           }).layer(Layer.effect + 0.001f),
             starExplodeTest = new Effect(150F, 1600f, e -> {
         float rad = 60f;
         rand.setSeed(e.id);

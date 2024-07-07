@@ -12,7 +12,6 @@ import mindustry.content.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import Exogenesis.type.DamageType;
-import Exogenesis.type.bullet.TypedBulletType;
 import Exogenesis.util.util.*;
 
 /** @author EyeOfDarkness */
