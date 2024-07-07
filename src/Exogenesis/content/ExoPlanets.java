@@ -24,7 +24,7 @@ import mindustry.content.Blocks;
 
 public class ExoPlanets{
 
-    public static Planet zetaTitanus, hadroxa, tauTiamas, vanstar, axin, testPlanet;
+    public static Planet zetaTitanus, hadroxa, tauTiamas, vanstar, axin;
     public static void load(){
         PlanetDialog.debugSelect = true;
         zetaTitanus = new Planet("zetaTitanus", null, 6f){{
@@ -92,7 +92,7 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 5);
                             dir.set(20f, 0f, 0f);
                             magnitude = 5;
                         }},
@@ -215,82 +215,6 @@ public class ExoPlanets{
             landCloudColor = Pal.spore.cpy().a(0.5f);
             hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
         }};
-        testPlanet = new Planet("testPlanet", ExoPlanets.zetaTitanus, 1f, 3){{
-            generator = new VanstarPlanetGenerator() {{
-                baseHeight = -1f;
-                baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
-                heights.addAll(
-                        new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(1, 1);
-                            dir.set(0f, 0f, 0f);
-                            magnitude = 1;
-                        }},
-                        new ClampHeight(0f, 0.8f),
-                        new NoiseHeight() {{
-                            scale = 6;
-                            persistence = 1;
-                            seed = 8;
-                            octaves = 1;
-                            magnitude = 0.5f;
-                            heightOffset = -1f;
-                            offset.set(0f, 0f, -500f);
-                        }}
-                );
-
-                colors.addAll(
-                        new NoiseColorPass() {{
-                            seed = 5;
-                            scale = 2.5;
-                            persistence = 1;
-                            octaves = 5;
-                            magnitude = 1.6f;
-                            minNoise = 0.1f;
-                            maxNoise = 0.4f;
-                            out = Color.valueOf("2058ff");
-                            offset.set(1500f, 300f, -500f);
-                        }},
-                        new FlatColorPass() {{
-                            minHeight = -1f;
-                            maxHeight = -0.19f;
-                            out = Color.valueOf("d7e5fa");
-                        }},
-                        new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.5f, Color.valueOf("20ffe0"))
-                );
-            }};
-            /*
-            cloudMeshLoader = () -> new MultiMesh(
-                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.white).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.48f),
-                    new HexSkyMesh(this, 5, 0.15f, 0.17f, 5, new Color().set(Color.white).mul(0.9f).a(0.45f), 6, 0.35f, 0.4f, 0.18f)
-            );
-             */
-            meshLoader = () -> new HexMesh(this, 6);
-            launchCapacityMultiplier = 0.5f;
-            solarSystem = zetaTitanus;
-            sectorSeed = 2;
-            orbitRadius = 26;
-            tidalLock = true;
-            allowWaves = true;
-            allowWaveSimulation = true;
-            allowSectorInvasion = true;
-            allowLaunchSchematics = true;
-            enemyCoreSpawnReplace = true;
-            allowLaunchLoadout = true;
-            //doesn't play well with configs
-            prebuildBase = false;
-            ruleSetter = r -> {
-                r.waveTeam = Team.crux;
-                r.placeRangeCheck = false;
-                r.showSpawns = false;
-            };
-            iconColor = Color.valueOf("ffc63c");
-            atmosphereColor = Color.valueOf("0e5fa0");
-            atmosphereRadIn = -0.03f;
-            atmosphereRadOut = 0.3f;
-            startSector = 15;
-            alwaysUnlocked = true;
-            landCloudColor = Pal.spore.cpy().a(0.5f);
-            hiddenItems.addAll(Items.erekirItems).removeAll(Items.serpuloItems);
-        }};
         tauTiamas = new Planet("tauTiamas", Planets.sun, 1f ,2){{
             generator = new TauTiamasPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 4);
@@ -326,17 +250,17 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 1);
                             dir.set(1f, 0f, 0f);
                             magnitude = 1.5f;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 1);
                             dir.set(-0.5f, 0.5f, 1);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 10);
+                            interp = new Interp.ExpIn(2, 1);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 2;
                         }},
