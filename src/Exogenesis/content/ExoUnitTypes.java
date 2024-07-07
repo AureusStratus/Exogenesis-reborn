@@ -1873,7 +1873,7 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-cronus") {{
-                reload = 80f;
+                reload = 70f;
                 recoilTime = 90;
                 alwaysShooting = true;
                 mirror = rotate = false;
@@ -1883,84 +1883,43 @@ public class ExoUnitTypes {
                 cooldownTime = 80;
                 layerOffset = 2;
                 rotateSpeed = 0;
+                recoils = 3;
                 x = 0;
                 y = 0f;
                 shootSound = Sounds.none;
                 recoil = shake = shootY = 0f;
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                            0f, 0f, 0f,
+                            0f, 0f, 0f,
+                            0f, 0f, 0f,
+                    };
+                }};
                 parts.addAll(
-                        new RegionPart("-wing-2"){{
+                        new RegionPart("-barrel-3"){{
                             mirror = true;
                             x = 46;
                             y = 25;
+                            recoilIndex = 2;
                             layerOffset = -0.002f;
                             progress = PartProgress.smoothReload.curve(Interp.slowFast);
                             moveRot = 30f;
-                        }}
-                );
-                bullet = new BasicBulletType(9, 20){{
-                    instantDisappear = true;
-                    width = height = 0;
-                    lifetime = 1;
-                    hitEffect = Fx.none;
-                    shootEffect = Fx.none;
-                    smokeEffect = Fx.none;
-                }};
-            }});
-            weapons.add(new Weapon("exogenesis-cronus") {{
-                reload = 90f;
-                recoilTime = 90;
-                alwaysShooting = true;
-                mirror = rotate = false;
-                linearWarmup = true;
-                alternate = true;
-                shootCone = 45;
-                cooldownTime = 80;
-                layerOffset = 2;
-                rotateSpeed = 0;
-                x = 0;
-                y = 0f;
-                shootSound = Sounds.none;
-                recoil = shake = shootY = 0f;
-                parts.addAll(
-                        new RegionPart("-wing-2"){{
+                        }},
+                        new RegionPart("-barrel-2"){{
                             mirror = true;
                             x = 50;
                             y = 0;
+                            recoilIndex = 1;
                             layerOffset = -0.002f;
                             rotation = -20;
                             progress = PartProgress.smoothReload.curve(Interp.slowFast);
                             moveRot = 30f;
-                        }}
-                );
-                bullet = new BasicBulletType(9, 20){{
-                    instantDisappear = true;
-                    width = height = 0;
-                    lifetime = 1;
-                    hitEffect = Fx.none;
-                    shootEffect = Fx.none;
-                    smokeEffect = Fx.none;
-                }};
-            }});
-            weapons.add(new Weapon("exogenesis-cronus") {{
-                reload = 100f;
-                recoilTime = 90;
-                alwaysShooting = true;
-                mirror = rotate = false;
-                linearWarmup = true;
-                alternate = true;
-                shootCone = 45;
-                cooldownTime = 80;
-                layerOffset = 2;
-                rotateSpeed = 0;
-                x = 0;
-                y = 0f;
-                shootSound = Sounds.none;
-                recoil = shake = shootY = 0f;
-                parts.addAll(
-                        new RegionPart("-wing-1"){{
+                        }},
+                        new RegionPart("-barrel-1"){{
                             mirror = true;
                             x = 43;
                             y = -30;
+                            recoilIndex = 0;
                             layerOffset = -0.002f;
                             rotation = -30;
                             progress = PartProgress.smoothReload.curve(Interp.slowFast);
