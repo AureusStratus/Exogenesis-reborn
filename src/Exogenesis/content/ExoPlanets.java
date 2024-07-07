@@ -93,12 +93,12 @@ public class ExoPlanets{
                 heights.addAll(
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 5);
-                            dir.set(9f, 0f, 0f);
+                            dir.set(13f, 0f, 0f);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 5);
-                            dir.set(-0.3f, -1f, -0.6f);
+                            dir.set(-0.3f, 8f, -0.6f);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
@@ -123,10 +123,10 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(-0.2f, 0.8f),
                         //mountain
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.5f), 0.17f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.7f), 0.17f, 0.2f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(-0.6f, 0.8f, 0.4f), 0.1f, 0.5f) {{
+                        new CraterHeight(new Vec3(-0.6f, 0.8f, 0.4f), 0.2f, 0.5f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(8f, 0f, 0.6f), 0.17f, 0.1f) {{
@@ -265,7 +265,7 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
-                            scale = 5;
+                            scale = 4;
                             seed = 3;
                             persistence = 1f;
                             octaves = 1;
@@ -274,7 +274,7 @@ public class ExoPlanets{
                             offset.set(1500f, 100f, -500f);
                         }},
                         new ClampHeight(-0.2f, 0.8f),
-                        new CraterHeight(new Vec3(-0.6f, 0.5f, 0.6f), 0.4f, 0.2f) {{
+                        new CraterHeight(new Vec3(-1.5f, 0.5f, 0.6f), 0.4f, 0.2f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.17f, 0.1f) {{
