@@ -139,7 +139,7 @@ public class ExoPlanets{
                 colors.addAll(
                         new NoiseColorPass() {{
                             seed = 5;
-                            scale = 2.5;
+                            scale = 6.5;
                             persistence = 1;
                             octaves = 5;
                             magnitude = 1.6f;
@@ -250,17 +250,17 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 1);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(1f, 0f, 0f);
                             magnitude = 1.5f;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 1);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.5f, 0.5f, 1);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 1);
+                            interp = new Interp.ExpIn(2, 4);
                             dir.set(-0.3f, -1f, -0.6f);
                             magnitude = 2;
                         }},
