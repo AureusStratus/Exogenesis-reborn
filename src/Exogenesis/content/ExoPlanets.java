@@ -92,7 +92,7 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 5);
+                            interp = new Interp.ExpIn(2, 3);
                             dir.set(20f, 0f, 0f);
                             magnitude = 2;
                         }},
@@ -123,27 +123,28 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(-0.2f, 0.8f),
                         //mountain
-                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.4f), 0.17f, 0.2f) {{
+                        new CraterHeight(new Vec3(-0.3f, 0.5f, 0.5f), 0.17f, 0.2f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(-0.6f, 5.8f, 0.45f), 0.2f, 0.5f) {{
+                        new CraterHeight(new Vec3(-0.6f, 5.8f, 0.4f), 0.2f, 0.5f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(8f, 0f, 0.6f), 0.17f, 0.1f) {{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, 0.2f), 0.27f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, -0.2f), 0.30f, -0.2f)
                 );
 
                 colors.addAll(
                         new NoiseColorPass() {{
+                            seed = 5;
                             scale = 1.5;
                             persistence = 0.5;
-                            octaves = 3;
-                            magnitude = 1.2f;
-                            minNoise = 0.3f;
-                            maxNoise = 0.6f;
+                            octaves = 5;
+                            magnitude = 1.6f;
+                            minNoise = 0.1f;
+                            maxNoise = 0.4f;
                             out = ExoEnvironmentBlocks.lightningStoneCharged.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -290,7 +291,7 @@ public class ExoPlanets{
                             magnitude = 1.2f;
                             minNoise = 0.3f;
                             maxNoise = 0.6f;
-                            out = Color.valueOf("121733");
+                            out = ExoEnvironmentBlocks.axinCrystalStone.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
@@ -301,7 +302,7 @@ public class ExoPlanets{
                             magnitude = 3.2f;
                             minNoise = 0.1f;
                             maxNoise = 0.4f;
-                            out = Color.valueOf("242833");
+                            out = ExoEnvironmentBlocks.axinCrystalRock.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
@@ -312,18 +313,18 @@ public class ExoPlanets{
                             magnitude = 6f;
                             minNoise = 0.1f;
                             maxNoise = 0.4f;
-                            out = Color.valueOf("314860");
+                            out = Blocks.carbonStone.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
                         new FlatColorPass() {{
                             minHeight = -1f;
                             maxHeight = -0.19f;
-                            out = Color.valueOf("f5f9ff");
+                            out = Color.valueOf("adbbcf");
                         }},
-                        new CraterColorPass(new Vec3(-6.5f, 0.25f, 0f), 1f, Color.valueOf("252142")),
-                        new CraterColorPass(new Vec3(-0.3f, 0.8f, 0.8f), 0.1f, Color.valueOf("3c5acc")),
-                        new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, Color.valueOf("3c4448")),
-                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, Color.valueOf("282b34"))
+                        new CraterColorPass(new Vec3(-6.5f, 0.25f, 0f), 1f, ExoEnvironmentBlocks.axinCarvakStoneWall.mapColor),
+                        new CraterColorPass(new Vec3(-0.3f, 0.8f, 0.8f), 0.1f, ExoEnvironmentBlocks.axincarbonStone.mapColor),
+                        new CraterColorPass(new Vec3(1f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.axinCrystalStoneWall.mapColor),
+                        new CraterColorPass(new Vec3(1f, 0f, 0f), 0.25f, ExoEnvironmentBlocks.axinCarvakStoneWall.mapColor)
                 );
             }};
             solarSystem = ExoPlanets.zetaTitanus;
