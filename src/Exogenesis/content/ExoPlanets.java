@@ -144,7 +144,7 @@ public class ExoPlanets{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, -0.2f), 0.30f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, 0.2f), 0.30f, -0.2f)
                 );
 
                 colors.addAll(
