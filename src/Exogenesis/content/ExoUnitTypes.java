@@ -8558,7 +8558,7 @@ public class ExoUnitTypes {
                 horizonRadius = 20;
                 color = ExoPal.genesisTitan;
             }});
-            weapons.add(new Weapon("b") {{
+            weapons.add(new Weapon("exogenesis-b") {{
                 reload = 1225;
                 alternate = mirror = rotate = false;
                 shootStatus = StatusEffects.unmoving;
@@ -8572,7 +8572,7 @@ public class ExoUnitTypes {
                 shoot.firstShotDelay = 140;
                 shootSound = ExoSounds.coolplasmaboom;
                 chargeSound = Sounds.lasercharge;
-                recoil = shake = shootY = 0f;
+                recoil = shake = 0f;
                 parts.addAll(
                         new FlarePart(){{
                             progress = PartProgress.warmup;
@@ -8580,6 +8580,7 @@ public class ExoUnitTypes {
                             y = 98;
                             sides = 2;
                             radius = 0;
+                            rotation = 90;
                             radiusTo = 150;
                             stroke = 4.5f;
                         }},
@@ -8628,6 +8629,7 @@ public class ExoUnitTypes {
                     trailSinScl = 4;
                     trailSinMag = 0.6f;
                     trailParam = 3.5f;
+                    chargeEffect = ExoFx.calamityCharge;
                     swirlEffects = 2;
                     swirlEffect = ExoFx.darkBlueStarSwirl;
                     realColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesisTitan;
@@ -8949,8 +8951,8 @@ public class ExoUnitTypes {
                             y = 0f;
                             layer = 110;
                             radiusTo = 0f;
-                            radius = 5f;
-                            color = ExoPal.genesis;
+                            radius = 4f;
+                            color = ExoPal.genesisTitan;
                         }}
                 );
                 bullet = new AcceleratingLaserBulletType(460f){{
@@ -9020,8 +9022,8 @@ public class ExoUnitTypes {
                             y = 0f;
                             layer = 110;
                             radiusTo = 0f;
-                            radius = 5f;
-                            color = ExoPal.genesis;
+                            radius = 4f;
+                            color = ExoPal.genesisTitan;
                         }}
                 );
                 bullet = new AcceleratingLaserBulletType(460f){{
