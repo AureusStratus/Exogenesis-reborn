@@ -8525,6 +8525,7 @@ public class ExoUnitTypes {
             speed = 0.6f;
             hitSize = 96f;
             health = 10000000;
+            outlineColor = Color.valueOf("0e1014");
             outlineRadius = 7;
             faceTarget = true;
             forceMultiTarget = true;
@@ -8534,15 +8535,12 @@ public class ExoUnitTypes {
             groundLayer = Layer.darkness + 1f;
             rotateSpeed = 0.8f;
             legSpeed = 0.5f;
-            legMoveSpace = 0.7f;
-            baseLegStraightness = 0.8f;
+            legMoveSpace = 0.5f;
             legLength = 204;
             legCount = 10;
             legExtension = -25;
             legContinuousMove = lockLegBase = true;
-            legStraightness = 0.3f;
             rippleScale = 10f;
-            legPairOffset = 2;
             legBaseOffset = 53;
             legSplashDamage = 886;
             legSplashRange = 88;
@@ -8632,7 +8630,7 @@ public class ExoUnitTypes {
                     trailParam = 3.5f;
                     swirlEffects = 2;
                     swirlEffect = ExoFx.darkBlueStarSwirl;
-                    realColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.starBlue;
+                    realColor = trailColor = hitColor = lightColor = lightningColor = ExoPal.genesisTitan;
                     scaleLife = true;
                     hitSound = Sounds.explosionbig;
                     splashDamageRadius = 100f;
@@ -8677,20 +8675,38 @@ public class ExoUnitTypes {
                                 color = ExoPal.genesisTitan;
                             }});
                             parts.addAll(
+                                    new ShapePart() {{
+                                        circle = true;
+                                        progress = PartProgress.life;
+                                        y = 0f;
+                                        layer = 110;
+                                        radiusTo = 1;
+                                        radius = 23f;
+                                        color = Color.white;
+                                    }},
+                                    new ShapePart() {{
+                                        circle = true;
+                                        progress = PartProgress.life;
+                                        y = 0f;
+                                        layer = 109;
+                                        radiusTo = 3;
+                                        radius = 40f;
+                                        color = ExoPal.genesisTitan;
+                                    }},
                                     new EffectSpawnPart() {{
                                         useProgress = false;
                                         y = 0f;
                                         effect = new ParticleEffect() {{
                                             lightOpacity = 0.5f;
                                             particles = 2;
-                                            length = 130;
+                                            length = 230;
                                             baseLength = 30;
                                             lifetime = 40;
                                             interp = Interp.pow5Out;
-                                            sizeFrom = 13;
-                                            sizeTo = 0;
-                                            lightColor = colorFrom = ExoPal.genesisTitan;
-                                            colorTo = ExoPal.genesisLight;
+                                            sizeFrom = 23;
+                                            sizeTo = 6;
+                                            lightColor = colorFrom = ExoPal.genesisLight;
+                                            colorTo = ExoPal.genesisTitan.cpy().a(0.8f);
                                         }};
                                         effectColor = hitColor;
                                         randomEffectRot = 360;
@@ -8702,14 +8718,14 @@ public class ExoUnitTypes {
                                         effect = new ParticleEffect() {{
                                             lightOpacity = 0.5f;
                                             particles = 2;
-                                            length = 170;
+                                            length = 270;
                                             baseLength = 30;
                                             lifetime = 40;
                                             interp = Interp.pow4Out;
-                                            sizeFrom = 6;
+                                            sizeFrom = 24;
                                             sizeTo = 0;
-                                            lightColor = colorFrom = ExoPal.genesisTitan;
-                                            colorTo = ExoPal.genesisLight;
+                                            lightColor = colorFrom = ExoPal.genesisLight;
+                                            colorTo = ExoPal.genesisTitan.cpy().a(0.8f);
                                         }};
                                         effectColor = hitColor;
                                         randomEffectRot = 360;
@@ -8722,16 +8738,16 @@ public class ExoUnitTypes {
                                             lightOpacity = 0.5f;
                                             line = true;
                                             particles = 2;
-                                            length = 150;
+                                            length = 250;
                                             baseLength = 30;
                                             lifetime = 40;
-                                            interp = Interp.circleIn;
-                                            lenFrom = 15;
-                                            lenTo = 6;
+                                            interp = Interp.circleOut;
+                                            lenFrom = 25;
+                                            lenTo = 8;
                                             sizeFrom = 4;
                                             sizeTo = 0;
-                                            lightColor = colorFrom = ExoPal.genesisTitan;
-                                            colorTo = ExoPal.genesisLight;
+                                            lightColor = colorFrom = ExoPal.genesisLight;
+                                            colorTo = ExoPal.genesisTitan;
                                         }};
                                         effectColor = hitColor;
                                         randomEffectRot = 360;
@@ -8757,9 +8773,11 @@ public class ExoUnitTypes {
                                     fragBullets = 1;
                                     fragBullet = new BlackHoleBulletType(0f, 1400f / 30f){{
                                         lifetime = 330f;
-                                        growTime = 15;
+                                        growTime = 65;
                                         suctionRadius = 500f;
                                         damageRadius = 200;
+                                        horizonRadius = 50;
+                                        lensingRadius = 60;
                                         force = 5;
                                         swirlEffects = 5;
                                         swirlInterval = 3;
@@ -8768,7 +8786,7 @@ public class ExoUnitTypes {
                                         lightOpacity = 0.7f;
                                         despawnEffect = hitEffect = ExoFx.singularityDespawn;
                                     }};
-                                    shootEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.blueStarExplosionCloud, ExoFx.calamityExplostion, ExoFx.empyreanExplosion, ExoFx.starExplodeBlue, Fx.colorSpark);
+                                    shootEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.blueStarExplosionCloud, ExoFx.calamityExplostion, ExoFx.empyreanExplosion, Fx.colorSpark);
                                     collidesGround = true;
                                     collidesTiles = false;
                                 }};
@@ -8785,7 +8803,7 @@ public class ExoUnitTypes {
                 y = 25;
                 shootSound = Sounds.blaster;
                 shoot = new ShootHelix(){{
-                    scl = 7;
+                    scl = 3;
                     mag = 2;
                     shots = 2;
                 }};
@@ -8801,14 +8819,6 @@ public class ExoUnitTypes {
                             radius = 0;
                             radiusTo = 50;
                             stroke = 2.5f;
-                        }},
-                        new RegionPart("-glow"){{
-                            mirror = false;
-                            layer = Layer.effect;
-                            color = colorTo = ExoPal.genesisTitan;
-                            blending = Blending.additive;
-                            outline = false;
-                            progress = PartProgress.smoothReload;
                         }}
                 );
                 bullet = new EmpBulletType(){{
@@ -8845,7 +8855,7 @@ public class ExoUnitTypes {
                 y = -8;
                 shootSound = Sounds.blaster;
                 shoot = new ShootHelix(){{
-                    scl = 7;
+                    scl = 3;
                     mag = 2;
                     shots = 2;
                 }};
@@ -8861,14 +8871,6 @@ public class ExoUnitTypes {
                             radius = 0;
                             radiusTo = 50;
                             stroke = 2.5f;
-                        }},
-                        new RegionPart("-glow"){{
-                            mirror = false;
-                            layer = Layer.effect;
-                            color = colorTo = ExoPal.genesisTitan;
-                            blending = Blending.additive;
-                            outline = false;
-                            progress = PartProgress.smoothReload;
                         }}
                 );
                 bullet = new EmpBulletType(){{
@@ -8926,6 +8928,7 @@ public class ExoUnitTypes {
                             color1 = ExoPal.genesisTitan;
                             y = 0;
                             sides = 2;
+                            rotation = 90;
                             followRotation = true;
                             radius = 0;
                             radiusTo = 90;
@@ -8936,8 +8939,8 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             y = 0f;
                             layer = 114;
-                            radiusTo = 5f;
-                            radius = 0f;
+                            radiusTo = 0f;
+                            radius = 2.5f;
                             color = Color.white;
                         }},
                         new ShapePart() {{
@@ -8945,17 +8948,9 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             y = 0f;
                             layer = 110;
-                            radiusTo = 7f;
-                            radius = 0f;
+                            radiusTo = 0f;
+                            radius = 5f;
                             color = ExoPal.genesis;
-                        }},
-                        new RegionPart("-glow"){{
-                            mirror = false;
-                            layer = Layer.effect;
-                            color = colorTo = ExoPal.genesisTitan;
-                            blending = Blending.additive;
-                            outline = false;
-                            progress = PartProgress.heat;
                         }}
                 );
                 bullet = new AcceleratingLaserBulletType(460f){{
@@ -9004,6 +8999,7 @@ public class ExoUnitTypes {
                             color1 = ExoPal.genesisTitan;
                             y = 0;
                             sides = 2;
+                            rotation = 90;
                             followRotation = true;
                             radius = 0;
                             radiusTo = 90;
@@ -9014,8 +9010,8 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             y = 0f;
                             layer = 114;
-                            radiusTo = 5f;
-                            radius = 0f;
+                            radiusTo = 0f;
+                            radius = 2.5f;
                             color = Color.white;
                         }},
                         new ShapePart() {{
@@ -9023,17 +9019,9 @@ public class ExoUnitTypes {
                             progress = PartProgress.reload;
                             y = 0f;
                             layer = 110;
-                            radiusTo = 7f;
-                            radius = 0f;
+                            radiusTo = 0f;
+                            radius = 5f;
                             color = ExoPal.genesis;
-                        }},
-                        new RegionPart("-glow"){{
-                            mirror = false;
-                            layer = Layer.effect;
-                            color = colorTo = ExoPal.genesisTitan;
-                            blending = Blending.additive;
-                            outline = false;
-                            progress = PartProgress.heat;
                         }}
                 );
                 bullet = new AcceleratingLaserBulletType(460f){{
