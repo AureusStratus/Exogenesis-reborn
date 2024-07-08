@@ -210,6 +210,7 @@ public class ExoFx{
                 color(Color.white);
                 Fill.circle(e.x, e.y, e.fin() * 20f);
             }),
+
             colorBomb = new Effect(40f, 100f, e -> {
                 color(e.color);
                 stroke(e.fout() * 2f);
