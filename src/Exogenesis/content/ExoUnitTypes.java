@@ -8531,7 +8531,7 @@ public class ExoUnitTypes {
             forceMultiTarget = true;
             armor = 230;
             allowLegStep = hovering = true;
-            shadowElevation = 8f;
+            shadowElevation = 6f;
             groundLayer = Layer.darkness + 1f;
             rotateSpeed = 0.8f;
             legSpeed = 0.5f;
@@ -8561,14 +8561,15 @@ public class ExoUnitTypes {
                         sizeTo = 5;
                         edge = 7;
                         edgeTo = 7;
+                        moveY = 10;
                         mirror = false;
-                        y = 108;
+                        y = 98;
                     }},
                     new RegionPart("-mandible"){{
                         mirror = true;
                         layerOffset = -0.0001f;
                         progress = PartProgress.warmup.curve(Interp.slowFast);
-                        moveRot = -22;
+                        moveRot = -16;
                         moveX = 3;
                         y = 17;
                         x = 77;
@@ -8577,9 +8578,9 @@ public class ExoUnitTypes {
                         mirror = true;
                         layerOffset = -0.0002f;
                         progress = PartProgress.warmup.curve(Interp.slowFast);
-                        moveRot = -15;
+                        moveRot = -12;
                         y = 38;
-                        x = 77;
+                        x = 59;
                     }}
             );
             immunities.addAll(Vars.content.statusEffects());
@@ -8597,25 +8598,26 @@ public class ExoUnitTypes {
                 color = ExoPal.genesisTitan;
             }});
             weapons.add(new Weapon("comet bullets") {{
-                reload = 100f;
+                reload = 180f;
                 mirror = false;
                 rotate = true;
                 rotateSpeed = 6f;
                 recoil = shake = 0;
+                xRand = 30;
                 x = 0;
                 y = 0;
                 shootSound = Sounds.malignShoot;
-                shoot = new ShootMulti(new ShootSummon(0f, 0f, 100, 48f),
+                shoot = new ShootMulti(new ShootSummon(0f, 0f, 300, 148f),
                 new ShootPattern(){{
                     shotDelay = 8;
-                    shots = 10;
+                    shots = 6;
                 }});
                 inaccuracy = 7;
                 shootCone = 90;
 
                 bullet = new FlakBulletType(8f, 700f){{
                     sprite = "missile-large";
-                    lifetime = 45f;
+                    lifetime = 105f;
                     width = 16f;
                     height = 28f;
 
@@ -8624,12 +8626,12 @@ public class ExoUnitTypes {
                             new WaveEffect(){{
                                 colorFrom = ExoPal.genesisLight;
                                 colorTo = ExoPal.genesisTitan;
-                                sizeFrom = 180;
-                                sizeTo = 0f;
+                                sizeFrom = 0;
+                                sizeTo = 35f;
                                 interp = Interp.circle;
                                 lifetime = 35f;
                                 strokeTo = 0;
-                                strokeFrom = 25f;
+                                strokeFrom = 3f;
                             }},
                             new ParticleEffect() {{
                                 particles = 1;
@@ -8638,7 +8640,7 @@ public class ExoUnitTypes {
                                 layer = 114;
                                 interp = Interp.swingIn;
                                 colorFrom = colorTo = Color.black;
-                                sizeFrom = 9f;
+                                sizeFrom = 16f;
                                 sizeTo = 0f;
                             }},
                             new ParticleEffect() {{
@@ -8646,8 +8648,8 @@ public class ExoUnitTypes {
                                 length = 0;
                                 lifetime = 50f;
                                 interp = Interp.swingIn;
-                                colorFrom = colorTo = trailColor;
-                                sizeFrom = 10f;
+                                colorFrom = colorTo = ExoPal.genesisTitan;
+                                sizeFrom = 18f;
                                 sizeTo = 0f;
                             }}
                     );
@@ -8681,10 +8683,11 @@ public class ExoUnitTypes {
                                 length = 75;
                                 strokeFrom = 3;
                                 strokeTo = 0;
+                                cone = 20;
                                 interp = Interp.pow5Out;
                                 lifetime = 20;
-                                lenFrom = 20;
-                                lenTo = 10;
+                                lenFrom = 12;
+                                lenTo = 8;
                                 lightColor = colorFrom = ExoPal.genesisLight;
                                 colorTo = ExoPal.genesisTitan;
                             }},
@@ -8817,7 +8820,7 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-clamaity-turret") {{
-                reload = 160f;
+                reload = 100f;
                 mirror = rotate = true;
                 alternate = true;
                 rotateSpeed = 1.5f;
@@ -8826,17 +8829,17 @@ public class ExoUnitTypes {
                 continuous = true;
                 x = 56;
                 y = 12;
-                shootSound = Sounds.laserblast;
+                shootSound = Sounds.laser;
                 shootY = 0;
                 shootCone = 15;
                 parts.addAll(
                         new BlackHolePart(){{
                             color = colorTo = ExoPal.genesisTitan;
                             growProgress = PartProgress.reload;
-                            size = 0;
-                            sizeTo = 5;
-                            edge = 0;
-                            edgeTo = 7;
+                            size = 5;
+                            sizeTo = 0;
+                            edge = 7;
+                            edgeTo = 0;
                             mirror = false;
                             y = 0;
                         }}
@@ -8859,7 +8862,7 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-clamaity-turret") {{
-                reload = 160f;
+                reload = 100f;
                 mirror = rotate = true;
                 alternate = true;
                 rotateSpeed = 1.5f;
@@ -8867,17 +8870,17 @@ public class ExoUnitTypes {
                 shake = 2f;
                 x = 54;
                 y = -38;
-                shootSound = Sounds.laserblast;
+                shootSound = Sounds.laser;
                 shootY = 0;
                 shootCone = 15;
                 parts.addAll(
                         new BlackHolePart(){{
                             color = colorTo = ExoPal.genesisTitan;
                             growProgress = PartProgress.reload;
-                            size = 0;
-                            sizeTo = 5;
-                            edge = 0;
-                            edgeTo = 7;
+                            size = 5;
+                            sizeTo = 0;
+                            edge = 7;
+                            edgeTo = 0;
                             mirror = false;
                             y = 0;
                         }}
