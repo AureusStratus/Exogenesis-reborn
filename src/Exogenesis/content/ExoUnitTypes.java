@@ -8650,7 +8650,7 @@ public class ExoUnitTypes {
                         instantDisappear = true;
                         fragLifeMin = 1f;
                         fragBullets = 1;
-                        despawnUnit = new MissileUnitType("BigBlueStarDeath") {{
+                        despawnUnit = new MissileUnitType("calamityStar") {{
                             speed = 0f;
                             maxRange = 1f;
                             lifetime = 235f;
@@ -8898,29 +8898,56 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-clamaity-turret") {{
-                reload = 30f;
-                mirror = rotate = alternate = true;
-                rotateSpeed = recoil = shake = 2f;
-                x = 45;
-                y = 25;
-                shootSound = Sounds.blaster;
-                shoot = new ShootHelix(){{
-                    scl = 7;
-                    mag = 2;
-                    shots = 2;
-                }};
-                shootY = 8;
-                cooldownTime = 15;
-                shootCone = 45;
+                reload = 200f;
+                mirror = rotate = true;
+                alternate = true;
+                rotateSpeed = 1.5f;
+                recoil = 0;
+                shake = 2f;
+                continuous = true;
+                x = 56;
+                y = 12;
+                shootSound = Sounds.laserbeam;
+                shootY = 0;
+                shootCone = 15;
                 parts.addAll(
                         new FlarePart(){{
                             progress = PartProgress.heat;
                             color1 = ExoPal.genesisTitan;
-                            y = 8;
-                            sides = 2;
+                            y = 0;
+                            spinSpeed = 1;
+                            sides = 4;
                             radius = 0;
                             radiusTo = 50;
+                            stroke = 3.5f;
+                        }},
+                        new FlarePart(){{
+                            progress = PartProgress.heat;
+                            color1 = ExoPal.genesisTitan;
+                            y = 0;
+                            sides = 2;
+                            followRotation = true;
+                            radius = 0;
+                            radiusTo = 90;
                             stroke = 2.5f;
+                        }},
+                        new ShapePart() {{
+                            circle = true;
+                            progress = PartProgress.reload;
+                            y = 0f;
+                            layer = 114;
+                            radiusTo = 5f;
+                            radius = 0f;
+                            color = Color.white;
+                        }},
+                        new ShapePart() {{
+                            circle = true;
+                            progress = PartProgress.reload;
+                            y = 0f;
+                            layer = 110;
+                            radiusTo = 7f;
+                            radius = 0f;
+                            color = ExoPal.genesis;
                         }},
                         new RegionPart("-glow"){{
                             mirror = false;
@@ -8928,103 +8955,102 @@ public class ExoUnitTypes {
                             color = colorTo = ExoPal.genesisTitan;
                             blending = Blending.additive;
                             outline = false;
-                            progress = PartProgress.smoothReload;
+                            progress = PartProgress.heat;
                         }}
                 );
-                bullet = new EmpBulletType(){{
-                    width = 6f;
-                    height = 9f;
-                    sprite = "circle-bullet";
-                    frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.genesisTitan;
-                    lifetime = 60f;
-                    speed = 7f;
-                    damage = 300f;
-                    splashDamage = 15;
-                    splashDamageRadius = 40;
-                    shrinkY = shrinkX = 0;
-                    radius = 70f;
-                    timeIncrease = 10f;
-                    powerDamageScl = 0.3f;
-                    powerSclDecrease = 0.5f;
-                    unitDamageScl = 0.3f;
-                    despawnHit = true;
-                    status = StatusEffects.blasted;
-                    statusDuration = 100;
-                    hitEffect = ExoFx.colorBombSmall;
-                    shootEffect = Fx.lightningShoot;
-                    trailLength = 12;
-                    trailWidth = 3f;
+                bullet = new AcceleratingLaserBulletType(460f){{
+                    maxLength = 560f;
+                    maxRange = 560f;
+                    oscOffset = 0.3f;
+                    shootEffect = ExoFx.ullarTipHit;
+                    status = ExoStatusEffects.energyZapped;
+                    statusDuration = 400;
+                    lifetime = 200;
+                    width = 15f;
+                    damageType = energy;
+                    collisionWidth = 10f;
+                    colors = new Color[]{ExoPal.genesisTitan.cpy().a(0.2f), ExoPal.genesis, Color.white};
+                    pierceCap = 3;
+                    hitEffect = ExoFx.ullarTipHit;
+                    hitColor = ExoPal.genesisTitan;
                 }};
             }});
-            weapons.add(new Weapon("exogenesis-cronus-ion-blaster") {{
-                reload = 80f;
-                mirror = rotate = alternate = top = true;
-                rotateSpeed = 2.2f;
-                x = 50;
-                y = -15.5f;
-                shootSound = Sounds.shootSmite;
-                shootStatus = StatusEffects.slow;
-                shootStatusDuration = 40;
-                cooldownTime = 120;
-                heatColor = Color.red;
+            weapons.add(new Weapon("exogenesis-clamaity-turret") {{
+                reload = 200f;
+                mirror = rotate = true;
+                alternate = true;
+                rotateSpeed = 1.5f;
+                recoil = 0;
+                shake = 2f;
+                continuous = true;
+                x = 54;
+                y = -38;
+                shootSound = Sounds.laserbeam;
+                shootY = 0;
+                shootCone = 15;
                 parts.addAll(
-                        new RegionPart("-blade"){{
-                            mirror = true;
-                            moveX = 3;
-                            heatColor = Color.red;
-                            moves.add(new PartMove(PartProgress.recoil, 4f, 0f, 0f));
-                            progress = PartProgress.warmup;
+                        new FlarePart(){{
+                            progress = PartProgress.heat;
+                            color1 = ExoPal.genesisTitan;
+                            y = 0;
+                            spinSpeed = 1;
+                            sides = 4;
+                            radius = 0;
+                            radiusTo = 50;
+                            stroke = 3.5f;
+                        }},
+                        new FlarePart(){{
+                            progress = PartProgress.heat;
+                            color1 = ExoPal.genesisTitan;
+                            y = 0;
+                            sides = 2;
+                            followRotation = true;
+                            radius = 0;
+                            radiusTo = 90;
+                            stroke = 2.5f;
+                        }},
+                        new ShapePart() {{
+                            circle = true;
+                            progress = PartProgress.reload;
+                            y = 0f;
+                            layer = 114;
+                            radiusTo = 5f;
+                            radius = 0f;
+                            color = Color.white;
+                        }},
+                        new ShapePart() {{
+                            circle = true;
+                            progress = PartProgress.reload;
+                            y = 0f;
+                            layer = 110;
+                            radiusTo = 7f;
+                            radius = 0f;
+                            color = ExoPal.genesis;
+                        }},
+                        new RegionPart("-glow"){{
+                            mirror = false;
+                            layer = Layer.effect;
+                            color = colorTo = ExoPal.genesisTitan;
+                            blending = Blending.additive;
+                            outline = false;
+                            progress = PartProgress.heat;
                         }}
                 );
-                shoot = new ShootSpread(){{
-                    spread = 5;
-                    shots = 7;
-                }};
-                shootCone = 45;
-                layerOffset = 0.001f;
-                recoil = 3.5f;
-                shake = 0.5f;
-                bullet = new BasicBulletType(8.5f, 207){{
-                    lifetime = 60f;
-                    backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.cronusRed;
-                    impact = true;
-                    knockback = 3f;
-                    sprite = "circle-bullet";
-                    trailSinScl = 2;
-                    trailSinMag = 1.2f;
-                    trailWidth = 5.5f;
-                    trailLength = 10;
-                    hitSize = 12f;
-                    drag = 0.017f;
-                    width = 105f;
-                    height = 7;
-                    shrinkX = 0.45f;
-                    shrinkY = -2.48f;
-                    pierceDamageFactor = 0.3f;
-                    shrinkInterp = Interp.reverse;
-                    pierce = pierceBuilding = laserAbsorb = true;
-                    pierceCap = 6;
-                    splashDamage = 50;
-                    splashDamageRadius = 20;
-                    shootEffect = new MultiEffect(Fx.shootBigColor, Fx.shootBigSmoke);
-                    intervalBullet = new LightningBulletType(){{
-                        damage = 3;
-                        lightningColor = ExoPal.cronusRed;
-                        lightningLength = 4;
-                        lightningLengthRand = 6;
-                        buildingDamageMultiplier = 0.25f;
-                    }};
-                    bulletInterval = 1f;
-                    hitEffect = Fx.circleColorSpark;
-                    despawnEffect = new Effect(35f, 70f, e -> {
-                        Draw.color(e.color, Color.white, e.fout() * 0.7f);
-                        for(int i : Mathf.signs){
-
-                            Drawf.tri(e.x, e.y, height * 1.5f * e.fout(), width * 0.885f * e.fout(), e.rotation + i * 90);
-                            Drawf.tri(e.x, e.y, height * 0.8f * e.fout(), width * 0.252f * e.fout(), e.rotation + 90 + i * 90);
-                        }
-                    });
+                bullet = new AcceleratingLaserBulletType(460f){{
+                    maxLength = 560f;
+                    maxRange = 560f;
+                    oscOffset = 0.3f;
+                    shootEffect = ExoFx.ullarTipHit;
+                    status = ExoStatusEffects.energyZapped;
+                    statusDuration = 400;
+                    lifetime = 200;
+                    width = 15f;
+                    damageType = energy;
+                    collisionWidth = 10f;
+                    colors = new Color[]{ExoPal.genesisTitan.cpy().a(0.2f), ExoPal.genesis, Color.white};
+                    pierceCap = 3;
+                    hitEffect = ExoFx.ullarTipHit;
+                    hitColor = ExoPal.genesisTitan;
                 }};
             }});
         }};
