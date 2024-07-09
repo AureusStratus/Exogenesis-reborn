@@ -103,10 +103,10 @@ public class ExoPlanets{
                         }},
                         new AngleInterpHeight() {{
                             interp = Interp.linear;
-                            dir.set(-0.3f, 5f, -0.6f);
+                            dir.set(-0.3f, 50f, -0.6f);
                             magnitude = 5;
                         }},
-                        new ClampHeight(0f, 0.9f),
+                        new ClampHeight(0f, 1f),
                         new NoiseHeight() {{
                             scale = 6;
                             persistence = 1;
@@ -128,7 +128,7 @@ public class ExoPlanets{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, 0f), 0.30f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, -0.3f), 0.30f, -0.2f)
                 );
 
                 colors.addAll(
@@ -139,14 +139,14 @@ public class ExoPlanets{
                             octaves = 5;
                             magnitude = 1.6f;
                             minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            maxNoise = 1f;
                             out = ExoEnvironmentBlocks.lightningStoneCharged.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
                             seed = 5;
-                            scale = 1.5;
-                            persistence = 0.5;
+                            scale = 7.5;
+                            persistence = 1;
                             octaves = 5;
                             magnitude = 1.2f;
                             minNoise = 0.1f;
@@ -273,7 +273,7 @@ public class ExoPlanets{
                         new CraterHeight(new Vec3(-1.5f, 0.5f, 0.6f), 0.4f, 0.2f) {{
                             set = true;
                         }},
-                        new CraterHeight(new Vec3(1f, 0f, 0.6f), 0.47f, 0.1f) {{
+                        new CraterHeight(new Vec3(1f, 50f, 0.6f), 0.47f, 0.1f) {{
                             set = true;
                         }},
                         new CraterHeight(new Vec3(1f, 5f, 1f), 0.17f, -0.2f)
@@ -296,7 +296,7 @@ public class ExoPlanets{
                             octaves = 1;
                             magnitude = 3.2f;
                             minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            maxNoise = 0.7f;
                             out = ExoEnvironmentBlocks.axinCrystalRock.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
