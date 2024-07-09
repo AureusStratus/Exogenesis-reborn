@@ -2,6 +2,7 @@ package Exogenesis;
 
 import Exogenesis.util.util.Utils;
 import Exogenesis.content.ExoBlocks;
+import Exogenesis.content.ExoVanstarBlocks;
 import Exogenesis.content.ExoUnitTypes;
 import Exogenesis.content.ExoStatusEffects;
 import Exogenesis.content.*;
@@ -22,6 +23,7 @@ public class Exogenesis extends Mod {
         ExoItems.load();
         ExoEnvironmentBlocks.load();
         ExoBlocks.load();
+        ExoVanstarBlocks.load();
         TypeMultipliers.load();
         ExoPlanets.load();
     }
