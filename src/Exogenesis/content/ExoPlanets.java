@@ -98,11 +98,6 @@ public class ExoPlanets{
                         }},
                         new AngleInterpHeight() {{
                             interp = Interp.linear;
-                            dir.set(-0.3f, 8f, -0.6f);
-                            magnitude = 5;
-                        }},
-                        new AngleInterpHeight() {{
-                            interp = Interp.linear;
                             dir.set(-0.3f, -3f, -0.6f);
                             magnitude = 5;
                         }},
