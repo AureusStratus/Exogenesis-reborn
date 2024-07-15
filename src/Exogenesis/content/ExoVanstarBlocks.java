@@ -86,7 +86,8 @@ import static arc.graphics.g2d.Lines.*;
                         }},
                         new DrawGlowRegion("-glow"){{
                             color = Color.valueOf("70170b");
-                            alpha = 0.4f;
+                            glowIntensity = 1f;
+                            alpha = 0.9f;
                         }}
                 );
                 ambientSound = Sounds.smelter;
@@ -96,12 +97,12 @@ import static arc.graphics.g2d.Lines.*;
                 consumePower(0.60f);
             }};
             //walls
-            listusiumWall = new Wall("copper-wall"){{
+            listusiumWall = new Wall("listusium-wall"){{
                 requirements(Category.defense, with(Items.copper, 6));
                 health = 120;
                 researchCostMultiplier = 0.1f;
             }};
-            largeListusiumWall = new Wall("copper-wall-large"){{
+            largeListusiumWall = new Wall("listusium-wall-large"){{
                 requirements(Category.defense, ItemStack.mult(listusiumWall.requirements, 4));
                 health = 120 * 4;
                 size = 2;
@@ -591,7 +592,6 @@ import static arc.graphics.g2d.Lines.*;
                 recoil = 2f;
                 reload = 80f;
                 shake = 2f;
-                smokeEffect = Fx.none;
                 heatColor = Color.red;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 4;
@@ -950,23 +950,32 @@ import static arc.graphics.g2d.Lines.*;
                             new FlarePart(){{
                                 progress = PartProgress.recoil.curve(Interp.pow2In);
                                 color1 = ExoPal.empyreanIndigo;
-                                y = 10;
+                                y = 16;
                                 followRotation = true;
                                 rotation = 90;
                                 sides = 2;
                                 radius = 0;
-                                radiusTo = 200;
-                                stroke = 7.5f;
+                                radiusTo = 250;
+                                stroke = 3.5f;
                             }},
                             new FlarePart(){{
                                 progress = PartProgress.recoil.curve(Interp.pow2In);
                                 color1 = ExoPal.empyreanIndigo;
-                                y = 10;
-                                spinSpeed = 5;
+                                y = 16;
+                                spinSpeed = 2;
                                 sides = 4;
                                 radius = 0;
                                 radiusTo = 120;
-                                stroke = 3.5f;
+                                stroke = 2.5f;
+                            }},
+                            new EffectSpawnPart() {{
+                                useProgress =  true;
+                                progress = PartProgress.warmup;
+                                effectColor = ExoPal.empyrean;
+                                y = 16;
+                                effect = ExoFx.randLifeSparkExo;
+                                randomEffectRot = 60f;
+                                effectChance = 0.2f;
                             }},
                             new RegionPart("-back"){{
                                 progress = PartProgress.warmup;
@@ -1066,7 +1075,7 @@ import static arc.graphics.g2d.Lines.*;
                 recoil = 5f;
                 reload = 300f;
                 shake = 4f;
-                shootEffect = Fx.shootSmokeSmite;
+                shootEffect = ExoFx.randLifeSparkExo;
                 heatColor = Color.red;
                 outlineColor = ExoPal.empyreanOutline;
                 rotateSpeed = 1;
@@ -1109,7 +1118,7 @@ import static arc.graphics.g2d.Lines.*;
                     );
                 }};
                 shootType = new ExoBasicBulletType(10f, 207){{
-                    lifetime = 35f;
+                    lifetime = 45f;
                     backColor = lightColor = lightningColor = trailColor = hitColor = ExoPal.empyreanblue;
                     impact = true;
                     knockback = 7f;
@@ -1346,6 +1355,7 @@ import static arc.graphics.g2d.Lines.*;
                                 effectColor = ExoPal.empyrean;
                                 y = shootY;
                                 effect = ExoFx.supernovaSpark;
+                                randomEffectRot = 360f;
                                 effectChance = 0.2f;
                             }},
                             new RegionPart("-blade"){{
@@ -1470,11 +1480,11 @@ import static arc.graphics.g2d.Lines.*;
                 }};
             }};
             //tier 4
-            arbiter = new PowerTurret("arbiter"){{
+            arbiter = new SpeedupTurret("arbiter"){{
                 requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
                 range = 350f;
                 recoil = 0;
-                reload = 25;
+                reload = 35;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 8;
                 scaledHealth = 280;
@@ -1483,6 +1493,10 @@ import static arc.graphics.g2d.Lines.*;
                 shootSound = Sounds.laser;
                 shootCone = 20f;
                 shootY = 27;
+                warmupMaintainTime = 120f;
+                maxSpeedupScl = 6f;
+                speedupPerShoot = 0.1f;
+                overheatTime = 400f;
                 shoot = new ShootAlternate(){{
                     barrels = 2;
                     spread = 20;
@@ -1495,17 +1509,17 @@ import static arc.graphics.g2d.Lines.*;
                         int f = i;
                         parts.addAll(
                                 new RegionPart("-barrel-" + (i == 0 ? "l" : "r")){{
-                                    progress = PartProgress.smoothReload.curve(Interp.fastSlow);
+                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
                                     recoilIndex = f;
                                     moveY = -6.5f;
                                 }},
                                 new RegionPart("-barrel-body"){{
-                                    progress = PartProgress.smoothReload.curve(Interp.fastSlow);
+                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
                                     under = true;
                                     mirror = true;
                                 }},
                                 new RegionPart("-barrel-plate-" + (i == 0 ? "l" : "r")){{
-                                    progress = PartProgress.smoothReload.curve(Interp.fastSlow);
+                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
                                     recoilIndex = f;
                                     moveY = -8.5f;
                                 }}
@@ -1513,12 +1527,14 @@ import static arc.graphics.g2d.Lines.*;
                     }
                 }};
                 shootType = new ExoBasicBulletType(19, 270){{
-                    lifetime = 30f;
+                    lifetime = 20f;
                     damageType = kinetic;
-                    splashDamageRadius = 30;
+                    splashDamageRadius = 40;
                     splashDamage = 30;
-                    width = 10;
-                    height = 19;
+                    status = StatusEffects.unmoving;
+                    statusDuration = 1;
+                    width = 14;
+                    height = 21;
                     sprite = "circle-bullet";
                     pierceArmor = true;
                     shootEffect = ExoFx.randLifeSparkExo;
@@ -1533,7 +1549,7 @@ import static arc.graphics.g2d.Lines.*;
                     });
                     backColor = hitColor = trailColor = ExoPal.empyreanblue;
                     frontColor = Color.white;
-                    trailWidth = 2.5f;
+                    trailWidth = 3.5f;
                     trailLength = 10;
                     despawnEffect = ExoFx.colorBomb;
                     hitEffect = new MultiEffect(ExoFx.empyreanExplosionSplash, Fx.flakExplosionBig);

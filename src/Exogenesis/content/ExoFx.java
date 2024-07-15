@@ -57,7 +57,7 @@ public class ExoFx{
             empyreanExplosionSplash = new Effect(30f, 160f, e -> {
                 color(e.color);
                 stroke(e.fout() * 4f);
-                float circleRad = 5f + e.finpow() * 60f;
+                float circleRad = 2f + e.finpow() * 60f;
                 Lines.circle(e.x, e.y, circleRad);
                 stroke(e.fout());
                 randLenVectors(e.id + 1, 8, 5f + 60f * e.finpow(), (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f + e.fout() * 3f));
