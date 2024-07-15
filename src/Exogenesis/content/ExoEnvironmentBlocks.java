@@ -137,7 +137,7 @@ public class ExoEnvironmentBlocks {
         vanstarock = new Floor("vanstarock") {{
             variants = 7;
         }};
-        vanstarockRound = new Floor("vanstarockRound") {{
+        vanstarockRound = new Floor("vanstarock-round") {{
             variants = 4;
         }};
         skystonegrey = new Floor("skystonegrey") {{

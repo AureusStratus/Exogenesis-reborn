@@ -54,6 +54,37 @@ public class ExoFx{
             Drawf.tri(e.x, e.y, 3f, 35f * e.fout(), i*90);
         }
     }),
+            empyreanExplosionSplash = new Effect(30f, 160f, e -> {
+                color(e.color);
+                stroke(e.fout() * 4f);
+                float circleRad = 5f + e.finpow() * 60f;
+                Lines.circle(e.x, e.y, circleRad);
+                stroke(e.fout());
+                randLenVectors(e.id + 1, 8, 5f + 60f * e.finpow(), (x, y) -> lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f + e.fout() * 3f));
+                rand.setSeed(e.id);
+                for(int i = 0; i < 16; i++){
+                    float angle = rand.random(360f);
+                    float lenRand = rand.random(0.5f, 1f);
+                    Tmp.v1.trns(angle, circleRad);
+
+                    for(int s : Mathf.signs){
+                        Drawf.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, e.foutpow() * 30f, e.fout() * 20f * lenRand + 6f, angle + 90f + s * 90f);
+                    }
+                }
+            }),
+            randLifeSparkExo = new Effect(24f, e -> {
+                color(Color.white, e.color, e.fin());
+                stroke(e.fout() * 1.5f + 0.5f);
+
+                rand.setSeed(e.id);
+                for(int i = 0; i < 15; i++){
+                    float ang = e.rotation + rand.range(9f), len = rand.random(90f * e.finpow());
+                    e.scaled(e.lifetime * rand.random(0.5f, 1f), p -> {
+                        v.trns(ang, len);
+                        lineAngle(e.x + v.x, e.y + v.y, ang, p.fout() * 10f + 0.5f);
+                    });
+                }
+            }),
             shootGiant = new Effect(20, e -> {
                 color(Pal.lightOrange, Color.gray, e.fin());
                 float w = 1.2f + 12 * e.fout();
@@ -289,13 +320,7 @@ public class ExoFx{
 
                 Drawf.light(e.x, e.y, circleRad * 1.6f, e.color, e.fout());
             }),
-            lightEnrCircleSplash = new Effect(26f, e -> {
-                color(e.color);
-                randLenVectors(e.id, 4, 3 + 23 * e.fin(), (x, y) -> {
-                    Fill.circle(e.x + x, e.y + y, e.fout() * 4.5f);
-                    Drawf.light(e.x + x, e.y + y, e.fout() * 5f, e.color, 0.7f);
-                });
-            }),
+
             colorSparkShoot = new Effect(12f, e -> {
                 color(Color.white, e.color, e.fin());
                 stroke(e.fout() * 1.2f + 0.5f);
@@ -435,10 +460,6 @@ public class ExoFx{
         }
         Lines.endLine();
     }).followParent(false),
-            circleOut  = new Effect(60f, 500f, e -> {
-                Lines.stroke(2.5f * e.fout(), e.color);
-                Lines.circle(e.x, e.y, e.rotation * e.fin(pow3Out));
-            }),
 
             hitSparkHuge = new Effect(70, e -> {
                 color(e.color, Color.white, e.fout() * 0.3f);
@@ -506,17 +527,6 @@ public class ExoFx{
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
             }),
-            supernovaCharge = new SwirlEffect(){{
-                lightOpacity = 0.5f;
-                lifetime = 30;
-                length = 8;
-                width = 3;
-                minRot = 30;
-                maxRot = 90;
-                minDst = 0;
-                maxDst = 0;
-                layer = Layer.effect - 0.03f;
-    }},
             starChargeWhite = new Effect(100f, 100f, e -> {
                     color(ExoPal.starWhite);
                     Fill.circle(e.x, e.y, e.fin() * 10);
@@ -805,13 +815,6 @@ public class ExoFx{
 
                 randLenVectors(e.id, 3, 140f * e.fin(), e.rotation, 0f, (x, y) -> {
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
-                });
-            }),
-            redBallfire = new Effect(25f, e -> {
-                color(ExoPal.cronusRedlight, ExoPal.cronusRedDark, e.fin());
-
-                randLenVectors(e.id, 2, 2f + e.fin() * 7f, (x, y) -> {
-                    Fill.circle(e.x + x, e.y + y, 0.2f + e.fout() * 1.5f);
                 });
             }),
             starShockWave = new Effect(95f, e -> {
