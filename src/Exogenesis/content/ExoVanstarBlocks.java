@@ -4,10 +4,14 @@ import Exogenesis.entities.part.EffectSpawnPart;
 import Exogenesis.type.DamageType;
 import Exogenesis.type.bullet.*;
 import Exogenesis.type.bullet.vanilla.*;
+import Exogenesis.util.feature.PositionLightning;
+import Exogenesis.util.func.DrawFunc;
 import Exogenesis.world.blocks.PowerHarvester;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
+import arc.util.Time;
 import arc.util.Tmp;
+import mindustry.Vars;
 import mindustry.entities.abilities.MoveEffectAbility;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
@@ -29,9 +33,11 @@ import mindustry.world.*;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.draw.*;
+import mindustry.world.meta.BuildVisibility;
 import mindustry.world.meta.Env;
 
 import static Exogenesis.type.DamageType.*;
@@ -42,13 +48,14 @@ import static arc.graphics.g2d.Lines.*;
         public static Block
         //blocks
         ductEmpyrean, harvesterSmall, harvesterMedium, siliconForger, platingFactory, metaglassForger, listusiumForge, gigavoltForge, y, u, i, o,
-
+        //cores
+        coreBelief, coreHope, coreReliance,
         //walls
         listusiumWall, largeListusiumWall, coboltWall, largeCoboltWall, ironWall, largeIronWall, vanstaniumWall, largeVanstaniumWall,
         violiteWall, largeVioliteWall, vanstariumWall, largeVanstariumWall, hugeVanstariumWall,
         //turrets
         focalPoint, gale, light, bliss, prism, tanons, /*wrath,*/ glory, essence, purger,
-        excalibur, aspect, godsent, eminence, aeon, grandeur, aether, profane, agios, arbiter, //phoss,
+        excalibur, aspect, godsent, eminence, aeon, grandeur, aether, profane, agios, sin, arbiter, demiurge, phoss,
         empyreanFactory;
         public static void load(){
             //Empyrean blocks
@@ -97,16 +104,37 @@ import static arc.graphics.g2d.Lines.*;
                 consumePower(0.60f);
             }};
             //walls
-            listusiumWall = new Wall("listusium-wall"){{
-                requirements(Category.defense, with(Items.copper, 6));
+            coboltWall = new Wall("cobolt-wall"){{
+                requirements(Category.defense, with(ExoItems.cobolt, 6));
                 health = 120;
+                researchCostMultiplier = 0.1f;
+            }};
+            largeCoboltWall = new Wall("cobolt-wall-large"){{
+                requirements(Category.defense, ItemStack.mult(coboltWall.requirements, 4));
+                health = 120 * 4;
+                size = 2;
+            }};
+            ironWall = new Wall("iron-wall"){{
+                requirements(Category.defense, with(ExoItems.iron, 6));
+                health = 160;
+                researchCostMultiplier = 0.1f;
+            }};
+            largeIronWall = new Wall("iron-wall-large"){{
+                requirements(Category.defense, ItemStack.mult(ironWall.requirements, 4));
+                health = 160 * 4;
+                size = 2;
+            }};
+            listusiumWall = new Wall("listusium-wall"){{
+                requirements(Category.defense, with(ExoItems.litusiumAlloy, 6));
+                health = 190;
                 researchCostMultiplier = 0.1f;
             }};
             largeListusiumWall = new Wall("listusium-wall-large"){{
                 requirements(Category.defense, ItemStack.mult(listusiumWall.requirements, 4));
-                health = 120 * 4;
+                health = 190 * 4;
                 size = 2;
             }};
+
             //turrets Empyrean
             focalPoint = new ContinuousTurret("focal-point"){{
                 requirements(Category.turret, with(ExoItems.oltuxium, 15, ExoItems.cobolt, 20, ExoItems.quartz, 20));
@@ -970,12 +998,12 @@ import static arc.graphics.g2d.Lines.*;
                             }},
                             new EffectSpawnPart() {{
                                 useProgress =  true;
-                                progress = PartProgress.warmup;
-                                effectColor = ExoPal.empyrean;
+                                progress = PartProgress.recoil;
+                                effectColor = ExoPal.empyreanIndigo;
                                 y = 16;
                                 effect = ExoFx.randLifeSparkExo;
                                 randomEffectRot = 60f;
-                                effectChance = 0.2f;
+                                effectChance = 0.8f;
                             }},
                             new RegionPart("-back"){{
                                 progress = PartProgress.warmup;
@@ -1075,7 +1103,7 @@ import static arc.graphics.g2d.Lines.*;
                 recoil = 5f;
                 reload = 300f;
                 shake = 4f;
-                shootEffect = ExoFx.randLifeSparkExo;
+                shootEffect = Fx.colorSparkBig;
                 heatColor = Color.red;
                 outlineColor = ExoPal.empyreanOutline;
                 rotateSpeed = 1;
@@ -1358,6 +1386,15 @@ import static arc.graphics.g2d.Lines.*;
                                 randomEffectRot = 360f;
                                 effectChance = 0.2f;
                             }},
+                            new EffectSpawnPart() {{
+                                useProgress =  true;
+                                progress = PartProgress.recoil;
+                                effectColor = ExoPal.empyrean;
+                                y = shootY;
+                                effect = ExoFx.randLifeSparkExo;
+                                randomEffectRot = 360f;
+                                effectChance = 0.1f;
+                            }},
                             new RegionPart("-blade"){{
                                 progress = PartProgress.warmup.curve(Interp.pow2In);
                                 moveX = 8f;
@@ -1480,6 +1517,356 @@ import static arc.graphics.g2d.Lines.*;
                 }};
             }};
             //tier 4
+            sin = new ContinuousTurret("sin"){{
+                requirements(Category.turret, with(Items.carbide, 50, Items.tungsten, 200, ExoItems.neodymium, 150, ExoItems.litusiumAlloy, 75));
+                shootType = new PointLaserBulletType(){{
+                    damage = 100f;
+                    hitEffect = Fx.blastExplosion;
+                    beamEffect = Fx.none;
+                    beamEffectInterval = 0;
+                    buildingDamageMultiplier = 0.75f;
+                    damageInterval = 1;
+                    color = hitColor = ExoPal.cronusRedlight;
+                    sprite = "laser-white";
+                    status = StatusEffects.melting;
+                    statusDuration = 60;
+                    oscScl /= 1.77f;
+                    oscMag /= 1.33f;
+                    hitShake = 2;
+                    trailLength = 8;
+                }
+                    private final Color tmpColor = new Color();
+                    private final Color from = color, to = ExoPal.cronusRed;
+                    private final static float chargeReload = 65f;
+
+                    private final static float lerpReload = 10f;
+
+                    private boolean charged(Bullet b){
+                        return b.fdata > chargeReload;
+                    }
+
+                    private Color getColor(Bullet b){
+                        return tmpColor.set(from).lerp(to, warmup(b));
+                    }
+
+                    private float warmup(Bullet b){
+                        return Mathf.curve(b.fdata, chargeReload - lerpReload / 2f, chargeReload + lerpReload / 2f);
+                    }
+
+                    @Override
+                    public void update(Bullet b){
+                        super.update(b);
+
+                        b.damage = damage * (1 + warmup(b) * 1.5f);
+
+                        boolean cool = false;
+
+                        if(b.data == null)cool = true;
+                        else if(b.data instanceof Healthc){
+                            Healthc h = (Healthc)b.data;
+                            if(!h.isValid() || !h.within(b.aimX, b.aimY, ((Sized)h).hitSize() + 4)){
+                                b.data = null;
+                                cool = true;
+                            }
+                        }
+
+                        if(cool){
+                            b.fdata = Mathf.approachDelta(b.fdata, 0, 1);
+                        }else b.fdata = Math.min(b.fdata, chargeReload + lerpReload / 2f + 1f);
+
+                        if(charged(b)){
+                            if(!Vars.headless && b.timer(3, 3)){
+                                PositionLightning.createEffect(b, Tmp.v1.set(b.aimX, b.aimY), getColor(b), 1, 2);
+                                if(Mathf.chance(0.25)) ExoFx.randLifeSparkExo.at(b.x, b.y, tmpColor);
+                            }
+
+                            if(b.timer(4, 2.5f)){
+                                Lightning.create(b, getColor(b), b.damage() / 2f, b.aimX, b.aimY, b.rotation() + Mathf.range(34f), Mathf.random(5, 12));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void draw(Bullet b){
+                        float darkenPartWarmup = warmup(b);
+                        float stroke =  b.fslope() * (1f - oscMag + Mathf.absin(Time.time, oscScl, oscMag)) * (darkenPartWarmup + 1) * 5;
+
+                        if(trailLength > 0 && b.trail != null){
+                            float z = Draw.z();
+                            Draw.z(z - 0.0001f);
+                            b.trail.draw(getColor(b), stroke);
+                            Draw.z(z);
+                        }
+
+                        Draw.color(getColor(b));
+                        DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke);
+                        Draw.color(Color.white);
+                        DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke * 0.64f * (2 + darkenPartWarmup) / 3f);
+
+                        Drawf.light(b.aimX, b.aimY, b.x, b.y, stroke, tmpColor, 0.76f);
+                        Drawf.light(b.x, b.y, stroke * 4, tmpColor, 0.76f);
+                        Drawf.light(b.aimX, b.aimY, stroke * 3, tmpColor, 0.76f);
+
+                        Draw.color(tmpColor);
+                        if(charged(b)){
+                            float qW = Mathf.curve(warmup(b), 0.5f, 0.7f);
+
+                            for(int s : Mathf.signs){
+                                Drawf.tri(b.x, b.y, 6, 21 * qW, 90 * s + Time.time * 1.8f);
+                            }
+
+                            for(int s : Mathf.signs){
+                                Drawf.tri(b.x, b.y, 7.2f, 25 * qW, 90 * s + Time.time * -1.1f);
+                            }
+                        }
+
+                        if(darkenPartWarmup > 0.005f){
+                            tmpColor.lerp(Color.white, 0.86f);
+                            Draw.color(tmpColor);
+                            DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke * 0.55f * darkenPartWarmup);
+                            Draw.z(Layer.effect + 1);
+                            DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke * 0.6f * darkenPartWarmup);
+                            Draw.z(Layer.effect + 1);
+                        }
+
+                        Draw.reset();
+                    }
+
+                    @Override
+                    public void hit(Bullet b, float x, float y){
+                        if(Mathf.chance(0.4))hitEffect.at(x, y, b.rotation(), getColor(b));
+                        hitSound.at(x, y, hitSoundPitch, hitSoundVolume);
+
+                        Effect.shake(hitShake, hitShake, b);
+
+                        if(fragOnHit){
+                            createFrags(b, x, y);
+                        }
+                    }
+
+                    @Override
+                    public void hitEntity(Bullet b, Hitboxc entity, float health){
+                        if(entity instanceof Healthc){
+                            Healthc h = (Healthc)entity;
+                            if(charged(b)){
+                                h.damagePierce(b.damage);
+                            }else{
+                                h.damage(b.damage);
+                            }
+                        }
+
+                        if(charged(b) && entity instanceof Unit){
+                            Unit unit = (Unit)entity;
+                            unit.apply(status, statusDuration);
+                        }
+
+                        if(entity == b.data)b.fdata += Time.delta;
+                        else b.fdata = 0;
+                        b.data = entity;
+                    }
+
+                    @Override
+                    public void hitTile(Bullet b, Building build, float x, float y, float initialHealth, boolean direct){
+                        super.hitTile(b, build, x, y, initialHealth, direct);
+                        if(build == b.data)b.fdata += Time.delta;
+                        else b.fdata = 0;
+                        b.data = build;
+                    }
+                };
+                drawer = new DrawTurret("elecian-"){{
+                    parts.addAll(
+                            new EffectSpawnPart() {{
+                                useProgress =  true;
+                                progress = PartProgress.recoil;
+                                effectColor = ExoPal.empyreanIndigo;
+                                y = 16;
+                                effect = ExoFx.randLifeSparkExo;
+                                randomEffectRot = 60f;
+                                effectChance = 0f;
+                            }},
+                            //Exhuast particles
+                            new EffectSpawnPart() {{
+                                useProgress =  true;
+                                mirror = false;
+                                progress = PartProgress.recoil;
+                                effectColor = ExoPal.cronusRed;
+                                y = -18.25f;
+                                effect = new ParticleEffect(){{
+                                    particles = 1;
+                                    line = true;
+                                    layer = 108;
+                                    length = 35f;
+                                    lifetime = 31f;
+                                    baseLength = 8;
+                                    cone = 20;
+                                    interp = Interp.sineOut;
+                                    colorFrom = colorTo = Color.valueOf("9681fb");
+                                    strokeFrom = 2;
+                                    lenFrom = 10;
+                                    lenTo = 0f;
+                                }};
+                                randomEffectRot = 60f;
+                                effectChance = 0.25f;
+                            }},
+                            new EffectSpawnPart() {{
+                                useProgress =  true;
+                                mirror = true;
+                                progress = PartProgress.recoil;
+                                effectColor = ExoPal.cronusRed;
+                                x = 8.5f;
+                                y = -11f;
+                                effect = new ParticleEffect(){{
+                                    particles = 1;
+                                    line = true;
+                                    layer = 108;
+                                    length = 35f;
+                                    lifetime = 31f;
+                                    baseLength = 8;
+                                    cone = 20;
+                                    interp = Interp.sineOut;
+                                    colorFrom = colorTo = Color.valueOf("9681fb");
+                                    strokeFrom = 2;
+                                    lenFrom = 10;
+                                    lenTo = 0f;
+                                }};
+                                randomEffectRot = 60f;
+                                effectChance = 0.25f;
+                            }},
+                            //barrel particles
+                            new RegionPart("-exhuast-glow"){{
+                                mirror = false;
+                                under = true;
+                                layer = Layer.effect;
+                                color = new Color(1f, 1f, 1f, 0f);
+                                colorTo = ExoPal.cronusRed;
+                                blending = Blending.additive;
+                                outline = false;
+                                progress = PartProgress.warmup;
+                            }},
+                            new RegionPart("-exhuast-glowExtra"){{
+                                mirror = false;
+                                under = true;
+                                layer = Layer.effect;
+                                color = new Color(1f, 1f, 1f, 0f);
+                                colorTo = ExoPal.cronusRed;
+                                blending = Blending.additive;
+                                outline = false;
+                                progress = PartProgress.recoil;
+                            }},
+                            new EffectSpawnPart() {{
+                                useProgress = mirror = true;
+                                progress = PartProgress.warmup;
+                                y = 0f;
+                                x = 3.5f;
+                                effectColor = ExoPal.cronusRed;
+                                effect = ExoFx.railgunSpark;
+                                randomEffectRot = 0;
+                                effectChance = 1f;
+                            }},
+                            new RegionPart("-body-charger"){{
+                                progress = PartProgress.warmup.curve(Interp.sineOut);
+                                moveY = -3.5f;
+                                mirror = false;
+                            }},
+                            new RegionPart("-barrel"){{
+                                progress = PartProgress.warmup.curve(Interp.fastSlow);
+                                moveX = 3f;
+                                moves.add(new PartMove(PartProgress.warmup.delay(0.9f), 0f, -2f, 0f));
+                                mirror = true;
+                            }},
+                            new RegionPart("-bars"){{
+                                mirror = false;
+                            }},
+                            new RegionPart("-bottom-barrel"){{
+                                progress = PartProgress.warmup.curve(Interp.fastSlow).delay(0.92f);
+                                moveX = 2f;
+                                mirror = true;
+                            }},
+                            new RegionPart("-bars-bottom"){{
+                                mirror = false;
+                            }}
+                    );
+                }};
+
+                shootSound = Sounds.none;
+                loopSoundVolume = 1f;
+                loopSound = Sounds.laserbeam;
+
+                shootWarmupSpeed = 0.08f;
+                shootCone = 360f;
+
+                aimChangeSpeed = 1.75f;
+                rotateSpeed = 1f;
+                canOverdrive = false;
+
+                shootY = 16f;
+                minWarmup = 0.8f;
+                warmupMaintainTime = 45;
+                shootWarmupSpeed /= 2;
+                outlineColor = ExoPal.empyreanOutline;
+                size = 7;
+                range = 420f;
+                scaledHealth = 300;
+                armor = 10;
+
+                unitSort = UnitSorts.strongest;
+
+                consumePower(16);
+                consumeLiquid(Liquids.cryofluid, 12f / 60f);
+            }};
+            demiurge = new PowerTurret("demiurge"){{
+                requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
+                range = 230f;
+                recoil = 3;
+                reload = 85;
+                outlineColor = ExoPal.empyreanOutline;
+                size = 8;
+                scaledHealth = 280;
+                heatColor = Color.red;
+                shootSound = Sounds.laser;
+                shootCone = 20f;
+                shootY = 27;
+                shoot = new ShootSpread(){{
+                    spread = 8;
+                    shots = 7;
+                }};
+                rotateSpeed = 1f;
+                coolant = consumeCoolant(0.2f);
+                consumePower(6f);
+                drawer = new DrawTurret("elecian-"){{
+                        parts.addAll(
+                                new RegionPart("-body-plate"){{
+                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
+                                    moveX = 4;
+                                    mirror = false;
+                                }},
+                                new RegionPart("-barrel-plate"){{
+                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
+                                    mirror = true;
+                                    x = 12.25f;
+                                    y = -8.25f;
+                                    moveRot = 25f;
+                                }},
+                                new RegionPart("-barrel-side-plate"){{
+                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
+                                    mirror = true;
+                                    x = 21.75f;
+                                    y = -17.75f;
+                                    moveRot = 65f;
+                                }}
+                        );
+                }};
+                shootType = new FancyLaserBulletType(){{
+                    damage = 275f;
+                    sideWidth = 0f;
+                    largeHit = true;
+                    width = 32f;
+                    length = 230f;
+                    hitColor = ExoPal.empyreanIndigoDark;
+                    shootEffect = ExoFx.square45_6_45;
+                    colors = new Color[]{ExoPal.empyreanIndigoDark.cpy().a(0.3f), ExoPal.empyreanIndigo, Color.white};
+                }};
+            }};
             arbiter = new SpeedupTurret("arbiter"){{
                 requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
                 range = 350f;
@@ -1495,7 +1882,7 @@ import static arc.graphics.g2d.Lines.*;
                 shootY = 27;
                 warmupMaintainTime = 120f;
                 maxSpeedupScl = 6f;
-                speedupPerShoot = 0.1f;
+                speedupPerShoot = 0.08f;
                 overheatTime = 400f;
                 shoot = new ShootAlternate(){{
                     barrels = 2;
@@ -1563,6 +1950,41 @@ import static arc.graphics.g2d.Lines.*;
                 size = 3;
                 consumePower(1.2f);
             }};
+            //cores
+            coreBelief = new CoreBlock("core-belief"){{
+                requirements(Category.effect, with(ExoItems.rustyCopper, 1000, ExoItems.cobolt, 800));
+                alwaysUnlocked = true;
 
+                isFirstTier = true;
+                unitType = UnitTypes.alpha;
+                health = 1100;
+                itemCapacity = 4000;
+                size = 3;
+
+                unitCapModifier = 8;
+            }};
+            coreHope = new CoreBlock("core-hope"){{
+                requirements(Category.effect, with(ExoItems.rustyCopper, 3000, ExoItems.cobolt, 3000, Items.silicon, 2000));
+
+                unitType = UnitTypes.beta;
+                health = 3500;
+                itemCapacity = 9000;
+                size = 5;
+                thrusterLength = 20f;
+                unitCapModifier = 16;
+                researchCostMultiplier = 0.07f;
+            }};
+            coreReliance = new CoreBlock("core-reliance"){{
+                requirements(Category.effect, with(ExoItems.rustyCopper, 8000, ExoItems.cobolt, 8000, Items.silicon, 5000, ExoItems.neodymium, 4000));
+
+                unitType = UnitTypes.gamma;
+                health = 6000;
+                itemCapacity = 13000;
+                size = 6;
+                thrusterLength = 24f;
+
+                unitCapModifier = 24;
+                researchCostMultiplier = 0.11f;
+            }};
         }
     }

@@ -126,7 +126,17 @@ public class DrawFunc{
             );
         }
     }
-    
+    public static void basicLaser(float x, float y, float x2, float y2, float stroke, float circleScl){
+        Lines.stroke(stroke);
+        Lines.line(x, y, x2, y2, false);
+        Fill.circle(x, y, stroke * circleScl);
+        Fill.circle(x2, y2, stroke * circleScl);
+        Lines.stroke(1f);
+    }
+
+    public static void basicLaser(float x, float y, float x2, float y2, float stroke){
+        basicLaser(x, y, x2, y2, stroke, 0.95f);
+    }
     public static void randLenVectors(long seed, int amount, float length, float minLength, float angle, float range, Floatc2 cons){
         rand.setSeed(seed);
         for(int i = 0; i < amount; i++){
