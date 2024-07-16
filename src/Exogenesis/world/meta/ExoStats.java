@@ -34,7 +34,10 @@ public class ExoStats{
 
     public static void addTypeStatsUnit(){
         Vars.content.units().each(unit -> {
-                unit.checkStats();
+                //unit.checkStats();
+            if(TypeMultipliers.getMultipliers(unit) != null){
+                unit.stats.add(typeDamage, damageTypes(TypeMultipliers.getMultipliers(unit)));
+            }
             //just replaces all unit's weapon tables, I don't care at this point
             unit.stats.remove(Stat.weapons);
             unit.stats.add(Stat.weapons, table -> { //StatValues.weapons merged with weapon stats (with a single change)

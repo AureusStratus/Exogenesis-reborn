@@ -616,19 +616,19 @@ import static arc.graphics.g2d.Lines.*;
             }};
             excalibur = new PowerTurret("excalibur"){{
                 requirements(Category.turret, with(ExoItems.cobolt, 120, ExoItems.oltuxium, 80, ExoItems.rustyCopper, 160, ExoItems.neodymium, 50, ExoItems.empyreanPlating, 100, ExoItems.viliotStone, 100, ExoItems.litusiumAlloy, 70));
-                range = 270f;
+                range = 370f;
                 recoil = 2f;
                 reload = 80f;
                 shake = 2f;
                 heatColor = Color.red;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 4;
-                shootY = 13;
+                shootY = 10;
                 scaledHealth = 280;
                 targetAir = false;
                 shootSound = Sounds.largeCannon;
                 shoot = new ShootPattern(){{
-                    shots = 6;
+                    shots = 7;
                     shotDelay = 5;
                 }};
                 velocityRnd = 0.3f;
@@ -1333,12 +1333,13 @@ import static arc.graphics.g2d.Lines.*;
                 recoil = 0f;
                 reload = 230f;
                 shake = 4f;
+                shootEffect = ExoFx.colorBomb;
                 heatColor = Color.red;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 5;
                 scaledHealth = 280;
                 cooldownTime = 320;
-                shootSound = Sounds.bolt;
+                shootSound = Sounds.pulseBlast;
 
                 warmupMaintainTime = 30f;
                 minWarmup = 0.96f;
@@ -1693,7 +1694,7 @@ import static arc.graphics.g2d.Lines.*;
                                 y = -18.25f;
                                 effect = ExoFx.supernovaSpark;
                                 randomEffectRot = 20f;
-                                effectChance = 0.25f;
+                                effectChance = 0.15f;
                             }},
                             new EffectSpawnPart() {{
                                 useProgress =  true;
@@ -1704,14 +1705,14 @@ import static arc.graphics.g2d.Lines.*;
                                 y = -11f;
                                 effect = ExoFx.supernovaSpark;
                                 randomEffectRot = 20f;
-                                effectChance = 0.25f;
+                                effectChance = 0.15f;
                             }},
                             //barrel particles
                             new RegionPart("-exhuast-glow"){{
                                 mirror = false;
                                 layer = Layer.effect;
-                                color = ExoPal.cronusRed;
-                                colorTo = new Color(1f, 1f, 1f, 0f);
+                                color = new Color(1f, 1f, 1f, 0f);
+                                colorTo = ExoPal.cronusRed;
                                 blending = Blending.additive;
                                 outline = false;
                                 progress = PartProgress.warmup;
@@ -1719,11 +1720,11 @@ import static arc.graphics.g2d.Lines.*;
                             new RegionPart("-exhuast-glowExtra"){{
                                 mirror = false;
                                 layer = Layer.effect;
-                                color = ExoPal.cronusRed;
-                                colorTo = new Color(1f, 1f, 1f, 0f);
+                                color = new Color(1f, 1f, 1f, 0f);
+                                colorTo = ExoPal.cronusRed;
                                 blending = Blending.additive;
                                 outline = false;
-                                progress = PartProgress.recoil;
+                                progress = PartProgress.warmup;
                             }},
                             new EffectSpawnPart() {{
                                 useProgress = mirror = true;
@@ -1732,8 +1733,8 @@ import static arc.graphics.g2d.Lines.*;
                                 x = 3.5f;
                                 effectColor = ExoPal.cronusRed;
                                 effect = ExoFx.railgunSpark;
-                                randomEffectRot = 4;
-                                effectChance = 0.3f;
+                                randomEffectRot = 1;
+                                effectChance = 0.01f;
                             }},
                             new EffectSpawnPart() {{
                                 useProgress =  true;
@@ -1776,7 +1777,7 @@ import static arc.graphics.g2d.Lines.*;
                             }},
                             new RegionPart("-body-charger"){{
                         progress = PartProgress.warmup.curve(Interp.sineOut);
-                        moveY = -3.5f;
+                        moveY = -2.5f;
                         mirror = false;
                     }}
 
@@ -1784,17 +1785,18 @@ import static arc.graphics.g2d.Lines.*;
                 }};
 
                 shootSound = Sounds.none;
+                recoil = 1;
                 loopSoundVolume = 1f;
                 loopSound = Sounds.laserbeam;
 
                 shootWarmupSpeed = 0.08f;
-                shootCone = 360f;
+                shootCone = 10f;
 
                 aimChangeSpeed = 0.9f;
                 rotateSpeed = 0.9f;
                 canOverdrive = false;
 
-                shootY = -6f;
+                shootY = 0f;
                 minWarmup = 0.8f;
                 warmupMaintainTime = 45;
                 shootWarmupSpeed /= 2;
@@ -1813,37 +1815,41 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
                 range = 230f;
                 recoil = 3;
-                reload = 125;
+                reload = 185;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 10;
+                cooldownTime = 220;
                 scaledHealth = 280;
-                heatColor = Color.red;
-                shootSound = Sounds.laser;
+                moveWhileCharging = true;
+                chargeSound = Sounds.lasercharge;
+                heatColor = ExoPal.empyreanIndigo;
+                shootSound = Sounds.shockBlast;
                 shootCone = 60f;
-                shootY = 27;
+                shootY = 36;
                 shoot = new ShootSpread(){{
-                    spread = 12;
+                    spread = 18;
                     shots = 7;
+                    firstShotDelay = 80;
                 }};
-                rotateSpeed = 1f;
+                rotateSpeed = 0.7f;
                 coolant = consumeCoolant(0.2f);
                 consumePower(6f);
                 drawer = new DrawTurret("elecian-"){{
                         parts.addAll(
                                 new RegionPart("-body-plate"){{
-                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
+                                    progress = PartProgress.recoil.curve(Interp.circleOut);
                                     moveX = 4;
                                     mirror = false;
                                 }},
                                 new RegionPart("-barrel-plate"){{
-                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
+                                    progress = PartProgress.recoil.curve(Interp.circleOut);
                                     mirror = true;
                                     x = 12.25f;
                                     y = -8.25f;
                                     moveRot = -25f;
                                 }},
-                                new RegionPart("-barrel-side-plate"){{
-                                    progress = PartProgress.recoil.curve(Interp.fastSlow);
+                                new RegionPart("-side-plate"){{
+                                    progress = PartProgress.recoil.curve(Interp.circleOut);
                                     mirror = true;
                                     x = 21.75f;
                                     y = -17.75f;
@@ -1853,10 +1859,10 @@ import static arc.graphics.g2d.Lines.*;
                 }};
                 shootType = new FancyLaserBulletType(){{
                     damage = 275f;
-                    lifetime = 60;
+                    lifetime = 30;
                     sideWidth = 0f;
                     largeHit = true;
-                    width = 42f;
+                    width = 62f;
                     length = 230f;
                     hitColor = ExoPal.empyreanIndigoDark;
                     shootEffect = ExoFx.square45_6_45;
@@ -1867,7 +1873,7 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
                 range = 350f;
                 recoil = 0;
-                reload = 35;
+                reload = 125;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 8;
                 scaledHealth = 280;
@@ -1878,8 +1884,8 @@ import static arc.graphics.g2d.Lines.*;
                 shootY = 24;
                 warmupMaintainTime = 120f;
                 maxSpeedupScl = 6f;
-                speedupPerShoot = 0.08f;
-                overheatTime = 400f;
+                speedupPerShoot = 0.1f;
+                overheatTime = 800f;
                 shoot = new ShootAlternate(){{
                     barrels = 2;
                     spread = 20;
