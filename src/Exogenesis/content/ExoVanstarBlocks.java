@@ -658,7 +658,7 @@ import static arc.graphics.g2d.Lines.*;
                     damage = 150;
                     sprite = "shell";
                     knockback = 2f;
-                    lifetime = 140f;
+                    lifetime = 160f;
                     height = 27f;
                     width = 21f;
                     splashDamageRadius = 65f;
@@ -1112,7 +1112,7 @@ import static arc.graphics.g2d.Lines.*;
                 shootY = 12;
                 scaledHealth = 280;
                 cooldownTime = 320;
-                shootSound = ExoSounds.shockblast;
+                shootSound = Sounds.pulseBlast;
                 shootCone = 35f;
                 shoot = new ShootSpread(){{
                     spread = 7f;
@@ -1331,7 +1331,7 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.turret, with(ExoItems.cobolt, 400, Items.silicon, 300, ExoItems.gold, 150, ExoItems.luxiteStone, 300, ExoItems.lightningStone, 300, ExoItems.iron, 400, ExoItems.osmium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 250, ExoItems.litusiumAlloy, 150));
                 range = 290f;
                 recoil = 0f;
-                reload = 230f;
+                reload = 330f;
                 shake = 4f;
                 shootEffect = ExoFx.colorBomb;
                 heatColor = Color.red;
@@ -1738,7 +1738,7 @@ import static arc.graphics.g2d.Lines.*;
                             }},
                             new EffectSpawnPart() {{
                                 useProgress =  true;
-                                progress = PartProgress.recoil;
+                                progress = PartProgress.warmup;
                                 effectColor = ExoPal.cronusRed;
                                 y = shootY;
                                 effect = ExoFx.randLifeSparkExo;
@@ -1747,7 +1747,7 @@ import static arc.graphics.g2d.Lines.*;
                             }},
                             new EffectSpawnPart() {{
                                 useProgress =  true;
-                                progress = PartProgress.recoil;
+                                progress = PartProgress.warmup;
                                 effectColor = ExoPal.cronusRed;
                                 y = shootY;
                                 effect = ExoFx.supernovaSpark;
@@ -1813,9 +1813,9 @@ import static arc.graphics.g2d.Lines.*;
             }};
             demiurge = new PowerTurret("demiurge"){{
                 requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
-                range = 230f;
+                range = 300f;
                 recoil = 3;
-                reload = 185;
+                reload = 285;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 10;
                 cooldownTime = 220;
@@ -1829,41 +1829,41 @@ import static arc.graphics.g2d.Lines.*;
                 shoot = new ShootSpread(){{
                     spread = 18;
                     shots = 7;
-                    firstShotDelay = 80;
+                    firstShotDelay = 100;
                 }};
                 rotateSpeed = 0.7f;
                 coolant = consumeCoolant(0.2f);
                 consumePower(6f);
                 drawer = new DrawTurret("elecian-"){{
                         parts.addAll(
-                                new RegionPart("-body-plate"){{
-                                    progress = PartProgress.recoil.curve(Interp.circleOut);
-                                    moveX = 4;
-                                    mirror = false;
+                                new RegionPart("-side-plate"){{
+                                    progress = PartProgress.smoothReload.curve(Interp.bounceOut);
+                                    mirror = true;
+                                    x = 21.75f;
+                                    y = -17.75f;
+                                    moveRot = -65f;
                                 }},
                                 new RegionPart("-barrel-plate"){{
-                                    progress = PartProgress.recoil.curve(Interp.circleOut);
+                                    progress = PartProgress.smoothReload.curve(Interp.bounceOut);
                                     mirror = true;
                                     x = 12.25f;
                                     y = -8.25f;
                                     moveRot = -25f;
                                 }},
-                                new RegionPart("-side-plate"){{
+                                new RegionPart("-body-plate"){{
                                     progress = PartProgress.recoil.curve(Interp.circleOut);
+                                    moveX = 4;
                                     mirror = true;
-                                    x = 21.75f;
-                                    y = -17.75f;
-                                    moveRot = 065f;
                                 }}
                         );
                 }};
                 shootType = new FancyLaserBulletType(){{
                     damage = 275f;
-                    lifetime = 30;
+                    lifetime = 45;
                     sideWidth = 0f;
                     largeHit = true;
                     width = 62f;
-                    length = 230f;
+                    length = 300f;
                     hitColor = ExoPal.empyreanIndigoDark;
                     shootEffect = ExoFx.square45_6_45;
                     colors = new Color[]{ExoPal.empyreanIndigoDark.cpy().a(0.3f), ExoPal.empyreanIndigo, Color.white};
@@ -1883,7 +1883,7 @@ import static arc.graphics.g2d.Lines.*;
                 shootCone = 20f;
                 shootY = 24;
                 warmupMaintainTime = 120f;
-                maxSpeedupScl = 6f;
+                maxSpeedupScl = 8f;
                 speedupPerShoot = 0.1f;
                 overheatTime = 800f;
                 shoot = new ShootAlternate(){{
@@ -1961,7 +1961,7 @@ import static arc.graphics.g2d.Lines.*;
                 unitType = UnitTypes.alpha;
                 health = 1100;
                 itemCapacity = 4000;
-                size = 3;
+                size = 4;
 
                 unitCapModifier = 8;
             }};
