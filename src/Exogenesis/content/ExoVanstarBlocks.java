@@ -1836,15 +1836,24 @@ import static arc.graphics.g2d.Lines.*;
                 consumePower(6f);
                 drawer = new DrawTurret("elecian-"){{
                         parts.addAll(
+                                new RegionPart("-exhuast-glow"){{
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    color = new Color(1f, 1f, 1f, 0f);
+                                    colorTo = ExoPal.empyreanIndigo;
+                                    blending = Blending.additive;
+                                    outline = false;
+                                    progress = PartProgress.charge;
+                                }},
                                 new RegionPart("-side-plate"){{
-                                    progress = PartProgress.smoothReload.curve(Interp.bounceOut);
+                                    progress = PartProgress.smoothReload.curve(Interp.bounce);
                                     mirror = true;
                                     x = 21.75f;
                                     y = -17.75f;
                                     moveRot = -65f;
                                 }},
                                 new RegionPart("-barrel-plate"){{
-                                    progress = PartProgress.smoothReload.curve(Interp.bounceOut);
+                                    progress = PartProgress.smoothReload.curve(Interp.bounce);
                                     mirror = true;
                                     x = 12.25f;
                                     y = -8.25f;
@@ -1862,6 +1871,7 @@ import static arc.graphics.g2d.Lines.*;
                     lifetime = 45;
                     sideWidth = 0f;
                     largeHit = true;
+                    boltNum = 3;
                     width = 62f;
                     length = 300f;
                     hitColor = ExoPal.empyreanIndigoDark;

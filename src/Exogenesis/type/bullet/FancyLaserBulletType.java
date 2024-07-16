@@ -1,4 +1,6 @@
 package Exogenesis.type.bullet;
+import Exogenesis.type.DamageType;
+import Exogenesis.type.bullet.vanilla.ExoLaserBulletType;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
@@ -10,7 +12,8 @@ import mindustry.gen.Bullet;
 import mindustry.graphics.Drawf;
 import Exogenesis.util.feature.PositionLightning;
 
-public class FancyLaserBulletType extends LaserBulletType {
+public class FancyLaserBulletType extends ExoLaserBulletType {
+    public DamageType damageType = DamageType.energy;
     public boolean drawLine = false;
     public int boltNum = 2;
     public float liWidth = PositionLightning.WIDTH - 1f;
