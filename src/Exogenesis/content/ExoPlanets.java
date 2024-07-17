@@ -245,7 +245,7 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 4);
+                            interp = new Interp.Exp(2, 4);
                             dir.set(10f, 0f, 0f);
                             magnitude = 1.5f;
                         }},
@@ -323,7 +323,7 @@ public class ExoPlanets{
                 );
             }};
             solarSystem = ExoPlanets.zetaTitanus;
-            meshLoader = () -> new HexMesh(this, 6);
+            meshLoader = () -> new HexMesh(this, 7);
             cloudMeshLoader = () -> new MultiMesh(
                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(Color.blue).mul(0.9f).a(0.55f), 2, 0.45f, 0.9f, 0.38f),
                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.white.cpy().lerp(Color.blue, 0.55f).a(0.25f), 2, 0.45f, 1f, 0.61f)

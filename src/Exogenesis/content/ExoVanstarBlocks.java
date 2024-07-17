@@ -1836,7 +1836,7 @@ import static arc.graphics.g2d.Lines.*;
                 consumePower(6f);
                 drawer = new DrawTurret("elecian-"){{
                         parts.addAll(
-                                new RegionPart("-exhuast-glow"){{
+                                new RegionPart("-demiurge-charge1"){{
                                     mirror = false;
                                     layer = Layer.effect;
                                     color = new Color(1f, 1f, 1f, 0f);
@@ -1844,6 +1844,24 @@ import static arc.graphics.g2d.Lines.*;
                                     blending = Blending.additive;
                                     outline = false;
                                     progress = PartProgress.charge;
+                                }},
+                                new RegionPart("-demiurge-charge2"){{
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    color = new Color(1f, 1f, 1f, 0f);
+                                    colorTo = ExoPal.empyreanIndigo;
+                                    blending = Blending.additive;
+                                    outline = false;
+                                    progress = PartProgress.charge.delay(0.99f);
+                                }},
+                                new RegionPart("-demiurge-charge3"){{
+                                    mirror = false;
+                                    layer = Layer.effect;
+                                    color = new Color(1f, 1f, 1f, 0f);
+                                    colorTo = ExoPal.empyreanIndigo;
+                                    blending = Blending.additive;
+                                    outline = false;
+                                    progress = PartProgress.charge.delay(0.98f);
                                 }},
                                 new RegionPart("-side-plate"){{
                                     progress = PartProgress.smoothReload.curve(Interp.bounce);
