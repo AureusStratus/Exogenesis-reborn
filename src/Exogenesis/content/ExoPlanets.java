@@ -182,7 +182,7 @@ public class ExoPlanets{
                     new HexSkyMesh(this, 5, 0.15f, 0.17f, 5, new Color().set(Color.white).mul(0.9f).a(0.45f), 6, 0.35f, 0.4f, 0.18f)
             );
              */
-            meshLoader = () -> new HexMesh(this, 6);
+            meshLoader = () -> new HexMesh(this, 7);
             launchCapacityMultiplier = 0.5f;
             solarSystem = zetaTitanus;
             sectorSeed = 2;
@@ -246,7 +246,7 @@ public class ExoPlanets{
                 heights.addAll(
                         new AngleInterpHeight() {{
                             interp = new Interp.Exp(2, 4);
-                            dir.set(10f, 0f, 0f);
+                            dir.set(10f, 0f, 5f);
                             magnitude = 1.5f;
                         }},
                         new AngleInterpHeight() {{
@@ -256,7 +256,7 @@ public class ExoPlanets{
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.ExpIn(2, 4);
-                            dir.set(-0.3f, -1f, -0.6f);
+                            dir.set(-5f, -10f, 5f);
                             magnitude = 2;
                         }},
                         new ClampHeight(0f, 0.8f),

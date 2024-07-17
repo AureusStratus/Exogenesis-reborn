@@ -1815,7 +1815,7 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));
                 range = 300f;
                 recoil = 3;
-                reload = 285;
+                reload = 485;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 10;
                 cooldownTime = 220;
@@ -1864,14 +1864,14 @@ import static arc.graphics.g2d.Lines.*;
                                     progress = PartProgress.charge.delay(0.98f);
                                 }},
                                 new RegionPart("-side-plate"){{
-                                    progress = PartProgress.smoothReload.curve(Interp.bounce);
+                                    progress = PartProgress.recoil.curve(Interp.bounceIn);
                                     mirror = true;
                                     x = 21.75f;
                                     y = -17.75f;
                                     moveRot = -65f;
                                 }},
                                 new RegionPart("-barrel-plate"){{
-                                    progress = PartProgress.smoothReload.curve(Interp.bounce);
+                                    progress = PartProgress.recoil.curve(Interp.bounceIn);
                                     mirror = true;
                                     x = 12.25f;
                                     y = -8.25f;
