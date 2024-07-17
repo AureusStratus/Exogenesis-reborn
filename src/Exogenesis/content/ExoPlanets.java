@@ -249,16 +249,6 @@ public class ExoPlanets{
                             dir.set(10f, 0f, 5f);
                             magnitude = 1.5f;
                         }},
-                        new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 4);
-                            dir.set(-0.5f, 0.5f, 1);
-                            magnitude = 2;
-                        }},
-                        new AngleInterpHeight() {{
-                            interp = new Interp.ExpIn(2, 4);
-                            dir.set(-5f, -10f, 5f);
-                            magnitude = 2;
-                        }},
                         new ClampHeight(0f, 0.8f),
                         new NoiseHeight() {{
                             scale = 4;
