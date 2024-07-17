@@ -245,7 +245,7 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.Exp(2, 4);
+                            interp = new Interp.Exp(2, 10);
                             dir.set(10f, 0f, 5f);
                             magnitude = 1.5f;
                         }},
