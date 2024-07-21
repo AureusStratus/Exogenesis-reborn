@@ -92,17 +92,17 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = Interp.linear;
+                            interp = new Interp.Exp(7, 3);
                             dir.set(20f, 0f, 0f);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
-                            interp = Interp.linear;
+                            interp = new Interp.Exp(7, 3);
                             dir.set(-0.3f, -3f, -0.6f);
                             magnitude = 2;
                         }},
                         new AngleInterpHeight() {{
-                            interp = Interp.linear;
+                            interp = new Interp.Exp(7, 1);
                             dir.set(-0.3f, 50f, -0.6f);
                             magnitude = 2;
                         }},
