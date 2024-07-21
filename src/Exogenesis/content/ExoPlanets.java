@@ -93,15 +93,15 @@ public class ExoPlanets{
                 heights.addAll(
                         new AngleInterpHeight() {{
                             interp = new Interp.Exp(7, 3);
-                            dir.set(20f, 0f, 0f);
+                            dir.set(80f, 0f, 0f);
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
-                            dir.set(-0.3f, -3f, 0f);
+                            dir.set(0f, 50f, 0f);
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
-                            dir.set(-0.3f, 50f, 0f);
+                            dir.set(0f, 0f, 0f);
                             magnitude = 1;
                         }},
                         new ClampHeight(0f, 1f),
@@ -136,7 +136,7 @@ public class ExoPlanets{
                             octaves = 5;
                             magnitude = 1.6f;
                             minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            maxNoise = 0.55f;
                             out = ExoEnvironmentBlocks.lightningStoneCharged.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -147,7 +147,7 @@ public class ExoPlanets{
                             octaves = 5;
                             magnitude = 1.2f;
                             minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            maxNoise = 0.55f;
                             out = ExoEnvironmentBlocks.lightningStoneDim.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -158,7 +158,7 @@ public class ExoPlanets{
                             octaves = 7;
                             magnitude = 1.2f;
                             minNoise = 0.1f;
-                            maxNoise = 0.6f;
+                            maxNoise = 0.5f;
                             out = ExoEnvironmentBlocks.yellowGrass.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
