@@ -97,13 +97,11 @@ public class ExoPlanets{
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.Exp(7, 3);
-                            dir.set(-0.3f, -3f, -0.6f);
+                            dir.set(-0.3f, -3f, 0f);
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
-                            interp = new Interp.Exp(7, 1);
-                            dir.set(-0.3f, 50f, -0.6f);
+                            dir.set(-0.3f, 50f, 0f);
                             magnitude = 1;
                         }},
                         new ClampHeight(0f, 1f),
@@ -137,8 +135,8 @@ public class ExoPlanets{
                             persistence = 0.5f;
                             octaves = 5;
                             magnitude = 1.6f;
-                            minNoise = 0.4f;
-                            maxNoise = 1f;
+                            minNoise = 0.1f;
+                            maxNoise = 0.4f;
                             out = ExoEnvironmentBlocks.lightningStoneCharged.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
@@ -160,7 +158,7 @@ public class ExoPlanets{
                             octaves = 7;
                             magnitude = 1.2f;
                             minNoise = 0.1f;
-                            maxNoise = 0.4f;
+                            maxNoise = 0.6f;
                             out = ExoEnvironmentBlocks.yellowGrass.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
