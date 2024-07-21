@@ -94,17 +94,17 @@ public class ExoPlanets{
                         new AngleInterpHeight() {{
                             interp = new Interp.Exp(7, 3);
                             dir.set(20f, 0f, 0f);
-                            magnitude = 2;
+                            magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.Exp(7, 3);
                             dir.set(-0.3f, -3f, -0.6f);
-                            magnitude = 2;
+                            magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
                             interp = new Interp.Exp(7, 1);
                             dir.set(-0.3f, 50f, -0.6f);
-                            magnitude = 2;
+                            magnitude = 1;
                         }},
                         new ClampHeight(0f, 1f),
                         new NoiseHeight() {{
@@ -114,7 +114,7 @@ public class ExoPlanets{
                             octaves = 1;
                             magnitude = 0.5f;
                             heightOffset = -1f;
-                            offset.set(0f, 100f, -500f);
+                            offset.set(0f, 100f, -100f);
                         }},
                         new ClampHeight(-0.2f, 0.9f),
                         //mountain
@@ -128,23 +128,22 @@ public class ExoPlanets{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, -0.6f), 0.30f, -0.2f)
+                        new CraterHeight(new Vec3(1f, 0f, -0.6f), 0.30f, -0.6f)
                 );
-
                 colors.addAll(
                         new NoiseColorPass() {{
                             seed = 5;
                             scale = 3.5;
-                            persistence = 1;
+                            persistence = 0.5f;
                             octaves = 5;
                             magnitude = 1.6f;
-                            minNoise = 0.1f;
+                            minNoise = 0.4f;
                             maxNoise = 1f;
                             out = ExoEnvironmentBlocks.lightningStoneCharged.mapColor;
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
-                            seed = 5;
+                            seed = 8;
                             scale = 7.5;
                             persistence = 1;
                             octaves = 5;
@@ -155,8 +154,8 @@ public class ExoPlanets{
                             offset.set(1500f, 300f, -500f);
                         }},
                         new NoiseColorPass() {{
-                            seed = 8;
-                            scale = 1.5;
+                            seed = 4;
+                            scale = 2.5;
                             persistence = 0.5;
                             octaves = 7;
                             magnitude = 1.2f;
