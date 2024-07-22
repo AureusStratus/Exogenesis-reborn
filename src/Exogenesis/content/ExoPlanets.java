@@ -97,10 +97,12 @@ public class ExoPlanets{
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
+                            interp = Interp.linear;
                             dir.set(0f, 50f, 0f);
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
+                            interp = Interp.linear;
                             dir.set(0f, 0f, 0f);
                             magnitude = 1;
                         }},
