@@ -98,27 +98,50 @@ public class ExoFx{
                     });
                 }
             }),
-            shootGiant = new Effect(20, e -> {
-                color(Pal.lightOrange, Color.gray, e.fin());
-                float w = 1.2f + 12 * e.fout();
-                Drawf.tri(e.x, e.y, w, 29f * e.fout(), e.rotation);
-                Drawf.tri(e.x, e.y, w, 5f * e.fout(), e.rotation + 180f);
+            testHit2 = new Effect(45, e -> {
+                color(e.color);
+                e.rotation = e.fin() * 200;
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 5, e.fout() * 70, e.rotation + (90 * i));
+                }
+                color();
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 3, e.fout() * 50, e.rotation + (90 * i));
+                }
+                Lines.stroke(e.fout() * 1.5f);
+                Lines.circle(e.x, e.y, 20 + e.fin() * 10);
             }),
-            casingLarge = new Effect(45f, e -> {
-                color(Pal.lightOrange, Pal.lightishGray, Pal.lightishGray, e.fin());
-                alpha(e.fout(0.5f));
-                float rot = Math.abs(e.rotation) + 90f;
-                int i = -Mathf.sign(e.rotation);
-                float len = (4f + e.finpow() * 9f) * i;
-                float lr = rot + Mathf.randomSeedRange(e.id + i + 6, 20f * e.fin()) * i;
 
-                rect(Core.atlas.find("casing"),
-                        e.x + trnsx(lr, len) + Mathf.randomSeedRange(e.id + i + 7, 3f * e.fin()),
-                        e.y + trnsy(lr, len) + Mathf.randomSeedRange(e.id + i + 8, 3f * e.fin()),
-                        4.5f, 8f,
-                        rot + e.fin() * 50f * i
-                );
-            }).layer(Layer.bullet),
+         testHit1 = new Effect(30, e -> {
+             color(Color.white, e.color, e.fin());
+             for (int i = 0; i < 2; i++) {
+                 Drawf.tri(e.x, e.y, e.fout() * 5, e.fout() * 70, e.rotation - 190 + (25 * i) - e.fin());
+             }
+             Lines.stroke(e.fout() * 1.5f);
+             Fill.circle(e.x, e.y, e.fout() * 3);
+             Lines.circle(e.x, e.y, e.finpow() * 20);
+        }),
+                 shootGiant = new Effect(20, e -> {
+                     color(Pal.lightOrange, Color.gray, e.fin());
+                     float w = 1.2f + 12 * e.fout();
+                     Drawf.tri(e.x, e.y, w, 29f * e.fout(), e.rotation);
+                     Drawf.tri(e.x, e.y, w, 5f * e.fout(), e.rotation + 180f);
+                 }),
+                 casingLarge = new Effect(45f, e -> {
+                     color(Pal.lightOrange, Pal.lightishGray, Pal.lightishGray, e.fin());
+                     alpha(e.fout(0.5f));
+                     float rot = Math.abs(e.rotation) + 90f;
+                     int i = -Mathf.sign(e.rotation);
+                     float len = (4f + e.finpow() * 9f) * i;
+                     float lr = rot + Mathf.randomSeedRange(e.id + i + 6, 20f * e.fin()) * i;
+
+                     rect(Core.atlas.find("casing"),
+                             e.x + trnsx(lr, len) + Mathf.randomSeedRange(e.id + i + 7, 3f * e.fin()),
+                             e.y + trnsy(lr, len) + Mathf.randomSeedRange(e.id + i + 8, 3f * e.fin()),
+                             4.5f, 8f,
+                             rot + e.fin() * 50f * i
+                     );
+                 }).layer(Layer.bullet),
             PrometheusSmoke = new Effect(120f, 300f, b -> {
                 float intensity = 4f;
 

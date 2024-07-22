@@ -365,7 +365,7 @@ import static arc.graphics.g2d.Lines.*;
                     weaveScale = 6;
                     weaveMag = 2;
                     shootEffect = ExoFx.square45_6_45;
-                    hitEffect = despawnEffect = ExoFx.colorBombSmaller;
+                    hitEffect = despawnEffect = ExoFx.testHit2;
                     smokeEffect = Fx.colorSpark;
                 }};
             }};
