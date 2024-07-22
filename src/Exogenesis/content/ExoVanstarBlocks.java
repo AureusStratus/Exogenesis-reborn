@@ -1538,160 +1538,32 @@ import static arc.graphics.g2d.Lines.*;
             //tier 4
             sin = new ContinuousTurret("sin"){{
                 requirements(Category.turret, with(Items.carbide, 50, Items.tungsten, 200, ExoItems.neodymium, 150, ExoItems.litusiumAlloy, 75));
-                shootType = new PointLaserBulletType(){{
-                    damage = 20f;
-                    hitEffect = Fx.blastExplosion;
-                    beamEffect = Fx.none;
-                    beamEffectInterval = 0;
-                    buildingDamageMultiplier = 0.75f;
-                    damageInterval = 3;
-                    color = hitColor = ExoPal.cronusRedlight;
-                    sprite = "laser-white";
-                    status = StatusEffects.melting;
-                    statusDuration = 60;
-                    oscScl /= 1.77f;
-                    oscMag /= 1.33f;
-                    hitShake = 2;
-                    trailLength = 8;
-                }
-                    private final Color tmpColor = new Color();
-                    private final Color from = color, to = ExoPal.cronusRed;
-                    private final static float chargeReload = 65f;
-
-                    private final static float lerpReload = 10f;
-
-                    private boolean charged(Bullet b){
-                        return b.fdata > chargeReload;
-                    }
-
-                    private Color getColor(Bullet b){
-                        return tmpColor.set(from).lerp(to, warmup(b));
-                    }
-
-                    private float warmup(Bullet b){
-                        return Mathf.curve(b.fdata, chargeReload - lerpReload / 2f, chargeReload + lerpReload / 2f);
-                    }
-
-                    @Override
-                    public void update(Bullet b){
-                        super.update(b);
-
-                        b.damage = damage * (1 + warmup(b) * 1.5f);
-
-                        boolean cool = false;
-
-                        if(b.data == null)cool = true;
-                        else if(b.data instanceof Healthc){
-                            Healthc h = (Healthc)b.data;
-                            if(!h.isValid() || !h.within(b.aimX, b.aimY, ((Sized)h).hitSize() + 4)){
-                                b.data = null;
-                                cool = true;
-                            }
-                        }
-
-                        if(cool){
-                            b.fdata = Mathf.approachDelta(b.fdata, 0, 1);
-                        }else b.fdata = Math.min(b.fdata, chargeReload + lerpReload / 2f + 1f);
-
-                        if(charged(b)){
-                            if(!Vars.headless && b.timer(3, 3)){
-                                PositionLightning.createEffect(b, Tmp.v1.set(b.aimX, b.aimY), getColor(b), 1, 2);
-                                if(Mathf.chance(0.25)) Fx.none.at(b.x, b.y, tmpColor);
-                            }
-
-                            if(b.timer(4, 2.5f)){
-                                Lightning.create(b, getColor(b), b.damage() / 2f, b.aimX, b.aimY, b.rotation() + Mathf.range(34f), Mathf.random(5, 12));
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void draw(Bullet b){
-                        float darkenPartWarmup = warmup(b);
-                        float stroke =  b.fslope() * (1f - oscMag + Mathf.absin(Time.time, oscScl, oscMag)) * (darkenPartWarmup + 1) * 5;
-
-                        if(trailLength > 0 && b.trail != null){
-                            float z = Draw.z();
-                            Draw.z(z - 0.0001f);
-                            b.trail.draw(getColor(b), stroke);
-                            Draw.z(z);
-                        }
-
-                        Draw.color(getColor(b));
-                        DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke);
-                        Draw.color(Color.white);
-                        DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke * 0.74f * (2 + darkenPartWarmup) / 3f);
-
-                        Drawf.light(b.aimX, b.aimY, b.x, b.y, stroke, tmpColor, 0.76f);
-                        Drawf.light(b.x, b.y, stroke * 4, tmpColor, 0.76f);
-                        Drawf.light(b.aimX, b.aimY, stroke * 3, tmpColor, 0.76f);
-
-                        Draw.color(tmpColor);
-                        if(charged(b)){
-                            float qW = Mathf.curve(warmup(b), 0.5f, 0.7f);
-
-                            for(int s : Mathf.signs){
-                                Drawf.tri(b.x, b.y, 6, 21 * qW, 90 * s + Time.time * 1.8f);
-                            }
-
-                            for(int s : Mathf.signs){
-                                Drawf.tri(b.x, b.y, 7.2f, 25 * qW, 90 * s + Time.time * -1.1f);
-                            }
-                        }
-
-                        if(darkenPartWarmup > 0.005f){
-                            tmpColor.lerp(Color.white, 1f);
-                            Draw.color(tmpColor);
-                            DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke * 0.55f * darkenPartWarmup);
-                            Draw.z(Layer.effect + 1);
-                            DrawFunc.basicLaser(b.x, b.y, b.aimX, b.aimY, stroke * 0.6f * darkenPartWarmup);
-                            Draw.z(Layer.effect + 1);
-                        }
-
-                        Draw.reset();
-                    }
-
-                    @Override
-                    public void hit(Bullet b, float x, float y){
-                        if(Mathf.chance(0.4))hitEffect.at(x, y, b.rotation(), getColor(b));
-                        hitSound.at(x, y, hitSoundPitch, hitSoundVolume);
-
-                        Effect.shake(hitShake, hitShake, b);
-
-                        if(fragOnHit){
-                            createFrags(b, x, y);
-                        }
-                    }
-
-                    @Override
-                    public void hitEntity(Bullet b, Hitboxc entity, float health){
-                        if(entity instanceof Healthc){
-                            Healthc h = (Healthc)entity;
-                            if(charged(b)){
-                                h.damagePierce(b.damage);
-                            }else{
-                                h.damage(b.damage);
-                            }
-                        }
-
-                        if(charged(b) && entity instanceof Unit){
-                            Unit unit = (Unit)entity;
-                            unit.apply(status, statusDuration);
-                        }
-
-                        if(entity == b.data)b.fdata += Time.delta;
-                        else b.fdata = 0;
-                        b.data = entity;
-                    }
-
-                    @Override
-                    public void hitTile(Bullet b, Building build, float x, float y, float initialHealth, boolean direct){
-                        super.hitTile(b, build, x, y, initialHealth, direct);
-                        if(build == b.data)b.fdata += Time.delta;
-                        else b.fdata = 0;
-                        b.data = build;
-                    }
-                };
+                shootType = new ContinuousFlameBulletType(){{
+                    damage = 60f;
+                    length = range;
+                    lengthInterp = Interp.slowFast;
+                    width = 9;
+                    knockback = 1f;
+                    pierceCap = 6;
+                    intervalBullets = 2;
+                    bulletInterval = 5;
+                    buildingDamageMultiplier = 0.3f;
+                    colors = new Color[]{ExoPal.cronusRedDark.a(0.55f), ExoPal.cronusRedlight.a(0.7f), ExoPal.cronusRed.a(0.8f), ExoPal.cronusRedlight, Color.white};
+                    intervalBullet = new ContinuousFlameBulletType(){{
+                        damage = 6f;
+                        length = 50;
+                        width = 4;
+                        lifetime = 30;
+                        lengthInterp = Interp.slowFast;
+                        weaveMag = 1;
+                        weaveScale = 4;
+                        trailChance = 0.5f;
+                        speed = 1;
+                        pierceCap = 6;
+                        buildingDamageMultiplier = 0.7f;
+                        colors = new Color[]{ExoPal.cronusRedDark.a(0.55f), ExoPal.cronusRedlight.a(0.7f), ExoPal.cronusRed.a(0.8f), ExoPal.cronusRedlight, Color.white};
+                    }};
+                }};
                 drawer = new DrawTurret("elecian-"){{
                     parts.addAll(
                             new EffectSpawnPart() {{
@@ -1820,7 +1692,7 @@ import static arc.graphics.g2d.Lines.*;
                 shootWarmupSpeed /= 2;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 7;
-                range = 420f;
+                range = 300f;
                 scaledHealth = 300;
                 armor = 10;
 

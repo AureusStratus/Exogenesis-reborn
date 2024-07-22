@@ -93,8 +93,8 @@ public class ExoPlanets{
                 heights.addAll(
                         new AngleInterpHeight() {{
                             interp = new Interp.Exp(7, 3);
-                            dir.set(10f, 0f, 0f);
-                            magnitude = 1;
+                            dir.set(4f, 10f, 0f);
+                            magnitude = 4;
                         }},
                         new AngleInterpHeight() {{
                             interp = Interp.linear;
@@ -106,7 +106,6 @@ public class ExoPlanets{
                             dir.set(0f, 0f, 0.1f);
                             magnitude = 1;
                         }},
-                        new ClampHeight(0f, 1f),
                         new NoiseHeight() {{
                             scale = 6;
                             persistence = 1;
