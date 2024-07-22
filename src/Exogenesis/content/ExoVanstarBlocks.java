@@ -1005,6 +1005,15 @@ import static arc.graphics.g2d.Lines.*;
                                 randomEffectRot = 60f;
                                 effectChance = 0.8f;
                             }},
+                            new EffectSpawnPart() {{
+                                useProgress =  true;
+                                progress = PartProgress.recoil;
+                                effectColor = ExoPal.empyreanIndigo;
+                                y = shootY;
+                                effect = ExoFx.squareSpark;
+                                randomEffectRot = 60f;
+                                effectChance = 0.4f;
+                            }},
                             new RegionPart("-back"){{
                                 progress = PartProgress.warmup;
                                 moveY = -4.5f;
@@ -1384,6 +1393,15 @@ import static arc.graphics.g2d.Lines.*;
                                 effectColor = ExoPal.empyrean;
                                 y = shootY;
                                 effect = ExoFx.supernovaSpark;
+                                randomEffectRot = 360f;
+                                effectChance = 0.2f;
+                            }},
+                            new EffectSpawnPart() {{
+                                useProgress =  true;
+                                progress = PartProgress.warmup;
+                                effectColor = ExoPal.empyrean;
+                                y = shootY;
+                                effect = ExoFx.squareSpark;
                                 randomEffectRot = 360f;
                                 effectChance = 0.2f;
                             }},

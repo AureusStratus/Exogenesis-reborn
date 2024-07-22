@@ -93,17 +93,17 @@ public class ExoPlanets{
                 heights.addAll(
                         new AngleInterpHeight() {{
                             interp = new Interp.Exp(7, 3);
-                            dir.set(80f, 0f, 0f);
+                            dir.set(10f, 0f, 0f);
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
                             interp = Interp.linear;
-                            dir.set(0f, 50f, 0f);
+                            dir.set(0f, 10f, 0.3f);
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
                             interp = Interp.linear;
-                            dir.set(0f, 0f, 0f);
+                            dir.set(0f, 0f, 0.1f);
                             magnitude = 1;
                         }},
                         new ClampHeight(0f, 1f),

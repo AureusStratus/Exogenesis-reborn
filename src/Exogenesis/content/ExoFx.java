@@ -108,6 +108,7 @@ public class ExoFx{
                 for (int i = 0; i < 4; i++) {
                     Drawf.tri(e.x, e.y, e.fout() * 3, e.fout() * 50, e.rotation + (90 * i));
                 }
+                color(e.color);
                 Lines.stroke(e.fout() * 1.5f);
                 Lines.circle(e.x, e.y, 20 + e.fin() * 10);
             }),
@@ -650,6 +651,17 @@ public class ExoFx{
                     Drawf.light(e.x, e.y, 20 * 1.6f, ExoPal.genesis, e.fout());
                 }
             }),
+                    squareSpark = new Effect(16f, e -> {
+                        color(Color.white, e.color, e.fin());
+                        randLenVectors(e.id, 1, 70f * e.fin(), e.rotation, 0f, (x, y) -> {
+                            rand.setSeed(e.id);
+                            for (int i = 0; i < 6; i++) {
+                                float rot = e.rotation + rand.range(22f);
+                                v.trns(rot, rand.random(e.finpow() * 21f));
+                                Fill.poly(e.x + v.x, e.y + v.y, 4, e.fout() * 2f + 0.2f, rand.random(360f));
+                            }
+                        });
+                    }),
             supernovaSpark = new Effect(16f, e -> {
                 color(Color.white, e.color, e.fin());
                 stroke(e.fout() * 1.1f + 0.5f);
