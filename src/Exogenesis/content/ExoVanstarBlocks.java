@@ -103,6 +103,28 @@ import static arc.graphics.g2d.Lines.*;
                 consumeItems(with(ExoItems.quartz, 3, Items.sand, 3));
                 consumePower(0.60f);
             }};
+            platingFactory = new GenericCrafter("plating-factory"){{
+                requirements(Category.crafting, with(ExoItems.rustyCopper, 60, Items.graphite, 30, ExoItems.cobolt, 30));
+                craftEffect = Fx.smeltsmoke;
+                outputItem = new ItemStack(ExoItems.empyreanPlating, 3);
+                craftTime = 60f;
+                size = 2;
+                hasPower = hasItems = true;
+                drawer = new DrawMulti(new DrawDefault(),
+                        new DrawRegion("-bottom"),
+                        new DrawPistons(){{
+                            sinMag = 1f;
+                            sinScl = 2f;
+                            sides = 4;
+                            sideOffset = 45;
+                }}
+                );
+                ambientSound = Sounds.smelter;
+                ambientSoundVolume = 0.07f;
+
+                consumeItems(with(ExoItems.oltuxium, 3, ExoItems.cobolt, 3));
+                consumePower(0.30f);
+            }};
             //walls
             coboltWall = new Wall("cobolt-wall"){{
                 requirements(Category.defense, with(ExoItems.cobolt, 6));
@@ -1541,24 +1563,23 @@ import static arc.graphics.g2d.Lines.*;
                 shootType = new ContinuousFlameBulletType(){{
                     damage = 60f;
                     length = range;
-                    lengthInterp = Interp.slowFast;
                     width = 9;
                     knockback = 1f;
                     pierceCap = 6;
                     intervalBullets = 2;
+                    intervalRandomSpread = 30;
                     bulletInterval = 5;
                     buildingDamageMultiplier = 0.3f;
                     colors = new Color[]{ExoPal.cronusRedDark.a(0.55f), ExoPal.cronusRedlight.a(0.7f), ExoPal.cronusRed.a(0.8f), ExoPal.cronusRedlight, Color.white};
                     intervalBullet = new ContinuousFlameBulletType(){{
                         damage = 6f;
                         length = 50;
-                        width = 4;
-                        lifetime = 30;
-                        lengthInterp = Interp.slowFast;
+                        width = 2;
+                        lifetime = 20;
                         weaveMag = 1;
                         weaveScale = 4;
                         trailChance = 0.5f;
-                        speed = 1;
+                        speed = 3;
                         pierceCap = 6;
                         buildingDamageMultiplier = 0.7f;
                         colors = new Color[]{ExoPal.cronusRedDark.a(0.55f), ExoPal.cronusRedlight.a(0.7f), ExoPal.cronusRed.a(0.8f), ExoPal.cronusRedlight, Color.white};
