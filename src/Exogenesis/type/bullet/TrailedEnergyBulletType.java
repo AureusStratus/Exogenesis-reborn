@@ -1,7 +1,6 @@
 package Exogenesis.type.bullet;
 
 import Exogenesis.content.ExoFx;
-import Exogenesis.type.DamageType;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
@@ -18,7 +17,7 @@ import Exogenesis.util.struct.Vec2Seq;
 public class TrailedEnergyBulletType extends AccelBulletType{
     public int tracers = 2;
 
-    public DamageType damageType;
+    public boolean damageType;
     public float tracerStroke = 3F;
     public int tracerFadeOffset = 10;
     public int tracerStrokeOffset = 15;

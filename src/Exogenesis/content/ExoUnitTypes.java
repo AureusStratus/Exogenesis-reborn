@@ -6621,7 +6621,7 @@ public class ExoUnitTypes {
                 recoil = 0;
                 shake = 1f;
                 bullet = new ExoBasicBulletType(1.5f, 185){{
-                    width = height = 45;
+                    width = height = 50;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
                     chargeEffect = ExoFx.auricCharge;
@@ -6643,7 +6643,7 @@ public class ExoUnitTypes {
                     splashDamage = 100;
                     splashDamageRadius = 70;
                     shrinkY = shrinkX = 0;
-                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion, ExoFx.blastcolor);
+                    hitEffect = despawnEffect = new MultiEffect(ExoFx.empyreanExplosion);
                     intervalBullet = new ExoBasicBulletType(4f, 25){{
                         width = height = 7f;
                         damageType = DamageType.energy;
@@ -6672,7 +6672,7 @@ public class ExoUnitTypes {
                         trailLength = 10;
                         trailWidth = 2f;
                     }};
-                    bulletInterval = 3f;
+                    bulletInterval = 5f;
                     intervalBullet = new ChainLightningBulletType() {{
                         lightningColor = ExoPal.empyrean;
                         damageType = DamageType.energy;
@@ -7084,12 +7084,12 @@ public class ExoUnitTypes {
                         radiusTo = radius = 2.5f;
                     }},
                     new HoverPart(){{
-                        color = ExoPal.empyreanblue;
+                        color = ExoPal.empyreanIndigo;
                         circles = 2;
                         stroke = 3;
                         sides = 360;
                         phase = 100;
-                        radius = 25f;
+                        radius = 8f;
                         mirror = false;
                         layer = 109;
                         y = 35.75f;
@@ -7102,10 +7102,10 @@ public class ExoUnitTypes {
                 y = 35.75f;
                 shootSound = Sounds.bolt;
                 recoil = 0;
+                inaccuracy = 30;
                 shake = 1f;
-                shoot = new ShootSine(){{
-                    scl = 2;
-                    mag = 20;
+                shoot = new ShootPattern(){{
+                    shotDelay = 8;
                     shots = 7;
                 }};
                 bullet = new ExoBasicBulletType(9f, 42){{
@@ -7139,7 +7139,7 @@ public class ExoUnitTypes {
                     lightningColor = ExoPal.empyreanIndigo;
                     damageType = DamageType.energy;
                     range = 250;
-                    targetRange = 100;
+                    targetRange = 20;
                     damage = 40;
                     distanceDamageFalloff = 4;
                     chainLightning = 3;
@@ -7152,7 +7152,7 @@ public class ExoUnitTypes {
             aiController = SniperAI::new;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2;
-            speed = 1.97f;
+            speed = 1f;
             hitSize = 40f;
             health = 25600f;
             flying = true;
@@ -7168,13 +7168,13 @@ public class ExoUnitTypes {
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyreanIndigo;
             rotateSpeed = 0.8f;
-            engineSize = 7;
+            engineSize = 10;
             engineOffset = 45.25f;
 
             targetFlags = new BlockFlag[]{BlockFlag.turret, null, BlockFlag.battery, BlockFlag.generator, BlockFlag.core};
 
             setEnginesMirror(
-                    new UnitEngine(24.25f, -41.25f, 5f, 45f),
+                    new UnitEngine(24.25f, -41.25f, 5f, -45f),
                     new UnitEngine(23, -14.75f, 5f, 70f)
             );
             weapons.add(new Weapon("exogenesis-excelsus-cannon"){{
@@ -7188,11 +7188,9 @@ public class ExoUnitTypes {
                 cooldownTime = 150f;
                 shootCone = 3f;
                 minWarmup = 0.95f;
-                shoot = new ShootHelix(){{
+                shoot = new ShootPattern(){{
                     shots = 3;
                     shotDelay = 18f;
-                    mag = 2.2f;
-                    scl = 2.2f;
                 }};
                 top = true;
                 soundPitchMax = 1.1f;
@@ -7203,14 +7201,14 @@ public class ExoUnitTypes {
                 mirror = false;
 
                 bullet = new TrailedEnergyBulletType(25f, 600f){{
-                    recoil = 0.95f;
-                    damageType = DamageType.pierce;
+                    recoil = 0.095f;
+                    damageType = pierce;
                     lifetime = 40f;
-                    trailLength = 200;
+                    trailLength = 60;
                     trailWidth = 2F;
                     tracers = 1;
                     keepVelocity = false;
-
+                    sprite = "circle-bullet";
                     tracerSpacing = 10f;
                     tracerUpdateSpacing *= 1.25f;
 
@@ -7220,16 +7218,15 @@ public class ExoUnitTypes {
 
                     hitSound = Sounds.plasmaboom;
                     despawnShake = hitShake = 18f;
-					pierceArmor = pierceBuilding = true;
-                    pierceCap = 4;
+					pierceArmor = true;
 
                     lightning = 3;
                     lightningLength = 6;
                     lightningLengthRand = 18;
                     lightningDamage = 20;
 
-                    smokeEffect = Fx.smokeCloud;
-                    shootEffect = ExoFx.instShootExo;
+                    smokeEffect = Fx.smokePuff;
+                    shootEffect = new MultiEffect(ExoFx.instShootExo, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
                     despawnEffect = new MultiEffect(ExoFx.empyreanExplosionSplash, ExoFx.empyreanStarHitLarge, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
                     hitEffect = new MultiEffect(ExoFx.empyreanExplosionSplash, ExoFx.empyreanStarHitLarge, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
                     despawnHit = true;

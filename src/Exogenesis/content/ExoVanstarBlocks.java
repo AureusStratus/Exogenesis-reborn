@@ -110,13 +110,12 @@ import static arc.graphics.g2d.Lines.*;
                 craftTime = 60f;
                 size = 2;
                 hasPower = hasItems = true;
-                drawer = new DrawMulti(new DrawDefault(),
-                        new DrawRegion("-bottom"),
+                drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawDefault(),
                         new DrawPistons(){{
                             sinMag = 1f;
                             sinScl = 2f;
                             sides = 4;
-                            sideOffset = 45;
+                            sideOffset = 0;
                 }}
                 );
                 ambientSound = Sounds.smelter;
