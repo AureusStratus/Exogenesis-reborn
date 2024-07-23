@@ -107,7 +107,7 @@ public class ExoPlanets{
                             dir.set(0f, 0f, 0.1f);
                             magnitude = 1;
                         }},
-                        new ClampHeight(0f, 2f),
+                        new ClampHeight(-0.2f, 0.5f),
                         new NoiseHeight() {{
                             scale = 6;
                             persistence = 1;
@@ -117,7 +117,7 @@ public class ExoPlanets{
                             heightOffset = -1f;
                             offset.set(0f, 100f, -100f);
                         }},
-                        new ClampHeight(-0.2f, 0.9f),
+                        new ClampHeight(-0.2f, 1.5f),
                         //mountain
                         new CraterHeight(new Vec3(-0.3f, 0.5f, 0.5f), 0.37f, 0.2f) {{
                             set = true;
