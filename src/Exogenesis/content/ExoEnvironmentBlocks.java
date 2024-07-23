@@ -20,7 +20,7 @@ public class ExoEnvironmentBlocks {
     powerCrystal,
     //vanstar
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
-    lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,
+    lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall, vanstarLargeTree, vanstarStandardTree, vanstarDeadTree,
     //Axin
     axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
     thenmialPlasma, thenmialPlasmaShallow, thenmialPlasmaDeep, thenmialPlasmaAbyssal, axinCyanSlate, axinSlate, axinCrystalStone, axinPurpleRock, axinPurpleSlate,
@@ -162,6 +162,10 @@ public class ExoEnvironmentBlocks {
         redLightningStoneWall = new StaticWall("red-lightning-stone-wall") {{
             redLightningStone.asFloor().wall = this;
         }};
+
+        vanstarLargeTree = new TreeBlock("vanster-large-tree");
+        vanstarStandardTree = new TreeBlock("vanster-standerd-tree");
+        vanstarDeadTree = new TreeBlock("vanster-standerd-tree-dead");
 
         //Axin Tiles
         thenmialPlasmaAbyssal = new Floor("thenmial-plasma-abyssal") {{
