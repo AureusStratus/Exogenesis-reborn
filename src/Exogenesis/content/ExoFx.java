@@ -98,19 +98,47 @@ public class ExoFx{
                     });
                 }
             }),
-            testHit2 = new Effect(45, e -> {
+            empyreanStarHitSmall = new Effect(45, e -> {
                 color(e.color);
                 e.rotation = e.fin() * 200;
                 for (int i = 0; i < 4; i++) {
-                    Drawf.tri(e.x, e.y, e.fout() * 5, e.fout() * 70, e.rotation + (90 * i));
+                    Drawf.tri(e.x, e.y, e.fout() * 6, e.fout() * 50, e.rotation + (90 * i));
                 }
                 color();
                 for (int i = 0; i < 4; i++) {
-                    Drawf.tri(e.x, e.y, e.fout() * 3, e.fout() * 50, e.rotation + (90 * i));
+                    Drawf.tri(e.x, e.y, e.fout() * 6, e.fout() * 40, e.rotation + (90 * i));
                 }
                 color(e.color);
                 Lines.stroke(e.fout() * 1.5f);
-                Lines.circle(e.x, e.y, 20 + e.fin() * 10);
+                Lines.circle(e.x, e.y, 20);
+            }),
+            empyreanStarHitMedium = new Effect(45, e -> {
+                color(e.color);
+                e.rotation = e.fin() * 200;
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 6, e.fout() * 70, e.rotation + (90 * i));
+                }
+                color();
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 6, e.fout() * 50, e.rotation + (90 * i));
+                }
+                color(e.color);
+                Lines.stroke(e.fout() * 1.5f);
+                Lines.circle(e.x, e.y, 30);
+            }),
+            empyreanStarHitLarge = new Effect(65, e -> {
+                color(e.color);
+                e.rotation = e.fin() * 200;
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 6, e.fout() * 90, e.rotation + (90 * i));
+                }
+                color();
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 6, e.fout() * 70, e.rotation + (90 * i));
+                }
+                color(e.color);
+                Lines.stroke(e.fout() * 1.5f);
+                Lines.circle(e.x, e.y, 40);
             }),
 
          testHit1 = new Effect(30, e -> {

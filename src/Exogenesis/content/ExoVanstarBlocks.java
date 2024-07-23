@@ -387,7 +387,7 @@ import static arc.graphics.g2d.Lines.*;
                     weaveScale = 6;
                     weaveMag = 2;
                     shootEffect = ExoFx.square45_6_45;
-                    hitEffect = despawnEffect = ExoFx.testHit2;
+                    hitEffect = despawnEffect = ExoFx.empyreanStarHitSmall;
                     smokeEffect = Fx.colorSpark;
                 }};
             }};
@@ -1560,36 +1560,11 @@ import static arc.graphics.g2d.Lines.*;
             //tier 4
             sin = new ContinuousTurret("sin"){{
                 requirements(Category.turret, with(Items.carbide, 50, Items.tungsten, 200, ExoItems.neodymium, 150, ExoItems.litusiumAlloy, 75));
-                shootType = new ContinuousFlameBulletType(){{
-                    damage = 60f;
-                    length = range;
-                    width = 9;
-                    knockback = 1f;
-                    pierceCap = 6;
-                    intervalBullets = 2;
-                    intervalRandomSpread = 30;
-                    bulletInterval = 5;
-                    buildingDamageMultiplier = 0.3f;
-                    colors = new Color[]{ExoPal.cronusRedDark.a(0.55f), ExoPal.cronusRedlight.a(0.7f), ExoPal.cronusRed.a(0.8f), ExoPal.cronusRedlight, Color.white};
-                    intervalBullet = new ContinuousFlameBulletType(){{
-                        damage = 6f;
-                        length = 50;
-                        width = 2;
-                        lifetime = 20;
-                        weaveMag = 1;
-                        weaveScale = 4;
-                        trailChance = 0.5f;
-                        speed = 3;
-                        pierceCap = 6;
-                        buildingDamageMultiplier = 0.7f;
-                        colors = new Color[]{ExoPal.cronusRedDark.a(0.55f), ExoPal.cronusRedlight.a(0.7f), ExoPal.cronusRed.a(0.8f), ExoPal.cronusRedlight, Color.white};
-                    }};
-                }};
                 drawer = new DrawTurret("elecian-"){{
                     parts.addAll(
                             new EffectSpawnPart() {{
                                 useProgress =  true;
-                                progress = PartProgress.recoil;
+                                progress = PartProgress.warmup;
                                 effectColor = ExoPal.empyreanIndigo;
                                 y = 16;
                                 effect = ExoFx.randLifeSparkExo;
@@ -1600,7 +1575,7 @@ import static arc.graphics.g2d.Lines.*;
                             new EffectSpawnPart() {{
                                 useProgress =  true;
                                 mirror = false;
-                                progress = PartProgress.recoil;
+                                progress = PartProgress.warmup;
                                 effectColor = ExoPal.cronusRed;
                                 y = -18.25f;
                                 effect = ExoFx.supernovaSpark;
@@ -1610,7 +1585,7 @@ import static arc.graphics.g2d.Lines.*;
                             new EffectSpawnPart() {{
                                 useProgress =  true;
                                 mirror = true;
-                                progress = PartProgress.recoil;
+                                progress = PartProgress.warmup;
                                 effectColor = ExoPal.cronusRed;
                                 x = 8.5f;
                                 y = -11f;
@@ -1694,9 +1669,8 @@ import static arc.graphics.g2d.Lines.*;
 
                     );
                 }};
-
                 shootSound = Sounds.none;
-                recoil = 1;
+                recoil = 0;
                 loopSoundVolume = 1f;
                 loopSound = Sounds.laserbeam;
 
@@ -1721,6 +1695,33 @@ import static arc.graphics.g2d.Lines.*;
 
                 consumePower(16);
                 consumeLiquid(Liquids.cryofluid, 12f / 60f);
+                shootType = new ContinuousFlameBulletType(){{
+                    damage = 60f;
+                    length = 300;
+                    drawFlare = false;
+                    width = 9;
+                    knockback = 1f;
+                    pierceCap = 6;
+                    intervalBullets = 1;
+                    intervalRandomSpread = 30;
+                    bulletInterval = 5;
+                    buildingDamageMultiplier = 0.3f;
+                    colors = new Color[]{ExoPal.cronusRedDark.a(0.55f), ExoPal.cronusRed.a(0.7f), ExoPal.cronusRed.a(0.8f), ExoPal.cronusRedlight, Color.white};
+                    intervalBullet = new ContinuousFlameBulletType(){{
+                        damage = 6f;
+                        length = 50;
+                        drawFlare = false;
+                        width = 2;
+                        lifetime = 40;
+                        weaveMag = 2;
+                        weaveScale = 4;
+                        trailChance = 0.5f;
+                        speed = 3;
+                        pierceCap = 6;
+                        buildingDamageMultiplier = 0.7f;
+                        colors = new Color[]{ExoPal.cronusRedDark.a(0.65f), ExoPal.cronusRed, Color.white};
+                    }};
+                }};
             }};
             demiurge = new PowerTurret("demiurge"){{
                 requirements(Category.turret, with(Items.silicon, 80, Items.beryllium, 50, ExoItems.magnetite, 85));

@@ -136,7 +136,7 @@ public class DestructionBulletType extends ExoBasicBulletType{
         if(randomGenerateRange > 0f && Mathf.chance(Time.delta * randomGenerateChance) && b.lifetime - b.time > PositionLightning.lifetime)PositionLightning.createRandomRange(b, b.team, b, randomGenerateRange, backColor, Mathf.chanceDelta(randomLightningChance), 0, 0, boltWidth, boltNum, randomLightningNum, hitPos -> {
             randomGenerateSound.at(hitPos, Mathf.random(0.9f, 1.1f));
             Damage.damage(b.team, hitPos.getX(), hitPos.getY(), splashDamageRadius / 8, splashDamage * b.damageMultiplier() / 8, collidesAir, collidesGround);
-            ExoFx.colorBombSmall.at(hitPos.getX(), hitPos.getY(), lightningColor);
+            ExoFx.empyreanStarHitSmall.at(hitPos.getX(), hitPos.getY(), lightningColor);
 
             hitModifier.get(hitPos);
         });
