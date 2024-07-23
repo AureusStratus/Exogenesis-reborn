@@ -5,6 +5,7 @@ import Exogenesis.type.*;
 import Exogenesis.graphics.*;
 import Exogenesis.type.abilities.TurretShield;
 import Exogenesis.type.bullet.*;
+import Exogenesis.type.unit.ai.SniperAI;
 import Exogenesis.type.bullet.PosLightningType;
 import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.type.unit.AxinUnitType;
@@ -36,6 +37,7 @@ import mindustry.type.ammo.PowerAmmoType;
 import mindustry.type.unit.*;
 import mindustry.type.weapons.*;
 import mindustry.content.*;
+import mindustry.world.meta.BlockFlag;
 
 import static Exogenesis.type.DamageType.*;
 import static arc.graphics.g2d.Draw.*;
@@ -7046,7 +7048,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
-        enlightenment = new ExoUnitType("enlightenment", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1.1f, 1) {{
+        enlightenment = new ExoUnitType("enlightenment", 1.5f, 0.85f, 1f, 0.2f, 1.1f, 1.1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2;
@@ -7064,45 +7066,90 @@ public class ExoUnitTypes {
             rotateSpeed = 1.97f;
             engineSize = 4;
             engineOffset = 15;
-            weapons.add(new Weapon("exogenesis-alpha-rocket"){{
-                reload = 13f;
+            parts.add(
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 35.75f;
+                        color = ExoPal.empyreanIndigo;
+                        radiusTo = radius = 4f;
+                    }},
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 35.75f;
+                        color = Color.white;
+                        radiusTo = radius = 2.5f;
+                    }},
+                    new HoverPart(){{
+                        color = ExoPal.empyreanblue;
+                        circles = 2;
+                        stroke = 3;
+                        sides = 360;
+                        phase = 100;
+                        radius = 25f;
+                        mirror = false;
+                        layer = 109;
+                        y = 35.75f;
+                    }}
+            );
+            weapons.add(new Weapon("energy-bolts"){{
+                reload = 83f;
                 mirror = false;
                 x = 0;
-                y = -11;
-                shootSound = Sounds.missileLarge;
-                inaccuracy = 5;
+                y = 35.75f;
+                shootSound = Sounds.bolt;
                 recoil = 0;
                 shake = 1f;
-                shoot = new ShootAlternate(){{
-                    spread = 6.3f;
-                    barrels = 3;
+                shoot = new ShootSine(){{
+                    scl = 2;
+                    mag = 20;
+                    shots = 7;
                 }};
-                bullet = new BasicBulletType(9f, 65){{
-                    width =  9;
-                    height = 14f;
-                    sprite = "missile";
+                bullet = new ExoBasicBulletType(9f, 42){{
+                    width = height = 11f;
+                    homingPower = 0.005f;
+                    homingRange = 60;
+                    damageType = energy;
+                    sprite = "circle-bullet";
                     frontColor = Color.white;
                     backColor = hitColor = trailColor = ExoPal.empyreanIndigo;
-                    lifetime = 45f;
+                    lifetime = 30f;
+                    hitEffect = despawnEffect = Fx.hitBulletColor;
                     shrinkY = shrinkX = 0;
-                    hitEffect = despawnEffect = Fx.flakExplosionBig;
-                    lightning = 7;
-                    lightningLength = 9;
+                    shootEffect = new MultiEffect(Fx.shootSmallColor, ExoFx.colorSparkShoot);
+                    trailLength = 10;
+                    trailWidth = 2f;
+                }};
+            }});
+            weapons.add(new Weapon("energy-zap") {{
+                reload = 30f;
+                mirror = false;
+                y = 35.75f;
+                x = 0;
+                rotate = true;
+                rotateSpeed = 5.5f;
+                shootSound = Sounds.spark;
+                recoil = 0;
+                inaccuracy = 15;
+                shake = 1f;
+                bullet = new ChainLightningBulletType() {{
                     lightningColor = ExoPal.empyreanIndigo;
-                    lightningDamage = 11;
-                    shootEffect = Fx.lightningShoot;
-                    weaveMag = 7;
-                    weaveScale = 2;
-                    trailSinScl = 2;
-                    trailSinMag = 0.8f;
-                    trailParam = 5;
-                    trailLength = 6;
-                    trailWidth = 3f;
+                    damageType = DamageType.energy;
+                    range = 250;
+                    targetRange = 100;
+                    damage = 40;
+                    distanceDamageFalloff = 4;
+                    chainLightning = 3;
+                    segmentLength = 6;
                 }};
             }});
         }};
         excelsus = new ExoUnitType("excelsus", 0.9f, 0.9f, 1.3f, 0.2f, 1.15f, 1f, 1f) {{
             constructor = UnitEntity::create;
+            aiController = SniperAI::new;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2;
             speed = 1.97f;
@@ -7113,62 +7160,79 @@ public class ExoUnitTypes {
             accel = 0.04f;
             faceTarget = true;
             lowAltitude = true;
-            armor = 8;
+            circleTarget = false;
+            rotateMoveFirst = false;
+            outlineRadius = 4;
+            strafePenalty = 0.8f;
+            armor = 12;
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyreanIndigo;
-            rotateSpeed = 2.4f;
-            engineSize = 4;
-            engineOffset = 22;
-            abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
-                status = StatusEffects.none;
-                color = ExoPal.empyreanIndigo;
-                rotateSpeed = 3;
-                effectRadius = 5;
-                maxTargets = 0;
-            }});
-            abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
-                status = StatusEffects.none;
-                color = ExoPal.empyreanIndigo;
-                effectRadius = rotateSpeed = 3;
-                x = 15;
-                y = -11;
-                maxTargets = 0;
-            }});
-            abilities.add(new EnergyFieldAbility(40f, 65f, 0f){{
-                status = StatusEffects.none;
-                color = ExoPal.empyreanIndigo;
-                effectRadius = rotateSpeed = 3;
-                x = -15;
-                y = -11;
-                maxTargets = 0;
-            }});
-            setEnginesMirror(
-                    new UnitEngine(0, -29, 5f, 0f)
-            );
-            weapons.add(new Weapon("exogenesis-excelsus-mount"){{
-                x = 26;
-                shootY = 11f;
-                recoil = 2f;
-                shootSound = Sounds.torch;
-                shadow = 15f;
-                alternate = false;
-                rotationLimit = 45;
-                rotate = continuous = alwaysContinuous = mirror = true;
-                rotateSpeed = 1.5f;
+            rotateSpeed = 0.8f;
+            engineSize = 7;
+            engineOffset = 45.25f;
 
-                bullet = new ContinuousLaserBulletType(){{
-                    hitColor = ExoPal.empyreanIndigo;
-                    damage = 35f;
-                    length = 150f;
-                    hitEffect = ExoFx.hitMeltColor;
-                    drawSize = 420f;
-                    width = 7.6f;
-                    shake = 1f;
-                    largeHit = false;
-                    colors = new Color[]{ExoPal.empyreanIndigoDark.a(0.4f), ExoPal.empyreanIndigo, Color.white};
-                    despawnEffect = Fx.smokeCloud;
-                    smokeEffect = Fx.none;
-                    shootEffect = Fx.none;
+            targetFlags = new BlockFlag[]{BlockFlag.turret, null, BlockFlag.battery, BlockFlag.generator, BlockFlag.core};
+
+            setEnginesMirror(
+                    new UnitEngine(24.25f, -41.25f, 5f, 45f),
+                    new UnitEngine(23, -14.75f, 5f, 70f)
+            );
+            weapons.add(new Weapon("exogenesis-excelsus-cannon"){{
+                x = 0;
+                shootY = 24.5f;
+                reload = 400;
+                recoil = 6f;
+                shootSound = Sounds.largeCannon;
+                alternate = false;
+                rotate = false;
+                cooldownTime = 150f;
+                shootCone = 3f;
+                minWarmup = 0.95f;
+                shoot = new ShootHelix(){{
+                    shots = 3;
+                    shotDelay = 18f;
+                    mag = 2.2f;
+                    scl = 2.2f;
+                }};
+                top = true;
+                soundPitchMax = 1.1f;
+                soundPitchMin = 0.9f;
+
+                layerOffset = -0.001f;
+                shake = 12;
+                mirror = false;
+
+                bullet = new TrailedEnergyBulletType(25f, 600f){{
+                    recoil = 0.95f;
+                    damageType = DamageType.pierce;
+                    lifetime = 40f;
+                    trailLength = 200;
+                    trailWidth = 2F;
+                    tracers = 1;
+                    keepVelocity = false;
+
+                    tracerSpacing = 10f;
+                    tracerUpdateSpacing *= 1.25f;
+
+                    trailColor = hitColor = backColor = lightColor = lightningColor = ExoPal.empyreanIndigo;
+                    width = 10f;
+                    height = 40f;
+
+                    hitSound = Sounds.plasmaboom;
+                    despawnShake = hitShake = 18f;
+					pierceArmor = pierceBuilding = true;
+                    pierceCap = 4;
+
+                    lightning = 3;
+                    lightningLength = 6;
+                    lightningLengthRand = 18;
+                    lightningDamage = 20;
+
+                    smokeEffect = Fx.smokeCloud;
+                    shootEffect = ExoFx.instShootExo;
+                    despawnEffect = new MultiEffect(ExoFx.empyreanExplosionSplash, ExoFx.empyreanStarHitLarge, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
+                    hitEffect = new MultiEffect(ExoFx.empyreanExplosionSplash, ExoFx.empyreanStarHitLarge, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
+                    despawnHit = true;
                 }};
             }});
         }};

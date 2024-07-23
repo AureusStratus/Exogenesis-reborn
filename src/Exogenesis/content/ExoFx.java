@@ -1,6 +1,8 @@
 package Exogenesis.content;
 import Exogenesis.graphics.ExoPal;
+import Exogenesis.util.feature.PositionLightning;
 import Exogenesis.util.func.DrawFunc;
+
 import Exogenesis.util.util.GraphicUtils;
 import Exogenesis.util.util.UtilsTwo;
 import arc.*;
@@ -110,7 +112,7 @@ public class ExoFx{
                 }
                 color(e.color);
                 stroke(e.fout() * 2f);
-                float circleRad = 4f + e.finpow() * 45f;
+                float circleRad = 4f + e.finpow() * 25f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
             empyreanStarHitMedium = new Effect(45, e -> {
@@ -125,7 +127,7 @@ public class ExoFx{
                 }
                 color(e.color);
                 stroke(e.fout() * 2f);
-                float circleRad = 4f + e.finpow() * 45f;
+                float circleRad = 4f + e.finpow() * 35f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
             empyreanStarHitLarge = new Effect(65, e -> {
@@ -143,7 +145,78 @@ public class ExoFx{
                 float circleRad = 4f + e.finpow() * 45f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
+            lightningFade = (new Effect(PositionLightning.lifetime, 1200.0f, e -> {
+                if(!(e.data instanceof PositionLightning.Vec2Seq)) return;
+                PositionLightning.Vec2Seq points = e.data();
 
+                e.lifetime = points.size() < 2 ? 0 : 1000;
+                int strokeOffset = (int)e.rotation;
+
+
+                if(points.size() > strokeOffset + 1 && strokeOffset > 0 && points.size() > 2){
+                    points.removeRange(0, points.size() - strokeOffset - 1);
+                }
+
+                if(!state.isPaused() && points.any()){
+                    points.remove(0);
+                }
+
+                if(points.size() < 2)return;
+
+                Vec2 data = points.peekTmp(); //x -> stroke, y -> fadeOffset;
+                float stroke = data.x;
+                float fadeOffset = data.y;
+
+                Draw.color(e.color);
+                for(int i = 1; i < points.size() - 1; i++){
+//				Draw.alpha(Mathf.clamp((float)(i + fadeOffset - e.time) / points.size()));
+                    Lines.stroke(Mathf.clamp((i + fadeOffset / 2f) / points.size() * (strokeOffset - (points.size() - i)) / strokeOffset) * stroke);
+                    Vec2 from = points.setVec2(i - 1, Tmp.v1);
+                    Vec2 to = points.setVec2(i, Tmp.v2);
+                    Lines.line(from.x, from.y, to.x, to.y, false);
+                    Fill.circle(from.x, from.y, Lines.getStroke() / 2);
+                }
+
+                Vec2 last = points.tmpVec2(points.size() - 2);
+                Fill.circle(last.x, last.y, Lines.getStroke() / 2);
+            })).layer(Layer.effect - 0.001f),
+            instShootExo = new Effect(24f, e -> {
+                e.scaled(10f, b -> {
+                    color(Color.white, e.color, b.fin());
+                    stroke(b.fout() * 3f + 0.2f);
+                    Lines.circle(b.x, b.y, b.fin() * 50f);
+                });
+
+                color(e.color);
+
+                for(int i : Mathf.signs){
+                    Drawf.tri(e.x, e.y, 13f * e.fout(), 85f, e.rotation + 90f * i);
+                    Drawf.tri(e.x, e.y, 13f * e.fout(), 50f, e.rotation + 20f * i);
+                }
+
+                Drawf.light(e.x, e.y, 180f, e.color, 0.9f * e.fout());
+            }),
+
+    crossBlastArrow45 = new Effect(65, 140, e -> {
+        color(e.color, Color.white, e.fout() * 0.55f);
+        Drawf.light(e.x, e.y, e.fout() * 70, e.color, 0.7f);
+
+        e.scaled(10f, i -> {
+            stroke(1.35f * i.fout());
+            circle(e.x, e.y, 49 * i.finpow());
+        });
+
+        rand.setSeed(e.id);
+        float sizeDiv = 138;
+        float randL = rand.random(sizeDiv);
+
+        float f = Mathf.curve(e.fin(), 0, 0.05f);
+
+        for(int i = 0; i < 4; i++){
+            Tmp.v1.trns(45 + i * 90, 66);
+            DrawFunc.arrow(e.x + Tmp.v1.x, e.y + Tmp.v1.y, 27.5f * (e.fout() * 3f + 1) / 4 * e.fout(Interp.pow3In), (sizeDiv + randL) * f * e.fout(Interp.pow3), -randL / 6f * f, i * 90 + 45);
+        }
+    }),
          testHit1 = new Effect(30, e -> {
              color(Color.white, e.color, e.fin());
              for (int i = 0; i < 2; i++) {
