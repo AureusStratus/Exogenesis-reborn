@@ -17,8 +17,6 @@ import Exogenesis.util.util.*;
 /** @author EyeOfDarkness */
 public class AcceleratingLaserBulletType extends ExoBulletType implements TypedBulletType{
     public float maxLength = 1000f;
-
-    public DamageType damageType;
     public float laserSpeed = 15f;
     public float accel = 25f;
     public float width = 12f, collisionWidth = 8f;

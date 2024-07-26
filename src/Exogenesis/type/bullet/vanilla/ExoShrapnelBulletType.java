@@ -8,7 +8,6 @@ import mindustry.gen.Hitboxc;
 
 public class ExoShrapnelBulletType extends ShrapnelBulletType implements TypedBulletType{
     public DamageType damageType;
-
     @Override
     public DamageType damageType(){
         return damageType;

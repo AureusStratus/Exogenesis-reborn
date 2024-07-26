@@ -1,5 +1,6 @@
 package Exogenesis.type.bullet;
 
+import Exogenesis.type.bullet.vanilla.ExoBulletType;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -14,7 +15,7 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 
 
-public class StarBulletType extends BulletType {
+public class StarBulletType extends ExoBulletType {
     public float radius = 9f;
     public Color realColor = ExoPal.cronusRed;
     public Effect realHitEffect = ExoFx.hitEmpColorSpark;

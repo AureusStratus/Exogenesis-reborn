@@ -100,7 +100,7 @@ public class ExoFx{
                     });
                 }
             }),
-            empyreanStarHitSmall = new Effect(45, e -> {
+            empyreanStarHitSmall = new Effect(35, e -> {
                 color(e.color);
                 e.rotation = e.fin() * 200;
                 for (int i = 0; i < 4; i++) {
@@ -115,7 +115,7 @@ public class ExoFx{
                 float circleRad = 4f + e.finpow() * 25f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
-            empyreanStarHitMedium = new Effect(45, e -> {
+            empyreanStarHitMedium = new Effect(35, e -> {
                 color(e.color);
                 e.rotation = e.fin() * 200;
                 for (int i = 0; i < 4; i++) {
@@ -130,7 +130,7 @@ public class ExoFx{
                 float circleRad = 4f + e.finpow() * 35f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
-            empyreanStarHitLarge = new Effect(65, e -> {
+            empyreanStarHitLarge = new Effect(35, e -> {
                 color(e.color);
                 e.rotation = e.fin() * 200;
                 for (int i = 0; i < 4; i++) {
