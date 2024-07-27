@@ -48,7 +48,7 @@ public class ExoUnitTypes {
     // Disaster unis
     catastrophe, war, entropy, apathy, silence, holocaust,
 
-    ursa, ullr, empire, heimdall, avicularia, vidar, twilight, notodoris, thor,
+    ursa, ullr, empire, heimdall, avicularia, vidar, twilight, odin, notodoris, thor,
     //erekir
     //erekir supportMech
     calm, serene, tranquil, sanctuary, ataraxia, leto,
@@ -1667,7 +1667,6 @@ public class ExoUnitTypes {
             }});
              */
         }};
-
         cronus = new ErekirUnitType("cronus") {{
             constructor = LegsUnit::create;
             fogRadius = 50;
@@ -5258,11 +5257,12 @@ public class ExoUnitTypes {
             }});
         }};
 
-        twilight = new UnitType("twilight") {{
+        twilight = new ExoUnitType("twilight", 0.6f, 0.8f, 1.5f, 1f, 1.5f, 1f, 1f) {{
             constructor = UnitEntity::create;
             shadowElevation = 1.3f;
             health = 54000f;
             outlineRadius = 5;
+            outlineColor = Color.valueOf("50505f");
             armor = 17f;
             speed = 0.45f;
             accel = 0.04f;
@@ -5347,6 +5347,64 @@ public class ExoUnitTypes {
                     trailLength = 6;
                     trailWidth = 2f;
                 }};
+            }});
+        }};
+        odin = new ExoUnitType("odin", 0.3f, 0.05f, 1.5f, 1f, 1.6f, 1f, 1f) {{
+            constructor = UnitEntity::create;
+            shadowElevation = 3.8f;
+            health = 94000f;
+            outlineRadius = 6;
+            outlineColor = Color.valueOf("50505f");
+            armor = 26f;
+            speed = 5.65f;
+            accel = 0.015f;
+            drag = 0.01f;
+            targetAir = false;
+            flying = true;
+            hitSize = 100f;
+            engineOffset = 46.75f;
+            engineSize = 5.75f;
+            targetFlags = new BlockFlag[]{BlockFlag.reactor, BlockFlag.generator, null};
+            circleTarget = true;
+            faceTarget = true;
+            lowAltitude = false;
+
+            immunities.addAll(StatusEffects.blasted, ExoStatusEffects.superBlasted, StatusEffects.melting);
+            weapons.add(new Weapon(){{
+                x = y = 0f;
+                mirror = false;
+                reload = 125f;
+                minShootVelocity = 0.5f;
+                 soundPitchMin = 1f;
+                 shootSound = Sounds.plasmadrop;
+                 bullet = new ExoBasicBulletType(0, 1){{
+                     sprite = "large-bomb";
+                     width = height = 65f;
+                     maxRange = 30f;
+                     ignoreRotation = true;
+                     damageType = explosive;
+
+                     backColor = Color.valueOf("ffa665");
+                     frontColor = Color.white;
+                     mixColorTo = Color.white;
+
+                     hitSound = Sounds.largeExplosion;
+                     shootCone = 180f;
+                     ejectEffect = Fx.none;
+                     hitShake = 14f;
+                     collidesAir = false;
+                     lifetime = 130f;
+
+                     hitEffect = new MultiEffect(ExoFx.odinNukeStar, ExoFx.odinNukeExplosion, ExoFx.odinNukeShockWave, Fx.massiveExplosion);
+                     keepVelocity = false;
+                     spin = 2f;
+                     shrinkX = shrinkY = 0.1f;
+                     speed = 0f;
+                     collides = false;
+                     scaledSplashDamage = true;
+                     splashDamage = 1420f;
+                     splashDamageRadius = 120f;
+                 }};
             }});
         }};
 
@@ -5483,6 +5541,7 @@ public class ExoUnitTypes {
             health = 84000f;
             outlineRadius = 6;
             omniMovement = true;
+            outlineColor = Color.valueOf("50505f");
             armor = 25f;
             speed = 0.53f;
             accel = 0.2f;

@@ -145,6 +145,82 @@ public class ExoFx{
                 float circleRad = 4f + e.finpow() * 45f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
+            odinNukeStar = new Effect(65, 1600f, e -> {
+                color(e.color);
+                e.rotation = e.fin() * 200;
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 7.5f, e.fout() * 130, e.rotation + (90 * i));
+                }
+                color();
+                for (int i = 0; i < 4; i++) {
+                    Drawf.tri(e.x, e.y, e.fout() * 4.5f, e.fout() * 70, e.rotation + (90 * i));
+                }
+                color(e.color);
+                stroke(e.fout() * 2f);
+                float circleRad = 4f + e.finpow() * 75f;
+                Lines.circle(e.x, e.y, circleRad);
+            }),
+            odinNukeShockWave = new Effect(100F, 1600f, e -> {
+                float rad = 60f;
+                rand.setSeed(e.id);
+
+                Draw.color(Color.white, e.color, e.fin() + 0.6f);
+                float circleRad = e.fin(Interp.circleOut) * rad * 4f;
+                Lines.stroke(7 * e.fout());
+                Lines.circle(e.x, e.y, circleRad);
+                for(int i = 0; i < 24; i++){
+                    Tmp.v1.set(1, 0).setToRandomDirection(rand).scl(circleRad);
+                    DrawFunc.tri(e.x + Tmp.v1.x, e.y + Tmp.v1.y, rand.random(circleRad / 16, circleRad / 12) * e.fout(), rand.random(circleRad / 4, circleRad / 1.5f) * (1 + e.fin()) / 2, Tmp.v1.angle() - 180);
+                }
+                Draw.blend(Blending.additive);
+                Draw.z(Layer.effect + 0.1f);
+
+                Fill.light(e.x, e.y, circleVertices(circleRad), circleRad, Color.clear, Tmp.c1.set(Draw.getColor()).a(e.fout(Interp.pow10Out)));
+                Draw.blend();
+                Draw.z(Layer.effect);
+
+                Drawf.light(e.x, e.y, rad * e.fout(Interp.circleOut) * 4f, e.color, 0.7f);
+            }).layer(Layer.effect + 0.001f),
+            odinNukeExplosion = new Effect(60, 500f, b -> {
+                float intensity = 6.8f;
+                float baseLifetime = 25f + intensity * 11f;
+                b.lifetime = 80f + intensity * 65f;
+
+                color(Color.valueOf("ffa665"));
+                alpha(0.7f);
+                for(int i = 0; i < 4; i++){
+                    rand.setSeed(b.id*2 + i);
+                    float lenScl = rand.random(0.4f, 1f);
+                    int fi = i;
+                    b.scaled(b.lifetime * lenScl, e -> {
+                        randLenVectors(e.id + fi - 1, e.fin(Interp.pow10Out), (int)(2.9f * intensity), 22f * intensity, (x, y, in, out) -> {
+                            float fout = e.fout(Interp.pow5Out) * rand.random(0.5f, 1f);
+                            float rad = fout * ((2f + intensity) * 2.35f);
+
+                            Fill.circle(e.x + x, e.y + y, rad);
+                            Drawf.light(e.x + x, e.y + y, rad * 2.5f, Pal.lightOrange, 0.5f);
+                        });
+                    });
+                }
+
+                b.scaled(baseLifetime, e -> {
+                    Draw.color();
+                    e.scaled(5 + intensity * 2f, i -> {
+                        stroke((3.1f + intensity/5f) * i.fout());
+                        Lines.circle(e.x, e.y, (3f + i.fin() * 14f) * intensity);
+                        Drawf.light(e.x, e.y, i.fin() * 14f * 2f * intensity, Color.white, 0.9f * e.fout());
+                    });
+
+                    color(Pal.lighterOrange, Pal.reactorPurple, e.fin());
+                    stroke((2f * e.fout()));
+
+                    Draw.z(Layer.effect + 0.001f);
+                    randLenVectors(e.id + 1, e.finpow() + 0.001f, (int)(8 * intensity), 28f * intensity, (x, y, in, out) -> {
+                        lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 1f + out * 4 * (4f + intensity));
+                        Drawf.light(e.x + x, e.y + y, (out * 4 * (3f + intensity)) * 3.5f, Draw.getColor(), 0.8f);
+                    });
+                });
+            }),
             lightningFade = (new Effect(PositionLightning.lifetime, 1200.0f, e -> {
                 if(!(e.data instanceof PositionLightning.Vec2Seq)) return;
                 PositionLightning.Vec2Seq points = e.data();
@@ -382,7 +458,6 @@ public class ExoFx{
                 color(Color.white);
                 Fill.circle(e.x, e.y, e.fin() * 20f);
             }),
-
             colorBomb = new Effect(40f, 100f, e -> {
                 color(e.color);
                 stroke(e.fout() * 2f);

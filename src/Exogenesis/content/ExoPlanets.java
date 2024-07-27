@@ -248,7 +248,7 @@ public class ExoPlanets{
                             dir.set(10f, 0f, 5f);
                             magnitude = 1.5f;
                         }},
-                        new ClampHeight(0f, 0.8f),
+                        new ClampHeight(0f, 0.5f),
                         new NoiseHeight() {{
                             scale = 4;
                             seed = 3;
