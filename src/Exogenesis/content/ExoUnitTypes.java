@@ -5415,10 +5415,10 @@ public class ExoUnitTypes {
                 shootY = 0;
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
-                    damage = width = 6f;
+                    damage = width = 9f;
                     layer = Layer.effect;
                     drawFlare = collides = false;
-                    length = 37;
+                    length = 24;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -5431,7 +5431,7 @@ public class ExoUnitTypes {
                             particles = 1;
                             line = true;
                             layer = 108;
-                            length = 35f;
+                            length = 45f;
                             lifetime = 31f;
                             baseLength = 8;
                             cone = 20;
@@ -5439,7 +5439,7 @@ public class ExoUnitTypes {
                             colorFrom = colorTo = Pal.meltdownHit;
                             strokeFrom = 2;
                             lenFrom = 10;
-                            lenTo = 0f;
+                            lenTo = 5f;
                         }};
                     }};
                     colors = new Color[]{Color.valueOf("9681fb50"), Color.valueOf("9681fb"), Color.valueOf("bf92f9"), Color.white};

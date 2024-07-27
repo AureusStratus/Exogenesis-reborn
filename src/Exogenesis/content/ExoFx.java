@@ -149,17 +149,17 @@ public class ExoFx{
                 color(e.color);
                 e.rotation = e.fin() * 200;
                 for (int i = 0; i < 4; i++) {
-                    Drawf.tri(e.x, e.y, e.fout() * 7.5f, e.fout() * 130, e.rotation + (90 * i));
+                    Drawf.tri(e.x, e.y, e.fout() * 9.5f, e.fout() * 170, e.rotation + (90 * i));
                 }
                 color();
                 for (int i = 0; i < 4; i++) {
-                    Drawf.tri(e.x, e.y, e.fout() * 4.5f, e.fout() * 70, e.rotation + (90 * i));
+                    Drawf.tri(e.x, e.y, e.fout() * 6.5f, e.fout() * 90, e.rotation + (90 * i));
                 }
                 color(e.color);
                 stroke(e.fout() * 2f);
                 float circleRad = 4f + e.finpow() * 75f;
                 Lines.circle(e.x, e.y, circleRad);
-            }),
+            }).layer(Layer.effect + 0.002f),
             odinNukeShockWave = new Effect(160F, 1600f, e -> {
                 float rad = 60f;
                 rand.setSeed(e.id);
