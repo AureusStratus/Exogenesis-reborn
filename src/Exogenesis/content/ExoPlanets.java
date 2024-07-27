@@ -113,7 +113,7 @@ public class ExoPlanets{
                             seed = 8;
                             octaves = 5;
                             magnitude = 0.6f;
-                            heightOffset = -1f;
+                            heightOffset = 0f;
                             offset.set(0f, 100f, -100f);
                         }},
                         new ClampHeight(-0.2f, 1.5f),
@@ -128,7 +128,7 @@ public class ExoPlanets{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, -0.6f), 0.30f, -0.6f)
+                        new CraterHeight(new Vec3(1f, 0f, -0.4f), 0.30f, -0.6f)
                 );
                 colors.addAll(
                         new NoiseColorPass() {{

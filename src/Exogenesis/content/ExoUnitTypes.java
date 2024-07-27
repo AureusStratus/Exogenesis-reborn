@@ -4732,7 +4732,7 @@ public class ExoUnitTypes {
 
                 shootY = 30.25f;
                 cooldownTime = 100;
-                reload = 10f;
+                reload = 4f;
                 recoil = 1f;
                 shake = 2f;
                 shoot = new ShootMulti(new ShootAlternate() {{
@@ -4835,8 +4835,8 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("enginemain"){{
                 parentizeEffects = continuous = ignoreRotation = true;
                 alternate = display = rotate = false;
-                minShootVelocity = 0.31f;
                 baseRotation = 180;
+                alwaysShootWhenMoving = false;
                 shootStatus = StatusEffects.unmoving;
                 shootStatusDuration = 140;
                 shootCone = 360;
@@ -4864,7 +4864,7 @@ public class ExoUnitTypes {
                     layer = 110;
                     drawFlare = collides = collidesTiles = collidesGround = collidesAir = false;
                     recoil = 0.5f;
-                    length = 40;
+                    length = 80;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -4892,9 +4892,10 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("engine-1"){{
-                parentizeEffects = continuous = ignoreRotation = true;
+                parentizeEffects = continuous = alwaysContinuous = ignoreRotation = true;
                 alternate = display = rotate = false;
                 minShootVelocity = 0.31f;
+                alwaysShootWhenMoving = true;
                 mirror = true;
                 baseRotation = 147.7f;
                 x = -12.5f;
@@ -4911,7 +4912,7 @@ public class ExoUnitTypes {
                     width = 6.3f;
                     layer = Layer.effect;
                     drawFlare = collides = collidesTiles = collidesGround = collidesAir = false;
-                    length = 25;
+                    length = 45;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -4939,9 +4940,10 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("engine-2"){{
-                parentizeEffects = continuous = ignoreRotation = true;
+                parentizeEffects = continuous = alwaysContinuous = ignoreRotation = true;
                 alternate = display = rotate = false;
                 minShootVelocity = 0.31f;
+                alwaysShootWhenMoving = true;
                 reload = 400;
                 mirror = true;
                 baseRotation = 162.7f;
@@ -4960,7 +4962,7 @@ public class ExoUnitTypes {
                     width = 3.3f;
                     layer = Layer.effect;
                     drawFlare = collides = collidesTiles = collidesGround = collidesAir = false;
-                    length = 13;
+                    length = 17;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -5369,11 +5371,11 @@ public class ExoUnitTypes {
             lowAltitude = false;
 
             immunities.addAll(StatusEffects.blasted, ExoStatusEffects.superBlasted, StatusEffects.melting);
-            weapons.add(new Weapon(){{
+            weapons.add(new Weapon("odin-Nuke"){{
                 x = y = 0f;
                 mirror = false;
                 reload = 125f;
-                minShootVelocity = 0.5f;
+                minShootVelocity = 0.75f;
                  soundPitchMin = 1f;
                  shootSound = Sounds.plasmadrop;
                  bullet = new ExoBasicBulletType(0, 1){{
@@ -5386,7 +5388,8 @@ public class ExoUnitTypes {
                      backColor = hitColor = Color.valueOf("ffa665");
                      frontColor = Color.white;
                      mixColorTo = Color.white;
-
+                     status = ExoStatusEffects.superBlasted;
+                     statusDuration = 300f;
                      hitSound = Sounds.largeExplosion;
                      shootCone = 180f;
                      ejectEffect = Fx.none;
@@ -5403,7 +5406,63 @@ public class ExoUnitTypes {
                      scaledSplashDamage = true;
                      splashDamage = 3420f;
                      splashDamageRadius = 120f;
+                     fragLifeMin = 0.1f;
+                     fragBullets = 9;
+                     fragBullet = new ExoArtilleryBulletType() {{
+                         damageType = explosive;
+                         drag = 0.02f;
+                         speed = 3.4f;
+                         damage = 32;
+                         hitEffect = Fx.massiveExplosion;
+                         despawnEffect = Fx.scatheSlash;
+                         knockback = 0.8f;
+                         lifetime = 23f;
+                         width = height = 18f;
+                         collidesTiles = false;
+                         splashDamageRadius = 40f;
+                         splashDamage = 80f;
+                         backColor = trailColor = hitColor = Color.valueOf("ffa665");
+                         frontColor = Color.white;
+                         smokeEffect = Fx.shootBigSmoke2;
+                         despawnShake = 7f;
+                         lightRadius = 30f;
+                         lightColor = ExoPal.cronusRed;
+                         lightOpacity = 0.5f;
+                         trailLength = 20;
+                         trailWidth = 3.5f;
+                         trailEffect = Fx.none;
+                     }};
                  }};
+            }});
+            weapons.add(new Weapon("odin-carpet-bombs"){{
+                minShootVelocity = 0.75f;
+                y = -123f;
+                shootY = 0f;
+                reload = 332f;
+                shootCone = 180f;
+                ejectEffect = Fx.none;
+                inaccuracy = 15f;
+                xRand = 40;
+                shoot = new ShootPattern() {{
+                    shots = 30;
+                    shotDelay = 2;
+                }};
+                ignoreRotation = true;
+                shootSound = Sounds.mineDeploy;
+                bullet = new ExoBombBulletType(77f, 45f){{
+                    width = 15f;
+                    height = 18f;
+                    damageType = explosive;
+                    sprite = "shell";
+                    hitEffect = Fx.flakExplosion;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    trailLength = 5;
+                    trailWidth = 2f;
+
+                    status = StatusEffects.blasted;
+                    statusDuration = 60f;
+                }};
             }});
             weapons.add(new Weapon("engine"){{
                 alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
@@ -5417,7 +5476,6 @@ public class ExoUnitTypes {
                 new EffectSpawnPart() {{
                     useProgress =  true;
                     progress = PartProgress.recoil;
-                    y = 16;
                     effect = new ParticleEffect(){{
                         particles = 1;
                         line = true;
@@ -5430,7 +5488,7 @@ public class ExoUnitTypes {
                         colorFrom = colorTo = Pal.meltdownHit;
                         strokeFrom = 2;
                         lenFrom = 10;
-                        lenTo = 5f;
+                        lenTo = 0f;
                     }};
                     randomEffectRot = 5f;
                     effectChance = 0.8f;
