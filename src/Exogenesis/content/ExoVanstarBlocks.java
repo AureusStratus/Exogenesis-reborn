@@ -1307,7 +1307,7 @@ import static arc.graphics.g2d.Lines.*;
                 shootSound = Sounds.shotgun;
                 shootCone = 40f;
                 shoot = new ShootSpread(){{
-                    spread = 8.0f;
+                    spread = 13.0f;
                     shots = 5;
                 }};
                 coolant = consumeCoolant(0.2f);
@@ -1321,8 +1321,8 @@ import static arc.graphics.g2d.Lines.*;
                             }},
                             new RegionPart("-plate"){{
                                 progress = PartProgress.warmup.curve(Interp.pow2In);
-                                moves.add(new PartMove(PartProgress.recoil, 0f, -2f, 0f));
-                                moveX = 4f;
+                                moves.add(new PartMove(PartProgress.recoil.curve(Interp.pow2In), 0f, -4f, 0f));
+                                moveX = 2f;
                                 layerOffset = -0.001f;
                                 mirror = true;
                             }},
@@ -1333,7 +1333,7 @@ import static arc.graphics.g2d.Lines.*;
                             }},
                             new RegionPart("-decal"){{
                                 progress = PartProgress.warmup;
-                                outlineLayerOffset = -0.001f;
+                                outlineLayerOffset = -0.002f;
                                 layerOffset = 0.001f;
                             }}
                     );
