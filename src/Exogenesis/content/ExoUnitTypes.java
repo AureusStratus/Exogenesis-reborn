@@ -4835,7 +4835,6 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("enginemain"){{
                 parentizeEffects = continuous = ignoreRotation = true;
                 alternate = display = rotate = false;
-                noAttack = true;
                 minShootVelocity = 0.31f;
                 baseRotation = 180;
                 shootStatus = StatusEffects.unmoving;
@@ -4895,7 +4894,6 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("engine-1"){{
                 parentizeEffects = continuous = ignoreRotation = true;
                 alternate = display = rotate = false;
-                noAttack = true;
                 minShootVelocity = 0.31f;
                 mirror = true;
                 baseRotation = 147.7f;
@@ -4943,7 +4941,6 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("engine-2"){{
                 parentizeEffects = continuous = ignoreRotation = true;
                 alternate = display = rotate = false;
-                noAttack = true;
                 minShootVelocity = 0.31f;
                 reload = 400;
                 mirror = true;
@@ -5269,6 +5266,7 @@ public class ExoUnitTypes {
             drag = 0.04f;
             flying = true;
             hitSize = 80f;
+            rotateSpeed = 1;
             engineOffset = 46.75f;
             engineSize = 5.75f;
             faceTarget = true;
@@ -5356,18 +5354,20 @@ public class ExoUnitTypes {
             outlineRadius = 6;
             outlineColor = Color.valueOf("50505f");
             armor = 26f;
-            speed = 5.65f;
-            accel = 0.015f;
+            speed = 3.35f;
+            accel = 0.011f;
             drag = 0.01f;
             targetAir = false;
             flying = true;
+            rotateSpeed = 1;
             hitSize = 100f;
-            engineOffset = 46.75f;
-            engineSize = 5.75f;
+
+            engineSize = 0f;
             targetFlags = new BlockFlag[]{BlockFlag.reactor, BlockFlag.generator, null};
             circleTarget = true;
-            faceTarget = true;
+            faceTarget = false;
             lowAltitude = false;
+
 
             immunities.addAll(StatusEffects.blasted, ExoStatusEffects.superBlasted, StatusEffects.melting);
             weapons.add(new Weapon(){{
@@ -5384,7 +5384,7 @@ public class ExoUnitTypes {
                      ignoreRotation = true;
                      damageType = explosive;
 
-                     backColor = Color.valueOf("ffa665");
+                     backColor = hitColor = Color.valueOf("ffa665");
                      frontColor = Color.white;
                      mixColorTo = Color.white;
 
@@ -5398,13 +5398,52 @@ public class ExoUnitTypes {
                      hitEffect = new MultiEffect(ExoFx.odinNukeStar, ExoFx.odinNukeExplosion, ExoFx.odinNukeShockWave, Fx.massiveExplosion);
                      keepVelocity = false;
                      spin = 2f;
-                     shrinkX = shrinkY = 0.1f;
+                     shrinkX = shrinkY = 0.7f;
                      speed = 0f;
                      collides = false;
                      scaledSplashDamage = true;
-                     splashDamage = 1420f;
+                     splashDamage = 3420f;
                      splashDamageRadius = 120f;
                  }};
+            }});
+            weapons.add(new Weapon("engine"){{
+                alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
+                display = rotate = mirror = false;
+                baseRotation = 180;
+                x = 0;
+                y = -36;
+                shootY = 0;
+                shootSound = Sounds.none;
+                bullet = new ContinuousFlameBulletType(){{
+                    damage = width = 6f;
+                    layer = Layer.effect;
+                    drawFlare = collides = false;
+                    length = 37;
+                    divisions = 20;
+                    intervalBullets = 2;
+                    intervalRandomSpread = 1;
+                    bulletInterval = 2.7f;
+                    intervalBullet = new BulletType(){{
+                        despawnHit = true;
+                        despawnEffect = Fx.none;
+                        instantDisappear = true;
+                        hitEffect = new ParticleEffect(){{
+                            particles = 1;
+                            line = true;
+                            layer = 108;
+                            length = 35f;
+                            lifetime = 31f;
+                            baseLength = 8;
+                            cone = 20;
+                            interp = Interp.circleOut;
+                            colorFrom = colorTo = Pal.meltdownHit;
+                            strokeFrom = 2;
+                            lenFrom = 10;
+                            lenTo = 0f;
+                        }};
+                    }};
+                    colors = new Color[]{Color.valueOf("9681fb50"), Color.valueOf("9681fb"), Color.valueOf("bf92f9"), Color.white};
+                }};
             }});
         }};
 

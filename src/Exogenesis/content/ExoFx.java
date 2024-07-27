@@ -160,7 +160,7 @@ public class ExoFx{
                 float circleRad = 4f + e.finpow() * 75f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
-            odinNukeShockWave = new Effect(100F, 1600f, e -> {
+            odinNukeShockWave = new Effect(160F, 1600f, e -> {
                 float rad = 60f;
                 rand.setSeed(e.id);
 
