@@ -109,7 +109,7 @@ public class ExoPlanets{
                         new ClampHeight(-0.2f, 0.5f),
                         new NoiseHeight() {{
                             scale = 6;
-                            persistence = 2;
+                            persistence = 0.5f;
                             seed = 8;
                             octaves = 5;
                             magnitude = 0.8f;

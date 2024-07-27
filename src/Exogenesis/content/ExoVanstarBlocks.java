@@ -106,10 +106,11 @@ import static arc.graphics.g2d.Lines.*;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
                         new DrawPistons(){{
-                            sinMag = 1f;
+                            sinMag = 2f;
                             sinScl = 2f;
                             sides = 8;
-                            sideOffset = 0;               }},
+                            sideOffset = 30;
+                }},
                 new DrawDefault()
                 );
                 ambientSound = Sounds.smelter;
@@ -513,7 +514,7 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.turret, with(ExoItems.cobolt, 80, ExoItems.empyreanPlating, 30, ExoItems.iron, 55, ExoItems.magnetite, 55));
                 range = 450f;
                 recoil = 2f;
-                reload = 100f;
+                reload = 150f;
                 shake = 2f;
                 outlineColor = ExoPal.empyreanOutline;
                 size = 3;
@@ -528,19 +529,19 @@ import static arc.graphics.g2d.Lines.*;
                             new RegionPart("-side") {{
                                 progress = PartProgress.warmup.curve(Interp.pow2In);
                                 heatColor = Color.red;
-                                moveX = 5f;
+                                moveX = 3f;
                                 mirror = true;
                             }},
                             new RegionPart("-missile"){{
                                 progress = PartProgress.reload.curve(Interp.pow2In);
-                                y = 4;
+                                y = 0;
                                 colorTo = new Color(1f, 1f, 1f, 0f);
                                 color = Color.white;
                                 mixColorTo = Pal.accent;
                                 mixColor = new Color(1f, 1f, 1f, 0f);
                                 under = true;
 
-                                moves.add(new PartMove(PartProgress.warmup.inv(), 0f, -10f, 0f));
+                                moves.add(new PartMove(PartProgress.warmup.inv(), 0f, 2f, 0f));
                             }}
                     );
                 }};
@@ -551,7 +552,7 @@ import static arc.graphics.g2d.Lines.*;
                     spawnUnit = new MissileUnitType("glory-missile") {{
                         speed = 7.6f;
                         maxRange = 6f;
-                        lifetime = 40f;
+                        lifetime = 100f;
                         outlineColor = ExoPal.empyreanOutline;
                         engineColor = trailColor = ExoPal.empyrean;
                         engineLayer = Layer.effect;
@@ -571,6 +572,7 @@ import static arc.graphics.g2d.Lines.*;
                             reload = 1f;
                             deathExplosionEffect = Fx.massiveExplosion;
                             shootOnDeath = true;
+
                             shake = 10f;
                             bullet = new ExoExplosionBulletType(200f, 60f) {{
                                 hitColor = ExoPal.empyrean;
@@ -1291,21 +1293,21 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.turret, with(ExoItems.rustyCopper, 420, Items.silicon, 300, ExoItems.osmium, 200, ExoItems.neodymium, 320, ExoItems.lightningStone, 250, ExoItems.vanstariumAlloy, 200, ExoItems.empyreanPlating, 300, ExoItems.litusiumAlloy, 150));
                 range = 160f;
                 recoil = 5f;
-                reload = 300f;
+                reload = 50f;
                 shake = 4f;
                 shootEffect = Fx.colorSparkBig;
                 heatColor = Color.red;
                 outlineColor = ExoPal.empyreanOutline;
-                rotateSpeed = 1;
+                rotateSpeed = 2;
                 size = 5;
                 minWarmup = 0.99f;
                 shootY = 12;
                 scaledHealth = 280;
                 cooldownTime = 100;
                 shootSound = Sounds.shotgun;
-                shootCone = 72f;
+                shootCone = 40f;
                 shoot = new ShootSpread(){{
-                    spread = 72.0f;
+                    spread = 8.0f;
                     shots = 5;
                 }};
                 coolant = consumeCoolant(0.2f);
@@ -1315,11 +1317,12 @@ import static arc.graphics.g2d.Lines.*;
                                 progress = PartProgress.recoil.curve(Interp.pow2In);
                                 moveY = -3f;
                                 moveX = 2f;
+                                mirror = true;
                             }},
                             new RegionPart("-plate"){{
                                 progress = PartProgress.warmup.curve(Interp.pow2In);
                                 moves.add(new PartMove(PartProgress.recoil, 0f, -2f, 0f));
-                                moveX = 9f;
+                                moveX = 4f;
                                 layerOffset = -0.001f;
                                 mirror = true;
                             }},
@@ -1330,6 +1333,7 @@ import static arc.graphics.g2d.Lines.*;
                             }},
                             new RegionPart("-decal"){{
                                 progress = PartProgress.warmup;
+                                outlineLayerOffset = -0.001f;
                                 layerOffset = 0.001f;
                             }}
                     );
@@ -1460,7 +1464,6 @@ import static arc.graphics.g2d.Lines.*;
                         }}
                 );
             }};
-
             profane = new ItemTurret("profane"){{
                 requirements(Category.turret, with(ExoItems.cobolt, 400, ExoItems.rustyCopper, 300, ExoItems.osmium, 350, ExoItems.thermoCore, 300, ExoItems.iron, 400, ExoItems.neodymium, 200, ExoItems.vanstariumAlloy, 180, ExoItems.empyreanPlating, 150, ExoItems.litusiumAlloy, 250));
                 range = 1500f;

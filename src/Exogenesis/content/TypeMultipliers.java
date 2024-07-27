@@ -16,10 +16,10 @@ public class TypeMultipliers{
     public static void load(){
         //assault
         addMultipliers(dagger, 0.8f, 0.8f, 1.1f, 1f, 1.2f, 1f, 1f);
-        addMultipliers(mace, 0.8f, 1.2f, 1.2f, 1f, 0.5f, 1.25f, 1f);
+        addMultipliers(mace, 0.8f, 1.2f, 1.2f, 1f, 0.5f, 1.5f, 1f);
         addMultipliers(fortress, 0.6f, 0.2f, 1.2f, 1.3f, 1.3f, 1f, 1f);
         addMultipliers(scepter, 0.5f, 0.8f, 1.3f, 1f, 1.2f, 1f, 1f);
-        addMultipliers(reign, 0.2f, 0.8f, 1.5f, 1f, 1.2f, 1.05f, 1f);
+        addMultipliers(reign, 0.2f, 0.8f, 1.5f, 1f, 1.2f, 1f, 1f);
         //assault air
         addMultipliers(flare, 0.9f, 1.1f, 1f, 1f, 1f, 1f, 1f);
         addMultipliers(horizon, 0.9f, 0.9f, 1.1f, 1f, 1f, 1f, 1f);
