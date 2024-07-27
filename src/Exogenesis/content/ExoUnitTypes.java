@@ -4858,13 +4858,14 @@ public class ExoUnitTypes {
                 shootSound = Sounds.none;
                 bullet = new ContinuousFlameBulletType(){{
                     maxRange = 150;
-                    lifetime = 90;
+                    lifetime = 130;
+                    lengthInterp = Interp.slowFast;
                     damage = 4;
                     width = 8.3f;
                     layer = 110;
                     drawFlare = collides = collidesTiles = collidesGround = collidesAir = false;
                     recoil = 0.5f;
-                    length = 80;
+                    length = 60;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -4912,7 +4913,7 @@ public class ExoUnitTypes {
                     width = 6.3f;
                     layer = Layer.effect;
                     drawFlare = collides = collidesTiles = collidesGround = collidesAir = false;
-                    length = 45;
+                    length = 30;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -4962,7 +4963,7 @@ public class ExoUnitTypes {
                     width = 3.3f;
                     layer = Layer.effect;
                     drawFlare = collides = collidesTiles = collidesGround = collidesAir = false;
-                    length = 17;
+                    length = 13;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -5361,7 +5362,7 @@ public class ExoUnitTypes {
             drag = 0.01f;
             targetAir = false;
             flying = true;
-            rotateSpeed = 1;
+            rotateSpeed = 1.3f;
             hitSize = 100f;
 
             engineSize = 0f;
@@ -5393,7 +5394,7 @@ public class ExoUnitTypes {
                      hitSound = Sounds.largeExplosion;
                      shootCone = 180f;
                      ejectEffect = Fx.none;
-                     hitShake = 14f;
+                     hitShake = 24f;
                      collidesAir = false;
                      lifetime = 130f;
 
@@ -5436,16 +5437,16 @@ public class ExoUnitTypes {
             }});
             weapons.add(new Weapon("odin-carpet-bombs"){{
                 minShootVelocity = 0.75f;
-                y = -123f;
+                y = -13f;
                 shootY = 0f;
-                reload = 332f;
+                reload = 132f;
                 shootCone = 180f;
                 ejectEffect = Fx.none;
                 inaccuracy = 15f;
-                xRand = 40;
+                xRand = 50;
                 shoot = new ShootPattern() {{
-                    shots = 30;
-                    shotDelay = 2;
+                    shots = 60;
+                    shotDelay = 1;
                 }};
                 ignoreRotation = true;
                 shootSound = Sounds.mineDeploy;
@@ -5454,7 +5455,7 @@ public class ExoUnitTypes {
                     height = 18f;
                     damageType = explosive;
                     sprite = "shell";
-                    hitEffect = Fx.flakExplosion;
+                    hitEffect = Fx.massiveExplosion;
                     shootEffect = Fx.none;
                     smokeEffect = Fx.none;
                     trailLength = 5;

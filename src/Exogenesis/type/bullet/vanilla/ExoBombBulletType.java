@@ -11,6 +11,8 @@ public class ExoBombBulletType extends BombBulletType implements TypedBulletType
 
     public ExoBombBulletType(float damage, float radius){
         super(0.7f, 0);
+        splashDamageRadius = radius;
+        splashDamage = damage;
     }
     @Override
     public DamageType damageType(){
