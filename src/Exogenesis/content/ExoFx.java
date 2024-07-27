@@ -161,7 +161,7 @@ public class ExoFx{
                 Lines.circle(e.x, e.y, circleRad);
             }).layer(Layer.effect + 0.002f),
             odinNukeShockWave = new Effect(160F, 1600f, e -> {
-                float rad = 60f;
+                float rad = 100f;
                 rand.setSeed(e.id);
 
                 Draw.color(Color.white, e.color, e.fin() + 0.6f);

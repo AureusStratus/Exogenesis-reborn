@@ -5368,7 +5368,6 @@ public class ExoUnitTypes {
             faceTarget = false;
             lowAltitude = false;
 
-
             immunities.addAll(StatusEffects.blasted, ExoStatusEffects.superBlasted, StatusEffects.melting);
             weapons.add(new Weapon(){{
                 x = y = 0f;
@@ -5414,6 +5413,28 @@ public class ExoUnitTypes {
                 y = -36;
                 shootY = 0;
                 shootSound = Sounds.none;
+                parts.addAll(
+                new EffectSpawnPart() {{
+                    useProgress =  true;
+                    progress = PartProgress.recoil;
+                    y = 16;
+                    effect = new ParticleEffect(){{
+                        particles = 1;
+                        line = true;
+                        layer = 108;
+                        length = 45f;
+                        lifetime = 31f;
+                        baseLength = 8;
+                        cone = 20;
+                        interp = Interp.circleOut;
+                        colorFrom = colorTo = Pal.meltdownHit;
+                        strokeFrom = 2;
+                        lenFrom = 10;
+                        lenTo = 5f;
+                    }};
+                    randomEffectRot = 5f;
+                    effectChance = 0.8f;
+                }});
                 bullet = new ContinuousFlameBulletType(){{
                     damage = width = 9f;
                     layer = Layer.effect;
@@ -5427,22 +5448,8 @@ public class ExoUnitTypes {
                         despawnHit = true;
                         despawnEffect = Fx.none;
                         instantDisappear = true;
-                        hitEffect = new ParticleEffect(){{
-                            particles = 1;
-                            line = true;
-                            layer = 108;
-                            length = 45f;
-                            lifetime = 31f;
-                            baseLength = 8;
-                            cone = 20;
-                            interp = Interp.circleOut;
-                            colorFrom = colorTo = Pal.meltdownHit;
-                            strokeFrom = 2;
-                            lenFrom = 10;
-                            lenTo = 5f;
-                        }};
                     }};
-                    colors = new Color[]{Color.valueOf("9681fb50"), Color.valueOf("9681fb"), Color.valueOf("bf92f9"), Color.white};
+                    colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                 }};
             }});
         }};
