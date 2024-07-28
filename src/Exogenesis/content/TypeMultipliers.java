@@ -39,11 +39,11 @@ public class TypeMultipliers{
         addMultipliers(vanquish, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
         addMultipliers(conquer, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
         //specialist
-        addMultipliers(crawler, 1f, 0.1f, 1f, 1f, 1f, 1f, 0.4f);
-        addMultipliers(atrax, 1f, 1f, 1f, 1f, 0.4f, 1.2f, 0.4f);
-        addMultipliers(spiroct, 1f, 1f, 1f, 1f, 1f, 1.3f, 0.4f);
-        addMultipliers(arkyid, 0.9f, 1f, 1f, 1f, 1f, 1.3f, 0.4f);
-        addMultipliers(toxopid, 0.9f, 1f, 1f, 1f, 1f, 1.5f, 0.4f);
+        addMultipliers(crawler, 1f, 0.1f, 1f, 1f, 1f, 1f, 1f);
+        addMultipliers(atrax, 1f, 1f, 1f, 1f, 0.4f, 1.2f, 0.9f);
+        addMultipliers(spiroct, 1f, 1f, 1f, 1f, 1f, 1.3f, 0.8f);
+        addMultipliers(arkyid, 1f, 1f, 1f, 1f, 1f, 1.3f, 0.7f);
+        addMultipliers(toxopid, 0.8f, 1f, 1.2f, 1f, 1.5f, 1.5f, 0.5f);
         //erekir air
         addMultipliers(elude, 1f, 0.6f, 1f, 1.2f, 1f, 1f, 0.4f);
         addMultipliers(avert, 1f, 0.6f, 1f, 1.2f, 1f, 1f, 0.4f);

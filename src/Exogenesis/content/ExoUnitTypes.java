@@ -4537,7 +4537,7 @@ public class ExoUnitTypes {
             legBaseOffset = 20;
             legSplashDamage = 156;
             legSplashRange = 60;
-            groundLayer = 77;
+            groundLayer = 76;
             abilities.add(new TurretShield(){{
                 cooldown = 60f * 6f;
                 radius = 80;
@@ -4992,7 +4992,7 @@ public class ExoUnitTypes {
             }});
         }};
 
-        avicularia = new ExoUnitType("avicularia", 0.8f, 1f, 1f, 1f, 1f, 1.5f, 0.4f){{
+        avicularia = new ExoUnitType("avicularia", 1f, 1f, 1f, 1f, 1f, 1.5f, 0.4f){{
             groundLayer = Layer.legUnit;
             constructor = LegsUnit::create;
             drag = 0.1f;
@@ -5044,7 +5044,7 @@ public class ExoUnitTypes {
                         lightningLength = 4;
                         lightningLengthRand = 2;
                         lightningAngleRand = 15f;
-                        damageType = DamageType.energy;
+                        damageType = energy;
                         width = 25f;
                         length = 140f;
                         hitColor = lightningColor = Pal.sapBullet;
@@ -5092,7 +5092,7 @@ public class ExoUnitTypes {
                 }};
             }});
     }};
-        vidar = new ExoUnitType("vidar", 0.8f, 1f, 1f, 1f, 1.3f, 2f, 0.05f){{
+        vidar = new ExoUnitType("vidar", 1f, 1f, 1f, 1f, 1.5f, 2f, 0.05f){{
             constructor = LegsUnit::create;
             speed = 0.4f;
             drag = 0.12f;
@@ -5103,7 +5103,7 @@ public class ExoUnitTypes {
             outlineRadius = 6;
             armor = 18f;
             rotateSpeed = 1.3f;
-            legCount = 14;
+            legCount = 8;
             legGroupSize = 2;
             legMoveSpace = 0.7f;
             legPairOffset = 0.2f;
@@ -5134,18 +5134,13 @@ public class ExoUnitTypes {
                             blending = Blending.additive;
                             outline = mirror = false;
                         }});
-                bullet = new ExoShrapnelBulletType(){{
+                bullet = new TentacleBulletType(150){{
                     length = 130f;
-                    damage = 310f;
-                    width = 29f;
-                    damageType = DamageType.thermal;
-                    serrationLenScl = 7f;
-                    serrationSpaceOffset = 60f;
-                    serrationFadeOffset = 0f;
-                    serrations = 10;
-                    serrationWidth = 6f;
+                    width = 8f;
+                    segments = 12;
+                    damageType = radiation;
                     fromColor = Pal.sapBullet;
-                    toColor = Pal.sapBulletBack;
+                    toColor = ExoPal.radGreenDark;
                     shootEffect = smokeEffect = Fx.sparkShoot;
                 }};
             }},
@@ -5408,7 +5403,7 @@ public class ExoUnitTypes {
                      splashDamage = 3420f;
                      splashDamageRadius = 120f;
                      fragLifeMin = 0.1f;
-                     fragBullets = 9;
+                     fragBullets = 18;
                      fragBullet = new ExoArtilleryBulletType() {{
                          damageType = explosive;
                          drag = 0.02f;
@@ -5417,7 +5412,7 @@ public class ExoUnitTypes {
                          hitEffect = Fx.massiveExplosion;
                          despawnEffect = Fx.scatheSlash;
                          knockback = 0.8f;
-                         lifetime = 23f;
+                         lifetime = 53f;
                          width = height = 18f;
                          collidesTiles = false;
                          splashDamageRadius = 40f;
@@ -5446,7 +5441,7 @@ public class ExoUnitTypes {
                 xRand = 50;
                 shoot = new ShootPattern() {{
                     shots = 60;
-                    shotDelay = 1;
+                    shotDelay = 2;
                 }};
                 ignoreRotation = true;
                 shootSound = Sounds.mineDeploy;
@@ -5458,6 +5453,9 @@ public class ExoUnitTypes {
                     hitEffect = Fx.massiveExplosion;
                     shootEffect = Fx.none;
                     smokeEffect = Fx.none;
+                    incendChance = 0.5f;
+                    incendAmount = 10;
+                    incendSpread = 6;
                     trailLength = 5;
                     trailWidth = 2f;
 

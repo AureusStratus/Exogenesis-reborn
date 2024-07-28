@@ -145,15 +145,15 @@ public class ExoFx{
                 float circleRad = 4f + e.finpow() * 45f;
                 Lines.circle(e.x, e.y, circleRad);
             }),
-            odinNukeStar = new Effect(65, 1600f, e -> {
+            odinNukeStar = new Effect(95, 1600f, e -> {
                 color(e.color);
                 e.rotation = e.fin() * 200;
                 for (int i = 0; i < 4; i++) {
-                    Drawf.tri(e.x, e.y, e.fout() * 9.5f, e.fout() * 170, e.rotation + (90 * i));
+                    Drawf.tri(e.x, e.y, e.fout() * 9.5f, e.fout() * 230, e.rotation + (90 * i));
                 }
                 color();
                 for (int i = 0; i < 4; i++) {
-                    Drawf.tri(e.x, e.y, e.fout() * 6.5f, e.fout() * 90, e.rotation + (90 * i));
+                    Drawf.tri(e.x, e.y, e.fout() * 6.5f, e.fout() * 110, e.rotation + (90 * i));
                 }
                 color(e.color);
                 stroke(e.fout() * 2f);
