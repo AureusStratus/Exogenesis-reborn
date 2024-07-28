@@ -5505,9 +5505,9 @@ public class ExoUnitTypes {
                 }});
                 bullet = new ContinuousFlameBulletType(){{
                     damage = width = 9f;
-                    layer = 109;
+                    layer = Layer.effect;
                     drawFlare = collides = false;
-                    length = 6;
+                    length = 16;
                     divisions = 20;
                     intervalBullets = 2;
                     intervalRandomSpread = 1;
@@ -5515,51 +5515,10 @@ public class ExoUnitTypes {
                     colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                 }};
             }});
-            weapons.add(new Weapon("engine-main-active"){{
-                alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
-                display = rotate = mirror = false;
-                minShootVelocity = 0.5f;
-                alwaysShootWhenMoving = true;
-                baseRotation = 180;
-                x = 0;
-                y = -36;
-                shootY = 0;
-                shootSound = Sounds.none;
-                parts.addAll(
-                        new EffectSpawnPart() {{
-                            useProgress =  true;
-                            progress = PartProgress.recoil;
-                            effect = new ParticleEffect(){{
-                                particles = 2;
-                                line = true;
-                                layer = 108;
-                                length = 45f;
-                                lifetime = 15f;
-                                baseLength = 8;
-                                cone = 20;
-                                interp = Interp.fastSlow;
-                                colorFrom = colorTo = Pal.meltdownHit;
-                                strokeFrom = 4;
-                                lenFrom = 10;
-                                lenTo = 3f;
-                            }};
-                            randomEffectRot = 5f;
-                            effectChance = 0.8f;
-                        }});
-                bullet = new ContinuousFlameBulletType(){{
-                    damage = width = 9f;
-                    layer = Layer.effect;
-                    oscScl = 1.7f;
-                    oscMag = 0.04f;
-                    drawFlare = collides = false;
-                    length = 17;
-                    divisions = 20;
-                    colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
-                }};
-            }});
             weapons.add(new Weapon("engines-secondary"){{
                 alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
-                display = rotate = mirror = false;
+                display = rotate = false;
+                mirror = true;
                 baseRotation = 180;
                 x = 25;
                 y = -29;
@@ -5588,59 +5547,18 @@ public class ExoUnitTypes {
                         }});
                 bullet = new ContinuousFlameBulletType(){{
                     damage = width = 4f;
-                    layer = 109;
+                    layer = Layer.effect;
                     drawFlare = collides = false;
-                    length = 6;
-                    divisions = 20;
-                    colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
-                }};
-            }});
-            weapons.add(new Weapon("engines-secondary-active"){{
-                alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
-                display = rotate = mirror = false;
-                minShootVelocity = 0.5f;
-                alwaysShootWhenMoving = true;
-                baseRotation = 180;
-                x = 25;
-                y = -29;
-                shootY = 0;
-                shootSound = Sounds.none;
-                parts.addAll(
-                        new EffectSpawnPart() {{
-                            useProgress =  true;
-                            progress = PartProgress.recoil;
-                            effect = new ParticleEffect(){{
-                                particles = 2;
-                                line = true;
-                                layer = 108;
-                                length = 45f;
-                                lifetime = 15f;
-                                baseLength = 8;
-                                cone = 20;
-                                interp = Interp.fastSlow;
-                                colorFrom = colorTo = Pal.meltdownHit;
-                                strokeFrom = 4;
-                                lenFrom = 10;
-                                lenTo = 3f;
-                            }};
-                            randomEffectRot = 5f;
-                            effectChance = 0.8f;
-                        }});
-                bullet = new ContinuousFlameBulletType(){{
-                    damage = width = 4f;
-                    oscScl = 1.7f;
-                    oscMag = 0.04f;
-                    layer = 109;
-                    drawFlare = collides = false;
-                    length = 9;
+                    length = 10;
                     divisions = 20;
                     colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                 }};
             }});
             weapons.add(new Weapon("engines-tertiary"){{
                 alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
-                display = rotate = mirror = false;
-                baseRotation = 90;
+                display = rotate = false;
+                mirror = true;
+                baseRotation = -90;
                 x = 38;
                 y = -18;
                 shootY = 0;
@@ -5663,31 +5581,12 @@ public class ExoUnitTypes {
                                 lenFrom = 5;
                                 lenTo = 0f;
                             }};
-                            effectRot = 90f;
+                            effectRot = -90f;
                             effectChance = 0.8f;
                         }});
                 bullet = new ContinuousFlameBulletType(){{
                     damage = width = 4f;
-                    layer = 109;
-                    drawFlare = collides = false;
-                    length = 6;
-                    divisions = 20;
-                    colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
-                }};
-            }});
-            weapons.add(new Weapon("engines-tertiary-active"){{
-                alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
-                display = rotate = mirror = false;
-                minShootVelocity = 0.5f;
-                alwaysShootWhenMoving = true;
-                baseRotation = 90;
-                x = 38;
-                y = -18;
-                shootY = 0;
-                shootSound = Sounds.none;
-                bullet = new ContinuousFlameBulletType(){{
-                    damage = width = 4f;
-                    layer = 109;
+                    layer = Layer.effect;
                     drawFlare = collides = false;
                     length = 8;
                     divisions = 20;
