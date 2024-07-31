@@ -4429,13 +4429,13 @@ public class ExoUnitTypes {
 
             groundLayer = Layer.legUnit;
             abilities.add(new TurretShield(){{
-                radius = hitSize + 112f;
-                angle = 130;
+                radius = hitSize + 32f;
+                angle = 180;
                 regen = 3f;
                 cooldown = 60f * 10f;
                 max = 10000f;
-                width = 24f;
-                drawWidth = 12f;
+                width = 34f;
+                drawWidth = 17.0f;
                 whenShooting = false;
             }});
             weapons.add(new Weapon("exogenesis-ursa-weapon"){{
@@ -4444,13 +4444,12 @@ public class ExoUnitTypes {
                 top = false;
                 mirror = true;
                 alternate = true;
-                shake = 14f;
-                shootY = 5f;
+                shootY = 24.75f;
+                shootX = 1;
                 x = 33;
                 y = 0;
-                reload = 80f;
+                reload = 5f;
                 recoil = 0f;
-                parentizeEffects = true;
                 inaccuracy = 15f;
                 shoot.shots = 3;
                 bullet = new ChainLightningBulletType() {{
@@ -4458,13 +4457,13 @@ public class ExoUnitTypes {
                     damageType = DamageType.energy;
                     shootEffect = ExoFx.hitMeltColor;
                     smokeEffect = Fx.colorSpark;
-                    hitEffect = ExoFx.empyreanStarHitSmall;
+                    hitEffect = ExoFx.blastExplosionColor;
                     collidesTeam = true;
                     healAmount = 35;
-                    range = 85;
+                    range = 185;
                     width = 11;
-                    targetRange = 10;
-                    damage = 100;
+                    targetRange = 30;
+                    damage = 40;
                     distanceDamageFalloff = 2;
                     chainLightning = 1;
                     segmentLength = 6;
@@ -4483,7 +4482,7 @@ public class ExoUnitTypes {
                     damage = 135f;
                     sideAngle = 45f;
                     sideWidth = 1f;
-                    sideLength = 70f;
+                    sideLength = 50f;
                     healPercent = 10f;
                     collidesTeam = true;
                     damageType = energy;
@@ -4507,7 +4506,7 @@ public class ExoUnitTypes {
                     damage = 135f;
                     sideAngle = 45f;
                     sideWidth = 1f;
-                    sideLength = 70f;
+                    sideLength = 50f;
                     healPercent = 10f;
                     collidesTeam = true;
                     damageType = energy;
@@ -5322,7 +5321,7 @@ public class ExoUnitTypes {
                 lightningDamage = 20;
                 }};
             }},
-            new Weapon("exogenesis-small-assault-weapon"){{
+            new Weapon("exogenesis-small-assualt-weapon"){{
                 x = 9.75f;
                 y = 24.5f;
                 rotateSpeed = 3f;
@@ -5335,16 +5334,16 @@ public class ExoUnitTypes {
                     damage = 115f;
                     sideAngle = -90f;
                     sideWidth = 1.5f;
-                    sideLength = 80f;
+                    sideLength = 30f;
                     damageType = thermal;
-                    width = 25f;
+                    width = 16f;
                     length = 140f;
                     hitColor = lightningColor = Color.valueOf("ff9c5a");
                     shootEffect = ExoFx.colorBombSmall;
                     colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                 }};
             }},
-            new Weapon("exogenesis-small-assault-weapon"){{
+            new Weapon("exogenesis-small-assualt-weapon"){{
                 x = 16.75f;
                 y = 8.25f;
                 rotateSpeed = 3f;
@@ -5357,16 +5356,16 @@ public class ExoUnitTypes {
                     damage = 115f;
                     sideAngle = -90f;
                     sideWidth = 1.5f;
-                    sideLength = 80f;
+                    sideLength = 30f;
                     damageType = thermal;
-                    width = 25f;
+                    width = 16f;
                     length = 140f;
                     hitColor = lightningColor = Color.valueOf("ff9c5a");
                     shootEffect = ExoFx.colorBombSmall;
                     colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                 }};
             }},
-            new Weapon("exogenesis-small-assault-weapon"){{
+            new Weapon("exogenesis-small-assualt-weapon"){{
                 x = 12.0f;
                 y = -16.25f;
                 rotateSpeed = 3f;
@@ -5379,9 +5378,9 @@ public class ExoUnitTypes {
                     damage = 115f;
                     sideAngle = -90f;
                     sideWidth = 1.5f;
-                    sideLength = 80f;
+                    sideLength = 30f;
                     damageType = thermal;
-                    width = 25f;
+                    width = 16f;
                     length = 140f;
                     hitColor = lightningColor = Color.valueOf("ff9c5a");
                     shootEffect = ExoFx.colorBombSmall;
@@ -5527,7 +5526,7 @@ public class ExoUnitTypes {
                         length = 45f;
                         lifetime = 31f;
                         baseLength = 8;
-                        cone = 20;
+                        cone = 50;
                         interp = Interp.circleOut;
                         colorFrom = colorTo = Pal.meltdownHit;
                         strokeFrom = 2;
@@ -5553,6 +5552,7 @@ public class ExoUnitTypes {
                 alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
                 display = rotate = false;
                 mirror = true;
+                alternate = false;
                 baseRotation = 180;
                 x = 25;
                 y = -29;
@@ -5592,7 +5592,8 @@ public class ExoUnitTypes {
                 alwaysContinuous = parentizeEffects = continuous = alwaysShooting = true;
                 display = rotate = false;
                 mirror = true;
-                baseRotation = -90;
+                alternate = false;
+                baseRotation = -45;
                 x = 38;
                 y = -18;
                 shootY = 0;
