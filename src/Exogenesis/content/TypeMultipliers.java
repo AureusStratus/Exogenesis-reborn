@@ -33,11 +33,11 @@ public class TypeMultipliers{
         addMultipliers(sei, 0.9f, 1f, 1.3f, 1f, 1f, 1f, 1f);
         addMultipliers(omura, 0.2f, 1f, 0.2f, 1f, 1f, 1f, 1f);
         //erekir tank
-        addMultipliers(stell, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(locus, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(precept, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(vanquish, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(conquer, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(stell, 0.8f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(locus, 0.8f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(precept, 0.6f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(vanquish, 0.6f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(conquer, 0.4f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
         //specialist
         addMultipliers(crawler, 1f, 0.1f, 1f, 1f, 1f, 1f, 1f);
         addMultipliers(atrax, 1f, 1f, 1f, 1f, 0.4f, 1.2f, 0.9f);
