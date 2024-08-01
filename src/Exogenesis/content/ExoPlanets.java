@@ -97,7 +97,7 @@ public class ExoPlanets{
                             magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
-                            interp = Interp.linear;
+                            interp = Interp.swing;
                             dir.set(0f, 20f, 0.3f);
                             magnitude = 6;
                         }},
@@ -106,7 +106,7 @@ public class ExoPlanets{
                             dir.set(0f, 0f, 0.1f);
                             magnitude = 6;
                         }},
-                        new ClampHeight(-0.2f, 0.5f),
+                        new ClampHeight(-0.2f, 0.7f),
                         new NoiseHeight() {{
                             scale = 9;
                             persistence = 0.5f;
@@ -172,7 +172,7 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.5f, ExoEnvironmentBlocks.ferricIronWall.mapColor),
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.3f, ExoEnvironmentBlocks.vanstarock.mapColor),
                         new CraterColorPass(new Vec3(4f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0.2f), 0.4f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
+                        new CraterColorPass(new Vec3(1f, 0f, -0.2f), 0.4f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
                 );
             }};
             /*
@@ -248,7 +248,7 @@ public class ExoPlanets{
                             dir.set(10f, 0f, 5f);
                             magnitude = 1.5f;
                         }},
-                        new ClampHeight(0f, 0.5f),
+                        new ClampHeight(-0.2f, 0.7f),
                         new NoiseHeight() {{
                             scale = 4;
                             seed = 3;
@@ -258,7 +258,7 @@ public class ExoPlanets{
                             heightOffset = -1f;
                             offset.set(1500f, 100f, -500f);
                         }},
-                        new ClampHeight(-0.2f, 0.8f),
+                        new ClampHeight(-0.2f, 1.5f),
                         new CraterHeight(new Vec3(-1.5f, 0.5f, 0.6f), 0.4f, 0.2f) {{
                             set = true;
                         }},
