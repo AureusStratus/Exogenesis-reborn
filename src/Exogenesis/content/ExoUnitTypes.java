@@ -4417,7 +4417,7 @@ public class ExoUnitTypes {
             hovering = true;
 
             legPhysicsLayer = false;
-            legGroupSize = 2;
+            legGroupSize = 4;
             legCount = 8;
             legContinuousMove = true;
             rippleScale = 1.2f;
@@ -4439,28 +4439,29 @@ public class ExoUnitTypes {
                 whenShooting = true;
             }});
             weapons.add(new Weapon("exogenesis-ursa-weapon"){{
-                shootSound = Sounds.malignShoot;
+                shootSound = Sounds.shootSmite;
                 soundPitchMin = 1f;
                 top = false;
                 mirror = true;
                 alternate = true;
+                layerOffset = -0.001f;
                 shootY = 24.75f;
                 shootX = 1;
                 x = 33;
                 y = 0;
-                reload = 40f;
-                recoil = 3f;
-                inaccuracy = 15f;
+                reload = 90f;
+                recoil = 5f;
+                inaccuracy = 3f;
                 shoot.shots = 3;
                 shoot.shotDelay = 4f;
-
                 bullet = new ExoBasicBulletType(7f, 80){{
                     width = 13f;
-                    height = 23f;
+                    height = 28f;
+                    shrinkY = shrinkX = 0;
                     sprite = "circle-bullet";
-                    trailLength = 3;
+                    trailLength = 8;
                     trailWidth = 2.5f;
-                    lifetime = 32f;
+                    lifetime = 36f;
                     weaveMag = 0.3f;
                     weaveScale = 10;
                     shootEffect = Fx.shootBig;
@@ -4476,10 +4477,10 @@ public class ExoUnitTypes {
                     healPercent = 20;
                     bulletInterval = 5f;
                     intervalBullet = new ChainLightningBulletType() {{
-                        lightningColor = Pal.heal;
+                        lightningColor = hitColor = Pal.heal;
                         damageType = energy;
-                        range = 85;
-                        targetRange = 10;
+                        range = 10;
+                        targetRange = 85;
                         damage = 30;
                         width = 5;
                         distanceDamageFalloff = 4;
@@ -5616,7 +5617,7 @@ public class ExoUnitTypes {
                 display = rotate = false;
                 mirror = true;
                 alternate = false;
-                baseRotation = -45;
+                baseRotation = 135;
                 x = 38;
                 y = -18;
                 shootY = 0;
