@@ -4454,14 +4454,14 @@ public class ExoUnitTypes {
                 inaccuracy = 3f;
                 shoot.shots = 3;
                 shoot.shotDelay = 4f;
-                bullet = new ExoBasicBulletType(7f, 80){{
+                bullet = new ExoBasicBulletType(7f, 140){{
                     width = 13f;
                     height = 28f;
                     shrinkY = shrinkX = 0;
                     sprite = "circle-bullet";
                     trailLength = 8;
                     trailWidth = 2.5f;
-                    lifetime = 36f;
+                    lifetime = 42f;
                     weaveMag = 0.3f;
                     weaveScale = 10;
                     shootEffect = Fx.shootBig;
@@ -4479,7 +4479,7 @@ public class ExoUnitTypes {
                     intervalBullet = new ChainLightningBulletType() {{
                         lightningColor = hitColor = Pal.heal;
                         damageType = energy;
-                        range = 10;
+                        range = 50;
                         targetRange = 85;
                         damage = 30;
                         width = 5;
@@ -4490,7 +4490,7 @@ public class ExoUnitTypes {
                     lightning = 3;
                     lightningLength = 6;
                     lightningColor = hitColor = trailColor = backColor = Pal.heal;
-                    lightningDamage = 20;
+                    lightningDamage = 40;
                 }};
             }});
             weapons.add(new Weapon("exogenesis-big-heal-gun"){{
@@ -5617,7 +5617,7 @@ public class ExoUnitTypes {
                 display = rotate = false;
                 mirror = true;
                 alternate = false;
-                baseRotation = 135;
+                baseRotation = -135;
                 x = 38;
                 y = -18;
                 shootY = 0;

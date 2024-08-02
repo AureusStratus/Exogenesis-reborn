@@ -254,7 +254,7 @@ public class ExoPlanets{
                             seed = 3;
                             persistence = 1f;
                             octaves = 1;
-                            magnitude = 0.6f;
+                            magnitude = 1f;
                             heightOffset = -1f;
                             offset.set(1500f, 100f, -500f);
                         }},
