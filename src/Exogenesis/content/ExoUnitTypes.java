@@ -4403,7 +4403,7 @@ public class ExoUnitTypes {
             }});
         }};
         //end
-        ursa = new ExoUnitType("ursa", 1.2f, 1f, 1f, 0.25f, 0.8f, 1f, 0.2f) {-{
+        ursa = new ExoUnitType("ursa", 1.2f, 1f, 1f, 0.25f, 0.8f, 1f, 0.2f) {{
             constructor = LegsUnit::create;
             speed = 0.27f;
             hitSize = 37f;
