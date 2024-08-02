@@ -108,7 +108,7 @@ public class ExoPlanets{
                         }},
                         new ClampHeight(-0.2f, 0.7f),
                         new NoiseHeight() {{
-                            scale = 9;
+                            scale = 4;
                             persistence = 0.5f;
                             seed = 8;
                             octaves = 5;
@@ -244,7 +244,7 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.Exp(2, 10);
+                            interp = new Interp.Exp(6, 10);
                             dir.set(10f, 0f, 5f);
                             magnitude = 1.5f;
                         }},

@@ -4403,7 +4403,7 @@ public class ExoUnitTypes {
             }});
         }};
         //end
-        ursa = new ExoUnitType("ursa", 1.2f, 1f, 1f, 0.25f, 0.8f, 1f, 0.2f) {{
+        ursa = new ExoUnitType("ursa", 1.2f, 1f, 1f, 0.25f, 0.8f, 1f, 0.2f) {-{
             constructor = LegsUnit::create;
             speed = 0.27f;
             hitSize = 37f;
@@ -4417,7 +4417,7 @@ public class ExoUnitTypes {
             hovering = true;
 
             legPhysicsLayer = false;
-            legGroupSize = 4;
+            legGroupSize = 2;
             legCount = 8;
             legContinuousMove = true;
             rippleScale = 1.2f;
@@ -4436,10 +4436,10 @@ public class ExoUnitTypes {
                 max = 10000f;
                 width = 34f;
                 drawWidth = 17.0f;
-                whenShooting = false;
+                whenShooting = true;
             }});
             weapons.add(new Weapon("exogenesis-ursa-weapon"){{
-                shootSound = Sounds.spark;
+                shootSound = Sounds.malignShoot;
                 soundPitchMin = 1f;
                 top = false;
                 mirror = true;
@@ -4448,25 +4448,48 @@ public class ExoUnitTypes {
                 shootX = 1;
                 x = 33;
                 y = 0;
-                reload = 5f;
-                recoil = 0f;
+                reload = 40f;
+                recoil = 3f;
                 inaccuracy = 15f;
                 shoot.shots = 3;
-                bullet = new ChainLightningBulletType() {{
-                    lightningColor = hitColor = Pal.heal;
-                    damageType = DamageType.energy;
-                    shootEffect = ExoFx.hitMeltColor;
-                    smokeEffect = Fx.colorSpark;
-                    hitEffect = ExoFx.blastExplosionColor;
+                shoot.shotDelay = 4f;
+
+                bullet = new ExoBasicBulletType(7f, 80){{
+                    width = 13f;
+                    height = 23f;
+                    sprite = "circle-bullet";
+                    trailLength = 3;
+                    trailWidth = 2.5f;
+                    lifetime = 32f;
+                    weaveMag = 0.3f;
+                    weaveScale = 10;
+                    shootEffect = Fx.shootBig;
+                    smokeEffect = ExoFx.randLifeSparkExo;
+                    hitEffect = ExoFx.empyreanStarHitSmall;
+                    despawnEffect = ExoFx.blastExplosionColor;
+
+                    suppressionRange = 40f;
+                    suppressionDuration = 60f * 8f;
+                    suppressionEffectChance = 50;
+                    damageType = energy;
                     collidesTeam = true;
-                    healAmount = 35;
-                    range = 185;
-                    width = 11;
-                    targetRange = 30;
-                    damage = 40;
-                    distanceDamageFalloff = 2;
-                    chainLightning = 1;
-                    segmentLength = 6;
+                    healPercent = 20;
+                    bulletInterval = 5f;
+                    intervalBullet = new ChainLightningBulletType() {{
+                        lightningColor = Pal.heal;
+                        damageType = energy;
+                        range = 85;
+                        targetRange = 10;
+                        damage = 30;
+                        width = 5;
+                        distanceDamageFalloff = 4;
+                        chainLightning = 2;
+                        segmentLength = 6;
+                    }};
+                    lightning = 3;
+                    lightningLength = 6;
+                    lightningColor = hitColor = trailColor = backColor = Pal.heal;
+                    lightningDamage = 20;
                 }};
             }});
             weapons.add(new Weapon("exogenesis-big-heal-gun"){{
@@ -4703,12 +4726,12 @@ public class ExoUnitTypes {
                     range = 150;
                     targetRange = 20;
                     damage = 90;
+                    width = 6;
                     distanceDamageFalloff = 4;
                     chainLightning = 5;
                     segmentLength = 6;
                 }};
             }});
-
         }};
 
         empire = new ExoUnitType("empire", 0.2f, 0.8f, 1.5f, 1f, 1f, 1f, 1f){{
