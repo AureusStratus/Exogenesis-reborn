@@ -20,7 +20,7 @@ java{
 
 ext{
     //the build number that this mod is made for
-    mindustryVersion = 'v146'
+    mindustryVersion = 'v25172'
     jabelVersion = "93fde537c7"
     //windows sucks
     isWindows = System.getProperty("os.name").toLowerCase().contains("windows")
@@ -36,7 +36,7 @@ allprojects{
 
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
-    compileOnly 'com.github.MEEPofFaith:MindustryBlackHoleRenderer:v15'
+    compileOnly 'com.github.MEEPofFaith:MindustryBlackHoleRenderer:v16'
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
 
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
