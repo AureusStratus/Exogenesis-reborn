@@ -2,12 +2,18 @@ package Exogenesis.type.bullet.vanilla;
 
 import Exogenesis.type.DamageType;
 import Exogenesis.type.bullet.TypedBulletType;
-import mindustry.entities.bullet.ShrapnelBulletType;
+import mindustry.entities.bullet.BombBulletType;
 import mindustry.gen.Bullet;
 import mindustry.gen.Hitboxc;
 
-public class ExoShrapnelBulletType extends ShrapnelBulletType implements TypedBulletType{
+public class ExoBombBulletType extends BombBulletType implements TypedBulletType {
     public DamageType damageType;
+
+    public ExoBombBulletType(float damage, float radius){
+        super(0.7f, 0);
+        splashDamageRadius = radius;
+        splashDamage = damage;
+    }
     @Override
     public DamageType damageType(){
         return damageType;

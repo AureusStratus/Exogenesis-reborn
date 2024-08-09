@@ -92,27 +92,27 @@ public class ExoPlanets{
                 baseColor = ExoEnvironmentBlocks.vanstarock.mapColor;
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.Exp(7, 3);
+                            interp = new Interp.Exp(6, 6);
                             dir.set(4f, 10f, 0f);
-                            magnitude = 4;
+                            magnitude = 1;
                         }},
                         new AngleInterpHeight() {{
-                            interp = Interp.linear;
+                            interp = Interp.swingIn;
                             dir.set(0f, 20f, 0.3f);
-                            magnitude = 1;
+                            magnitude = 6;
                         }},
                         new AngleInterpHeight() {{
                             interp = Interp.linear;
                             dir.set(0f, 0f, 0.1f);
-                            magnitude = 1;
+                            magnitude = 6;
                         }},
-                        new ClampHeight(-0.2f, 0.5f),
+                        new ClampHeight(-0.2f, 0.7f),
                         new NoiseHeight() {{
-                            scale = 6;
-                            persistence = 2;
+                            scale = 4;
+                            persistence = 0.5f;
                             seed = 8;
                             octaves = 5;
-                            magnitude = 3f;
+                            magnitude = 0.7f;
                             heightOffset = -1f;
                             offset.set(0f, 100f, -100f);
                         }},
@@ -128,7 +128,7 @@ public class ExoPlanets{
                             set = true;
                         }},
                         //crator?
-                        new CraterHeight(new Vec3(1f, 0f, -0.6f), 0.30f, -0.6f)
+                        new CraterHeight(new Vec3(1f, 0f, -0.2f), 0.30f, -0.3f)
                 );
                 colors.addAll(
                         new NoiseColorPass() {{
@@ -172,7 +172,7 @@ public class ExoPlanets{
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.5f, ExoEnvironmentBlocks.ferricIronWall.mapColor),
                         new CraterColorPass(new Vec3(-0.3f, 0.5f, 0.8f), 0.3f, ExoEnvironmentBlocks.vanstarock.mapColor),
                         new CraterColorPass(new Vec3(4f, 0f, 0.6f), 0.2f, ExoEnvironmentBlocks.yellowGrass.mapColor),
-                        new CraterColorPass(new Vec3(1f, 0f, 0.2f), 0.4f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
+                        new CraterColorPass(new Vec3(1f, 0f, -0.2f), 0.4f, ExoEnvironmentBlocks.ferricIronWall.mapColor)
                 );
             }};
             /*
@@ -244,21 +244,21 @@ public class ExoPlanets{
                 baseColor = Color.valueOf("212630");
                 heights.addAll(
                         new AngleInterpHeight() {{
-                            interp = new Interp.Exp(2, 10);
+                            interp = new Interp.Exp(10, 10);
                             dir.set(10f, 0f, 5f);
                             magnitude = 1.5f;
                         }},
-                        new ClampHeight(0f, 0.8f),
+                        new ClampHeight(-0.2f, 0.7f),
                         new NoiseHeight() {{
                             scale = 4;
                             seed = 3;
                             persistence = 1f;
                             octaves = 1;
-                            magnitude = 0.6f;
+                            magnitude = 1f;
                             heightOffset = -1f;
                             offset.set(1500f, 100f, -500f);
                         }},
-                        new ClampHeight(-0.2f, 0.8f),
+                        new ClampHeight(-0.2f, 1.5f),
                         new CraterHeight(new Vec3(-1.5f, 0.5f, 0.6f), 0.4f, 0.2f) {{
                             set = true;
                         }},

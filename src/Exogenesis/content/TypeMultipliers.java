@@ -16,10 +16,10 @@ public class TypeMultipliers{
     public static void load(){
         //assault
         addMultipliers(dagger, 0.8f, 0.8f, 1.1f, 1f, 1.2f, 1f, 1f);
-        addMultipliers(mace, 0.8f, 1.2f, 1.2f, 1f, 0.5f, 1.25f, 1f);
+        addMultipliers(mace, 0.8f, 1.2f, 1.2f, 1f, 0.5f, 1.5f, 1f);
         addMultipliers(fortress, 0.6f, 0.2f, 1.2f, 1.3f, 1.3f, 1f, 1f);
         addMultipliers(scepter, 0.5f, 0.8f, 1.3f, 1f, 1.2f, 1f, 1f);
-        addMultipliers(reign, 0.2f, 0.8f, 1.5f, 1f, 1.2f, 1.05f, 1f);
+        addMultipliers(reign, 0.2f, 0.8f, 1.5f, 1f, 1.2f, 1f, 1f);
         //assault air
         addMultipliers(flare, 0.9f, 1.1f, 1f, 1f, 1f, 1f, 1f);
         addMultipliers(horizon, 0.9f, 0.9f, 1.1f, 1f, 1f, 1f, 1f);
@@ -33,17 +33,17 @@ public class TypeMultipliers{
         addMultipliers(sei, 0.9f, 1f, 1.3f, 1f, 1f, 1f, 1f);
         addMultipliers(omura, 0.2f, 1f, 0.2f, 1f, 1f, 1f, 1f);
         //erekir tank
-        addMultipliers(stell, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(locus, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(precept, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(vanquish, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
-        addMultipliers(conquer, 0.3f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(stell, 0.8f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(locus, 0.8f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(precept, 0.6f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(vanquish, 0.6f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
+        addMultipliers(conquer, 0.4f, 1f, 0.5f, 1.3f, 1f, 1f, 1f);
         //specialist
-        addMultipliers(crawler, 1f, 0.1f, 1f, 1f, 1f, 1f, 0.4f);
-        addMultipliers(atrax, 1f, 1f, 1f, 1f, 0.4f, 1.2f, 0.4f);
-        addMultipliers(spiroct, 1f, 1f, 1f, 1f, 1f, 1.3f, 0.4f);
-        addMultipliers(arkyid, 0.9f, 1f, 1f, 1f, 1f, 1.3f, 0.4f);
-        addMultipliers(toxopid, 0.9f, 1f, 1f, 1f, 1f, 1.5f, 0.4f);
+        addMultipliers(crawler, 1f, 0.1f, 1f, 1f, 1f, 1f, 1f);
+        addMultipliers(atrax, 1f, 1f, 1f, 1f, 0.4f, 1.2f, 0.9f);
+        addMultipliers(spiroct, 1f, 1f, 1f, 1f, 1f, 1.3f, 0.8f);
+        addMultipliers(arkyid, 1f, 1f, 1f, 1f, 1f, 1.3f, 0.7f);
+        addMultipliers(toxopid, 0.8f, 1f, 1.2f, 1f, 1.5f, 1.5f, 0.5f);
         //erekir air
         addMultipliers(elude, 1f, 0.6f, 1f, 1.2f, 1f, 1f, 0.4f);
         addMultipliers(avert, 1f, 0.6f, 1f, 1.2f, 1f, 1f, 0.4f);

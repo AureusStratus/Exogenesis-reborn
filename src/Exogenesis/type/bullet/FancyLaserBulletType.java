@@ -13,7 +13,6 @@ import mindustry.graphics.Drawf;
 import Exogenesis.util.feature.PositionLightning;
 
 public class FancyLaserBulletType extends ExoLaserBulletType {
-    public DamageType damageType = DamageType.energy;
     public boolean drawLine = false;
     public int boltNum = 2;
     public float liWidth = PositionLightning.WIDTH - 1f;
