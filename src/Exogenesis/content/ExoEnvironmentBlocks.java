@@ -19,8 +19,9 @@ public class ExoEnvironmentBlocks {
     //env tiles
     powerCrystal,
     //vanstar
-    deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass, lightningStoneCharged, lightningStoneDim, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
-    lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall, vanstarLargeTree, vanstarStandardTree, vanstarDeadTree,
+    deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass,
+    lightningStoneCharged, lightningStoneDim, lightningStonePurple, lightningSlatePurple, lightningSlateSmoothPurple, turraka, phosleStone, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
+    lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,purpleLightningStoneWall, vanstarLargeTree, vanstarStandardTree, vanstarDeadTree,
     //Axin
     axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
     thenmialPlasma, thenmialPlasmaShallow, thenmialPlasmaDeep, thenmialPlasmaAbyssal, axinCyanSlate, axinSlate, axinCrystalStone, axinPurpleRock, axinPurpleSlate,
@@ -128,10 +129,25 @@ public class ExoEnvironmentBlocks {
         redLightningStone = new Floor("red-lightning-stone") {{
             variants = 4;
         }};
-        lightningStoneCharged = new Floor("lightning-stone-charged") {{
+        lightningStonePurple = new Floor("lightning-stone-purple") {{
+            variants = 8;
+        }};
+        lightningSlatePurple = new Floor("lightning-slate-purple") {{
+            variants = 5;
+        }};
+        lightningSlateSmoothPurple = new Floor("lightning-slate-smooth-purple") {{
             variants = 4;
         }};
+        lightningStoneCharged = new Floor("lightning-stone-charged") {{
+            variants = 5;
+        }};
         lightningStoneDim = new Floor("lightning-stone-dim") {{
+            variants = 5;
+        }};
+        phosleStone = new Floor("phosle-stone") {{
+            variants = 4;
+        }};
+        turraka = new Floor("turraka") {{
             variants = 4;
         }};
         vanstarock = new Floor("vanstarock") {{

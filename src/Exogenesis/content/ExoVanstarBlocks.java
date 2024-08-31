@@ -125,7 +125,7 @@ import static arc.graphics.g2d.Lines.*;
                 health = 120;
                 researchCostMultiplier = 0.1f;
             }};
-            largeCoboltWall = new Wall("cobolt-wall-large"){{
+            largeCoboltWall = new Wall("large-cobolt-wall"){{
                 requirements(Category.defense, ItemStack.mult(coboltWall.requirements, 4));
                 health = 120 * 4;
                 size = 2;
@@ -135,7 +135,7 @@ import static arc.graphics.g2d.Lines.*;
                 health = 160;
                 researchCostMultiplier = 0.1f;
             }};
-            largeIronWall = new Wall("iron-wall-large"){{
+            largeIronWall = new Wall("large-iron-wall"){{
                 requirements(Category.defense, ItemStack.mult(ironWall.requirements, 4));
                 health = 160 * 4;
                 size = 2;
@@ -145,7 +145,7 @@ import static arc.graphics.g2d.Lines.*;
                 health = 190;
                 researchCostMultiplier = 0.1f;
             }};
-            largeListusiumWall = new Wall("listusium-wall-large"){{
+            largeListusiumWall = new Wall("large-listusium-wall"){{
                 requirements(Category.defense, ItemStack.mult(listusiumWall.requirements, 4));
                 health = 190 * 4;
                 size = 2;
@@ -2146,7 +2146,7 @@ import static arc.graphics.g2d.Lines.*;
             coreBelief = new CoreBlock("core-belief"){{
                 requirements(Category.effect, with(ExoItems.rustyCopper, 1000, ExoItems.cobolt, 800));
                 alwaysUnlocked = true;
-
+                thrusterLength = 1.5f;
                 isFirstTier = true;
                 unitType = UnitTypes.alpha;
                 health = 1100;
