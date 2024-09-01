@@ -28,7 +28,7 @@ public class ExoEnvironmentBlocks {
     axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalPurple, axinCrystalTile, colossalAxinMonolith, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith, diamondGrowth, diamondTile,
     diamondWall, axinPurpleWall, axinCrystalStoneWall, axinCarvakStone, axinSlate2, axinCrystalRockBoulder, curtusesGeode, axinBoulder, axinCarvakStoneWall, axinCrystalRock, thermakronxCrystal, axinCrystalRock1,
     //ore
-    oreOltuxium, oreChronophite, oreGold, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, nickelGeodeGiant, curtusesOre;
+    oreOltuxium, oreCobolt, oreChronophite, oreGold, oreNeodymium, oreVousar, oreLightningStone, oreRadite, oreViliolite, oreLuxite, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, nickelGeodeGiant, curtusesOre;
     public static void load() {
         oreOsmium = new OreBlock(ExoItems.osmium) {{
             variants = 5;
@@ -59,9 +59,31 @@ public class ExoEnvironmentBlocks {
             itemDrop = ExoItems.curtuses;
             variants = 3;
         }};
+
         oreOltuxium = new OreBlock(ExoItems.oltuxium);
+        oreCobolt = new OreBlock("cobolt-ore",ExoItems.cobolt) {{
+            variants = 3;
+        }};
         oreChronophite = new OreBlock(ExoItems.chronophite);
         oreGold = new OreBlock(ExoItems.gold);
+        oreNeodymium = new OreBlock("neodymium-ore",ExoItems.neodymium) {{
+            variants = 4;
+        }};
+        oreLuxite = new OreBlock("luxite-ore",ExoItems.luxiteStone) {{
+            variants = 3;
+        }};
+        oreLightningStone = new OreBlock("lightningstone-ore-wall",ExoItems.lightningStone) {{
+            variants = 3;
+        }};
+        oreRadite = new OreBlock("radite-ore",ExoItems.urkaStone) {{
+            variants = 3;
+        }};
+        oreViliolite = new OreBlock("viliolite-ore",ExoItems.viliotStone) {{
+            variants = 3;
+        }};
+        oreVousar = new OreBlock("vousar-ore",ExoItems.luxiteStone) {{
+            variants = 3;
+        }};
         ferricIronWall = new StaticWall("ferric-iron-wall") {{
             itemDrop = ExoItems.iron;
             variants = 3;
@@ -140,6 +162,7 @@ public class ExoEnvironmentBlocks {
         }};
         lightningStoneCharged = new Floor("lightning-stone-charged") {{
             variants = 5;
+            blendGroup = ExoEnvironmentBlocks.lightningStoneCharged;
         }};
         lightningStoneDim = new Floor("lightning-stone-dim") {{
             variants = 5;
@@ -178,6 +201,10 @@ public class ExoEnvironmentBlocks {
         redLightningStoneWall = new StaticWall("red-lightning-stone-wall") {{
             redLightningStone.asFloor().wall = this;
         }};
+        purpleLightningStoneWall = new StaticWall("lightning-stone-purple-wall") {{
+            lightningStonePurple.asFloor().wall = this;
+        }};
+
 
         vanstarLargeTree = new TreeBlock("vanster-large-tree");
         vanstarStandardTree = new TreeBlock("vanster-standerd-tree");
@@ -226,7 +253,6 @@ public class ExoEnvironmentBlocks {
         }};
         axincarbonStone = new Floor("axincarbon-stone") {{
             variants = 6;
-            blendGroup = Blocks.carbonStone;
         }};
         axinCyanSlate = new Floor("axinCyan-slate") {{
             variants = 3;
