@@ -160,11 +160,9 @@ public class ExoEnvironmentBlocks {
         }};
         purpleBoulder = new Prop("purple-boulder") {{
             variants = 2;
-            lightningSlatePurple.asFloor().decoration = lightningSlateSmoothPurple.asFloor().decoration = lightningStonePurple.asFloor().decoration = this;
         }};
         turrakaBoulder = new Prop("turraka-boulder") {{
             variants = 2;
-            turraka.asFloor().decoration = this;
         }};
         lightningSlateSmoothPurple = new Floor("lightning-slate-smooth-purple") {{
             variants = 4;
