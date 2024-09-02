@@ -164,7 +164,7 @@ public class ExoEnvironmentBlocks {
         }};
         turrakaBoulder = new Prop("turraka-boulder") {{
             variants = 2;
-            turraka.asFloor().decoration = phosleStone.asFloor().decoration = this;
+            turraka.asFloor().decoration = this;
         }};
         lightningSlateSmoothPurple = new Floor("lightning-slate-smooth-purple") {{
             variants = 4;
@@ -203,7 +203,6 @@ public class ExoEnvironmentBlocks {
         ferricSand = new Floor("ferricSand") {{
             itemDrop = Items.sand;
         }};
-
         lightningStoneChargedWall = new StaticWall("lightning-stone-wall-charged") {{
             lightningStoneCharged.asFloor().wall = this;
         }};
@@ -216,7 +215,6 @@ public class ExoEnvironmentBlocks {
         purpleLightningStoneWall = new StaticWall("lightning-stone-purple-wall") {{
             lightningStonePurple.asFloor().wall = this;
         }};
-
 
         vanstarLargeTree = new TreeBlock("vanster-large-tree");
         vanstarStandardTree = new TreeBlock("vanster-standerd-tree");
