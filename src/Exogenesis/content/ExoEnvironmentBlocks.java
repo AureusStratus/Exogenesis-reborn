@@ -20,7 +20,8 @@ public class ExoEnvironmentBlocks {
     powerCrystal,
     //vanstar
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass,
-    lightningStoneCharged, lightningStoneDim, lightningStonePurple, lightningSlatePurple, lightningSlateSmoothPurple, turraka, phosleStone, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone, blackSand,
+    lightningStoneCharged, lightningStoneDim, lightningStonePurple, lightningSlatePurple, lightningSlateSmoothPurple, turraka, phosleStone, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone,
+    blackSand, ferricSand, turrakaBoulder, purpleBoulder,
     lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,purpleLightningStoneWall, vanstarLargeTree, vanstarStandardTree, vanstarDeadTree,
     //Axin
     axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
@@ -157,12 +158,19 @@ public class ExoEnvironmentBlocks {
         lightningSlatePurple = new Floor("lightning-slate-purple") {{
             variants = 5;
         }};
+        purpleBoulder = new Prop("purple-boulder") {{
+            variants = 2;
+            lightningSlatePurple.asFloor().decoration = lightningSlateSmoothPurple.asFloor().decoration = lightningStonePurple.asFloor().decoration = this;
+        }};
+        turrakaBoulder = new Prop("turraka-boulder") {{
+            variants = 2;
+            turraka.asFloor().decoration = phosleStone.asFloor().decoration = this;
+        }};
         lightningSlateSmoothPurple = new Floor("lightning-slate-smooth-purple") {{
             variants = 4;
         }};
         lightningStoneCharged = new Floor("lightning-stone-charged") {{
             variants = 5;
-            blendGroup = ExoEnvironmentBlocks.lightningStoneCharged;
         }};
         lightningStoneDim = new Floor("lightning-stone-dim") {{
             variants = 5;
@@ -192,6 +200,10 @@ public class ExoEnvironmentBlocks {
             itemDrop = Items.sand;
             playerUnmineable = true;
         }};
+        ferricSand = new Floor("ferricSand") {{
+            itemDrop = Items.sand;
+        }};
+
         lightningStoneChargedWall = new StaticWall("lightning-stone-wall-charged") {{
             lightningStoneCharged.asFloor().wall = this;
         }};
