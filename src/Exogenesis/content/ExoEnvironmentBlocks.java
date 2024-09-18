@@ -20,16 +20,20 @@ public class ExoEnvironmentBlocks {
     powerCrystal,
     //vanstar
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass,
-    lightningStoneCharged, lightningStoneDim, lightningStonePurple, lightningSlatePurple, lightningSlateSmoothPurple, turraka, phosleStone, skystonegrey, skystone, vanstarock, vanstarockRound, skystonebright, redLightningStone,
-    blackSand, ferricSand, turrakaBoulder, purpleBoulder,
+    lightningStoneCharged, lightningStoneDim, lightningStoneDimWater, lightningStonePurple, lightningSlatePurple, lightningSlateSmoothPurple,  skystonegrey, skystone, vanstarock, vanstarockWall, vanstarockRound, skystonebright, redLightningStone,
+    blackSand, ferricSand, ferricSlate, ferricSandWater, ferricStoneWater, vanstarockWater, turrakaBoulder, purpleBoulder,
     lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,purpleLightningStoneWall, vanstarLargeTree, vanstarStandardTree, vanstarDeadTree,
+    turraka, phosleStone, turrakaWater, phosleStoneWater,
+    erythriteFloor, erythriteRouphFloor, crystallineCoboltStone, coboltCrystalFloor, erythriteFloorWater, coboltCrystalFloorWater,
+    erythriteWall, coboltCrystalWall, coboltDeposit, coboltDepositWall,
     //Axin
     axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
     thenmialPlasma, thenmialPlasmaShallow, thenmialPlasmaDeep, thenmialPlasmaAbyssal, axinCyanSlate, axinSlate, axinCrystalStone, axinPurpleRock, axinPurpleSlate,
     axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalPurple, axinCrystalTile, colossalAxinMonolith, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith, diamondGrowth, diamondTile,
     diamondWall, axinPurpleWall, axinCrystalStoneWall, axinCarvakStone, axinSlate2, axinCrystalRockBoulder, curtusesGeode, axinBoulder, axinCarvakStoneWall, axinCrystalRock, thermakronxCrystal, axinCrystalRock1,
     //ore
-    oreOltuxium, oreCobolt, oreChronophite, oreGold, oreNeodymium, oreVousar, oreLightningStone, oreRadite, oreViliolite, oreLuxite, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall, magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, nickelGeodeGiant, curtusesOre;
+    oreOltuxium, oreCobolt,  oreChronophite, oreGold, oreNeodymium, oreVousar, oreLightningStone, oreRadite, oreViliolite, oreLuxite, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall,
+    magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, curtusesOre ;
     public static void load() {
         oreOsmium = new OreBlock(ExoItems.osmium) {{
             variants = 5;
@@ -85,10 +89,7 @@ public class ExoEnvironmentBlocks {
         oreVousar = new OreBlock("vousar-ore",ExoItems.luxiteStone) {{
             variants = 3;
         }};
-        ferricIronWall = new StaticWall("ferric-iron-wall") {{
-            itemDrop = ExoItems.iron;
-            variants = 3;
-        }};
+
         magnetiteOreWall = new StaticWall("magnetite-ore-wall") {{
             itemDrop = ExoItems.magnetite;
             variants = 3;
@@ -99,6 +100,75 @@ public class ExoEnvironmentBlocks {
             clipSize = 128f;
         }};
         //Vanstar Tiles
+
+        //Ferric Biome
+        ferricIronWall = new StaticWall("ferric-iron-wall") {{
+            itemDrop = ExoItems.iron;
+            variants = 3;
+        }};
+        ferricSand = new Floor("ferricSand") {{
+            itemDrop = Items.sand;
+        }};
+        ferricSlate = new Floor("ferric-slate") {{
+            variants = 6;
+        }};
+
+        ((ShallowLiquid)ferricSandWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.ferricSand);
+        ((ShallowLiquid)ferricStoneWater).set(ExoEnvironmentBlocks.vansterWater, Blocks.ferricStone);
+        //Cobolt Biome
+        coboltCrystalWall = new StaticWall("cobolt-crystal-wall"){{
+            variants = 4;
+            itemDrop = ExoItems.iron;
+        }};
+        coboltCrystalFloor = new Floor("cobolt-crystal-floor"){{
+            variants = 4;
+        }};
+        crystallineCoboltStone = new Floor("crystalline-cobolt-stone"){{
+            variants = 5;
+        }};
+        coboltDeposit = new Floor("cobolt-deposit"){{
+            variants = 6;
+        }};
+        coboltDepositWall = new StaticWall("cobolt-desposite-wall") {{
+            itemDrop = ExoItems.cobolt;
+            variants = 3;
+        }};
+
+        ((ShallowLiquid)coboltCrystalFloorWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.coboltCrystalFloor);
+        erythriteFloor = new Floor("erythrite-floor") {{
+            variants = 6;
+        }};
+        erythriteRouphFloor = new Floor("erythrite-rouph-floor") {{
+            variants = 5;
+        }};
+        erythriteWall = new StaticWall("erythrite-wall") {{
+            itemDrop = ExoItems.erythritePowder;
+            variants = 3;
+        }};
+
+        ((ShallowLiquid)erythriteFloorWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.erythriteFloor);
+
+        //Vanstar Rock field
+        vanstarock = new Floor("vanstarock") {{
+            variants = 7;
+        }};
+        vanstarockRound = new Floor("vanstarock-round") {{
+            variants = 4;
+        }};
+        skystonegrey = new Floor("skystonegrey") {{
+            variants = 5;
+        }};
+        skystone = new Floor("skystone") {{
+            variants = 4;
+        }};
+        skystonebright = new Floor("skystonebright") {{
+            variants = 4;
+        }};
+        vanstarockWall = new StaticWall("vanstarockWall-wall") {{
+            variants = 3;
+        }};
+
+        ((ShallowLiquid)vanstarockWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.vanstarock);
         deepVansterWater = new Floor("deep-vanster-water") {{
             speedMultiplier = 0.2f;
             variants = 0;
@@ -125,6 +195,7 @@ public class ExoEnvironmentBlocks {
         }};
         shallowVansterWater = new Floor("shallow-vanster-water") {{
             speedMultiplier = 0.65f;
+            variants = 0;
             status = StatusEffects.wet;
             liquidDrop = Liquids.water;
             statusDuration = 50f;
@@ -135,7 +206,9 @@ public class ExoEnvironmentBlocks {
         vansterSandyWater = new Floor("vanster-sandy-water") {{
             speedMultiplier = 0.8f;
             statusDuration = 50f;
+            variants = 0;
             liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
             isLiquid = true;
             albedo = 0.9f;
         }};
@@ -173,34 +246,21 @@ public class ExoEnvironmentBlocks {
         lightningStoneDim = new Floor("lightning-stone-dim") {{
             variants = 5;
         }};
+        ((ShallowLiquid)lightningStoneDimWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.lightningStoneDim);
         phosleStone = new Floor("phosle-stone") {{
             variants = 4;
         }};
         turraka = new Floor("turraka") {{
             variants = 4;
         }};
-        vanstarock = new Floor("vanstarock") {{
-            variants = 7;
-        }};
-        vanstarockRound = new Floor("vanstarock-round") {{
-            variants = 4;
-        }};
-        skystonegrey = new Floor("skystonegrey") {{
-            variants = 5;
-        }};
-        skystone = new Floor("skystone") {{
-            variants = 4;
-        }};
-        skystonebright = new Floor("skystonebright") {{
-            variants = 4;
-        }};
+        ((ShallowLiquid)turrakaWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.turraka);
+        ((ShallowLiquid)phosleStoneWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.phosleStone);
+
         blackSand = new Floor("blacksand") {{
             itemDrop = Items.sand;
             playerUnmineable = true;
         }};
-        ferricSand = new Floor("ferricSand") {{
-            itemDrop = Items.sand;
-        }};
+
         lightningStoneChargedWall = new StaticWall("lightning-stone-wall-charged") {{
             lightningStoneCharged.asFloor().wall = this;
         }};

@@ -7,7 +7,7 @@ public class ExoItems{
             //multi-faction items
             osmium, gold, leadZinc, uranimite,
             //Vanstar items
-            oltuxium, rustyCopper, cobolt, iron, quartz, empyreanPlating, magnetite, litusiumAlloy,
+            oltuxium, rustyCopper, cobolt, erythritePowder, ferricPowder, iron, quartz, empyreanPlating, magnetite, litusiumAlloy,
             neodymium, lightningStone, urkaStone, viliotStone, luxiteStone, vousarStone,
             radCore, eternionCore, positeCore, negesiteCore, thermoCore, chronophite, vastanium, vanstariumAlloy, lumeonEnergyCell,
 
@@ -38,6 +38,12 @@ public class ExoItems{
             cost = 0.5f;
             hardness = 1;
             alwaysUnlocked = true;
+        }};
+        erythritePowder = new Item("erythrite-powder", Color.valueOf("bc224e")){{
+            cost = 0.5f;
+        }};
+        ferricPowder = new Item("ferric-powder", Color.valueOf("675b53")){{
+            cost = 0.5f;
         }};
         rustyCopper = new Item("rusty-copper", Color.valueOf("d99d73")){{
             hardness = 1;
