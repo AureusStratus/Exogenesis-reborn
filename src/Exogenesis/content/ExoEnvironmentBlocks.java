@@ -112,9 +112,28 @@ public class ExoEnvironmentBlocks {
         ferricSlate = new Floor("ferric-slate") {{
             variants = 6;
         }};
-
-        ((ShallowLiquid)ferricSandWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.ferricSand);
-        ((ShallowLiquid)ferricStoneWater).set(ExoEnvironmentBlocks.vansterWater, Blocks.ferricStone);
+        ferricSandWater = new Floor("ferricSand-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 4;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
+        ferricStoneWater = new Floor("ferric-stone-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 4;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
+        //((ShallowLiquid)ferricSandWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.ferricSand);
+        //((ShallowLiquid)ferricStoneWater).set(ExoEnvironmentBlocks.vansterWater, Blocks.ferricStone);
         //Cobolt Biome
         coboltCrystalWall = new StaticWall("cobolt-crystal-wall"){{
             variants = 4;
@@ -127,14 +146,24 @@ public class ExoEnvironmentBlocks {
             variants = 5;
         }};
         coboltDeposit = new Floor("cobolt-deposit"){{
+            itemDrop = ExoItems.cobolt;
+            playerUnmineable = true;
             variants = 6;
         }};
         coboltDepositWall = new StaticWall("cobolt-desposite-wall") {{
             itemDrop = ExoItems.cobolt;
             variants = 3;
         }};
-
-        ((ShallowLiquid)coboltCrystalFloorWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.coboltCrystalFloor);
+        coboltCrystalFloorWater = new Floor("cobolt-crystal-floor-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 4;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
         erythriteFloor = new Floor("erythrite-floor") {{
             variants = 6;
         }};
@@ -145,8 +174,18 @@ public class ExoEnvironmentBlocks {
             itemDrop = ExoItems.erythritePowder;
             variants = 3;
         }};
+        erythriteFloorWater = new Floor("erythrite-floor-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 6;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
 
-        ((ShallowLiquid)erythriteFloorWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.erythriteFloor);
+       // ((ShallowLiquid)erythriteFloorWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.erythriteFloor);
 
         //Vanstar Rock field
         vanstarock = new Floor("vanstarock") {{
@@ -167,8 +206,17 @@ public class ExoEnvironmentBlocks {
         vanstarockWall = new StaticWall("vanstarockWall-wall") {{
             variants = 3;
         }};
-
-        ((ShallowLiquid)vanstarockWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.vanstarock);
+        vanstarockWater = new Floor("vanstarock-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 7;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
+        //((ShallowLiquid)vanstarockWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.vanstarock);
         deepVansterWater = new Floor("deep-vanster-water") {{
             speedMultiplier = 0.2f;
             variants = 0;
@@ -210,7 +258,7 @@ public class ExoEnvironmentBlocks {
             liquidDrop = Liquids.water;
             cacheLayer = CacheLayer.water;
             isLiquid = true;
-            albedo = 0.9f;
+            albedo = 0.2f;
         }};
         yellowIce = new Floor("yellow-ice") {{
             dragMultiplier = 0.35f;
@@ -246,21 +294,50 @@ public class ExoEnvironmentBlocks {
         lightningStoneDim = new Floor("lightning-stone-dim") {{
             variants = 5;
         }};
-        ((ShallowLiquid)lightningStoneDimWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.lightningStoneDim);
+        lightningStoneDimWater = new Floor("lightning-stone-dim-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 5;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
+        //((ShallowLiquid)lightningStoneDimWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.lightningStoneDim);
         phosleStone = new Floor("phosle-stone") {{
             variants = 4;
         }};
         turraka = new Floor("turraka") {{
             variants = 4;
         }};
-        ((ShallowLiquid)turrakaWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.turraka);
-        ((ShallowLiquid)phosleStoneWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.phosleStone);
+        phosleStoneWater = new Floor("phosle-stone-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 4;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
+        turrakaWater = new Floor("turraka-water") {{
+            speedMultiplier = 0.9f;
+            statusDuration = 20f;
+            variants = 4;
+            overlayAlpha = 0.35f;
+            liquidDrop = Liquids.water;
+            cacheLayer = CacheLayer.water;
+            isLiquid = true;
+            albedo = 0.2f;
+        }};
+        //((ShallowLiquid)turrakaWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.turraka);
+        //((ShallowLiquid)phosleStoneWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.phosleStone);
 
         blackSand = new Floor("blacksand") {{
             itemDrop = Items.sand;
             playerUnmineable = true;
         }};
-
         lightningStoneChargedWall = new StaticWall("lightning-stone-wall-charged") {{
             lightningStoneCharged.asFloor().wall = this;
         }};
@@ -273,7 +350,6 @@ public class ExoEnvironmentBlocks {
         purpleLightningStoneWall = new StaticWall("lightning-stone-purple-wall") {{
             lightningStonePurple.asFloor().wall = this;
         }};
-
         vanstarLargeTree = new TreeBlock("vanster-large-tree");
         vanstarStandardTree = new TreeBlock("vanster-standerd-tree");
         vanstarDeadTree = new TreeBlock("vanster-standerd-tree-dead");
