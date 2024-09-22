@@ -28,11 +28,17 @@ import mindustry.graphics.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.*;
+import mindustry.world.blocks.power.Battery;
+import mindustry.world.blocks.power.PowerNode;
+import mindustry.world.blocks.production.BeamDrill;
+import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.blocks.production.WallCrafter;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.draw.*;
+import mindustry.world.meta.Attribute;
 
 import static Exogenesis.type.DamageType.*;
 import static mindustry.type.ItemStack.*;
@@ -40,8 +46,14 @@ import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
     public class ExoVanstarBlocks{
         public static Block
-        //blocks
-        ductEmpyrean, harvesterSmall, harvesterMedium, siliconForger, platingFactory, metaglassForger, listusiumForge, gigavoltForge, y, u, i, o,
+        // blocks
+        ductEmpyrean,
+        // power blocks
+        harvesterSmall, harvesterMedium, luxNode, luxTower, oltuxiumBattery, oltuxiumBatteryLarge,
+        // crafters
+        platingFactory, ironFurnace, metaglassForger, alloyForge, listusiumForge, vanstaniumOven, osmiumBlastForge, gigavoltForge,
+        // Drills
+        wallGrinder, pulsarWallDrill, pulsarDrill,
         //cores
         coreBelief, coreHope, coreReliance,
         //walls
@@ -59,6 +71,7 @@ import static arc.graphics.g2d.Lines.*;
                 speed = 4f;
                 researchCost = with(Items.beryllium, 5);
             }};
+            //power
             harvesterSmall = new PowerHarvester("harvester-small"){{
                 requirements(Category.distribution, with(Items.beryllium, 1));
                 size = 2;
@@ -71,11 +84,137 @@ import static arc.graphics.g2d.Lines.*;
                 health = 90;
                 researchCost = with(Items.beryllium, 5);
             }};
-            metaglassForger = new GenericCrafter("metaglass-forger"){{
+            luxNode = new PowerNode("lux-node"){{
+                requirements(Category.power, with(ExoItems.rustyCopper, 1, ExoItems.cobolt, 3));
+                maxNodes = 10;
+                laserRange = 11;
+            }};
+            luxTower = new PowerNode("lux-tower"){{
+                requirements(Category.power, with(ExoItems.neodymium, 5, ExoItems.rustyCopper, 8, Items.silicon, 4));
+                size = 3;
+                maxNodes = 10;
+                laserRange = 85f;
+            }};
+            oltuxiumBattery = new Battery("oltuxium-battery"){{
+                requirements(Category.power, with(ExoItems.oltuxium, 10, ExoItems.cobolt, 1));
+                consumePowerBuffered(2000f);
+                baseExplosiveness = 1f;
+            }};
+            oltuxiumBatteryLarge = new Battery("oltuxium-battery-large"){{
+                requirements(Category.power, with(ExoItems.neodymium, 20, ExoItems.oltuxium, 90, ExoItems.cobolt, 50, Items.silicon, 30));
+                size = 3;
+                consumePowerBuffered(35000f);
+                baseExplosiveness = 5f;
+            }};
+            //drills
+            pulsarDrill = new Drill("plusar-drill"){{
+                requirements(Category.production, with(ExoItems.rustyCopper, 18, ExoItems.cobolt, 10));
+                tier = 2;
+                drillTime = 280;
+                size = 2;
+
+                consumeLiquid(Liquids.water, 0.06f).boost();
+            }};
+            pulsarWallDrill = new BeamDrill("plusar-wall-drill"){{
+                requirements(Category.production, with(ExoItems.rustyCopper, 30, ExoItems.cobolt, 15));
+                consumePower(0.15f);
+                drillTime = 280f;
+                tier = 2;
+                size = 2;
+                range = 7;
+
+                consumeLiquid(Liquids.water, 0.25f / 60f).boost();
+            }};
+            wallGrinder = new WallCrafter("wall-grinder"){{
+                requirements(Category.production, with(ExoItems.cobolt, 125, ExoItems.iron, 125, Items.graphite, 100));
+                consumePower(11 / 60f);
+
+                drillTime = 100f;
+                size = 3;
+                attribute = ExoAttribute.ferric;
+                output = ExoItems.ferricPowder;
+                rotateSpeed = 2.5f;
+                ambientSound = Sounds.drill;
+                ambientSoundVolume = 0.04f;
+            }};
+            //crafters
+            platingFactory = new GenericCrafter("plating-factory"){{
                 requirements(Category.crafting, with(ExoItems.rustyCopper, 60, Items.graphite, 30, ExoItems.cobolt, 30));
                 craftEffect = Fx.smeltsmoke;
-                outputItem = new ItemStack(Items.metaglass, 3);
+                outputItem = new ItemStack(ExoItems.empyreanPlating, 2);
                 craftTime = 60f;
+                size = 2;
+                hasPower = hasItems = true;
+                drawer = new DrawMulti(new DrawRegion("-bottom"),
+                        new DrawPistons(){{
+                            sinMag = 2f;
+                            sinScl = 2f;
+                            sides = 8;
+                            sideOffset = 30;
+                }},
+                new DrawDefault()
+                );
+                ambientSound = Sounds.smelter;
+                ambientSoundVolume = 0.07f;
+
+                consumeItems(with(ExoItems.oltuxium, 2, ExoItems.cobolt, 2));
+                consumePower(0.30f);
+            }};
+            ironFurnace = new GenericCrafter("iron-furnace"){{
+                requirements(Category.crafting, with(ExoItems.rustyCopper, 65, Items.graphite, 30, ExoItems.oltuxium, 20, ExoItems.cobolt, 40));
+                craftEffect = Fx.smokePuff;
+                outputItem = new ItemStack(ExoItems.iron, 3);
+                craftTime = 80f;
+                size = 3;
+                hasPower = hasItems = true;
+                drawer = new DrawMulti(new DrawRegion("-bottom"),
+                        new DrawArcSmelt(),
+                        new DrawRegion(){{
+                            suffix = "-rotater";
+                            spinSprite = true;
+                            rotateSpeed = 2;
+                        }},
+                        new DrawRegion(){{
+                            suffix = "-rotater";
+                            spinSprite = true;
+                            rotateSpeed = 0.7f;
+                        }},
+                        new DrawLiquidRegion(),
+                        new DrawDefault()
+                );
+                ambientSound = Sounds.hum;
+                ambientSoundVolume = 0.07f;
+
+                consumeItems(with(ExoItems.ferricPowder, 2, ExoItems.magnetite, 1));
+                consumePower(0.60f);
+            }};
+            alloyForge = new GenericCrafter("alloy-forge"){{
+                requirements(Category.crafting, with(ExoItems.iron, 100, Items.graphite, 50, ExoItems.magnetite, 30, ExoItems.cobolt, 30));
+                craftEffect = Fx.fire;
+                outputItem = new ItemStack(Items.silicon, 1);
+                craftTime = 55f;
+                size = 3;
+                hasPower = hasItems = true;
+                drawer = new DrawMulti(new DrawRegion("-bottom"),
+                        new DrawPistons(){{
+                            sinMag = 3f;
+                            sinScl = 2f;
+                            sides = 4;
+                            sideOffset = 30;
+                        }},
+                        new DrawDefault()
+                );
+                ambientSound = Sounds.smelter;
+                ambientSoundVolume = 0.1f;
+
+                consumeItems(with(Items.graphite, 1, ExoItems.quartz, 1));
+                consumePower(0.60f);
+            }};
+            metaglassForger = new GenericCrafter("metaglass-forger"){{
+                requirements(Category.crafting, with(ExoItems.rustyCopper, 120, ExoItems.magnetite, 85, Items.graphite, 30, ExoItems.iron, 50));
+                craftEffect = Fx.smeltsmoke;
+                outputItem = new ItemStack(Items.metaglass, 2);
+                craftTime = 40f;
                 size = 3;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawDefault(),
@@ -94,31 +233,83 @@ import static arc.graphics.g2d.Lines.*;
                 ambientSound = Sounds.smelter;
                 ambientSoundVolume = 0.07f;
 
-                consumeItems(with(ExoItems.quartz, 3, Items.sand, 3));
+                consumeItems(with(ExoItems.quartz, 1, Items.sand, 3));
                 consumePower(0.60f);
             }};
-            platingFactory = new GenericCrafter("plating-factory"){{
-                requirements(Category.crafting, with(ExoItems.rustyCopper, 60, Items.graphite, 30, ExoItems.cobolt, 30));
+            listusiumForge = new GenericCrafter("litusium-forge"){{
+                requirements(Category.crafting, with(ExoItems.rustyCopper, 140, Items.metaglass, 65, Items.silicon, 100, ExoItems.iron, 100, ExoItems.empyreanPlating, 40));
                 craftEffect = Fx.smeltsmoke;
-                outputItem = new ItemStack(ExoItems.empyreanPlating, 3);
-                craftTime = 60f;
-                size = 2;
+                outputItem = new ItemStack(ExoItems.litusiumAlloy, 1);
+                craftTime = 70f;
+                size = 3;
                 hasPower = hasItems = true;
-                drawer = new DrawMulti(new DrawRegion("-bottom"),
-                        new DrawPistons(){{
-                            sinMag = 2f;
-                            sinScl = 2f;
-                            sides = 8;
-                            sideOffset = 30;
-                }},
-                new DrawDefault()
+                drawer = new DrawMulti(new DrawDefault(),
+                        new DrawGlowRegion("-glow"){{
+                            color = Color.valueOf("70170b");
+                            glowIntensity = 1f;
+                            alpha = 0.7f;
+                        }},
+                        new DrawFlame(Color.valueOf("ffc099"))
                 );
                 ambientSound = Sounds.smelter;
                 ambientSoundVolume = 0.07f;
 
-                consumeItems(with(ExoItems.oltuxium, 3, ExoItems.cobolt, 3));
-                consumePower(0.30f);
+                consumeItems(with(ExoItems.quartz, 1, Items.sand, 3));
+                consumePower(0.60f);
             }};
+            vanstaniumOven = new GenericCrafter("vastanium-oven"){{
+                requirements(Category.crafting, with(ExoItems.rustyCopper, 140, ExoItems.cobolt, 100, Items.silicon, 60, ExoItems.osmium, 100, ExoItems.empyreanPlating, 50));
+                craftEffect = Fx.smeltsmoke;
+                outputItem = new ItemStack(ExoItems.vanstariumAlloy, 1);
+                craftTime = 70f;
+                size = 3;
+                hasPower = hasItems = true;
+                drawer = new DrawMulti(new DrawDefault(),
+                        new DrawFlame(Color.valueOf("ffc099"))
+                );
+                ambientSound = Sounds.smelter;
+                ambientSoundVolume = 0.07f;
+
+                consumeItems(with(ExoItems.gold, 1, ExoItems.erythritePowder, 3, ExoItems.cobolt, 3));
+                consumePower(0.60f);
+            }};
+            osmiumBlastForge = new GenericCrafter("osmium-blast-forge"){{
+                requirements(Category.crafting, with(ExoItems.rustyCopper, 240, ExoItems.cobolt, 160, ExoItems.iron, 160, Items.graphite, 160, ExoItems.neodymium, 140, ExoItems.litusiumAlloy, 250));
+                craftEffect = Fx.heatReactorSmoke;
+                updateEffect = Fx.fireSmoke;
+                outputItems = ItemStack.with(ExoItems.iron, 3, ExoItems.osmium, 2);
+                craftTime = 110f;
+                itemCapacity = 30;
+                size = 6;
+                hasPower = hasItems = true;
+                drawer = new DrawMulti(new DrawDefault(),
+                        new DrawGlowRegion("-glow1"){{
+                            color = Color.valueOf("70170b");
+                            glowIntensity = 1f;
+                            alpha = 0.7f;
+                        }},
+                        new DrawLiquidRegion(),
+                        new DrawBubbles(){{
+                            color = Color.valueOf("70170b");
+                            radius = 9f;
+                        }},
+                        new DrawArcSmelt(){{
+                            drawCenter = false;
+                        }},
+                        new DrawGlowRegion("-glow2"){{
+                            color = Color.valueOf("70170b");
+                            glowIntensity = 3f;
+                            alpha = 0.5f;
+                        }}
+                );
+                ambientSound = Sounds.flame;
+                ambientSoundVolume = 0.07f;
+
+                consumeItems(with(ExoItems.ferricPowder, 10, ExoItems.cobolt, 5, Items.silicon, 3));
+                consumePower(0.60f);
+            }};
+
+
             //walls
             coboltWall = new Wall("cobolt-wall"){{
                 requirements(Category.defense, with(ExoItems.cobolt, 6));

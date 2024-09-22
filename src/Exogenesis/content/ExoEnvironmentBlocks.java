@@ -104,6 +104,7 @@ public class ExoEnvironmentBlocks {
         //Ferric Biome
         ferricIronWall = new StaticWall("ferric-iron-wall") {{
             itemDrop = ExoItems.iron;
+            attributes.set(ExoAttribute.ferric, 0.5f);
             variants = 3;
         }};
         ferricSand = new Floor("ferricSand") {{
@@ -172,6 +173,7 @@ public class ExoEnvironmentBlocks {
         }};
         erythriteWall = new StaticWall("erythrite-wall") {{
             itemDrop = ExoItems.erythritePowder;
+            attributes.set(ExoAttribute.erythric, 1f);
             variants = 3;
         }};
         erythriteFloorWater = new Floor("erythrite-floor-water") {{
