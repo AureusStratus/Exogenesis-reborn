@@ -87,30 +87,34 @@ import static arc.graphics.g2d.Lines.*;
             luxNode = new PowerNode("lux-node"){{
                 requirements(Category.power, with(ExoItems.rustyCopper, 1, ExoItems.cobolt, 3));
                 maxNodes = 10;
-                laserRange = 11;
+                laserRange = 9;
             }};
             luxTower = new PowerNode("lux-tower"){{
                 requirements(Category.power, with(ExoItems.neodymium, 5, ExoItems.rustyCopper, 8, Items.silicon, 4));
                 size = 3;
                 maxNodes = 10;
-                laserRange = 85f;
+                laserRange = 13f;
             }};
             oltuxiumBattery = new Battery("oltuxium-battery"){{
                 requirements(Category.power, with(ExoItems.oltuxium, 10, ExoItems.cobolt, 1));
                 consumePowerBuffered(2000f);
+                emptyLightColor = Color.valueOf("5eb1c1");
+                fullLightColor = Color.valueOf("8deee2");
                 baseExplosiveness = 1f;
             }};
             oltuxiumBatteryLarge = new Battery("oltuxium-battery-large"){{
                 requirements(Category.power, with(ExoItems.neodymium, 20, ExoItems.oltuxium, 90, ExoItems.cobolt, 50, Items.silicon, 30));
                 size = 3;
                 consumePowerBuffered(35000f);
+                emptyLightColor = Color.valueOf("5eb1c1");
+                fullLightColor = Color.valueOf("8deee2");
                 baseExplosiveness = 5f;
             }};
             //drills
             pulsarDrill = new Drill("plusar-drill"){{
                 requirements(Category.production, with(ExoItems.rustyCopper, 18, ExoItems.cobolt, 10));
                 tier = 2;
-                drillTime = 280;
+                drillTime = 380;
                 size = 2;
 
                 consumeLiquid(Liquids.water, 0.06f).boost();
@@ -118,7 +122,7 @@ import static arc.graphics.g2d.Lines.*;
             pulsarWallDrill = new BeamDrill("plusar-wall-drill"){{
                 requirements(Category.production, with(ExoItems.rustyCopper, 30, ExoItems.cobolt, 15));
                 consumePower(0.15f);
-                drillTime = 280f;
+                drillTime = 380f;
                 tier = 2;
                 size = 2;
                 range = 7;
@@ -171,16 +175,16 @@ import static arc.graphics.g2d.Lines.*;
                 size = 3;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
-                        new DrawArcSmelt(),
+                        new DrawCrucibleFlame(),
                         new DrawRegion(){{
                             suffix = "-rotater";
                             spinSprite = true;
-                            rotateSpeed = 2;
+                            rotateSpeed = 1;
                         }},
                         new DrawRegion(){{
                             suffix = "-rotater";
                             spinSprite = true;
-                            rotateSpeed = 0.7f;
+                            rotateSpeed = -1f;
                         }},
                         new DrawLiquidRegion(),
                         new DrawDefault()
@@ -295,8 +299,8 @@ import static arc.graphics.g2d.Lines.*;
                         }},
                         new DrawLiquidRegion(),
                         new DrawBubbles(){{
-                            color = Color.valueOf("70170b");
-                            radius = 9f;
+                            color = Color.valueOf("ffa166");
+                            radius = 3f;
                         }},
                         new DrawArcSmelt(){{
                             drawCenter = false;
@@ -304,7 +308,7 @@ import static arc.graphics.g2d.Lines.*;
                         new DrawGlowRegion("-glow2"){{
                             color = Color.valueOf("70170b");
                             glowIntensity = 3f;
-                            alpha = 0.5f;
+                            alpha = 0.8f;
                         }}
                 );
                 ambientSound = Sounds.flame;

@@ -205,7 +205,7 @@ public class ExoEnvironmentBlocks {
         skystonebright = new Floor("skystonebright") {{
             variants = 4;
         }};
-        vanstarockWall = new StaticWall("vanstarockWall-wall") {{
+        vanstarockWall = new StaticWall("vnastarRock-wall") {{
             variants = 3;
         }};
         vanstarockWater = new Floor("vanstarock-water") {{
