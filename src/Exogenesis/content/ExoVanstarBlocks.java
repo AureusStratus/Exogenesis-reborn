@@ -167,8 +167,8 @@ import static arc.graphics.g2d.Lines.*;
                 outputLiquid = new LiquidStack(Liquids.slag, 1);
                 craftTime = 80f;
                 liquidCapacity = 40;
-                size = 3;
                 hasLiquids = true;
+                size = 3;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
                         new DrawArcSmelt(),
@@ -283,6 +283,8 @@ import static arc.graphics.g2d.Lines.*;
                 outputItems = ItemStack.with(ExoItems.iron, 3, ExoItems.osmium, 2);
                 craftTime = 110f;
                 itemCapacity = 30;
+                liquidCapacity = 40;
+                hasLiquids = true;
                 size = 6;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawDefault(),
@@ -308,6 +310,7 @@ import static arc.graphics.g2d.Lines.*;
                 ambientSound = Sounds.flame;
                 ambientSoundVolume = 0.07f;
 
+                consumeLiquid(Liquids.slag, 10f / 60f);
                 consumeItems(with(ExoItems.ferricPowder, 10, ExoItems.cobolt, 5, Items.silicon, 3));
                 consumePower(0.60f);
             }};
