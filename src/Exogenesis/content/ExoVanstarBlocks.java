@@ -164,8 +164,11 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.crafting, with(ExoItems.rustyCopper, 65, Items.graphite, 30, ExoItems.oltuxium, 20, ExoItems.cobolt, 40));
                 craftEffect = Fx.smokePuff;
                 outputItem = new ItemStack(ExoItems.iron, 3);
+                outputLiquid = new LiquidStack(Liquids.slag, 1);
                 craftTime = 80f;
+                liquidCapacity = 40;
                 size = 3;
+                hasLiquids = true;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
                         new DrawArcSmelt(),
