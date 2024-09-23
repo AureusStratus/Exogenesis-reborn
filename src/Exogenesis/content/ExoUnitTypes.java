@@ -2653,6 +2653,8 @@ public class ExoUnitTypes {
             health = 850;
             armor = 6f;
             itemCapacity = 0;
+            squareShape = true;
+            omniMovement = false;
             rotateMoveFirst = true;
             faceTarget = false;
             hovering = true;
@@ -4439,7 +4441,7 @@ public class ExoUnitTypes {
                 whenShooting = true;
             }});
             weapons.add(new Weapon("exogenesis-ursa-weapon"){{
-                shootSound = Sounds.shootSmite;
+                shootSound = ExoSounds.jupiterShoot;
                 soundPitchMin = 1f;
                 top = false;
                 mirror = true;
@@ -4449,20 +4451,20 @@ public class ExoUnitTypes {
                 shootX = 1;
                 x = 33;
                 y = 0;
-                reload = 90f;
+                reload = 80f;
                 recoil = 5f;
                 inaccuracy = 3f;
                 shoot.shots = 3;
-                shoot.shotDelay = 4f;
+                shoot.shotDelay = 5f;
                 bullet = new ExoBasicBulletType(7f, 140){{
-                    width = 13f;
+                    width = 10f;
                     height = 28f;
                     shrinkY = shrinkX = 0;
                     sprite = "circle-bullet";
                     trailLength = 8;
                     trailWidth = 2.5f;
-                    lifetime = 42f;
-                    weaveMag = 0.3f;
+                    lifetime = 47f;
+                    weaveMag = 0.5f;
                     weaveScale = 10;
                     shootEffect = Fx.shootBig;
                     smokeEffect = ExoFx.randLifeSparkExo;
@@ -4510,7 +4512,7 @@ public class ExoUnitTypes {
                     healPercent = 10f;
                     collidesTeam = true;
                     damageType = energy;
-                    width = 25f;
+                    width = 20f;
                     length = 120f;
                     hitColor = lightningColor = Pal.heal;
                     shootEffect = Fx.colorSpark;
@@ -4534,7 +4536,7 @@ public class ExoUnitTypes {
                     healPercent = 10f;
                     collidesTeam = true;
                     damageType = energy;
-                    width = 25f;
+                    width = 20f;
                     length = 120f;
                     hitColor = lightningColor = Pal.heal;
                     shootEffect = Fx.colorSpark;
@@ -5047,18 +5049,18 @@ public class ExoUnitTypes {
             allowLegStep = true;
             shadowElevation = 0.95f;
             weapons.add(new Weapon("exogenesis-sap-energy-gun") {{
-                    reload = 32f;
+                    reload = 52f;
                     mirror = true;
                     rotate = true;
                     rotateSpeed = 2;
                     x = 19;
                     y = 3;
                     shoot = new ShootSpread() {{
-                        spread = 6f;
+                        spread = 10f;
                         shots = 3;
                     }};
-                    shootSound = Sounds.laser;
-                    recoil = 2;
+                    shootSound = Sounds.blaster;
+                    recoil = 3;
                     shake = 1f;
                     bullet = new ExoLaserBulletType() {{
                         damage = 115f;
@@ -5071,7 +5073,7 @@ public class ExoUnitTypes {
                         lightningLengthRand = 2;
                         lightningAngleRand = 15f;
                         damageType = energy;
-                        width = 25f;
+                        width = 32f;
                         length = 140f;
                         hitColor = lightningColor = Pal.sapBullet;
                         shootEffect = ExoFx.colorBombSmall;
@@ -5089,8 +5091,9 @@ public class ExoUnitTypes {
                 rotateSpeed = 2;
                 rotate = continuous = alwaysContinuous = true;
                 shake = 1f;
-                bullet = new ExoContinuousLaserBulletType(){{
+                bullet = new ExoContinuousFlameBulletType(){{
                     hitColor = Pal.sapBullet;
+                    drawFlare = false;
                     damage = 35f;
                     damageType = DamageType.energy;
                     length = 220f;
@@ -5111,8 +5114,8 @@ public class ExoUnitTypes {
                         lightningLengthRand = 28;
                     }};
                     intervalRandomSpread = 20;
-                    intervalBullets = 2;
-                    bulletInterval = 4f;
+                    intervalBullets = 1;
+                    bulletInterval = 6f;
                     smokeEffect = Fx.none;
                     shootEffect = Fx.none;
                 }};
@@ -5146,7 +5149,7 @@ public class ExoUnitTypes {
             weapons.add(new Weapon(name + "-purple-mount"){{
                 x = 15f;
                 y = 8.75f;
-                shootY = 6.25f - 1f;
+                shootY = 9.25f;
                 reload = 57f;
                 recoil = 3f;
                 rotate = true;
@@ -5165,9 +5168,10 @@ public class ExoUnitTypes {
                     width = 15f;
                     segments = 12;
                     damageType = radiation;
-                    fromColor = Pal.sapBullet;
-                    toColor = ExoPal.radGreenDark;
-                    shootEffect = smokeEffect = Fx.sparkShoot;
+                    fromColor = Color.white;
+                    toColor = Pal.sapBullet;
+                    shootEffect = Fx.blastExplosion;
+                    smokeEffect = Fx.sparkShoot;
                 }};
             }},
                     new Weapon(name + "-plasma-gunner"){{
@@ -6600,8 +6604,8 @@ public class ExoUnitTypes {
                 mirror = false;
                 x = 0;
                 shoot = new  ShootHelix(){{
-                    mag = 5.5f;
-                    scl = 2f;
+                    mag = 3.5f;
+                    scl = 1.5f;
                 }};
                 shootSound = Sounds.bolt;
                 showStatSprite = false;
@@ -6686,7 +6690,7 @@ public class ExoUnitTypes {
             engineLayer = Layer.effect;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            rotateSpeed = 4.4f;
+            rotateSpeed = 6.4f;
             engineSize = 3;
             engineOffset = 4;
             parts.add(
@@ -6736,7 +6740,7 @@ public class ExoUnitTypes {
                     }}
             );
             weapons.add(new Weapon("glimmer") {{
-                reload = 5f;
+                reload = 6.5f;
                 mirror = true;
                 x = 4;
                 y = 3;
@@ -6745,7 +6749,7 @@ public class ExoUnitTypes {
                 recoil = 0;
                 shake = 1f;
                 bullet = new ExoBasicBulletType(9f, 12){{
-                    width = 8f;
+                    width = 4f;
                     height = 17f;
                     damageType = DamageType.energy;
                     sprite = "missile";
@@ -6771,7 +6775,7 @@ public class ExoUnitTypes {
                         hitSize = 4f;
                         backColor = hitColor = trailColor = ExoPal.empyrean;
                         frontColor = Color.white;
-                        trailWidth = 2f;
+                        trailWidth = 0.8f;
                         trailLength = 6;
                         hitEffect = despawnEffect = Fx.hitBulletColor;
                     }};
@@ -6793,18 +6797,18 @@ public class ExoUnitTypes {
             armor = 5;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            rotateSpeed = 4.7f;
+            rotateSpeed = 3.8f;
             engineSize = 0;
             engineOffset = 0;
             setEnginesMirror(
             new UnitEngine(4.5f, -9, 2f, 315f)
             );
             weapons.add(new Weapon("shine") {{
-                reload = 60f;
+                reload = 63f;
                 mirror = false;
                 x = 0;
                 shoot = new  ShootPattern(){{
-                    shotDelay = 2f;
+                    shotDelay = 4f;
                     shots = 3;
                 }};
                 shootSound = Sounds.malignShoot;
@@ -6912,6 +6916,7 @@ public class ExoUnitTypes {
               under = true;
               x = 20.75f;
               y = 1.25f;
+              outlineLayerOffset = 0.0002f;
               layerOffset = -0.0001f;
               heatProgress = PartProgress.charge.curve(Interp.circleIn);
               }}
@@ -6934,6 +6939,7 @@ public class ExoUnitTypes {
                 shake = 1f;
                 bullet = new ExoBasicBulletType(1.5f, 185){{
                     width = height = 50;
+                    recoil = 0.5f;
                     sprite = "exogenesis-plasma";
                     scaleLife = false;
                     chargeEffect = ExoFx.auricCharge;
@@ -7023,7 +7029,7 @@ public class ExoUnitTypes {
             armor = 8;
             trailLength = 8;
             trailColor = engineColor = ExoPal.empyrean;
-            rotateSpeed = 2.4f;
+            rotateSpeed = 2f;
             engineSize = 0;
             engineOffset = 0;
             parts.add(
@@ -7051,7 +7057,7 @@ public class ExoUnitTypes {
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
-                        haloRotateSpeed = -3f;
+                        haloRotateSpeed = -1f;
                         haloRadius = haloRadiusTo = 11f;
                         stroke = 0f;
                         strokeTo = 2f;
@@ -7064,7 +7070,7 @@ public class ExoUnitTypes {
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
-                        haloRotateSpeed = 4f;
+                        haloRotateSpeed = 2f;
                         haloRadius = haloRadiusTo = 11f;
                         stroke = 0f;
                         strokeTo = 2f;
@@ -7077,7 +7083,7 @@ public class ExoUnitTypes {
                 tri = true;
                 color = ExoPal.empyrean;
                 layer = Layer.effect;
-                haloRotateSpeed = -4f;
+                haloRotateSpeed = -2f;
                 haloRadius = haloRadiusTo = 11f;
                 stroke = 0f;
                 strokeTo = 2f;
@@ -7089,47 +7095,43 @@ public class ExoUnitTypes {
                     new UnitEngine(9.5f, -27, 4f, 60f)
             );
             weapons.add(new Weapon("radiance-laser") {{
-                reload = 280f;
+                reload = 200f;
                 mirror = false;
                 y = 8;
                 x = 0;
-                chargeSound = Sounds.lasercharge2;
-                shootSound = Sounds.beam;
-                continuous = true;
+                shootSound = Sounds.mediumCannon;
                 parentizeEffects = true;
                 recoil = 0;
                 shake = 3f;
-                bullet = new ContinuousLaserBulletType(){{
-                    hitColor = ExoPal.empyrean;
-                    damage = 35f;
-                    length = 180f;
-                    hitEffect = Fx.hitMeltHeal;
-                    drawSize = 420f;
-                    lifetime = 260f;
-                    shake = 1f;
-                    colors = new Color[]{ExoPal.empyrean.cpy().a(.2f), ExoPal.empyrean.cpy().a(.5f), ExoPal.empyrean.cpy().mul(1.2f), Color.white};
-                    despawnEffect = Fx.smokeCloud;
-                    intervalBullet = new LightningBulletType(){{
-                        damage = 30;
-                        collidesAir = false;
-                        ammoMultiplier = 1f;
-                        lightningColor = ExoPal.empyrean;
-                        lightningLength = 10;
-                        lightningLengthRand = 18;
-                    }};
-                    intervalRandomSpread = 40;
-                    intervalBullets = 2;
-                    bulletInterval = 1f;
-                    smokeEffect = Fx.none;
-                    shootEffect = ExoFx.colorBomb;
+                bullet = new ExoBasicBulletType(10f, 430f){{
+                    recoil = 0.2f;
+                    damageType = kinetic;
+                    lifetime = 40f;
+                    trailLength = 10;
+                    trailWidth = 3;
+                    keepVelocity = false;
+                    trailColor = hitColor = backColor = lightColor = lightningColor = ExoPal.empyrean;
+                    width = 10f;
+                    height = 40f;
+                    despawnShake = hitShake = 18f;
+                    lightning = 3;
+                    lightningLength = 6;
+                    lightningLengthRand = 18;
+                    lightningDamage = 20;
+                    smokeEffect = Fx.smokePuff;
+                    shootEffect = new MultiEffect(ExoFx.instShootExo, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
+                    despawnEffect = new MultiEffect(ExoFx.empyreanExplosionSplash, ExoFx.empyreanStarHitLarge, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
+                    hitEffect = new MultiEffect(ExoFx.empyreanExplosionSplash, ExoFx.empyreanStarHitLarge, ExoFx.randLifeSparkExo, Fx.massiveExplosion);
+                    despawnHit = true;
                 }};
             }});
             weapons.add(new Weapon("exogenesis-radiance-mount"){{
                 x = 25;
+                y = - 10;
                 shootY = 11f;
                 reload = 55f;
                 recoil = 2f;
-                shootSound = Sounds.laser;
+                shootSound = Sounds.bolt;
                 shadow = 15f;
                 mirror = true;
                 rotate = true;
@@ -7143,7 +7145,7 @@ public class ExoUnitTypes {
                     length = 160f;
                     hitColor = ExoPal.empyrean;
                     shootEffect = ExoFx.colorBombSmall;
-                    colors = new Color[]{Color.valueOf("fee761aa"), Color.valueOf("fcff98"), Color.white};
+                    colors = new Color[]{ExoPal.empyreanAlpha, ExoPal.empyreanLight, Color.white};
                 }};
             }});
         }};
@@ -7209,7 +7211,7 @@ public class ExoUnitTypes {
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
             shadowElevation = 2.1f;
-            speed = 4.4f;
+            speed = 2.7f;
             hitSize = 16f;
             health = 860f;
             flying = true;
@@ -7226,26 +7228,38 @@ public class ExoUnitTypes {
             engineSize = 2.5f;
             engineOffset = 13;
             weapons.add(new Weapon("apprise") {{
-                minShootVelocity = 0.75f;
-                reload = 5f;
+                reload = 55f;
                 mirror = true;
-                shootCone = 180f;
+                shootCone = 150f;
                 ejectEffect = Fx.none;
                 inaccuracy = 15f;
-                ignoreRotation = true;
-                x = 4;
+                rotate = false;
+                baseRotation = 35;
+                shoot = new  ShootPattern(){{
+                    shotDelay = 2f;
+                    shots = 6;
+                }};
+                x = 5;
                 y = -3;
-                shootSound = Sounds.none;
+                shootSound = Sounds.missile;
                 recoil = 0;
-                bullet = new BombBulletType(37f, 35f){{
-                    width = height = 9f;
-                    speed = -0.00001f;
-                    frontColor = Color.white;
-                    backColor = hitColor = trailColor = ExoPal.empyreanIndigo;
-                    lifetime = 16;
-                    hitEffect = despawnEffect = ExoFx.colorBombSmaller;
-                    shootEffect = Fx.none;
-                    smokeEffect = Fx.none;
+                bullet = new ExoMissileBulletType(){{
+                    width = 8f;
+                    height = 8f;
+                    damageType = explosive;
+                    speed = 1;
+                    damage = 8;
+                    shrinkY = 0f;
+                    drag = -0.01f;
+                    homingRange = 60f;
+                    splashDamageRadius = 25f;
+                    splashDamage = 7f;
+                    lifetime = 50f;
+                    trailColor = backColor = frontColor = ExoPal.empyreanIndigo;
+                    hitEffect = Fx.blastExplosion;
+                    despawnEffect = Fx.blastExplosion;
+                    weaveScale = 6f;
+                    weaveMag = 1f;
                 }};
             }});
         }};
@@ -7407,21 +7421,20 @@ public class ExoUnitTypes {
                         y = 35.75f;
                     }}
             );
-            weapons.add(new Weapon("energy-bolts"){{
+            weapons.add(new Weapon("exogenesis-surge-torrent"){{
                 reload = 83f;
                 mirror = false;
-                x = 0;
-                y = 35.75f;
-                shootSound = Sounds.bolt;
-                recoil = 0;
-                inaccuracy = 30;
-                shake = 1f;
-                shoot = new ShootPattern(){{
-                    shotDelay = 8;
-                    shots = 7;
+                x = 15;
+                y = 0f;
+                shootSound = Sounds.blaster;
+                recoil = 2;
+                shoot = new ShootSpread(){{
+                    spread = 7;
+                    shots = 3;
                 }};
                 bullet = new ExoBasicBulletType(9f, 42){{
-                    width = height = 11f;
+                    width = 4;
+                    height = 14f;
                     homingPower = 0.005f;
                     homingRange = 60;
                     damageType = energy;
@@ -7433,7 +7446,7 @@ public class ExoUnitTypes {
                     shrinkY = shrinkX = 0;
                     shootEffect = new MultiEffect(Fx.shootSmallColor, ExoFx.colorSparkShoot);
                     trailLength = 10;
-                    trailWidth = 2f;
+                    trailWidth = 1f;
                 }};
             }});
             weapons.add(new Weapon("energy-zap") {{
