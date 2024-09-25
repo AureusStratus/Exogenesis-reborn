@@ -2763,7 +2763,7 @@ public class ExoUnitTypes {
                 shootSound = Sounds.bolt;
                 layerOffset = 0.0001f;
                 reload = 38f;
-                shootY = 10f;
+                shootY = 1f;
                 recoil = 1f;
                 rotate = true;
                 rotateSpeed = 1.4f;
@@ -2789,18 +2789,26 @@ public class ExoUnitTypes {
                     damage = 40;
                     drag = 0.06f;
                     lifetime = 55f;
-                    trailWidth = 6f;
+                    trailWidth = 5.2f;
                     trailLength = 5;
                     splashDamageRadius = 40;
                     splashDamage = 25;
                     pierce = true;
                     pierceCap = 2;
                     hitEffect = Fx.blastExplosion;
-                    shootEffect = Fx.shootBig;
+                    shootEffect = Fx.colorSparkBig;
                     lightning = 3;
                     lightningLength = 6;
                     lightningColor = trailColor = hitColor = backColor = healColor = ExoPal.erekirYellow;
                     lightningDamage = 20;
+                    fragBullets = 6;
+
+                    fragBullet = new LightningBulletType(){{
+                        damage = 14f;
+                        lightningLength = 7;
+                        lightningLengthRand = 7;
+                        lightningColor = ExoPal.erekirYellow;
+                    }};
                 }};
             }});
         }};
@@ -3257,7 +3265,7 @@ public class ExoUnitTypes {
                     };
                 }};
                 bullet = new EmpBulletType() {{
-                    sprite = "missile-large";
+                    sprite = "exogenesis-arrow-bullet";
                     width = 15f;
                     height = 36f;
                     speed = 13;

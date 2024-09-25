@@ -2338,7 +2338,8 @@ import static arc.graphics.g2d.Lines.*;
             empyreanFactory = new UnitFactory("empyrean-factory"){{
                 requirements(Category.units, with(Items.copper, 60, Items.beryllium, 70, Items.silicon, 70));
                 plans = Seq.with(
-                        new UnitPlan(ExoUnitTypes.lux, 60f * 15, with(Items.silicon, 30, Items.beryllium, 50))
+                        new UnitPlan(ExoUnitTypes.lux, 60f * 15, with(Items.silicon, 30, Items.beryllium, 50)),
+                        new UnitPlan(ExoUnitTypes.prayer, 60f * 15, with(Items.silicon, 30, Items.beryllium, 50))
                 );
                 size = 3;
                 consumePower(1.2f);
