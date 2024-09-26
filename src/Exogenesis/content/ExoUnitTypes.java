@@ -2672,7 +2672,7 @@ public class ExoUnitTypes {
                         radius = 3f;
                         phase = 30f;
                         layerOffset = -0.001f;
-                        color = Pal.surge;
+                        color = ExoPal.erekirYellow;;
                     }},
                     new HoverPart(){{
                         x = 3f;
@@ -2682,14 +2682,15 @@ public class ExoUnitTypes {
                         radius = 3f;
                         phase = 30f;
                         layerOffset = -0.001f;
-                        color = Pal.surge;
+                        color = ExoPal.erekirYellow;;
                     }}
             );
             weapons.add(new Weapon("exogenesis-squall-weapon"){{
                 layerOffset = 0.0001f;
-                reload = 50f;
+                reload = 10f;
                 shootY = 4.5f;
                 recoil = 1f;
+                inaccuracy = 3;
                 rotate = true;
                 rotateSpeed = 2.2f;
                 mirror = false;
@@ -2706,11 +2707,11 @@ public class ExoUnitTypes {
                     radius = 0;
                     pierce = true;
                     pierceCap = 2;
-                    speed = 4;
+                    speed = 9;
                     damage = 40;
-                    width = 20f;
+                    width = 8f;
                     height = 18f;
-                    lifetime = 40f;
+                    lifetime = 16f;
                     hitSize = 4f;
                     hitColor = backColor = trailColor = ExoPal.erekirYellow;
                     frontColor = Color.white;
@@ -2746,7 +2747,7 @@ public class ExoUnitTypes {
                         radius = 4f;
                         phase = 30f;
                         layerOffset = -0.001f;
-                        color = Pal.surge;
+                        color = ExoPal.erekirYellow;
                     }},
                     new HoverPart(){{
                         x = 5.0f;
@@ -2756,7 +2757,7 @@ public class ExoUnitTypes {
                         radius = 6f;
                         phase = 30f;
                         layerOffset = -0.001f;
-                        color = Pal.surge;
+                        color = ExoPal.erekirYellow;
                     }}
             );
             weapons.add(new Weapon("exogenesis-gust-weapon"){{
@@ -3265,7 +3266,7 @@ public class ExoUnitTypes {
                 }};
                 bullet = new EmpBulletType() {{
                     sprite = "exogenesis-arrow-bullet";
-                    width = 28f;
+                    width = 15f;
                     height = 36f;
                     speed = 13;
                     damage = 550;
@@ -3363,7 +3364,7 @@ public class ExoUnitTypes {
                     splashDamage = 57;
                     splashDamageRadius = 40;
                     lifetime = 35f;
-                    hitColor = trailColor = backColor = Pal.surge;
+                    hitColor = trailColor = backColor = ExoPal.erekirYellow;
                     status = StatusEffects.blasted;
                     statusDuration = 100;
                     smokeEffect = Fx.shootBigSmoke;
@@ -3380,7 +3381,7 @@ public class ExoUnitTypes {
                         splashDamage = 30;
                         splashDamageRadius = 25;
                         lifetime = 5f;
-                        hitColor = trailColor = backColor = Pal.surge;
+                        hitColor = trailColor = backColor = ExoPal.erekirYellow;
                         status = StatusEffects.blasted;
                         statusDuration = 100;
                         smokeEffect = Fx.shootBigSmoke;
