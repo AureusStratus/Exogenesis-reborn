@@ -114,7 +114,7 @@ import static arc.graphics.g2d.Lines.*;
             pulsarDrill = new Drill("plusar-drill"){{
                 requirements(Category.production, with(ExoItems.rustyCopper, 18, ExoItems.cobolt, 10));
                 tier = 2;
-                drillTime = 380;
+                drillTime = 680;
                 size = 2;
 
                 consumeLiquid(Liquids.water, 0.06f).boost();
@@ -122,7 +122,7 @@ import static arc.graphics.g2d.Lines.*;
             pulseImpactDrill = new Drill("pulse-impact-drill"){{
                 requirements(Category.production, with(ExoItems.rustyCopper, 158, ExoItems.cobolt, 150, ExoItems.iron, 60));
                 tier = 3;
-                drillTime = 680;
+                drillTime = 500;
                 size = 3;
 
                 consumeLiquid(Liquids.water, 0.06f).boost();
@@ -184,7 +184,8 @@ import static arc.graphics.g2d.Lines.*;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
                         new DrawCrucibleFlame(){{
-                            flameRad = 25f;
+                            flameRad = 3f;
+                            circleSpace = 11;
                         }},
                         new DrawRegion(){{
                             suffix = "-rotater";
@@ -214,10 +215,10 @@ import static arc.graphics.g2d.Lines.*;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
                         new DrawPistons(){{
-                            sinMag = 3f;
-                            sinScl = 2f;
+                            sinMag = 1f;
+                            sinScl = 3f;
                             sides = 4;
-                            sideOffset = 30;
+                            sideOffset = 6;
                         }},
                         new DrawDefault()
                 );
@@ -321,7 +322,7 @@ import static arc.graphics.g2d.Lines.*;
                             alpha = 0.8f;
                         }}
                 );
-                ambientSound = Sounds.flame;
+                ambientSound = Sounds.torch;
                 ambientSoundVolume = 0.07f;
 
                 consumeLiquid(Liquids.slag, 10f / 60f);

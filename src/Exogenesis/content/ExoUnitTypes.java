@@ -2688,7 +2688,7 @@ public class ExoUnitTypes {
             weapons.add(new Weapon("exogenesis-squall-weapon"){{
                 layerOffset = 0.0001f;
                 reload = 10f;
-                shootY = 4.5f;
+                shootY = 1.5f;
                 recoil = 1f;
                 inaccuracy = 3;
                 rotate = true;
@@ -2821,11 +2821,12 @@ public class ExoUnitTypes {
             health = 5000;
             armor = 11f;
             itemCapacity = 0;
-            faceTarget = false;
             rotateMoveFirst = true;
             hovering = true;
             singleTarget = true;
+            faceTarget = false;
             useEngineElevation = false;
+            singleTarget = true;
             flying = false;
             shadowElevation = 0.1f;
             groundLayer = Layer.groundUnit;
@@ -2862,18 +2863,38 @@ public class ExoUnitTypes {
                 rotateSpeed = 1.3f;
                 mirror = false;
                 shootCone = 2f;
+                inaccuracy = 2;
+                shoot.shotDelay = 2;
+                shoot.shots = 3;
                 x = 0f;
                 y = -1f;
                 cooldownTime = 30f;
                 bullet = new BasicBulletType(7f, 120){{
                     sprite = "exogenesis-arrow-bullet";
-                    width = 13f;
-                    height = 13f;
+                    width = 7f;
+                    height = 18f;
+                    shrinkX = 0;
+                    shrinkY = 0;
                     lifetime = 28f;
                     hitSize = 6f;
+                    intervalBullets = 2;
+                    intervalAngle = 15f;
+                    intervalRandomSpread = 30;
+                    bulletInterval = 15f;
+                    intervalBullet = new FancyLaserBulletType() {{
+                        damage = 35f;
+                        sideAngle = 45f;
+                        sideWidth = 1f;
+                        sideLength = 50f;
+                        damageType = energy;
+                        width = 20f;
+                        length = 80f;
+                        hitColor = lightningColor = ExoPal.erekirYellow;
+                        shootEffect = Fx.colorSpark;
+                        colors = new Color[]{ExoPal.erekirYellow.cpy().a(0.4f), ExoPal.erekirYellow, Color.white};
+                    }};
                     pierceCap = 2;
                     pierce = true;
-                    pierceBuilding = true;
                     hitColor = backColor = trailColor = ExoPal.erekirYellow;
                     frontColor = Color.white;
                     trailWidth = 2.8f;
@@ -5103,6 +5124,7 @@ public class ExoUnitTypes {
                     hitColor = Pal.sapBullet;
                     drawFlare = false;
                     damage = 35f;
+                    lifetime = 130;
                     damageType = DamageType.energy;
                     length = 165f;
                     hitEffect = ExoFx.hitMeltColor;
@@ -5174,8 +5196,8 @@ public class ExoUnitTypes {
                 bullet = new TentacleBulletType(15){{
                     length = 250f;
                     width = 15f;
-                    segments = 12;
-                    lifetime = 50;
+                    segments = 50;
+                    lifetime = 35;
                     damageType = radiation;
                     fromColor = Color.white;
                     toColor = Pal.sapBullet;
@@ -7260,7 +7282,7 @@ public class ExoUnitTypes {
                     speed = 1;
                     damage = 8;
                     shrinkY = 0f;
-                    drag = -0.025f;
+                    drag = -0.045f;
                     homingRange = 60f;
                     splashDamageRadius = 25f;
                     splashDamage = 7f;
