@@ -5064,7 +5064,7 @@ public class ExoUnitTypes {
                     x = 19;
                     y = 3;
                     shoot = new ShootSpread() {{
-                        spread = 10f;
+                        spread = 15f;
                         shots = 3;
                     }};
                     shootSound = Sounds.blaster;
@@ -5081,7 +5081,7 @@ public class ExoUnitTypes {
                         lightningLengthRand = 2;
                         lightningAngleRand = 15f;
                         damageType = energy;
-                        width = 32f;
+                        width = 42f;
                         length = 140f;
                         hitColor = lightningColor = Pal.sapBullet;
                         shootEffect = ExoFx.colorBombSmall;
@@ -5097,14 +5097,14 @@ public class ExoUnitTypes {
                 shootY = 21;
                 recoil = 2;
                 rotateSpeed = 2;
-                rotate = continuous = alwaysContinuous = true;
+                rotate = continuous = true;
                 shake = 1f;
                 bullet = new ExoContinuousFlameBulletType(){{
                     hitColor = Pal.sapBullet;
                     drawFlare = false;
                     damage = 35f;
                     damageType = DamageType.energy;
-                    length = 220f;
+                    length = 165f;
                     hitEffect = ExoFx.hitMeltColor;
                     drawSize = 420f;
                     width = 8.6f;
@@ -5175,6 +5175,7 @@ public class ExoUnitTypes {
                     length = 250f;
                     width = 15f;
                     segments = 12;
+                    lifetime = 50;
                     damageType = radiation;
                     fromColor = Color.white;
                     toColor = Pal.sapBullet;
@@ -7111,7 +7112,7 @@ public class ExoUnitTypes {
                 recoil = 0;
                 shake = 3f;
                 bullet = new ExoBasicBulletType(10f, 430f){{
-                    recoil = 0.2f;
+                    recoil = 1.2f;
                     damageType = kinetic;
                     lifetime = 40f;
                     trailLength = 10;
@@ -7259,11 +7260,11 @@ public class ExoUnitTypes {
                     speed = 1;
                     damage = 8;
                     shrinkY = 0f;
-                    drag = -0.09f;
+                    drag = -0.025f;
                     homingRange = 60f;
                     splashDamageRadius = 25f;
                     splashDamage = 7f;
-                    lifetime = 50f;
+                    lifetime = 33f;
                     trailColor = backColor = frontColor = ExoPal.empyreanIndigo;
                     hitEffect = Fx.blastExplosion;
                     despawnEffect = Fx.blastExplosion;

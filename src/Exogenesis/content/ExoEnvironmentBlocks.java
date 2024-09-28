@@ -32,7 +32,7 @@ public class ExoEnvironmentBlocks {
     axinStoneMinerals, alignPlating, axinCrystalBlue, axinCrystalPurple, axinCrystalTile, colossalAxinMonolith, largeAxinMonolith, mediumAxinMonolith, smallAxinMonolith, diamondGrowth, diamondTile,
     diamondWall, axinPurpleWall, axinCrystalStoneWall, axinCarvakStone, axinSlate2, axinCrystalRockBoulder, curtusesGeode, axinBoulder, axinCarvakStoneWall, axinCrystalRock, thermakronxCrystal, axinCrystalRock1,
     //ore
-    oreOltuxium, oreCobolt,  oreChronophite, oreGold, oreNeodymium, oreVousar, oreLightningStone, oreRadite, oreViliolite, oreLuxite, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall,
+    oreOltuxium, oreCobolt, rustyCopperOre, oreChronophite, oreGold, oreNeodymium, oreVousar, oreLightningStone, oreRadite, oreViliolite, oreLuxite, oreAxiradamite, oreUrbium, oreLanosium, ferricIronWall,
     magnetiteOreWall, magnetiteCrystal, lightningCrystal, nickelGeode, curtusesOre ;
     public static void load() {
         oreOsmium = new OreBlock(ExoItems.osmium) {{
@@ -67,6 +67,9 @@ public class ExoEnvironmentBlocks {
 
         oreOltuxium = new OreBlock(ExoItems.oltuxium);
         oreCobolt = new OreBlock("cobolt-ore",ExoItems.cobolt) {{
+            variants = 3;
+        }};
+        rustyCopperOre = new OreBlock("rustyCopperOre",ExoItems.rustyCopper) {{
             variants = 3;
         }};
         oreChronophite = new OreBlock(ExoItems.chronophite);

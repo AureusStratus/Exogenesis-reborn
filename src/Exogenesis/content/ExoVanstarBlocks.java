@@ -53,7 +53,7 @@ import static arc.graphics.g2d.Lines.*;
         // crafters
         platingFactory, ironFurnace, metaglassForger, alloyForge, listusiumForge, vanstaniumOven, osmiumBlastForge, gigavoltForge,
         // Drills
-        wallGrinder, pulsarWallDrill, pulsarDrill,
+        pulsarDrill, pulsarWallDrill, wallGrinder, pulseImpactDrill,
         //cores
         coreBelief, coreHope, coreReliance,
         //walls
@@ -119,6 +119,14 @@ import static arc.graphics.g2d.Lines.*;
 
                 consumeLiquid(Liquids.water, 0.06f).boost();
             }};
+            pulseImpactDrill = new Drill("pulse-impact-drill"){{
+                requirements(Category.production, with(ExoItems.rustyCopper, 158, ExoItems.cobolt, 150, ExoItems.iron, 60));
+                tier = 3;
+                drillTime = 680;
+                size = 3;
+
+                consumeLiquid(Liquids.water, 0.06f).boost();
+            }};
             pulsarWallDrill = new BeamDrill("plusar-wall-drill"){{
                 requirements(Category.production, with(ExoItems.rustyCopper, 30, ExoItems.cobolt, 15));
                 consumePower(0.15f);
@@ -146,7 +154,7 @@ import static arc.graphics.g2d.Lines.*;
                 requirements(Category.crafting, with(ExoItems.rustyCopper, 60, Items.graphite, 30, ExoItems.cobolt, 30));
                 craftEffect = Fx.smeltsmoke;
                 outputItem = new ItemStack(ExoItems.empyreanPlating, 2);
-                craftTime = 60f;
+                craftTime = 70f;
                 size = 2;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
@@ -154,7 +162,7 @@ import static arc.graphics.g2d.Lines.*;
                             sinMag = 2f;
                             sinScl = 2f;
                             sides = 8;
-                            sideOffset = 30;
+                            sideOffset = 15;
                 }},
                 new DrawDefault()
                 );
@@ -175,7 +183,9 @@ import static arc.graphics.g2d.Lines.*;
                 size = 3;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
-                        new DrawCrucibleFlame(),
+                        new DrawCrucibleFlame(){{
+                            flameRad = 25f;
+                        }},
                         new DrawRegion(){{
                             suffix = "-rotater";
                             spinSprite = true;
@@ -318,8 +328,6 @@ import static arc.graphics.g2d.Lines.*;
                 consumeItems(with(ExoItems.ferricPowder, 10, ExoItems.cobolt, 5, Items.silicon, 3));
                 consumePower(0.60f);
             }};
-
-
             //walls
             coboltWall = new Wall("cobolt-wall"){{
                 requirements(Category.defense, with(ExoItems.cobolt, 6));
