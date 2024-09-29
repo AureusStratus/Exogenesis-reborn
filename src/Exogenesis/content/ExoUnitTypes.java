@@ -2734,6 +2734,7 @@ public class ExoUnitTypes {
             singleTarget = true;
             faceTarget = false;
             useEngineElevation = false;
+            singleTarget = true;
             flying = false;
             shadowElevation = 0.1f;
             groundLayer = Layer.groundUnit;
@@ -2863,9 +2864,6 @@ public class ExoUnitTypes {
                 rotateSpeed = 1.3f;
                 mirror = false;
                 shootCone = 2f;
-                inaccuracy = 2;
-                shoot.shotDelay = 2;
-                shoot.shots = 3;
                 x = 0f;
                 y = -1f;
                 cooldownTime = 30f;
@@ -5110,7 +5108,7 @@ public class ExoUnitTypes {
                     }};
             }});
             weapons.add(new Weapon("exogenesis-avicularia-weapon") {{
-                reload = 100f;
+                reload = 170f;
                 mirror = false;
                 x = 0;
                 y = -17;
@@ -5124,7 +5122,7 @@ public class ExoUnitTypes {
                     hitColor = Pal.sapBullet;
                     drawFlare = false;
                     damage = 35f;
-                    lifetime = 130;
+                    lifetime = 430;
                     damageType = DamageType.energy;
                     length = 165f;
                     hitEffect = ExoFx.hitMeltColor;
@@ -5196,7 +5194,7 @@ public class ExoUnitTypes {
                 bullet = new TentacleBulletType(15){{
                     length = 250f;
                     width = 15f;
-                    segments = 50;
+                    segments = 14;
                     lifetime = 35;
                     damageType = radiation;
                     fromColor = Color.white;

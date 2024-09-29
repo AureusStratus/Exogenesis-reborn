@@ -184,8 +184,7 @@ import static arc.graphics.g2d.Lines.*;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
                         new DrawCrucibleFlame(){{
-                            flameRad = 3f;
-                            circleSpace = 11;
+                            particleRad = 8;
                         }},
                         new DrawRegion(){{
                             suffix = "-rotater";
@@ -305,16 +304,16 @@ import static arc.graphics.g2d.Lines.*;
                 drawer = new DrawMulti(new DrawDefault(),
                         new DrawGlowRegion("-glow1"){{
                             color = Color.valueOf("70170b");
-                            glowIntensity = 1f;
+                            glowIntensity = 7f;
                             alpha = 0.7f;
                         }},
                         new DrawLiquidRegion(),
+                        new DrawCrucibleFlame(){{
+                            particleRad = 11;
+                        }},
                         new DrawBubbles(){{
                             color = Color.valueOf("ffa166");
-                            radius = 3f;
-                        }},
-                        new DrawArcSmelt(){{
-                            drawCenter = false;
+                            radius = 8f;
                         }},
                         new DrawGlowRegion("-glow2"){{
                             color = Color.valueOf("70170b");
