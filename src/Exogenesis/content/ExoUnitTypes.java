@@ -2734,7 +2734,6 @@ public class ExoUnitTypes {
             singleTarget = true;
             faceTarget = false;
             useEngineElevation = false;
-            singleTarget = true;
             flying = false;
             shadowElevation = 0.1f;
             groundLayer = Layer.groundUnit;
@@ -2827,7 +2826,6 @@ public class ExoUnitTypes {
             singleTarget = true;
             faceTarget = false;
             useEngineElevation = false;
-            singleTarget = true;
             flying = false;
             shadowElevation = 0.1f;
             groundLayer = Layer.groundUnit;
@@ -2877,16 +2875,16 @@ public class ExoUnitTypes {
                     hitSize = 6f;
                     intervalBullets = 2;
                     intervalAngle = 15f;
-                    intervalRandomSpread = 30;
-                    bulletInterval = 15f;
+                    intervalRandomSpread = 0;
+                    bulletInterval = 10f;
                     intervalBullet = new FancyLaserBulletType() {{
                         damage = 35f;
                         sideAngle = 45f;
                         sideWidth = 1f;
-                        sideLength = 50f;
+                        sideLength = 30f;
                         damageType = energy;
                         width = 20f;
-                        length = 80f;
+                        length = 40f;
                         hitColor = lightningColor = ExoPal.erekirYellow;
                         shootEffect = Fx.colorSpark;
                         colors = new Color[]{ExoPal.erekirYellow.cpy().a(0.4f), ExoPal.erekirYellow, Color.white};
@@ -6607,6 +6605,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         lux = new ExoUnitType("lux", 1.2f, 0.85f, 1f, 0.3f, 1.1f, 1f, 1) {{
             constructor = UnitEntity::create;
             outlineColor = ExoPal.empyreanOutline;
@@ -7122,7 +7121,7 @@ public class ExoUnitTypes {
                     new UnitEngine(19.5f, -27, 5f, 60f),
                     new UnitEngine(9.5f, -27, 4f, 60f)
             );
-            weapons.add(new Weapon("radiance-laser") {{
+            weapons.add(new Weapon("radiance-cannon") {{
                 reload = 200f;
                 mirror = false;
                 y = 8;
@@ -7131,7 +7130,7 @@ public class ExoUnitTypes {
                 parentizeEffects = true;
                 recoil = 0;
                 shake = 3f;
-                bullet = new ExoBasicBulletType(10f, 430f){{
+                bullet = new ExoBasicBulletType(10f, 830f){{
                     recoil = 1.2f;
                     damageType = kinetic;
                     lifetime = 40f;
@@ -7141,7 +7140,7 @@ public class ExoUnitTypes {
                     trailColor = hitColor = backColor = lightColor = lightningColor = ExoPal.empyrean;
                     width = 30f;
                     height = 60f;
-                    knockback = 20;
+                    knockback = 60;
                     impact = true;
                     despawnShake = hitShake = 18f;
                     lightning = 3;
@@ -7179,6 +7178,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         prayer = new ExoUnitType("prayer", 1.2f, 0.85f, 1f, 1f, 1.1f, 1f, 1){{
             constructor = UnitEntity::create;
             defaultCommand = UnitCommand.repairCommand;
@@ -7480,9 +7480,9 @@ public class ExoUnitTypes {
                 }};
             }});
             weapons.add(new Weapon("exogenesis-surge-torrent"){{
-                reload = 83f;
+                reload = 81f;
                 mirror = true;
-                x = 19;
+                x = 24;
                 y = -4f;
                 shootSound = Sounds.blaster;
                 recoil = 2;
@@ -7616,6 +7616,7 @@ public class ExoUnitTypes {
                 }};
             }});
         }};
+
         twinkle = new AxinUnitType("twinkle"){{
             constructor = UnitEntity::create;
             coreUnitDock = true;

@@ -89,7 +89,7 @@ public class ExoEnvironmentBlocks {
         oreViliolite = new OreBlock("viliolite-ore",ExoItems.viliotStone) {{
             variants = 3;
         }};
-        oreVousar = new OreBlock("vousar-ore",ExoItems.luxiteStone) {{
+        oreVousar = new OreBlock("vousar-ore",ExoItems.vousarStone) {{
             variants = 3;
         }};
 

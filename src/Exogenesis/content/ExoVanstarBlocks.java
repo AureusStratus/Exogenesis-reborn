@@ -47,7 +47,7 @@ import static arc.graphics.g2d.Lines.*;
     public class ExoVanstarBlocks{
         public static Block
         // blocks
-        ductEmpyrean,
+        ductEmpyrean, empyreanJunction, empyreanSorter, empyreanRouter,
         // power blocks
         harvesterSmall, harvesterMedium, luxNode, luxTower, oltuxiumBattery, oltuxiumBatteryLarge,
         // crafters
@@ -66,10 +66,25 @@ import static arc.graphics.g2d.Lines.*;
         public static void load(){
             //Empyrean blocks
             ductEmpyrean = new Duct("empyrean-duct"){{
-                requirements(Category.distribution, with(Items.beryllium, 1));
+                requirements(Category.distribution, with(ExoItems.cobolt, 1));
                 health = 90;
                 speed = 4f;
-                researchCost = with(Items.beryllium, 5);
+                researchCost = with(ExoItems.cobolt, 5);
+            }};
+            empyreanSorter = new Sorter("empyrean-sorter"){{
+                requirements(Category.distribution, with(Items.lead, 2, Items.copper, 2));
+                buildCostMultiplier = 3f;
+            }};
+            empyreanJunction = new Junction("empyrean-junction"){{
+                requirements(Category.distribution, with(ExoItems.cobolt, 2));
+                speed = 26;
+                capacity = 6;
+                health = 30;
+                buildCostMultiplier = 6f;
+            }};
+            empyreanRouter = new Router("empyrean-router"){{
+                requirements(Category.distribution, with(ExoItems.cobolt, 3));
+                buildCostMultiplier = 4f;
             }};
             //power
             harvesterSmall = new PowerHarvester("harvester-small"){{
@@ -184,7 +199,9 @@ import static arc.graphics.g2d.Lines.*;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
                         new DrawCrucibleFlame(){{
-                            particleRad = 8;
+                            particleRad = 12;
+                            particles = 50;
+                            particleSize = 5;
                         }},
                         new DrawRegion(){{
                             suffix = "-rotater";
@@ -277,7 +294,7 @@ import static arc.graphics.g2d.Lines.*;
             vanstaniumOven = new GenericCrafter("vastanium-oven"){{
                 requirements(Category.crafting, with(ExoItems.rustyCopper, 140, ExoItems.cobolt, 100, Items.silicon, 60, ExoItems.osmium, 100, ExoItems.empyreanPlating, 50));
                 craftEffect = Fx.smeltsmoke;
-                outputItem = new ItemStack(ExoItems.vanstariumAlloy, 1);
+                outputItem = new ItemStack(ExoItems.vastanium, 1);
                 craftTime = 70f;
                 size = 3;
                 hasPower = hasItems = true;
@@ -304,12 +321,13 @@ import static arc.graphics.g2d.Lines.*;
                 drawer = new DrawMulti(new DrawDefault(),
                         new DrawGlowRegion("-glow1"){{
                             color = Color.valueOf("70170b");
-                            glowIntensity = 7f;
+                            glowIntensity = 0.4f;
                             alpha = 0.7f;
                         }},
                         new DrawLiquidRegion(),
                         new DrawCrucibleFlame(){{
                             particleRad = 11;
+                            particles = 60;
                         }},
                         new DrawBubbles(){{
                             color = Color.valueOf("ffa166");
@@ -317,7 +335,7 @@ import static arc.graphics.g2d.Lines.*;
                         }},
                         new DrawGlowRegion("-glow2"){{
                             color = Color.valueOf("70170b");
-                            glowIntensity = 3f;
+                            glowIntensity = 0.1f;
                             alpha = 0.8f;
                         }}
                 );
