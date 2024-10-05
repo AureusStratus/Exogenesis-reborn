@@ -2376,7 +2376,7 @@ import static arc.graphics.g2d.Lines.*;
                 alwaysUnlocked = true;
                 thrusterLength = 1.5f;
                 isFirstTier = true;
-                unitType = UnitTypes.alpha;
+                unitType = ExoUnitTypes.priest;
                 health = 1100;
                 itemCapacity = 4000;
                 size = 4;
@@ -2386,7 +2386,7 @@ import static arc.graphics.g2d.Lines.*;
             coreHope = new CoreBlock("core-hope"){{
                 requirements(Category.effect, with(ExoItems.rustyCopper, 3000, ExoItems.cobolt, 3000, Items.silicon, 2000));
 
-                unitType = UnitTypes.beta;
+                unitType = ExoUnitTypes.bishop;
                 health = 3500;
                 itemCapacity = 9000;
                 size = 5;
@@ -2397,7 +2397,7 @@ import static arc.graphics.g2d.Lines.*;
             coreReliance = new CoreBlock("core-reliance"){{
                 requirements(Category.effect, with(ExoItems.rustyCopper, 8000, ExoItems.cobolt, 8000, Items.silicon, 5000, ExoItems.neodymium, 4000));
 
-                unitType = UnitTypes.gamma;
+                unitType = ExoUnitTypes.apostle;
                 health = 6000;
                 itemCapacity = 13000;
                 size = 6;

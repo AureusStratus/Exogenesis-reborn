@@ -21,6 +21,7 @@ import blackhole.entities.effect.SwirlEffect;
 import blackhole.entities.part.BlackHolePart;
 import mindustry.Vars;
 import mindustry.ai.*;
+import mindustry.ai.types.BuilderAI;
 import mindustry.ai.types.DefenderAI;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
@@ -56,7 +57,10 @@ public class ExoUnitTypes {
     squall, gust, storm, thunderstorm, hurricane,  hyperion,
     prometheus, atlas, nemesis, cronus,
     //empyrean
-    soul, pneuma, psyche, pemptousia, myalo, lux, glimmer, shine, auric, radiance, prayer, apprise, revelation, enlightenment, excelsus,
+    priest, bishop, apostle,
+    soul, pneuma, psyche, pemptousia, myalo,
+    lux, glimmer, shine, auric, radiance,
+     prayer, apprise, revelation, enlightenment, excelsus,
     twinkle, starlight, stardustVoyager, orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer /* stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon */;
 
 
@@ -6160,6 +6164,374 @@ public class ExoUnitTypes {
                     pierceCap = 3;
                     hitEffect = ExoFx.ullarTipHit;
                     hitColor = Pal.heal;
+                }};
+            }});
+        }};
+
+        float coreFleeRange = 500f;
+        priest = new ErekirUnitType("priest"){{
+            coreUnitDock = true;
+            controller = u -> new BuilderAI(true, coreFleeRange);
+            isEnemy = false;
+            envDisabled = 0;
+
+            targetPriority = -2;
+            lowAltitude = false;
+            mineWalls = true;
+            mineFloor = true;
+            mineHardnessScaling = false;
+            flying = true;
+            mineSpeed = 6f;
+            mineTier = 3;
+            buildSpeed = 1.2f;
+            drag = 0.08f;
+            speed = 5.6f;
+            rotateSpeed = 7f;
+            accel = 0.09f;
+            itemCapacity = 60;
+            health = 300f;
+            armor = 1f;
+            hitSize = 9f;
+
+            fogRadius = 0f;
+            targetable = false;
+            hittable = false;
+
+            engineLayer = Layer.effect;
+            trailLength = 8;
+            trailColor = ExoPal.empyrean;
+            engineSize = 2.7f;
+            engineOffset = 0;
+
+            parts.addAll(
+                    new ShapePart() {{
+                        mirror = true;
+                        progress = PartProgress.warmup;
+                        circle = true;
+                        hollow = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = strokeTo = 1.4f;
+                        radiusTo = radius = 11f;
+                    }},
+                    new HaloPart() {{
+                        y = 0f;
+                        radius = 2.5f;
+                        tri = true;
+                        color = ExoPal.empyrean;
+                        layer = Layer.effect;
+                        haloRotateSpeed = -2.5f;
+                        haloRadius = haloRadiusTo = 11f;
+                        stroke = 0f;
+                        strokeTo = 2f;
+                        shapes = 2;
+                        triLengthTo = triLength = 4f;
+                    }},
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = strokeTo = 1f;
+                        radiusTo = radius = 3f;
+                    }},
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = Color.white;
+                        radiusTo = radius = 1.5f;
+                    }}
+            );
+            abilities.add(new RepairFieldAbility(10f, 30f * 3, 60f){{
+                parentizeEffects = true;
+                healEffect = Fx.shootHealYellow;
+                activeEffect = new WaveEffect(){{
+                    colorFrom = ExoPal.empyreanLight;
+                    colorTo = ExoPal.empyrean;
+                    interp = Interp.circle;
+                    sizeFrom = 0;
+                    sizeTo = 60f;
+                    lifetime = 55f;
+                    strokeTo = 0;
+                    strokeFrom = 3f;
+                }};
+            }});
+            weapons.add(new RepairBeamWeapon(){{
+                widthSinMag = 0.11f;
+                reload = 20f;
+                x = 0f;
+                y = 6.5f;
+                rotate = false;
+                shootY = 0f;
+                beamWidth = 0.7f;
+                repairSpeed = 3.1f;
+                fractionRepairSpeed = 0.06f;
+                aimDst = 0f;
+                shootCone = 15f;
+                mirror = false;
+
+                targetUnits = false;
+                targetBuildings = true;
+                autoTarget = false;
+                controllable = true;
+                laserColor = ExoPal.empyrean;
+                healColor = ExoPal.empyrean;
+
+                bullet = new BulletType(){{
+                    maxRange = 60f;
+                }};
+            }});
+        }};
+        bishop = new ErekirUnitType("bishop"){{
+            coreUnitDock = true;
+            controller = u -> new BuilderAI(true, coreFleeRange);
+            isEnemy = false;
+            envDisabled = 0;
+
+            targetPriority = -2;
+            lowAltitude = false;
+            mineWalls = true;
+            mineFloor = true;
+            mineHardnessScaling = false;
+            flying = true;
+            mineSpeed = 8f;
+            mineTier = 3;
+            buildSpeed = 1.4f;
+            drag = 0.08f;
+            speed = 7f;
+            rotateSpeed = 8f;
+            accel = 0.09f;
+            itemCapacity = 90;
+            health = 500f;
+            armor = 2f;
+            hitSize = 11f;
+            fogRadius = 0f;
+            engineSize = 4.7f;
+            engineOffset = 0;
+
+            parts.addAll(
+                    new ShapePart() {{
+                        mirror = true;
+                        progress = PartProgress.warmup;
+                        circle = true;
+                        hollow = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = strokeTo = 1.4f;
+                        radiusTo = radius = 18f;
+                    }},
+                    new HaloPart() {{
+                        y = 0f;
+                        radius = 2.5f;
+                        tri = true;
+                        color = ExoPal.empyrean;
+                        layer = Layer.effect;
+                        haloRotateSpeed = -2.5f;
+                        haloRadius = haloRadiusTo = 18f;
+                        stroke = 0f;
+                        strokeTo = 2f;
+                        shapes = 2;
+                        triLengthTo = triLength = 6f;
+                    }},
+
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = strokeTo = 1f;
+                        radiusTo = radius = 5.5f;
+                    }},
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = Color.white;
+                        radiusTo = radius = 3.5f;
+                    }}
+            );
+            abilities.add(new RepairFieldAbility(25f, 35f * 3, 75f){{
+                parentizeEffects = true;
+                healEffect = Fx.shootHealYellow;
+                activeEffect = new WaveEffect(){{
+                    colorFrom = ExoPal.empyreanLight;
+                    colorTo = ExoPal.empyrean;
+                    interp = Interp.circle;
+                    sizeFrom = 0;
+                    sizeTo = 75f;
+                    lifetime = 55f;
+                    strokeTo = 0;
+                    strokeFrom = 3f;
+                }};
+            }});
+            weapons.add(new RepairBeamWeapon(){{
+                widthSinMag = 0.11f;
+                reload = 20f;
+                x = 0f;
+                y = 7.5f;
+                rotate = false;
+                shootY = 0f;
+                beamWidth = 0.7f;
+                aimDst = 0f;
+                shootCone = 15f;
+                mirror = false;
+
+                repairSpeed = 3.3f;
+                fractionRepairSpeed = 0.06f;
+
+                targetUnits = false;
+                targetBuildings = true;
+                autoTarget = false;
+                controllable = true;
+                laserColor = ExoPal.empyrean;
+                healColor = ExoPal.empyrean;
+
+                bullet = new BulletType(){{
+                    maxRange = 60f;
+                }};
+            }});
+        }};
+        apostle = new ErekirUnitType("apostle"){{
+            coreUnitDock = true;
+            controller = u -> new BuilderAI(true, coreFleeRange);
+            isEnemy = false;
+            envDisabled = 0;
+
+            targetPriority = -2;
+            lowAltitude = false;
+            mineWalls = true;
+            mineFloor = true;
+            mineHardnessScaling = false;
+            flying = true;
+            mineSpeed = 9f;
+            mineTier = 3;
+            buildSpeed = 1.5f;
+            drag = 0.08f;
+            speed = 7.5f;
+            rotateSpeed = 8f;
+            accel = 0.08f;
+            itemCapacity = 110;
+            health = 700f;
+            armor = 3f;
+            hitSize = 12f;
+            fogRadius = 0f;
+            targetable = false;
+            hittable = false;
+            engineSize = 7.7f;
+            engineOffset = 0;
+
+            parts.addAll(
+                    new ShapePart() {{
+                        mirror = true;
+                        progress = PartProgress.warmup;
+                        circle = true;
+                        hollow = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = strokeTo = 1.4f;
+                        radiusTo = radius = 20f;
+                    }},
+                    new ShapePart() {{
+                        mirror = true;
+                        progress = PartProgress.warmup;
+                        circle = true;
+                        hollow = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = strokeTo = 0.8f;
+                        radiusTo = radius = 24f;
+                    }},
+                    new HaloPart() {{
+                        y = 0f;
+                        radius = 2.5f;
+                        tri = true;
+                        color = ExoPal.empyrean;
+                        layer = Layer.effect;
+                        haloRotateSpeed = -2.5f;
+                        haloRadius = haloRadiusTo = 20f;
+                        stroke = 0f;
+                        strokeTo = 2f;
+                        shapes = 2;
+                        triLengthTo = triLength = 6f;
+                    }},
+                    new HaloPart() {{
+                        y = 0f;
+                        radius = 2.5f;
+                        tri = true;
+                        color = ExoPal.empyrean;
+                        layer = Layer.effect;
+                        haloRotateSpeed = -2.5f;
+                        haloRadius = haloRadiusTo = 20f;
+                        stroke = 0f;
+                        strokeTo = 2f;
+                        shapes = 2;
+                        triLengthTo = triLength = 11f;
+                    }},
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = ExoPal.empyrean;
+                        stroke = strokeTo = 1f;
+                        radiusTo = radius = 8f;
+                    }},
+                    new ShapePart() {{
+                        mirror = false;
+                        circle = true;
+                        layer = Layer.effect;
+                        y = 0f;
+                        color = Color.white;
+                        radiusTo = radius = 5.5f;
+                    }}
+            );
+            abilities.add(new RepairFieldAbility(25f, 35f * 3, 90f){{
+                parentizeEffects = true;
+                healEffect = Fx.shootHealYellow;
+                activeEffect = new WaveEffect(){{
+                    colorFrom = ExoPal.empyreanLight;
+                    colorTo = ExoPal.empyrean;
+                    interp = Interp.circle;
+                    sizeFrom = 0;
+                    sizeTo = 90f;
+                    lifetime = 55f;
+                    strokeTo = 0;
+                    strokeFrom = 2f;
+                }};
+            }});
+            weapons.add(new RepairBeamWeapon(){{
+                widthSinMag = 0.11f;
+                reload = 20f;
+                x = 0f;
+                y = 0f;
+                rotate = false;
+                shootY = 0f;
+                beamWidth = 0.7f;
+                aimDst = 0f;
+                shootCone = 40f;
+                mirror = false;
+
+                repairSpeed = 3.6f / 2f;
+                fractionRepairSpeed = 0.03f;
+
+                targetUnits = false;
+                targetBuildings = true;
+                autoTarget = false;
+                controllable = true;
+                laserColor = ExoPal.empyrean;
+                healColor = ExoPal.empyrean;
+
+                bullet = new BulletType(){{
+                    maxRange = 65f;
                 }};
             }});
         }};

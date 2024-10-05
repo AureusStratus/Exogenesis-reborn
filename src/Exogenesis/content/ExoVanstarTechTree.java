@@ -13,7 +13,7 @@ import static mindustry.content.TechTree.nodeProduce;
 
 public class ExoVanstarTechTree {
     public static void load() {
-        ExoPlanets.vanstar.techTree = nodeRoot("omaloon-glasmore", coreBelief, () -> {
+        ExoPlanets.vanstar.techTree = nodeRoot("exogenesis-vanstar", coreBelief, () -> {
             node(coreBelief);
 
             node(ductEmpyrean, () -> {
