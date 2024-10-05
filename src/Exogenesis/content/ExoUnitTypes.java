@@ -6170,6 +6170,7 @@ public class ExoUnitTypes {
 
         float coreFleeRange = 500f;
         priest = new ErekirUnitType("priest"){{
+            constructor = UnitEntity::create;
             coreUnitDock = true;
             controller = u -> new BuilderAI(true, coreFleeRange);
             isEnemy = false;
@@ -6287,6 +6288,7 @@ public class ExoUnitTypes {
             }});
         }};
         bishop = new ErekirUnitType("bishop"){{
+            constructor = UnitEntity::create;
             coreUnitDock = true;
             controller = u -> new BuilderAI(true, coreFleeRange);
             isEnemy = false;
@@ -6399,6 +6401,7 @@ public class ExoUnitTypes {
             }});
         }};
         apostle = new ErekirUnitType("apostle"){{
+            constructor = UnitEntity::create;
             coreUnitDock = true;
             controller = u -> new BuilderAI(true, coreFleeRange);
             isEnemy = false;
