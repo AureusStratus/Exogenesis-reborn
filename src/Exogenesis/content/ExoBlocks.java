@@ -2413,6 +2413,7 @@ public class ExoBlocks{
                                 hitColor = ExoPal.starBlue;
                                 splashDamagePierce = true;
                                 damageType = thermal;
+                                /*
                                 fragOnHit = false;
                                 fragLifeMin = 1f;
                                 fragBullets = 1;
@@ -2427,6 +2428,7 @@ public class ExoBlocks{
                                     lightOpacity = 0.7f;
                                     despawnEffect = hitEffect = ExoFx.singularityDespawn;
                                 }};
+                                 */
                                 shootEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.blueStarExplosionCloud, ExoFx.starExplodeBlue, ExoFx.empyreanExplosion, ExoFx.starExplodeBlue, Fx.colorSpark);
                                 collidesGround = true;
                                 collidesTiles = false;

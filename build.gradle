@@ -36,7 +36,7 @@ allprojects{
 
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
-    compileOnly 'com.github.MEEPofFaith:MindustryBlackHoleRenderer:v16'
+    //compileOnly 'com.github.MEEPofFaith:MindustryBlackHoleRenderer:v16'
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
 
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
@@ -50,7 +50,7 @@ configurations.all{
         }
     }
 }
-
+/*
 configure(allprojects){
     apply plugin: 'java'
     apply plugin: 'maven-publish'
@@ -60,6 +60,7 @@ configure(allprojects){
         from components.java
     }
 }
+ */
 
 task jarAndroid{
     dependsOn "jar"

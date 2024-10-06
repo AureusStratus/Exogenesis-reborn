@@ -11,7 +11,7 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.util.*;
-import blackhole.entities.effect.SwirlEffect;
+import Exogenesis.entities.effect.SwirlEffect;
 import mindustry.entities.*;
 import mindustry.entities.effect.MultiEffect;
 import mindustry.graphics.*;

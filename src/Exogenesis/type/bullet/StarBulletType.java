@@ -6,11 +6,9 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import Exogenesis.content.*;
 import Exogenesis.graphics.*;
-import blackhole.BlackHoleMod;
-import blackhole.entities.effect.SwirlEffect;
+import Exogenesis.entities.effect.SwirlEffect;
 import mindustry.content.*;
 import mindustry.entities.*;
-import mindustry.entities.bullet.BulletType;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 

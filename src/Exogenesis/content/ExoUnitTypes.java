@@ -1459,6 +1459,7 @@ public class ExoUnitTypes {
             abilities.add(new RegenAbility(){{
                 amount = 4f;
             }});
+            /*
             abilities.add(new BlackHoleAbility(){{
                 suctionRadius = 350f;
                 swirlEffects = 0;
@@ -1471,6 +1472,7 @@ public class ExoUnitTypes {
                 horizonRadius = 15;
                 color = ExoPal.erekirPurple;
             }});
+            */
             abilities.add(new SuppressionFieldAbility(){{
                 orbRadius = 0f;
                 particleSize = 0;
@@ -1523,37 +1525,7 @@ public class ExoUnitTypes {
                     trailWidth = 2f;
                 }};
             }});
-            weapons.add(new Weapon("death-singularity"){{
-                reload = 1f;
-                rotate = false;
-                mirror = controllable = false;
-                hidden = true;
-                deathExplosionEffect = new MultiEffect(ExoFx.PrometheusSmoke, ExoFx.starExplodeBlue, Fx.colorSpark);
-                range = 0;
-                shootOnDeath = true;
-                noAttack = true;
-                targetGround = targetAir = false;
-                x = 0;
-                y = 0f;
-                shootSound = Sounds.none;
-                recoil = shootY = shootX = 0;
-                shake = 2f;
-                bullet = new BlackHoleBulletType(0f, 15f){{
-                    lifetime = 550f;
-                    growTime = 0;
-                    force = 20;
-                    horizonRadius = 20;
-                    lensingRadius = 29;
-                    suctionRadius = 350;
-                    damageRadius = 180;
-                    swirlEffects = 2;
-                    swirlInterval = 3;
-                    color = hitColor = ExoPal.erekirPurple;
-                    lightRadius = 8f;
-                    lightOpacity = 0.7f;
-                    despawnEffect = hitEffect = ExoFx.singularityDespawn;
-                }};
-            }});
+            /*
             weapons.add(new Weapon("exogenesis-nemesis-singularity"){{
                 reload = 280f;
                 rotate = true;
@@ -1581,7 +1553,6 @@ public class ExoUnitTypes {
                     despawnEffect = hitEffect = ExoFx.singularityDespawn;
                 }};
             }});
-            /*
             weapons.add(new EnergyChargeWeapon("nemesis-weapon"){{
                 reload = 150f;
                 rotate = mirror = false;
@@ -8170,6 +8141,7 @@ public class ExoUnitTypes {
             engineSize = 3.1f;
 
             parts.addAll(
+                    /*
                     new BlackHolePart(){{
                         color = colorTo = ExoPal.genesis;
                         size = 0;
@@ -8179,6 +8151,7 @@ public class ExoUnitTypes {
                         mirror = false;
                         y = 0;
                     }},
+                     */
                     new HoverPart(){{
                         color = ExoPal.genesis;
                         circles = 3;
@@ -8204,6 +8177,7 @@ public class ExoUnitTypes {
                         y = -7.5f;
                     }}
             );
+            /*
             weapons.add(new Weapon("starblast") {{
                 reload = 60;
                 mirror = false;
@@ -8233,6 +8207,7 @@ public class ExoUnitTypes {
                     despawnEffect = hitEffect = ExoFx.singularityDespawn;
                 }};
             }});
+             */
             drawBuildBeam = false;
             weapons.add(new BuildWeapon("build-weapon"){{
                 rotate = true;
@@ -8628,6 +8603,7 @@ public class ExoUnitTypes {
             shadowElevation = 0.4f;
             groundLayer = Layer.legUnit;
             parts.addAll(
+                    /*
                     new BlackHolePart(){{
                         color = colorTo = ExoPal.genesis;
                         progress = growProgress = PartProgress.charge;
@@ -8638,6 +8614,7 @@ public class ExoUnitTypes {
                         mirror = false;
                         y = 20;
                     }},
+                     */
                     new RegionPart("-bodyside"){{
                         mirror = true;
                         progress = PartProgress.warmup;
@@ -8668,6 +8645,7 @@ public class ExoUnitTypes {
                         moveX = 3.5f;
                     }}
             );
+            /*
             weapons.add(new Weapon("exogenesis-oort-weapon"){{
                 shootSound = Sounds.malignShoot;
                 mirror = false;
@@ -8694,6 +8672,8 @@ public class ExoUnitTypes {
                     despawnEffect = hitEffect = ExoFx.singularityDespawn;
                 }};
             }});
+
+             */
             weapons.add(new Weapon("exogenesis-align-laser"){{
                 x = 18f;
                 y = -7f;
@@ -9366,6 +9346,7 @@ public class ExoUnitTypes {
             legSplashRange = 88;
             clipSize = 9999999f;
             parts.addAll(
+                    /*
                     new BlackHolePart(){{
                         color = colorTo = ExoPal.genesisTitan;
                         size = 23;
@@ -9385,6 +9366,7 @@ public class ExoUnitTypes {
                         mirror = false;
                         y = 98;
                     }},
+                     */
                     new RegionPart("-mandible"){{
                         mirror = true;
                         layerOffset = -0.0001f;
@@ -9404,6 +9386,7 @@ public class ExoUnitTypes {
                     }}
             );
             immunities.addAll(Vars.content.statusEffects());
+            /*
             abilities.add(new BlackHoleAbility(){{
                 suctionRadius = 800f;
                 swirlEffects = 0;
@@ -9417,6 +9400,7 @@ public class ExoUnitTypes {
                 horizonRadius = 20;
                 color = ExoPal.genesisTitan;
             }});
+             */
             weapons.add(new Weapon("comet bullets") {{
                 reload = 180f;
                 mirror = false;
@@ -9639,6 +9623,7 @@ public class ExoUnitTypes {
                     trailWidth = 3f;
                 }};
             }});
+            /*
             weapons.add(new Weapon("exogenesis-clamaity-turret") {{
                 reload = 100f;
                 mirror = rotate = true;
@@ -9722,6 +9707,7 @@ public class ExoUnitTypes {
                     despawnEffect = hitEffect = ExoFx.singularityDespawn;
                 }};
             }});
+             */
         }};
     }
 }
