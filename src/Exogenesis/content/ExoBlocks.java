@@ -8,7 +8,7 @@ import Exogenesis.world.blocks.PowerHarvester;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 import arc.util.Tmp;
-import blackhole.entities.bullet.BlackHoleBulletType;
+
 import mindustry.entities.abilities.MoveEffectAbility;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
