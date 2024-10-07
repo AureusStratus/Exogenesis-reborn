@@ -5,6 +5,7 @@ import Exogenesis.type.DamageType;
 import Exogenesis.type.bullet.*;
 import Exogenesis.type.bullet.vanilla.*;
 import Exogenesis.world.blocks.PowerHarvester;
+import Exogenesis.world.draw.DrawLoopPart;
 import Exogenesis.world.turrets.SpeedupTurret;
 import Exogenesis.graphics.ExoPal;
 import arc.util.Tmp;
@@ -168,7 +169,7 @@ import static arc.graphics.g2d.Lines.*;
             platingFactory = new GenericCrafter("plating-factory"){{
                 requirements(Category.crafting, with(ExoItems.rustyCopper, 60, Items.graphite, 30, ExoItems.cobolt, 30));
                 craftEffect = Fx.smeltsmoke;
-                outputItem = new ItemStack(ExoItems.empyreanPlating, 2);
+                outputItem = new ItemStack(ExoItems.empyreanPlating, 1);
                 craftTime = 70f;
                 size = 2;
                 hasPower = hasItems = true;
@@ -179,6 +180,7 @@ import static arc.graphics.g2d.Lines.*;
                             sides = 8;
                             sideOffset = 15;
                 }},
+                        new DrawLoopPart("-clamp", 4, 0, true, 1),
                 new DrawDefault()
                 );
                 ambientSound = Sounds.smelter;
@@ -277,18 +279,21 @@ import static arc.graphics.g2d.Lines.*;
                 craftTime = 70f;
                 size = 3;
                 hasPower = hasItems = true;
-                drawer = new DrawMulti(new DrawDefault(),
-                        new DrawGlowRegion("-glow"){{
-                            color = Color.valueOf("70170b");
-                            glowIntensity = 1f;
-                            alpha = 0.7f;
+                drawer = new DrawMulti(new DrawRegion("-bottom"),
+                        new DrawLoopPart("-clamp", 4, 0, true, 3){{
+                            x = 5;
                         }},
-                        new DrawFlame(Color.valueOf("ffc099"))
+                        new DrawGlowRegion("-heatGlow"){{
+                            color = Color.valueOf("70170b");
+                            glowIntensity = 0.2f;
+                            alpha = 0.1f;
+                        }},
+                        new DrawDefault()
                 );
                 ambientSound = Sounds.smelter;
                 ambientSoundVolume = 0.07f;
 
-                consumeItems(with(ExoItems.quartz, 1, Items.sand, 3));
+                consumeItems(with(ExoItems.empyreanPlating, 2, ExoItems.iron, 3));
                 consumePower(0.60f);
             }};
             vanstaniumOven = new GenericCrafter("vastanium-oven"){{
@@ -324,7 +329,7 @@ import static arc.graphics.g2d.Lines.*;
                             glowIntensity = 0.4f;
                             alpha = 0.7f;
                         }},
-                        new DrawLiquidRegion(),
+                        new DrawLiquidTile(),
                         new DrawCrucibleFlame(){{
                             particleRad = 11;
                             particles = 60;
