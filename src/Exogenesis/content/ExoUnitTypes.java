@@ -6170,7 +6170,7 @@ public class ExoUnitTypes {
             engineLayer = Layer.effect-1;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            engineSize = 2f;
+            engineSize = 1f;
             engineOffset = 0;
 
             parts.addAll(
@@ -6182,7 +6182,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 0f;
                         color = ExoPal.empyrean;
-                        stroke = strokeTo = 1.4f;
+                        stroke = strokeTo = 0.7f;
                         radiusTo = radius = 5f;
                     }},
                     new HaloPart() {{
@@ -6205,7 +6205,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1f;
-                        radiusTo = radius = 3f;
+                        radiusTo = radius = 2f;
                     }},
                     new ShapePart() {{
                         mirror = false;
@@ -6213,7 +6213,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 0f;
                         color = Color.white;
-                        radiusTo = radius = 1.5f;
+                        radiusTo = radius = 1f;
                     }}
             );
             abilities.add(new RepairFieldAbility(10f, 30f * 3, 60f){{
@@ -6299,7 +6299,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1.4f;
-                        radiusTo = radius = 7f;
+                        radiusTo = radius = 5f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -6308,7 +6308,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 7f;
+                        haloRadius = haloRadiusTo = 5f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -6322,7 +6322,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1f;
-                        radiusTo = radius = 5.5f;
+                        radiusTo = radius = 3.5f;
                     }},
                     new ShapePart() {{
                         mirror = false;
@@ -6330,7 +6330,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 0f;
                         color = Color.white;
-                        radiusTo = radius = 3.5f;
+                        radiusTo = radius = 1.5f;
                     }}
             );
             abilities.add(new RepairFieldAbility(25f, 35f * 3, 75f){{
@@ -6419,7 +6419,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1.4f;
-                        radiusTo = radius = 11f;
+                        radiusTo = radius = 7f;
                     }},
                     new ShapePart() {{
                         mirror = true;
@@ -6430,7 +6430,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 0.8f;
-                        radiusTo = radius = 13f;
+                        radiusTo = radius = 9f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -6439,7 +6439,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 11f;
+                        haloRadius = haloRadiusTo = 7f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -6452,7 +6452,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = 2.5f;
-                        haloRadius = haloRadiusTo = 11f;
+                        haloRadius = haloRadiusTo = 7f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -6465,7 +6465,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1f;
-                        radiusTo = radius = 8f;
+                        radiusTo = radius = 5f;
                     }},
                     new ShapePart() {{
                         mirror = false;
@@ -6473,7 +6473,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 0f;
                         color = Color.white;
-                        radiusTo = radius = 5.5f;
+                        radiusTo = radius = 2.5f;
                     }}
             );
             abilities.add(new RepairFieldAbility(25f, 35f * 3, 90f){{
