@@ -180,7 +180,7 @@ import static arc.graphics.g2d.Lines.*;
                             sides = 8;
                             sideOffset = 15;
                 }},
-                        new DrawLoopPart("-clamp", 4, 0, true, 1),
+                        new DrawLoopPart("-clamp", 1, 0, false, 1),
                 new DrawDefault()
                 );
                 ambientSound = Sounds.smelter;
@@ -280,7 +280,7 @@ import static arc.graphics.g2d.Lines.*;
                 size = 3;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
-                        new DrawLoopPart("-clamp", 4, 0, true, 3){{
+                        new DrawLoopPart("-presses", 4, 0, true, 3){{
                             x = 5;
                         }},
                         new DrawGlowRegion("-heatGlow"){{
@@ -329,7 +329,7 @@ import static arc.graphics.g2d.Lines.*;
                             glowIntensity = 0.4f;
                             alpha = 0.7f;
                         }},
-                        new DrawLiquidTile(),
+                        new DrawLiquidRegion(),
                         new DrawCrucibleFlame(){{
                             particleRad = 11;
                             particles = 60;
