@@ -168,7 +168,7 @@ import static arc.graphics.g2d.Lines.*;
             //crafters
             platingFactory = new GenericCrafter("plating-factory"){{
                 requirements(Category.crafting, with(ExoItems.rustyCopper, 60, Items.graphite, 30, ExoItems.cobolt, 30));
-                craftEffect = Fx.smeltsmoke;
+                craftEffect = Fx.hitMeltdown;
                 outputItem = new ItemStack(ExoItems.empyreanPlating, 1);
                 craftTime = 70f;
                 size = 2;
@@ -180,7 +180,10 @@ import static arc.graphics.g2d.Lines.*;
                             sides = 8;
                             sideOffset = 15;
                 }},
-                        new DrawLoopPart("-clamp", 1, 0, false, 1),
+                        new DrawLoopPart("-clamp", 2, 0, false, 1),
+                        new DrawLoopPart("-clamp", -2, 0, false, 1){{
+                            rotation = 180;
+                        }},
                 new DrawDefault()
                 );
                 ambientSound = Sounds.smelter;
@@ -280,8 +283,12 @@ import static arc.graphics.g2d.Lines.*;
                 size = 3;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
-                        new DrawLoopPart("-presses", 4, 0, true, 3){{
+                        new DrawLoopPart("-presses", -4, 0, false, 3){{
                             x = 5;
+                        }},
+                        new DrawLoopPart("-presses", 4, 0, false, 3){{
+                            x = 2;
+                            rotation = 180;
                         }},
                         new DrawGlowRegion("-heatGlow"){{
                             color = Color.valueOf("70170b");
@@ -333,10 +340,6 @@ import static arc.graphics.g2d.Lines.*;
                         new DrawCrucibleFlame(){{
                             particleRad = 11;
                             particles = 60;
-                        }},
-                        new DrawBubbles(){{
-                            color = Color.valueOf("ffa166");
-                            radius = 8f;
                         }},
                         new DrawGlowRegion("-glow2"){{
                             color = Color.valueOf("70170b");
