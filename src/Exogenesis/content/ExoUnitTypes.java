@@ -6148,7 +6148,6 @@ public class ExoUnitTypes {
             lowAltitude = false;
             mineWalls = true;
             mineFloor = true;
-            mineHardnessScaling = false;
             flying = true;
             mineSpeed = 6f;
             mineTier = 3;
@@ -6166,10 +6165,12 @@ public class ExoUnitTypes {
             targetable = false;
             hittable = false;
 
-            engineLayer = Layer.effect;
+            drawBody = false;
+            drawCell = false;
+            engineLayer = Layer.effect-1;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            engineSize = 2.7f;
+            engineSize = 2f;
             engineOffset = 0;
 
             parts.addAll(
@@ -6182,7 +6183,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1.4f;
-                        radiusTo = radius = 11f;
+                        radiusTo = radius = 5f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -6191,7 +6192,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 11f;
+                        haloRadius = haloRadiusTo = 5f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -6266,7 +6267,6 @@ public class ExoUnitTypes {
             lowAltitude = false;
             mineWalls = true;
             mineFloor = true;
-            mineHardnessScaling = false;
             flying = true;
             mineSpeed = 8f;
             mineTier = 3;
@@ -6280,7 +6280,13 @@ public class ExoUnitTypes {
             armor = 2f;
             hitSize = 11f;
             fogRadius = 0f;
-            engineSize = 4.7f;
+
+            drawBody = false;
+            drawCell = false;
+            engineLayer = Layer.effect-1;
+            trailLength = 8;
+            trailColor = ExoPal.empyrean;
+            engineSize = 3.7f;
             engineOffset = 0;
 
             parts.addAll(
@@ -6293,7 +6299,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1.4f;
-                        radiusTo = radius = 18f;
+                        radiusTo = radius = 7f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -6302,7 +6308,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 18f;
+                        haloRadius = haloRadiusTo = 7f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -6379,7 +6385,6 @@ public class ExoUnitTypes {
             lowAltitude = false;
             mineWalls = true;
             mineFloor = true;
-            mineHardnessScaling = false;
             flying = true;
             mineSpeed = 9f;
             mineTier = 3;
@@ -6395,6 +6400,12 @@ public class ExoUnitTypes {
             fogRadius = 0f;
             targetable = false;
             hittable = false;
+
+            drawBody = false;
+            drawCell = false;
+            engineLayer = Layer.effect-1;
+            trailLength = 8;
+            trailColor = ExoPal.empyrean;
             engineSize = 7.7f;
             engineOffset = 0;
 
@@ -6408,7 +6419,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1.4f;
-                        radiusTo = radius = 20f;
+                        radiusTo = radius = 11f;
                     }},
                     new ShapePart() {{
                         mirror = true;
@@ -6419,7 +6430,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 0.8f;
-                        radiusTo = radius = 24f;
+                        radiusTo = radius = 13f;
                     }},
                     new HaloPart() {{
                         y = 0f;
@@ -6428,7 +6439,7 @@ public class ExoUnitTypes {
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
                         haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 20f;
+                        haloRadius = haloRadiusTo = 11f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -6440,8 +6451,8 @@ public class ExoUnitTypes {
                         tri = true;
                         color = ExoPal.empyrean;
                         layer = Layer.effect;
-                        haloRotateSpeed = -2.5f;
-                        haloRadius = haloRadiusTo = 20f;
+                        haloRotateSpeed = 2.5f;
+                        haloRadius = haloRadiusTo = 11f;
                         stroke = 0f;
                         strokeTo = 2f;
                         shapes = 2;
@@ -8950,7 +8961,7 @@ public class ExoUnitTypes {
             hovering = true;
             legPhysicsLayer = false;
             legGroupSize = 2;
-            legCount = 6;
+            legCount = 5;
             legExtension = -2;
             legMoveSpace = 0.8f;
             legContinuousMove = true;
@@ -9008,7 +9019,7 @@ public class ExoUnitTypes {
             health = 2900;
             armor = 10f;
             constructor = LegsUnit::create;
-            legCount = 6;
+            legCount = 5;
             legLength = 21f;
             legForwardScl = 0.65f;
             legMoveSpace = 0.8f;
@@ -9056,7 +9067,7 @@ public class ExoUnitTypes {
             health = 12000;
             rotateSpeed = 1.8f;
             armor = 14f;
-            legCount = 6;
+            legCount = 5;
             legMoveSpace = 1.1f;
 
             lockLegBase = true;
@@ -9276,7 +9287,7 @@ public class ExoUnitTypes {
 
             rotateSpeed = 1.8f;
             armor = 20f;
-            legCount = 8;
+            legCount = 7;
             legMoveSpace = 1.1f;
 
             lockLegBase = true;
