@@ -2680,7 +2680,7 @@ public class ExoUnitTypes {
                     pierce = true;
                     pierceCap = 2;
                     speed = 9;
-                    damage = 40;
+                    damage = 10;
                     width = 8f;
                     height = 18f;
                     lifetime = 16f;
@@ -2759,7 +2759,7 @@ public class ExoUnitTypes {
                     buildingDamageMultiplier = 0.5f;
                     radius = 0;
                     speed = 9;
-                    damage = 40;
+                    damage = 20;
                     drag = 0.06f;
                     lifetime = 55f;
                     trailWidth = 4f;
@@ -2777,7 +2777,7 @@ public class ExoUnitTypes {
                     fragBullets = 6;
 
                     fragBullet = new LightningBulletType(){{
-                        damage = 14f;
+                        damage = 5f;
                         lightningLength = 1;
                         lightningLengthRand = 4;
                         lightningColor = ExoPal.erekirYellow;
@@ -2847,7 +2847,7 @@ public class ExoUnitTypes {
                     hitSize = 6f;
                     intervalBullets = 2;
                     intervalAngle = 15f;
-                    intervalRandomSpread = 0;
+                    intervalRandomSpread = 30;
                     bulletInterval = 10f;
                     intervalBullet = new FancyLaserBulletType() {{
                         damage = 35f;
@@ -2891,10 +2891,32 @@ public class ExoUnitTypes {
             flying = false;
             shadowElevation = 0.2f;
             groundLayer = Layer.groundUnit;
+            parts.addAll(
+                    new HoverPart(){{
+                        x = 10.25f;
+                        y = 11.75f;
+                        mirror = true;
+                        sides = 360;
+                        radius = 7f;
+                        phase = 30f;
+                        layerOffset = -0.001f;
+                        color = ExoPal.erekirYellow;
+                    }},
+                    new HoverPart(){{
+                        x = 8.0f;
+                        y = -11.75f;
+                        mirror = true;
+                        sides = 360;
+                        radius = 9f;
+                        phase = 30f;
+                        layerOffset = -0.001f;
+                        color = ExoPal.erekirYellow;
+                    }}
+            );
             weapons.add(new Weapon("exogenesis-thunderstorm-weapon"){{
-                shootSound = Sounds.mediumCannon;
+                shootSound = Sounds.spark;
                 layerOffset = 0.0001f;
-                reload = 70f;
+                reload = 50f;
                 shootY = 71f / 4f;
                 shake = 5f;
                 recoil = 4f;
@@ -2905,76 +2927,58 @@ public class ExoUnitTypes {
                 y = 0;
                 shadow = 28f;
                 heatColor = Color.valueOf("f9350f");
-                cooldownTime = 80f;
 
-                bullet = new BasicBulletType(8f, 190){{
-                    sprite = "missile-large";
-                    width = 9.5f;
-                    height = 13f;
-                    lifetime = 18f;
-                    hitSize = 6f;
-                    shootEffect = Fx.shootTitan;
-                    smokeEffect = Fx.shootSmokeTitan;
-                    pierceCap = 2;
-                    pierce = true;
-                    pierceBuilding = true;
-                    hitColor = backColor = trailColor = Color.valueOf("feb380");
-                    frontColor = Color.white;
-                    trailWidth = 3.1f;
-                    trailLength = 8;
-                    hitEffect = despawnEffect = Fx.blastExplosion;
-                    splashDamageRadius = 20f;
-                    splashDamage = 50f;
+                recoils = 3;
+                parts.add(
+                        new RegionPart("-barrel-1"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 2;
+                            cooldownTime = 50;
+                            heatProgress = PartProgress.recoil;
+                            progress = PartProgress.recoil;
+                            moveY = -4f;
+                        }},
+                        new RegionPart("-barrel-2"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 1;
+                            cooldownTime = 50;
+                            heatProgress = PartProgress.recoil;
+                            progress = PartProgress.recoil;
+                            moveY = -4f;
+                        }},
+                        new RegionPart("-barrel-3"){{
+                            mirror = false;
+                            under = true;
+                            recoilIndex = 0;
+                            cooldownTime = 50;
+                            heatProgress = PartProgress.recoil;
+                            progress = PartProgress.recoil;
+                            moveY = -4f;
+                        }}
+                );
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                            6.0f, 17.5f, 0f,
+                            0f, 19.0f, 0f,
+                            -6.0f, 17.5f, 0f,
+                    };
+                }};
 
-                    fragOnHit = false;
-                    fragRandomSpread = 0f;
-                    fragSpread = 10f;
-                    fragBullets = 5;
-                    fragVelocityMin = 1f;
-                    despawnSound = Sounds.dullExplosion;
-
-                    fragBullet = new BasicBulletType(8f, 35){{
-                        sprite = "missile-large";
-                        width = 8f;
-                        height = 12f;
-                        lifetime = 15f;
-                        hitSize = 4f;
-                        hitColor = backColor = trailColor = Color.valueOf("feb380");
-                        frontColor = Color.white;
-                        trailWidth = 2.8f;
-                        trailLength = 6;
-                        hitEffect = despawnEffect = Fx.blastExplosion;
-                        splashDamageRadius = 10f;
-                        splashDamage = 20f;
-                    }};
+                bullet = new PosLightningType(50f){{
+                    lightningColor = hitColor = Pal.surge;
+                    damageType = DamageType.energy;
+                    boltNum = 4;
+                    lightningDamage = 8;
+                    lightning = 7;
+                    lightningLength = 3;
+                    lightningLengthRand = 7;
+                    maxRange = rangeOverride = 250f;
+                    hitEffect = Fx.circleColorSpark;
+                    smokeEffect = Fx.shootBigSmoke2;
                 }};
             }});
-
-            int i = 0;
-            for(float f : new float[]{34f / 4f, -36f / 4f}){
-                int fi = i ++;
-                weapons.add(new Weapon("vanquish-point-weapon"){{
-                    reload = 35f + fi * 5;
-                    x = 48f / 4f;
-                    y = f;
-                    shootY = 5.5f;
-                    recoil = 2f;
-                    rotate = true;
-                    rotateSpeed = 2f;
-
-                    bullet = new BasicBulletType(4.5f, 25){{
-                        width = 6.5f;
-                        height = 11f;
-                        shootEffect = Fx.sparkShoot;
-                        smokeEffect = Fx.shootBigSmoke;
-                        hitColor = backColor = trailColor = Color.valueOf("feb380");
-                        frontColor = Color.white;
-                        trailWidth = 1.5f;
-                        trailLength = 4;
-                        hitEffect = despawnEffect = Fx.hitBulletColor;
-                    }};
-                }});
-            }
         }};
         hurricane = new ErekirUnitType("hurricane"){{
             constructor = ElevationMoveUnit::create;

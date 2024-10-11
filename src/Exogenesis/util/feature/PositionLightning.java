@@ -70,7 +70,7 @@ public class PositionLightning {
 	/**Lighting Effect Lifetime.*/
 	public static final float lifetime = Fx.chainLightning.lifetime;
 	/**Lighting Effect Default Width, apply it manually.*/
-	public static final float WIDTH = 2.5f;
+	public static final float WIDTH = 3.5f;
 	/**Lighting Effect X-Rand.*/
 	public static final float RANGE_RAND = 5f;
 	/**Lighting Effect Length Between Nodes.*/
