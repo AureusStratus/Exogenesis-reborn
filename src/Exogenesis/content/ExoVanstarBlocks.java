@@ -181,7 +181,7 @@ import static arc.graphics.g2d.Lines.*;
                             sideOffset = 15;
                 }},
                         new DrawLoopPart("-clamp", -2, 0, false, 3),
-                        new DrawLoopPart("-clamp", 2, 0, false, 3){{
+                        new DrawLoopPart("-clamp1", 2, 0, false, 3){{
                             rotation = 180;
                         }},
                 new DrawDefault()
@@ -286,9 +286,8 @@ import static arc.graphics.g2d.Lines.*;
                         new DrawLoopPart("-presses", -3, 0, false, 5){{
                             x = 7;
                         }},
-                        new DrawLoopPart("-presses", 3, 0, false, 5){{
+                        new DrawLoopPart("-presses2", 3, 0, false, 5){{
                             x = 4;
-                            rotation = 180;
                         }},
                         new DrawGlowRegion("-heatGlow"){{
                             color = Color.valueOf("70170b");

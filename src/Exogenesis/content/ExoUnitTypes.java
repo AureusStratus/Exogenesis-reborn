@@ -6194,7 +6194,7 @@ public class ExoUnitTypes {
                         haloRotateSpeed = -2.5f;
                         haloRadius = haloRadiusTo = 5f;
                         stroke = 0f;
-                        strokeTo = 2f;
+                        strokeTo = 1f;
                         shapes = 2;
                         triLengthTo = triLength = 4f;
                     }},
@@ -6205,7 +6205,7 @@ public class ExoUnitTypes {
                         y = 0f;
                         color = ExoPal.empyrean;
                         stroke = strokeTo = 1f;
-                        radiusTo = radius = 2f;
+                        radiusTo = radius = 2.2f;
                     }},
                     new ShapePart() {{
                         mirror = false;
@@ -6213,7 +6213,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 0f;
                         color = Color.white;
-                        radiusTo = radius = 1f;
+                        radiusTo = radius = 1.2f;
                     }}
             );
             abilities.add(new RepairFieldAbility(10f, 30f * 3, 60f){{
@@ -6286,7 +6286,7 @@ public class ExoUnitTypes {
             engineLayer = Layer.effect-1;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            engineSize = 3.7f;
+            engineSize = 2.7f;
             engineOffset = 0;
 
             parts.addAll(
@@ -6298,7 +6298,7 @@ public class ExoUnitTypes {
                         layer = Layer.effect;
                         y = 0f;
                         color = ExoPal.empyrean;
-                        stroke = strokeTo = 1.4f;
+                        stroke = strokeTo = 0.8f;
                         radiusTo = radius = 5f;
                     }},
                     new HaloPart() {{
@@ -6310,7 +6310,7 @@ public class ExoUnitTypes {
                         haloRotateSpeed = -2.5f;
                         haloRadius = haloRadiusTo = 5f;
                         stroke = 0f;
-                        strokeTo = 2f;
+                        strokeTo = 1.2f;
                         shapes = 2;
                         triLengthTo = triLength = 6f;
                     }},
@@ -6406,7 +6406,7 @@ public class ExoUnitTypes {
             engineLayer = Layer.effect-1;
             trailLength = 8;
             trailColor = ExoPal.empyrean;
-            engineSize = 7.7f;
+            engineSize = 3f;
             engineOffset = 0;
 
             parts.addAll(
@@ -6454,7 +6454,7 @@ public class ExoUnitTypes {
                         haloRotateSpeed = 2.5f;
                         haloRadius = haloRadiusTo = 7f;
                         stroke = 0f;
-                        strokeTo = 2f;
+                        strokeTo = 1.2f;
                         shapes = 2;
                         triLengthTo = triLength = 11f;
                     }},
