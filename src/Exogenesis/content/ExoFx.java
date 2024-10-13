@@ -544,8 +544,19 @@ public class ExoFx{
                 randLenVectors(e.id, 7, 25f * e.finpow(), e.rotation, 50f, (x, y) -> {
                     lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fin() * 5f + 2f);
                 });
-            });
+            }),
+                    flashShoot = new Effect(20f, 60f, e -> {
+                        color(e.color);
+                        for(int i = 0; i < 2; i++){
+                            Drawf.tri(e.x, e.y, 1.2f, 20f * e.fout(), i*90);
+                        }
 
+                        color();
+                        for(int i = 0; i < 2; i++){
+                            Drawf.tri(e.x, e.y, 0.7f, 10f * e.fout(), i*90);
+                        }
+
+                    });
     public static final float lightningAlign = 0.5f;
 
     public static Effect

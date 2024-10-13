@@ -2831,7 +2831,7 @@ public class ExoUnitTypes {
                 shootY = 16f;
                 recoil = 3f;
                 rotate = true;
-                rotateSpeed = 1.3f;
+                rotateSpeed = 2.3f;
                 mirror = false;
                 shootCone = 2f;
                 x = 0f;
@@ -2846,7 +2846,6 @@ public class ExoUnitTypes {
                     lifetime = 28f;
                     hitSize = 6f;
                     intervalBullets = 2;
-                    intervalAngle = 15f;
                     intervalRandomSpread = 30;
                     bulletInterval = 10f;
                     intervalBullet = new FancyLaserBulletType() {{
@@ -2881,12 +2880,14 @@ public class ExoUnitTypes {
             constructor = ElevationMoveUnit::create;
             hitSize = 28f;
             speed = 0.85f;
+            rotateSpeed = 1f;
             health = 11000;
             armor = 20f;
             itemCapacity = 0;
             rotateMoveFirst = true;
             hovering = true;
             singleTarget = true;
+            faceTarget = false;
             useEngineElevation = false;
             flying = false;
             shadowElevation = 0.2f;
@@ -2915,11 +2916,11 @@ public class ExoUnitTypes {
             );
             weapons.add(new Weapon("exogenesis-thunderstorm-weapon"){{
                 shootSound = Sounds.spark;
-                layerOffset = 0.0001f;
+                layerOffset = 0.00014f;
                 reload = 50f;
-                shootY = 71f / 4f;
+                shootY = 0f;
                 shake = 5f;
-                recoil = 4f;
+                recoil = 2f;
                 rotate = true;
                 rotateSpeed = 1f;
                 mirror = false;
@@ -2937,7 +2938,7 @@ public class ExoUnitTypes {
                             cooldownTime = 50;
                             heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
-                            moveY = -4f;
+                            moveY = -3f;
                         }},
                         new RegionPart("-barrel-2"){{
                             mirror = false;
@@ -2946,7 +2947,7 @@ public class ExoUnitTypes {
                             cooldownTime = 50;
                             heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
-                            moveY = -4f;
+                            moveY = -3f;
                         }},
                         new RegionPart("-barrel-3"){{
                             mirror = false;
@@ -2955,7 +2956,7 @@ public class ExoUnitTypes {
                             cooldownTime = 50;
                             heatProgress = PartProgress.recoil;
                             progress = PartProgress.recoil;
-                            moveY = -4f;
+                            moveY = -3f;
                         }}
                 );
                 shoot = new ShootBarrel(){{
@@ -2967,14 +2968,15 @@ public class ExoUnitTypes {
                 }};
 
                 bullet = new PosLightningType(50f){{
-                    lightningColor = hitColor = Pal.surge;
+                    lightningColor = hitColor = ExoPal.erekirYellow;
                     damageType = DamageType.energy;
                     boltNum = 4;
                     lightningDamage = 8;
                     lightning = 7;
                     lightningLength = 3;
                     lightningLengthRand = 7;
-                    maxRange = rangeOverride = 250f;
+                    maxRange = rangeOverride = 200f;
+                    shootEffect = ExoFx.flashShoot;
                     hitEffect = Fx.circleColorSpark;
                     smokeEffect = Fx.shootBigSmoke2;
                 }};

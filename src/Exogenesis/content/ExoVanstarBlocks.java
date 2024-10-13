@@ -180,10 +180,10 @@ import static arc.graphics.g2d.Lines.*;
                             sides = 8;
                             sideOffset = 15;
                 }},
-                        new DrawLoopPart("-clamp", 2, 0, false, 3){{
+                        new DrawLoopPart("-clamp", 2, 0, false, 6){{
                             x = 1;
                         }},
-                        new DrawLoopPart("-clamp1", -2, 0, false, 3){{
+                        new DrawLoopPart("-clamp1", -2, 0, false, 6){{
                             x = -1;
                         }},
                 new DrawDefault()
@@ -285,16 +285,16 @@ import static arc.graphics.g2d.Lines.*;
                 size = 3;
                 hasPower = hasItems = true;
                 drawer = new DrawMulti(new DrawRegion("-bottom"),
-                        new DrawLoopPart("-presses", 3, 0, false, 5){{
-                            x = 4;
+                        new DrawLoopPart("-presses", 3, 0, false, 8){{
+                            x = 6;
                         }},
-                        new DrawLoopPart("-presses2", -3, 0, false, 5){{
-                            x = 8;
+                        new DrawLoopPart("-presses2", -3, 0, false, 8){{
+                            x = 11;
                         }},
                         new DrawGlowRegion("-heatGlow"){{
                             color = Color.valueOf("70170b");
                             glowIntensity = 0.2f;
-                            alpha = 0.1f;
+                            alpha = 1.2f;
                         }},
                         new DrawDefault()
                 );
