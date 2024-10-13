@@ -87,7 +87,7 @@ configure(rootProject){
     apply plugin: 'com.github.GlennFolker.EntityAnno'
 
     entityAnno{
-        modName = property('modName')
+        modName = property('Exogenesis')
         mindustryVersion = property(useJitpack ? 'mindustryBEVersion' : 'mindustryVersion')
         isJitpack = useJitpack
         revisionDir = layout.projectDirectory.dir('revisions').asFile
