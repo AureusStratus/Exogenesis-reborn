@@ -1,0 +1,10 @@
+{
+"displayName": "Exogenesis",
+"name": "Exogenesis",
+"author": "AureusStratus",
+"main": "Exogenesis.Exogenesis",
+"description": ".",
+"version": "v0.1A",
+"minGameVersion": 145,
+"java": true
+}

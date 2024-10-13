@@ -22,7 +22,7 @@ public class ExoSounds{
     public static void load(){
         Class<?> c = ExoSounds.class;
         Seq<Field> fields = new Seq<>(c.getFields());
-        fields.filter(f -> Sound.class.equals(f.getType()));
+        fields.select(f -> Sound.class.equals(f.getType()));
         try{
             for(Field f : fields)f.set(null, loadSound(f.getName()));
         }catch(IllegalAccessException e){
