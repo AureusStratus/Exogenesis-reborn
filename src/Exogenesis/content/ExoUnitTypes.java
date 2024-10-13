@@ -61,7 +61,6 @@ public class ExoUnitTypes {
      prayer, apprise, revelation, enlightenment, excelsus,
     twinkle, starlight, stardustVoyager, orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer /* stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon */;
 
-    public static @Annotations.EntityDef({Unitc.class, Dronec.class}) UnitType  thorGaurderDrone;
     public static void load() {
         prometheus = new ErekirUnitType("prometheus") {{
             constructor = TankUnit::create;
