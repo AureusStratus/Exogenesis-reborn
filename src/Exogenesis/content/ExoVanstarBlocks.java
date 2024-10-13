@@ -294,7 +294,7 @@ import static arc.graphics.g2d.Lines.*;
                         new DrawGlowRegion("-heatGlow"){{
                             color = Color.valueOf("70170b");
                             glowIntensity = 0.2f;
-                            alpha = 1.2f;
+                            alpha = 0.7f;
                         }},
                         new DrawDefault()
                 );

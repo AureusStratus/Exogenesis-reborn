@@ -20,12 +20,13 @@ public class ExoEnvironmentBlocks {
     powerCrystal,
     //vanstar
     deepVansterWater, vansterWater, shallowVansterWater, vansterSandyWater, yellowIce, yellowGrass,
-    lightningStoneCharged, lightningStoneDim, lightningStoneDimWater, lightningStonePurple, lightningSlatePurple, lightningSlateSmoothPurple,  skystonegrey, skystone, vanstarock, vanstarockWall, vanstarockRound, skystonebright, redLightningStone,
-    blackSand, ferricSand, ferricSlate, ferricSandWater, ferricStoneWater, vanstarockWater, turrakaBoulder, purpleBoulder,
-    lightningStoneChargedWall, lightningStoneDimWall, redLightningStoneWall,purpleLightningStoneWall, vanstarLargeTree, vanstarStandardTree, vanstarDeadTree,
-    turraka, phosleStone, turrakaWater, phosleStoneWater,
+    skystonegrey, skystone, vanstarock, vanstarockWall, vanstarockRound, skystonebright,vanstarockWater,
+     lightningStoneDim,lightningStoneDimWall, lightningStoneDimWater, lightningStonePurple, lightningSlatePurple, lightningSlateSmoothPurple, purpleLightningStoneWall,
+     lightningStoneCharged, lightningStoneChargedWall, redLightningStone, redLightningStoneWall, purpleBoulder, vanstarLargeTree, vanstarStandardTree, vanstarDeadTree,
+    blackSand, ferricSand, ferricSlate, ferricSandWater, ferricStoneWater,
+    marble, marbleWall, turraka, phosleStone, turrakaWater, phosleStoneWater, turrakaBoulder,
     erythriteFloor, erythriteRouphFloor, crystallineCoboltStone, coboltCrystalFloor, erythriteFloorWater, coboltCrystalFloorWater,
-    erythriteWall, coboltCrystalWall, coboltDeposit, coboltDepositWall,
+    erythriteWall, coboltCrystalWall, coboltCrystallineWall, coboltDeposit, coboltDepositWall,
     //Axin
     axinCrystal, poolAxinPlasma , axinIce, axinPurpleStone, axinPurpleStoneMineral,  axinStone, axincarbonStone, axinRock, axinStoneWall,
     thenmialPlasma, thenmialPlasmaShallow, thenmialPlasmaDeep, thenmialPlasmaAbyssal, axinCyanSlate, axinSlate, axinCrystalStone, axinPurpleRock, axinPurpleSlate,
@@ -136,8 +137,7 @@ public class ExoEnvironmentBlocks {
             isLiquid = true;
             albedo = 0.2f;
         }};
-        //((ShallowLiquid)ferricSandWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.ferricSand);
-        //((ShallowLiquid)ferricStoneWater).set(ExoEnvironmentBlocks.vansterWater, Blocks.ferricStone);
+
         //Cobolt Biome
         coboltCrystalWall = new StaticWall("cobolt-crystal-wall"){{
             variants = 4;
@@ -168,6 +168,9 @@ public class ExoEnvironmentBlocks {
             isLiquid = true;
             albedo = 0.2f;
         }};
+        coboltCrystallineWall = new StaticWall("cobolt-crystalline-wall"){{
+            variants = 4;
+        }};
         erythriteFloor = new Floor("erythrite-floor") {{
             variants = 6;
         }};
@@ -189,8 +192,6 @@ public class ExoEnvironmentBlocks {
             isLiquid = true;
             albedo = 0.2f;
         }};
-
-       // ((ShallowLiquid)erythriteFloorWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.erythriteFloor);
 
         //Vanstar Rock field
         vanstarock = new Floor("vanstarock") {{
@@ -275,6 +276,11 @@ public class ExoEnvironmentBlocks {
         yellowGrass = new Floor("yellow-grass") {{
             variants = 4;
         }};
+        purpleBoulder = new Prop("purple-boulder") {{
+            variants = 2;
+        }};
+
+        //lightning stone biome
         redLightningStone = new Floor("red-lightning-stone") {{
             variants = 4;
         }};
@@ -283,12 +289,6 @@ public class ExoEnvironmentBlocks {
         }};
         lightningSlatePurple = new Floor("lightning-slate-purple") {{
             variants = 5;
-        }};
-        purpleBoulder = new Prop("purple-boulder") {{
-            variants = 2;
-        }};
-        turrakaBoulder = new Prop("turraka-boulder") {{
-            variants = 2;
         }};
         lightningSlateSmoothPurple = new Floor("lightning-slate-smooth-purple") {{
             variants = 4;
@@ -309,7 +309,14 @@ public class ExoEnvironmentBlocks {
             isLiquid = true;
             albedo = 0.2f;
         }};
-        //((ShallowLiquid)lightningStoneDimWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.lightningStoneDim);
+        //marble biome
+        marble = new Floor("marble") {{
+            variants = 6;
+        }};
+        marbleWall = new StaticWall("marble-wall") {{
+            variants = 3;
+            marble.asFloor().wall = this;
+        }};
         phosleStone = new Floor("phosle-stone") {{
             variants = 4;
         }};
@@ -336,8 +343,10 @@ public class ExoEnvironmentBlocks {
             isLiquid = true;
             albedo = 0.2f;
         }};
-        //((ShallowLiquid)turrakaWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.turraka);
-        //((ShallowLiquid)phosleStoneWater).set(ExoEnvironmentBlocks.vansterWater, ExoEnvironmentBlocks.phosleStone);
+        turrakaBoulder = new Prop("turraka-boulder") {{
+            variants = 2;
+        }};
+
 
         blackSand = new Floor("blacksand") {{
             itemDrop = Items.sand;

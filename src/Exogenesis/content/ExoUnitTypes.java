@@ -16,6 +16,7 @@ import arc.math.geom.*;
 import arc.struct.ObjectSet;
 import arc.util.Tmp;
 import Exogenesis.entities.effect.SwirlEffect;
+import ent.anno.Annotations;
 import mindustry.Vars;
 import mindustry.ai.*;
 import mindustry.ai.types.BuilderAI;
@@ -60,7 +61,7 @@ public class ExoUnitTypes {
      prayer, apprise, revelation, enlightenment, excelsus,
     twinkle, starlight, stardustVoyager, orion, galileo, kuiper, oort, sirius, scout, guard, sentry, sentinel, overseer /* stele, pedestal, pylon, pillaster, monolith, meteor, asteroid, comet, planetoid, moon */;
 
-
+    public static @Annotations.EntityDef({Unitc.class, Dronec.class}) UnitType  thorGaurderDrone;
     public static void load() {
         prometheus = new ErekirUnitType("prometheus") {{
             constructor = TankUnit::create;

@@ -26,5 +26,6 @@ public class Exogenesis extends Mod {
         ExoVanstarBlocks.load();
         TypeMultipliers.load();
         ExoPlanets.load();
+        ExoVanstarTechTree.load();
     }
 }
