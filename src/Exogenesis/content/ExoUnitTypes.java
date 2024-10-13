@@ -16,7 +16,6 @@ import arc.math.geom.*;
 import arc.struct.ObjectSet;
 import arc.util.Tmp;
 import Exogenesis.entities.effect.SwirlEffect;
-import ent.anno.Annotations;
 import mindustry.Vars;
 import mindustry.ai.*;
 import mindustry.ai.types.BuilderAI;
